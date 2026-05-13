@@ -335,20 +335,6 @@ img {
   color: var(--dock);
 }
 
-.hero-clip-credit {
-  margin: 1.75rem 0 0;
-  max-width: 48ch;
-  font-size: 0.58rem;
-  letter-spacing: 0.04em;
-  line-height: 1.45;
-  color: color-mix(in srgb, #f4f2ec 48%, transparent);
-}
-
-.hero-clip-credit code {
-  font-size: 0.9em;
-  color: color-mix(in srgb, #f4f2ec 65%, transparent);
-}
-
 @media (prefers-reduced-motion: reduce) {
   .hero-video {
     display: none;
@@ -406,7 +392,7 @@ img {
   text-decoration: none;
 }
 
-/* Strip — dock ticker */
+/* Strip: dock ticker */
 .strip {
   border-bottom: 1px solid var(--dock);
   padding: 0.75rem 0;
@@ -822,7 +808,7 @@ img {
   flex: 1;
 }
 
-/* Inquiry form — inner layout; shell matches .contact-panel */
+/* Inquiry form: inner layout; shell matches .contact-panel */
 .contact-form {
   position: relative;
   display: grid;
