@@ -859,14 +859,6 @@ img {
   margin-top: 0.25rem;
 }
 
-.contact-form label .label-optional {
-  font-weight: 400;
-  font-size: 0.65rem;
-  letter-spacing: 0.04em;
-  text-transform: none;
-  color: color-mix(in srgb, var(--bg-paper) 45%, transparent);
-}
-
 .honeypot {
   position: absolute;
   left: -9999px;
