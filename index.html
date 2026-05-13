@@ -364,9 +364,6 @@
               ></textarea>
             </label>
             <button type="submit" class="btn btn-primary">Send inquiry</button>
-            <p class="form-footnote">
-              Submissions are sent through FormSubmit to the inbox set in <span class="mono">SPECTR_FORM.formsubmitEmail</span> in the page script (or the default address in the form if that is left empty). The first submission triggers a one-time activation email from FormSubmit; you must click the link in that inbox before delivery works. Optional: set <span class="mono">formsubmitWebhook</span> to a Zapier, Make, or Relay catch-hook URL to push each submission into Attio or another CRM—see <span class="mono">integrations/SETUP.txt</span>.
-            </p>
           </form>
           </div>
         </div>
@@ -419,28 +416,18 @@
 
     <script>
       window.SPECTR_FORM = Object.assign(
-        {
-          formsubmitEmail: "",
-          formsubmitWebhook: ""
-        },
+        { formsubmitWebhook: "" },
         window.SPECTR_FORM || {}
       );
       document.addEventListener("DOMContentLoaded", function () {
         var next = document.getElementById("contact-next");
         if (next) next.value = new URL("thanks.html", window.location.href).href;
 
-        var cfg = window.SPECTR_FORM || {};
-        var email =
-          typeof cfg.formsubmitEmail === "string" ? cfg.formsubmitEmail.trim() : "";
         var webhook =
-          typeof cfg.formsubmitWebhook === "string" ? cfg.formsubmitWebhook.trim() : "";
+          typeof (window.SPECTR_FORM || {}).formsubmitWebhook === "string"
+            ? String(window.SPECTR_FORM.formsubmitWebhook).trim()
+            : "";
         var form = document.querySelector(".contact-form");
-        if (form && email.indexOf("@") > 0) {
-          form.setAttribute(
-            "action",
-            "https://formsubmit.co/" + encodeURIComponent(email)
-          );
-        }
         if (form && webhook.length > 12 && !form.querySelector('input[name="_webhook"]')) {
           var hook = document.createElement("input");
           hook.type = "hidden";

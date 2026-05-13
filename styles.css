@@ -859,14 +859,6 @@ img {
   margin-top: 0.25rem;
 }
 
-.form-footnote {
-  margin: 0;
-  font-size: 0.65rem;
-  line-height: 1.45;
-  color: color-mix(in srgb, var(--bg-paper) 48%, transparent);
-  max-width: 52ch;
-}
-
 .contact-form label .label-optional {
   font-weight: 400;
   font-size: 0.65rem;
