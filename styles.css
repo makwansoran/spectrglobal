@@ -649,24 +649,6 @@ img {
   color: color-mix(in srgb, var(--bg-paper) 72%, transparent);
 }
 
-.contact-email-note {
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.04em;
-  color: color-mix(in srgb, var(--bg-paper) 55%, transparent);
-  margin: 0;
-}
-
-.contact-email-note a {
-  color: var(--safety);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-.contact-email-note a:hover {
-  color: #fff;
-}
-
 .contact-layout {
   display: grid;
   gap: clamp(1.5rem, 3vw, 2rem);

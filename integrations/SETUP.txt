@@ -1,0 +1,29 @@
+Spectr site: contact form → Gmail + Attio (https://attio.com/)
+===============================================================
+
+1) FormSubmit → your Google inbox
+----------------------------------
+- In index.html, set window.SPECTR_FORM.formsubmitEmail to the Gmail (or Google Workspace) address that should receive inquiries.
+- Deploy the site, submit the form once, then open that inbox and click FormSubmit’s one-time activation link. Until you activate, submissions are not delivered.
+
+2) Attio (recommended: no API keys in the website)
+---------------------------------------------------
+Attio’s REST API uses OAuth and must not be called from static HTML with secrets in the browser.
+
+Option A — Webhook (instant JSON to your automation)
+- In Zapier, Make, or Relay: create a workflow whose first step is “Catch hook” / “Custom webhook” and copy the URL.
+- Set window.SPECTR_FORM.formsubmitWebhook to that URL. The site injects FormSubmit’s hidden field _webhook; FormSubmit POSTs a JSON payload of the submission to your hook on each valid submit.
+- Next step in the workflow: “Create or update person” (or equivalent) in Attio. Map fields: name, email, company, phone, service, lane_and_volume.
+
+Option B — Email trigger (no _webhook)
+- After step 1, each inquiry is an email in Gmail.
+- Zapier: “New email in Gmail” (filter by subject “Spectr website” or sender FormSubmit) → Attio “Create or update record”.
+- Relay.app supports similar Gmail → Attio playbooks.
+
+3) Field names (for mapping in Zapier / Make)
+-----------------------------------------------
+name, email, company, phone, service, lane_and_volume
+
+4) Privacy copy
+---------------
+If you use a webhook or CRM automation, update privacy.html section 5 to name the processors you actually use (e.g. Zapier, Attio).

@@ -250,10 +250,6 @@
             <p class="contact-intro-lede">
               Tell us origins, destinations, average daily volume, SKU profile, and any storage or handling requirements. We respond with options, timelines, and a single point of contact, usually within two business days.
             </p>
-            <p class="contact-email-note">
-              Prefer email?
-              <a href="mailto:hello@spectr.studio">hello@spectr.studio</a>
-            </p>
           </header>
           <div class="contact-layout">
           <aside class="contact-card contact-panel" aria-label="Point of contact">
@@ -263,7 +259,7 @@
                 src="assets/contact/profile.jpg"
                 width="640"
                 height="480"
-                alt="Portrait of your Spectr contact"
+                alt="Makwan S, Spectr commercial lead"
                 loading="lazy"
                 decoding="async"
                 onerror="this.onerror=null;this.src='assets/contact/profile.svg';"
@@ -271,11 +267,11 @@
             </div>
             <div class="contact-card-body">
               <div class="contact-profile-caption">
-                <span class="contact-profile-name">Your name</span>
+                <span class="contact-profile-name">Makwan S</span>
                 <span class="contact-profile-role">Commercial lead · Spectr</span>
               </div>
               <nav class="contact-social" aria-label="Direct links">
-              <a class="contact-social-link" href="mailto:hello@spectr.studio">
+              <a class="contact-social-link" href="mailto:makwan@spectr.no">
                 <span class="contact-social-icon" aria-hidden="true">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/></svg>
                 </span>
@@ -317,7 +313,7 @@
 
           <form
             class="contact-form contact-panel"
-            action="https://formsubmit.co/hello@spectr.studio"
+            action="https://formsubmit.co/makwan@spectr.no"
             method="POST"
           >
             <input type="hidden" name="_subject" value="Spectr website: new logistics inquiry" />
@@ -369,7 +365,7 @@
             </label>
             <button type="submit" class="btn btn-primary">Send inquiry</button>
             <p class="form-footnote">
-              Submissions are delivered via FormSubmit to the address in the form action. On first use, FormSubmit sends a confirmation link to that inbox. Click it to activate delivery. Replace the action URL with your live address before launch.
+              Submissions are sent through FormSubmit to the inbox set in <span class="mono">SPECTR_FORM.formsubmitEmail</span> in the page script (or the default address in the form if that is left empty). The first submission triggers a one-time activation email from FormSubmit; you must click the link in that inbox before delivery works. Optional: set <span class="mono">formsubmitWebhook</span> to a Zapier, Make, or Relay catch-hook URL to push each submission into Attio or another CRM—see <span class="mono">integrations/SETUP.txt</span>.
             </p>
           </form>
           </div>
@@ -398,7 +394,7 @@
         </div>
         <div class="site-footer-actions" aria-label="Quick actions">
           <a class="btn btn-primary" href="index.html#contact">Request a quote</a>
-          <a class="btn btn-ghost" href="mailto:hello@spectr.studio">Email us</a>
+          <a class="btn btn-ghost" href="mailto:makwan@spectr.no">Email us</a>
           <a class="btn btn-ghost" href="privacy.html">Privacy</a>
           <a class="btn btn-ghost" href="terms.html">Terms</a>
         </div>
@@ -422,9 +418,36 @@
     </footer>
 
     <script>
+      window.SPECTR_FORM = Object.assign(
+        {
+          formsubmitEmail: "",
+          formsubmitWebhook: ""
+        },
+        window.SPECTR_FORM || {}
+      );
       document.addEventListener("DOMContentLoaded", function () {
         var next = document.getElementById("contact-next");
         if (next) next.value = new URL("thanks.html", window.location.href).href;
+
+        var cfg = window.SPECTR_FORM || {};
+        var email =
+          typeof cfg.formsubmitEmail === "string" ? cfg.formsubmitEmail.trim() : "";
+        var webhook =
+          typeof cfg.formsubmitWebhook === "string" ? cfg.formsubmitWebhook.trim() : "";
+        var form = document.querySelector(".contact-form");
+        if (form && email.indexOf("@") > 0) {
+          form.setAttribute(
+            "action",
+            "https://formsubmit.co/" + encodeURIComponent(email)
+          );
+        }
+        if (form && webhook.length > 12 && !form.querySelector('input[name="_webhook"]')) {
+          var hook = document.createElement("input");
+          hook.type = "hidden";
+          hook.name = "_webhook";
+          hook.value = webhook;
+          form.appendChild(hook);
+        }
       });
     </script>
     <script src="script.js" defer></script>
