@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Contact Spectr: new business, partnerships, and project inquiries." />
+    <title>Contact — Spectr</title>
+    <link rel="icon" href="assets/brand/spectr-mark.png" type="image/png" sizes="any" />
+    <link rel="apple-touch-icon" href="assets/brand/spectr-mark.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=Syne:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="font-body theme-marketing">
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a class="logo-link" href="index.html#top" aria-label="Spectr home">
+          <img
+            class="logo-mark"
+            src="assets/brand/spectr-mark.png"
+            width="40"
+            height="40"
+            alt=""
+            decoding="async"
+          />
+          <span class="wordmark">Spectr</span>
+        </a>
+        <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+        <nav class="nav" id="site-nav" aria-label="Primary">
+          <a href="index.html#solutions">Solutions</a>
+          <a href="index.html#about">About</a>
+          <a href="index.html#services">Services</a>
+          <a href="index.html#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="pg-page-main">
+      <div class="wrap pg-contact-page">
+        <header class="pg-page-head">
+          <p class="mono pg-page-kicker">Contact</p>
+          <h1 class="pg-page-title">Start a conversation.</h1>
+          <p class="pg-page-lede">
+            Share scope, timing, and links to anything we should see. We reply with next steps, a rough engagement shape, and a single point of contact—typically within two business days.
+          </p>
+        </header>
+
+        <form
+          class="contact-form contact-panel pg-contact-form"
+          action="https://formsubmit.co/makwan@spectr.no"
+          method="POST"
+        >
+          <input type="hidden" name="_subject" value="Spectr website: new marketing inquiry" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_next" id="contact-next" value="" />
+          <input type="text" name="_gotcha" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+          <div class="form-row form-row--2">
+            <label>
+              Full name
+              <input type="text" name="name" required autocomplete="name" placeholder="Jordan Lee" />
+            </label>
+            <label>
+              Work email
+              <input type="email" name="email" required autocomplete="email" placeholder="you@company.com" />
+            </label>
+          </div>
+          <div class="form-row form-row--2">
+            <label>
+              Company
+              <input type="text" name="company" required autocomplete="organization" placeholder="Company or brand" />
+            </label>
+            <label>
+              Phone
+              <input type="tel" name="phone" autocomplete="tel" placeholder="+47 …" />
+            </label>
+          </div>
+          <label>
+            Project type
+            <select name="project_type" required>
+              <option value="" disabled selected hidden>Select a focus</option>
+              <option value="Brand strategy &amp; identity">Brand strategy &amp; identity</option>
+              <option value="Campaign or launch">Campaign or launch</option>
+              <option value="Website or digital product marketing">Website or digital product marketing</option>
+              <option value="Retainer / ongoing studio">Retainer / ongoing studio</option>
+              <option value="Workshop or sprint">Workshop or sprint</option>
+              <option value="Other / not sure yet">Other / not sure yet</option>
+            </select>
+          </label>
+          <label>
+            Brief &amp; links
+            <textarea
+              name="brief"
+              required
+              placeholder="Goals, audiences, deadlines, competitors you admire, links to decks or sites, and anything else we should know."
+            ></textarea>
+          </label>
+          <button type="submit" class="btn btn-primary">Send inquiry</button>
+        </form>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap site-footer-inner">
+        <div class="site-footer-brand">
+          <a class="site-footer-logo" href="index.html#top">
+            <img
+              class="site-footer-logo-mark"
+              src="assets/brand/spectr-mark.png"
+              width="36"
+              height="36"
+              alt=""
+              decoding="async"
+            />
+            <span class="site-footer-logo-text">Spectr</span>
+          </a>
+          <p class="site-footer-tagline">
+            Marketing and creative studio operated by <strong>SPECTR AS</strong>, Norway.
+          </p>
+        </div>
+        <div class="site-footer-actions" aria-label="Quick actions">
+          <a class="btn btn-primary" href="contact.html">Start a project</a>
+          <a class="btn btn-ghost" href="me.html">About me</a>
+          <a class="btn btn-ghost" href="privacy.html">Privacy</a>
+          <a class="btn btn-ghost" href="terms.html">Terms</a>
+        </div>
+        <div class="site-footer-meta">
+          <address class="site-footer-address">
+            <span class="site-footer-legal-name">SPECTR AS</span><br />
+            Org. nr. <span class="mono">926 574 892</span><br />
+            Eksempelgata 1, NO-0162 Oslo, Norway
+          </address>
+          <p class="site-footer-copy">
+            <span class="mono">© <span data-current-year></span> SPECTR AS</span>
+            <span class="site-footer-sep" aria-hidden="true">·</span>
+            <a href="privacy.html">Privacy policy</a>
+            <span class="site-footer-sep" aria-hidden="true">·</span>
+            <a href="terms.html">Terms of use</a>
+            <span class="site-footer-sep" aria-hidden="true">·</span>
+            <a href="index.html#top">Back to top</a>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var next = document.getElementById("contact-next");
+        if (next) next.value = new URL("thanks.html", window.location.href).href;
+      });
+    </script>
+    <script src="script.js" defer></script>
+  </body>
+</html>

@@ -1109,3 +1109,573 @@ img {
   margin: 0;
   font-size: 0.88rem;
 }
+
+/* --------------------------------------------------------------------------
+   Marketing theme (Pentagram-inspired). Does not modify .site-header / .nav.
+   -------------------------------------------------------------------------- */
+body.theme-marketing {
+  background: #f7f6f3;
+  background-image: none;
+  color: #0c0c0c;
+  font-size: clamp(1rem, 1.05vw, 1.125rem);
+}
+
+body.theme-marketing a:hover {
+  text-decoration-thickness: 1px;
+}
+
+body.theme-marketing .pg-hero {
+  padding: clamp(4rem, 14vw, 8.5rem) 0 clamp(3rem, 8vw, 5rem);
+  border-bottom: 1px solid #d4d0c8;
+  background: linear-gradient(180deg, #fff 0%, #f7f6f3 100%);
+}
+
+body.theme-marketing .pg-hero-inner {
+  max-width: 72rem;
+}
+
+body.theme-marketing .pg-hero-kicker {
+  margin: 0 0 1.25rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #5c5a55;
+}
+
+body.theme-marketing .pg-hero h1 {
+  margin: 0 0 1.35rem;
+  font-family: "Newsreader", Georgia, "Times New Roman", serif;
+  font-size: clamp(2.75rem, 7.5vw, 4.75rem);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  max-width: 14ch;
+  color: #0c0c0c;
+}
+
+body.theme-marketing .pg-hero-lede {
+  margin: 0;
+  max-width: 40rem;
+  font-size: clamp(1.05rem, 1.9vw, 1.2rem);
+  line-height: 1.55;
+  color: #3a3834;
+}
+
+body.theme-marketing .pg-hero-actions {
+  margin-top: 2.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+body.theme-marketing .pg-hero .btn-primary {
+  background: #0c0c0c;
+  color: #f7f6f3;
+  box-shadow: none;
+}
+
+body.theme-marketing .pg-hero .btn-primary:hover {
+  background: #2a2824;
+  color: #fff;
+}
+
+body.theme-marketing .pg-marquee {
+  border-bottom: 1px solid #0c0c0c;
+  background: #0c0c0c;
+  color: #e8e6e1;
+  padding: 0.85rem 0;
+  overflow: hidden;
+}
+
+body.theme-marketing .pg-marquee-inner {
+  display: inline-flex;
+  gap: 0;
+  white-space: nowrap;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+body.theme-marketing .pg-marquee-inner span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+body.theme-marketing .pg-marquee-inner span + span::before {
+  content: "·";
+  color: #c4a574;
+  font-weight: 400;
+}
+
+body.theme-marketing .pg-section {
+  padding: clamp(3.5rem, 9vw, 6.5rem) 0;
+}
+
+body.theme-marketing .pg-section-head {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid #d4d0c8;
+}
+
+@media (min-width: 720px) {
+  body.theme-marketing .pg-section-head {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    align-items: end;
+  }
+
+  body.theme-marketing .pg-section-head--tight {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  }
+}
+
+body.theme-marketing .pg-section-head h2 {
+  margin: 0;
+  font-family: "Newsreader", Georgia, serif;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+body.theme-marketing .pg-section-head p {
+  margin: 0;
+  color: #4a4843;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  max-width: 48ch;
+}
+
+body.theme-marketing .pg-grid {
+  display: grid;
+  gap: 1px;
+  background: #0c0c0c;
+  border: 1px solid #0c0c0c;
+}
+
+@media (min-width: 640px) {
+  body.theme-marketing .pg-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1100px) {
+  body.theme-marketing .pg-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+body.theme-marketing .pg-tile {
+  background: #fff;
+}
+
+body.theme-marketing .pg-tile-link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+body.theme-marketing .pg-tile-link:hover {
+  text-decoration: none;
+}
+
+body.theme-marketing .pg-tile-link:hover .pg-tile-body h3 {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+body.theme-marketing .pg-tile-visual {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #e5e2dc;
+}
+
+body.theme-marketing .pg-tile-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+body.theme-marketing .pg-tile-link:hover .pg-tile-visual img {
+  transform: scale(1.03);
+}
+
+body.theme-marketing .pg-tile-body {
+  padding: 1.35rem 1.5rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+body.theme-marketing .pg-tile-tag {
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #6b6860;
+}
+
+body.theme-marketing .pg-tile-body h3 {
+  margin: 0;
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+body.theme-marketing .pg-tile-body p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: #4a4843;
+}
+
+body.theme-marketing .pg-editorial {
+  background: #fff;
+  border-top: 1px solid #d4d0c8;
+  border-bottom: 1px solid #d4d0c8;
+}
+
+body.theme-marketing .pg-split {
+  display: grid;
+  gap: clamp(2rem, 5vw, 3.5rem);
+}
+
+@media (min-width: 880px) {
+  body.theme-marketing .pg-split {
+    grid-template-columns: 1.15fr 0.85fr;
+    align-items: start;
+  }
+}
+
+body.theme-marketing .pg-split h2 {
+  margin: 0 0 1.25rem;
+  font-family: "Newsreader", Georgia, serif;
+  font-size: clamp(1.85rem, 3.2vw, 2.5rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+body.theme-marketing .pg-pull {
+  font-family: "Newsreader", Georgia, serif;
+  font-size: clamp(1.15rem, 2vw, 1.35rem);
+  line-height: 1.45;
+  color: #1a1916;
+}
+
+body.theme-marketing .pg-split p {
+  margin: 0 0 1rem;
+  color: #4a4843;
+  max-width: 52ch;
+}
+
+body.theme-marketing .pg-aside {
+  border: 1px solid #d4d0c8;
+  padding: 1.5rem 1.75rem;
+  background: #faf9f7;
+}
+
+body.theme-marketing .pg-aside-label {
+  margin: 0 0 1rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #6b6860;
+}
+
+body.theme-marketing .pg-aside-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.72rem;
+  line-height: 1.7;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #2a2824;
+}
+
+body.theme-marketing .pg-aside-list li + li {
+  margin-top: 0.65rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid #d4d0c8;
+}
+
+body.theme-marketing .pg-capabilities {
+  background: #f7f6f3;
+}
+
+body.theme-marketing .pg-cap-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid #0c0c0c;
+}
+
+body.theme-marketing .pg-cap-list li {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  padding: 1.15rem 0;
+  border-bottom: 1px solid #d4d0c8;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+body.theme-marketing .pg-cap-list li span:last-child {
+  font-weight: 500;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6b6860;
+}
+
+body.theme-marketing .pg-cta {
+  background: #0c0c0c;
+  color: #e8e6e1;
+  padding: clamp(3rem, 8vw, 5rem) 0;
+  border-top: 1px solid #0c0c0c;
+}
+
+body.theme-marketing .pg-cta-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+body.theme-marketing .pg-cta h2 {
+  margin: 0 0 0.75rem;
+  font-family: "Newsreader", Georgia, serif;
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+body.theme-marketing .pg-cta p {
+  margin: 0;
+  max-width: 42ch;
+  color: color-mix(in srgb, #e8e6e1 72%, transparent);
+  line-height: 1.55;
+}
+
+body.theme-marketing .pg-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+body.theme-marketing .pg-cta .btn-primary {
+  background: #f7f6f3;
+  color: #0c0c0c;
+  box-shadow: none;
+}
+
+body.theme-marketing .pg-cta .btn-primary:hover {
+  background: #c4a574;
+  color: #0c0c0c;
+}
+
+body.theme-marketing .pg-cta .btn-ghost {
+  border-color: color-mix(in srgb, #e8e6e1 45%, transparent);
+  color: #f7f6f3;
+}
+
+body.theme-marketing .pg-cta .btn-ghost:hover {
+  background: #f7f6f3;
+  color: #0c0c0c;
+}
+
+/* Inner pages: contact + about me */
+body.theme-marketing .pg-page-main {
+  padding: clamp(2.5rem, 7vw, 4.5rem) 0 clamp(4rem, 10vw, 6rem);
+  min-height: 50vh;
+}
+
+body.theme-marketing .pg-page-kicker {
+  margin: 0 0 0.75rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #6b6860;
+}
+
+body.theme-marketing .pg-page-title {
+  margin: 0 0 1rem;
+  font-family: "Newsreader", Georgia, serif;
+  font-size: clamp(2.25rem, 5vw, 3.25rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+body.theme-marketing .pg-page-lede {
+  margin: 0;
+  max-width: 48ch;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #4a4843;
+}
+
+body.theme-marketing .pg-contact-page {
+  max-width: 40rem;
+}
+
+body.theme-marketing .pg-page-head {
+  margin-bottom: 2.5rem;
+}
+
+body.theme-marketing .pg-contact-form.contact-panel {
+  border-radius: 0;
+  border: 1px solid #0c0c0c;
+  background: #fff;
+  box-shadow: 6px 6px 0 #c4a574;
+}
+
+body.theme-marketing .pg-contact-form label {
+  color: #2a2824;
+}
+
+body.theme-marketing .pg-contact-form input,
+body.theme-marketing .pg-contact-form select,
+body.theme-marketing .pg-contact-form textarea {
+  color: #0c0c0c;
+  background: #faf9f7;
+  border: 1px solid #d4d0c8;
+  border-radius: 0;
+  font-family: "Instrument Sans", system-ui, sans-serif;
+}
+
+body.theme-marketing .pg-contact-form button[type="submit"] {
+  background: #0c0c0c;
+  color: #f7f6f3;
+  box-shadow: none;
+}
+
+body.theme-marketing .pg-contact-form button[type="submit"]:hover {
+  background: #2a2824;
+  color: #fff;
+}
+
+body.theme-marketing .pg-me {
+  max-width: 72rem;
+}
+
+body.theme-marketing .pg-me-grid {
+  display: grid;
+  gap: clamp(2rem, 5vw, 3.5rem);
+}
+
+@media (min-width: 900px) {
+  body.theme-marketing .pg-me-grid {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    align-items: start;
+  }
+}
+
+body.theme-marketing .pg-me-photo {
+  margin: 0;
+  border: 1px solid #0c0c0c;
+  background: #e5e2dc;
+  box-shadow: 8px 8px 0 #c4a574;
+}
+
+body.theme-marketing .pg-me-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+body.theme-marketing .pg-me-role {
+  margin: 0 0 1.5rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #6b6860;
+}
+
+body.theme-marketing .pg-me-body p {
+  margin: 0 0 1rem;
+  color: #4a4843;
+  line-height: 1.65;
+  max-width: 52ch;
+}
+
+body.theme-marketing .pg-me-facts {
+  list-style: none;
+  margin: 2rem 0 1.5rem;
+  padding: 1.25rem 0 0;
+  border-top: 1px solid #d4d0c8;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+}
+
+body.theme-marketing .pg-me-facts li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e5e2dc;
+}
+
+body.theme-marketing .pg-me-facts span:first-child {
+  color: #6b6860;
+  text-transform: uppercase;
+}
+
+body.theme-marketing .pg-me-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+body.theme-marketing .pg-me .btn-primary {
+  background: #0c0c0c;
+  color: #f7f6f3;
+  box-shadow: none;
+}
+
+body.theme-marketing .pg-me .btn-primary:hover {
+  background: #2a2824;
+  color: #fff;
+}
+
+/* Legal pages: calmer paper when marketing theme */
+body.theme-marketing.legal-page {
+  background: #faf9f7;
+  background-image: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.theme-marketing .pg-marquee-inner {
+    animation: none;
+    flex-wrap: wrap;
+    width: 100%;
+    white-space: normal;
+    justify-content: center;
+    gap: 0.5rem 1rem;
+  }
+
+  body.theme-marketing .pg-marquee-inner span + span::before {
+    content: none;
+  }
+}
+
+body.theme-marketing.legal-page .legal-main h1 {
+  font-family: "Newsreader", Georgia, serif;
+  font-weight: 500;
+}
