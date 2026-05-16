@@ -1,10 +1,22 @@
 (function () {
   "use strict";
 
-  var API_BASE =
-    (window.SPECTR_PLATFORM && window.SPECTR_PLATFORM.apiBase) ||
-    localStorage.getItem("spectr_api_base") ||
-    "http://localhost:8000";
+  function isAuthed() {
+    return window.SpectrAuth && SpectrAuth.isAuthenticated();
+  }
+
+  function hedgeApiBase() {
+    if (!isAuthed()) return null;
+    return SpectrAuth.hedgeFundBase();
+  }
+
+  function apiHeaders(extra) {
+    var h = Object.assign({ "Content-Type": "application/json" }, extra || {});
+    if (window.SpectrAuth) {
+      h = Object.assign(h, SpectrAuth.authHeaders());
+    }
+    return h;
+  }
 
   var GRAPH_SUFFIX = "spctr01";
   var DEFAULT_AGENTS = [
@@ -91,7 +103,43 @@
 
   function setApiHint() {
     var el = $("plt-api-hint");
-    if (el) el.textContent = API_BASE;
+    if (!el) return;
+    if (isAuthed()) {
+      el.textContent = hedgeApiBase() + " (authenticated proxy)";
+    } else {
+      el.textContent = "Sign in to connect to the live engine";
+    }
+  }
+
+  function updateAuthUI() {
+    var authed = isAuthed();
+    var gate = $("plt-auth-gate");
+    var workspace = $("plt-auth-workspace");
+    var emailEl = $("plt-auth-email");
+    var runBtn = $("plt-run-btn");
+
+    if (gate) gate.hidden = authed;
+    if (workspace) workspace.hidden = !authed;
+    if (emailEl) emailEl.textContent = authed ? SpectrAuth.getEmail() || "Signed in" : "";
+
+    if (runBtn) {
+      runBtn.textContent = authed ? "Run hedge fund" : "Sign in to run";
+      runBtn.disabled = !authed || state.running;
+    }
+
+    document.querySelectorAll(".plt-live-only").forEach(function (el) {
+      el.disabled = !authed;
+    });
+
+    setApiHint();
+
+    if (authed) {
+      pingBackend().then(fetchAgents);
+    } else {
+      setBackendStatus(false, "Demo mode — sign in for live runs");
+      state.demo = true;
+      fetchAgents();
+    }
   }
 
   function setBackendStatus(online, message) {
@@ -108,28 +156,52 @@
   }
 
   async function pingBackend() {
+    if (!isAuthed()) {
+      setBackendStatus(false, "Demo mode — sign in for live runs");
+      state.demo = true;
+      return false;
+    }
     try {
-      var res = await fetch(API_BASE + "/hedge-fund/agents", { method: "GET", signal: AbortSignal.timeout(5000) });
+      var res = await fetch(hedgeApiBase() + "/agents", {
+        method: "GET",
+        headers: SpectrAuth.authHeaders(),
+        signal: AbortSignal.timeout(8000),
+      });
+      if (res.status === 401) {
+        SpectrAuth.logout();
+        updateAuthUI();
+        throw new Error("session expired");
+      }
       if (!res.ok) throw new Error("agents failed");
-      setBackendStatus(true);
+      setBackendStatus(true, "Live engine connected");
       state.demo = false;
       return true;
     } catch (e) {
-      setBackendStatus(false);
+      setBackendStatus(false, "Engine unreachable — check server");
       state.demo = true;
       showBanner(
         "warn",
-        "Cannot reach the AI Hedge Fund API at " +
-          API_BASE +
-          ". Start the backend (see integrations/SETUP.txt) or set window.SPECTR_PLATFORM.apiBase. Demo charts will still render."
+        "Cannot reach the hedge fund backend through the secure proxy. Ensure HEDGE_FUND_API_URL is set on Vercel and the FastAPI app is running. Demo data is still available."
       );
       return false;
     }
   }
 
   async function fetchAgents() {
+    if (!isAuthed()) {
+      state.agents = DEFAULT_AGENTS.map(function (key, i) {
+        return { key: key, display_name: key.replace(/_/g, " "), order: i };
+      });
+      renderAgentCheckboxes();
+      return;
+    }
     try {
-      var res = await fetch(API_BASE + "/hedge-fund/agents");
+      var res = await fetch(hedgeApiBase() + "/agents", { headers: SpectrAuth.authHeaders() });
+      if (res.status === 401) {
+        SpectrAuth.logout();
+        updateAuthUI();
+        throw new Error("session expired");
+      }
       if (!res.ok) throw new Error("agents");
       var data = await res.json();
       state.agents = data.agents || [];
@@ -435,6 +507,13 @@
   function runHedgeFund() {
     if (state.running) return;
 
+    if (!isAuthed()) {
+      showBanner("warn", "Sign in to run the live AI Hedge Fund engine.");
+      var gate = $("plt-auth-gate");
+      if (gate) gate.scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
+
     var tickersRaw = ($("plt-tickers") && $("plt-tickers").value) || "AAPL,MSFT,NVDA";
     var tickers = tickersRaw
       .split(",")
@@ -483,20 +562,6 @@
     setRunning(true);
     appendLog("system", "Starting run…", tickers.join(", "));
 
-    if (state.demo) {
-      setTimeout(function () {
-        agentKeys.forEach(function (k) {
-          state.pipelineStatus[k] = "done";
-          appendLog(k, "Done", tickers[0]);
-        });
-        state.pipelineStatus.portfolio_manager = "done";
-        renderPipeline(agentKeys);
-        loadDemoResults();
-        setRunning(false);
-      }, 2200);
-      return;
-    }
-
     var controller = new AbortController();
     state.abort = function () {
       controller.abort();
@@ -504,13 +569,18 @@
       appendLog("system", "Run cancelled", null);
     };
 
-    fetch(API_BASE + "/hedge-fund/run", {
+    fetch(hedgeApiBase() + "/run", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: apiHeaders(),
       body: JSON.stringify(payload),
       signal: controller.signal,
     })
       .then(function (response) {
+        if (response.status === 401) {
+          SpectrAuth.logout();
+          updateAuthUI();
+          throw new Error("Session expired. Sign in again.");
+        }
         if (!response.ok) throw new Error("HTTP " + response.status);
         var reader = response.body.getReader();
         var decoder = new TextDecoder();
@@ -580,9 +650,12 @@
       })
       .catch(function (err) {
         if (err.name === "AbortError") return;
+        if (String(err.message || "").indexOf("401") >= 0) {
+          SpectrAuth.logout();
+          updateAuthUI();
+        }
         showBanner("error", err.message || "Connection failed. Is the backend running?");
         setRunning(false);
-        loadDemoResults();
       });
   }
 
@@ -634,20 +707,47 @@
       if (el) el.addEventListener("input", updateMetrics);
     });
 
-    var apiInput = $("plt-api-base");
-    if (apiInput) {
-      apiInput.value = API_BASE;
-      apiInput.addEventListener("change", function () {
-        API_BASE = apiInput.value.replace(/\/$/, "");
-        localStorage.setItem("spectr_api_base", API_BASE);
-        setApiHint();
-        pingBackend().then(fetchAgents);
+    var loginForm = $("plt-login-form");
+    if (loginForm) {
+      loginForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var email = ($("plt-login-email") && $("plt-login-email").value) || "";
+        var password = ($("plt-login-password") && $("plt-login-password").value) || "";
+        var remember = $("plt-login-remember") && $("plt-login-remember").checked;
+        var errEl = $("plt-login-error");
+        var submitBtn = $("plt-login-submit");
+        if (errEl) errEl.hidden = true;
+        if (submitBtn) submitBtn.disabled = true;
+        SpectrAuth.login(email, password, remember)
+          .then(function () {
+            showBanner("", "");
+            updateAuthUI();
+          })
+          .catch(function (err) {
+            if (errEl) {
+              errEl.hidden = false;
+              errEl.textContent = err.message || "Login failed";
+            }
+          })
+          .finally(function () {
+            if (submitBtn) submitBtn.disabled = false;
+          });
       });
     }
 
-    pingBackend().then(function () {
-      fetchAgents();
-    });
+    $("plt-logout-btn") &&
+      $("plt-logout-btn").addEventListener("click", function () {
+        SpectrAuth.logout();
+        updateAuthUI();
+        showBanner("", "");
+      });
+
+    if (window.SpectrAuth) {
+      SpectrAuth.onChange(updateAuthUI);
+      SpectrAuth.verifySession().then(updateAuthUI);
+    } else {
+      updateAuthUI();
+    }
   }
 
   if (document.readyState === "loading") {

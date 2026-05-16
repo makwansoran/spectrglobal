@@ -151,34 +151,62 @@
         <div class="wrap">
           <header class="plt-section-head">
             <h2 id="contact-title">Contact / Run</h2>
-            <p>Configure a run below. Requires API keys in the hedge fund <code>.env</code> (OpenAI, Financial Datasets, etc.).</p>
+            <p>Demo data is public. The <strong>live</strong> AI Hedge Fund engine requires sign-in and runs through a secure server proxy.</p>
           </header>
 
           <p class="plt-banner" id="plt-banner" hidden></p>
 
-          <div class="plt-console">
+          <div class="plt-auth-gate" id="plt-auth-gate">
+            <div class="plt-auth-card">
+              <h3 class="plt-auth-title">Sign in</h3>
+              <p class="plt-auth-lede">Access the live multi-agent hedge fund pipeline. Credentials are set in your Vercel project environment.</p>
+              <form id="plt-login-form" class="plt-auth-form" autocomplete="on">
+                <label>
+                  Email
+                  <input type="email" id="plt-login-email" name="email" required autocomplete="username" placeholder="admin@spectr.no" />
+                </label>
+                <label>
+                  Password
+                  <input type="password" id="plt-login-password" name="password" required autocomplete="current-password" />
+                </label>
+                <label class="plt-auth-remember">
+                  <input type="checkbox" id="plt-login-remember" />
+                  Keep me signed in on this device
+                </label>
+                <p class="plt-auth-error" id="plt-login-error" hidden></p>
+                <button type="submit" class="plt-btn plt-btn-primary" id="plt-login-submit">Sign in</button>
+              </form>
+            </div>
+          </div>
+
+          <div class="plt-auth-bar" id="plt-auth-workspace" hidden>
+            <span class="mono">Signed in as <strong id="plt-auth-email"></strong></span>
+            <button type="button" class="plt-btn plt-btn-ghost" id="plt-logout-btn">Sign out</button>
+          </div>
+
+          <div class="plt-console" id="plt-console">
             <div class="plt-panel">
               <div class="plt-panel-head">Run configuration</div>
               <form class="plt-form" id="plt-run-form" onsubmit="return false;">
                 <label>
                   Tickers (comma-separated)
-                  <input type="text" id="plt-tickers" value="AAPL,MSFT,NVDA" autocomplete="off" />
+                  <input class="plt-live-only" type="text" id="plt-tickers" value="AAPL,MSFT,NVDA" autocomplete="off" disabled />
                 </label>
                 <label>
                   Initial cash (USD)
-                  <input type="number" id="plt-cash" value="100000" min="1000" step="1000" />
+                  <input class="plt-live-only" type="number" id="plt-cash" value="100000" min="1000" step="1000" disabled />
                 </label>
                 <label>
                   Start date
-                  <input type="date" id="plt-start-date" />
+                  <input class="plt-live-only" type="date" id="plt-start-date" disabled />
                 </label>
                 <label>
                   End date
-                  <input type="date" id="plt-end-date" />
+                  <input class="plt-live-only" type="date" id="plt-end-date" disabled />
                 </label>
                 <label>
                   Model
-                  <select id="plt-model">
+                  <select class="plt-live-only" id="plt-model" disabled>
                     <option value="gpt-4o-mini">gpt-4o-mini</option>
                     <option value="gpt-4o">gpt-4o</option>
                     <option value="gpt-4.1">gpt-4.1</option>
@@ -188,11 +216,7 @@
                   Analyst agents
                   <span class="plt-agent-grid" id="plt-agent-grid"></span>
                 </label>
-                <label>
-                  API base URL
-                  <input type="url" id="plt-api-base" placeholder="http://localhost:8000" />
-                </label>
-                <button type="button" class="plt-btn plt-btn-primary" id="plt-run-btn">Run hedge fund</button>
+                <button type="button" class="plt-btn plt-btn-primary" id="plt-run-btn">Sign in to run</button>
                 <button type="button" class="plt-btn plt-btn-ghost" id="plt-abort-btn" hidden>Cancel run</button>
               </form>
               <p class="plt-api-hint">Connected to: <strong id="plt-api-hint">http://localhost:8000</strong></p>
@@ -295,6 +319,7 @@
       </div>
     </footer>
 
+    <script src="auth.js" defer></script>
     <script src="script.js" defer></script>
     <script src="platform.js" defer></script>
   </body>

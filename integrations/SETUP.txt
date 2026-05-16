@@ -1,29 +1,47 @@
 Spectr Intelligence Platform — AI Hedge Fund backend
 ====================================================
 
-This site connects to the open-source backend:
+PUBLIC vs LIVE
+--------------
+- **Demo** (“Load demo data”) — no login, sample charts only.
+- **Live engine** — requires sign-in. Runs through Spectr’s `/api/hedge-fund/*` proxy (Vercel serverless), not directly from the browser.
+
+Deploy (Vercel)
+---------------
+1. Connect this repo to Vercel.
+2. Set environment variables (see `.env.example`):
+   - SPECTR_AUTH_USER (default: admin)
+   - SPECTR_AUTH_PASSWORD (long random secret)
+   - SPECTR_AUTH_TOKEN_SECRET (optional, for signing sessions)
+   - HEDGE_FUND_API_URL (where FastAPI runs, e.g. http://127.0.0.1:8000 or your VPS)
+3. Deploy. Sign in on the site with SPECTR_AUTH_USER / SPECTR_AUTH_PASSWORD.
+
+The hedge fund FastAPI app must be reachable from Vercel’s servers (public URL, VPN, or tunnel such as Cloudflare Tunnel / ngrok).
+
+AI Hedge Fund backend (upstream)
+---------------------------------
 https://github.com/virattt/ai-hedge-fund
 
-Quick start (from the hedge fund repo root)
--------------------------------------------
-1. git clone https://github.com/virattt/ai-hedge-fund.git
-2. cp .env.example .env   (add OPENAI_API_KEY and FINANCIAL_DATASETS_API_KEY)
-3. ./run.sh               (Mac/Linux) or run.bat (Windows)
+On the machine that hosts the engine:
+  git clone https://github.com/virattt/ai-hedge-fund.git
+  cp .env.example .env
+  # Add OPENAI_API_KEY, FINANCIAL_DATASETS_API_KEY, etc.
+  ./run.sh   # or run.bat on Windows — listens on :8000 by default
 
-The API should listen on http://localhost:8000
+Point HEDGE_FUND_API_URL at that service.
 
-On index.html, set "API base URL" to that address, or before scripts load:
-  window.SPECTR_PLATFORM = { apiBase: "http://localhost:8000" };
+API routes (Spectr proxy — auth required)
+-----------------------------------------
+POST /api/auth/login
+GET  /api/auth/session
+GET  /api/hedge-fund/agents
+POST /api/hedge-fund/run   (SSE stream)
 
-Endpoints used by the Spectr frontend
--------------------------------------
-GET  /hedge-fund/agents  (also used as health check)
-GET  /
-POST /hedge-fund/run   (Server-Sent Events stream)
+Local development
+-----------------
+From this repo root:
+  npx vercel dev
 
-CORS: the upstream backend allows localhost:5173 by default. If you serve
-this static site from another origin (e.g. file:// or spectrglobal.vercel.app),
-add your origin to app/backend/main.py allow_origins or run the API behind a
-proxy on the same domain.
+Then open the URL Vercel prints (usually http://localhost:3000), set env vars in `.env.local` or Vercel CLI.
 
 Educational use only — not investment advice.

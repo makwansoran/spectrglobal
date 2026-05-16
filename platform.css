@@ -747,3 +747,97 @@ body.theme-platform .site-footer-copy a:hover {
   background: color-mix(in srgb, var(--plt-negative) 6%, #fff);
   color: var(--plt-negative);
 }
+
+/* Auth */
+.plt-auth-gate {
+  margin-bottom: 1.5rem;
+}
+
+.plt-auth-card {
+  max-width: 26rem;
+  padding: 1.5rem 1.65rem;
+  border: 1px solid var(--plt-border);
+  border-radius: 3px;
+  background: var(--plt-surface);
+  box-shadow: 0 12px 40px rgba(27, 40, 56, 0.08);
+}
+
+.plt-auth-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.plt-auth-lede {
+  margin: 0 0 1.25rem;
+  font-size: 0.88rem;
+  color: var(--plt-muted);
+  line-height: 1.55;
+}
+
+.plt-auth-form {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.plt-auth-form label {
+  display: grid;
+  gap: 0.35rem;
+  font-family: var(--plt-mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--plt-muted);
+}
+
+.plt-auth-form input[type="email"],
+.plt-auth-form input[type="password"] {
+  padding: 0.55rem 0.65rem;
+  font-family: var(--plt-sans);
+  font-size: 0.9rem;
+  border: 1px solid var(--plt-border-strong);
+  border-radius: 2px;
+}
+
+.plt-auth-remember {
+  display: flex !important;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem !important;
+  font-weight: 400 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  color: var(--plt-text) !important;
+}
+
+.plt-auth-remember input {
+  width: auto;
+}
+
+.plt-auth-error {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--plt-negative);
+}
+
+.plt-auth-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  padding: 0.65rem 1rem;
+  border: 1px solid color-mix(in srgb, var(--plt-positive) 30%, var(--plt-border));
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--plt-positive) 6%, #fff);
+  font-size: 0.78rem;
+  color: var(--plt-muted);
+}
+
+.plt-auth-bar strong {
+  color: var(--plt-text);
+}
