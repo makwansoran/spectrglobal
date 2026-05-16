@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Spectr AI Hedge Fund platform — run multi-agent analysis." />
+    <title>Spectr — Platform</title>
+    <link rel="icon" href="assets/brand/spectr-mark.png" type="image/png" sizes="any" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600&family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="platform.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
+  </head>
+  <body class="font-body theme-platform page-app">
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a class="logo-link" href="index.html#top" aria-label="Spectr home">
+          <img class="logo-mark" src="assets/brand/spectr-mark.png" width="40" height="40" alt="" decoding="async" />
+          <span class="wordmark">Spectr</span>
+        </a>
+        <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+        <nav class="nav" id="site-nav" aria-label="Primary">
+          <a href="index.html#performance">Performance</a>
+          <a href="index.html#positions">Positions</a>
+          <a href="app.html">Platform</a>
+          <a href="#" id="nav-logout" class="nav-login">Sign out</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="app-main">
+      <div class="wrap">
+        <header class="app-head">
+          <div>
+            <p class="plt-eyebrow">AI Hedge Fund · Authenticated</p>
+            <h1>Analysis platform</h1>
+            <p class="plt-lede">Configure tickers, select analyst agents, and stream live decisions from the engine.</p>
+          </div>
+          <div class="plt-hero-meta">
+            <span class="plt-pill plt-pill--live" id="plt-backend-dot"><span id="plt-backend-label">Checking API…</span></span>
+          </div>
+        </header>
+
+        <p class="plt-banner" id="plt-banner" hidden></p>
+
+        <div class="plt-auth-bar" id="plt-auth-workspace">
+          <span class="mono">Signed in as <strong id="plt-auth-email"></strong></span>
+        </div>
+
+        <div class="plt-pipeline" id="plt-pipeline" aria-label="Agent pipeline status"></div>
+
+        <div class="plt-console" id="plt-console">
+          <div class="plt-panel">
+            <div class="plt-panel-head">Run configuration</div>
+            <form class="plt-form" id="plt-run-form" onsubmit="return false;">
+              <label>
+                Tickers (comma-separated)
+                <input class="plt-live-only" type="text" id="plt-tickers" value="AAPL,MSFT,NVDA" autocomplete="off" />
+              </label>
+              <label>
+                Initial cash (USD)
+                <input class="plt-live-only" type="number" id="plt-cash" value="100000" min="1000" step="1000" />
+              </label>
+              <label>
+                Start date
+                <input class="plt-live-only" type="date" id="plt-start-date" />
+              </label>
+              <label>
+                End date
+                <input class="plt-live-only" type="date" id="plt-end-date" />
+              </label>
+              <label>
+                Model
+                <select class="plt-live-only" id="plt-model">
+                  <option value="gpt-4o-mini">gpt-4o-mini</option>
+                  <option value="gpt-4o">gpt-4o</option>
+                  <option value="gpt-4.1">gpt-4.1</option>
+                </select>
+              </label>
+              <label>
+                Analyst agents
+                <span class="plt-agent-grid" id="plt-agent-grid"></span>
+              </label>
+              <button type="button" class="plt-btn plt-btn-primary" id="plt-run-btn">Run hedge fund</button>
+              <button type="button" class="plt-btn plt-btn-ghost" id="plt-abort-btn" hidden>Cancel run</button>
+            </form>
+            <p class="plt-api-hint">Connected to: <strong id="plt-api-hint">—</strong></p>
+          </div>
+
+          <div class="plt-panel plt-results">
+            <div class="plt-tabs" role="tablist">
+              <button type="button" class="plt-tab is-active" data-tab="decisions" role="tab">Decisions</button>
+              <button type="button" class="plt-tab" data-tab="signals" role="tab">Signals</button>
+              <button type="button" class="plt-tab" data-tab="log" role="tab">Activity</button>
+            </div>
+            <div id="plt-panel-decisions" class="plt-tab-panel is-active" role="tabpanel">
+              <div class="plt-table-wrap">
+                <table class="plt-table">
+                  <thead>
+                    <tr>
+                      <th>Ticker</th>
+                      <th>Action</th>
+                      <th>Qty</th>
+                      <th>Price · conf.</th>
+                    </tr>
+                  </thead>
+                  <tbody id="plt-decisions-body"></tbody>
+                </table>
+              </div>
+            </div>
+            <div id="plt-panel-signals" class="plt-tab-panel" role="tabpanel">
+              <div class="plt-table-wrap">
+                <table class="plt-table">
+                  <thead>
+                    <tr>
+                      <th>Agent</th>
+                      <th>Ticker</th>
+                      <th>Signal</th>
+                      <th>Detail</th>
+                    </tr>
+                  </thead>
+                  <tbody id="plt-signals-body"></tbody>
+                </table>
+              </div>
+            </div>
+            <div id="plt-panel-log" class="plt-tab-panel" role="tabpanel">
+              <ul class="plt-log" id="plt-log"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap site-footer-inner">
+        <div class="site-footer-brand">
+          <a class="site-footer-logo" href="index.html#top">
+            <img class="site-footer-logo-mark" src="assets/brand/spectr-mark.png" width="36" height="36" alt="" />
+            <span class="site-footer-logo-text">Spectr</span>
+          </a>
+        </div>
+        <div class="site-footer-actions">
+          <a class="btn btn-ghost" href="index.html">← Fund overview</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="auth.js" defer></script>
+    <script src="script.js" defer></script>
+    <script src="nav.js" defer></script>
+    <script src="platform.js" defer></script>
+  </body>
+</html>

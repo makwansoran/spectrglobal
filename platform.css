@@ -6,6 +6,20 @@ body.theme-platform .site-header {
   backdrop-filter: blur(12px);
 }
 
+body.theme-platform .nav a.nav-login {
+  padding: 0.45rem 0.75rem;
+  border: 1px solid var(--plt-accent);
+  border-radius: 2px;
+  color: var(--plt-accent);
+  background: color-mix(in srgb, var(--plt-accent) 8%, #fff);
+}
+
+body.theme-platform .nav a.nav-login:hover {
+  background: var(--plt-accent);
+  color: #fff;
+  text-decoration: none;
+}
+
 /* Palantir-inspired light platform theme */
 
 body.theme-platform {
@@ -840,4 +854,276 @@ body.theme-platform .site-footer-copy a:hover {
 
 .plt-auth-bar strong {
   color: var(--plt-text);
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+.login-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+}
+
+.login-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(27, 40, 56, 0.45);
+  backdrop-filter: blur(4px);
+}
+
+.login-modal-dialog {
+  position: relative;
+  width: min(24rem, 100%);
+  padding: 1.5rem 1.65rem;
+  border: 1px solid var(--plt-border);
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 24px 64px rgba(27, 40, 56, 0.18);
+}
+
+.login-modal-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.65rem;
+  border: none;
+  background: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--plt-muted);
+  cursor: pointer;
+}
+
+.page-landing .land-hero {
+  padding: clamp(2.5rem, 7vw, 4rem) 0 clamp(1.5rem, 4vw, 2rem);
+  border-bottom: 1px solid var(--plt-border);
+  background: #fff;
+}
+
+.page-landing .land-hero h1 {
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.85rem, 4vw, 2.65rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.page-landing .land-asof {
+  margin: 1rem 0 0;
+  font-size: 0.65rem;
+  color: var(--plt-muted);
+}
+
+.plt-section-head--stack {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+}
+
+.land-nav-value {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--plt-muted);
+}
+
+.land-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+@media (min-width: 720px) {
+  .land-metrics {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.land-metric {
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--plt-border);
+  border-radius: 3px;
+  background: var(--plt-surface);
+}
+
+.land-metric-label {
+  display: block;
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--plt-muted);
+  margin-bottom: 0.35rem;
+}
+
+.land-metric-value {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.land-metric-value.is-up {
+  color: var(--plt-positive);
+}
+
+.land-metric-value.is-down {
+  color: var(--plt-negative);
+}
+
+.land-chart-panel {
+  border: 1px solid var(--plt-border);
+  border-radius: 3px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.land-chart-head {
+  padding: 0.55rem 1rem;
+  border-bottom: 1px solid var(--plt-border);
+  background: var(--plt-surface-2);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--plt-muted);
+}
+
+.land-chart-wrap {
+  height: 260px;
+  padding: 0.75rem;
+}
+
+.land-disclaimer {
+  margin: 1rem 0 0;
+  font-size: 0.75rem;
+  color: var(--plt-muted);
+}
+
+.land-positions {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .land-positions {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .land-positions {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.land-position {
+  border: 1px solid var(--plt-border);
+  border-radius: 3px;
+  background: #fff;
+  padding: 1rem 1.1rem;
+}
+
+.land-position-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 0.85rem;
+}
+
+.land-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid var(--plt-border);
+  object-fit: contain;
+  background: #fff;
+}
+
+.land-logo-fallback {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid var(--plt-border);
+  background: var(--plt-surface-2);
+  font-family: var(--plt-mono);
+  font-weight: 600;
+  color: var(--plt-accent);
+}
+
+.land-position-pnl.is-up {
+  color: var(--plt-positive);
+}
+
+.land-position-pnl.is-down {
+  color: var(--plt-negative);
+}
+
+.land-position-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem 1rem;
+  margin: 0;
+}
+
+.land-position-stats div {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.land-position-stats dt {
+  color: var(--plt-muted);
+}
+
+.land-position-stats dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+.land-ticker {
+  display: block;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--plt-muted);
+}
+
+.land-position-pnl {
+  font-family: var(--plt-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.land-position--cash {
+  background: var(--plt-surface-2);
+}
+
+.page-app .app-main {
+  padding: clamp(1.5rem, 4vw, 2.5rem) 0 clamp(3rem, 8vw, 5rem);
+}
+
+.page-app .app-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--plt-border);
+}
+
+.page-app .app-head h1 {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+}
+
+.page-app .plt-pipeline {
+  margin-bottom: 1.25rem;
 }

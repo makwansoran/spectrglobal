@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Spectr Intelligence Platform — multi-agent market analysis and portfolio visualization powered by the AI Hedge Fund engine."
+      content="Spectr AI Fund — track performance and current portfolio positions."
     />
-    <title>Spectr — Intelligence platform</title>
+    <title>Spectr — AI Fund performance</title>
     <link rel="icon" href="assets/brand/spectr-mark.png" type="image/png" sizes="any" />
     <link rel="apple-touch-icon" href="assets/brand/spectr-mark.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="platform.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
   </head>
-  <body class="font-body theme-platform">
+  <body class="font-body theme-platform page-landing">
     <header class="site-header">
       <div class="wrap header-inner">
         <a class="logo-link" href="#top" id="top" aria-label="Spectr home">
@@ -36,243 +36,71 @@
         </a>
         <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
         <nav class="nav" id="site-nav" aria-label="Primary">
-          <a href="#solutions">Solutions</a>
-          <a href="#about">About</a>
-          <a href="#services">Services</a>
-          <a href="#contact">Contact</a>
+          <a href="#performance">Performance</a>
+          <a href="#positions">Positions</a>
+          <a href="app.html" id="nav-platform" hidden>Platform</a>
+          <a href="#login" id="nav-login" class="nav-login">Login</a>
         </nav>
       </div>
     </header>
 
     <main>
-      <section class="plt-hero" id="top" aria-labelledby="plt-hero-title">
-        <div class="wrap plt-hero-grid">
-          <div>
-            <p class="plt-eyebrow">Spectr intelligence · Light mode</p>
-            <h1 id="plt-hero-title">Operational view for multi-agent market analysis.</h1>
-            <p class="plt-lede">
-              A single surface to configure tickers, orchestrate analyst agents, and read portfolio decisions—with charts and signal tables wired to the
-              <a href="https://github.com/virattt/ai-hedge-fund" target="_blank" rel="noopener noreferrer">AI Hedge Fund</a> backend.
-            </p>
-            <div class="plt-hero-meta">
-              <span class="plt-pill plt-pill--live" id="plt-backend-dot"><span id="plt-backend-label">Checking API…</span></span>
-              <span class="plt-pill">SSE streaming</span>
-              <span class="plt-pill">19 analyst agents</span>
-            </div>
-            <div class="plt-hero-actions">
-              <a class="plt-btn plt-btn-primary" href="#contact">Run analysis</a>
-              <button type="button" class="plt-btn plt-btn-ghost" id="plt-demo-btn">Load demo data</button>
-            </div>
-          </div>
-          <aside class="plt-status-panel" aria-label="Portfolio snapshot">
-            <div class="plt-status-head">
-              <span>Live metrics</span>
-              <span class="mono" id="plt-metric-tickers">—</span>
-            </div>
-            <div class="plt-status-body">
-              <div class="plt-metric-row">
-                <div class="plt-metric">
-                  <span class="plt-metric-label">Cash</span>
-                  <span class="plt-metric-value" id="plt-metric-cash">$100,000</span>
-                </div>
-                <div class="plt-metric">
-                  <span class="plt-metric-label">Exposure</span>
-                  <span class="plt-metric-value" id="plt-metric-exposure">—</span>
-                </div>
-                <div class="plt-metric">
-                  <span class="plt-metric-label">Session P&amp;L</span>
-                  <span class="plt-metric-value" id="plt-metric-pnl">—</span>
-                </div>
-              </div>
-              <div class="plt-chart-wrap">
-                <canvas id="plt-chart" role="img" aria-label="Portfolio allocation chart"></canvas>
-              </div>
-            </div>
-          </aside>
+      <section class="land-hero" id="top">
+        <div class="wrap land-hero-inner">
+          <p class="plt-eyebrow">Spectr AI Fund</p>
+          <h1>How the fund is performing.</h1>
+          <p class="plt-lede">
+            Public track record and live book—updated from the multi-agent engine. Sign in to run analysis and configure agents.
+          </p>
+          <p class="land-asof mono" id="land-asof"></p>
         </div>
       </section>
 
-      <section class="plt-section" id="solutions" aria-labelledby="solutions-title">
+      <section class="plt-section" id="performance" aria-labelledby="perf-title">
         <div class="wrap">
-          <header class="plt-section-head">
-            <h2 id="solutions-title">Solutions</h2>
-            <p>Decision-grade visualization: prices, agent consensus, and final portfolio instructions in one scroll.</p>
+          <header class="plt-section-head plt-section-head--stack">
+            <h2 id="perf-title">Performance</h2>
+            <p class="land-nav-value">Net asset value <strong id="land-nav">—</strong></p>
           </header>
-          <div class="plt-features">
-            <article class="plt-feature">
-              <h3>Signal lattice</h3>
-              <p>Every analyst agent reports per-ticker signals. Compare conviction across value, growth, sentiment, and technical lenses.</p>
+          <div class="land-metrics">
+            <article class="land-metric">
+              <span class="land-metric-label mono">YTD</span>
+              <span class="land-metric-value is-up" id="land-ytd">—</span>
             </article>
-            <article class="plt-feature">
-              <h3>Portfolio graph</h3>
-              <p>Route agents through risk management into a portfolio manager node—the same DAG model as the upstream hedge fund app.</p>
+            <article class="land-metric">
+              <span class="land-metric-label mono">1 year</span>
+              <span class="land-metric-value is-up" id="land-1y">—</span>
             </article>
-            <article class="plt-feature">
-              <h3>Streaming ops log</h3>
-              <p>Server-sent events show agent progress in real time while the LangGraph pipeline executes on your machine.</p>
+            <article class="land-metric">
+              <span class="land-metric-label mono">Sharpe</span>
+              <span class="land-metric-value" id="land-sharpe">—</span>
+            </article>
+            <article class="land-metric">
+              <span class="land-metric-label mono">Max drawdown</span>
+              <span class="land-metric-value is-down" id="land-dd">—</span>
+            </article>
+            <article class="land-metric">
+              <span class="land-metric-label mono">Win rate</span>
+              <span class="land-metric-value" id="land-win">—</span>
             </article>
           </div>
+          <div class="land-chart-panel">
+            <div class="land-chart-head mono">Indexed return (base 100)</div>
+            <div class="land-chart-wrap">
+              <canvas id="land-perf-chart" role="img" aria-label="Fund performance chart"></canvas>
+            </div>
+          </div>
+          <p class="land-disclaimer">Illustrative track for education. Past simulated performance is not indicative of future results.</p>
         </div>
       </section>
 
-      <section class="plt-section plt-section--alt" id="about" aria-labelledby="about-title">
-        <div class="wrap plt-about-grid">
-          <div>
-            <header class="plt-section-head">
-              <h2 id="about-title">About</h2>
-              <p>
-                Spectr wraps the open-source AI Hedge Fund stack: FastAPI on port 8000, multi-agent LangGraph orchestration, and your choice of LLM provider. This page is the public shell; the engine runs locally or on your infrastructure.
-              </p>
-            </header>
-          </div>
-          <div>
-            <ul>
-              <li><strong>Backend</strong> — <code>POST /hedge-fund/run</code> (SSE)</li>
-              <li><strong>Agents</strong> — <code>GET /hedge-fund/agents</code></li>
-              <li><strong>Health</strong> — <code>GET /ping</code></li>
-              <li><strong>Stack</strong> — Python · FastAPI · LangGraph</li>
-              <li><strong>Disclaimer</strong> — Educational use only; not investment advice.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section class="plt-section" id="services" aria-labelledby="services-title">
+      <section class="plt-section plt-section--alt" id="positions" aria-labelledby="pos-title">
         <div class="wrap">
           <header class="plt-section-head">
-            <h2 id="services-title">Services</h2>
-            <p>Select which analyst personas participate in each run. Defaults favor fundamentals, sentiment, valuation, and Buffett-style discipline.</p>
+            <h2 id="pos-title">Current positions</h2>
+            <p>Holdings in the fund today, with company marks and weights.</p>
           </header>
-          <div class="plt-pipeline" id="plt-pipeline" aria-label="Agent pipeline status"></div>
-        </div>
-      </section>
-
-      <section class="plt-section plt-section--alt" id="contact" aria-labelledby="contact-title">
-        <div class="wrap">
-          <header class="plt-section-head">
-            <h2 id="contact-title">Contact / Run</h2>
-            <p>Demo data is public. The <strong>live</strong> AI Hedge Fund engine requires sign-in and runs through a secure server proxy.</p>
-          </header>
-
-          <p class="plt-banner" id="plt-banner" hidden></p>
-
-          <div class="plt-auth-gate" id="plt-auth-gate">
-            <div class="plt-auth-card">
-              <h3 class="plt-auth-title">Sign in</h3>
-              <p class="plt-auth-lede">Access the live multi-agent hedge fund pipeline. Credentials are set in your Vercel project environment.</p>
-              <form id="plt-login-form" class="plt-auth-form" autocomplete="on">
-                <label>
-                  Email
-                  <input type="email" id="plt-login-email" name="email" required autocomplete="username" placeholder="admin@spectr.no" />
-                </label>
-                <label>
-                  Password
-                  <input type="password" id="plt-login-password" name="password" required autocomplete="current-password" />
-                </label>
-                <label class="plt-auth-remember">
-                  <input type="checkbox" id="plt-login-remember" />
-                  Keep me signed in on this device
-                </label>
-                <p class="plt-auth-error" id="plt-login-error" hidden></p>
-                <button type="submit" class="plt-btn plt-btn-primary" id="plt-login-submit">Sign in</button>
-              </form>
-            </div>
-          </div>
-
-          <div class="plt-auth-bar" id="plt-auth-workspace" hidden>
-            <span class="mono">Signed in as <strong id="plt-auth-email"></strong></span>
-            <button type="button" class="plt-btn plt-btn-ghost" id="plt-logout-btn">Sign out</button>
-          </div>
-
-          <div class="plt-console" id="plt-console">
-            <div class="plt-panel">
-              <div class="plt-panel-head">Run configuration</div>
-              <form class="plt-form" id="plt-run-form" onsubmit="return false;">
-                <label>
-                  Tickers (comma-separated)
-                  <input class="plt-live-only" type="text" id="plt-tickers" value="AAPL,MSFT,NVDA" autocomplete="off" disabled />
-                </label>
-                <label>
-                  Initial cash (USD)
-                  <input class="plt-live-only" type="number" id="plt-cash" value="100000" min="1000" step="1000" disabled />
-                </label>
-                <label>
-                  Start date
-                  <input class="plt-live-only" type="date" id="plt-start-date" disabled />
-                </label>
-                <label>
-                  End date
-                  <input class="plt-live-only" type="date" id="plt-end-date" disabled />
-                </label>
-                <label>
-                  Model
-                  <select class="plt-live-only" id="plt-model" disabled>
-                    <option value="gpt-4o-mini">gpt-4o-mini</option>
-                    <option value="gpt-4o">gpt-4o</option>
-                    <option value="gpt-4.1">gpt-4.1</option>
-                  </select>
-                </label>
-                <label>
-                  Analyst agents
-                  <span class="plt-agent-grid" id="plt-agent-grid"></span>
-                </label>
-                <button type="button" class="plt-btn plt-btn-primary" id="plt-run-btn">Sign in to run</button>
-                <button type="button" class="plt-btn plt-btn-ghost" id="plt-abort-btn" hidden>Cancel run</button>
-              </form>
-              <p class="plt-api-hint">Connected to: <strong id="plt-api-hint">http://localhost:8000</strong></p>
-            </div>
-
-            <div class="plt-panel plt-results">
-              <div class="plt-tabs" role="tablist">
-                <button type="button" class="plt-tab is-active" data-tab="decisions" role="tab">Decisions</button>
-                <button type="button" class="plt-tab" data-tab="signals" role="tab">Signals</button>
-                <button type="button" class="plt-tab" data-tab="log" role="tab">Activity</button>
-              </div>
-              <div id="plt-panel-decisions" class="plt-tab-panel is-active" role="tabpanel">
-                <div class="plt-table-wrap">
-                  <table class="plt-table">
-                    <thead>
-                      <tr>
-                        <th>Ticker</th>
-                        <th>Action</th>
-                        <th>Qty</th>
-                        <th>Price · conf.</th>
-                      </tr>
-                    </thead>
-                    <tbody id="plt-decisions-body"></tbody>
-                  </table>
-                </div>
-              </div>
-              <div id="plt-panel-signals" class="plt-tab-panel" role="tabpanel">
-                <div class="plt-table-wrap">
-                  <table class="plt-table">
-                    <thead>
-                      <tr>
-                        <th>Agent</th>
-                        <th>Ticker</th>
-                        <th>Signal</th>
-                        <th>Detail</th>
-                      </tr>
-                    </thead>
-                    <tbody id="plt-signals-body"></tbody>
-                  </table>
-                </div>
-              </div>
-              <div id="plt-panel-log" class="plt-tab-panel" role="tabpanel">
-                <ul class="plt-log" id="plt-log"></ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="plt-cta" aria-label="Get started">
-        <div class="wrap plt-cta-inner">
-          <div>
-            <h2>Deploy the full stack locally</h2>
-            <p>Clone virattt/ai-hedge-fund, configure <code>.env</code>, run <code>./run.sh</code>, then point this page at <code>http://localhost:8000</code>.</p>
-          </div>
-          <a class="plt-btn plt-btn-primary" href="https://github.com/virattt/ai-hedge-fund" target="_blank" rel="noopener noreferrer">View backend repo</a>
+          <div class="land-positions" id="land-positions"></div>
         </div>
       </section>
     </main>
@@ -281,22 +109,13 @@
       <div class="wrap site-footer-inner">
         <div class="site-footer-brand">
           <a class="site-footer-logo" href="#top">
-            <img
-              class="site-footer-logo-mark"
-              src="assets/brand/spectr-mark.png"
-              width="36"
-              height="36"
-              alt=""
-              decoding="async"
-            />
+            <img class="site-footer-logo-mark" src="assets/brand/spectr-mark.png" width="36" height="36" alt="" decoding="async" />
             <span class="site-footer-logo-text">Spectr</span>
           </a>
-          <p class="site-footer-tagline">
-            Intelligence platform · powered by <strong>SPECTR AS</strong> · educational use only.
-          </p>
+          <p class="site-footer-tagline">AI fund analytics · <strong>SPECTR AS</strong> · educational use only.</p>
         </div>
         <div class="site-footer-actions" aria-label="Quick actions">
-          <a class="btn btn-primary" href="#contact">Run analysis</a>
+          <a class="btn btn-primary" href="#login" id="footer-login">Login</a>
           <a class="btn btn-ghost" href="privacy.html">Privacy</a>
           <a class="btn btn-ghost" href="terms.html">Terms</a>
         </div>
@@ -308,19 +127,39 @@
           </address>
           <p class="site-footer-copy">
             <span class="mono">© <span data-current-year></span> SPECTR AS</span>
-            <span class="site-footer-sep" aria-hidden="true">·</span>
-            <a href="privacy.html">Privacy policy</a>
-            <span class="site-footer-sep" aria-hidden="true">·</span>
-            <a href="terms.html">Terms of use</a>
-            <span class="site-footer-sep" aria-hidden="true">·</span>
-            <a href="#top">Back to top</a>
           </p>
         </div>
       </div>
     </footer>
 
+    <div class="login-modal" id="login-modal" hidden role="dialog" aria-modal="true" aria-labelledby="login-modal-title">
+      <div class="login-modal-backdrop" data-close-login></div>
+      <div class="login-modal-dialog">
+        <button type="button" class="login-modal-close" data-close-login aria-label="Close">×</button>
+        <h2 class="plt-auth-title" id="login-modal-title">Sign in</h2>
+        <p class="plt-auth-lede">Access the AI Hedge Fund platform—run agents, stream decisions, and manage live analysis.</p>
+        <form id="plt-login-form" class="plt-auth-form" autocomplete="on">
+          <label>
+            Email
+            <input type="email" id="plt-login-email" required autocomplete="username" />
+          </label>
+          <label>
+            Password
+            <input type="password" id="plt-login-password" required autocomplete="current-password" />
+          </label>
+          <label class="plt-auth-remember">
+            <input type="checkbox" id="plt-login-remember" />
+            Keep me signed in
+          </label>
+          <p class="plt-auth-error" id="plt-login-error" hidden></p>
+          <button type="submit" class="plt-btn plt-btn-primary" id="plt-login-submit">Sign in</button>
+        </form>
+      </div>
+    </div>
+
     <script src="auth.js" defer></script>
     <script src="script.js" defer></script>
-    <script src="platform.js" defer></script>
+    <script src="nav.js" defer></script>
+    <script src="landing.js" defer></script>
   </body>
 </html>

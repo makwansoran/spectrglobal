@@ -112,20 +112,14 @@
   }
 
   function updateAuthUI() {
+    if (!document.body.classList.contains("page-app")) return;
+
     var authed = isAuthed();
-    var gate = $("plt-auth-gate");
-    var workspace = $("plt-auth-workspace");
     var emailEl = $("plt-auth-email");
     var runBtn = $("plt-run-btn");
 
-    if (gate) gate.hidden = authed;
-    if (workspace) workspace.hidden = !authed;
     if (emailEl) emailEl.textContent = authed ? SpectrAuth.getEmail() || "Signed in" : "";
-
-    if (runBtn) {
-      runBtn.textContent = authed ? "Run hedge fund" : "Sign in to run";
-      runBtn.disabled = !authed || state.running;
-    }
+    if (runBtn) runBtn.disabled = !authed || state.running;
 
     document.querySelectorAll(".plt-live-only").forEach(function (el) {
       el.disabled = !authed;
@@ -135,10 +129,6 @@
 
     if (authed) {
       pingBackend().then(fetchAgents);
-    } else {
-      setBackendStatus(false, "Demo mode — sign in for live runs");
-      state.demo = true;
-      fetchAgents();
     }
   }
 
@@ -507,13 +497,6 @@
   function runHedgeFund() {
     if (state.running) return;
 
-    if (!isAuthed()) {
-      showBanner("warn", "Sign in to run the live AI Hedge Fund engine.");
-      var gate = $("plt-auth-gate");
-      if (gate) gate.scrollIntoView({ behavior: "smooth", block: "center" });
-      return;
-    }
-
     var tickersRaw = ($("plt-tickers") && $("plt-tickers").value) || "AAPL,MSFT,NVDA";
     var tickers = tickersRaw
       .split(",")
@@ -707,44 +690,15 @@
       if (el) el.addEventListener("input", updateMetrics);
     });
 
-    var loginForm = $("plt-login-form");
-    if (loginForm) {
-      loginForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-        var email = ($("plt-login-email") && $("plt-login-email").value) || "";
-        var password = ($("plt-login-password") && $("plt-login-password").value) || "";
-        var remember = $("plt-login-remember") && $("plt-login-remember").checked;
-        var errEl = $("plt-login-error");
-        var submitBtn = $("plt-login-submit");
-        if (errEl) errEl.hidden = true;
-        if (submitBtn) submitBtn.disabled = true;
-        SpectrAuth.login(email, password, remember)
-          .then(function () {
-            showBanner("", "");
-            updateAuthUI();
-          })
-          .catch(function (err) {
-            if (errEl) {
-              errEl.hidden = false;
-              errEl.textContent = err.message || "Login failed";
-            }
-          })
-          .finally(function () {
-            if (submitBtn) submitBtn.disabled = false;
-          });
-      });
-    }
-
-    $("plt-logout-btn") &&
-      $("plt-logout-btn").addEventListener("click", function () {
-        SpectrAuth.logout();
-        updateAuthUI();
-        showBanner("", "");
-      });
-
     if (window.SpectrAuth) {
       SpectrAuth.onChange(updateAuthUI);
-      SpectrAuth.verifySession().then(updateAuthUI);
+      SpectrAuth.verifySession().then(function (ok) {
+        if (!ok) {
+          window.location.replace("index.html#login");
+          return;
+        }
+        updateAuthUI();
+      });
     } else {
       updateAuthUI();
     }
