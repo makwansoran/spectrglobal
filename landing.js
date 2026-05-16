@@ -116,16 +116,17 @@
     });
   }
 
-  function addStat(dl, label, value, extraClass) {
-    var row = document.createElement("div");
-    var dt = document.createElement("dt");
-    var dd = document.createElement("dd");
-    dt.textContent = label;
-    dd.textContent = value;
-    if (extraClass) dd.className = extraClass;
-    row.appendChild(dt);
-    row.appendChild(dd);
-    dl.appendChild(row);
+  function addStat(container, label, value, extraClass) {
+    var item = document.createElement("span");
+    var lbl = document.createElement("span");
+    lbl.className = "land-stat-label";
+    lbl.textContent = label + " ";
+    var val = document.createElement("span");
+    val.textContent = value;
+    if (extraClass) val.className = extraClass;
+    item.appendChild(lbl);
+    item.appendChild(val);
+    container.appendChild(item);
   }
 
   function renderPositions() {
@@ -146,8 +147,8 @@
 
       var img = document.createElement("img");
       img.className = "land-logo";
-      img.width = 40;
-      img.height = 40;
+      img.width = 28;
+      img.height = 28;
       img.alt = companyName(p.ticker);
       img.loading = "lazy";
       img.src = logoUrl(p.ticker);
@@ -159,6 +160,7 @@
       };
 
       var meta = document.createElement("div");
+      meta.className = "land-position-meta";
       var name = document.createElement("strong");
       name.textContent = companyName(p.ticker);
       var tick = document.createElement("span");
@@ -175,7 +177,7 @@
       head.appendChild(meta);
       head.appendChild(pnlEl);
 
-      var dl = document.createElement("dl");
+      var dl = document.createElement("div");
       dl.className = "land-position-stats";
       addStat(dl, "Shares", p.shares.toLocaleString());
       addStat(dl, "Value", formatMoney(val));
@@ -195,6 +197,7 @@
     cashFb.className = "land-logo-fallback land-logo-fallback--cash";
     cashFb.textContent = "$";
     var cashMeta = document.createElement("div");
+    cashMeta.className = "land-position-meta";
     var cName = document.createElement("strong");
     cName.textContent = "Cash";
     var cTick = document.createElement("span");
@@ -204,7 +207,7 @@
     cashMeta.appendChild(cTick);
     cashHead.appendChild(cashFb);
     cashHead.appendChild(cashMeta);
-    var cashDl = document.createElement("dl");
+    var cashDl = document.createElement("div");
     cashDl.className = "land-position-stats";
     addStat(cashDl, "Balance", formatMoney(FUND.cash));
     addStat(cashDl, "Weight", ((FUND.cash / nav) * 100).toFixed(1) + "%");
