@@ -5,20 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Spectr is an independent marketing studio: brand systems, campaigns, digital experiences, and launch narratives—built with editorial rigor."
+      content="Spectr Intelligence Platform — multi-agent market analysis and portfolio visualization powered by the AI Hedge Fund engine."
     />
-    <title>Spectr — Marketing &amp; creative studio</title>
+    <title>Spectr — Intelligence platform</title>
     <link rel="icon" href="assets/brand/spectr-mark.png" type="image/png" sizes="any" />
     <link rel="apple-touch-icon" href="assets/brand/spectr-mark.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=Syne:wght@500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600&family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="platform.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
   </head>
-  <body class="font-body theme-marketing">
+  <body class="font-body theme-platform">
     <header class="site-header">
       <div class="wrap header-inner">
         <a class="logo-link" href="#top" id="top" aria-label="Spectr home">
@@ -43,216 +45,210 @@
     </header>
 
     <main>
-      <section class="pg-hero" aria-labelledby="pg-hero-title">
-        <div class="wrap pg-hero-inner">
-          <p class="pg-hero-kicker mono">Independent studio</p>
-          <h1 id="pg-hero-title">Strategy, creative, and launch—kept in one thread.</h1>
-          <p class="pg-hero-lede">
-            Brand systems, campaigns, and digital experiences for teams who want work that reads clearly internally and resonates externally. Small studio footprint; senior attention on every engagement.
-          </p>
-          <div class="pg-hero-actions">
-            <a class="btn btn-primary" href="contact.html">Start a project</a>
-            <a class="btn btn-ghost" href="#solutions">Selected work</a>
-            <a class="btn btn-ghost" href="me.html">About me</a>
-          </div>
-        </div>
-      </section>
-
-      <nav class="pg-rail" aria-label="Disciplines">
-        <div class="wrap pg-rail-inner">
-          <p class="pg-rail-label mono">Disciplines</p>
-          <ul class="pg-rail-list mono">
-            <li><a href="#solutions">Brand identity</a></li>
-            <li><a href="#solutions">Campaigns</a></li>
-            <li><a href="#solutions">Digital</a></li>
-            <li><a href="#solutions">Editorial</a></li>
-            <li><a href="#services">Naming</a></li>
-            <li><a href="#services">Packaging</a></li>
-            <li><a href="#services">Motion</a></li>
-            <li><a href="#services">Environments</a></li>
-          </ul>
-        </div>
-      </nav>
-
-      <section class="pg-section pg-work" id="solutions" aria-labelledby="solutions-title">
-        <div class="wrap">
-          <header class="pg-section-head">
-            <h2 id="solutions-title">Work</h2>
-            <p>
-              Case studies and commissions—each tile links to the contact page if you would like to discuss something similar.
-            </p>
-          </header>
-          <div class="pg-grid">
-            <article class="pg-tile">
-              <a class="pg-tile-link" href="contact.html">
-                <div class="pg-tile-visual">
-                  <img
-                    src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&amp;fit=crop&amp;w=1200&amp;q=80"
-                    width="900"
-                    height="675"
-                    loading="lazy"
-                    decoding="async"
-                    alt="Abstract geometric brand study in monochrome."
-                  />
-                </div>
-                <div class="pg-tile-body">
-                  <span class="pg-tile-tag mono">Brand identity</span>
-                  <h3>Northline OS</h3>
-                  <p>Visual system and verbal architecture for a B2B platform repositioning around trust and speed.</p>
-                </div>
-              </a>
-            </article>
-            <article class="pg-tile">
-              <a class="pg-tile-link" href="contact.html">
-                <div class="pg-tile-visual">
-                  <img
-                    src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&amp;fit=crop&amp;w=1200&amp;q=80"
-                    width="900"
-                    height="675"
-                    loading="lazy"
-                    decoding="async"
-                    alt="Colorful campaign posters on a studio wall."
-                  />
-                </div>
-                <div class="pg-tile-body">
-                  <span class="pg-tile-tag mono">Campaigns</span>
-                  <h3>Field Season</h3>
-                  <p>Integrated launch for a consumer line: key visuals, retail toolkit, and social-first cutdowns.</p>
-                </div>
-              </a>
-            </article>
-            <article class="pg-tile">
-              <a class="pg-tile-link" href="contact.html">
-                <div class="pg-tile-visual">
-                  <img
-                    src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&amp;fit=crop&amp;w=1200&amp;q=80"
-                    width="900"
-                    height="675"
-                    loading="lazy"
-                    decoding="async"
-                    alt="Laptop showing a minimal website layout on a desk."
-                  />
-                </div>
-                <div class="pg-tile-body">
-                  <span class="pg-tile-tag mono">Digital</span>
-                  <h3>Ledger Commons</h3>
-                  <p>Site redesign with modular content model, editorial typography, and performance-minded front end.</p>
-                </div>
-              </a>
-            </article>
-            <article class="pg-tile">
-              <a class="pg-tile-link" href="contact.html">
-                <div class="pg-tile-visual">
-                  <img
-                    src="https://images.unsplash.com/photo-1634942537034-2531766767d8?auto=format&amp;fit=crop&amp;w=1200&amp;q=80"
-                    width="900"
-                    height="675"
-                    loading="lazy"
-                    decoding="async"
-                    alt="Minimal product packaging mockups arranged on a surface."
-                  />
-                </div>
-                <div class="pg-tile-body">
-                  <span class="pg-tile-tag mono">Packaging</span>
-                  <h3>Ritual Index</h3>
-                  <p>Pack architecture and unboxing narrative for a premium wellness subscription.</p>
-                </div>
-              </a>
-            </article>
-            <article class="pg-tile">
-              <a class="pg-tile-link" href="contact.html">
-                <div class="pg-tile-visual">
-                  <img
-                    src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&amp;fit=crop&amp;w=1200&amp;q=80"
-                    width="900"
-                    height="675"
-                    loading="lazy"
-                    decoding="async"
-                    alt="Newspaper and print layout on a wooden table."
-                  />
-                </div>
-                <div class="pg-tile-body">
-                  <span class="pg-tile-tag mono">Editorial</span>
-                  <h3>Quarterly Briefings</h3>
-                  <p>Publication design and data-forward essays for an industry research collective.</p>
-                </div>
-              </a>
-            </article>
-            <article class="pg-tile">
-              <a class="pg-tile-link" href="contact.html">
-                <div class="pg-tile-visual">
-                  <img
-                    src="https://images.unsplash.com/photo-1574717025058-c2b866b98fd8?auto=format&amp;fit=crop&amp;w=1200&amp;q=80"
-                    width="900"
-                    height="675"
-                    loading="lazy"
-                    decoding="async"
-                    alt="Video editing timeline on a screen in a dark room."
-                  />
-                </div>
-                <div class="pg-tile-body">
-                  <span class="pg-tile-tag mono">Motion</span>
-                  <h3>Signal Opener</h3>
-                  <p>Title sequence and motion guidelines for an annual summit brand.</p>
-                </div>
-              </a>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="pg-section pg-editorial" id="about" aria-labelledby="about-title">
-        <div class="wrap pg-split">
+      <section class="plt-hero" id="top" aria-labelledby="plt-hero-title">
+        <div class="wrap plt-hero-grid">
           <div>
-            <h2 id="about-title">The studio</h2>
-            <p class="pg-pull">
-              Spectr operates as a compact partner: senior thinking on strategy, hands-on direction on creative, and disciplined delivery on launch. We borrow the cadence of design studios—critique, iteration, typography, restraint—and apply it to marketing problems that deserve more than a template.
+            <p class="plt-eyebrow">Spectr intelligence · Light mode</p>
+            <h1 id="plt-hero-title">Operational view for multi-agent market analysis.</h1>
+            <p class="plt-lede">
+              A single surface to configure tickers, orchestrate analyst agents, and read portfolio decisions—with charts and signal tables wired to the
+              <a href="https://github.com/virattt/ai-hedge-fund" target="_blank" rel="noopener noreferrer">AI Hedge Fund</a> backend.
             </p>
-            <p>
-              Engagements range from sprint workshops to retained programs. We collaborate with founders, marketing leads, and product teams who need one accountable thread from positioning to pixels.
-            </p>
+            <div class="plt-hero-meta">
+              <span class="plt-pill plt-pill--live" id="plt-backend-dot"><span id="plt-backend-label">Checking API…</span></span>
+              <span class="plt-pill">SSE streaming</span>
+              <span class="plt-pill">19 analyst agents</span>
+            </div>
+            <div class="plt-hero-actions">
+              <a class="plt-btn plt-btn-primary" href="#contact">Run analysis</a>
+              <button type="button" class="plt-btn plt-btn-ghost" id="plt-demo-btn">Load demo data</button>
+            </div>
           </div>
-          <aside class="pg-aside mono" aria-label="Principles">
-            <p class="pg-aside-label">Principles</p>
-            <ul class="pg-aside-list">
-              <li>Clarity before novelty</li>
-              <li>Systems that teams can run</li>
-              <li>Creative that survives legal</li>
-              <li>Launch as a designed moment</li>
-            </ul>
+          <aside class="plt-status-panel" aria-label="Portfolio snapshot">
+            <div class="plt-status-head">
+              <span>Live metrics</span>
+              <span class="mono" id="plt-metric-tickers">—</span>
+            </div>
+            <div class="plt-status-body">
+              <div class="plt-metric-row">
+                <div class="plt-metric">
+                  <span class="plt-metric-label">Cash</span>
+                  <span class="plt-metric-value" id="plt-metric-cash">$100,000</span>
+                </div>
+                <div class="plt-metric">
+                  <span class="plt-metric-label">Exposure</span>
+                  <span class="plt-metric-value" id="plt-metric-exposure">—</span>
+                </div>
+                <div class="plt-metric">
+                  <span class="plt-metric-label">Session P&amp;L</span>
+                  <span class="plt-metric-value" id="plt-metric-pnl">—</span>
+                </div>
+              </div>
+              <div class="plt-chart-wrap">
+                <canvas id="plt-chart" role="img" aria-label="Portfolio allocation chart"></canvas>
+              </div>
+            </div>
           </aside>
         </div>
       </section>
 
-      <section class="pg-section pg-capabilities" id="services" aria-labelledby="services-title">
+      <section class="plt-section" id="solutions" aria-labelledby="solutions-title">
         <div class="wrap">
-          <header class="pg-section-head pg-section-head--tight">
-            <h2 id="services-title">Capabilities</h2>
-            <p>Everything listed here is work we lead end to end or pair with your internal team.</p>
+          <header class="plt-section-head">
+            <h2 id="solutions-title">Solutions</h2>
+            <p>Decision-grade visualization: prices, agent consensus, and final portfolio instructions in one scroll.</p>
           </header>
-          <ul class="pg-cap-list">
-            <li><span>Brand strategy &amp; positioning</span><span class="mono">Research · narrative · architecture</span></li>
-            <li><span>Identity &amp; verbal systems</span><span class="mono">Naming · tone · guidelines</span></li>
-            <li><span>Campaigns &amp; activations</span><span class="mono">Key visuals · toolkits · rollout</span></li>
-            <li><span>Websites &amp; product marketing</span><span class="mono">UX writing · UI partnership</span></li>
-            <li><span>Content &amp; editorial</span><span class="mono">Publications · reports · social</span></li>
-            <li><span>Launch &amp; comms planning</span><span class="mono">Moments · messaging · sequencing</span></li>
-          </ul>
+          <div class="plt-features">
+            <article class="plt-feature">
+              <h3>Signal lattice</h3>
+              <p>Every analyst agent reports per-ticker signals. Compare conviction across value, growth, sentiment, and technical lenses.</p>
+            </article>
+            <article class="plt-feature">
+              <h3>Portfolio graph</h3>
+              <p>Route agents through risk management into a portfolio manager node—the same DAG model as the upstream hedge fund app.</p>
+            </article>
+            <article class="plt-feature">
+              <h3>Streaming ops log</h3>
+              <p>Server-sent events show agent progress in real time while the LangGraph pipeline executes on your machine.</p>
+            </article>
+          </div>
         </div>
       </section>
 
-      <section class="pg-cta" id="contact" aria-labelledby="contact-title">
-        <div class="wrap pg-cta-inner">
+      <section class="plt-section plt-section--alt" id="about" aria-labelledby="about-title">
+        <div class="wrap plt-about-grid">
           <div>
-            <h2 id="contact-title">Tell us what you are building.</h2>
-            <p>
-              Timelines, audiences, constraints, and ambition—send the brief as you have it. For the full inquiry form and direct details, continue to Contact.
-            </p>
+            <header class="plt-section-head">
+              <h2 id="about-title">About</h2>
+              <p>
+                Spectr wraps the open-source AI Hedge Fund stack: FastAPI on port 8000, multi-agent LangGraph orchestration, and your choice of LLM provider. This page is the public shell; the engine runs locally or on your infrastructure.
+              </p>
+            </header>
           </div>
-          <div class="pg-cta-actions">
-            <a class="btn btn-primary" href="contact.html">Open contact form</a>
-            <a class="btn btn-ghost" href="mailto:makwan@spectr.no">Email</a>
+          <div>
+            <ul>
+              <li><strong>Backend</strong> — <code>POST /hedge-fund/run</code> (SSE)</li>
+              <li><strong>Agents</strong> — <code>GET /hedge-fund/agents</code></li>
+              <li><strong>Health</strong> — <code>GET /ping</code></li>
+              <li><strong>Stack</strong> — Python · FastAPI · LangGraph</li>
+              <li><strong>Disclaimer</strong> — Educational use only; not investment advice.</li>
+            </ul>
           </div>
+        </div>
+      </section>
+
+      <section class="plt-section" id="services" aria-labelledby="services-title">
+        <div class="wrap">
+          <header class="plt-section-head">
+            <h2 id="services-title">Services</h2>
+            <p>Select which analyst personas participate in each run. Defaults favor fundamentals, sentiment, valuation, and Buffett-style discipline.</p>
+          </header>
+          <div class="plt-pipeline" id="plt-pipeline" aria-label="Agent pipeline status"></div>
+        </div>
+      </section>
+
+      <section class="plt-section plt-section--alt" id="contact" aria-labelledby="contact-title">
+        <div class="wrap">
+          <header class="plt-section-head">
+            <h2 id="contact-title">Contact / Run</h2>
+            <p>Configure a run below. Requires API keys in the hedge fund <code>.env</code> (OpenAI, Financial Datasets, etc.).</p>
+          </header>
+
+          <p class="plt-banner" id="plt-banner" hidden></p>
+
+          <div class="plt-console">
+            <div class="plt-panel">
+              <div class="plt-panel-head">Run configuration</div>
+              <form class="plt-form" id="plt-run-form" onsubmit="return false;">
+                <label>
+                  Tickers (comma-separated)
+                  <input type="text" id="plt-tickers" value="AAPL,MSFT,NVDA" autocomplete="off" />
+                </label>
+                <label>
+                  Initial cash (USD)
+                  <input type="number" id="plt-cash" value="100000" min="1000" step="1000" />
+                </label>
+                <label>
+                  Start date
+                  <input type="date" id="plt-start-date" />
+                </label>
+                <label>
+                  End date
+                  <input type="date" id="plt-end-date" />
+                </label>
+                <label>
+                  Model
+                  <select id="plt-model">
+                    <option value="gpt-4o-mini">gpt-4o-mini</option>
+                    <option value="gpt-4o">gpt-4o</option>
+                    <option value="gpt-4.1">gpt-4.1</option>
+                  </select>
+                </label>
+                <label>
+                  Analyst agents
+                  <span class="plt-agent-grid" id="plt-agent-grid"></span>
+                </label>
+                <label>
+                  API base URL
+                  <input type="url" id="plt-api-base" placeholder="http://localhost:8000" />
+                </label>
+                <button type="button" class="plt-btn plt-btn-primary" id="plt-run-btn">Run hedge fund</button>
+                <button type="button" class="plt-btn plt-btn-ghost" id="plt-abort-btn" hidden>Cancel run</button>
+              </form>
+              <p class="plt-api-hint">Connected to: <strong id="plt-api-hint">http://localhost:8000</strong></p>
+            </div>
+
+            <div class="plt-panel plt-results">
+              <div class="plt-tabs" role="tablist">
+                <button type="button" class="plt-tab is-active" data-tab="decisions" role="tab">Decisions</button>
+                <button type="button" class="plt-tab" data-tab="signals" role="tab">Signals</button>
+                <button type="button" class="plt-tab" data-tab="log" role="tab">Activity</button>
+              </div>
+              <div id="plt-panel-decisions" class="plt-tab-panel is-active" role="tabpanel">
+                <div class="plt-table-wrap">
+                  <table class="plt-table">
+                    <thead>
+                      <tr>
+                        <th>Ticker</th>
+                        <th>Action</th>
+                        <th>Qty</th>
+                        <th>Price · conf.</th>
+                      </tr>
+                    </thead>
+                    <tbody id="plt-decisions-body"></tbody>
+                  </table>
+                </div>
+              </div>
+              <div id="plt-panel-signals" class="plt-tab-panel" role="tabpanel">
+                <div class="plt-table-wrap">
+                  <table class="plt-table">
+                    <thead>
+                      <tr>
+                        <th>Agent</th>
+                        <th>Ticker</th>
+                        <th>Signal</th>
+                        <th>Detail</th>
+                      </tr>
+                    </thead>
+                    <tbody id="plt-signals-body"></tbody>
+                  </table>
+                </div>
+              </div>
+              <div id="plt-panel-log" class="plt-tab-panel" role="tabpanel">
+                <ul class="plt-log" id="plt-log"></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="plt-cta" aria-label="Get started">
+        <div class="wrap plt-cta-inner">
+          <div>
+            <h2>Deploy the full stack locally</h2>
+            <p>Clone virattt/ai-hedge-fund, configure <code>.env</code>, run <code>./run.sh</code>, then point this page at <code>http://localhost:8000</code>.</p>
+          </div>
+          <a class="plt-btn plt-btn-primary" href="https://github.com/virattt/ai-hedge-fund" target="_blank" rel="noopener noreferrer">View backend repo</a>
         </div>
       </section>
     </main>
@@ -272,12 +268,11 @@
             <span class="site-footer-logo-text">Spectr</span>
           </a>
           <p class="site-footer-tagline">
-            Marketing and creative studio operated by <strong>SPECTR AS</strong>, Norway.
+            Intelligence platform · powered by <strong>SPECTR AS</strong> · educational use only.
           </p>
         </div>
         <div class="site-footer-actions" aria-label="Quick actions">
-          <a class="btn btn-primary" href="contact.html">Start a project</a>
-          <a class="btn btn-ghost" href="me.html">About me</a>
+          <a class="btn btn-primary" href="#contact">Run analysis</a>
           <a class="btn btn-ghost" href="privacy.html">Privacy</a>
           <a class="btn btn-ghost" href="terms.html">Terms</a>
         </div>
@@ -294,12 +289,13 @@
             <span class="site-footer-sep" aria-hidden="true">·</span>
             <a href="terms.html">Terms of use</a>
             <span class="site-footer-sep" aria-hidden="true">·</span>
-            <a href="index.html#top">Back to top</a>
+            <a href="#top">Back to top</a>
           </p>
         </div>
       </div>
     </footer>
 
     <script src="script.js" defer></script>
+    <script src="platform.js" defer></script>
   </body>
 </html>

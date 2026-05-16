@@ -1,29 +1,29 @@
-Spectr site: contact form → Gmail + Attio (https://attio.com/)
-===============================================================
+Spectr Intelligence Platform — AI Hedge Fund backend
+====================================================
 
-1) FormSubmit → inbox
----------------------
-- The contact form’s HTML `action` is `https://formsubmit.co/<your-address>` (currently makwan@spectr.no). Change that address in index.html if the inbox should change.
-- Deploy the site, submit the form once, then open that inbox and click FormSubmit’s one-time activation link. Until you activate, submissions are not delivered.
+This site connects to the open-source backend:
+https://github.com/virattt/ai-hedge-fund
 
-2) Attio (recommended: no API keys in the website)
----------------------------------------------------
-Attio’s REST API uses OAuth and must not be called from static HTML with secrets in the browser.
+Quick start (from the hedge fund repo root)
+-------------------------------------------
+1. git clone https://github.com/virattt/ai-hedge-fund.git
+2. cp .env.example .env   (add OPENAI_API_KEY and FINANCIAL_DATASETS_API_KEY)
+3. ./run.sh               (Mac/Linux) or run.bat (Windows)
 
-Option A — Webhook (instant JSON to your automation)
-- In Zapier, Make, or Relay: create a workflow whose first step is “Catch hook” / “Custom webhook” and copy the URL.
-- Set `window.SPECTR_FORM.formsubmitWebhook` in index.html to that URL (or assign `window.SPECTR_FORM` in an earlier script). The page injects FormSubmit’s hidden field `_webhook`; FormSubmit POSTs a JSON payload of the submission to your hook on each valid submit.
-- Next step in the workflow: “Create or update person” (or equivalent) in Attio. Map fields: name, email, company, phone, service, lane_and_volume.
+The API should listen on http://localhost:8000
 
-Option B — Email trigger (no _webhook)
-- After step 1, each inquiry is an email in Gmail.
-- Zapier: “New email in Gmail” (filter by subject “Spectr website” or sender FormSubmit) → Attio “Create or update record”.
-- Relay.app supports similar Gmail → Attio playbooks.
+On index.html, set "API base URL" to that address, or before scripts load:
+  window.SPECTR_PLATFORM = { apiBase: "http://localhost:8000" };
 
-3) Field names (for mapping in Zapier / Make)
------------------------------------------------
-name, email, company, phone, service, lane_and_volume
+Endpoints used by the Spectr frontend
+-------------------------------------
+GET  /hedge-fund/agents  (also used as health check)
+GET  /
+POST /hedge-fund/run   (Server-Sent Events stream)
 
-4) Privacy copy
----------------
-If you use a webhook or CRM automation, update privacy.html section 5 to name the processors you actually use (e.g. Zapier, Attio).
+CORS: the upstream backend allows localhost:5173 by default. If you serve
+this static site from another origin (e.g. file:// or spectrglobal.vercel.app),
+add your origin to app/backend/main.py allow_origins or run the API behind a
+proxy on the same domain.
+
+Educational use only — not investment advice.
