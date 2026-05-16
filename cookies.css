@@ -1,0 +1,115 @@
+/* Cookie consent bar — Palantir-style bottom strip */
+
+.cookie-banner {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 300;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 1.5rem;
+  padding: 1rem clamp(1.25rem, 4vw, 2.5rem);
+  border-top: 1px solid #d8e0ea;
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 -8px 32px rgba(16, 24, 32, 0.08);
+  animation: cookie-banner-in 0.35s ease;
+}
+
+@keyframes cookie-banner-in {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cookie-banner {
+    animation: none;
+  }
+}
+
+.cookie-banner[hidden] {
+  display: none !important;
+}
+
+body.has-cookie-banner {
+  padding-bottom: 5.5rem;
+}
+
+@media (min-width: 720px) {
+  body.has-cookie-banner {
+    padding-bottom: 4.75rem;
+  }
+}
+
+.cookie-banner-text {
+  margin: 0;
+  flex: 1 1 16rem;
+  max-width: 52rem;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: #5c6b7a;
+}
+
+.cookie-banner-text a {
+  color: #1f6feb;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.cookie-banner-text a:hover {
+  color: #1158c7;
+}
+
+.cookie-banner-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.65rem;
+  flex-shrink: 0;
+}
+
+.cookie-banner-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 1rem;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.cookie-banner-btn--accept {
+  background: #101820;
+  color: #fff;
+  border-color: #101820;
+}
+
+.cookie-banner-btn--accept:hover {
+  background: #1b2838;
+  border-color: #1b2838;
+}
+
+.cookie-banner-btn--ghost {
+  background: transparent;
+  color: #101820;
+  border-color: #b8c4d4;
+}
+
+.cookie-banner-btn--ghost:hover {
+  border-color: #101820;
+  text-decoration: none;
+}
