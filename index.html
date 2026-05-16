@@ -1,15 +1,14 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Spectr AI Fund — track performance and current portfolio positions."
+      content="Spectr builds operational intelligence software for investment teams—multi-agent analysis, fund analytics, and decision infrastructure."
     />
-    <title>Spectr — AI Fund performance</title>
+    <title>Spectr — Operational intelligence</title>
     <link rel="icon" href="assets/brand/spectr-mark.png" type="image/png" sizes="any" />
-    <link rel="apple-touch-icon" href="assets/brand/spectr-mark.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,88 +17,164 @@
     />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="platform.css" />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
+    <link rel="stylesheet" href="home.css" />
   </head>
-  <body class="font-body theme-platform page-landing">
+  <body class="font-body theme-platform page-home">
     <header class="site-header">
       <div class="wrap header-inner">
-        <a class="logo-link" href="#top" id="top" aria-label="Spectr home">
-          <img
-            class="logo-mark"
-            src="assets/brand/spectr-mark.png"
-            width="40"
-            height="40"
-            alt=""
-            decoding="async"
-          />
+        <a class="logo-link" href="index.html" aria-label="Spectr home">
+          <img class="logo-mark" src="assets/brand/spectr-mark.png" width="40" height="40" alt="" decoding="async" />
           <span class="wordmark">Spectr</span>
         </a>
         <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
         <nav class="nav" id="site-nav" aria-label="Primary">
-          <a href="#performance">Performance</a>
-          <a href="#positions">Positions</a>
-          <a href="app.html">Platform</a>
+          <a href="#platforms">Platforms</a>
+          <a href="fund.html">Fund</a>
+          <a href="contact.html">Contact</a>
+          <a href="app.html" class="ph-nav-cta">Platform</a>
         </nav>
       </div>
     </header>
 
     <main>
-      <section class="land-hero" id="top">
-        <div class="wrap land-hero-inner">
-          <p class="plt-eyebrow">Spectr AI Fund</p>
-          <h1>How the fund is performing.</h1>
-          <p class="plt-lede">
-            Public track record and live book—updated from the multi-agent engine. Open the platform to explore multi-agent analysis.
+      <section class="ph-hero" id="top">
+        <div class="wrap ph-hero-inner">
+          <p class="plt-eyebrow">Operational intelligence</p>
+          <h1>Software that turns data into decisions.</h1>
+          <p class="ph-hero-lede">
+            Spectr builds infrastructure for investment teams—multi-agent analysis, live fund analytics, and streaming
+            decision workflows on a unified platform.
           </p>
-          <p class="land-asof mono" id="land-asof"></p>
+          <div class="ph-hero-actions">
+            <a class="plt-btn plt-btn-primary" href="app.html">Explore platform</a>
+            <a class="plt-btn plt-btn-ghost" href="fund.html">View fund</a>
+          </div>
         </div>
       </section>
 
-      <section class="plt-section" id="performance" aria-labelledby="perf-title">
+      <section class="ph-platforms" id="platforms" aria-labelledby="platforms-title">
+        <div class="wrap ph-platforms-head">
+          <p class="ph-section-label">Platforms</p>
+          <h2 id="platforms-title">Our platforms</h2>
+        </div>
         <div class="wrap">
-          <header class="plt-section-head plt-section-head--stack">
-            <h2 id="perf-title">Performance</h2>
-            <p class="land-nav-value">Net asset value <strong id="land-nav">—</strong></p>
-          </header>
-          <div class="land-metrics">
-            <article class="land-metric">
-              <span class="land-metric-label mono">YTD</span>
-              <span class="land-metric-value is-up" id="land-ytd">—</span>
-            </article>
-            <article class="land-metric">
-              <span class="land-metric-label mono">1 year</span>
-              <span class="land-metric-value is-up" id="land-1y">—</span>
-            </article>
-            <article class="land-metric">
-              <span class="land-metric-label mono">Sharpe</span>
-              <span class="land-metric-value" id="land-sharpe">—</span>
-            </article>
-            <article class="land-metric">
-              <span class="land-metric-label mono">Max drawdown</span>
-              <span class="land-metric-value is-down" id="land-dd">—</span>
-            </article>
-            <article class="land-metric">
-              <span class="land-metric-label mono">Win rate</span>
-              <span class="land-metric-value" id="land-win">—</span>
-            </article>
-          </div>
-          <div class="land-chart-panel">
-            <div class="land-chart-head mono">Indexed return (base 100)</div>
-            <div class="land-chart-wrap">
-              <canvas id="land-perf-chart" role="img" aria-label="Fund performance chart"></canvas>
-            </div>
-          </div>
-          <p class="land-disclaimer">Illustrative track for education. Past simulated performance is not indicative of future results.</p>
+          <ul class="ph-platform-list">
+            <li class="ph-platform-item">
+              <a class="ph-platform-link" href="app.html">
+                <div>
+                  <h3 class="ph-platform-title">Spectr AIP</h3>
+                  <p class="ph-platform-desc">
+                    The AI platform for multi-agent investment analysis—configure analysts, stream decisions, and run
+                    live hedge-fund workflows.
+                  </p>
+                </div>
+                <span class="ph-platform-arrow" aria-hidden="true">?</span>
+              </a>
+            </li>
+            <li class="ph-platform-item">
+              <a class="ph-platform-link" href="fund.html">
+                <div>
+                  <h3 class="ph-platform-title">Spectr Fund</h3>
+                  <p class="ph-platform-desc">
+                    Public performance, portfolio positions, and fund metrics—transparent analytics for the AI fund book.
+                  </p>
+                </div>
+                <span class="ph-platform-arrow" aria-hidden="true">?</span>
+              </a>
+            </li>
+            <li class="ph-platform-item">
+              <a class="ph-platform-link" href="contact.html">
+                <div>
+                  <h3 class="ph-platform-title">Spectr Deploy</h3>
+                  <p class="ph-platform-desc">
+                    Engage Spectr for bespoke intelligence systems—data integration, agent orchestration, and operational
+                    rollout.
+                  </p>
+                </div>
+                <span class="ph-platform-arrow" aria-hidden="true">?</span>
+              </a>
+            </li>
+          </ul>
         </div>
       </section>
 
-      <section class="plt-section plt-section--alt" id="positions" aria-labelledby="pos-title">
+      <section class="ph-statement" aria-label="Mission">
         <div class="wrap">
-          <header class="plt-section-head">
-            <h2 id="pos-title">Current positions</h2>
-            <p>Holdings in the fund today, with company marks and weights.</p>
-          </header>
-          <div class="land-positions" id="land-positions"></div>
+          <blockquote>
+            We build software that amplifies human judgment—so teams can see the full picture and act with conviction.
+            <cite>Spectr — SPECTR AS</cite>
+          </blockquote>
+        </div>
+      </section>
+
+      <section class="ph-capabilities" aria-labelledby="cap-title">
+        <div class="wrap">
+          <p class="ph-section-label">Capabilities</p>
+          <h2 id="cap-title">What we deliver</h2>
+          <ul class="ph-cap-grid">
+            <li class="ph-cap-item">
+              <h3>Multi-agent orchestration</h3>
+              <p>Analyst agents, portfolio managers, and risk checks in a single composable graph.</p>
+            </li>
+            <li class="ph-cap-item">
+              <h3>Streaming decisions</h3>
+              <p>Live SSE pipelines from research through execution signals—not batch reports.</p>
+            </li>
+            <li class="ph-cap-item">
+              <h3>Fund transparency</h3>
+              <p>Performance, positions, and attribution surfaced for stakeholders and operators.</p>
+            </li>
+            <li class="ph-cap-item">
+              <h3>Model connectivity</h3>
+              <p>Plug in frontier LLMs and structured data feeds behind a secure proxy layer.</p>
+            </li>
+            <li class="ph-cap-item">
+              <h3>Decision audit</h3>
+              <p>Activity logs, signals, and rationale preserved for review and compliance.</p>
+            </li>
+            <li class="ph-cap-item">
+              <h3>Demo &amp; live modes</h3>
+              <p>Explore sample outcomes instantly or connect to your running engine.</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="ph-news" aria-labelledby="news-title">
+        <div class="wrap">
+          <p class="ph-section-label">Updates</p>
+          <h2 id="news-title">Latest</h2>
+          <ul class="ph-news-list">
+            <li class="ph-news-item">
+              <a href="fund.html">
+                <strong>AI Fund performance dashboard is live</strong>
+                <span>Fund — May 2026</span>
+              </a>
+            </li>
+            <li class="ph-news-item">
+              <a href="app.html">
+                <strong>Multi-agent hedge fund platform</strong>
+                <span>Platform — May 2026</span>
+              </a>
+            </li>
+            <li class="ph-news-item">
+              <a href="contact.html">
+                <strong>New business &amp; partnerships</strong>
+                <span>Company — Contact</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="ph-cta">
+        <div class="wrap">
+          <h2>Ready to explore?</h2>
+          <p>Run the platform in demo mode or reach out to discuss a deployment for your team.</p>
+          <div class="ph-hero-actions">
+            <a class="plt-btn plt-btn-primary" href="app.html">Open platform</a>
+            <a class="plt-btn plt-btn-ghost" href="contact.html">Contact us</a>
+          </div>
         </div>
       </section>
     </main>
@@ -107,14 +182,15 @@
     <footer class="site-footer">
       <div class="wrap site-footer-inner">
         <div class="site-footer-brand">
-          <a class="site-footer-logo" href="#top">
+          <a class="site-footer-logo" href="index.html">
             <img class="site-footer-logo-mark" src="assets/brand/spectr-mark.png" width="36" height="36" alt="" decoding="async" />
             <span class="site-footer-logo-text">Spectr</span>
           </a>
-          <p class="site-footer-tagline">AI fund analytics · <strong>SPECTR AS</strong> · educational use only.</p>
+          <p class="site-footer-tagline">Operational intelligence — <strong>SPECTR AS</strong></p>
         </div>
         <div class="site-footer-actions" aria-label="Quick actions">
           <a class="btn btn-primary" href="app.html">Platform</a>
+          <a class="btn btn-ghost" href="fund.html">Fund</a>
           <a class="btn btn-ghost" href="privacy.html">Privacy</a>
           <a class="btn btn-ghost" href="terms.html">Terms</a>
         </div>
@@ -132,6 +208,5 @@
     </footer>
 
     <script src="script.js" defer></script>
-    <script src="landing.js" defer></script>
   </body>
 </html>

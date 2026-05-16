@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Spectr AI Fund — track performance and current portfolio positions."
+    />
+    <title>Spectr — Fund performance</title>
+    <link rel="icon" href="assets/brand/spectr-mark.png" type="image/png" sizes="any" />
+    <link rel="apple-touch-icon" href="assets/brand/spectr-mark.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600&family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="platform.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
+  </head>
+  <body class="font-body theme-platform page-landing">
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a class="logo-link" href="index.html" aria-label="Spectr home">
+          <img
+            class="logo-mark"
+            src="assets/brand/spectr-mark.png"
+            width="40"
+            height="40"
+            alt=""
+            decoding="async"
+          />
+          <span class="wordmark">Spectr</span>
+        </a>
+        <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+        <nav class="nav" id="site-nav" aria-label="Primary">
+          <a href="index.html">Home</a>
+          <a href="#performance">Performance</a>
+          <a href="#positions">Positions</a>
+          <a href="app.html">Platform</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="land-hero" id="top">
+        <div class="wrap land-hero-inner">
+          <p class="plt-eyebrow">Spectr AI Fund</p>
+          <h1>How the fund is performing.</h1>
+          <p class="plt-lede">
+            Public track record and live book—updated from the multi-agent engine. Open the platform to explore multi-agent analysis.
+          </p>
+          <p class="land-asof mono" id="land-asof"></p>
+        </div>
+      </section>
+
+      <section class="plt-section" id="performance" aria-labelledby="perf-title">
+        <div class="wrap">
+          <header class="plt-section-head plt-section-head--stack">
+            <h2 id="perf-title">Performance</h2>
+            <p class="land-nav-value">Net asset value <strong id="land-nav">—</strong></p>
+          </header>
+          <div class="land-metrics">
+            <article class="land-metric">
+              <span class="land-metric-label mono">YTD</span>
+              <span class="land-metric-value is-up" id="land-ytd">—</span>
+            </article>
+            <article class="land-metric">
+              <span class="land-metric-label mono">1 year</span>
+              <span class="land-metric-value is-up" id="land-1y">—</span>
+            </article>
+            <article class="land-metric">
+              <span class="land-metric-label mono">Sharpe</span>
+              <span class="land-metric-value" id="land-sharpe">—</span>
+            </article>
+            <article class="land-metric">
+              <span class="land-metric-label mono">Max drawdown</span>
+              <span class="land-metric-value is-down" id="land-dd">—</span>
+            </article>
+            <article class="land-metric">
+              <span class="land-metric-label mono">Win rate</span>
+              <span class="land-metric-value" id="land-win">—</span>
+            </article>
+          </div>
+          <div class="land-chart-panel">
+            <div class="land-chart-head mono">Indexed return (base 100)</div>
+            <div class="land-chart-wrap">
+              <canvas id="land-perf-chart" role="img" aria-label="Fund performance chart"></canvas>
+            </div>
+          </div>
+          <p class="land-disclaimer">Illustrative track for education. Past simulated performance is not indicative of future results.</p>
+        </div>
+      </section>
+
+      <section class="plt-section plt-section--alt" id="positions" aria-labelledby="pos-title">
+        <div class="wrap">
+          <header class="plt-section-head">
+            <h2 id="pos-title">Current positions</h2>
+            <p>Holdings in the fund today, with company marks and weights.</p>
+          </header>
+          <div class="land-positions" id="land-positions"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap site-footer-inner">
+        <div class="site-footer-brand">
+          <a class="site-footer-logo" href="index.html">
+            <img class="site-footer-logo-mark" src="assets/brand/spectr-mark.png" width="36" height="36" alt="" decoding="async" />
+            <span class="site-footer-logo-text">Spectr</span>
+          </a>
+          <p class="site-footer-tagline">AI fund analytics · <strong>SPECTR AS</strong> · educational use only.</p>
+        </div>
+        <div class="site-footer-actions" aria-label="Quick actions">
+          <a class="btn btn-primary" href="app.html">Platform</a>
+          <a class="btn btn-ghost" href="index.html">Home</a>
+          <a class="btn btn-ghost" href="privacy.html">Privacy</a>
+          <a class="btn btn-ghost" href="terms.html">Terms</a>
+        </div>
+        <div class="site-footer-meta">
+          <address class="site-footer-address">
+            <span class="site-footer-legal-name">SPECTR AS</span><br />
+            Org. nr. <span class="mono">926 574 892</span><br />
+            Eksempelgata 1, NO-0162 Oslo, Norway
+          </address>
+          <p class="site-footer-copy">
+            <span class="mono">© <span data-current-year></span> SPECTR AS</span>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js" defer></script>
+    <script src="landing.js" defer></script>
+  </body>
+</html>
