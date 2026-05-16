@@ -856,46 +856,43 @@ body.theme-platform .site-footer-copy a:hover {
   color: var(--plt-text);
 }
 
-body.modal-open {
-  overflow: hidden;
-}
-
-.login-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 200;
+.page-login .login-page-main {
   display: grid;
   place-items: center;
-  padding: 1.25rem;
+  min-height: calc(100vh - var(--header-height, 4.5rem));
+  padding: clamp(2rem, 6vw, 4rem) 0;
 }
 
-.login-modal-backdrop {
-  position: absolute;
-  inset: 0;
-  background: rgba(27, 40, 56, 0.45);
-  backdrop-filter: blur(4px);
-}
-
-.login-modal-dialog {
-  position: relative;
+.page-login .login-page-inner {
   width: min(24rem, 100%);
-  padding: 1.5rem 1.65rem;
+}
+
+.page-login .login-page-card {
+  padding: 1.75rem 1.85rem;
   border: 1px solid var(--plt-border);
   border-radius: 4px;
   background: #fff;
-  box-shadow: 0 24px 64px rgba(27, 40, 56, 0.18);
+  box-shadow: 0 12px 40px rgba(27, 40, 56, 0.08);
 }
 
-.login-modal-close {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.65rem;
-  border: none;
-  background: none;
-  font-size: 1.5rem;
-  line-height: 1;
+.page-login .plt-auth-title {
+  font-family: var(--font-display, "Syne", sans-serif);
+  font-size: 1.35rem;
+}
+
+.page-login .login-page-back {
+  margin: 1.25rem 0 0;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.page-login .login-page-back a {
   color: var(--plt-muted);
-  cursor: pointer;
+  text-decoration: none;
+}
+
+.page-login .login-page-back a:hover {
+  color: var(--plt-accent);
 }
 
 .page-landing .land-hero {

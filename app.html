@@ -28,7 +28,6 @@
           <a href="index.html#performance">Performance</a>
           <a href="index.html#positions">Positions</a>
           <a href="app.html">Platform</a>
-          <a href="#" id="nav-logout" class="nav-login">Sign out</a>
         </nav>
       </div>
     </header>
@@ -37,7 +36,7 @@
       <div class="wrap">
         <header class="app-head">
           <div>
-            <p class="plt-eyebrow">AI Hedge Fund · Authenticated</p>
+            <p class="plt-eyebrow">AI Hedge Fund · Platform</p>
             <h1>Analysis platform</h1>
             <p class="plt-lede">Configure tickers, select analyst agents, and stream live decisions from the engine.</p>
           </div>
@@ -48,10 +47,6 @@
 
         <p class="plt-banner" id="plt-banner" hidden></p>
 
-        <div class="plt-auth-bar" id="plt-auth-workspace">
-          <span class="mono">Signed in as <strong id="plt-auth-email"></strong></span>
-        </div>
-
         <div class="plt-pipeline" id="plt-pipeline" aria-label="Agent pipeline status"></div>
 
         <div class="plt-console" id="plt-console">
@@ -60,23 +55,23 @@
             <form class="plt-form" id="plt-run-form" onsubmit="return false;">
               <label>
                 Tickers (comma-separated)
-                <input class="plt-live-only" type="text" id="plt-tickers" value="AAPL,MSFT,NVDA" autocomplete="off" />
+                <input  type="text" id="plt-tickers" value="AAPL,MSFT,NVDA" autocomplete="off" />
               </label>
               <label>
                 Initial cash (USD)
-                <input class="plt-live-only" type="number" id="plt-cash" value="100000" min="1000" step="1000" />
+                <input  type="number" id="plt-cash" value="100000" min="1000" step="1000" />
               </label>
               <label>
                 Start date
-                <input class="plt-live-only" type="date" id="plt-start-date" />
+                <input  type="date" id="plt-start-date" />
               </label>
               <label>
                 End date
-                <input class="plt-live-only" type="date" id="plt-end-date" />
+                <input  type="date" id="plt-end-date" />
               </label>
               <label>
                 Model
-                <select class="plt-live-only" id="plt-model">
+                <select  id="plt-model">
                   <option value="gpt-4o-mini">gpt-4o-mini</option>
                   <option value="gpt-4o">gpt-4o</option>
                   <option value="gpt-4.1">gpt-4.1</option>
@@ -150,9 +145,7 @@
       </div>
     </footer>
 
-    <script src="auth.js" defer></script>
     <script src="script.js" defer></script>
-    <script src="nav.js" defer></script>
     <script src="platform.js" defer></script>
   </body>
 </html>

@@ -38,8 +38,7 @@
         <nav class="nav" id="site-nav" aria-label="Primary">
           <a href="#performance">Performance</a>
           <a href="#positions">Positions</a>
-          <a href="app.html" id="nav-platform" hidden>Platform</a>
-          <a href="#login" id="nav-login" class="nav-login">Login</a>
+          <a href="app.html">Platform</a>
         </nav>
       </div>
     </header>
@@ -50,7 +49,7 @@
           <p class="plt-eyebrow">Spectr AI Fund</p>
           <h1>How the fund is performing.</h1>
           <p class="plt-lede">
-            Public track record and live book—updated from the multi-agent engine. Sign in to run analysis and configure agents.
+            Public track record and live book—updated from the multi-agent engine. Open the platform to explore multi-agent analysis.
           </p>
           <p class="land-asof mono" id="land-asof"></p>
         </div>
@@ -115,7 +114,7 @@
           <p class="site-footer-tagline">AI fund analytics · <strong>SPECTR AS</strong> · educational use only.</p>
         </div>
         <div class="site-footer-actions" aria-label="Quick actions">
-          <a class="btn btn-primary" href="#login" id="footer-login">Login</a>
+          <a class="btn btn-primary" href="app.html">Platform</a>
           <a class="btn btn-ghost" href="privacy.html">Privacy</a>
           <a class="btn btn-ghost" href="terms.html">Terms</a>
         </div>
@@ -132,34 +131,7 @@
       </div>
     </footer>
 
-    <div class="login-modal" id="login-modal" hidden role="dialog" aria-modal="true" aria-labelledby="login-modal-title">
-      <div class="login-modal-backdrop" data-close-login></div>
-      <div class="login-modal-dialog">
-        <button type="button" class="login-modal-close" data-close-login aria-label="Close">×</button>
-        <h2 class="plt-auth-title" id="login-modal-title">Sign in</h2>
-        <p class="plt-auth-lede">Access the AI Hedge Fund platform—run agents, stream decisions, and manage live analysis.</p>
-        <form id="plt-login-form" class="plt-auth-form" autocomplete="on">
-          <label>
-            Email
-            <input type="email" id="plt-login-email" required autocomplete="username" />
-          </label>
-          <label>
-            Password
-            <input type="password" id="plt-login-password" required autocomplete="current-password" />
-          </label>
-          <label class="plt-auth-remember">
-            <input type="checkbox" id="plt-login-remember" />
-            Keep me signed in
-          </label>
-          <p class="plt-auth-error" id="plt-login-error" hidden></p>
-          <button type="submit" class="plt-btn plt-btn-primary" id="plt-login-submit">Sign in</button>
-        </form>
-      </div>
-    </div>
-
-    <script src="auth.js" defer></script>
     <script src="script.js" defer></script>
-    <script src="nav.js" defer></script>
     <script src="landing.js" defer></script>
   </body>
 </html>

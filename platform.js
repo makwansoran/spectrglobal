@@ -107,29 +107,18 @@
     if (isAuthed()) {
       el.textContent = hedgeApiBase() + " (authenticated proxy)";
     } else {
-      el.textContent = "Sign in to connect to the live engine";
+      el.textContent = "Demo mode (public access)";
     }
   }
 
   function updateAuthUI() {
     if (!document.body.classList.contains("page-app")) return;
 
-    var authed = isAuthed();
-    var emailEl = $("plt-auth-email");
     var runBtn = $("plt-run-btn");
-
-    if (emailEl) emailEl.textContent = authed ? SpectrAuth.getEmail() || "Signed in" : "";
-    if (runBtn) runBtn.disabled = !authed || state.running;
-
-    document.querySelectorAll(".plt-live-only").forEach(function (el) {
-      el.disabled = !authed;
-    });
+    if (runBtn) runBtn.disabled = state.running;
 
     setApiHint();
-
-    if (authed) {
-      pingBackend().then(fetchAgents);
-    }
+    pingBackend().then(fetchAgents);
   }
 
   function setBackendStatus(online, message) {
@@ -147,7 +136,7 @@
 
   async function pingBackend() {
     if (!isAuthed()) {
-      setBackendStatus(false, "Demo mode — sign in for live runs");
+      setBackendStatus(false, "Demo mode — sample data");
       state.demo = true;
       return false;
     }
@@ -158,7 +147,7 @@
         signal: AbortSignal.timeout(8000),
       });
       if (res.status === 401) {
-        SpectrAuth.logout();
+        if (window.SpectrAuth) SpectrAuth.logout();
         updateAuthUI();
         throw new Error("session expired");
       }
@@ -188,7 +177,7 @@
     try {
       var res = await fetch(hedgeApiBase() + "/agents", { headers: SpectrAuth.authHeaders() });
       if (res.status === 401) {
-        SpectrAuth.logout();
+        if (window.SpectrAuth) SpectrAuth.logout();
         updateAuthUI();
         throw new Error("session expired");
       }
@@ -497,6 +486,12 @@
   function runHedgeFund() {
     if (state.running) return;
 
+    if (!hedgeApiBase()) {
+      showBanner("warn", "Running in demo mode with sample results.");
+      loadDemoResults();
+      return;
+    }
+
     var tickersRaw = ($("plt-tickers") && $("plt-tickers").value) || "AAPL,MSFT,NVDA";
     var tickers = tickersRaw
       .split(",")
@@ -560,9 +555,9 @@
     })
       .then(function (response) {
         if (response.status === 401) {
-          SpectrAuth.logout();
+          if (window.SpectrAuth) SpectrAuth.logout();
           updateAuthUI();
-          throw new Error("Session expired. Sign in again.");
+          throw new Error("Session expired.");
         }
         if (!response.ok) throw new Error("HTTP " + response.status);
         var reader = response.body.getReader();
@@ -634,7 +629,7 @@
       .catch(function (err) {
         if (err.name === "AbortError") return;
         if (String(err.message || "").indexOf("401") >= 0) {
-          SpectrAuth.logout();
+          if (window.SpectrAuth) SpectrAuth.logout();
           updateAuthUI();
         }
         showBanner("error", err.message || "Connection failed. Is the backend running?");
@@ -690,18 +685,7 @@
       if (el) el.addEventListener("input", updateMetrics);
     });
 
-    if (window.SpectrAuth) {
-      SpectrAuth.onChange(updateAuthUI);
-      SpectrAuth.verifySession().then(function (ok) {
-        if (!ok) {
-          window.location.replace("index.html#login");
-          return;
-        }
-        updateAuthUI();
-      });
-    } else {
-      updateAuthUI();
-    }
+    updateAuthUI();
   }
 
   if (document.readyState === "loading") {
