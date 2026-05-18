@@ -3,7 +3,12 @@
  */
 const supabase = require("./supabase-store");
 const { isSupabaseEnabled, requireSupabase } = require("./supabase-client");
-const { dedupeSearchResults, formatSearchSubtitle } = require("./search-rank");
+const {
+  dedupeSearchResults,
+  formatSearchSubtitle,
+  formatCommoditySearchSubtitle,
+  mergeSearchResults,
+} = require("./search-rank");
 const { syncPeopleFromCompany } = require("./people-sync");
 
 async function listCompanies(options = {}) {
@@ -13,7 +18,7 @@ async function listCompanies(options = {}) {
 }
 
 /**
- * Company search — public.companies in Supabase only (no Finnhub, JSON index, or commodities).
+ * Company search — public.companies in Supabase only.
  */
 async function searchCompanies(query, limit = 25) {
   requireSupabase();
@@ -29,6 +34,29 @@ async function searchCompanies(query, limit = 25) {
       subtitle: formatSearchSubtitle(row),
     };
   });
+}
+
+/**
+ * Unified search — companies + commodities (homepage and nav).
+ */
+async function searchUnified(query, limit = 25) {
+  const commoditiesStore = require("./commodities-store");
+  const [companies, commodities] = await Promise.all([
+    searchCompanies(query, limit),
+    commoditiesStore.searchCommodities(query, limit),
+  ]);
+
+  const commodityRows = commodities.map((row) => {
+    const { profile_json, profile, ...rest } = row;
+    return {
+      ...rest,
+      kind: "commodity",
+      source: "supabase",
+      subtitle: formatCommoditySearchSubtitle(row),
+    };
+  });
+
+  return mergeSearchResults(companies, commodityRows, query, limit);
 }
 
 async function getCompanyRaw(slug) {
@@ -91,6 +119,7 @@ function storageMode() {
 module.exports = {
   listCompanies,
   searchCompanies,
+  searchUnified,
   getCompany,
   getCompanyRaw,
   saveCompanySeed,

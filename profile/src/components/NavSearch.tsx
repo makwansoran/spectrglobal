@@ -40,7 +40,7 @@ export function NavSearch() {
     setLoading(true);
     const timer = window.setTimeout(() => {
       searchCompanyIndex(q, 10)
-        .then((items) => setResults(items.filter((item) => !item.kind || item.kind === "company")))
+        .then((items) => setResults(items))
         .catch(() => setResults([]))
         .finally(() => setLoading(false));
     }, 200);
@@ -52,11 +52,15 @@ export function NavSearch() {
     setActiveIndex(0);
   }, [query, results]);
 
-  const goToCompany = useCallback(
-    (company: CompanySearchItem) => {
+  const goToResult = useCallback(
+    (item: CompanySearchItem) => {
       setOpen(false);
       setQuery("");
-      navigate(`/${company.id}`);
+      if (item.kind === "commodity" || item.url?.startsWith("/commodity/")) {
+        window.location.href = item.url;
+        return;
+      }
+      navigate(`/${item.id}`);
     },
     [navigate]
   );
@@ -79,11 +83,11 @@ export function NavSearch() {
         role="search"
         onSubmit={(e) => {
           e.preventDefault();
-          if (results.length) goToCompany(results[activeIndex] ?? results[0]);
+          if (results.length) goToResult(results[activeIndex] ?? results[0]);
         }}
       >
         <label className="sr-only" htmlFor="nav-company-search">
-          Search companies
+          Search companies and commodities
         </label>
         <div className="nav-search-box">
           <svg className="nav-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
@@ -95,7 +99,7 @@ export function NavSearch() {
             id="nav-company-search"
             type="search"
             className="nav-search-input"
-            placeholder="Search companies…"
+            placeholder="Search companies & commodities…"
             autoComplete="off"
             value={query}
             role="combobox"
@@ -124,7 +128,7 @@ export function NavSearch() {
       </form>
 
       {showDropdown && (
-        <div id={listId} className="nav-search-results" role="listbox" aria-label="Company results">
+        <div id={listId} className="nav-search-results" role="listbox" aria-label="Search results">
           {loading && results.length === 0 ? (
             <p className="nav-search-empty">Searching…</p>
           ) : results.length === 0 ? (
@@ -138,7 +142,7 @@ export function NavSearch() {
                 aria-selected={i === activeIndex}
                 className={`nav-search-result${i === activeIndex ? " is-active" : ""}`}
                 onMouseDown={(e) => e.preventDefault()}
-                onClick={() => goToCompany(company)}
+                onClick={() => goToResult(company)}
                 onMouseEnter={() => setActiveIndex(i)}
               >
                 <span className="nav-search-result-mark">{company.initials}</span>
@@ -146,7 +150,10 @@ export function NavSearch() {
                   <span className="nav-search-result-name">{highlightMatch(company.name, q)}</span>
                   <span className="nav-search-result-sub">
                     {" "}
-                    · {company.subtitle || company.ticker || company.meta || company.legalName}
+                    ·{" "}
+                    {company.kind === "commodity"
+                      ? company.subtitle || company.meta || "Commodity"
+                      : company.subtitle || company.ticker || company.meta || company.legalName}
                   </span>
                 </span>
               </button>

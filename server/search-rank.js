@@ -150,15 +150,26 @@ function scoreUnifiedSearch(row, query) {
   if (Array.isArray(row.terms) && row.terms.some((t) => t === ql)) score += 95;
   if (meta.includes(ql)) score += 40;
   if (row.id && String(row.id).includes(ql)) score += 30;
-  if (row.kind === "company") score += 15;
+  if (row.kind === "commodity" && row.category && String(row.category).includes(ql)) score += 25;
 
   return score;
 }
 
-/** Merge company + commodity hits; companies ranked first when scores are close. */
+function formatCommoditySearchSubtitle(row) {
+  const profile = row.profile_json || row.profile || {};
+  const parts = [];
+  if (profile.symbol) parts.push(profile.symbol);
+  else if (row.ticker) parts.push(row.ticker);
+  if (profile.exchange) parts.push(profile.exchange);
+  else if (profile.categoryLabel) parts.push(profile.categoryLabel);
+  parts.push("Commodity");
+  return parts.filter(Boolean).join(" · ");
+}
+
+/** Merge company + commodity hits; exact commodity/symbol matches can outrank weak company hits. */
 function mergeSearchResults(companies, commodities, query, limit = 25) {
   const pool = [
-    ...companies.map((row) => ({ row, score: scoreUnifiedSearch(row, query) + 100 })),
+    ...companies.map((row) => ({ row, score: scoreUnifiedSearch(row, query) + 40 })),
     ...commodities.map((row) => ({ row, score: scoreUnifiedSearch(row, query) })),
   ];
   pool.sort((a, b) => b.score - a.score || String(a.row.name).localeCompare(String(b.row.name)));
@@ -170,6 +181,7 @@ module.exports = {
   dedupeSearchResults,
   formatSearchSubtitle,
   mergeSearchResults,
+  formatCommoditySearchSubtitle,
   scoreUnifiedSearch,
   getRowTicker,
   normalizeTicker,

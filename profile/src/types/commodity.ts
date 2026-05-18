@@ -19,6 +19,7 @@ export interface CommodityProfile {
   symbol: string | null;
   alternateSymbols: string[];
   logoInitials: string;
+  logoUrl?: string;
   industryTags: string[];
   about: string;
   quickStats: QuickStat[];

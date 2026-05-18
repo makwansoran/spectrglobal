@@ -1,6 +1,6 @@
 const {
   listCompanies,
-  searchCompanies,
+  searchUnified,
   getCompany,
   storageMode,
 } = require("./store");
@@ -75,7 +75,7 @@ async function handleApi(req, res, pathname) {
       const q = url.searchParams.get("q") || "";
       const limit = Math.min(parseInt(url.searchParams.get("limit") || "25", 10) || 25, 50);
       if (q.trim()) {
-        sendJson(res, 200, await searchCompanies(q, limit), { "X-Spectr-Source": "supabase:companies" });
+        sendJson(res, 200, await searchUnified(q, limit), { "X-Spectr-Source": "supabase:unified" });
       } else {
         sendJson(res, 200, await listCompanies({ limit }), { "X-Spectr-Source": "supabase:companies" });
       }

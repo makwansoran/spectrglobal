@@ -123,12 +123,7 @@
       .then(function (data) {
         if (reqId !== globalSearchReqId) return;
         var rows = Array.isArray(data) ? data : [];
-        callback(
-          rows.filter(function (row) {
-            return !row.kind || row.kind === "company";
-          }),
-          null
-        );
+        callback(rows, null);
       })
       .catch(function (err) {
         if (reqId !== globalSearchReqId) return;
@@ -154,9 +149,16 @@
     );
   }
 
-  function goToCompany(company) {
-    if (!company || !company.url) return;
-    window.location.href = company.url;
+  function goToResult(row) {
+    if (!row || !row.url) return;
+    window.location.href = row.url;
+  }
+
+  function resultSubtitle(row) {
+    if (row.kind === "commodity") {
+      return row.subtitle || row.meta || "Commodity";
+    }
+    return row.subtitle || row.ticker || row.meta || row.legalName;
   }
 
   function createSearchWidget(inputEl, resultsEl, options) {
@@ -227,7 +229,7 @@
             '<span class="cb-search-result-name">' +
             highlightName(company.name, q) +
             '</span><span class="cb-search-result-sub"> · ' +
-            (company.subtitle || company.ticker || company.meta || company.legalName) +
+            resultSubtitle(company) +
             "</span>" +
             "</button>"
           );
@@ -246,7 +248,7 @@
         });
         btn.addEventListener("click", function () {
           var idx = parseInt(btn.getAttribute("data-index"), 10);
-          goToCompany(currentResults[idx]);
+          goToResult(currentResults[idx]);
         });
       });
     }
@@ -290,7 +292,7 @@
       var q = inputEl.value.trim();
       if (!q) return;
       fetchSearchResults(q, function (results) {
-        if (results.length) goToCompany(results[0]);
+        if (results.length) goToResult(results[0]);
       });
     }
 
@@ -313,7 +315,7 @@
         ) {
           e.preventDefault();
           var pick = activeResultIndex >= 0 ? activeResultIndex : 0;
-          goToCompany(currentResults[pick]);
+          goToResult(currentResults[pick]);
         } else if (e.key === "Escape") {
           hideResults();
         }

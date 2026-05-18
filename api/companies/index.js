@@ -1,5 +1,5 @@
 require("../../scripts/load-env").loadEnv();
-const { listCompanies, searchCompanies, storageMode } = require("../../server/store");
+const { listCompanies, searchUnified, storageMode } = require("../../server/store");
 const supabase = require("../../server/supabase-client");
 
 module.exports = async (req, res) => {
@@ -20,8 +20,8 @@ module.exports = async (req, res) => {
     const limit = Math.min(parseInt(req.query?.limit || "25", 10) || 25, 50);
     res.setHeader("Cache-Control", "no-store");
     res.setHeader("X-Spectr-Storage", storageMode());
-    const rows = q ? await searchCompanies(q, limit) : await listCompanies({ limit });
-    res.setHeader("X-Spectr-Source", "supabase:companies");
+    const rows = q ? await searchUnified(q, limit) : await listCompanies({ limit });
+    res.setHeader("X-Spectr-Source", q ? "supabase:unified" : "supabase:companies");
     res.status(200).json(rows);
   } catch (err) {
     console.error("api/companies", err);

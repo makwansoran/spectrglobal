@@ -17,6 +17,7 @@ function createCatalogStore(tableName, options) {
       initials: row.initials,
       url: `${urlPrefix}/${row.slug}`,
       terms: Array.isArray(row.search_terms) ? row.search_terms : [],
+      ticker: profile.symbol || null,
       category: hasCategory ? row.category || profile.category : undefined,
       subtitle: profile.symbol || profile.exchange || row.meta || null,
       profile_json: row.profile_json,
@@ -58,20 +59,45 @@ function createCatalogStore(tableName, options) {
     if (!q) return list(limit);
 
     const safe = q.replace(/[%_,.()]/g, "");
+    if (!safe) return [];
+
     const pattern = `%${safe}%`;
     const select = hasCategory
       ? "slug, name, category, meta, initials, search_terms, profile_json"
       : "slug, name, meta, initials, search_terms, profile_json";
 
-    const { data, error } = await getAdminClient()
+    const client = getAdminClient();
+    const seen = new Set();
+    const merged = [];
+
+    const addRows = (rows) => {
+      for (const row of rows || []) {
+        if (!row?.slug || seen.has(row.slug)) continue;
+        seen.add(row.slug);
+        merged.push(row);
+      }
+    };
+
+    const byText = await client
       .from(tableName)
       .select(select)
       .or(`name.ilike.${pattern},meta.ilike.${pattern},slug.ilike.${pattern}`)
       .order("name")
       .limit(limit);
+    if (byText.error) throw byText.error;
+    addRows(byText.data);
 
-    if (error) throw error;
-    return (data || []).map(rowToIndex);
+    if (merged.length < limit) {
+      const byTerms = await client
+        .from(tableName)
+        .select(select)
+        .contains("search_terms", [safe])
+        .order("name")
+        .limit(limit);
+      if (!byTerms.error) addRows(byTerms.data);
+    }
+
+    return merged.slice(0, limit).map(rowToIndex);
   }
 
   async function get(slug) {
