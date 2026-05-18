@@ -49,8 +49,16 @@ function getSupabaseKey() {
   ).trim();
 }
 
+function getSupabaseUrlSafe() {
+  try {
+    return getSupabaseUrl();
+  } catch {
+    return "";
+  }
+}
+
 function isSupabaseEnabled() {
-  return Boolean(getSupabaseUrl() && getSupabaseKey());
+  return Boolean(getSupabaseUrlSafe() && getSupabaseKey());
 }
 
 function hasSupabaseWrites() {
@@ -78,6 +86,7 @@ function getAdminClient() {
 module.exports = {
   getAdminClient,
   getSupabaseUrl,
+  getSupabaseUrlSafe,
   getSupabaseKey,
   isSupabaseEnabled,
   hasSupabaseWrites,

@@ -10,17 +10,26 @@ module.exports = async (req, res) => {
   res.setHeader("Cache-Control", "no-store");
 
   let supabaseHost = null;
+  let supabaseUrlError = null;
   try {
     const url = getSupabaseUrl();
     supabaseHost = url ? new URL(url).hostname : null;
   } catch (err) {
-    supabaseHost = err.message;
+    supabaseUrlError = err.message;
+    try {
+      supabaseHost = process.env.SUPABASE_URL
+        ? new URL(process.env.SUPABASE_URL).hostname
+        : null;
+    } catch {
+      supabaseHost = null;
+    }
   }
 
   res.status(200).json({
     storage: storageMode(),
     supabase: isSupabaseEnabled(),
     supabaseHost,
+    supabaseUrlError,
     vercel: Boolean(process.env.VERCEL),
     hint: "Company search reads public.companies via Supabase REST. SUPABASE_URL must end with .supabase.co.",
   });
