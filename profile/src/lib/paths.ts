@@ -22,6 +22,5 @@ export function searchResultHref(item: Pick<CompanySearchItem, "id" | "kind" | "
   if (item.url?.startsWith("/")) return item.url;
   if (item.kind === "waterway") return `/waterway/${item.id}`;
   if (item.kind === "commodity") return `/commodity/${item.id}`;
-  if (item.kind === "person") return `/person/${item.id}`;
   return `/company/${item.id}`;
 }
