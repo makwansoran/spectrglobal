@@ -89,9 +89,6 @@ function dedupeSearchResults(rows, query, limit = 25) {
   for (const row of rows || []) {
     if (!row?.id && !row?.slug) continue;
 
-    const rowTicker = getRowTicker(row);
-    if (qTicker && rowTicker && !tickersMatchQuery(q, rowTicker)) continue;
-
     const key = getGroupKey(row);
     const existing = groups.get(key);
     if (!existing || scoreRow(row, q) > scoreRow(existing, q)) {
@@ -140,15 +137,26 @@ function scoreUnifiedSearch(row, query) {
   if (Array.isArray(row.terms) && row.terms.some((t) => t === ql)) score += 95;
   if (meta.includes(ql)) score += 40;
   if (row.id && String(row.id).includes(ql)) score += 30;
-  if (row.kind === "company") score += 8;
+  if (row.kind === "company") score += 15;
 
   return score;
+}
+
+/** Merge company + commodity hits; companies ranked first when scores are close. */
+function mergeSearchResults(companies, commodities, query, limit = 25) {
+  const pool = [
+    ...companies.map((row) => ({ row, score: scoreUnifiedSearch(row, query) + 100 })),
+    ...commodities.map((row) => ({ row, score: scoreUnifiedSearch(row, query) })),
+  ];
+  pool.sort((a, b) => b.score - a.score || String(a.row.name).localeCompare(String(b.row.name)));
+  return pool.slice(0, limit).map((x) => x.row);
 }
 
 module.exports = {
   PREFERRED_SLUG_BY_TICKER,
   dedupeSearchResults,
   formatSearchSubtitle,
+  mergeSearchResults,
   scoreUnifiedSearch,
   getRowTicker,
   normalizeTicker,

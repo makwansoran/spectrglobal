@@ -7,7 +7,7 @@ const searchIndex = require("./search-index");
 const seedStore = require("./seed-store");
 const finnhub = require("./finnhub");
 const commoditiesStore = require("./commodities-store");
-const { dedupeSearchResults, formatSearchSubtitle, scoreUnifiedSearch } = require("./search-rank");
+const { dedupeSearchResults, formatSearchSubtitle, mergeSearchResults } = require("./search-rank");
 const { syncPeopleFromCompany } = require("./people-sync");
 const peopleStore = require("./people-store");
 
@@ -67,13 +67,10 @@ async function searchCompanies(query, limit = 25) {
     console.warn("Commodity search failed:", err.message);
   }
 
-  return [...companies, ...commodities]
-    .sort((a, b) => scoreUnifiedSearch(b, query) - scoreUnifiedSearch(a, query))
-    .slice(0, limit)
-    .map((row) => {
-      const { profile_json, profile, ...rest } = row;
-      return rest;
-    });
+  return mergeSearchResults(companies, commodities, query, limit).map((row) => {
+    const { profile_json, profile, ...rest } = row;
+    return rest;
+  });
 }
 
 async function getCompanyRaw(slug) {

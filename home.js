@@ -219,9 +219,6 @@
             company.initials +
             "</span>" +
             '<span class="cb-search-result-name">' +
-            (company.kind === "commodity"
-              ? '<span class="cb-search-kind">Commodity</span> '
-              : "") +
             highlightName(company.name, q) +
             '</span><span class="cb-search-result-sub"> · ' +
             (company.subtitle || company.ticker || company.meta || company.legalName) +
