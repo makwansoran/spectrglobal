@@ -1,0 +1,20 @@
+{
+  "profile": {
+    "id": "bhatia",
+    "slug": "ranjeet-bhatia",
+    "name": "Ranjeet Bhatia",
+    "bio": "CEO of Agilyx ASA. Previously Tim Stedman served as CEO (2020–2024).",
+    "currentTitle": "Chief Executive Officer",
+    "currentCompanySlug": "agilyx-asa-aglx",
+    "currentCompanyName": "Agilyx ASA",
+    "affiliations": [
+      {
+        "companySlug": "agilyx-asa-aglx",
+        "companyName": "Agilyx ASA",
+        "title": "Chief Executive Officer"
+      }
+    ],
+    "dataSources": [],
+    "lastUpdated": "2026-05-18T15:26:37.743Z"
+  }
+}

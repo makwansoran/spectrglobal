@@ -1,0 +1,15 @@
+{
+  "companySlug": "aker-asa-aker",
+  "links": [
+    {
+      "personSlug": "yvind-eriksen",
+      "title": "President & CEO",
+      "localId": "eriksen"
+    },
+    {
+      "personSlug": "kjell-inge-r-kke",
+      "title": "Chairman",
+      "localId": "rokke"
+    }
+  ]
+}

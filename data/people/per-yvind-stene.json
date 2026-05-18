@@ -1,0 +1,20 @@
+{
+  "profile": {
+    "id": "stene",
+    "slug": "per-yvind-stene",
+    "name": "Per Øyvind Stene",
+    "bio": "CFO of Appear.",
+    "currentTitle": "Chief Financial Officer",
+    "currentCompanySlug": "appear-asa-apr",
+    "currentCompanyName": "Appear ASA",
+    "affiliations": [
+      {
+        "companySlug": "appear-asa-apr",
+        "companyName": "Appear ASA",
+        "title": "Chief Financial Officer"
+      }
+    ],
+    "dataSources": [],
+    "lastUpdated": "2026-05-18T15:26:40.120Z"
+  }
+}

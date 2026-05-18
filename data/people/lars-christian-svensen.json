@@ -1,0 +1,20 @@
+{
+  "profile": {
+    "id": "svensen",
+    "slug": "lars-christian-svensen",
+    "name": "Lars-Christian Svensen",
+    "bio": "Appointed CEO April 1, 2025. Previously CCO from Sept 2024. Former CEO of Golden Ocean Management AS.",
+    "currentTitle": "Chief Executive Officer",
+    "currentCompanySlug": "2020-bulkers",
+    "currentCompanyName": "2020 Bulkers Ltd",
+    "affiliations": [
+      {
+        "companySlug": "2020-bulkers",
+        "companyName": "2020 Bulkers Ltd",
+        "title": "Chief Executive Officer"
+      }
+    ],
+    "dataSources": [],
+    "lastUpdated": "2026-05-18T15:26:35.862Z"
+  }
+}

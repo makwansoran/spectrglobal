@@ -715,32 +715,32 @@ body.theme-platform .plt-btn:hover {
   background: var(--plt-surface-2);
 }
 
-/* Footer override for platform */
-body.theme-platform .site-footer {
+/* Footer override for platform (home page uses black footer in home.css) */
+body.theme-platform:not(.plt-site) .site-footer {
   background: #fff;
   color: var(--plt-text);
   border-top: 1px solid var(--plt-border);
 }
 
-body.theme-platform .site-footer-logo-mark {
+body.theme-platform:not(.plt-site) .site-footer-logo-mark {
   filter: none;
 }
 
-body.theme-platform .site-footer-logo,
-body.theme-platform .site-footer-logo-text {
+body.theme-platform:not(.plt-site) .site-footer-logo,
+body.theme-platform:not(.plt-site) .site-footer-logo-text {
   color: var(--plt-text);
 }
 
-body.theme-platform .site-footer-tagline {
+body.theme-platform:not(.plt-site) .site-footer-tagline {
   color: var(--plt-muted);
 }
 
-body.theme-platform .site-footer-address,
-body.theme-platform .site-footer-copy {
+body.theme-platform:not(.plt-site) .site-footer-address,
+body.theme-platform:not(.plt-site) .site-footer-copy {
   color: var(--plt-muted);
 }
 
-body.theme-platform .site-footer-legal-name {
+body.theme-platform:not(.plt-site) .site-footer-legal-name {
   color: var(--plt-text);
 }
 

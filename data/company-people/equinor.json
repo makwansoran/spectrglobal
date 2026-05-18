@@ -1,0 +1,35 @@
+{
+  "companySlug": "equinor",
+  "links": [
+    {
+      "personSlug": "anders-opedal",
+      "title": "President & CEO",
+      "localId": "1"
+    },
+    {
+      "personSlug": "torgrim-reitan",
+      "title": "EVP, Exploration & Production",
+      "localId": "2"
+    },
+    {
+      "personSlug": "pal-eitrheim",
+      "title": "EVP, Renewables",
+      "localId": "3"
+    },
+    {
+      "personSlug": "hanne-lekva",
+      "title": "EVP, People & Organisation",
+      "localId": "4"
+    },
+    {
+      "personSlug": "irene-rummelhoff",
+      "title": "EVP, Marketing, Midstream & Processing",
+      "localId": "5"
+    },
+    {
+      "personSlug": "geir-tungesvik",
+      "title": "EVP, Projects, Drilling & Procurement",
+      "localId": "6"
+    }
+  ]
+}

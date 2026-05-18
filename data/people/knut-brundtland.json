@@ -1,0 +1,20 @@
+{
+  "profile": {
+    "id": "brundtland",
+    "slug": "knut-brundtland",
+    "name": "Knut Brundtland",
+    "bio": "Board director.",
+    "currentTitle": "Board Member",
+    "currentCompanySlug": "abg-sundal-collier-holding-asa-abg",
+    "currentCompanyName": "ABG Sundal Collier Holding ASA",
+    "affiliations": [
+      {
+        "companySlug": "abg-sundal-collier-holding-asa-abg",
+        "companyName": "ABG Sundal Collier Holding ASA",
+        "title": "Board Member"
+      }
+    ],
+    "dataSources": [],
+    "lastUpdated": "2026-05-18T15:26:37.059Z"
+  }
+}

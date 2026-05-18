@@ -1,0 +1,20 @@
+{
+  "companySlug": "akobo-minerals-ab-akobo",
+  "links": [
+    {
+      "personSlug": "j-rgen-evjen",
+      "title": "Chief Executive Officer",
+      "localId": "evjen"
+    },
+    {
+      "personSlug": "matt-jackson",
+      "title": "Chief Operating Officer",
+      "localId": "jackson"
+    },
+    {
+      "personSlug": "johan-sjoberg",
+      "title": "Chief Exploration Manager",
+      "localId": "sjoberg"
+    }
+  ]
+}

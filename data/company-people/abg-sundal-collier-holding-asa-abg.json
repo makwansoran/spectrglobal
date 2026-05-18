@@ -1,0 +1,20 @@
+{
+  "companySlug": "abg-sundal-collier-holding-asa-abg",
+  "links": [
+    {
+      "personSlug": "jan-petter-collier",
+      "title": "Board Member",
+      "localId": "collier"
+    },
+    {
+      "personSlug": "jonas-johannes-strom",
+      "title": "Board Member",
+      "localId": "strom"
+    },
+    {
+      "personSlug": "knut-brundtland",
+      "title": "Board Member",
+      "localId": "brundtland"
+    }
+  ]
+}

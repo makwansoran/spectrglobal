@@ -1,0 +1,86 @@
+{
+  "slug": "andfjord-salmon-group-as-andf",
+  "searchTerms": ["andfjord salmon group as", "andf", "andfjord-salmon-group-as-andf", "andfjord salmon", "land based salmon", "flow through", "andoya"],
+  "mapGeojson": null,
+  "profile": {
+    "id": "andfjord-salmon-group-as-andf",
+    "name": "Andfjord Salmon Group AS",
+    "legalName": "Andfjord Salmon Group AS",
+    "logoInitials": "AS",
+    "countryCode": "NO",
+    "countryName": "Norway",
+    "founded": 2014,
+    "headquarters": "Kvalnes, Andøya, Norway",
+    "industryTags": ["Aquaculture", "Land-Based Salmon", "Sustainable Farming"],
+    "isPublic": true,
+    "stock": {
+      "ticker": "ANDF",
+      "exchange": "Oslo Børs",
+      "price": null,
+      "change": null,
+      "changePercent": null,
+      "currency": "NOK"
+    },
+    "industry": "aquaculture",
+    "industryTabLabel": "Overview",
+    "about": "Andfjord Salmon Group AS is a Norwegian land-based aquaculture company founded in 2014 by Roy Bernt Pettersen and listed on Oslo Børs (ANDF). The company is headquartered at Kvalnes on Andøya, the northernmost island of the Vesterålen archipelago in Arctic Norway. Andfjord has developed a unique, patented flow-through land-based salmon farming concept using large pools cut into bedrock below sea level, fed by natural Arctic seawater without need for water treatment. The company commenced fish farming operations in 2022 and holds a 10,000-tonne MAB licence. The concept has attracted investment from Jerónimo Martins (retail partner and shareholder) and High Liner Foods. CEO is Martin Rasmussen (from April 2020). Chairman is Roger Brynjulf Mosand.",
+    "quickStats": [
+      { "label": "Founded", "value": "2014", "format": "text" },
+      { "label": "Ticker", "value": "ANDF", "format": "text" },
+      { "label": "HQ", "value": "Andøya, Vesterålen", "format": "text" },
+      { "label": "Licence", "value": "10,000t MAB", "format": "text" }
+    ],
+    "people": [
+      {
+        "id": "rasmussen",
+        "name": "Martin Rasmussen",
+        "title": "Chief Executive Officer",
+        "bio": "CEO since April 1, 2020. Previously managed facilities for Norway Seafood and served as GM of Primex Norway. Former board member of Andfjord Salmon."
+      },
+      {
+        "id": "pettersen",
+        "name": "Roy Bernt Pettersen",
+        "title": "Founder & Board Member",
+        "bio": "Founded Andfjord Salmon in 2014. Served as chairman until 2021, now director. Holds a fisheries degree from University of Tromsø."
+      },
+      {
+        "id": "mosand",
+        "name": "Roger Brynjulf Mosand",
+        "title": "Chairman",
+        "bio": "Chairman since March 2021. CEO of Nordlaks Produkter AS since 2001."
+      }
+    ],
+    "financials": {
+      "years": [],
+      "metrics": [
+        { "label": "Q1 2024 Revenue", "value": 0, "format": "text", "display": "Early-stage; reporting losses" },
+        { "label": "Q1 2024 Op. loss", "value": 0, "format": "text", "display": "NOK 17M" }
+      ]
+    },
+    "news": [],
+    "filings": [],
+    "keyFacts": [
+      { "label": "Founded", "value": "2014 by Roy Bernt Pettersen" },
+      { "label": "Headquarters", "value": "Kvalnes, Andøya, Vesterålen, Norway" },
+      { "label": "Concept", "value": "Patented flow-through land-based salmon farming using natural Arctic seawater" },
+      { "label": "Production licence", "value": "10,000 tonnes MAB" },
+      { "label": "Production started", "value": "June 2022" },
+      { "label": "Key shareholder", "value": "Jerónimo Martins (retail partner)" },
+      { "label": "Q1 2024 operating loss", "value": "NOK 17M" }
+    ],
+    "competitors": [
+      { "name": "Atlantic Sapphire", "country": "Norway/US" },
+      { "name": "Salmon Evolution", "country": "Norway" },
+      { "name": "Nordic Aquafarms", "country": "Norway" }
+    ],
+    "funding": [],
+    "esg": { "overall": 0, "environmental": 0, "social": 0, "governance": 0, "trend": "up" },
+    "dataSources": [
+      { "name": "andfjordsalmon.com", "url": "https://www.andfjordsalmon.com" },
+      { "name": "Oslo Børs", "url": "https://www.oslobors.no" },
+      { "name": "SeafoodSource" }
+    ],
+    "lastUpdated": "2026-05-18T12:00:00.000Z",
+    "mapConfig": { "center": [15.65, 69.07], "zoom": 6 }
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "slug": "aker-solutions-asa-akso",
+  "searchTerms": ["aker solutions asa", "akso", "aker-solutions-asa-akso", "aker kvaerner", "subsea", "offshore engineering"],
+  "mapGeojson": null,
+  "profile": {
+    "id": "aker-solutions-asa-akso",
+    "name": "Aker Solutions ASA",
+    "legalName": "Aker Solutions ASA",
+    "logoInitials": "AS",
+    "countryCode": "NO",
+    "countryName": "Norway",
+    "founded": 1841,
+    "headquarters": "Fornebu, Norway",
+    "industryTags": ["Energy Services", "Subsea", "Offshore Wind", "CCUS", "Engineering"],
+    "isPublic": true,
+    "stock": {
+      "ticker": "AKSO",
+      "exchange": "Oslo Børs",
+      "price": null,
+      "change": null,
+      "changePercent": null,
+      "currency": "NOK"
+    },
+    "industry": "oil_gas",
+    "industryTabLabel": "Overview",
+    "about": "Aker Solutions ASA is a Norwegian engineering company founded in 1841 as Akers Mekaniske Verksted, headquartered in Fornebu, Norway. It provides integrated solutions, products, and services to the global energy industry. The company operates through two segments: Renewables and Field Development (offshore wind, hydrogen, CCUS, and oil and gas field development), and Life Cycle (electrification, maintenance, modifications, subsea products and services). Aker Solutions merged with Kværner ASA in 2020. With over 11,000 employees across 15+ countries, the company serves clients in Norway, the US, Brazil, the UK, Malaysia, Angola, and beyond. CEO since August 2020 is Kjetel Digre. 2025 TTM revenue is approximately $4.8 billion.",
+    "quickStats": [
+      { "label": "Employees", "value": "11,000+", "format": "text" },
+      { "label": "Founded", "value": "1841 (origins)", "format": "text" },
+      { "label": "Ticker", "value": "AKSO", "format": "text" },
+      { "label": "HQ", "value": "Fornebu, Norway", "format": "text" }
+    ],
+    "people": [
+      {
+        "id": "digre",
+        "name": "Kjetel Digre",
+        "title": "Chief Executive Officer",
+        "bio": "CEO since August 1, 2020. Previously SVP Operations & Asset Development at Aker BP. Extensive background in energy services."
+      }
+    ],
+    "financials": {
+      "years": [],
+      "metrics": [
+        { "label": "TTM Revenue", "value": 0, "format": "text", "display": "~$4.8B" },
+        { "label": "Dividend (Apr 2026)", "value": 0, "format": "text", "display": "NOK 8.60/share" }
+      ]
+    },
+    "news": [],
+    "filings": [],
+    "keyFacts": [
+      { "label": "Origins", "value": "Akers Mekaniske Verksted, Oslo, 1841" },
+      { "label": "Headquarters", "value": "Fornebu, Norway" },
+      { "label": "Employees", "value": "11,000+ in 15+ countries" },
+      { "label": "Merged with Kværner", "value": "2020" },
+      { "label": "TTM Revenue", "value": "~$4.8B" },
+      { "label": "Segments", "value": "Renewables & Field Development; Life Cycle (EMM + Subsea)" }
+    ],
+    "competitors": [
+      { "name": "TechnipFMC", "country": "Norway/France" },
+      { "name": "Subsea 7", "country": "Luxembourg" },
+      { "name": "Baker Hughes", "country": "US" }
+    ],
+    "funding": [],
+    "esg": { "overall": 0, "environmental": 0, "social": 0, "governance": 0, "trend": "stable" },
+    "dataSources": [
+      { "name": "akersolutions.com", "url": "https://www.akersolutions.com" },
+      { "name": "Oslo Børs", "url": "https://www.oslobors.no" },
+      { "name": "Wikipedia" },
+      { "name": "Yahoo Finance" }
+    ],
+    "lastUpdated": "2026-05-18T12:00:00.000Z",
+    "mapConfig": { "center": [10.62, 59.9], "zoom": 5 }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "profile": {
+    "id": "collier",
+    "slug": "jan-petter-collier",
+    "name": "Jan Petter Collier",
+    "bio": "One of the company's namesake founders.",
+    "currentTitle": "Board Member",
+    "currentCompanySlug": "abg-sundal-collier-holding-asa-abg",
+    "currentCompanyName": "ABG Sundal Collier Holding ASA",
+    "affiliations": [
+      {
+        "companySlug": "abg-sundal-collier-holding-asa-abg",
+        "companyName": "ABG Sundal Collier Holding ASA",
+        "title": "Board Member"
+      }
+    ],
+    "dataSources": [],
+    "lastUpdated": "2026-05-18T15:26:36.941Z"
+  }
+}

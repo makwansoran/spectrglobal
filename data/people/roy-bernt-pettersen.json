@@ -1,0 +1,20 @@
+{
+  "profile": {
+    "id": "pettersen",
+    "slug": "roy-bernt-pettersen",
+    "name": "Roy Bernt Pettersen",
+    "bio": "Founded Andfjord Salmon in 2014. Served as chairman until 2021, now director. Holds a fisheries degree from University of Tromsø.",
+    "currentTitle": "Founder & Board Member",
+    "currentCompanySlug": "andfjord-salmon-group-as-andf",
+    "currentCompanyName": "Andfjord Salmon Group AS",
+    "affiliations": [
+      {
+        "companySlug": "andfjord-salmon-group-as-andf",
+        "companyName": "Andfjord Salmon Group AS",
+        "title": "Founder & Board Member"
+      }
+    ],
+    "dataSources": [],
+    "lastUpdated": "2026-05-18T15:26:39.793Z"
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "slug": "2020-bulkers",
+  "searchTerms": [
+    "2020 bulkers",
+    "2020 bulkers ltd",
+    "2020",
+    "2020-bulkers",
+    "newcastlemax",
+    "dry bulk",
+    "shipping"
+  ],
+  "mapGeojson": null,
+  "profile": {
+    "id": "2020-bulkers",
+    "name": "2020 Bulkers Ltd",
+    "legalName": "2020 Bulkers Ltd.",
+    "logoInitials": "2B",
+    "countryCode": "BM",
+    "countryName": "Bermuda",
+    "founded": 2017,
+    "headquarters": "Hamilton, Bermuda (operated from Oslo, Norway)",
+    "industryTags": ["Shipping", "Dry Bulk", "Marine Transportation"],
+    "isPublic": true,
+    "stock": {
+      "ticker": "2020",
+      "exchange": "Oslo Børs",
+      "price": null,
+      "change": null,
+      "changePercent": null,
+      "currency": "USD"
+    },
+    "industry": "shipping",
+    "industryTabLabel": "Fleet",
+    "about": "2020 Bulkers Ltd. is a Bermuda-incorporated, Oslo-operated owner and operator of large dry bulk vessels. The company focuses on the Newcastlemax segment — scrubber-fitted 208,000 DWT carriers — and transports dry bulk commodities including iron ore, coal, and grain across Asia, Africa, and South America. Founded in 2017 by Norwegian shipping entrepreneur Magnus Halvorsen, 2020 Bulkers listed on Oslo Børs in 2018 and built a fleet of eight eco-efficient Newcastlemax vessels. The company is backed by prominent Norwegian shipping investor Tor Olav Troim. In 2024–2025 the company executed a fleet divestment strategy, selling vessels and returning capital to shareholders through special dividends.",
+    "quickStats": [
+      { "label": "Employees", "value": 6, "format": "number" },
+      { "label": "Fleet", "value": "Newcastlemax (208,000 DWT)", "format": "text" },
+      { "label": "Exchange", "value": "Oslo Børs", "format": "text" },
+      { "label": "Ticker", "value": "2020", "format": "text" },
+      { "label": "Incorporated", "value": "Bermuda, 2017", "format": "text" },
+      { "label": "Tax domicile", "value": "Norway (from 2022)", "format": "text" }
+    ],
+    "people": [
+      {
+        "id": "svensen",
+        "name": "Lars-Christian Svensen",
+        "title": "Chief Executive Officer",
+        "bio": "Appointed CEO April 1, 2025. Previously CCO from Sept 2024. Former CEO of Golden Ocean Management AS."
+      },
+      {
+        "id": "hasund",
+        "name": "Vidar Hasund",
+        "title": "Chief Financial Officer",
+        "bio": "CFO since January 1, 2019. Also Contracted CFO of Himalaya Shipping. Background includes Borr Drilling, PGS, and KPMG."
+      },
+      {
+        "id": "dahll",
+        "name": "Christian Dahll",
+        "title": "Chief Operating Officer",
+        "bio": "COO since January 2022. Joined 2020 Bulkers in January 2020 as Head of Commercial Operations. Former Höegh Autoliners."
+      }
+    ],
+    "financials": {
+      "years": [
+        { "year": 2023, "revenue": 73000000, "ebitda": 0, "netIncome": 0 },
+        { "year": 2024, "revenue": 114100000, "ebitda": 0, "netIncome": 0 },
+        { "year": 2025, "revenue": 64900000, "ebitda": 0, "netIncome": 0 }
+      ],
+      "metrics": [
+        { "label": "Revenue (2024)", "value": 0, "format": "text", "display": "US$114.1M" },
+        { "label": "Revenue (2023)", "value": 0, "format": "text", "display": "US$73.0M" },
+        { "label": "Revenue (2025)", "value": 0, "format": "text", "display": "US$64.9M" },
+        { "label": "Avg TCE rate (2024)", "value": 0, "format": "text", "display": "US$31,900/day" },
+        { "label": "Avg TCE rate (2023)", "value": 0, "format": "text", "display": "US$24,700/day" },
+        { "label": "Operating cash flow (2024)", "value": 0, "format": "text", "display": "US$44.7M" },
+        { "label": "Cash breakeven", "value": 0, "format": "text", "display": "~US$11,500/vessel/day" },
+        { "label": "Net debt (Mar 2025)", "value": 0, "format": "text", "display": "~US$98M (~US$16M/vessel)" }
+      ]
+    },
+    "news": [],
+    "filings": [],
+    "keyFacts": [
+      { "label": "Fleet", "value": "Scrubber-fitted 208,000 DWT Newcastlemax bulk carriers" },
+      { "label": "Fuel", "value": "All vessels are LNG dual-fuel capable" },
+      { "label": "Shipyard", "value": "New Times Shipbuilding, Jiangsu, China (2019–2021)" },
+      { "label": "Tax", "value": "Transferred tax domicile from Bermuda to Norway in August 2022" },
+      { "label": "Ownership", "value": "Backed by Tor Olav Troim (Golar LNG, Borr Drilling, Himalaya Shipping)" },
+      { "label": "Management", "value": "Sold 40% of 2020 Bulkers Management AS to Himalaya Shipping (Aug 2024)" },
+      { "label": "Strategy", "value": "Completed full fleet divestment by early 2026; capital return via special dividends" }
+    ],
+    "competitors": [
+      { "name": "Golden Ocean Group", "country": "Oslo-listed Newcastlemax/Capesize operator" },
+      { "name": "Star Bulk Carriers", "country": "Major diversified dry bulk operator" },
+      { "name": "Himalaya Shipping", "country": "Sister company; Tor Olav Troim-backed" }
+    ],
+    "funding": [],
+    "esg": {
+      "overall": 62,
+      "environmental": 68,
+      "social": 58,
+      "governance": 60,
+      "trend": "stable"
+    },
+    "dataSources": [
+      { "name": "2020bulkers.com" },
+      { "name": "Oslo Børs", "url": "https://www.oslobors.no" },
+      { "name": "Annual Report 2024" },
+      { "name": "MarketScreener" },
+      { "name": "StockAnalysis" }
+    ],
+    "lastUpdated": "2026-05-18T12:00:00.000Z",
+    "mapConfig": { "center": [10, 62], "zoom": 4 }
+  }
+}

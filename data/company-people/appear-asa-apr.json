@@ -1,0 +1,15 @@
+{
+  "companySlug": "appear-asa-apr",
+  "links": [
+    {
+      "personSlug": "thomas-bostr-m-j-rgensen",
+      "title": "Chief Executive Officer",
+      "localId": "jorgensen"
+    },
+    {
+      "personSlug": "per-yvind-stene",
+      "title": "Chief Financial Officer",
+      "localId": "stene"
+    }
+  ]
+}

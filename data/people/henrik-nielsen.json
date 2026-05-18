@@ -1,0 +1,20 @@
+{
+  "profile": {
+    "id": "nielsen",
+    "slug": "henrik-nielsen",
+    "name": "Henrik Nielsen",
+    "bio": "Former CEO of the company; stayed on as board member and strategic advisor.",
+    "currentTitle": "Board Member",
+    "currentCompanySlug": "5th-planet-games",
+    "currentCompanyName": "5th Planet Games A/S",
+    "affiliations": [
+      {
+        "companySlug": "5th-planet-games",
+        "companyName": "5th Planet Games A/S",
+        "title": "Board Member"
+      }
+    ],
+    "dataSources": [],
+    "lastUpdated": "2026-05-18T15:26:36.607Z"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "profile": {
+    "id": "6",
+    "slug": "geir-tungesvik",
+    "name": "Geir Tungesvik",
+    "photoUrl": "https://api.dicebear.com/7.x/avataaars/svg?seed=Geir",
+    "bio": "",
+    "currentTitle": "EVP, Projects, Drilling & Procurement",
+    "currentCompanySlug": "equinor",
+    "currentCompanyName": "Equinor",
+    "affiliations": [
+      {
+        "companySlug": "equinor",
+        "companyName": "Equinor",
+        "title": "EVP, Projects, Drilling & Procurement"
+      }
+    ],
+    "dataSources": [],
+    "lastUpdated": "2026-05-18T15:26:44.435Z"
+  }
+}

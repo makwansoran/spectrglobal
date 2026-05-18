@@ -1,0 +1,66 @@
+{
+  "slug": "abl-group-asa-abl",
+  "searchTerms": ["abl group asa", "abl", "abl-group-asa-abl", "aqualisbraemar", "loc", "marine consultancy"],
+  "mapGeojson": null,
+  "profile": {
+    "id": "abl-group-asa-abl",
+    "name": "ABL Group ASA",
+    "legalName": "ABL Group ASA",
+    "logoInitials": "AG",
+    "countryCode": "NO",
+    "countryName": "Norway",
+    "founded": 2020,
+    "headquarters": "Oslo, Norway",
+    "industryTags": ["Marine Consultancy", "Energy Consulting", "Offshore Wind", "Oil & Gas"],
+    "isPublic": true,
+    "stock": {
+      "ticker": "ABL",
+      "exchange": "Oslo Børs",
+      "price": null,
+      "change": null,
+      "changePercent": null,
+      "currency": "NOK"
+    },
+    "industry": "energy",
+    "industryTabLabel": "Overview",
+    "about": "ABL Group ASA (formerly AqualisBraemar LOC ASA) is a Norway-based independent global energy and marine consultancy listed on Oslo Børs. Formed in December 2020 through the merger of AqualisBraemar and London Offshore Consultants (LOC), ABL combines over 150 years of maritime heritage dating to The Salvage Association (founded 1856). The company provides high-end consultancy to the global energy, shipping and insurance industries across three sectors: Renewables (offshore wind engineering), Oil & Gas (offshore engineering and survey), and Maritime (emergency incident response and marine insurance surveys). ABL operates under six brands — ABL, OWC, Innosea, Longitude, East Point Geo, and ABL Yachts — with 64 offices in 40 countries.",
+    "quickStats": [
+      { "label": "Offices", "value": "64 in 40 countries", "format": "text" },
+      { "label": "Founded", "value": "2020 (merger)", "format": "text" },
+      { "label": "Ticker", "value": "ABL", "format": "text" },
+      { "label": "Brands", "value": "6", "format": "text" }
+    ],
+    "people": [],
+    "financials": {
+      "years": [],
+      "metrics": [
+        { "label": "Revenue (approx)", "value": 0, "format": "text", "display": "NOK 3.51B" },
+        { "label": "EBIT margin", "value": 0, "format": "text", "display": "3.37%" }
+      ]
+    },
+    "news": [],
+    "filings": [],
+    "keyFacts": [
+      { "label": "Formed", "value": "December 2020 (merger of AqualisBraemar and LOC)" },
+      { "label": "Heritage", "value": "150+ years via The Salvage Association (1856) and LOC (1979)" },
+      { "label": "Offices", "value": "64 offices in 40 countries" },
+      { "label": "Brands", "value": "ABL, OWC, Innosea, Longitude, East Point Geo, ABL Yachts" },
+      { "label": "Revenue", "value": "NOK 3.51B (approx)" },
+      { "label": "Sectors", "value": "Renewables, Oil & Gas, Maritime" }
+    ],
+    "competitors": [
+      { "name": "Bureau Veritas", "country": "France" },
+      { "name": "DNV", "country": "Norway" },
+      { "name": "Lloyd's Register", "country": "UK" }
+    ],
+    "funding": [],
+    "esg": { "overall": 0, "environmental": 0, "social": 0, "governance": 0, "trend": "stable" },
+    "dataSources": [
+      { "name": "abl-group.com", "url": "https://abl-group.com" },
+      { "name": "Oslo Børs", "url": "https://www.oslobors.no" },
+      { "name": "MarketScreener" }
+    ],
+    "lastUpdated": "2026-05-18T12:00:00.000Z",
+    "mapConfig": { "center": [10.72, 59.91], "zoom": 4 }
+  }
+}

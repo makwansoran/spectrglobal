@@ -7,84 +7,14 @@
   --plt-white: #ffffff;
   --plt-border: rgba(255, 255, 255, 0.2);
   --plt-header-h: 3.5rem;
-  --plt-promo-h: 2.5rem;
 }
 
-/* Announcement strip */
-.plt-promo {
-  position: sticky;
-  top: 0;
-  z-index: 60;
-  background: var(--plt-black);
-  color: var(--plt-white);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-}
-
-.plt-promo.is-dismissed {
-  display: none;
-}
-
-.plt-promo-inner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  min-height: var(--plt-promo-h);
-  padding: 0.5rem 3rem 0.5rem 1rem;
-  position: relative;
-}
-
-.plt-promo-link {
-  font-family: "IBM Plex Sans", system-ui, sans-serif;
-  font-size: 0.8125rem;
-  font-weight: 400;
-  color: var(--plt-white);
-  text-decoration: none;
-  text-align: center;
-}
-
-.plt-promo-link:hover {
-  text-decoration: none;
-  opacity: 0.85;
-}
-
-.plt-promo-underline {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-.plt-promo-close {
-  position: absolute;
-  right: 0.75rem;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 2rem;
-  height: 2rem;
-  padding: 0;
-  border: none;
-  background: transparent;
-  color: var(--plt-white);
-  font-size: 1.25rem;
-  line-height: 1;
-  cursor: pointer;
-  opacity: 0.7;
-}
-
-.plt-promo-close:hover {
-  opacity: 1;
-}
-
-/* Top bar */
 .plt-header {
   position: sticky;
-  top: var(--plt-promo-offset, 0px);
+  top: 0;
   z-index: 55;
   background: var(--plt-black);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-body.plt-promo-visible .plt-header {
-  top: var(--plt-promo-h);
 }
 
 .plt-header-inner {

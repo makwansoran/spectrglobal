@@ -1,0 +1,21 @@
+{
+  "profile": {
+    "id": "1",
+    "slug": "anders-opedal",
+    "name": "Anders Opedal",
+    "photoUrl": "https://api.dicebear.com/7.x/avataaars/svg?seed=Anders",
+    "bio": "",
+    "currentTitle": "President & CEO",
+    "currentCompanySlug": "equinor",
+    "currentCompanyName": "Equinor",
+    "affiliations": [
+      {
+        "companySlug": "equinor",
+        "companyName": "Equinor",
+        "title": "President & CEO"
+      }
+    ],
+    "dataSources": [],
+    "lastUpdated": "2026-05-18T15:26:44.147Z"
+  }
+}

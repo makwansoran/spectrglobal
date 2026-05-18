@@ -1,0 +1,20 @@
+{
+  "profile": {
+    "id": "rasmussen",
+    "slug": "martin-rasmussen",
+    "name": "Martin Rasmussen",
+    "bio": "CEO since April 1, 2020. Previously managed facilities for Norway Seafood and served as GM of Primex Norway. Former board member of Andfjord Salmon.",
+    "currentTitle": "Chief Executive Officer",
+    "currentCompanySlug": "andfjord-salmon-group-as-andf",
+    "currentCompanyName": "Andfjord Salmon Group AS",
+    "affiliations": [
+      {
+        "companySlug": "andfjord-salmon-group-as-andf",
+        "companyName": "Andfjord Salmon Group AS",
+        "title": "Chief Executive Officer"
+      }
+    ],
+    "dataSources": [],
+    "lastUpdated": "2026-05-18T15:26:39.725Z"
+  }
+}

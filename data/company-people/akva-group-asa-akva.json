@@ -1,0 +1,15 @@
+{
+  "companySlug": "akva-group-asa-akva",
+  "links": [
+    {
+      "personSlug": "knut-nesse",
+      "title": "Chief Executive Officer",
+      "localId": "nesse"
+    },
+    {
+      "personSlug": "ronny-meink-hn",
+      "title": "Chief Financial Officer",
+      "localId": "meinkohn"
+    }
+  ]
+}

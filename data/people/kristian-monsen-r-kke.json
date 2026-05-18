@@ -1,0 +1,20 @@
+{
+  "profile": {
+    "id": "rokke_k",
+    "slug": "kristian-monsen-r-kke",
+    "name": "Kristian Monsen Røkke",
+    "bio": "Son of Kjell Inge Røkke. Former CIO of Aker ASA. Has extensive experience from offshore services and shipbuilding in the Aker Group.",
+    "currentTitle": "Chairman",
+    "currentCompanySlug": "aker-horizons-asa-akh",
+    "currentCompanyName": "Aker Horizons ASA",
+    "affiliations": [
+      {
+        "companySlug": "aker-horizons-asa-akh",
+        "companyName": "Aker Horizons ASA",
+        "title": "Chairman"
+      }
+    ],
+    "dataSources": [],
+    "lastUpdated": "2026-05-18T15:26:38.794Z"
+  }
+}

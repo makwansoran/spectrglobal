@@ -1,3 +1,7 @@
+node_modules/
+profile/node_modules/
+# company/ is built output — commit for deploy, or run npm run build:profile locally
+
 .DS_Store
 Thumbs.db
 *.log
@@ -6,8 +10,20 @@ __pycache__/
 .venv/
 venv/
 .env
-.env.*
+.env.local
+.env.*.local
 !.env.example
+
+data/spectr.db
+data/spectr.db-wal
+data/spectr.db-shm
+
+# Local JSON exports from Supabase / Finnhub import (data lives in Supabase)
+data/companies/
+data/seed/finnhub-us-symbols.json
+data/seed/import-us-log.txt
+
+.cursor/
 
 # Local portable Git (used for CI / agent only)
 .tools/

@@ -1,0 +1,20 @@
+{
+  "profile": {
+    "id": "sperre",
+    "slug": "lars-peder-s-rvaag-sperre",
+    "name": "Lars Peder Sørvaag Sperre",
+    "bio": "CEO from October 1, 2024. Previously held senior roles at Norske Skog ASA including group CEO (2017–2018) and SVP Corporate Strategy (2019–2023).",
+    "currentTitle": "Chief Executive Officer",
+    "currentCompanySlug": "aker-horizons-asa-akh",
+    "currentCompanyName": "Aker Horizons ASA",
+    "affiliations": [
+      {
+        "companySlug": "aker-horizons-asa-akh",
+        "companyName": "Aker Horizons ASA",
+        "title": "Chief Executive Officer"
+      }
+    ],
+    "dataSources": [],
+    "lastUpdated": "2026-05-18T15:26:38.740Z"
+  }
+}

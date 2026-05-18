@@ -1,8 +1,6 @@
 (function () {
   "use strict";
 
-  var promo = document.getElementById("plt-promo");
-  var promoClose = document.getElementById("plt-promo-close");
   var navPanel = document.getElementById("plt-nav-panel");
   var navOpenBtn = document.getElementById("plt-nav-btn");
   var navCloseBtn = document.getElementById("plt-nav-close");
@@ -12,34 +10,13 @@
   var searchInput = document.getElementById("plt-search-input");
   var cbSearch = document.getElementById("cb-search");
   var cbForm = document.getElementById("cb-search-form");
+  var cbResults = document.getElementById("cb-search-results");
 
-  function setPromoVisible(visible) {
-    document.body.classList.toggle("plt-promo-visible", visible);
-    if (!visible) {
-      document.documentElement.style.setProperty("--plt-promo-offset", "0px");
-    }
-  }
+  var searchTimer = null;
+  var searchRequestId = 0;
 
-  if (promo && !promo.classList.contains("is-dismissed")) {
-    setPromoVisible(true);
-  }
-
-  if (promoClose && promo) {
-    promoClose.addEventListener("click", function () {
-      promo.classList.add("is-dismissed");
-      setPromoVisible(false);
-      try {
-        sessionStorage.setItem("spectr_promo_dismissed", "1");
-      } catch (e) {}
-    });
-  }
-
-  try {
-    if (sessionStorage.getItem("spectr_promo_dismissed") === "1" && promo) {
-      promo.classList.add("is-dismissed");
-      setPromoVisible(false);
-    }
-  } catch (e) {}
+  var activeResultIndex = -1;
+  var currentResults = [];
 
   function openNav() {
     if (!navPanel) return;
@@ -112,6 +89,198 @@
     if (e.key !== "Escape") return;
     closeNav();
     closeSearch();
+    hideResults();
+  });
+
+  function normalizeQuery(q) {
+    return q.trim().toLowerCase();
+  }
+
+  function matchCompany(company, query) {
+    if (!query) return false;
+    var name = company.name.toLowerCase();
+    var legal = company.legalName.toLowerCase();
+    if (name.indexOf(query) === 0 || legal.indexOf(query) === 0) return true;
+    var i;
+    for (i = 0; i < company.terms.length; i++) {
+      if (company.terms[i].indexOf(query) === 0) return true;
+    }
+    return false;
+  }
+
+  function fetchSearchResults(query, callback) {
+    var q = normalizeQuery(query);
+    if (!q) {
+      callback([]);
+      return;
+    }
+    var reqId = ++searchRequestId;
+    fetch("/api/companies?q=" + encodeURIComponent(query) + "&limit=25")
+      .then(function (r) {
+        if (!r.ok) throw new Error("API error");
+        return r.json();
+      })
+      .then(function (data) {
+        if (reqId !== searchRequestId) return;
+        callback(Array.isArray(data) ? data : []);
+      })
+      .catch(function () {
+        if (reqId !== searchRequestId) return;
+        callback([]);
+      });
+  }
+
+  function highlightName(name, query) {
+    if (!query) return name;
+    var lower = name.toLowerCase();
+    var idx = lower.indexOf(query);
+    if (idx === -1) return name;
+    return (
+      name.slice(0, idx) +
+      "<mark>" +
+      name.slice(idx, idx + query.length) +
+      "</mark>" +
+      name.slice(idx + query.length)
+    );
+  }
+
+  function showResults() {
+    if (cbResults) cbResults.classList.add("is-open");
+    if (cbSearch) cbSearch.setAttribute("aria-expanded", "true");
+  }
+
+  function hideResults() {
+    if (!cbResults) return;
+    cbResults.classList.remove("is-open");
+    cbResults.innerHTML = "";
+    currentResults = [];
+    activeResultIndex = -1;
+    if (cbSearch) {
+      cbSearch.setAttribute("aria-expanded", "false");
+      cbSearch.removeAttribute("aria-activedescendant");
+    }
+  }
+
+  function goToCompany(company) {
+    if (!company || !company.url) return;
+    window.location.href = company.url;
+  }
+
+  function renderResults(results, query) {
+    if (!cbResults) return;
+    currentResults = results;
+    activeResultIndex = results.length ? 0 : -1;
+    var q = normalizeQuery(query);
+
+    if (!results.length) {
+      if (!q) {
+        hideResults();
+        return;
+      }
+      cbResults.innerHTML = '<p class="cb-search-results-empty">No matches</p>';
+      showResults();
+      return;
+    }
+
+    cbResults.innerHTML = results
+      .map(function (company, i) {
+        var active = i === activeResultIndex ? " is-active" : "";
+        return (
+          '<button type="button" class="cb-search-result' +
+          active +
+          '" role="option" id="cb-result-' +
+          i +
+          '" data-index="' +
+          i +
+          '">' +
+          '<span class="cb-search-result-mark">' +
+          company.initials +
+          "</span>" +
+          '<span class="cb-search-result-name">' +
+          highlightName(company.name, q) +
+          '</span><span class="cb-search-result-sub"> · ' +
+          company.legalName +
+          "</span>" +
+          "</button>"
+        );
+      })
+      .join("");
+
+    showResults();
+
+    if (cbSearch) {
+      cbSearch.setAttribute("aria-activedescendant", "cb-result-0");
+    }
+
+    cbResults.querySelectorAll(".cb-search-result").forEach(function (btn) {
+      btn.addEventListener("mousedown", function (e) {
+        e.preventDefault();
+      });
+      btn.addEventListener("click", function () {
+        var idx = parseInt(btn.getAttribute("data-index"), 10);
+        goToCompany(currentResults[idx]);
+      });
+    });
+  }
+
+  function setActiveResult(index) {
+    if (!cbResults || !currentResults.length) return;
+    var buttons = cbResults.querySelectorAll(".cb-search-result");
+    if (!buttons.length) return;
+
+    activeResultIndex = Math.max(0, Math.min(index, buttons.length - 1));
+    buttons.forEach(function (btn, i) {
+      btn.classList.toggle("is-active", i === activeResultIndex);
+    });
+    if (cbSearch) {
+      cbSearch.setAttribute("aria-activedescendant", "cb-result-" + activeResultIndex);
+    }
+    var activeBtn = buttons[activeResultIndex];
+    if (activeBtn && activeBtn.scrollIntoView) {
+      activeBtn.scrollIntoView({ block: "nearest" });
+    }
+  }
+
+  function onSearchInput() {
+    if (!cbSearch) return;
+    var value = cbSearch.value;
+    var q = normalizeQuery(value);
+    if (!q) {
+      hideResults();
+      return;
+    }
+    window.clearTimeout(searchTimer);
+    searchTimer = window.setTimeout(function () {
+      fetchSearchResults(value, function (results) {
+        renderResults(results, value);
+      });
+    }, 200);
+  }
+
+  if (cbSearch) {
+    cbSearch.addEventListener("input", onSearchInput);
+    cbSearch.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowDown") {
+        if (!currentResults.length) return;
+        e.preventDefault();
+        setActiveResult(activeResultIndex + 1);
+      } else if (e.key === "ArrowUp") {
+        if (!currentResults.length) return;
+        e.preventDefault();
+        setActiveResult(activeResultIndex - 1);
+      } else if (e.key === "Enter" && currentResults.length && cbResults.classList.contains("is-open")) {
+        e.preventDefault();
+        var pick = activeResultIndex >= 0 ? activeResultIndex : 0;
+        goToCompany(currentResults[pick]);
+      } else if (e.key === "Escape") {
+        hideResults();
+      }
+    });
+  }
+
+  document.addEventListener("click", function (e) {
+    var wrap = document.querySelector(".cb-search-wrap");
+    if (wrap && !wrap.contains(e.target)) hideResults();
   });
 
   document.querySelectorAll(".cb-suggestion").forEach(function (btn) {
@@ -120,6 +289,7 @@
       if (cbSearch && q) {
         cbSearch.value = q;
         cbSearch.focus();
+        onSearchInput();
       }
     });
   });
@@ -129,8 +299,9 @@
       e.preventDefault();
       var q = cbSearch && cbSearch.value.trim();
       if (!q) return;
-      /* Placeholder: wire to search API when available */
-      console.info("[Spectr search]", q);
+      fetchSearchResults(q, function (results) {
+        if (results.length) goToCompany(results[0]);
+      });
     });
   }
 })();

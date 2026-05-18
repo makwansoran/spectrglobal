@@ -1,0 +1,74 @@
+{
+  "slug": "aker-biomarine-asa-akbm",
+  "searchTerms": ["aker biomarine asa", "akbm", "aker-biomarine-asa-akbm", "krill", "superba", "omega-3", "qrill"],
+  "mapGeojson": null,
+  "profile": {
+    "id": "aker-biomarine-asa-akbm",
+    "name": "Aker BioMarine ASA",
+    "legalName": "Aker BioMarine ASA",
+    "logoInitials": "AB",
+    "countryCode": "NO",
+    "countryName": "Norway",
+    "founded": 2006,
+    "headquarters": "Lysaker, Norway",
+    "industryTags": ["Biotech", "Krill", "Omega-3", "Marine Ingredients", "Consumer Health"],
+    "isPublic": true,
+    "stock": {
+      "ticker": "AKBM",
+      "exchange": "Oslo Børs",
+      "price": null,
+      "change": null,
+      "changePercent": null,
+      "currency": "NOK"
+    },
+    "industry": "biotech",
+    "industryTabLabel": "Overview",
+    "about": "Aker BioMarine ASA is a Norwegian biotech innovator and the world's largest krill harvester, founded in 2006 and headquartered in Lysaker, Norway. The company began harvesting Antarctic krill in 2003 under the Aker Group and was established as an independent enterprise in 2006. It develops and supplies krill-derived products for consumer health, animal nutrition, and emerging biotechnology applications. Key brands include Superba Krill Oil (human health), LYSOVETA (brain health), Qrill (aquaculture feed), and Kori (US consumer). The company operates through segments: Human Health Ingredients, Consumer Health Products, and Emerging Business. Aker BioMarine is a subsidiary of Aker ASA and is listed on Oslo Børs. CEO is Matts Johansen. In Q1 2026 the company reported double-digit revenue growth and 34% increase in adjusted EBITDA.",
+    "quickStats": [
+      { "label": "Founded", "value": "2006", "format": "text" },
+      { "label": "Ticker", "value": "AKBM", "format": "text" },
+      { "label": "HQ", "value": "Lysaker, Norway", "format": "text" },
+      { "label": "Parent", "value": "Aker ASA", "format": "text" }
+    ],
+    "people": [
+      {
+        "id": "johansen",
+        "name": "Matts Johansen",
+        "title": "Chief Executive Officer",
+        "bio": "CEO of Aker BioMarine. Led the company through its 2023 restructuring and strong 2024–2026 growth phase."
+      }
+    ],
+    "financials": {
+      "years": [{ "year": 2024, "revenue": 313200000, "ebitda": 0, "netIncome": 0 }],
+      "metrics": [
+        { "label": "Q1 2024 Revenue", "value": 0, "format": "text", "display": "USD 78.3M (+13% YoY)" },
+        { "label": "Q1 2024 adj. EBITDA", "value": 0, "format": "text", "display": "USD 15.2M" }
+      ]
+    },
+    "news": [],
+    "filings": [],
+    "keyFacts": [
+      { "label": "Founded", "value": "2006 (krill harvesting since 2003)" },
+      { "label": "Headquarters", "value": "Lysaker, Norway" },
+      { "label": "Parent", "value": "Aker ASA" },
+      { "label": "Market position", "value": "64% of 620,000 MT Southern Ocean krill (2025)" },
+      { "label": "Brands", "value": "Superba, LYSOVETA, Qrill, Kori, Understory, AION" },
+      { "label": "Q1 2026", "value": "Double-digit revenue growth; +34% adj. EBITDA" }
+    ],
+    "competitors": [
+      { "name": "Olympic Seafood", "country": "Norway" },
+      { "name": "Rimfrost", "country": "Norway" },
+      { "name": "Neptune Wellness", "country": "Canada" }
+    ],
+    "funding": [],
+    "esg": { "overall": 0, "environmental": 0, "social": 0, "governance": 0, "trend": "stable" },
+    "dataSources": [
+      { "name": "akerbiomarine.com", "url": "https://www.akerbiomarine.com" },
+      { "name": "Oslo Børs", "url": "https://www.oslobors.no" },
+      { "name": "Wikipedia" },
+      { "name": "SeafoodSource" }
+    ],
+    "lastUpdated": "2026-05-18T12:00:00.000Z",
+    "mapConfig": { "center": [10.62, 59.9], "zoom": 6 }
+  }
+}

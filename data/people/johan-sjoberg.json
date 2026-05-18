@@ -1,0 +1,20 @@
+{
+  "profile": {
+    "id": "sjoberg",
+    "slug": "johan-sjoberg",
+    "name": "Johan Sjöberg",
+    "bio": "Based in Sweden. Leads geological exploration at the Segele and Joru projects.",
+    "currentTitle": "Chief Exploration Manager",
+    "currentCompanySlug": "akobo-minerals-ab-akobo",
+    "currentCompanyName": "Akobo Minerals AB",
+    "affiliations": [
+      {
+        "companySlug": "akobo-minerals-ab-akobo",
+        "companyName": "Akobo Minerals AB",
+        "title": "Chief Exploration Manager"
+      }
+    ],
+    "dataSources": [],
+    "lastUpdated": "2026-05-18T15:26:39.295Z"
+  }
+}

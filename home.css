@@ -22,6 +22,11 @@ body.page-home.plt-site {
   background: #ffffff;
   background-image: none;
   color: var(--ph-ink);
+  overflow-x: hidden;
+}
+
+body.page-home.plt-site main {
+  overflow-x: clip;
 }
 
 .ph-section-label {
@@ -124,12 +129,13 @@ body.page-home.plt-site {
 .ph-statement cite {
   display: block;
   margin-top: 1.5rem;
-  font-family: var(--plt-mono);
-  font-size: 0.65rem;
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  font-size: 0.9375rem;
   font-style: normal;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: color-mix(in srgb, #fff 55%, transparent);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  color: color-mix(in srgb, #fff 65%, transparent);
 }
 
 .ph-capabilities {
@@ -243,12 +249,35 @@ body.page-home.plt-site {
   color: var(--ph-muted);
 }
 
-body.page-home .site-footer {
-  border-top: 1px solid var(--ph-line);
-  background: var(--ph-surface);
+body.page-home.plt-site .site-footer {
+  background: #000000;
+  color: #ffffff;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-body.page-home .site-footer-actions .btn-primary {
-  background: var(--ph-ink);
-  border-color: var(--ph-ink);
+body.page-home.plt-site .site-footer-logo-mark {
+  filter: brightness(0) invert(1);
+}
+
+body.page-home.plt-site .site-footer-logo,
+body.page-home.plt-site .site-footer-logo-text {
+  color: #ffffff;
+}
+
+body.page-home.plt-site .site-footer-tagline {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+body.page-home.plt-site .site-footer-tagline strong {
+  color: #ffffff;
+}
+
+body.page-home.plt-site .site-footer-address,
+body.page-home.plt-site .site-footer-copy,
+body.page-home.plt-site .site-footer-legal-name {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+body.page-home.plt-site .site-footer-copy .mono {
+  color: rgba(255, 255, 255, 0.55);
 }

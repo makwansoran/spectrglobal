@@ -1,5 +1,9 @@
 {
+  "buildCommand": "npm install && npm run build:profile",
   "rewrites": [
+    { "source": "/company", "destination": "/company/index.html" },
+    { "source": "/company/", "destination": "/company/index.html" },
+    { "source": "/company/:path*", "destination": "/company/index.html" },
     { "source": "/login", "destination": "/index.html" },
     { "source": "/login.html", "destination": "/index.html" }
   ]

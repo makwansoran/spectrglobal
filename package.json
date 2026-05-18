@@ -1,0 +1,24 @@
+{
+  "name": "spectrglobal",
+  "private": true,
+  "scripts": {
+    "dev": "node scripts/dev-server.js",
+    "dev:profile": "npm run dev --prefix profile",
+    "db:seed": "node scripts/build-oslo-listed.js && node scripts/seed-database.js",
+    "db:build-list": "node scripts/build-oslo-listed.js",
+    "db:list": "node -e \"require('./scripts/load-env').loadEnv(); require('./server/store').listCompanies().then(c=>console.log(c))\"",
+    "db:import-us": "node scripts/import-finnhub-us.js",
+    "db:import-us:fetch": "node scripts/import-finnhub-us.js --fetch-only",
+    "db:link-oslo-us": "node scripts/import-finnhub-us.js --link-oslo",
+    "build:profile": "npm run build --prefix profile",
+    "build": "npm run db:seed && npm run build:profile",
+    "start": "npm run dev"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.8",
+    "better-sqlite3": "^11.10.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.4"
+  }
+}

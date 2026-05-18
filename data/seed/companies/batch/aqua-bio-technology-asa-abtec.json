@@ -1,0 +1,56 @@
+{
+  "slug": "aqua-bio-technology-asa-abtec",
+  "searchTerms": ["aqua bio technology asa", "abtec", "aqua-bio-technology-asa-abtec", "aqua bio", "marine biotech", "skincare"],
+  "mapGeojson": null,
+  "profile": {
+    "id": "aqua-bio-technology-asa-abtec",
+    "name": "Aqua Bio Technology ASA",
+    "legalName": "Aqua Bio Technology ASA",
+    "logoInitials": "AB",
+    "countryCode": "NO",
+    "countryName": "Norway",
+    "founded": 2000,
+    "headquarters": "Norway",
+    "industryTags": ["Marine Biotech", "Skincare", "Cosmetics", "Biotechnology"],
+    "isPublic": true,
+    "stock": {
+      "ticker": "ABTEC",
+      "exchange": "Oslo Børs",
+      "price": null,
+      "change": null,
+      "changePercent": null,
+      "currency": "NOK"
+    },
+    "industry": "biotech",
+    "industryTabLabel": "Overview",
+    "about": "Aqua Bio Technology ASA is a Norwegian marine biotechnology company listed on Oslo Børs under ticker ABTEC. The company develops and commercialises bioactive ingredients derived from marine sources — primarily salmon — for use in skincare and cosmetics. Its flagship ingredient platform is based on salmon roe extracts rich in proteins, lipids, and antioxidants. The company licenses its technology and sells ingredients to cosmetics manufacturers globally, with a particular focus on the premium skincare segment.",
+    "quickStats": [
+      { "label": "Ticker", "value": "ABTEC", "format": "text" },
+      { "label": "Sector", "value": "Marine Biotech", "format": "text" },
+      { "label": "Focus", "value": "Skincare ingredients", "format": "text" }
+    ],
+    "people": [],
+    "financials": { "years": [], "metrics": [] },
+    "news": [],
+    "filings": [],
+    "keyFacts": [
+      { "label": "Exchange", "value": "Oslo Børs (ABTEC)" },
+      { "label": "Focus", "value": "Marine bioactive ingredients for skincare/cosmetics" },
+      { "label": "Source", "value": "Salmon-derived bioactives" },
+      { "label": "Business model", "value": "Technology licensing + ingredient sales" }
+    ],
+    "competitors": [
+      { "name": "Epax", "country": "Norway" },
+      { "name": "Nobilas", "country": "Norway" }
+    ],
+    "funding": [],
+    "esg": { "overall": 0, "environmental": 0, "social": 0, "governance": 0, "trend": "stable" },
+    "dataSources": [
+      { "name": "Oslo Børs", "url": "https://www.oslobors.no" },
+      { "name": "Yahoo Finance" },
+      { "name": "MarketScreener" }
+    ],
+    "lastUpdated": "2026-05-18T12:00:00.000Z",
+    "mapConfig": { "center": [10.74, 59.91], "zoom": 6 }
+  }
+}

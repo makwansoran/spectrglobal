@@ -1,0 +1,20 @@
+{
+  "profile": {
+    "id": "toftum",
+    "slug": "amund-t-ftum",
+    "name": "Amund Tøftum",
+    "bio": "CEO since August 24, 2020. Previously EVP Offshore at AF Gruppen since 2016. Background in ABB and PwC.",
+    "currentTitle": "Chief Executive Officer",
+    "currentCompanySlug": "af-gruppen-asa-afg",
+    "currentCompanyName": "AF Gruppen ASA",
+    "affiliations": [
+      {
+        "companySlug": "af-gruppen-asa-afg",
+        "companyName": "AF Gruppen ASA",
+        "title": "Chief Executive Officer"
+      }
+    ],
+    "dataSources": [],
+    "lastUpdated": "2026-05-18T15:26:37.556Z"
+  }
+}

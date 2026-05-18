@@ -1,0 +1,86 @@
+{
+  "slug": "akobo-minerals-ab-akobo",
+  "searchTerms": ["akobo minerals ab", "akobo", "akobo-minerals-ab-akobo", "gold", "ethiopia", "segele", "joru"],
+  "mapGeojson": null,
+  "profile": {
+    "id": "akobo-minerals-ab-akobo",
+    "name": "Akobo Minerals AB",
+    "legalName": "Akobo Minerals AB (publ)",
+    "logoInitials": "AM",
+    "countryCode": "SE",
+    "countryName": "Sweden",
+    "founded": 2009,
+    "headquarters": "Oslo, Norway (incorporated Gothenburg, Sweden)",
+    "industryTags": ["Gold Mining", "Exploration", "Ethiopia", "Mining"],
+    "isPublic": true,
+    "stock": {
+      "ticker": "AKOBO",
+      "exchange": "Euronext Growth Oslo",
+      "price": null,
+      "change": null,
+      "changePercent": null,
+      "currency": "NOK"
+    },
+    "industry": "mining",
+    "industryTabLabel": "Overview",
+    "about": "Akobo Minerals AB (publ) is a Scandinavian-based gold producer and exploration company with operations in Ethiopia, listed on Euronext Growth Oslo and the Frankfurt Stock Exchange under ticker AKOBO. Founded in 2009 and incorporated in Sweden (Gothenburg), with operational HQ in Oslo, the company holds a mining licence (16 km²) and exploration licence (182 km²) in the Gambela region and Dima Woreda, southwest Ethiopia. Its Segele mine is one of the world's highest-grade gold deposits and commenced production in 2022. A second key target, Joru, covers a larger area with lower grade. The Q4 2025 was the company's strongest operational quarter with revenues of SEK 29.8M (USD 3.2M). CEO is Jørgen Evjen. Ethiopian Investment Holdings is a shareholder.",
+    "quickStats": [
+      { "label": "Founded", "value": "2009", "format": "text" },
+      { "label": "Ticker", "value": "AKOBO", "format": "text" },
+      { "label": "Exchange", "value": "Euronext Growth Oslo", "format": "text" },
+      { "label": "Operations", "value": "Ethiopia", "format": "text" }
+    ],
+    "people": [
+      {
+        "id": "evjen",
+        "name": "Jørgen Evjen",
+        "title": "Chief Executive Officer",
+        "bio": "CEO and co-founder. Based in Norway. Led the company from exploration through to gold production at Segele."
+      },
+      {
+        "id": "jackson",
+        "name": "Matt Jackson",
+        "title": "Chief Operating Officer",
+        "bio": "COO based in Norway."
+      },
+      {
+        "id": "sjoberg",
+        "name": "Johan Sjöberg",
+        "title": "Chief Exploration Manager",
+        "bio": "Based in Sweden. Leads geological exploration at the Segele and Joru projects."
+      }
+    ],
+    "financials": {
+      "years": [{ "year": 2025, "revenue": 3200000, "ebitda": 0, "netIncome": 0 }],
+      "metrics": [
+        { "label": "Q4 2025 Revenue", "value": 0, "format": "text", "display": "SEK 29.8M / USD 3.2M" },
+        { "label": "Q4 2025 EBITDA", "value": 0, "format": "text", "display": "SEK 12.9M" }
+      ]
+    },
+    "news": [],
+    "filings": [],
+    "keyFacts": [
+      { "label": "Founded", "value": "2009" },
+      { "label": "Incorporated", "value": "Sweden (Gothenburg)" },
+      { "label": "Operations", "value": "Gambela region & Dima Woreda, southwest Ethiopia" },
+      { "label": "Key deposit", "value": "Segele — one of world's highest-grade gold deposits" },
+      { "label": "Mining licence", "value": "16 km²" },
+      { "label": "Exploration licence", "value": "182 km²" },
+      { "label": "Production started", "value": "2022" },
+      { "label": "Q4 2025 revenue", "value": "SEK 29.8M (USD 3.2M) — strongest quarter to date" }
+    ],
+    "competitors": [
+      { "name": "Endeavour Mining", "country": "UK/W.Africa" },
+      { "name": "Allied Gold", "country": "Australia" }
+    ],
+    "funding": [],
+    "esg": { "overall": 0, "environmental": 0, "social": 0, "governance": 0, "trend": "stable" },
+    "dataSources": [
+      { "name": "akobominerals.com", "url": "https://akobominerals.com" },
+      { "name": "Oslo Børs", "url": "https://www.oslobors.no" },
+      { "name": "MarketScreener" }
+    ],
+    "lastUpdated": "2026-05-18T12:00:00.000Z",
+    "mapConfig": { "center": [34.5, 7.8], "zoom": 5 }
+  }
+}

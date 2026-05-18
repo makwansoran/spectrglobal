@@ -1,0 +1,20 @@
+{
+  "profile": {
+    "id": "rokke",
+    "slug": "kjell-inge-r-kke",
+    "name": "Kjell Inge Røkke",
+    "bio": "Main shareholder (68.2% via TRG Holding AS). Controlling shareholder and architect of the Aker Group.",
+    "currentTitle": "Chairman",
+    "currentCompanySlug": "aker-asa-aker",
+    "currentCompanyName": "Aker ASA",
+    "affiliations": [
+      {
+        "companySlug": "aker-asa-aker",
+        "companyName": "Aker ASA",
+        "title": "Chairman"
+      }
+    ],
+    "dataSources": [],
+    "lastUpdated": "2026-05-18T15:26:38.172Z"
+  }
+}

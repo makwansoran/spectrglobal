@@ -22,16 +22,7 @@
     <link rel="stylesheet" href="home.css" />
     <link rel="stylesheet" href="cookies.css" />
   </head>
-  <body class="font-body page-home plt-site plt-promo-visible">
-    <div class="plt-promo" id="plt-promo" role="region" aria-label="Announcement">
-      <div class="plt-promo-inner">
-        <a href="#" class="plt-promo-link">
-          Read <span class="plt-promo-underline">Letter to Shareholders</span>
-        </a>
-        <button type="button" class="plt-promo-close" id="plt-promo-close" aria-label="Close announcement">×</button>
-      </div>
-    </div>
-
+  <body class="font-body page-home plt-site">
     <header class="plt-header">
       <div class="plt-header-inner">
         <a class="plt-logo" href="index.html" aria-label="Spectr home">
@@ -143,68 +134,37 @@
           <p class="cb-hero-lede">
             Discover and act on private market activity with predictive company intelligence.
           </p>
-          <form class="cb-search-form" id="cb-search-form" role="search">
-            <div class="cb-search-box">
-              <label class="visually-hidden" for="cb-search">Search companies, investors, or ask a question</label>
-              <input
-                type="search"
-                class="cb-search-input"
-                id="cb-search"
-                name="q"
-                placeholder="Search companies, investors, or ask a question…"
-                autocomplete="off"
-              />
-              <button type="submit" class="cb-search-submit" aria-label="Search">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
-                  <circle cx="11" cy="11" r="7" />
-                  <path d="M20 20l-3-3" stroke-linecap="round" />
-                </svg>
-              </button>
-            </div>
-          </form>
-          <ul class="cb-search-suggestions" aria-label="Suggested searches">
-            <li>
-              <button type="button" class="cb-suggestion" data-query="Find SaaS companies that are likely growing">
-                <span class="cb-suggestion-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M4 18V6M10 18V10M16 18v-6M22 18V4" stroke-linecap="round" />
-                  </svg>
-                </span>
-                Find SaaS companies that are likely growing
-              </button>
-            </li>
-            <li>
-              <button type="button" class="cb-suggestion" data-query="Healthcare companies that recently raised funding">
-                <span class="cb-suggestion-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12 2v20M17 7H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H7" stroke-linecap="round" />
-                  </svg>
-                </span>
-                Healthcare companies that recently raised funding
-              </button>
-            </li>
-            <li>
-              <button type="button" class="cb-suggestion" data-query="What's Mistral AI's business model?">
-                <span class="cb-suggestion-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <div class="cb-search-wrap">
+            <form class="cb-search-form" id="cb-search-form" role="search">
+              <div class="cb-search-box">
+                <label class="visually-hidden" for="cb-search">Search companies, investors, or ask a question</label>
+                <input
+                  type="search"
+                  class="cb-search-input"
+                  id="cb-search"
+                  name="q"
+                  placeholder="Search companies, investors, or ask a question…"
+                  autocomplete="off"
+                  role="combobox"
+                  aria-expanded="false"
+                  aria-controls="cb-search-results"
+                  aria-autocomplete="list"
+                />
+                <button type="submit" class="cb-search-submit" aria-label="Search">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
                     <circle cx="11" cy="11" r="7" />
                     <path d="M20 20l-3-3" stroke-linecap="round" />
                   </svg>
-                </span>
-                What's Mistral AI's business model?
-              </button>
-            </li>
-            <li>
-              <button type="button" class="cb-suggestion" data-query="Compare Anthropic and OpenAI">
-                <span class="cb-suggestion-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M7 8h10M7 12h6M7 16h8M5 4h14v16H5z" stroke-linecap="round" />
-                  </svg>
-                </span>
-                Compare Anthropic and OpenAI
-              </button>
-            </li>
-          </ul>
+                </button>
+              </div>
+            </form>
+            <div
+              id="cb-search-results"
+              class="cb-search-results"
+              role="listbox"
+              aria-label="Company results"
+            ></div>
+          </div>
         </div>
       </section>
 
@@ -212,43 +172,11 @@
         <div class="wrap">
           <blockquote>
             We build software that amplifies human judgment—so teams can see the full picture and act with conviction.
-            <cite>Spectr — SPECTR AS</cite>
+            <cite>Makwan Ismail, Founder of Spectr</cite>
           </blockquote>
         </div>
       </section>
 
-      <section class="ph-capabilities" aria-labelledby="cap-title">
-        <div class="wrap">
-          <p class="ph-section-label">Capabilities</p>
-          <h2 id="cap-title">What we deliver</h2>
-          <ul class="ph-cap-grid">
-            <li class="ph-cap-item">
-              <h3>Multi-agent orchestration</h3>
-              <p>Analyst agents, portfolio managers, and risk checks in a single composable graph.</p>
-            </li>
-            <li class="ph-cap-item">
-              <h3>Streaming decisions</h3>
-              <p>Live pipelines from research through execution signals—not batch reports.</p>
-            </li>
-            <li class="ph-cap-item">
-              <h3>Fund transparency</h3>
-              <p>Performance, positions, and attribution surfaced for stakeholders and operators.</p>
-            </li>
-            <li class="ph-cap-item">
-              <h3>Model connectivity</h3>
-              <p>Plug in frontier LLMs and structured data feeds behind a secure proxy layer.</p>
-            </li>
-            <li class="ph-cap-item">
-              <h3>Decision audit</h3>
-              <p>Activity logs, signals, and rationale preserved for review and compliance.</p>
-            </li>
-            <li class="ph-cap-item">
-              <h3>Operational rollout</h3>
-              <p>Data integration, agent orchestration, and deployment tailored to your team.</p>
-            </li>
-          </ul>
-        </div>
-      </section>
     </main>
 
     <footer class="site-footer">

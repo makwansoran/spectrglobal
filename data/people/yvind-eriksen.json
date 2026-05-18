@@ -1,0 +1,20 @@
+{
+  "profile": {
+    "id": "eriksen",
+    "slug": "yvind-eriksen",
+    "name": "Øyvind Eriksen",
+    "bio": "CEO of Aker ASA. Former partner and chairman at law firm BAHR. Law degree from University of Oslo.",
+    "currentTitle": "President & CEO",
+    "currentCompanySlug": "aker-asa-aker",
+    "currentCompanyName": "Aker ASA",
+    "affiliations": [
+      {
+        "companySlug": "aker-asa-aker",
+        "companyName": "Aker ASA",
+        "title": "President & CEO"
+      }
+    ],
+    "dataSources": [],
+    "lastUpdated": "2026-05-18T15:26:38.110Z"
+  }
+}
