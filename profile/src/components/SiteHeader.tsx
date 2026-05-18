@@ -2,7 +2,7 @@ import { NavSearch } from "./NavSearch";
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-plt-black">
+    <header className="sticky top-0 z-[1100] border-b border-white/10 bg-plt-black">
       <div className="mx-auto flex h-14 max-w-7xl items-center gap-3 px-4 md:gap-4 md:px-6">
         <a
           href="/index.html"
