@@ -138,7 +138,7 @@
   border: 1px solid #e2e2ea;
   border-radius: 0.65rem;
   box-shadow: 0 8px 24px rgba(26, 26, 46, 0.12);
-  max-height: 10rem;
+  max-height: 18rem;
   overflow-y: auto;
 }
 

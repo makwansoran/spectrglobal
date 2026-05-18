@@ -373,14 +373,4 @@
     if (!inPanel) pltWidget.hideResults();
   });
 
-  document.querySelectorAll(".cb-suggestion").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      var q = btn.getAttribute("data-query");
-      if (cbSearch && q) {
-        cbSearch.value = q;
-        cbSearch.focus();
-        heroWidget.onInput();
-      }
-    });
-  });
 })();
