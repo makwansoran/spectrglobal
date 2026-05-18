@@ -1,4 +1,4 @@
-import { Navigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
 import { ProfileLoading } from "../components/ProfileLoading";
@@ -18,8 +18,36 @@ export function PersonProfilePage() {
     );
   }
 
-  if (error === "not_found" || !person) {
-    return <Navigate to="/company/equinor" replace />;
+  if (error === "not_found" || (!person && !loading)) {
+    return (
+      <div className="min-h-screen bg-white">
+        <SiteHeader />
+        <main className="mx-auto max-w-lg px-4 py-24 text-center">
+          <h1 className="font-display text-xl font-semibold text-ink">Person not found</h1>
+          <p className="mt-2 text-sm text-muted">
+            {personId ? `No profile for "${personId}" in Spectr yet.` : "Missing person id in the URL."}
+          </p>
+          <a href="/index.html" className="btn-primary mt-6 inline-block no-underline">
+            Back to search
+          </a>
+        </main>
+      </div>
+    );
+  }
+
+  if (error || !person) {
+    return (
+      <div className="min-h-screen bg-white">
+        <SiteHeader />
+        <main className="mx-auto max-w-lg px-4 py-24 text-center">
+          <h1 className="font-display text-xl font-semibold text-ink">Could not load profile</h1>
+          <p className="mt-2 text-sm text-muted">Try refreshing the page.</p>
+          <a href="/index.html" className="btn-primary mt-6 inline-block no-underline">
+            Back to search
+          </a>
+        </main>
+      </div>
+    );
   }
 
   const primaryCompany = person.currentCompanySlug

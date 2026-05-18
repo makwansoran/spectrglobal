@@ -10,6 +10,10 @@
   "rewrites": [
     { "source": "/api/companies/:slug", "destination": "/api/get-company?slug=:slug" },
     { "source": "/api/companies/:slug/market", "destination": "/api/get-company-market?slug=:slug" },
+    { "source": "/api/people/:slug", "destination": "/api/get-person?slug=:slug" },
+    { "source": "/person", "destination": "/company/index.html" },
+    { "source": "/person/", "destination": "/company/index.html" },
+    { "source": "/person/:path*", "destination": "/company/index.html" },
     { "source": "/api/commodities/:slug", "destination": "/api/get-commodity?slug=:slug" },
     { "source": "/commodity", "destination": "/company/index.html" },
     { "source": "/commodity/", "destination": "/company/index.html" },

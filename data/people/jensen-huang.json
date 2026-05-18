@@ -1,0 +1,19 @@
+{
+  "profile": {
+    "id": "jensen-huang",
+    "slug": "jensen-huang",
+    "name": "Jensen Huang",
+    "currentTitle": "President & CEO",
+    "currentCompanySlug": "us-nvda",
+    "currentCompanyName": "NVIDIA CORP",
+    "affiliations": [
+      {
+        "companySlug": "us-nvda",
+        "companyName": "NVIDIA CORP",
+        "title": "President & CEO"
+      }
+    ],
+    "dataSources": [],
+    "lastUpdated": "2026-05-18T00:00:00.000Z"
+  }
+}

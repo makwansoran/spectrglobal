@@ -102,14 +102,72 @@ async function listPeopleSupabase() {
   return out;
 }
 
+async function enrichPersonProfile(profile) {
+  if (!profile) return null;
+  const out = { ...profile };
+  if (!out.id) out.id = out.slug;
+  const affiliations = [...(out.affiliations || [])];
+  const slug = out.currentCompanySlug;
+  const needLookup =
+    affiliations.some((a) => a.companySlug && !a.companyName) ||
+    Boolean(slug && !out.currentCompanyName);
+
+  if (needLookup) {
+    const slugs = [
+      ...new Set([
+        ...(affiliations.map((a) => a.companySlug).filter(Boolean)),
+        ...(slug ? [slug] : []),
+      ]),
+    ];
+    if (slugs.length) {
+      const { data: companies, error } = await getAdminClient()
+        .from("companies")
+        .select("slug, name")
+        .in("slug", slugs);
+      if (!error && companies?.length) {
+        const bySlug = Object.fromEntries(companies.map((c) => [c.slug, c.name]));
+        out.affiliations = affiliations.map((a) => ({
+          ...a,
+          companyName: a.companyName || bySlug[a.companySlug] || a.companySlug,
+        }));
+        if (out.currentCompanySlug && !out.currentCompanyName) {
+          out.currentCompanyName = bySlug[out.currentCompanySlug];
+        }
+      }
+    }
+  }
+
+  return out;
+}
+
 async function getPersonSupabase(slug) {
   const { data, error } = await getAdminClient()
     .from("company_people")
-    .select("profile_json")
+    .select("profile_json, name, title, company_slug")
     .eq("slug", slug);
   if (error) throw error;
-  const profiles = (data || []).map((r) => r.profile_json).filter(Boolean);
-  return mergeProfiles(profiles);
+
+  const profiles = (data || [])
+    .map((r) => {
+      const p = r.profile_json && typeof r.profile_json === "object" ? { ...r.profile_json } : {};
+      if (!p.slug) p.slug = slug;
+      if (!p.name && r.name) p.name = r.name;
+      if (!p.currentTitle && r.title) p.currentTitle = r.title;
+      if (!p.currentCompanySlug && r.company_slug) p.currentCompanySlug = r.company_slug;
+      if (!Array.isArray(p.affiliations) || !p.affiliations.length) {
+        p.affiliations = [
+          {
+            companySlug: r.company_slug,
+            title: r.title || p.currentTitle || "",
+          },
+        ];
+      }
+      return p;
+    })
+    .filter((p) => p.slug && p.name);
+
+  const merged = mergeProfiles(profiles);
+  return enrichPersonProfile(merged);
 }
 
 async function getCompanyPeopleForCompanySupabase(companySlug) {
