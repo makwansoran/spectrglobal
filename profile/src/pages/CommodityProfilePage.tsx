@@ -5,11 +5,12 @@ import { TabNav } from "../components/TabNav";
 import { Section } from "../components/Section";
 import { CommoditySidebar } from "../components/sidebar/CommoditySidebar";
 import { CommodityAboutSection } from "../components/sections/CommodityAboutSection";
-import { useScrollSpy } from "../hooks/useScrollSpy";
+import { scrollToSection, useScrollSpy } from "../hooks/useScrollSpy";
 import { useCommodity } from "../hooks/useCommodity";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
 import { ProfileLoading } from "../components/ProfileLoading";
+import { ChatRoom } from "../components/chat/ChatRoom";
 
 export function CommodityProfilePage() {
   const { commodityId } = useParams<{ commodityId: string }>();
@@ -21,6 +22,7 @@ export function CommodityProfilePage() {
     if (!commodity) return [];
     const items: { id: string; label: string }[] = [];
     if (commodity.about?.trim()) items.push({ id: "overview", label: "Overview" });
+    items.push({ id: "chat", label: "Chat" });
     return items;
   }, [commodity]);
 
@@ -28,11 +30,13 @@ export function CommodityProfilePage() {
     tabs.map((t) => t.id),
     110
   );
+  const goToChat = () => scrollToSection("chat", 120);
+  const chatActive = activeTab === "chat";
 
   if (loading) {
     return (
       <div className="min-h-screen bg-white">
-        <SiteHeader />
+        <SiteHeader onChatClick={goToChat} />
         <ProfileLoading />
       </div>
     );
@@ -46,9 +50,9 @@ export function CommodityProfilePage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <SiteHeader />
+      <SiteHeader onChatClick={goToChat} chatActive={chatActive} />
       <CommodityHero commodity={commodity} />
-      <TabNav tabs={tabs} activeId={activeTab} />
+      <TabNav tabs={tabs} activeId={activeTab} chatTabId="chat" />
 
       <div className="mx-auto max-w-7xl px-4 py-10 md:px-6">
         <div className="flex flex-col gap-10 lg:flex-row lg:gap-8">
@@ -58,6 +62,15 @@ export function CommodityProfilePage() {
                 <CommodityAboutSection commodity={commodity} />
               </Section>
             )}
+
+            <section id="chat" className="scroll-mt-28">
+              <h2 className="section-title mb-5">Chat</h2>
+              <ChatRoom
+                roomType="commodity"
+                roomSlug={commodity.id}
+                roomLabel={commodity.name}
+              />
+            </section>
           </div>
 
           <aside className="lg:w-[30%] lg:flex-[3]">

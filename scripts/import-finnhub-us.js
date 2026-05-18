@@ -14,6 +14,7 @@ const fs = require("fs");
 const path = require("path");
 const finnhub = require("../server/finnhub");
 const { symbolToSeed, filterUsSymbols, usCompanySlug } = require("../server/finnhub-import");
+const { PREFERRED_SLUG_BY_TICKER } = require("../server/search-rank");
 const store = require("../server/store");
 const supabase = require("../server/supabase-store");
 const local = require("../server/local-store");
@@ -147,6 +148,11 @@ async function main() {
     const item = symbols[i];
     const ticker = item.symbol.toUpperCase();
 
+    if (PREFERRED_SLUG_BY_TICKER[ticker]) {
+      skipped++;
+      continue;
+    }
+
     if (tickerMap.has(ticker) && !tickerMap.get(ticker).startsWith("us-")) {
       skipped++;
       continue;
@@ -187,7 +193,7 @@ async function main() {
   }
 
   console.log("\nDone. Search on the site uses /api/companies?q=…");
-  console.log("Example: http://127.0.0.1:3000/company/us-aapl");
+  console.log("Example: http://127.0.0.1:3000/company/apple-inc-aapl");
   console.log("\nTip: run with --link-oslo to add US tickers to your Oslo Børs profiles for live quotes.");
 }
 

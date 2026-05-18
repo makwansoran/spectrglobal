@@ -92,3 +92,53 @@ create policy "Public read commodities"
   for select
   to anon, authenticated
   using (true);
+
+-- Live chat on company / commodity profile pages
+create table if not exists public.chat_messages (
+  id uuid primary key default gen_random_uuid(),
+  room_type text not null check (room_type in ('company', 'commodity')),
+  room_slug text not null,
+  author_id text not null,
+  author_name text not null,
+  body text not null check (char_length(body) > 0 and char_length(body) <= 2000),
+  created_at timestamptz not null default now()
+);
+
+create index if not exists chat_messages_room_idx
+  on public.chat_messages (room_type, room_slug, created_at desc);
+
+alter table public.chat_messages enable row level security;
+
+drop policy if exists "Public read chat" on public.chat_messages;
+create policy "Public read chat"
+  on public.chat_messages
+  for select
+  to anon, authenticated
+  using (true);
+
+drop policy if exists "Public insert chat" on public.chat_messages;
+create policy "Public insert chat"
+  on public.chat_messages
+  for insert
+  to anon, authenticated
+  with check (
+    room_type in ('company', 'commodity')
+    and char_length(room_slug) > 0
+    and char_length(trim(body)) > 0
+    and char_length(body) <= 2000
+    and char_length(author_id) > 0
+    and char_length(author_name) > 0
+  );
+
+do $$
+begin
+  if not exists (
+    select 1
+    from pg_publication_tables
+    where pubname = 'supabase_realtime'
+      and schemaname = 'public'
+      and tablename = 'chat_messages'
+  ) then
+    alter publication supabase_realtime add table public.chat_messages;
+  end if;
+end $$;

@@ -7,14 +7,33 @@ const {
   getPerson,
 } = require("./store");
 const commoditiesStore = require("./commodities-store");
+const chatStore = require("./chat-store");
 const finnhub = require("./finnhub");
 
-function sendJson(res, status, body) {
+function sendJson(res, status, body, extraHeaders = {}) {
   res.writeHead(status, {
     "Content-Type": "application/json; charset=utf-8",
     "Cache-Control": "no-store",
+    ...extraHeaders,
   });
   res.end(JSON.stringify(body));
+}
+
+function readJsonBody(req) {
+  return new Promise((resolve, reject) => {
+    let buf = "";
+    req.on("data", (chunk) => {
+      buf += chunk;
+    });
+    req.on("end", () => {
+      try {
+        resolve(buf ? JSON.parse(buf) : {});
+      } catch {
+        resolve({});
+      }
+    });
+    req.on("error", reject);
+  });
 }
 
 async function handleApi(req, res, pathname) {
@@ -98,6 +117,60 @@ async function handleApi(req, res, pathname) {
         return true;
       }
       sendJson(res, 200, { profile });
+      return true;
+    }
+
+    if (pathname === "/api/chat") {
+      const url = new URL(req.url, `http://${req.headers.host || "localhost"}`);
+      const roomType = String(url.searchParams.get("roomType") || "").trim();
+      const roomSlug = String(url.searchParams.get("roomSlug") || "").trim();
+
+      if (!roomType || !roomSlug) {
+        sendJson(res, 400, { error: "roomType and roomSlug are required" });
+        return true;
+      }
+      if (roomType !== "company" && roomType !== "commodity") {
+        sendJson(res, 400, { error: "roomType must be company or commodity" });
+        return true;
+      }
+
+      const chatHeaders = { "X-Spectr-Chat-Storage": chatStore.storageMode() };
+
+      if (req.method === "GET") {
+        const limit = url.searchParams.get("limit") || "50";
+        const messages = await chatStore.listMessages(roomType, roomSlug, limit);
+        sendJson(
+          res,
+          200,
+          { messages, realtime: chatStore.storageMode() === "supabase" },
+          chatHeaders
+        );
+        return true;
+      }
+
+      if (req.method === "POST") {
+        const payload = await readJsonBody(req);
+        try {
+          const message = await chatStore.postMessage(roomType, roomSlug, {
+            authorId: payload?.authorId,
+            authorName: payload?.authorName,
+            body: payload?.body,
+          });
+          sendJson(
+            res,
+            201,
+            { message, realtime: chatStore.storageMode() === "supabase" },
+            chatHeaders
+          );
+        } catch (err) {
+          const msg = err.message || "Chat error";
+          const code = /empty|too long|Invalid|Missing/i.test(msg) ? 400 : 500;
+          sendJson(res, code, { error: msg }, chatHeaders);
+        }
+        return true;
+      }
+
+      sendJson(res, 405, { error: "Method not allowed" }, chatHeaders);
       return true;
     }
   } catch (err) {

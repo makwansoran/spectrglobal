@@ -10,7 +10,7 @@ import { FinancialsSection } from "../components/sections/FinancialsSection";
 import { NewsSection } from "../components/sections/NewsSection";
 import { FilingsSection } from "../components/sections/FilingsSection";
 import { IndustryMap, hasIndustryMap } from "../components/maps/IndustryMap";
-import { useScrollSpy } from "../hooks/useScrollSpy";
+import { scrollToSection, useScrollSpy } from "../hooks/useScrollSpy";
 import { useCompany } from "../hooks/useCompany";
 import { useMarketData } from "../hooks/useMarketData";
 import { FinnhubMetrics } from "../components/sections/FinnhubMetrics";
@@ -19,6 +19,7 @@ import { FinnhubNews } from "../components/sections/FinnhubNews";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
 import { ProfileLoading } from "../components/ProfileLoading";
+import { ChatRoom } from "../components/chat/ChatRoom";
 
 export function CompanyProfilePage() {
   const { companyId } = useParams<{ companyId: string }>();
@@ -51,6 +52,7 @@ export function CompanyProfilePage() {
     if (hasIndustryMap(company.industry)) {
       items.push({ id: "industry", label: company.industryTabLabel });
     }
+    items.push({ id: "chat", label: "Chat" });
     return items;
   }, [company, market]);
 
@@ -58,11 +60,13 @@ export function CompanyProfilePage() {
     tabs.map((t) => t.id),
     110
   );
+  const goToChat = () => scrollToSection("chat", 120);
+  const chatActive = activeTab === "chat";
 
   if (loading) {
     return (
       <div className="min-h-screen bg-white">
-        <SiteHeader />
+        <SiteHeader onChatClick={goToChat} />
         <ProfileLoading />
       </div>
     );
@@ -90,9 +94,9 @@ export function CompanyProfilePage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <SiteHeader />
+      <SiteHeader onChatClick={goToChat} chatActive={chatActive} />
       <Hero company={company} />
-      <TabNav tabs={tabs} activeId={activeTab} />
+      <TabNav tabs={tabs} activeId={activeTab} chatTabId="chat" />
 
       <div className="mx-auto max-w-7xl px-4 py-10 md:px-6">
         <div className="flex flex-col gap-10 lg:flex-row lg:gap-8">
@@ -138,6 +142,15 @@ export function CompanyProfilePage() {
                 <FilingsSection company={company} />
               </Section>
             )}
+
+            <section id="chat" className="scroll-mt-28">
+              <h2 className="section-title mb-5">Chat</h2>
+              <ChatRoom
+                roomType="company"
+                roomSlug={company.id}
+                roomLabel={company.name}
+              />
+            </section>
           </div>
 
           <aside className="lg:w-[30%] lg:flex-[3]">

@@ -19,6 +19,8 @@ data/spectr.db-wal
 data/spectr.db-shm
 
 # Local JSON exports from Supabase / Finnhub import (data lives in Supabase)
+data/chat/
+
 data/companies/
 data/seed/finnhub-us-symbols.json
 data/seed/import-us-log.txt

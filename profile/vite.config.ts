@@ -11,5 +11,8 @@ export default defineConfig({
   server: {
     port: 5173,
     open: "/company/equinor",
+    proxy: {
+      "/api": "http://localhost:3000",
+    },
   },
 });
