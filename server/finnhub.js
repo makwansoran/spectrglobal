@@ -520,6 +520,7 @@ async function fetchInstitutionalOwnership(symbol) {
 
 module.exports = {
   isEnabled,
+  finnhubGet,
   toFinnhubSymbol,
   symbolCandidates,
   fetchQuote,

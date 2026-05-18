@@ -15,7 +15,9 @@ function normalizeCompanyProfile(profile) {
     people: Array.isArray(profile.people) ? profile.people : [],
     financials: {
       years: Array.isArray(financials.years) ? financials.years : [],
+      quarters: Array.isArray(financials.quarters) ? financials.quarters : [],
       metrics: Array.isArray(financials.metrics) ? financials.metrics : [],
+      meta: financials.meta && typeof financials.meta === "object" ? financials.meta : undefined,
     },
     news: Array.isArray(profile.news) ? profile.news : [],
     filings: Array.isArray(profile.filings) ? profile.filings : [],

@@ -11,7 +11,7 @@ export function useCompanyTabs(company: CompanyProfile | null, mapGeojson: GeoJS
     if (resolveOwnership(company)) items.push({ id: "ownership", label: "Ownership" });
     if (company.portfolio?.holdingCount) items.push({ id: "investments", label: "Investments" });
     const fin = company.financials;
-    if (fin?.years?.length || fin?.metrics?.length) {
+    if (company.isPublic || fin?.years?.length || fin?.quarters?.length || fin?.metrics?.length) {
       items.push({ id: "financials", label: "Financials" });
     }
     items.push({ id: "news", label: "News" });

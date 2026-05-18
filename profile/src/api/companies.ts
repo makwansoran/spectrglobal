@@ -43,7 +43,7 @@ function normalizeProfile(profile: CompanyProfile | null | undefined): CompanyPr
     industryTags: profile.industryTags ?? [],
     quickStats: profile.quickStats ?? [],
     people: profile.people ?? [],
-    financials: profile.financials ?? { years: [], metrics: [] },
+    financials: profile.financials ?? { years: [], quarters: [], metrics: [] },
     news: profile.news ?? [],
     filings: profile.filings ?? [],
     keyFacts: profile.keyFacts ?? [],

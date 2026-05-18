@@ -35,6 +35,17 @@ export interface FinancialYear {
   netIncome: number;
 }
 
+export interface FinancialQuarter {
+  period: string;
+  fiscalYear: number;
+  fiscalQuarter?: number;
+  periodEnd: string;
+  revenue?: number | null;
+  operatingIncome?: number | null;
+  netIncome?: number | null;
+  form?: string | null;
+}
+
 export interface FinancialMetric {
   label: string;
   value: number;
@@ -171,7 +182,15 @@ export interface CompanyProfile {
   people: Person[];
   financials: {
     years: FinancialYear[];
+    quarters?: FinancialQuarter[];
     metrics: FinancialMetric[];
+    meta?: {
+      source?: string;
+      currency?: string;
+      asOf?: string;
+      symbol?: string;
+      cik?: string;
+    };
   };
   news: NewsItem[];
   filings: Filing[];

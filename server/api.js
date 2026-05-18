@@ -5,6 +5,7 @@ const {
   storageMode,
 } = require("./store");
 const { getCompanyNews } = require("./company-news");
+const { getCompanyFinancials } = require("./company-financials");
 const commoditiesStore = require("./commodities-store");
 const { banks, investmentBanks, ventureCapital } = require("./catalog-stores");
 const chatStore = require("./chat-store");
@@ -100,6 +101,18 @@ async function handleApi(req, res, pathname) {
         return true;
       }
       sendJson(res, 200, data, { "Cache-Control": "public, max-age=300" });
+      return true;
+    }
+
+    const financialsMatch = pathname.match(/^\/api\/companies\/([^/]+)\/financials$/);
+    if (financialsMatch && req.method === "GET") {
+      const slug = decodeURIComponent(financialsMatch[1]);
+      const data = await getCompanyFinancials(slug);
+      if (!data) {
+        sendJson(res, 404, { error: "Company not found" });
+        return true;
+      }
+      sendJson(res, 200, data, { "Cache-Control": "public, max-age=3600" });
       return true;
     }
 
