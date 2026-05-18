@@ -4,29 +4,29 @@
   "outputDirectory": ".",
   "functions": {
     "api/[[...path]].js": {
-      "includeFiles": "server/**,api/_serve.js,api/_pathname.js,node_modules/@supabase/**,node_modules/ws/**,data/company-search-index.json,data/commodity-search-index.json,data/institutions.json,data/norges-bank/**,data/seed/companies/**,data/seed/commodities.json,data/seed/maritime-waterways.json,scripts/load-env.js"
+      "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,data/**,scripts/load-env.js"
     },
     "api/companies/[[...path]].js": {
-      "includeFiles": "server/**,api/_serve.js,node_modules/@supabase/**,data/company-people/**,data/people/**,data/institutions.json,scripts/load-env.js"
+      "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,data/**,scripts/load-env.js"
     },
     "api/commodities/[[...path]].js": {
-      "includeFiles": "server/**,api/_serve.js,node_modules/@supabase/**,data/seed/commodities.json,scripts/load-env.js"
+      "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,data/**,scripts/load-env.js"
     },
     "api/people/[[...path]].js": {
-      "includeFiles": "server/**,api/_serve.js,node_modules/@supabase/**,data/people/**,scripts/load-env.js"
+      "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,data/**,scripts/load-env.js"
     },
     "api/holders/[[...path]].js": {
-      "includeFiles": "server/**,api/_serve.js,node_modules/@supabase/**,data/institutions.json,scripts/load-env.js"
+      "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,data/**,scripts/load-env.js"
     },
     "api/waterways/index.js": {
-      "includeFiles": "server/**,api/_serve.js,api/_pathname.js,node_modules/@supabase/**,data/seed/maritime-waterways.json,scripts/load-env.js"
+      "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,data/**,scripts/load-env.js"
     },
     "api/waterways/[slug].js": {
-      "includeFiles": "server/**,api/_serve.js,api/_pathname.js,node_modules/@supabase/**,data/seed/maritime-waterways.json,scripts/load-env.js"
+      "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,data/**,scripts/load-env.js"
     },
     "api/waterways/[slug]/vessels.js": {
       "maxDuration": 30,
-      "includeFiles": "server/**,api/_serve.js,api/_pathname.js,node_modules/@supabase/**,node_modules/ws/**,data/seed/maritime-waterways.json,scripts/load-env.js"
+      "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,node_modules/ws/**,data/**,scripts/load-env.js"
     }
   },
   "rewrites": [
