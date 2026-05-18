@@ -7,6 +7,7 @@ const path = require("path");
 
 const ROOT = path.resolve(__dirname, "..");
 const OUT = path.join(ROOT, "data", "seed", "commodities.json");
+const { finnhubStaticLogo } = require("../server/company-logo");
 
 function slugify(name) {
   return String(name)
@@ -43,10 +44,17 @@ function buildSearchTerms(name, symbol, altSymbols, exchange, categoryLabel) {
   return [...terms];
 }
 
+function commodityLogoUrl(symbol) {
+  if (!symbol) return null;
+  const primary = String(symbol).split("/")[0].trim().toUpperCase();
+  return finnhubStaticLogo(primary);
+}
+
 function item({ name, category, categoryLabel, exchange, symbol, altSymbols, about }) {
   const slug = slugify(name);
   const sym = symbol || null;
   const ini = initials(name, sym);
+  const logoUrl = commodityLogoUrl(sym);
   const keyFacts = [
     { label: "Category", value: categoryLabel },
     ...(exchange ? [{ label: "Exchange", value: exchange }] : []),
@@ -68,6 +76,7 @@ function item({ name, category, categoryLabel, exchange, symbol, altSymbols, abo
     symbol: sym,
     alternateSymbols: altSymbols || [],
     logoInitials: ini,
+    ...(logoUrl ? { logoUrl } : {}),
     industryTags: [categoryLabel],
     quickStats,
     keyFacts,
@@ -106,6 +115,13 @@ const CATEGORIES = [
       { name: "Propane", exchange: "NYMEX", symbol: "PN" },
       { name: "Ethanol", exchange: "CBOT", symbol: "ZE" },
       { name: "Purified Terephthalic Acid (PTA)", exchange: "ZCE", symbol: "TA" },
+      { name: "Low Sulphur Gasoil", exchange: "ICE", symbol: "G" },
+      { name: "LNG (Japan Korea Marker)", exchange: "ICE / CME", symbol: "JKM" },
+      { name: "TTF Natural Gas", exchange: "ICE", symbol: "TTF" },
+      { name: "Dubai Crude Oil", exchange: "Platts", symbol: null },
+      { name: "Coal (API 2)", exchange: "ICE", symbol: "API2" },
+      { name: "Newcastle Coal", exchange: "ICE", symbol: "NCF" },
+      { name: "Uranium", exchange: "UxC / CME", symbol: "UX" },
     ],
   },
   {
@@ -131,6 +147,10 @@ const CATEGORIES = [
       { name: "Tin", exchange: "LME", symbol: null },
       { name: "Cobalt", exchange: "LME", symbol: null },
       { name: "Molybdenum", exchange: "LME", symbol: null },
+      { name: "Iron Ore", exchange: "SGX / DCE", symbol: null },
+      { name: "Steel (Hot-Rolled Coil)", exchange: "SHFE / CME", symbol: null },
+      { name: "Lithium Carbonate", exchange: "GFEX", symbol: null },
+      { name: "Magnesium", exchange: "LME", symbol: null },
     ],
   },
   {
@@ -147,6 +167,11 @@ const CATEGORIES = [
       { name: "Rough Rice", exchange: "CBOT", symbol: "ZR" },
       { name: "Rapeseed", exchange: "Euronext", symbol: "ECO" },
       { name: "Adzuki Bean", exchange: "OSE", symbol: null },
+      { name: "Canola", exchange: "ICE / MGEX", symbol: "RS" },
+      { name: "Sunflower Oil", exchange: "Euronext", symbol: null },
+      { name: "Barley", exchange: "Euronext", symbol: null },
+      { name: "Sorghum", exchange: "CBOT", symbol: null },
+      { name: "Corn Starch", exchange: "DCE", symbol: null },
     ],
   },
   {
@@ -160,6 +185,8 @@ const CATEGORIES = [
       { name: "Sugar No. 14 (Domestic)", exchange: "ICE", symbol: "SE" },
       { name: "Cotton No. 2", exchange: "ICE", symbol: "CT" },
       { name: "Frozen OJ (FCOJ)", exchange: "ICE", symbol: "FCOJ-A" },
+      { name: "London Robusta Coffee", exchange: "ICE", symbol: "RC" },
+      { name: "White Sugar", exchange: "ICE", symbol: "W" },
     ],
   },
   {
@@ -193,6 +220,13 @@ const CATEGORIES = [
       { name: "Rubber", exchange: "Osaka Exchange", symbol: null },
       { name: "Wool", exchange: "ASX", symbol: null },
       { name: "Amber", exchange: "Saint Petersburg Bourse", symbol: null },
+      { name: "EU Carbon Allowances (EUA)", exchange: "ICE", symbol: "EUA" },
+      { name: "UK Carbon Allowances (UKA)", exchange: "ICE", symbol: "UKA" },
+      { name: "Ammonia", exchange: "CME / Baltic", symbol: null },
+      { name: "Urea", exchange: "CME / Baltic", symbol: null },
+      { name: "Sulfur", exchange: "CME", symbol: null },
+      { name: "Polypropylene", exchange: "DCE", symbol: null },
+      { name: "Polyethylene", exchange: "DCE", symbol: null },
     ],
   },
 ];

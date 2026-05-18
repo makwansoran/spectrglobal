@@ -20,6 +20,7 @@
         "WTIB"
       ],
       "logoInitials": "WC",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/CL.png",
       "industryTags": [
         "Energy"
       ],
@@ -72,7 +73,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.619Z"
+      "lastUpdated": "2026-05-18T20:38:42.624Z"
     },
     "meta": "Energy · NYMEX / ICE · CL",
     "initials": "WC"
@@ -133,7 +134,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.620Z"
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
     },
     "meta": "Energy · ICE",
     "initials": "BC"
@@ -156,6 +157,7 @@
       "symbol": "NG",
       "alternateSymbols": [],
       "logoInitials": "NG",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/NG.png",
       "industryTags": [
         "Energy"
       ],
@@ -204,7 +206,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.620Z"
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
     },
     "meta": "Energy · NYMEX · NG",
     "initials": "NG"
@@ -227,6 +229,7 @@
       "symbol": "NBP",
       "alternateSymbols": [],
       "logoInitials": "NG",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/NBP.png",
       "industryTags": [
         "Energy"
       ],
@@ -275,7 +278,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.620Z"
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
     },
     "meta": "Energy · ICE · NBP",
     "initials": "NG"
@@ -298,6 +301,7 @@
       "symbol": "HO",
       "alternateSymbols": [],
       "logoInitials": "HO",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/HO.png",
       "industryTags": [
         "Energy"
       ],
@@ -346,7 +350,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.620Z"
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
     },
     "meta": "Energy · NYMEX · HO",
     "initials": "HO"
@@ -369,6 +373,7 @@
       "symbol": "RB",
       "alternateSymbols": [],
       "logoInitials": "RG",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/RB.png",
       "industryTags": [
         "Energy"
       ],
@@ -417,7 +422,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.620Z"
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
     },
     "meta": "Energy · NYMEX · RB",
     "initials": "RG"
@@ -440,6 +445,7 @@
       "symbol": "LR",
       "alternateSymbols": [],
       "logoInitials": "GC",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/LR.png",
       "industryTags": [
         "Energy"
       ],
@@ -488,7 +494,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.620Z"
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
     },
     "meta": "Energy · NYMEX · LR",
     "initials": "GC"
@@ -510,6 +516,7 @@
       "symbol": "PN",
       "alternateSymbols": [],
       "logoInitials": "PN",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/PN.png",
       "industryTags": [
         "Energy"
       ],
@@ -558,7 +565,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.620Z"
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
     },
     "meta": "Energy · NYMEX · PN",
     "initials": "PN"
@@ -580,6 +587,7 @@
       "symbol": "ZE",
       "alternateSymbols": [],
       "logoInitials": "ZE",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/ZE.png",
       "industryTags": [
         "Energy"
       ],
@@ -628,7 +636,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.620Z"
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
     },
     "meta": "Energy · CBOT · ZE",
     "initials": "ZE"
@@ -651,6 +659,7 @@
       "symbol": "TA",
       "alternateSymbols": [],
       "logoInitials": "PT",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/TA.png",
       "industryTags": [
         "Energy"
       ],
@@ -699,10 +708,502 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.620Z"
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
     },
     "meta": "Energy · ZCE · TA",
     "initials": "PT"
+  },
+  {
+    "slug": "low-sulphur-gasoil",
+    "searchTerms": [
+      "low sulphur gasoil",
+      "g",
+      "ice",
+      "energy",
+      "low-sulphur-gasoil"
+    ],
+    "profile": {
+      "id": "low-sulphur-gasoil",
+      "name": "Low Sulphur Gasoil",
+      "category": "energy",
+      "categoryLabel": "Energy",
+      "exchange": "ICE",
+      "symbol": "G",
+      "alternateSymbols": [],
+      "logoInitials": "LS",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/G.png",
+      "industryTags": [
+        "Energy"
+      ],
+      "quickStats": [
+        {
+          "label": "Category",
+          "value": "Energy",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "ICE",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "G",
+          "format": "text"
+        }
+      ],
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Energy"
+        },
+        {
+          "label": "Exchange",
+          "value": "ICE"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "G"
+        }
+      ],
+      "about": "Low Sulphur Gasoil is a energy futures contract listed on ICE (ticker G). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
+    },
+    "meta": "Energy · ICE · G",
+    "initials": "LS"
+  },
+  {
+    "slug": "lng-japan-korea-marker",
+    "searchTerms": [
+      "lng (japan korea marker)",
+      "jkm",
+      "ice / cme",
+      "energy",
+      "lng-japan-korea-marker"
+    ],
+    "profile": {
+      "id": "lng-japan-korea-marker",
+      "name": "LNG (Japan Korea Marker)",
+      "category": "energy",
+      "categoryLabel": "Energy",
+      "exchange": "ICE / CME",
+      "symbol": "JKM",
+      "alternateSymbols": [],
+      "logoInitials": "LJ",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/JKM.png",
+      "industryTags": [
+        "Energy"
+      ],
+      "quickStats": [
+        {
+          "label": "Category",
+          "value": "Energy",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "ICE / CME",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "JKM",
+          "format": "text"
+        }
+      ],
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Energy"
+        },
+        {
+          "label": "Exchange",
+          "value": "ICE / CME"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "JKM"
+        }
+      ],
+      "about": "LNG (Japan Korea Marker) is a energy futures contract listed on ICE / CME (ticker JKM). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
+    },
+    "meta": "Energy · ICE / CME · JKM",
+    "initials": "LJ"
+  },
+  {
+    "slug": "ttf-natural-gas",
+    "searchTerms": [
+      "ttf natural gas",
+      "ttf",
+      "ice",
+      "energy",
+      "ttf-natural-gas"
+    ],
+    "profile": {
+      "id": "ttf-natural-gas",
+      "name": "TTF Natural Gas",
+      "category": "energy",
+      "categoryLabel": "Energy",
+      "exchange": "ICE",
+      "symbol": "TTF",
+      "alternateSymbols": [],
+      "logoInitials": "TN",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/TTF.png",
+      "industryTags": [
+        "Energy"
+      ],
+      "quickStats": [
+        {
+          "label": "Category",
+          "value": "Energy",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "ICE",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "TTF",
+          "format": "text"
+        }
+      ],
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Energy"
+        },
+        {
+          "label": "Exchange",
+          "value": "ICE"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "TTF"
+        }
+      ],
+      "about": "TTF Natural Gas is a energy futures contract listed on ICE (ticker TTF). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
+    },
+    "meta": "Energy · ICE · TTF",
+    "initials": "TN"
+  },
+  {
+    "slug": "dubai-crude-oil",
+    "searchTerms": [
+      "dubai crude oil",
+      "platts",
+      "energy",
+      "dubai-crude-oil"
+    ],
+    "profile": {
+      "id": "dubai-crude-oil",
+      "name": "Dubai Crude Oil",
+      "category": "energy",
+      "categoryLabel": "Energy",
+      "exchange": "Platts",
+      "symbol": null,
+      "alternateSymbols": [],
+      "logoInitials": "DC",
+      "industryTags": [
+        "Energy"
+      ],
+      "quickStats": [
+        {
+          "label": "Category",
+          "value": "Energy",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "Platts",
+          "format": "text"
+        }
+      ],
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Energy"
+        },
+        {
+          "label": "Exchange",
+          "value": "Platts"
+        }
+      ],
+      "about": "Dubai Crude Oil is a energy futures contract listed on Platts. Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
+    },
+    "meta": "Energy · Platts",
+    "initials": "DC"
+  },
+  {
+    "slug": "coal-api-2",
+    "searchTerms": [
+      "coal (api 2)",
+      "api2",
+      "ice",
+      "energy",
+      "coal-api-2"
+    ],
+    "profile": {
+      "id": "coal-api-2",
+      "name": "Coal (API 2)",
+      "category": "energy",
+      "categoryLabel": "Energy",
+      "exchange": "ICE",
+      "symbol": "API2",
+      "alternateSymbols": [],
+      "logoInitials": "CA",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/API2.png",
+      "industryTags": [
+        "Energy"
+      ],
+      "quickStats": [
+        {
+          "label": "Category",
+          "value": "Energy",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "ICE",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "API2",
+          "format": "text"
+        }
+      ],
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Energy"
+        },
+        {
+          "label": "Exchange",
+          "value": "ICE"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "API2"
+        }
+      ],
+      "about": "Coal (API 2) is a energy futures contract listed on ICE (ticker API2). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
+    },
+    "meta": "Energy · ICE · API2",
+    "initials": "CA"
+  },
+  {
+    "slug": "newcastle-coal",
+    "searchTerms": [
+      "newcastle coal",
+      "ncf",
+      "ice",
+      "energy",
+      "newcastle-coal"
+    ],
+    "profile": {
+      "id": "newcastle-coal",
+      "name": "Newcastle Coal",
+      "category": "energy",
+      "categoryLabel": "Energy",
+      "exchange": "ICE",
+      "symbol": "NCF",
+      "alternateSymbols": [],
+      "logoInitials": "NC",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/NCF.png",
+      "industryTags": [
+        "Energy"
+      ],
+      "quickStats": [
+        {
+          "label": "Category",
+          "value": "Energy",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "ICE",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "NCF",
+          "format": "text"
+        }
+      ],
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Energy"
+        },
+        {
+          "label": "Exchange",
+          "value": "ICE"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "NCF"
+        }
+      ],
+      "about": "Newcastle Coal is a energy futures contract listed on ICE (ticker NCF). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
+    },
+    "meta": "Energy · ICE · NCF",
+    "initials": "NC"
+  },
+  {
+    "slug": "uranium",
+    "searchTerms": [
+      "uranium",
+      "ux",
+      "uxc / cme",
+      "energy"
+    ],
+    "profile": {
+      "id": "uranium",
+      "name": "Uranium",
+      "category": "energy",
+      "categoryLabel": "Energy",
+      "exchange": "UxC / CME",
+      "symbol": "UX",
+      "alternateSymbols": [],
+      "logoInitials": "UX",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/UX.png",
+      "industryTags": [
+        "Energy"
+      ],
+      "quickStats": [
+        {
+          "label": "Category",
+          "value": "Energy",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "UxC / CME",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "UX",
+          "format": "text"
+        }
+      ],
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Energy"
+        },
+        {
+          "label": "Exchange",
+          "value": "UxC / CME"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "UX"
+        }
+      ],
+      "about": "Uranium is a energy futures contract listed on UxC / CME (ticker UX). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
+    },
+    "meta": "Energy · UxC / CME · UX",
+    "initials": "UX"
   },
   {
     "slug": "gold",
@@ -721,6 +1222,7 @@
       "symbol": "GC",
       "alternateSymbols": [],
       "logoInitials": "GC",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/GC.png",
       "industryTags": [
         "Precious Metals"
       ],
@@ -769,7 +1271,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.620Z"
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
     },
     "meta": "Precious Metals · COMEX · GC",
     "initials": "GC"
@@ -791,6 +1293,7 @@
       "symbol": "SI",
       "alternateSymbols": [],
       "logoInitials": "SI",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/SI.png",
       "industryTags": [
         "Precious Metals"
       ],
@@ -839,7 +1342,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.620Z"
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
     },
     "meta": "Precious Metals · COMEX · SI",
     "initials": "SI"
@@ -861,6 +1364,7 @@
       "symbol": "PL",
       "alternateSymbols": [],
       "logoInitials": "PL",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/PL.png",
       "industryTags": [
         "Precious Metals"
       ],
@@ -909,7 +1413,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.620Z"
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
     },
     "meta": "Precious Metals · NYMEX · PL",
     "initials": "PL"
@@ -931,6 +1435,7 @@
       "symbol": "PA",
       "alternateSymbols": [],
       "logoInitials": "PA",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/PA.png",
       "industryTags": [
         "Precious Metals"
       ],
@@ -979,7 +1484,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.620Z"
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
     },
     "meta": "Precious Metals · NYMEX · PA",
     "initials": "PA"
@@ -1039,7 +1544,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.620Z"
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
     },
     "meta": "Base / Industrial Metals · LME / COMEX",
     "initials": "CO"
@@ -1099,7 +1604,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.620Z"
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
     },
     "meta": "Base / Industrial Metals · LME",
     "initials": "AL"
@@ -1160,7 +1665,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.620Z"
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
     },
     "meta": "Base / Industrial Metals · LME",
     "initials": "AA"
@@ -1220,7 +1725,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.620Z"
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
     },
     "meta": "Base / Industrial Metals · LME",
     "initials": "ZI"
@@ -1280,7 +1785,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.620Z"
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
     },
     "meta": "Base / Industrial Metals · LME",
     "initials": "LE"
@@ -1340,7 +1845,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.620Z"
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
     },
     "meta": "Base / Industrial Metals · LME",
     "initials": "NI"
@@ -1400,7 +1905,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.620Z"
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
     },
     "meta": "Base / Industrial Metals · LME",
     "initials": "TI"
@@ -1460,7 +1965,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.620Z"
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
     },
     "meta": "Base / Industrial Metals · LME",
     "initials": "CO"
@@ -1520,10 +2025,253 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.620Z"
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
     },
     "meta": "Base / Industrial Metals · LME",
     "initials": "MO"
+  },
+  {
+    "slug": "iron-ore",
+    "searchTerms": [
+      "iron ore",
+      "sgx / dce",
+      "base / industrial metals",
+      "iron-ore"
+    ],
+    "profile": {
+      "id": "iron-ore",
+      "name": "Iron Ore",
+      "category": "base_metals",
+      "categoryLabel": "Base / Industrial Metals",
+      "exchange": "SGX / DCE",
+      "symbol": null,
+      "alternateSymbols": [],
+      "logoInitials": "IO",
+      "industryTags": [
+        "Base / Industrial Metals"
+      ],
+      "quickStats": [
+        {
+          "label": "Category",
+          "value": "Base / Industrial Metals",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "SGX / DCE",
+          "format": "text"
+        }
+      ],
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Base / Industrial Metals"
+        },
+        {
+          "label": "Exchange",
+          "value": "SGX / DCE"
+        }
+      ],
+      "about": "Iron Ore is a base / industrial metals futures contract listed on SGX / DCE. Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
+    },
+    "meta": "Base / Industrial Metals · SGX / DCE",
+    "initials": "IO"
+  },
+  {
+    "slug": "steel-hot-rolled-coil",
+    "searchTerms": [
+      "steel (hot-rolled coil)",
+      "shfe / cme",
+      "base / industrial metals",
+      "steel-hot-rolled-coil"
+    ],
+    "profile": {
+      "id": "steel-hot-rolled-coil",
+      "name": "Steel (Hot-Rolled Coil)",
+      "category": "base_metals",
+      "categoryLabel": "Base / Industrial Metals",
+      "exchange": "SHFE / CME",
+      "symbol": null,
+      "alternateSymbols": [],
+      "logoInitials": "SH",
+      "industryTags": [
+        "Base / Industrial Metals"
+      ],
+      "quickStats": [
+        {
+          "label": "Category",
+          "value": "Base / Industrial Metals",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "SHFE / CME",
+          "format": "text"
+        }
+      ],
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Base / Industrial Metals"
+        },
+        {
+          "label": "Exchange",
+          "value": "SHFE / CME"
+        }
+      ],
+      "about": "Steel (Hot-Rolled Coil) is a base / industrial metals futures contract listed on SHFE / CME. Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
+    },
+    "meta": "Base / Industrial Metals · SHFE / CME",
+    "initials": "SH"
+  },
+  {
+    "slug": "lithium-carbonate",
+    "searchTerms": [
+      "lithium carbonate",
+      "gfex",
+      "base / industrial metals",
+      "lithium-carbonate"
+    ],
+    "profile": {
+      "id": "lithium-carbonate",
+      "name": "Lithium Carbonate",
+      "category": "base_metals",
+      "categoryLabel": "Base / Industrial Metals",
+      "exchange": "GFEX",
+      "symbol": null,
+      "alternateSymbols": [],
+      "logoInitials": "LC",
+      "industryTags": [
+        "Base / Industrial Metals"
+      ],
+      "quickStats": [
+        {
+          "label": "Category",
+          "value": "Base / Industrial Metals",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "GFEX",
+          "format": "text"
+        }
+      ],
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Base / Industrial Metals"
+        },
+        {
+          "label": "Exchange",
+          "value": "GFEX"
+        }
+      ],
+      "about": "Lithium Carbonate is a base / industrial metals futures contract listed on GFEX. Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
+    },
+    "meta": "Base / Industrial Metals · GFEX",
+    "initials": "LC"
+  },
+  {
+    "slug": "magnesium",
+    "searchTerms": [
+      "magnesium",
+      "lme",
+      "base / industrial metals"
+    ],
+    "profile": {
+      "id": "magnesium",
+      "name": "Magnesium",
+      "category": "base_metals",
+      "categoryLabel": "Base / Industrial Metals",
+      "exchange": "LME",
+      "symbol": null,
+      "alternateSymbols": [],
+      "logoInitials": "MA",
+      "industryTags": [
+        "Base / Industrial Metals"
+      ],
+      "quickStats": [
+        {
+          "label": "Category",
+          "value": "Base / Industrial Metals",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "LME",
+          "format": "text"
+        }
+      ],
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Base / Industrial Metals"
+        },
+        {
+          "label": "Exchange",
+          "value": "LME"
+        }
+      ],
+      "about": "Magnesium is a base / industrial metals futures contract listed on LME. Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
+    },
+    "meta": "Base / Industrial Metals · LME",
+    "initials": "MA"
   },
   {
     "slug": "corn",
@@ -1545,6 +2293,7 @@
         "EMA"
       ],
       "logoInitials": "ZC",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/ZC.png",
       "industryTags": [
         "Grains & Oilseeds"
       ],
@@ -1597,7 +2346,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.620Z"
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
     },
     "meta": "Grains & Oilseeds · CBOT / Euronext / DCE · ZC",
     "initials": "ZC"
@@ -1622,6 +2371,7 @@
         "EBM"
       ],
       "logoInitials": "ZW",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/ZW.png",
       "industryTags": [
         "Grains & Oilseeds"
       ],
@@ -1674,7 +2424,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.620Z"
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
     },
     "meta": "Grains & Oilseeds · CBOT / Euronext · ZW",
     "initials": "ZW"
@@ -1697,6 +2447,7 @@
       "symbol": "TS",
       "alternateSymbols": [],
       "logoInitials": "UF",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/TS.png",
       "industryTags": [
         "Grains & Oilseeds"
       ],
@@ -1745,7 +2496,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.620Z"
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
     },
     "meta": "Grains & Oilseeds · ICE · TS",
     "initials": "UF"
@@ -1767,6 +2518,7 @@
       "symbol": "ZS",
       "alternateSymbols": [],
       "logoInitials": "ZS",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/ZS.png",
       "industryTags": [
         "Grains & Oilseeds"
       ],
@@ -1815,7 +2567,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.620Z"
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
     },
     "meta": "Grains & Oilseeds · CBOT / DCE · ZS",
     "initials": "ZS"
@@ -1838,6 +2590,7 @@
       "symbol": "ZM",
       "alternateSymbols": [],
       "logoInitials": "SM",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/ZM.png",
       "industryTags": [
         "Grains & Oilseeds"
       ],
@@ -1886,7 +2639,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.620Z"
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
     },
     "meta": "Grains & Oilseeds · CBOT / DCE · ZM",
     "initials": "SM"
@@ -1909,6 +2662,7 @@
       "symbol": "ZL",
       "alternateSymbols": [],
       "logoInitials": "SO",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/ZL.png",
       "industryTags": [
         "Grains & Oilseeds"
       ],
@@ -1957,7 +2711,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.620Z"
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
     },
     "meta": "Grains & Oilseeds · CBOT / DCE · ZL",
     "initials": "SO"
@@ -1979,6 +2733,7 @@
       "symbol": "ZO",
       "alternateSymbols": [],
       "logoInitials": "ZO",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/ZO.png",
       "industryTags": [
         "Grains & Oilseeds"
       ],
@@ -2027,7 +2782,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.620Z"
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
     },
     "meta": "Grains & Oilseeds · CBOT · ZO",
     "initials": "ZO"
@@ -2050,6 +2805,7 @@
       "symbol": "ZR",
       "alternateSymbols": [],
       "logoInitials": "RR",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/ZR.png",
       "industryTags": [
         "Grains & Oilseeds"
       ],
@@ -2098,7 +2854,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.620Z"
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
     },
     "meta": "Grains & Oilseeds · CBOT · ZR",
     "initials": "RR"
@@ -2120,6 +2876,7 @@
       "symbol": "ECO",
       "alternateSymbols": [],
       "logoInitials": "EC",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/ECO.png",
       "industryTags": [
         "Grains & Oilseeds"
       ],
@@ -2168,7 +2925,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.620Z"
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
     },
     "meta": "Grains & Oilseeds · Euronext · ECO",
     "initials": "EC"
@@ -2229,10 +2986,323 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.620Z"
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
     },
     "meta": "Grains & Oilseeds · OSE",
     "initials": "AB"
+  },
+  {
+    "slug": "canola",
+    "searchTerms": [
+      "canola",
+      "rs",
+      "ice / mgex",
+      "grains & oilseeds"
+    ],
+    "profile": {
+      "id": "canola",
+      "name": "Canola",
+      "category": "grains",
+      "categoryLabel": "Grains & Oilseeds",
+      "exchange": "ICE / MGEX",
+      "symbol": "RS",
+      "alternateSymbols": [],
+      "logoInitials": "RS",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/RS.png",
+      "industryTags": [
+        "Grains & Oilseeds"
+      ],
+      "quickStats": [
+        {
+          "label": "Category",
+          "value": "Grains & Oilseeds",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "ICE / MGEX",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "RS",
+          "format": "text"
+        }
+      ],
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Grains & Oilseeds"
+        },
+        {
+          "label": "Exchange",
+          "value": "ICE / MGEX"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "RS"
+        }
+      ],
+      "about": "Canola is a grains & oilseeds futures contract listed on ICE / MGEX (ticker RS). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
+    },
+    "meta": "Grains & Oilseeds · ICE / MGEX · RS",
+    "initials": "RS"
+  },
+  {
+    "slug": "sunflower-oil",
+    "searchTerms": [
+      "sunflower oil",
+      "euronext",
+      "grains & oilseeds",
+      "sunflower-oil"
+    ],
+    "profile": {
+      "id": "sunflower-oil",
+      "name": "Sunflower Oil",
+      "category": "grains",
+      "categoryLabel": "Grains & Oilseeds",
+      "exchange": "Euronext",
+      "symbol": null,
+      "alternateSymbols": [],
+      "logoInitials": "SO",
+      "industryTags": [
+        "Grains & Oilseeds"
+      ],
+      "quickStats": [
+        {
+          "label": "Category",
+          "value": "Grains & Oilseeds",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "Euronext",
+          "format": "text"
+        }
+      ],
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Grains & Oilseeds"
+        },
+        {
+          "label": "Exchange",
+          "value": "Euronext"
+        }
+      ],
+      "about": "Sunflower Oil is a grains & oilseeds futures contract listed on Euronext. Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
+    },
+    "meta": "Grains & Oilseeds · Euronext",
+    "initials": "SO"
+  },
+  {
+    "slug": "barley",
+    "searchTerms": [
+      "barley",
+      "euronext",
+      "grains & oilseeds"
+    ],
+    "profile": {
+      "id": "barley",
+      "name": "Barley",
+      "category": "grains",
+      "categoryLabel": "Grains & Oilseeds",
+      "exchange": "Euronext",
+      "symbol": null,
+      "alternateSymbols": [],
+      "logoInitials": "BA",
+      "industryTags": [
+        "Grains & Oilseeds"
+      ],
+      "quickStats": [
+        {
+          "label": "Category",
+          "value": "Grains & Oilseeds",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "Euronext",
+          "format": "text"
+        }
+      ],
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Grains & Oilseeds"
+        },
+        {
+          "label": "Exchange",
+          "value": "Euronext"
+        }
+      ],
+      "about": "Barley is a grains & oilseeds futures contract listed on Euronext. Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
+    },
+    "meta": "Grains & Oilseeds · Euronext",
+    "initials": "BA"
+  },
+  {
+    "slug": "sorghum",
+    "searchTerms": [
+      "sorghum",
+      "cbot",
+      "grains & oilseeds"
+    ],
+    "profile": {
+      "id": "sorghum",
+      "name": "Sorghum",
+      "category": "grains",
+      "categoryLabel": "Grains & Oilseeds",
+      "exchange": "CBOT",
+      "symbol": null,
+      "alternateSymbols": [],
+      "logoInitials": "SO",
+      "industryTags": [
+        "Grains & Oilseeds"
+      ],
+      "quickStats": [
+        {
+          "label": "Category",
+          "value": "Grains & Oilseeds",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "CBOT",
+          "format": "text"
+        }
+      ],
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Grains & Oilseeds"
+        },
+        {
+          "label": "Exchange",
+          "value": "CBOT"
+        }
+      ],
+      "about": "Sorghum is a grains & oilseeds futures contract listed on CBOT. Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
+    },
+    "meta": "Grains & Oilseeds · CBOT",
+    "initials": "SO"
+  },
+  {
+    "slug": "corn-starch",
+    "searchTerms": [
+      "corn starch",
+      "dce",
+      "grains & oilseeds",
+      "corn-starch"
+    ],
+    "profile": {
+      "id": "corn-starch",
+      "name": "Corn Starch",
+      "category": "grains",
+      "categoryLabel": "Grains & Oilseeds",
+      "exchange": "DCE",
+      "symbol": null,
+      "alternateSymbols": [],
+      "logoInitials": "CS",
+      "industryTags": [
+        "Grains & Oilseeds"
+      ],
+      "quickStats": [
+        {
+          "label": "Category",
+          "value": "Grains & Oilseeds",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "DCE",
+          "format": "text"
+        }
+      ],
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Grains & Oilseeds"
+        },
+        {
+          "label": "Exchange",
+          "value": "DCE"
+        }
+      ],
+      "about": "Corn Starch is a grains & oilseeds futures contract listed on DCE. Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
+    },
+    "meta": "Grains & Oilseeds · DCE",
+    "initials": "CS"
   },
   {
     "slug": "coffee-c-arabica",
@@ -2252,6 +3322,7 @@
       "symbol": "KC",
       "alternateSymbols": [],
       "logoInitials": "CC",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/KC.png",
       "industryTags": [
         "Soft Commodities"
       ],
@@ -2300,7 +3371,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.620Z"
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
     },
     "meta": "Soft Commodities · ICE · KC",
     "initials": "CC"
@@ -2361,7 +3432,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.620Z"
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
     },
     "meta": "Soft Commodities · ICE",
     "initials": "RC"
@@ -2383,6 +3454,7 @@
       "symbol": "CC",
       "alternateSymbols": [],
       "logoInitials": "CC",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/CC.png",
       "industryTags": [
         "Soft Commodities"
       ],
@@ -2431,7 +3503,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.620Z"
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
     },
     "meta": "Soft Commodities · ICE · CC",
     "initials": "CC"
@@ -2454,6 +3526,7 @@
       "symbol": "SB",
       "alternateSymbols": [],
       "logoInitials": "SN",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/SB.png",
       "industryTags": [
         "Soft Commodities"
       ],
@@ -2502,7 +3575,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.620Z"
+      "lastUpdated": "2026-05-18T20:38:42.625Z"
     },
     "meta": "Soft Commodities · ICE · SB",
     "initials": "SN"
@@ -2525,6 +3598,7 @@
       "symbol": "SE",
       "alternateSymbols": [],
       "logoInitials": "SN",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/SE.png",
       "industryTags": [
         "Soft Commodities"
       ],
@@ -2573,7 +3647,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.621Z"
+      "lastUpdated": "2026-05-18T20:38:42.626Z"
     },
     "meta": "Soft Commodities · ICE · SE",
     "initials": "SN"
@@ -2596,6 +3670,7 @@
       "symbol": "CT",
       "alternateSymbols": [],
       "logoInitials": "CN",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/CT.png",
       "industryTags": [
         "Soft Commodities"
       ],
@@ -2644,7 +3719,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.621Z"
+      "lastUpdated": "2026-05-18T20:38:42.626Z"
     },
     "meta": "Soft Commodities · ICE · CT",
     "initials": "CN"
@@ -2667,6 +3742,7 @@
       "symbol": "FCOJ-A",
       "alternateSymbols": [],
       "logoInitials": "FO",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/FCOJ-A.png",
       "industryTags": [
         "Soft Commodities"
       ],
@@ -2715,10 +3791,154 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.621Z"
+      "lastUpdated": "2026-05-18T20:38:42.626Z"
     },
     "meta": "Soft Commodities · ICE · FCOJ-A",
     "initials": "FO"
+  },
+  {
+    "slug": "london-robusta-coffee",
+    "searchTerms": [
+      "london robusta coffee",
+      "rc",
+      "ice",
+      "soft commodities",
+      "london-robusta-coffee"
+    ],
+    "profile": {
+      "id": "london-robusta-coffee",
+      "name": "London Robusta Coffee",
+      "category": "soft_commodities",
+      "categoryLabel": "Soft Commodities",
+      "exchange": "ICE",
+      "symbol": "RC",
+      "alternateSymbols": [],
+      "logoInitials": "LR",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/RC.png",
+      "industryTags": [
+        "Soft Commodities"
+      ],
+      "quickStats": [
+        {
+          "label": "Category",
+          "value": "Soft Commodities",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "ICE",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "RC",
+          "format": "text"
+        }
+      ],
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Soft Commodities"
+        },
+        {
+          "label": "Exchange",
+          "value": "ICE"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "RC"
+        }
+      ],
+      "about": "London Robusta Coffee is a soft commodities futures contract listed on ICE (ticker RC). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T20:38:42.626Z"
+    },
+    "meta": "Soft Commodities · ICE · RC",
+    "initials": "LR"
+  },
+  {
+    "slug": "white-sugar",
+    "searchTerms": [
+      "white sugar",
+      "w",
+      "ice",
+      "soft commodities",
+      "white-sugar"
+    ],
+    "profile": {
+      "id": "white-sugar",
+      "name": "White Sugar",
+      "category": "soft_commodities",
+      "categoryLabel": "Soft Commodities",
+      "exchange": "ICE",
+      "symbol": "W",
+      "alternateSymbols": [],
+      "logoInitials": "WS",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/W.png",
+      "industryTags": [
+        "Soft Commodities"
+      ],
+      "quickStats": [
+        {
+          "label": "Category",
+          "value": "Soft Commodities",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "ICE",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "W",
+          "format": "text"
+        }
+      ],
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Soft Commodities"
+        },
+        {
+          "label": "Exchange",
+          "value": "ICE"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "W"
+        }
+      ],
+      "about": "White Sugar is a soft commodities futures contract listed on ICE (ticker W). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T20:38:42.626Z"
+    },
+    "meta": "Soft Commodities · ICE · W",
+    "initials": "WS"
   },
   {
     "slug": "live-cattle",
@@ -2738,6 +3958,7 @@
       "symbol": "LE",
       "alternateSymbols": [],
       "logoInitials": "LC",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/LE.png",
       "industryTags": [
         "Livestock & Dairy"
       ],
@@ -2786,7 +4007,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.621Z"
+      "lastUpdated": "2026-05-18T20:38:42.626Z"
     },
     "meta": "Livestock & Dairy · CME · LE",
     "initials": "LC"
@@ -2809,6 +4030,7 @@
       "symbol": "GF",
       "alternateSymbols": [],
       "logoInitials": "FC",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/GF.png",
       "industryTags": [
         "Livestock & Dairy"
       ],
@@ -2857,7 +4079,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.621Z"
+      "lastUpdated": "2026-05-18T20:38:42.626Z"
     },
     "meta": "Livestock & Dairy · CME · GF",
     "initials": "FC"
@@ -2880,6 +4102,7 @@
       "symbol": "HE",
       "alternateSymbols": [],
       "logoInitials": "LH",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/HE.png",
       "industryTags": [
         "Livestock & Dairy"
       ],
@@ -2928,7 +4151,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.621Z"
+      "lastUpdated": "2026-05-18T20:38:42.626Z"
     },
     "meta": "Livestock & Dairy · CME · HE",
     "initials": "LH"
@@ -2951,6 +4174,7 @@
       "symbol": "DC",
       "alternateSymbols": [],
       "logoInitials": "CI",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/DC.png",
       "industryTags": [
         "Livestock & Dairy"
       ],
@@ -2999,7 +4223,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.621Z"
+      "lastUpdated": "2026-05-18T20:38:42.626Z"
     },
     "meta": "Livestock & Dairy · CME · DC",
     "initials": "CI"
@@ -3022,6 +4246,7 @@
       "symbol": "CB",
       "alternateSymbols": [],
       "logoInitials": "CS",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/CB.png",
       "industryTags": [
         "Livestock & Dairy"
       ],
@@ -3070,7 +4295,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.621Z"
+      "lastUpdated": "2026-05-18T20:38:42.626Z"
     },
     "meta": "Livestock & Dairy · CME · CB",
     "initials": "CS"
@@ -3093,6 +4318,7 @@
       "symbol": "GNF",
       "alternateSymbols": [],
       "logoInitials": "NF",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/GNF.png",
       "industryTags": [
         "Livestock & Dairy"
       ],
@@ -3141,7 +4367,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.621Z"
+      "lastUpdated": "2026-05-18T20:38:42.626Z"
     },
     "meta": "Livestock & Dairy · CME · GNF",
     "initials": "NF"
@@ -3164,6 +4390,7 @@
       "symbol": "WMP",
       "alternateSymbols": [],
       "logoInitials": "WM",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/WMP.png",
       "industryTags": [
         "Livestock & Dairy"
       ],
@@ -3212,7 +4439,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.621Z"
+      "lastUpdated": "2026-05-18T20:38:42.626Z"
     },
     "meta": "Livestock & Dairy · SGX · WMP",
     "initials": "WM"
@@ -3235,6 +4462,7 @@
       "symbol": "SMP",
       "alternateSymbols": [],
       "logoInitials": "SM",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/SMP.png",
       "industryTags": [
         "Livestock & Dairy"
       ],
@@ -3283,7 +4511,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.621Z"
+      "lastUpdated": "2026-05-18T20:38:42.626Z"
     },
     "meta": "Livestock & Dairy · SGX · SMP",
     "initials": "SM"
@@ -3306,6 +4534,7 @@
       "symbol": "LBS",
       "alternateSymbols": [],
       "logoInitials": "RL",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/LBS.png",
       "industryTags": [
         "Forestry & Fiber"
       ],
@@ -3354,7 +4583,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.621Z"
+      "lastUpdated": "2026-05-18T20:38:42.626Z"
     },
     "meta": "Forestry & Fiber · CME · LBS",
     "initials": "RL"
@@ -3377,6 +4606,7 @@
       "symbol": "HWP",
       "alternateSymbols": [],
       "logoInitials": "HP",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/HWP.png",
       "industryTags": [
         "Forestry & Fiber"
       ],
@@ -3425,7 +4655,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.621Z"
+      "lastUpdated": "2026-05-18T20:38:42.626Z"
     },
     "meta": "Forestry & Fiber · CME · HWP",
     "initials": "HP"
@@ -3448,6 +4678,7 @@
       "symbol": "WP",
       "alternateSymbols": [],
       "logoInitials": "SP",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/WP.png",
       "industryTags": [
         "Forestry & Fiber"
       ],
@@ -3496,7 +4727,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.621Z"
+      "lastUpdated": "2026-05-18T20:38:42.626Z"
     },
     "meta": "Forestry & Fiber · CME · WP",
     "initials": "SP"
@@ -3557,7 +4788,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.621Z"
+      "lastUpdated": "2026-05-18T20:38:42.626Z"
     },
     "meta": "Other / Specialty · Bursa Malaysia",
     "initials": "PO"
@@ -3617,7 +4848,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.621Z"
+      "lastUpdated": "2026-05-18T20:38:42.626Z"
     },
     "meta": "Other / Specialty · Osaka Exchange",
     "initials": "RU"
@@ -3677,7 +4908,7 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.621Z"
+      "lastUpdated": "2026-05-18T20:38:42.626Z"
     },
     "meta": "Other / Specialty · ASX",
     "initials": "WO"
@@ -3737,9 +4968,453 @@
           "url": "https://www.ice.com"
         }
       ],
-      "lastUpdated": "2026-05-18T17:31:38.621Z"
+      "lastUpdated": "2026-05-18T20:38:42.626Z"
     },
     "meta": "Other / Specialty · Saint Petersburg Bourse",
     "initials": "AM"
+  },
+  {
+    "slug": "eu-carbon-allowances-eua",
+    "searchTerms": [
+      "eu carbon allowances (eua)",
+      "eua",
+      "ice",
+      "other / specialty",
+      "eu-carbon-allowances-eua"
+    ],
+    "profile": {
+      "id": "eu-carbon-allowances-eua",
+      "name": "EU Carbon Allowances (EUA)",
+      "category": "specialty",
+      "categoryLabel": "Other / Specialty",
+      "exchange": "ICE",
+      "symbol": "EUA",
+      "alternateSymbols": [],
+      "logoInitials": "EC",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/EUA.png",
+      "industryTags": [
+        "Other / Specialty"
+      ],
+      "quickStats": [
+        {
+          "label": "Category",
+          "value": "Other / Specialty",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "ICE",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "EUA",
+          "format": "text"
+        }
+      ],
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Other / Specialty"
+        },
+        {
+          "label": "Exchange",
+          "value": "ICE"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "EUA"
+        }
+      ],
+      "about": "EU Carbon Allowances (EUA) is a other / specialty futures contract listed on ICE (ticker EUA). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T20:38:42.626Z"
+    },
+    "meta": "Other / Specialty · ICE · EUA",
+    "initials": "EC"
+  },
+  {
+    "slug": "uk-carbon-allowances-uka",
+    "searchTerms": [
+      "uk carbon allowances (uka)",
+      "uka",
+      "ice",
+      "other / specialty",
+      "uk-carbon-allowances-uka"
+    ],
+    "profile": {
+      "id": "uk-carbon-allowances-uka",
+      "name": "UK Carbon Allowances (UKA)",
+      "category": "specialty",
+      "categoryLabel": "Other / Specialty",
+      "exchange": "ICE",
+      "symbol": "UKA",
+      "alternateSymbols": [],
+      "logoInitials": "UC",
+      "logoUrl": "https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/UKA.png",
+      "industryTags": [
+        "Other / Specialty"
+      ],
+      "quickStats": [
+        {
+          "label": "Category",
+          "value": "Other / Specialty",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "ICE",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "UKA",
+          "format": "text"
+        }
+      ],
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Other / Specialty"
+        },
+        {
+          "label": "Exchange",
+          "value": "ICE"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "UKA"
+        }
+      ],
+      "about": "UK Carbon Allowances (UKA) is a other / specialty futures contract listed on ICE (ticker UKA). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T20:38:42.626Z"
+    },
+    "meta": "Other / Specialty · ICE · UKA",
+    "initials": "UC"
+  },
+  {
+    "slug": "ammonia",
+    "searchTerms": [
+      "ammonia",
+      "cme / baltic",
+      "other / specialty"
+    ],
+    "profile": {
+      "id": "ammonia",
+      "name": "Ammonia",
+      "category": "specialty",
+      "categoryLabel": "Other / Specialty",
+      "exchange": "CME / Baltic",
+      "symbol": null,
+      "alternateSymbols": [],
+      "logoInitials": "AM",
+      "industryTags": [
+        "Other / Specialty"
+      ],
+      "quickStats": [
+        {
+          "label": "Category",
+          "value": "Other / Specialty",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "CME / Baltic",
+          "format": "text"
+        }
+      ],
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Other / Specialty"
+        },
+        {
+          "label": "Exchange",
+          "value": "CME / Baltic"
+        }
+      ],
+      "about": "Ammonia is a other / specialty futures contract listed on CME / Baltic. Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T20:38:42.626Z"
+    },
+    "meta": "Other / Specialty · CME / Baltic",
+    "initials": "AM"
+  },
+  {
+    "slug": "urea",
+    "searchTerms": [
+      "urea",
+      "cme / baltic",
+      "other / specialty"
+    ],
+    "profile": {
+      "id": "urea",
+      "name": "Urea",
+      "category": "specialty",
+      "categoryLabel": "Other / Specialty",
+      "exchange": "CME / Baltic",
+      "symbol": null,
+      "alternateSymbols": [],
+      "logoInitials": "UR",
+      "industryTags": [
+        "Other / Specialty"
+      ],
+      "quickStats": [
+        {
+          "label": "Category",
+          "value": "Other / Specialty",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "CME / Baltic",
+          "format": "text"
+        }
+      ],
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Other / Specialty"
+        },
+        {
+          "label": "Exchange",
+          "value": "CME / Baltic"
+        }
+      ],
+      "about": "Urea is a other / specialty futures contract listed on CME / Baltic. Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T20:38:42.626Z"
+    },
+    "meta": "Other / Specialty · CME / Baltic",
+    "initials": "UR"
+  },
+  {
+    "slug": "sulfur",
+    "searchTerms": [
+      "sulfur",
+      "cme",
+      "other / specialty"
+    ],
+    "profile": {
+      "id": "sulfur",
+      "name": "Sulfur",
+      "category": "specialty",
+      "categoryLabel": "Other / Specialty",
+      "exchange": "CME",
+      "symbol": null,
+      "alternateSymbols": [],
+      "logoInitials": "SU",
+      "industryTags": [
+        "Other / Specialty"
+      ],
+      "quickStats": [
+        {
+          "label": "Category",
+          "value": "Other / Specialty",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "CME",
+          "format": "text"
+        }
+      ],
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Other / Specialty"
+        },
+        {
+          "label": "Exchange",
+          "value": "CME"
+        }
+      ],
+      "about": "Sulfur is a other / specialty futures contract listed on CME. Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T20:38:42.626Z"
+    },
+    "meta": "Other / Specialty · CME",
+    "initials": "SU"
+  },
+  {
+    "slug": "polypropylene",
+    "searchTerms": [
+      "polypropylene",
+      "dce",
+      "other / specialty"
+    ],
+    "profile": {
+      "id": "polypropylene",
+      "name": "Polypropylene",
+      "category": "specialty",
+      "categoryLabel": "Other / Specialty",
+      "exchange": "DCE",
+      "symbol": null,
+      "alternateSymbols": [],
+      "logoInitials": "PO",
+      "industryTags": [
+        "Other / Specialty"
+      ],
+      "quickStats": [
+        {
+          "label": "Category",
+          "value": "Other / Specialty",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "DCE",
+          "format": "text"
+        }
+      ],
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Other / Specialty"
+        },
+        {
+          "label": "Exchange",
+          "value": "DCE"
+        }
+      ],
+      "about": "Polypropylene is a other / specialty futures contract listed on DCE. Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T20:38:42.626Z"
+    },
+    "meta": "Other / Specialty · DCE",
+    "initials": "PO"
+  },
+  {
+    "slug": "polyethylene",
+    "searchTerms": [
+      "polyethylene",
+      "dce",
+      "other / specialty"
+    ],
+    "profile": {
+      "id": "polyethylene",
+      "name": "Polyethylene",
+      "category": "specialty",
+      "categoryLabel": "Other / Specialty",
+      "exchange": "DCE",
+      "symbol": null,
+      "alternateSymbols": [],
+      "logoInitials": "PO",
+      "industryTags": [
+        "Other / Specialty"
+      ],
+      "quickStats": [
+        {
+          "label": "Category",
+          "value": "Other / Specialty",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "DCE",
+          "format": "text"
+        }
+      ],
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Other / Specialty"
+        },
+        {
+          "label": "Exchange",
+          "value": "DCE"
+        }
+      ],
+      "about": "Polyethylene is a other / specialty futures contract listed on DCE. Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T20:38:42.626Z"
+    },
+    "meta": "Other / Specialty · DCE",
+    "initials": "PO"
   }
 ]
