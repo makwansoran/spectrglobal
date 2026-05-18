@@ -55,6 +55,10 @@ function isPersonAppRoute(pathname) {
   return pathname === "/person" || pathname.startsWith("/person/");
 }
 
+function isCommodityRoute(pathname) {
+  return pathname === "/commodity" || pathname.startsWith("/commodity/");
+}
+
 function isProfileSpaRoute(pathname) {
   return isCompanyAppRoute(pathname) || isPersonAppRoute(pathname);
 }
@@ -86,6 +90,14 @@ function serveStatic(req, res, pathname) {
     if (!err && stat.isFile()) {
       sendFile(res, filePath);
       return;
+    }
+
+    if (isCommodityRoute(pathname)) {
+      const commodityHtml = path.join(ROOT, "commodity.html");
+      if (fs.existsSync(commodityHtml)) {
+        sendFile(res, commodityHtml);
+        return;
+      }
     }
 
     if (isProfileSpaRoute(pathname) && fs.existsSync(COMPANY_SPA)) {

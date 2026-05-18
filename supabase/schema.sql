@@ -68,3 +68,27 @@ create policy "Public read company_people"
   for select
   to anon, authenticated
   using (true);
+
+-- Commodities (futures / physical — separate from listed companies)
+create table if not exists public.commodities (
+  slug text primary key,
+  name text not null,
+  category text not null,
+  meta text not null,
+  initials text not null,
+  search_terms jsonb not null default '[]'::jsonb,
+  profile_json jsonb not null,
+  updated_at timestamptz not null default now()
+);
+
+create index if not exists commodities_name_idx on public.commodities (name);
+create index if not exists commodities_category_idx on public.commodities (category);
+
+alter table public.commodities enable row level security;
+
+drop policy if exists "Public read commodities" on public.commodities;
+create policy "Public read commodities"
+  on public.commodities
+  for select
+  to anon, authenticated
+  using (true);

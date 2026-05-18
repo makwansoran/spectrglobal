@@ -7,6 +7,7 @@ export type CompanyPayload = {
 
 export type CompanySearchItem = {
   id: string;
+  kind?: "company" | "commodity";
   name: string;
   legalName: string;
   meta: string;
@@ -15,6 +16,7 @@ export type CompanySearchItem = {
   terms: string[];
   ticker?: string;
   subtitle?: string;
+  category?: string;
 };
 
 const apiBase = import.meta.env.VITE_API_BASE ?? "";

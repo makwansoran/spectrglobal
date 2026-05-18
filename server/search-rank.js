@@ -119,10 +119,37 @@ function formatSearchSubtitle(row) {
   return ticker || legal || "";
 }
 
+function scoreUnifiedSearch(row, query) {
+  const ql = String(query || "")
+    .trim()
+    .toLowerCase();
+  if (!ql) return 0;
+
+  let score = 0;
+  const name = String(row.name || "").toLowerCase();
+  const meta = String(row.meta || "").toLowerCase();
+  const ticker = String(row.ticker || "").toLowerCase();
+
+  if (name === ql) score += 200;
+  else if (name.startsWith(ql)) score += 120;
+  else if (name.includes(ql)) score += 70;
+
+  if (ticker && ticker === ql) score += 190;
+  else if (ticker && ticker.startsWith(ql)) score += 100;
+
+  if (Array.isArray(row.terms) && row.terms.some((t) => t === ql)) score += 95;
+  if (meta.includes(ql)) score += 40;
+  if (row.id && String(row.id).includes(ql)) score += 30;
+  if (row.kind === "company") score += 8;
+
+  return score;
+}
+
 module.exports = {
   PREFERRED_SLUG_BY_TICKER,
   dedupeSearchResults,
   formatSearchSubtitle,
+  scoreUnifiedSearch,
   getRowTicker,
   normalizeTicker,
   queryLooksLikeTicker,

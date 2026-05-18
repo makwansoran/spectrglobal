@@ -8,6 +8,7 @@
     "dev": "node scripts/dev-server.js",
     "dev:profile": "npm run dev --prefix profile",
     "db:seed": "node scripts/build-oslo-listed.js && node scripts/seed-database.js",
+    "db:seed-commodities": "node scripts/build-commodities-seed.js && node scripts/seed-commodities.js",
     "db:build-list": "node scripts/build-oslo-listed.js",
     "db:list": "node -e \"require('./scripts/load-env').loadEnv(); require('./server/store').listCompanies().then(c=>console.log(c))\"",
     "db:import-us": "node scripts/import-finnhub-us.js",

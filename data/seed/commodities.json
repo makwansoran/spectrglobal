@@ -1,0 +1,1567 @@
+[
+  {
+    "slug": "wti-crude-oil",
+    "searchTerms": [
+      "wti crude oil",
+      "cl",
+      "nymex / ice",
+      "energy",
+      "wtib",
+      "wti-crude-oil"
+    ],
+    "profile": {
+      "id": "wti-crude-oil",
+      "name": "WTI Crude Oil",
+      "category": "energy",
+      "categoryLabel": "Energy",
+      "exchange": "NYMEX / ICE",
+      "symbol": "CL",
+      "alternateSymbols": [
+        "WTIB"
+      ],
+      "about": "WTI Crude Oil is traded on NYMEX / ICE (symbol CL). Category: Energy.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.159Z"
+    },
+    "meta": "Energy · NYMEX / ICE · CL",
+    "initials": "WC"
+  },
+  {
+    "slug": "brent-crude-oil",
+    "searchTerms": [
+      "brent crude oil",
+      "ice",
+      "energy",
+      "brent-crude-oil"
+    ],
+    "profile": {
+      "id": "brent-crude-oil",
+      "name": "Brent Crude Oil",
+      "category": "energy",
+      "categoryLabel": "Energy",
+      "exchange": "ICE",
+      "symbol": null,
+      "alternateSymbols": [],
+      "about": "Brent Crude Oil is traded on ICE. Category: Energy.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.160Z"
+    },
+    "meta": "Energy · ICE",
+    "initials": "BC"
+  },
+  {
+    "slug": "natural-gas",
+    "searchTerms": [
+      "natural gas",
+      "ng",
+      "nymex",
+      "energy",
+      "natural-gas"
+    ],
+    "profile": {
+      "id": "natural-gas",
+      "name": "Natural Gas",
+      "category": "energy",
+      "categoryLabel": "Energy",
+      "exchange": "NYMEX",
+      "symbol": "NG",
+      "alternateSymbols": [],
+      "about": "Natural Gas is traded on NYMEX (symbol NG). Category: Energy.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Energy · NYMEX · NG",
+    "initials": "NG"
+  },
+  {
+    "slug": "natural-gas-uk",
+    "searchTerms": [
+      "natural gas (uk)",
+      "nbp",
+      "ice",
+      "energy",
+      "natural-gas-uk"
+    ],
+    "profile": {
+      "id": "natural-gas-uk",
+      "name": "Natural Gas (UK)",
+      "category": "energy",
+      "categoryLabel": "Energy",
+      "exchange": "ICE",
+      "symbol": "NBP",
+      "alternateSymbols": [],
+      "about": "Natural Gas (UK) is traded on ICE (symbol NBP). Category: Energy.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Energy · ICE · NBP",
+    "initials": "NG"
+  },
+  {
+    "slug": "heating-oil",
+    "searchTerms": [
+      "heating oil",
+      "ho",
+      "nymex",
+      "energy",
+      "heating-oil"
+    ],
+    "profile": {
+      "id": "heating-oil",
+      "name": "Heating Oil",
+      "category": "energy",
+      "categoryLabel": "Energy",
+      "exchange": "NYMEX",
+      "symbol": "HO",
+      "alternateSymbols": [],
+      "about": "Heating Oil is traded on NYMEX (symbol HO). Category: Energy.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Energy · NYMEX · HO",
+    "initials": "HO"
+  },
+  {
+    "slug": "rbob-gasoline",
+    "searchTerms": [
+      "rbob gasoline",
+      "rb",
+      "nymex",
+      "energy",
+      "rbob-gasoline"
+    ],
+    "profile": {
+      "id": "rbob-gasoline",
+      "name": "RBOB Gasoline",
+      "category": "energy",
+      "categoryLabel": "Energy",
+      "exchange": "NYMEX",
+      "symbol": "RB",
+      "alternateSymbols": [],
+      "about": "RBOB Gasoline is traded on NYMEX (symbol RB). Category: Energy.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Energy · NYMEX · RB",
+    "initials": "RG"
+  },
+  {
+    "slug": "gulf-coast-gasoline",
+    "searchTerms": [
+      "gulf coast gasoline",
+      "lr",
+      "nymex",
+      "energy",
+      "gulf-coast-gasoline"
+    ],
+    "profile": {
+      "id": "gulf-coast-gasoline",
+      "name": "Gulf Coast Gasoline",
+      "category": "energy",
+      "categoryLabel": "Energy",
+      "exchange": "NYMEX",
+      "symbol": "LR",
+      "alternateSymbols": [],
+      "about": "Gulf Coast Gasoline is traded on NYMEX (symbol LR). Category: Energy.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Energy · NYMEX · LR",
+    "initials": "GC"
+  },
+  {
+    "slug": "propane",
+    "searchTerms": [
+      "propane",
+      "pn",
+      "nymex",
+      "energy"
+    ],
+    "profile": {
+      "id": "propane",
+      "name": "Propane",
+      "category": "energy",
+      "categoryLabel": "Energy",
+      "exchange": "NYMEX",
+      "symbol": "PN",
+      "alternateSymbols": [],
+      "about": "Propane is traded on NYMEX (symbol PN). Category: Energy.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Energy · NYMEX · PN",
+    "initials": "PN"
+  },
+  {
+    "slug": "ethanol",
+    "searchTerms": [
+      "ethanol",
+      "ze",
+      "cbot",
+      "energy"
+    ],
+    "profile": {
+      "id": "ethanol",
+      "name": "Ethanol",
+      "category": "energy",
+      "categoryLabel": "Energy",
+      "exchange": "CBOT",
+      "symbol": "ZE",
+      "alternateSymbols": [],
+      "about": "Ethanol is traded on CBOT (symbol ZE). Category: Energy.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Energy · CBOT · ZE",
+    "initials": "ZE"
+  },
+  {
+    "slug": "purified-terephthalic-acid-pta",
+    "searchTerms": [
+      "purified terephthalic acid (pta)",
+      "ta",
+      "zce",
+      "energy",
+      "purified-terephthalic-acid-pta"
+    ],
+    "profile": {
+      "id": "purified-terephthalic-acid-pta",
+      "name": "Purified Terephthalic Acid (PTA)",
+      "category": "energy",
+      "categoryLabel": "Energy",
+      "exchange": "ZCE",
+      "symbol": "TA",
+      "alternateSymbols": [],
+      "about": "Purified Terephthalic Acid (PTA) is traded on ZCE (symbol TA). Category: Energy.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Energy · ZCE · TA",
+    "initials": "PT"
+  },
+  {
+    "slug": "gold",
+    "searchTerms": [
+      "gold",
+      "gc",
+      "comex",
+      "precious metals"
+    ],
+    "profile": {
+      "id": "gold",
+      "name": "Gold",
+      "category": "precious_metals",
+      "categoryLabel": "Precious Metals",
+      "exchange": "COMEX",
+      "symbol": "GC",
+      "alternateSymbols": [],
+      "about": "Gold is traded on COMEX (symbol GC). Category: Precious Metals.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Precious Metals · COMEX · GC",
+    "initials": "GC"
+  },
+  {
+    "slug": "silver",
+    "searchTerms": [
+      "silver",
+      "si",
+      "comex",
+      "precious metals"
+    ],
+    "profile": {
+      "id": "silver",
+      "name": "Silver",
+      "category": "precious_metals",
+      "categoryLabel": "Precious Metals",
+      "exchange": "COMEX",
+      "symbol": "SI",
+      "alternateSymbols": [],
+      "about": "Silver is traded on COMEX (symbol SI). Category: Precious Metals.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Precious Metals · COMEX · SI",
+    "initials": "SI"
+  },
+  {
+    "slug": "platinum",
+    "searchTerms": [
+      "platinum",
+      "pl",
+      "nymex",
+      "precious metals"
+    ],
+    "profile": {
+      "id": "platinum",
+      "name": "Platinum",
+      "category": "precious_metals",
+      "categoryLabel": "Precious Metals",
+      "exchange": "NYMEX",
+      "symbol": "PL",
+      "alternateSymbols": [],
+      "about": "Platinum is traded on NYMEX (symbol PL). Category: Precious Metals.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Precious Metals · NYMEX · PL",
+    "initials": "PL"
+  },
+  {
+    "slug": "palladium",
+    "searchTerms": [
+      "palladium",
+      "pa",
+      "nymex",
+      "precious metals"
+    ],
+    "profile": {
+      "id": "palladium",
+      "name": "Palladium",
+      "category": "precious_metals",
+      "categoryLabel": "Precious Metals",
+      "exchange": "NYMEX",
+      "symbol": "PA",
+      "alternateSymbols": [],
+      "about": "Palladium is traded on NYMEX (symbol PA). Category: Precious Metals.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Precious Metals · NYMEX · PA",
+    "initials": "PA"
+  },
+  {
+    "slug": "copper",
+    "searchTerms": [
+      "copper",
+      "lme / comex",
+      "base / industrial metals"
+    ],
+    "profile": {
+      "id": "copper",
+      "name": "Copper",
+      "category": "base_metals",
+      "categoryLabel": "Base / Industrial Metals",
+      "exchange": "LME / COMEX",
+      "symbol": null,
+      "alternateSymbols": [],
+      "about": "Copper is traded on LME / COMEX. Category: Base / Industrial Metals.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Base / Industrial Metals · LME / COMEX",
+    "initials": "CO"
+  },
+  {
+    "slug": "aluminium",
+    "searchTerms": [
+      "aluminium",
+      "lme",
+      "base / industrial metals"
+    ],
+    "profile": {
+      "id": "aluminium",
+      "name": "Aluminium",
+      "category": "base_metals",
+      "categoryLabel": "Base / Industrial Metals",
+      "exchange": "LME",
+      "symbol": null,
+      "alternateSymbols": [],
+      "about": "Aluminium is traded on LME. Category: Base / Industrial Metals.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Base / Industrial Metals · LME",
+    "initials": "AL"
+  },
+  {
+    "slug": "aluminium-alloy",
+    "searchTerms": [
+      "aluminium alloy",
+      "lme",
+      "base / industrial metals",
+      "aluminium-alloy"
+    ],
+    "profile": {
+      "id": "aluminium-alloy",
+      "name": "Aluminium Alloy",
+      "category": "base_metals",
+      "categoryLabel": "Base / Industrial Metals",
+      "exchange": "LME",
+      "symbol": null,
+      "alternateSymbols": [],
+      "about": "Aluminium Alloy is traded on LME. Category: Base / Industrial Metals.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Base / Industrial Metals · LME",
+    "initials": "AA"
+  },
+  {
+    "slug": "zinc",
+    "searchTerms": [
+      "zinc",
+      "lme",
+      "base / industrial metals"
+    ],
+    "profile": {
+      "id": "zinc",
+      "name": "Zinc",
+      "category": "base_metals",
+      "categoryLabel": "Base / Industrial Metals",
+      "exchange": "LME",
+      "symbol": null,
+      "alternateSymbols": [],
+      "about": "Zinc is traded on LME. Category: Base / Industrial Metals.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Base / Industrial Metals · LME",
+    "initials": "ZI"
+  },
+  {
+    "slug": "lead",
+    "searchTerms": [
+      "lead",
+      "lme",
+      "base / industrial metals"
+    ],
+    "profile": {
+      "id": "lead",
+      "name": "Lead",
+      "category": "base_metals",
+      "categoryLabel": "Base / Industrial Metals",
+      "exchange": "LME",
+      "symbol": null,
+      "alternateSymbols": [],
+      "about": "Lead is traded on LME. Category: Base / Industrial Metals.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Base / Industrial Metals · LME",
+    "initials": "LE"
+  },
+  {
+    "slug": "nickel",
+    "searchTerms": [
+      "nickel",
+      "lme",
+      "base / industrial metals"
+    ],
+    "profile": {
+      "id": "nickel",
+      "name": "Nickel",
+      "category": "base_metals",
+      "categoryLabel": "Base / Industrial Metals",
+      "exchange": "LME",
+      "symbol": null,
+      "alternateSymbols": [],
+      "about": "Nickel is traded on LME. Category: Base / Industrial Metals.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Base / Industrial Metals · LME",
+    "initials": "NI"
+  },
+  {
+    "slug": "tin",
+    "searchTerms": [
+      "tin",
+      "lme",
+      "base / industrial metals"
+    ],
+    "profile": {
+      "id": "tin",
+      "name": "Tin",
+      "category": "base_metals",
+      "categoryLabel": "Base / Industrial Metals",
+      "exchange": "LME",
+      "symbol": null,
+      "alternateSymbols": [],
+      "about": "Tin is traded on LME. Category: Base / Industrial Metals.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Base / Industrial Metals · LME",
+    "initials": "TI"
+  },
+  {
+    "slug": "cobalt",
+    "searchTerms": [
+      "cobalt",
+      "lme",
+      "base / industrial metals"
+    ],
+    "profile": {
+      "id": "cobalt",
+      "name": "Cobalt",
+      "category": "base_metals",
+      "categoryLabel": "Base / Industrial Metals",
+      "exchange": "LME",
+      "symbol": null,
+      "alternateSymbols": [],
+      "about": "Cobalt is traded on LME. Category: Base / Industrial Metals.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Base / Industrial Metals · LME",
+    "initials": "CO"
+  },
+  {
+    "slug": "molybdenum",
+    "searchTerms": [
+      "molybdenum",
+      "lme",
+      "base / industrial metals"
+    ],
+    "profile": {
+      "id": "molybdenum",
+      "name": "Molybdenum",
+      "category": "base_metals",
+      "categoryLabel": "Base / Industrial Metals",
+      "exchange": "LME",
+      "symbol": null,
+      "alternateSymbols": [],
+      "about": "Molybdenum is traded on LME. Category: Base / Industrial Metals.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Base / Industrial Metals · LME",
+    "initials": "MO"
+  },
+  {
+    "slug": "corn",
+    "searchTerms": [
+      "corn",
+      "zc",
+      "cbot / euronext / dce",
+      "grains & oilseeds",
+      "ema"
+    ],
+    "profile": {
+      "id": "corn",
+      "name": "Corn",
+      "category": "grains",
+      "categoryLabel": "Grains & Oilseeds",
+      "exchange": "CBOT / Euronext / DCE",
+      "symbol": "ZC",
+      "alternateSymbols": [
+        "EMA"
+      ],
+      "about": "Corn is traded on CBOT / Euronext / DCE (symbol ZC). Category: Grains & Oilseeds.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Grains & Oilseeds · CBOT / Euronext / DCE · ZC",
+    "initials": "ZC"
+  },
+  {
+    "slug": "wheat",
+    "searchTerms": [
+      "wheat",
+      "zw",
+      "cbot / euronext",
+      "grains & oilseeds",
+      "ebm"
+    ],
+    "profile": {
+      "id": "wheat",
+      "name": "Wheat",
+      "category": "grains",
+      "categoryLabel": "Grains & Oilseeds",
+      "exchange": "CBOT / Euronext",
+      "symbol": "ZW",
+      "alternateSymbols": [
+        "EBM"
+      ],
+      "about": "Wheat is traded on CBOT / Euronext (symbol ZW). Category: Grains & Oilseeds.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Grains & Oilseeds · CBOT / Euronext · ZW",
+    "initials": "ZW"
+  },
+  {
+    "slug": "uk-feed-wheat",
+    "searchTerms": [
+      "uk feed wheat",
+      "ts",
+      "ice",
+      "grains & oilseeds",
+      "uk-feed-wheat"
+    ],
+    "profile": {
+      "id": "uk-feed-wheat",
+      "name": "UK Feed Wheat",
+      "category": "grains",
+      "categoryLabel": "Grains & Oilseeds",
+      "exchange": "ICE",
+      "symbol": "TS",
+      "alternateSymbols": [],
+      "about": "UK Feed Wheat is traded on ICE (symbol TS). Category: Grains & Oilseeds.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Grains & Oilseeds · ICE · TS",
+    "initials": "UF"
+  },
+  {
+    "slug": "soybeans",
+    "searchTerms": [
+      "soybeans",
+      "zs",
+      "cbot / dce",
+      "grains & oilseeds"
+    ],
+    "profile": {
+      "id": "soybeans",
+      "name": "Soybeans",
+      "category": "grains",
+      "categoryLabel": "Grains & Oilseeds",
+      "exchange": "CBOT / DCE",
+      "symbol": "ZS",
+      "alternateSymbols": [],
+      "about": "Soybeans is traded on CBOT / DCE (symbol ZS). Category: Grains & Oilseeds.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Grains & Oilseeds · CBOT / DCE · ZS",
+    "initials": "ZS"
+  },
+  {
+    "slug": "soybean-meal",
+    "searchTerms": [
+      "soybean meal",
+      "zm",
+      "cbot / dce",
+      "grains & oilseeds",
+      "soybean-meal"
+    ],
+    "profile": {
+      "id": "soybean-meal",
+      "name": "Soybean Meal",
+      "category": "grains",
+      "categoryLabel": "Grains & Oilseeds",
+      "exchange": "CBOT / DCE",
+      "symbol": "ZM",
+      "alternateSymbols": [],
+      "about": "Soybean Meal is traded on CBOT / DCE (symbol ZM). Category: Grains & Oilseeds.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Grains & Oilseeds · CBOT / DCE · ZM",
+    "initials": "SM"
+  },
+  {
+    "slug": "soybean-oil",
+    "searchTerms": [
+      "soybean oil",
+      "zl",
+      "cbot / dce",
+      "grains & oilseeds",
+      "soybean-oil"
+    ],
+    "profile": {
+      "id": "soybean-oil",
+      "name": "Soybean Oil",
+      "category": "grains",
+      "categoryLabel": "Grains & Oilseeds",
+      "exchange": "CBOT / DCE",
+      "symbol": "ZL",
+      "alternateSymbols": [],
+      "about": "Soybean Oil is traded on CBOT / DCE (symbol ZL). Category: Grains & Oilseeds.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Grains & Oilseeds · CBOT / DCE · ZL",
+    "initials": "SO"
+  },
+  {
+    "slug": "oats",
+    "searchTerms": [
+      "oats",
+      "zo",
+      "cbot",
+      "grains & oilseeds"
+    ],
+    "profile": {
+      "id": "oats",
+      "name": "Oats",
+      "category": "grains",
+      "categoryLabel": "Grains & Oilseeds",
+      "exchange": "CBOT",
+      "symbol": "ZO",
+      "alternateSymbols": [],
+      "about": "Oats is traded on CBOT (symbol ZO). Category: Grains & Oilseeds.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Grains & Oilseeds · CBOT · ZO",
+    "initials": "ZO"
+  },
+  {
+    "slug": "rough-rice",
+    "searchTerms": [
+      "rough rice",
+      "zr",
+      "cbot",
+      "grains & oilseeds",
+      "rough-rice"
+    ],
+    "profile": {
+      "id": "rough-rice",
+      "name": "Rough Rice",
+      "category": "grains",
+      "categoryLabel": "Grains & Oilseeds",
+      "exchange": "CBOT",
+      "symbol": "ZR",
+      "alternateSymbols": [],
+      "about": "Rough Rice is traded on CBOT (symbol ZR). Category: Grains & Oilseeds.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Grains & Oilseeds · CBOT · ZR",
+    "initials": "RR"
+  },
+  {
+    "slug": "rapeseed",
+    "searchTerms": [
+      "rapeseed",
+      "eco",
+      "euronext",
+      "grains & oilseeds"
+    ],
+    "profile": {
+      "id": "rapeseed",
+      "name": "Rapeseed",
+      "category": "grains",
+      "categoryLabel": "Grains & Oilseeds",
+      "exchange": "Euronext",
+      "symbol": "ECO",
+      "alternateSymbols": [],
+      "about": "Rapeseed is traded on Euronext (symbol ECO). Category: Grains & Oilseeds.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Grains & Oilseeds · Euronext · ECO",
+    "initials": "EC"
+  },
+  {
+    "slug": "adzuki-bean",
+    "searchTerms": [
+      "adzuki bean",
+      "ose",
+      "grains & oilseeds",
+      "adzuki-bean"
+    ],
+    "profile": {
+      "id": "adzuki-bean",
+      "name": "Adzuki Bean",
+      "category": "grains",
+      "categoryLabel": "Grains & Oilseeds",
+      "exchange": "OSE",
+      "symbol": null,
+      "alternateSymbols": [],
+      "about": "Adzuki Bean is traded on OSE. Category: Grains & Oilseeds.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Grains & Oilseeds · OSE",
+    "initials": "AB"
+  },
+  {
+    "slug": "coffee-c-arabica",
+    "searchTerms": [
+      "coffee c (arabica)",
+      "kc",
+      "ice",
+      "soft commodities",
+      "coffee-c-arabica"
+    ],
+    "profile": {
+      "id": "coffee-c-arabica",
+      "name": "Coffee C (Arabica)",
+      "category": "soft_commodities",
+      "categoryLabel": "Soft Commodities",
+      "exchange": "ICE",
+      "symbol": "KC",
+      "alternateSymbols": [],
+      "about": "Coffee C (Arabica) is traded on ICE (symbol KC). Category: Soft Commodities.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Soft Commodities · ICE · KC",
+    "initials": "CC"
+  },
+  {
+    "slug": "robusta-coffee",
+    "searchTerms": [
+      "robusta coffee",
+      "ice",
+      "soft commodities",
+      "robusta-coffee"
+    ],
+    "profile": {
+      "id": "robusta-coffee",
+      "name": "Robusta Coffee",
+      "category": "soft_commodities",
+      "categoryLabel": "Soft Commodities",
+      "exchange": "ICE",
+      "symbol": null,
+      "alternateSymbols": [],
+      "about": "Robusta Coffee is traded on ICE. Category: Soft Commodities.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Soft Commodities · ICE",
+    "initials": "RC"
+  },
+  {
+    "slug": "cocoa",
+    "searchTerms": [
+      "cocoa",
+      "cc",
+      "ice",
+      "soft commodities"
+    ],
+    "profile": {
+      "id": "cocoa",
+      "name": "Cocoa",
+      "category": "soft_commodities",
+      "categoryLabel": "Soft Commodities",
+      "exchange": "ICE",
+      "symbol": "CC",
+      "alternateSymbols": [],
+      "about": "Cocoa is traded on ICE (symbol CC). Category: Soft Commodities.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Soft Commodities · ICE · CC",
+    "initials": "CC"
+  },
+  {
+    "slug": "sugar-no-11-raw",
+    "searchTerms": [
+      "sugar no. 11 (raw)",
+      "sb",
+      "ice",
+      "soft commodities",
+      "sugar-no-11-raw"
+    ],
+    "profile": {
+      "id": "sugar-no-11-raw",
+      "name": "Sugar No. 11 (Raw)",
+      "category": "soft_commodities",
+      "categoryLabel": "Soft Commodities",
+      "exchange": "ICE",
+      "symbol": "SB",
+      "alternateSymbols": [],
+      "about": "Sugar No. 11 (Raw) is traded on ICE (symbol SB). Category: Soft Commodities.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Soft Commodities · ICE · SB",
+    "initials": "SN"
+  },
+  {
+    "slug": "sugar-no-14-domestic",
+    "searchTerms": [
+      "sugar no. 14 (domestic)",
+      "se",
+      "ice",
+      "soft commodities",
+      "sugar-no-14-domestic"
+    ],
+    "profile": {
+      "id": "sugar-no-14-domestic",
+      "name": "Sugar No. 14 (Domestic)",
+      "category": "soft_commodities",
+      "categoryLabel": "Soft Commodities",
+      "exchange": "ICE",
+      "symbol": "SE",
+      "alternateSymbols": [],
+      "about": "Sugar No. 14 (Domestic) is traded on ICE (symbol SE). Category: Soft Commodities.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Soft Commodities · ICE · SE",
+    "initials": "SN"
+  },
+  {
+    "slug": "cotton-no-2",
+    "searchTerms": [
+      "cotton no. 2",
+      "ct",
+      "ice",
+      "soft commodities",
+      "cotton-no-2"
+    ],
+    "profile": {
+      "id": "cotton-no-2",
+      "name": "Cotton No. 2",
+      "category": "soft_commodities",
+      "categoryLabel": "Soft Commodities",
+      "exchange": "ICE",
+      "symbol": "CT",
+      "alternateSymbols": [],
+      "about": "Cotton No. 2 is traded on ICE (symbol CT). Category: Soft Commodities.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Soft Commodities · ICE · CT",
+    "initials": "CN"
+  },
+  {
+    "slug": "frozen-oj-fcoj",
+    "searchTerms": [
+      "frozen oj (fcoj)",
+      "fcoj-a",
+      "ice",
+      "soft commodities",
+      "frozen-oj-fcoj"
+    ],
+    "profile": {
+      "id": "frozen-oj-fcoj",
+      "name": "Frozen OJ (FCOJ)",
+      "category": "soft_commodities",
+      "categoryLabel": "Soft Commodities",
+      "exchange": "ICE",
+      "symbol": "FCOJ-A",
+      "alternateSymbols": [],
+      "about": "Frozen OJ (FCOJ) is traded on ICE (symbol FCOJ-A). Category: Soft Commodities.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Soft Commodities · ICE · FCOJ-A",
+    "initials": "FO"
+  },
+  {
+    "slug": "live-cattle",
+    "searchTerms": [
+      "live cattle",
+      "le",
+      "cme",
+      "livestock & dairy",
+      "live-cattle"
+    ],
+    "profile": {
+      "id": "live-cattle",
+      "name": "Live Cattle",
+      "category": "livestock",
+      "categoryLabel": "Livestock & Dairy",
+      "exchange": "CME",
+      "symbol": "LE",
+      "alternateSymbols": [],
+      "about": "Live Cattle is traded on CME (symbol LE). Category: Livestock & Dairy.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Livestock & Dairy · CME · LE",
+    "initials": "LC"
+  },
+  {
+    "slug": "feeder-cattle",
+    "searchTerms": [
+      "feeder cattle",
+      "gf",
+      "cme",
+      "livestock & dairy",
+      "feeder-cattle"
+    ],
+    "profile": {
+      "id": "feeder-cattle",
+      "name": "Feeder Cattle",
+      "category": "livestock",
+      "categoryLabel": "Livestock & Dairy",
+      "exchange": "CME",
+      "symbol": "GF",
+      "alternateSymbols": [],
+      "about": "Feeder Cattle is traded on CME (symbol GF). Category: Livestock & Dairy.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Livestock & Dairy · CME · GF",
+    "initials": "FC"
+  },
+  {
+    "slug": "lean-hogs",
+    "searchTerms": [
+      "lean hogs",
+      "he",
+      "cme",
+      "livestock & dairy",
+      "lean-hogs"
+    ],
+    "profile": {
+      "id": "lean-hogs",
+      "name": "Lean Hogs",
+      "category": "livestock",
+      "categoryLabel": "Livestock & Dairy",
+      "exchange": "CME",
+      "symbol": "HE",
+      "alternateSymbols": [],
+      "about": "Lean Hogs is traded on CME (symbol HE). Category: Livestock & Dairy.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Livestock & Dairy · CME · HE",
+    "initials": "LH"
+  },
+  {
+    "slug": "class-iii-milk",
+    "searchTerms": [
+      "class iii milk",
+      "dc",
+      "cme",
+      "livestock & dairy",
+      "class-iii-milk"
+    ],
+    "profile": {
+      "id": "class-iii-milk",
+      "name": "Class III Milk",
+      "category": "livestock",
+      "categoryLabel": "Livestock & Dairy",
+      "exchange": "CME",
+      "symbol": "DC",
+      "alternateSymbols": [],
+      "about": "Class III Milk is traded on CME (symbol DC). Category: Livestock & Dairy.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Livestock & Dairy · CME · DC",
+    "initials": "CI"
+  },
+  {
+    "slug": "cash-settled-butter",
+    "searchTerms": [
+      "cash-settled butter",
+      "cb",
+      "cme",
+      "livestock & dairy",
+      "cash-settled-butter"
+    ],
+    "profile": {
+      "id": "cash-settled-butter",
+      "name": "Cash-Settled Butter",
+      "category": "livestock",
+      "categoryLabel": "Livestock & Dairy",
+      "exchange": "CME",
+      "symbol": "CB",
+      "alternateSymbols": [],
+      "about": "Cash-Settled Butter is traded on CME (symbol CB). Category: Livestock & Dairy.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Livestock & Dairy · CME · CB",
+    "initials": "CS"
+  },
+  {
+    "slug": "non-fat-dry-milk",
+    "searchTerms": [
+      "non-fat dry milk",
+      "gnf",
+      "cme",
+      "livestock & dairy",
+      "non-fat-dry-milk"
+    ],
+    "profile": {
+      "id": "non-fat-dry-milk",
+      "name": "Non-fat Dry Milk",
+      "category": "livestock",
+      "categoryLabel": "Livestock & Dairy",
+      "exchange": "CME",
+      "symbol": "GNF",
+      "alternateSymbols": [],
+      "about": "Non-fat Dry Milk is traded on CME (symbol GNF). Category: Livestock & Dairy.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Livestock & Dairy · CME · GNF",
+    "initials": "NF"
+  },
+  {
+    "slug": "whole-milk-powder",
+    "searchTerms": [
+      "whole milk powder",
+      "wmp",
+      "sgx",
+      "livestock & dairy",
+      "whole-milk-powder"
+    ],
+    "profile": {
+      "id": "whole-milk-powder",
+      "name": "Whole Milk Powder",
+      "category": "livestock",
+      "categoryLabel": "Livestock & Dairy",
+      "exchange": "SGX",
+      "symbol": "WMP",
+      "alternateSymbols": [],
+      "about": "Whole Milk Powder is traded on SGX (symbol WMP). Category: Livestock & Dairy.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Livestock & Dairy · SGX · WMP",
+    "initials": "WM"
+  },
+  {
+    "slug": "skim-milk-powder",
+    "searchTerms": [
+      "skim milk powder",
+      "smp",
+      "sgx",
+      "livestock & dairy",
+      "skim-milk-powder"
+    ],
+    "profile": {
+      "id": "skim-milk-powder",
+      "name": "Skim Milk Powder",
+      "category": "livestock",
+      "categoryLabel": "Livestock & Dairy",
+      "exchange": "SGX",
+      "symbol": "SMP",
+      "alternateSymbols": [],
+      "about": "Skim Milk Powder is traded on SGX (symbol SMP). Category: Livestock & Dairy.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Livestock & Dairy · SGX · SMP",
+    "initials": "SM"
+  },
+  {
+    "slug": "random-length-lumber",
+    "searchTerms": [
+      "random length lumber",
+      "lbs",
+      "cme",
+      "forestry & fiber",
+      "random-length-lumber"
+    ],
+    "profile": {
+      "id": "random-length-lumber",
+      "name": "Random Length Lumber",
+      "category": "forestry",
+      "categoryLabel": "Forestry & Fiber",
+      "exchange": "CME",
+      "symbol": "LBS",
+      "alternateSymbols": [],
+      "about": "Random Length Lumber is traded on CME (symbol LBS). Category: Forestry & Fiber.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Forestry & Fiber · CME · LBS",
+    "initials": "RL"
+  },
+  {
+    "slug": "hardwood-pulp",
+    "searchTerms": [
+      "hardwood pulp",
+      "hwp",
+      "cme",
+      "forestry & fiber",
+      "hardwood-pulp"
+    ],
+    "profile": {
+      "id": "hardwood-pulp",
+      "name": "Hardwood Pulp",
+      "category": "forestry",
+      "categoryLabel": "Forestry & Fiber",
+      "exchange": "CME",
+      "symbol": "HWP",
+      "alternateSymbols": [],
+      "about": "Hardwood Pulp is traded on CME (symbol HWP). Category: Forestry & Fiber.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Forestry & Fiber · CME · HWP",
+    "initials": "HP"
+  },
+  {
+    "slug": "softwood-pulp",
+    "searchTerms": [
+      "softwood pulp",
+      "wp",
+      "cme",
+      "forestry & fiber",
+      "softwood-pulp"
+    ],
+    "profile": {
+      "id": "softwood-pulp",
+      "name": "Softwood Pulp",
+      "category": "forestry",
+      "categoryLabel": "Forestry & Fiber",
+      "exchange": "CME",
+      "symbol": "WP",
+      "alternateSymbols": [],
+      "about": "Softwood Pulp is traded on CME (symbol WP). Category: Forestry & Fiber.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Forestry & Fiber · CME · WP",
+    "initials": "SP"
+  },
+  {
+    "slug": "palm-oil",
+    "searchTerms": [
+      "palm oil",
+      "bursa malaysia",
+      "other / specialty",
+      "palm-oil"
+    ],
+    "profile": {
+      "id": "palm-oil",
+      "name": "Palm Oil",
+      "category": "specialty",
+      "categoryLabel": "Other / Specialty",
+      "exchange": "Bursa Malaysia",
+      "symbol": null,
+      "alternateSymbols": [],
+      "about": "Palm Oil is traded on Bursa Malaysia. Category: Other / Specialty.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Other / Specialty · Bursa Malaysia",
+    "initials": "PO"
+  },
+  {
+    "slug": "rubber",
+    "searchTerms": [
+      "rubber",
+      "osaka exchange",
+      "other / specialty"
+    ],
+    "profile": {
+      "id": "rubber",
+      "name": "Rubber",
+      "category": "specialty",
+      "categoryLabel": "Other / Specialty",
+      "exchange": "Osaka Exchange",
+      "symbol": null,
+      "alternateSymbols": [],
+      "about": "Rubber is traded on Osaka Exchange. Category: Other / Specialty.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Other / Specialty · Osaka Exchange",
+    "initials": "RU"
+  },
+  {
+    "slug": "wool",
+    "searchTerms": [
+      "wool",
+      "asx",
+      "other / specialty"
+    ],
+    "profile": {
+      "id": "wool",
+      "name": "Wool",
+      "category": "specialty",
+      "categoryLabel": "Other / Specialty",
+      "exchange": "ASX",
+      "symbol": null,
+      "alternateSymbols": [],
+      "about": "Wool is traded on ASX. Category: Other / Specialty.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Other / Specialty · ASX",
+    "initials": "WO"
+  },
+  {
+    "slug": "amber",
+    "searchTerms": [
+      "amber",
+      "saint petersburg bourse",
+      "other / specialty"
+    ],
+    "profile": {
+      "id": "amber",
+      "name": "Amber",
+      "category": "specialty",
+      "categoryLabel": "Other / Specialty",
+      "exchange": "Saint Petersburg Bourse",
+      "symbol": null,
+      "alternateSymbols": [],
+      "about": "Amber is traded on Saint Petersburg Bourse. Category: Other / Specialty.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs",
+          "url": null
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:24:08.161Z"
+    },
+    "meta": "Other / Specialty · Saint Petersburg Bourse",
+    "initials": "AM"
+  }
+]

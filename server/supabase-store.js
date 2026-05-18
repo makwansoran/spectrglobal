@@ -47,6 +47,7 @@ function rowToIndex(row) {
   const ticker = row.profile_json?.stock?.ticker || null;
   return {
     id: row.slug,
+    kind: "company",
     name: row.name,
     legalName: row.legal_name,
     meta: row.meta,

@@ -1,4 +1,12 @@
-const { listCompanies, searchCompanies, getCompany, getCompanyRaw, listPeople, getPerson } = require("./store");
+const {
+  listCompanies,
+  searchCompanies,
+  getCompany,
+  getCompanyRaw,
+  listPeople,
+  getPerson,
+} = require("./store");
+const commoditiesStore = require("./commodities-store");
 const finnhub = require("./finnhub");
 
 function sendJson(res, status, body) {
@@ -49,6 +57,30 @@ async function handleApi(req, res, pathname) {
         return true;
       }
       sendJson(res, 200, company);
+      return true;
+    }
+
+    if (pathname === "/api/commodities" && req.method === "GET") {
+      const url = new URL(req.url, `http://${req.headers.host || "localhost"}`);
+      const q = url.searchParams.get("q") || "";
+      const limit = Math.min(parseInt(url.searchParams.get("limit") || "25", 10) || 25, 50);
+      if (q.trim()) {
+        sendJson(res, 200, await commoditiesStore.searchCommodities(q, limit));
+      } else {
+        sendJson(res, 200, commoditiesStore.loadLocalIndex().slice(0, limit));
+      }
+      return true;
+    }
+
+    const commodityMatch = pathname.match(/^\/api\/commodities\/([^/]+)$/);
+    if (commodityMatch && req.method === "GET") {
+      const slug = decodeURIComponent(commodityMatch[1]);
+      const data = await commoditiesStore.getCommodity(slug);
+      if (!data) {
+        sendJson(res, 404, { error: "Commodity not found" });
+        return true;
+      }
+      sendJson(res, 200, data);
       return true;
     }
 

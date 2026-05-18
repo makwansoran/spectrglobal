@@ -41,6 +41,7 @@ function seedToIndexItem(seed) {
   );
   return {
     id: slug,
+    kind: "company",
     name: profile.name,
     legalName: profile.legalName || profile.name,
     meta: buildMeta(profile),
