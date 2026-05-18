@@ -199,7 +199,8 @@ async function handleApi(req, res, pathname) {
       const slug = decodeURIComponent(waterwayVesselsMatch[1]);
       const url = new URL(req.url, `http://${req.headers.host || "localhost"}`);
       const t = parseInt(url.searchParams.get("t") || String(Date.now()), 10);
-      const data = await waterwaysStore.getWaterwayVessels(slug, t);
+      const fast = url.searchParams.get("fast") === "1";
+      const data = await waterwaysStore.getWaterwayVessels(slug, t, { skipAis: fast });
       if (!data) {
         sendJson(res, 404, { error: "Waterway not found" });
         return true;

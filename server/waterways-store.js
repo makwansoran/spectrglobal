@@ -162,12 +162,13 @@ async function getWaterway(slug) {
   return { profile: rowToProfile(row) };
 }
 
-async function getWaterwayVessels(slug, timeMs) {
+async function getWaterwayVessels(slug, timeMs, options = {}) {
   const row = await getWaterwayRaw(slug);
   if (!row) return null;
   const profile = rowToProfile(row);
   const generatedAt = new Date(timeMs || Date.now()).toISOString();
   const bounds = aisstream.normalizeBounds(row.bounds);
+  const skipAis = options.skipAis === true;
 
   const simInput = {
     slug: row.slug,
@@ -178,9 +179,9 @@ async function getWaterwayVessels(slug, timeMs) {
 
   let vessels = simulated;
   let source = "simulated";
-  let aisStatus = aisstream.isEnabled() ? "skipped" : "disabled";
+  let aisStatus = skipAis ? "skipped" : aisstream.isEnabled() ? "skipped" : "disabled";
 
-  if (aisstream.isEnabled() && bounds) {
+  if (!skipAis && aisstream.isEnabled() && bounds) {
     aisStatus = "loading";
     try {
       const live = await Promise.race([

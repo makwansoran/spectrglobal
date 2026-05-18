@@ -1,2 +1,2 @@
 /** /api/holders/:slug */
-module.exports = require("../_serve");
+module.exports = require("../_serve").createHandler("/api/holders");
