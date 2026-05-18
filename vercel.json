@@ -4,7 +4,19 @@
   "outputDirectory": ".",
   "functions": {
     "api/[[...path]].js": {
-      "includeFiles": "server/**,node_modules/@supabase/**,data/company-search-index.json,data/commodity-search-index.json,data/institutions.json,data/norges-bank/**,data/seed/companies/**,data/seed/commodities.json,scripts/load-env.js"
+      "includeFiles": "server/**,api/_serve.js,node_modules/@supabase/**,data/company-search-index.json,data/commodity-search-index.json,data/institutions.json,data/norges-bank/**,data/seed/companies/**,data/seed/commodities.json,scripts/load-env.js"
+    },
+    "api/companies/[[...path]].js": {
+      "includeFiles": "server/**,api/_serve.js,node_modules/@supabase/**,data/company-people/**,data/people/**,data/institutions.json,scripts/load-env.js"
+    },
+    "api/commodities/[[...path]].js": {
+      "includeFiles": "server/**,api/_serve.js,node_modules/@supabase/**,data/seed/commodities.json,scripts/load-env.js"
+    },
+    "api/people/[[...path]].js": {
+      "includeFiles": "server/**,api/_serve.js,node_modules/@supabase/**,data/people/**,scripts/load-env.js"
+    },
+    "api/holders/[[...path]].js": {
+      "includeFiles": "server/**,api/_serve.js,node_modules/@supabase/**,data/institutions.json,scripts/load-env.js"
     }
   },
   "rewrites": [
