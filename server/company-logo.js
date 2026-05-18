@@ -30,6 +30,32 @@ function clearbitLogo(domain) {
   return `https://logo.clearbit.com/${d}`;
 }
 
+const LEGAL_SUFFIX =
+  /\b(inc|corp|corporation|ltd|limited|plc|asa|as|ab|se|ag|sa|nv|co|llc|lp|holdings|group|company)\b\.?/gi;
+
+/** Guess corporate website domain from company name (Clearbit fallback). */
+function guessDomainFromCompanyName(name) {
+  const cleaned = String(name || "")
+    .replace(/\s*\([^)]*\)\s*/g, " ")
+    .replace(/\/[^/]+$/g, " ")
+    .replace(LEGAL_SUFFIX, " ")
+    .replace(/[^a-zA-Z0-9\s&]/g, " ")
+    .trim();
+  const words = cleaned.split(/\s+/).filter((w) => w.length > 1);
+  if (!words.length) return null;
+
+  if (words.length >= 2 && words[0].toLowerCase() === "the") {
+    return `${words[1].toLowerCase()}.com`;
+  }
+  if (words.length >= 2 && words[0].toLowerCase() === "bank" && words[1].toLowerCase() === "of" && words[2]) {
+    return `${words[2].toLowerCase()}.com`;
+  }
+
+  const primary = words[0].toLowerCase();
+  if (primary.length < 3) return null;
+  return `${primary}.com`;
+}
+
 function logoSymbolCandidates(profile) {
   const stock = profile?.stock || {};
   const fromFinnhub = profile?.finnhub?.symbol || profile?.finnhub?.finnhubSymbol;
@@ -61,7 +87,57 @@ function defaultLogoUrl(profile) {
   }
 
   const web = profile.website || profile.finnhub?.weburl;
-  return clearbitLogo(web);
+  const fromWeb = clearbitLogo(web);
+  if (fromWeb) return fromWeb;
+
+  const guessed = guessDomainFromCompanyName(profile.name || profile.legalName);
+  return clearbitLogo(guessed);
+}
+
+/** Match Finnhub search hit to company name (loose). */
+function nameMatchesHit(companyName, hit) {
+  const a = String(companyName || "")
+    .toLowerCase()
+    .replace(LEGAL_SUFFIX, "")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+  const b = String(hit.description || hit.displaySymbol || "")
+    .toLowerCase()
+    .replace(LEGAL_SUFFIX, "")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+  if (!a || !b) return false;
+  if (a === b) return true;
+  if (a.includes(b) || b.includes(a)) return true;
+  const aWords = a.split(/\s+/).filter((w) => w.length > 2);
+  const bWords = new Set(b.split(/\s+/).filter((w) => w.length > 2));
+  const overlap = aWords.filter((w) => bWords.has(w)).length;
+  return overlap >= Math.min(2, aWords.length);
+}
+
+/** Resolve logo via Finnhub symbol search on company name (for holdings without tickers). */
+async function resolveLogoViaNameSearch(profile) {
+  if (!finnhub.isEnabled()) return null;
+  const query = String(profile.name || profile.legalName || "").trim();
+  if (query.length < 3) return null;
+
+  const hits = await finnhub.searchSymbols(query);
+  const preferred = hits.filter((h) => {
+    const t = String(h.type || "").toLowerCase();
+    return !t || t.includes("stock") || t === "adr" || t === "common stock";
+  });
+
+  for (const hit of preferred.length ? preferred : hits.slice(0, 5)) {
+    if (!nameMatchesHit(query, hit)) continue;
+    const sym = hit.symbol || hit.displaySymbol;
+    const staticUrl = finnhubStaticLogo(sym);
+    if (staticUrl && (await headExists(staticUrl))) return staticUrl;
+    if (finnhub.isEnabled()) {
+      const raw = await finnhub.fetchStockProfile(sym);
+      if (raw?.logo && (await headExists(raw.logo))) return raw.logo;
+    }
+  }
+  return null;
 }
 
 async function headExists(url, timeoutMs = 4000) {
@@ -98,6 +174,12 @@ async function resolveCompanyLogoUrl(profile, { useFinnhubApi = true } = {}) {
   const clearbit = clearbitLogo(profile.website || profile.finnhub?.weburl);
   if (clearbit && (await headExists(clearbit))) return clearbit;
 
+  const guessed = clearbitLogo(guessDomainFromCompanyName(profile.name || profile.legalName));
+  if (guessed && (await headExists(guessed))) return guessed;
+
+  const fromSearch = await resolveLogoViaNameSearch(profile);
+  if (fromSearch) return fromSearch;
+
   return defaultLogoUrl(profile);
 }
 
@@ -110,7 +192,10 @@ module.exports = {
   FINNHUB_LOGO_BASE,
   finnhubStaticLogo,
   logoSymbolCandidates,
+  guessDomainFromCompanyName,
+  clearbitLogo,
   defaultLogoUrl,
+  resolveLogoViaNameSearch,
   resolveCompanyLogoUrl,
   applyLogoToProfile,
 };

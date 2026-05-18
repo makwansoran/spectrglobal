@@ -1,11 +1,11 @@
 /**
  * Backfill profile_json.logoUrl for all companies in Supabase.
- * Uses Finnhub official logo CDN (and optional profile2 / Clearbit fallbacks).
  *
- *   node scripts/backfill-company-logos.js
- *   node scripts/backfill-company-logos.js --limit 500
- *   node scripts/backfill-company-logos.js --slug equinor
- *   node scripts/backfill-company-logos.js --verify   # HEAD-check URLs (slower)
+ *   node scripts/backfill-company-logos.js              # fast: Finnhub CDN + Clearbit guess (no API)
+ *   node scripts/backfill-company-logos.js --smart      # + Finnhub name search (slow, rate-limited)
+ *   node scripts/backfill-company-logos.js --verify     # HEAD-check all candidates
+ *   node scripts/backfill-company-logos.js --prefix nb- # only NBIM holdings
+ *   node scripts/backfill-company-logos.js --refresh    # overwrite existing logoUrl
  */
 require("./load-env").loadEnv();
 
@@ -13,20 +13,37 @@ const { getAdminClient, isSupabaseEnabled, hasSupabaseWrites } = require("../ser
 const {
   defaultLogoUrl,
   resolveCompanyLogoUrl,
+  resolveLogoViaNameSearch,
   applyLogoToProfile,
 } = require("../server/company-logo");
 const { buildMeta } = require("../server/local-store");
 
-const PAGE = 200;
+const PAGE = 150;
+const FINNHUB_DELAY_MS = 350;
+
+function sleep(ms) {
+  return new Promise((r) => setTimeout(r, ms));
+}
 
 function parseArgs() {
   const args = process.argv.slice(2);
-  const opts = { limit: 0, slug: "", verify: false, dryRun: false };
+  const opts = {
+    limit: 0,
+    slug: "",
+    prefix: "",
+    verify: false,
+    smart: false,
+    refresh: false,
+    dryRun: false,
+  };
   for (let i = 0; i < args.length; i++) {
     const a = args[i];
     if (a === "--verify") opts.verify = true;
+    else if (a === "--smart") opts.smart = true;
+    else if (a === "--refresh") opts.refresh = true;
     else if (a === "--dry-run") opts.dryRun = true;
     else if (a === "--slug" && args[i + 1]) opts.slug = args[++i];
+    else if (a === "--prefix" && args[i + 1]) opts.prefix = args[++i];
     else if (a.startsWith("--limit")) {
       const n = a.includes("=") ? a.split("=")[1] : args[++i];
       opts.limit = parseInt(n, 10) || 0;
@@ -35,7 +52,7 @@ function parseArgs() {
   return opts;
 }
 
-function rowPatch(slug, profile) {
+function rowPatch(slug, profile, searchTerms) {
   const meta = buildMeta(profile);
   return {
     slug,
@@ -43,18 +60,26 @@ function rowPatch(slug, profile) {
     legal_name: profile.legalName,
     meta,
     initials: profile.logoInitials,
-    search_terms: profile.searchTerms || [],
+    search_terms: searchTerms || profile.searchTerms || [],
     profile_json: profile,
     updated_at: profile.lastUpdated || new Date().toISOString(),
   };
 }
 
-async function fetchPage(from, to) {
-  const { data, error } = await getAdminClient()
-    .from("companies")
-    .select("slug, profile_json")
-    .order("slug")
-    .range(from, to);
+async function resolveLogo(profile, opts) {
+  if (opts.verify) return resolveCompanyLogoUrl(profile);
+  if (opts.smart) {
+    const fast = defaultLogoUrl(profile);
+    if (fast) return fast;
+    return resolveLogoViaNameSearch(profile);
+  }
+  return defaultLogoUrl(profile);
+}
+
+async function fetchPage(from, to, prefix) {
+  let query = getAdminClient().from("companies").select("slug, profile_json, search_terms").order("slug");
+  if (prefix) query = query.like("slug", `${prefix}%`);
+  const { data, error } = await query.range(from, to);
   if (error) throw error;
   return data || [];
 }
@@ -71,16 +96,13 @@ async function main() {
   let skipped = 0;
   let from = 0;
 
-  console.log(
-    opts.verify
-      ? "Backfilling logos (verify URLs + Finnhub API fallback)…"
-      : "Backfilling logos (Finnhub static CDN by ticker)…"
-  );
+  const mode = opts.verify ? "verify" : opts.smart ? "smart (Finnhub search)" : "fast (CDN + Clearbit guess)";
+  console.log(`Backfilling logos [${mode}]${opts.prefix ? ` prefix=${opts.prefix}` : ""}…`);
 
   if (opts.slug) {
     const { data, error } = await getAdminClient()
       .from("companies")
-      .select("slug, profile_json")
+      .select("slug, profile_json, search_terms")
       .eq("slug", opts.slug)
       .maybeSingle();
     if (error) throw error;
@@ -89,27 +111,23 @@ async function main() {
       process.exit(1);
     }
     const profile = data.profile_json || {};
-    const logoUrl = opts.verify
-      ? await resolveCompanyLogoUrl(profile)
-      : defaultLogoUrl(profile);
-    if (logoUrl && logoUrl !== profile.logoUrl) {
+    const logoUrl = await resolveLogo(profile, opts);
+    if (logoUrl && (opts.refresh || logoUrl !== profile.logoUrl)) {
       const next = applyLogoToProfile(profile, logoUrl);
       if (!opts.dryRun) {
-        const { error: upErr } = await getAdminClient()
-          .from("companies")
-          .upsert(rowPatch(data.slug, next), { onConflict: "slug" });
-        if (upErr) throw upErr;
+        await getAdminClient().from("companies").upsert(rowPatch(data.slug, next, data.search_terms), {
+          onConflict: "slug",
+        });
       }
       console.log(`${data.slug} → ${logoUrl}`);
-      updated++;
     } else {
-      console.log(`${data.slug}: already set or no logo found`);
+      console.log(`${data.slug}: no logo found`);
     }
     return;
   }
 
   while (true) {
-    const rows = await fetchPage(from, from + PAGE - 1);
+    const rows = await fetchPage(from, from + PAGE - 1, opts.prefix);
     if (!rows.length) break;
 
     const batch = [];
@@ -118,18 +136,16 @@ async function main() {
       processed++;
 
       const profile = row.profile_json || {};
-      if (profile.logoUrl) {
+      if (profile.logoUrl && !opts.refresh) {
         skipped++;
         continue;
       }
 
-      const logoUrl = opts.verify
-        ? await resolveCompanyLogoUrl(profile)
-        : defaultLogoUrl(profile);
+      if (opts.smart) await sleep(FINNHUB_DELAY_MS);
+      const logoUrl = await resolveLogo(profile, opts);
+      if (!logoUrl || (!opts.refresh && logoUrl === profile.logoUrl)) continue;
 
-      if (!logoUrl || logoUrl === profile.logoUrl) continue;
-
-      batch.push(rowPatch(row.slug, applyLogoToProfile(profile, logoUrl)));
+      batch.push(rowPatch(row.slug, applyLogoToProfile(profile, logoUrl), row.search_terms));
       updated++;
     }
 
@@ -138,13 +154,13 @@ async function main() {
       if (error) throw error;
     }
 
-    console.log(`  … ${processed} scanned, ${updated} with logos, ${skipped} already had logo`);
+    console.log(`  … ${processed} scanned, ${updated} logos set, ${skipped} already had logo`);
     if (opts.limit && processed >= opts.limit) break;
     if (rows.length < PAGE) break;
     from += PAGE;
   }
 
-  console.log(`\nDone. ${updated} companies updated, ${skipped} skipped (had logo), ${processed} scanned.`);
+  console.log(`\nDone. ${updated} updated, ${skipped} skipped, ${processed} scanned.`);
   if (opts.dryRun) console.log("(dry run — no writes)");
 }
 
