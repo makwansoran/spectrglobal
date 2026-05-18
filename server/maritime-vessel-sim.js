@@ -1,5 +1,5 @@
 /**
- * Deterministic simulated AIS-style traffic along a waterway centerline.
+ * Deterministic simulated AIS-style traffic within a waterway bounding box.
  */
 
 const VESSEL_TYPES = [
@@ -120,6 +120,22 @@ function pickWeighted(rng, items) {
   return items[0].type;
 }
 
+function normalizeBounds(bounds) {
+  if (!bounds) return null;
+  let b = bounds;
+  if (typeof b === "string") {
+    try {
+      b = JSON.parse(b);
+    } catch {
+      return null;
+    }
+  }
+  if (!Array.isArray(b) || b.length !== 4) return null;
+  const nums = b.map(Number);
+  if (nums.some((n) => Number.isNaN(n))) return null;
+  return nums;
+}
+
 function interpolateLine(line, t) {
   if (!line?.length) return [0, 0];
   if (line.length === 1) return line[0];
@@ -158,10 +174,54 @@ function generateVesselName(rng) {
  * @param {object} waterway
  * @param {number} [timeMs] — animation clock (default Date.now())
  */
-function simulateVessels(waterway, timeMs = Date.now()) {
-  const line = waterway.waterwayLine || waterway.profile_json?.waterwayLine;
-  if (!line?.length) return [];
+function simulateVesselsInBounds(waterway, bounds, timeMs) {
+  const [south, west, north, east] = bounds;
+  const slug = waterway.slug || "waterway";
+  const importance = waterway.importance || 3;
+  const count = vesselCountForImportance(importance);
+  const minuteBucket = Math.floor(timeMs / 60000);
+  const rng = mulberry32(hashString(`${slug}:${minuteBucket}`));
 
+  const latSpan = north - south;
+  const lngSpan = east - west;
+  const padLat = latSpan * 0.1;
+  const padLng = lngSpan * 0.1;
+  const latMin = south + padLat;
+  const latMax = north - padLat;
+  const lngMin = west + padLng;
+  const lngMax = east - padLng;
+
+  const vessels = [];
+  const tAnim = timeMs / 1000;
+
+  for (let i = 0; i < count; i++) {
+    const type = pickWeighted(rng, VESSEL_TYPES);
+    const speedKnots = 8 + rng() * 14;
+    const baseLat = latMin + rng() * (latMax - latMin);
+    const baseLng = lngMin + rng() * (lngMax - lngMin);
+    const driftLat = Math.sin(tAnim * 0.03 + i * 1.9) * latSpan * 0.04;
+    const driftLng = Math.cos(tAnim * 0.025 + i * 2.3) * lngSpan * 0.04;
+    const lat = Math.max(latMin, Math.min(latMax, baseLat + driftLat));
+    const lng = Math.max(lngMin, Math.min(lngMax, baseLng + driftLng));
+    const heading = Math.round(rng() * 360);
+
+    vessels.push({
+      id: `${slug}-${i}`,
+      name: generateVesselName(rng),
+      type,
+      flag: FLAGS[Math.floor(rng() * FLAGS.length)],
+      speed: Math.round(speedKnots * 10) / 10,
+      heading,
+      destination: DESTINATIONS[Math.floor(rng() * DESTINATIONS.length)],
+      lat,
+      lng,
+    });
+  }
+
+  return vessels;
+}
+
+function simulateVesselsOnLine(waterway, line, timeMs) {
   const slug = waterway.slug || "waterway";
   const importance = waterway.importance || 3;
   const count = vesselCountForImportance(importance);
@@ -194,6 +254,16 @@ function simulateVessels(waterway, timeMs = Date.now()) {
   }
 
   return vessels;
+}
+
+function simulateVessels(waterway, timeMs = Date.now()) {
+  const bounds = normalizeBounds(waterway.bounds);
+  if (bounds) return simulateVesselsInBounds(waterway, bounds, timeMs);
+
+  const line = waterway.waterwayLine || waterway.profile_json?.waterwayLine;
+  if (!line?.length) return [];
+
+  return simulateVesselsOnLine(waterway, line, timeMs);
 }
 
 module.exports = {

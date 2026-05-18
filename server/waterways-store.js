@@ -173,6 +173,7 @@ async function getWaterwayVessels(slug, timeMs, options = {}) {
   const simInput = {
     slug: row.slug,
     importance: row.importance,
+    bounds: row.bounds,
     waterwayLine: profile.waterwayLine,
   };
   const simulated = simulateVessels(simInput, timeMs);

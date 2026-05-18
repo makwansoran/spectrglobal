@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { MapContainer, TileLayer, CircleMarker, Polyline, useMap } from "react-leaflet";
-import type { LatLngBoundsExpression, PathOptions } from "leaflet";
+import { MapContainer, TileLayer, CircleMarker, useMap } from "react-leaflet";
+import type { LatLngBoundsExpression } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { fetchWaterwayVessels } from "../../api/waterways";
 import { VESSEL_TYPE_LABELS, vesselColor } from "../../lib/vesselTypes";
@@ -8,22 +8,6 @@ import type { SimulatedVessel, WaterwayProfile } from "../../types/waterway";
 
 const DARK_TILE =
   "https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png";
-
-const waterwayStyle: PathOptions = {
-  color: "#38bdf8",
-  weight: 5,
-  opacity: 0.95,
-  lineCap: "round",
-  lineJoin: "round",
-};
-
-const waterwayGlowStyle: PathOptions = {
-  color: "#0ea5e9",
-  weight: 12,
-  opacity: 0.25,
-  lineCap: "round",
-  lineJoin: "round",
-};
 
 function FitWaterwayBounds({ bounds }: { bounds: LatLngBoundsExpression }) {
   const map = useMap();
@@ -59,10 +43,6 @@ export function MaritimeTrafficMap({ waterway }: Props) {
     const c = waterway.center;
     return [c[0], c[1]];
   }, [waterway.center]);
-
-  const linePositions = useMemo(() => {
-    return (waterway.waterwayLine || []).map(([lat, lng]) => [lat, lng] as [number, number]);
-  }, [waterway.waterwayLine]);
 
   const refreshVessels = useCallback(async () => {
     setTrafficLoading(true);
@@ -123,12 +103,6 @@ export function MaritimeTrafficMap({ waterway }: Props) {
           attribution=""
         />
         <FitWaterwayBounds bounds={bounds} />
-        {linePositions.length > 1 && (
-          <>
-            <Polyline positions={linePositions} pathOptions={waterwayGlowStyle} />
-            <Polyline positions={linePositions} pathOptions={waterwayStyle} />
-          </>
-        )}
         {vessels.map((v) => (
           <CircleMarker
             key={v.id}
