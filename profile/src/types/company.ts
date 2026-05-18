@@ -183,6 +183,7 @@ export interface CompanyProfile {
   financials: {
     years: FinancialYear[];
     quarters?: FinancialQuarter[];
+    annual?: FinancialQuarter[];
     metrics: FinancialMetric[];
     meta?: {
       source?: string;

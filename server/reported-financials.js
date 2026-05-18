@@ -182,7 +182,7 @@ async function fetchReportedFinancials(symbol, freq) {
  * @returns {Promise<object|null>}
  */
 async function fetchFinancialsForProfile(profile) {
-  if (!profile?.isPublic || !profile?.stock?.ticker) return null;
+  if (!profile?.stock?.ticker) return null;
 
   const candidates = finnhub.finnhubSymbolCandidates(profile);
   let rawQuarterly = [];

@@ -28,7 +28,7 @@ async function getCompanyFinancials(slug) {
   const stored = profile.financials || { years: [], quarters: [], metrics: [] };
 
   let live = null;
-  if (profile.isPublic && profile.stock?.ticker) {
+  if (profile.stock?.ticker) {
     live = await fetchFinancialsForProfile(profile);
   }
 
@@ -47,7 +47,10 @@ async function getCompanyFinancials(slug) {
   };
 
   const hasData =
-    financials.years.length > 0 || financials.quarterly.length > 0 || financials.metrics.length > 0;
+    financials.annual.length > 0 ||
+    financials.years.length > 0 ||
+    financials.quarterly.length > 0 ||
+    financials.metrics.length > 0;
 
   return {
     slug,
@@ -79,6 +82,7 @@ function financialsForProfileJson(payload) {
   return {
     years: payload.years || [],
     quarters: payload.quarterly || [],
+    annual: payload.annual || [],
     metrics: payload.metrics || [],
     meta: {
       source: payload.source,
