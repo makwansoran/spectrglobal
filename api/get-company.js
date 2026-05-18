@@ -29,6 +29,9 @@ module.exports = async (req, res) => {
     res.status(200).json(company);
   } catch (err) {
     console.error("get-company", slug, err);
-    res.status(500).json({ error: "Failed to load company" });
+    res.status(500).json({
+      error: "Failed to load company",
+      detail: String(err.message || err).slice(0, 200),
+    });
   }
 };

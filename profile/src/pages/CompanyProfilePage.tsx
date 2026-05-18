@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { Navigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Hero } from "../components/Hero";
 import { TabNav } from "../components/TabNav";
 import { Section } from "../components/Section";
@@ -59,8 +59,38 @@ export function CompanyProfilePage() {
     );
   }
 
-  if (error === "not_found" || !company) {
-    return <Navigate to="/equinor" replace />;
+  if (error === "not_found" || (!company && !loading)) {
+    return (
+      <div className="min-h-screen bg-white">
+        <SiteHeader />
+        <main className="mx-auto max-w-lg px-4 py-24 text-center">
+          <h1 className="font-display text-xl font-semibold text-ink">Company not found</h1>
+          <p className="mt-2 text-sm text-muted">
+            {companyId
+              ? `No profile for "${companyId}" in Spectr yet.`
+              : "Missing company id in the URL."}
+          </p>
+          <a href="/index.html" className="btn-primary mt-6 inline-block no-underline">
+            Back to search
+          </a>
+        </main>
+      </div>
+    );
+  }
+
+  if (error === "load_failed" || !company) {
+    return (
+      <div className="min-h-screen bg-white">
+        <SiteHeader />
+        <main className="mx-auto max-w-lg px-4 py-24 text-center">
+          <h1 className="font-display text-xl font-semibold text-ink">Could not load profile</h1>
+          <p className="mt-2 text-sm text-muted">Try refreshing the page.</p>
+          <a href="/index.html" className="btn-primary mt-6 inline-block no-underline">
+            Back to search
+          </a>
+        </main>
+      </div>
+    );
   }
 
   const showAbout = Boolean(company.about?.trim());
