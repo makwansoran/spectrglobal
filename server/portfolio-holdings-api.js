@@ -1,20 +1,16 @@
 /**
- * GET /api/get-portfolio-holdings?investor=norges-bank&page=1&limit=50&q=&sort=value
+ * GET /api/portfolio/holdings — paginated NBIM holdings index.
  */
-require("../scripts/load-env").loadEnv();
-
 const fs = require("fs");
 const path = require("path");
 
-const HOLDINGS_PATH = path.join(__dirname, "../data/norges-bank/holdings-20251231.json");
+const HOLDINGS_PATH = path.join(__dirname, "..", "data", "norges-bank", "holdings-20251231.json");
 
 let cache = null;
 
 function loadHoldings() {
   if (cache) return cache;
-  if (!fs.existsSync(HOLDINGS_PATH)) {
-    return null;
-  }
+  if (!fs.existsSync(HOLDINGS_PATH)) return null;
   cache = JSON.parse(fs.readFileSync(HOLDINGS_PATH, "utf8"));
   return cache;
 }
@@ -27,25 +23,21 @@ function parseSort(sort) {
   return "marketValueUsd";
 }
 
-module.exports = async (req, res) => {
-  if (req.method !== "GET") {
-    res.status(405).json({ error: "Method not allowed" });
-    return;
-  }
+function handlePortfolioHoldings(req, url) {
+  if (req.method !== "GET") return { status: 405, body: { error: "Method not allowed" } };
 
-  const investor = String(req.query.investor || "norges-bank").trim();
-  const page = Math.max(1, parseInt(req.query.page || "1", 10) || 1);
-  const limit = Math.min(100, Math.max(10, parseInt(req.query.limit || "50", 10) || 50));
-  const q = String(req.query.q || "")
+  const investor = String(url.searchParams.get("investor") || "norges-bank").trim();
+  const page = Math.max(1, parseInt(url.searchParams.get("page") || "1", 10) || 1);
+  const limit = Math.min(100, Math.max(10, parseInt(url.searchParams.get("limit") || "50", 10) || 50));
+  const q = String(url.searchParams.get("q") || "")
     .trim()
     .toLowerCase();
-  const sortKey = parseSort(String(req.query.sort || "value"));
-  const order = req.query.order === "asc" ? 1 : -1;
+  const sortKey = parseSort(String(url.searchParams.get("sort") || "value"));
+  const order = url.searchParams.get("order") === "asc" ? 1 : -1;
 
   const data = loadHoldings();
   if (!data || data.investorSlug !== investor) {
-    res.status(404).json({ error: "Portfolio holdings file not found", investor });
-    return;
+    return { status: 404, body: { error: "Portfolio holdings file not found", investor } };
   }
 
   let rows = data.holdings || [];
@@ -72,14 +64,19 @@ module.exports = async (req, res) => {
   const start = (page - 1) * limit;
   const items = rows.slice(start, start + limit);
 
-  res.setHeader("Cache-Control", "public, max-age=300");
-  res.status(200).json({
-    investorSlug: data.investorSlug,
-    asOf: data.asOf,
-    total,
-    page,
-    limit,
-    pages: Math.ceil(total / limit) || 1,
-    items,
-  });
-};
+  return {
+    status: 200,
+    headers: { "Cache-Control": "public, max-age=300" },
+    body: {
+      investorSlug: data.investorSlug,
+      asOf: data.asOf,
+      total,
+      page,
+      limit,
+      pages: Math.ceil(total / limit) || 1,
+      items,
+    },
+  };
+}
+
+module.exports = { handlePortfolioHoldings };

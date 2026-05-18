@@ -10,7 +10,9 @@ const { getCompanyQuote } = require("./company-quote");
 const commoditiesStore = require("./commodities-store");
 const { banks, investmentBanks, ventureCapital } = require("./catalog-stores");
 const chatStore = require("./chat-store");
-const { isSupabaseEnabled } = require("./supabase-client");
+const { isSupabaseEnabled, getSupabaseUrl } = require("./supabase-client");
+const { getInstitutionBySlug, ORG_TYPE_LABELS } = require("./institutions");
+const { handlePortfolioHoldings } = require("./portfolio-holdings-api");
 
 function sendJson(res, status, body, extraHeaders = {}) {
   res.writeHead(status, {
@@ -87,9 +89,36 @@ async function handleApi(req, res, pathname) {
 
     const marketMatch = pathname.match(/^\/api\/companies\/([^/]+)\/market$/);
     if (marketMatch && req.method === "GET") {
-      sendJson(res, 410, {
-        error: "Live market API removed. Store quotes in companies.profile_json via Supabase.",
-      });
+      const slug = decodeURIComponent(marketMatch[1]);
+      const data = await getCompanyQuote(slug);
+      if (!data?.stock) {
+        sendJson(res, 404, { error: "No quote available" });
+        return true;
+      }
+      const { stock, quote, asOf } = data;
+      sendJson(
+        res,
+        200,
+        {
+          symbol: quote?.symbol || stock.finnhubSymbol || stock.ticker,
+          ticker: stock.ticker,
+          currency: stock.currency || "USD",
+          quote: quote || {
+            symbol: stock.ticker,
+            price: stock.price,
+            change: stock.change ?? null,
+            changePercent: stock.changePercent ?? null,
+            asOf: asOf || stock.quoteAsOf || null,
+          },
+          news: [],
+          peers: [],
+          metrics: null,
+          profile: null,
+          recommendations: null,
+          earnings: [],
+        },
+        { "Cache-Control": "public, max-age=60" }
+      );
       return true;
     }
 
@@ -198,6 +227,62 @@ async function handleApi(req, res, pathname) {
         return true;
       }
       sendJson(res, 200, { profile });
+      return true;
+    }
+
+    if (pathname === "/api/portfolio/holdings" && req.method === "GET") {
+      const url = new URL(req.url, `http://${req.headers.host || "localhost"}`);
+      const result = handlePortfolioHoldings(req, url);
+      sendJson(res, result.status, result.body, result.headers || {});
+      return true;
+    }
+
+    const holderMatch = pathname.match(/^\/api\/holders\/([^/]+)$/);
+    if (holderMatch && req.method === "GET") {
+      const slug = decodeURIComponent(holderMatch[1]);
+      const inst = getInstitutionBySlug(slug);
+      if (!inst) {
+        sendJson(res, 404, { error: "Institution not found", slug });
+        return true;
+      }
+      sendJson(
+        res,
+        200,
+        {
+          profile: {
+            ...inst,
+            orgTypeLabel: ORG_TYPE_LABELS[inst.orgType] || ORG_TYPE_LABELS.other,
+          },
+        },
+        { "Cache-Control": "public, max-age=3600" }
+      );
+      return true;
+    }
+
+    if (pathname === "/api/status" && req.method === "GET") {
+      let supabaseHost = null;
+      let supabaseUrlError = null;
+      try {
+        const u = getSupabaseUrl();
+        supabaseHost = u ? new URL(u).hostname : null;
+      } catch (err) {
+        supabaseUrlError = err.message;
+        try {
+          supabaseHost = process.env.SUPABASE_URL
+            ? new URL(process.env.SUPABASE_URL).hostname
+            : null;
+        } catch {
+          supabaseHost = null;
+        }
+      }
+      sendJson(res, 200, {
+        storage: storageMode(),
+        supabase: isSupabaseEnabled(),
+        supabaseHost,
+        supabaseUrlError,
+        vercel: Boolean(process.env.VERCEL),
+        hint: "Company search reads public.companies via Supabase REST.",
+      });
       return true;
     }
 

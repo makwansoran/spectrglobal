@@ -3,23 +3,14 @@
   "buildCommand": "npm run build --prefix profile",
   "outputDirectory": ".",
   "functions": {
-    "api/**/*.js": {
+    "api/[[...path]].js": {
       "includeFiles": "server/**,node_modules/@supabase/**,data/company-search-index.json,data/commodity-search-index.json,data/institutions.json,data/norges-bank/**,data/seed/companies/**,data/seed/commodities.json,scripts/load-env.js"
     }
   },
   "rewrites": [
-    { "source": "/api/companies/:slug", "destination": "/api/get-company?slug=:slug" },
-    { "source": "/api/companies/:slug/market", "destination": "/api/get-company-market?slug=:slug" },
-    { "source": "/api/companies/:slug/news", "destination": "/api/get-company-news?slug=:slug" },
-    { "source": "/api/companies/:slug/financials", "destination": "/api/get-company-financials?slug=:slug" },
-    { "source": "/api/companies/:slug/quote", "destination": "/api/get-company-quote?slug=:slug" },
-    { "source": "/api/people/:slug", "destination": "/api/get-person?slug=:slug" },
-    { "source": "/api/holders/:slug", "destination": "/api/get-holder?slug=:slug" },
-    { "source": "/api/portfolio/holdings", "destination": "/api/get-portfolio-holdings" },
     { "source": "/person", "destination": "/company/index.html" },
     { "source": "/person/", "destination": "/company/index.html" },
     { "source": "/person/:path*", "destination": "/company/index.html" },
-    { "source": "/api/commodities/:slug", "destination": "/api/get-commodity?slug=:slug" },
     { "source": "/commodity", "destination": "/company/index.html" },
     { "source": "/commodity/", "destination": "/company/index.html" },
     { "source": "/commodity/:path*", "destination": "/company/index.html" },
@@ -27,7 +18,6 @@
     { "source": "/company/", "destination": "/company/index.html" },
     { "source": "/company/us-brk.b", "destination": "/company/us-brk-b", "statusCode": 308 },
     { "source": "/company/us-brk.b/:path*", "destination": "/company/us-brk-b/:path*", "statusCode": 308 },
-    { "source": "/api/companies/us-brk.b", "destination": "/api/get-company?slug=us-brk-b" },
     { "source": "/company/:path*", "destination": "/company/index.html" },
     { "source": "/login", "destination": "/login.html" }
   ]
