@@ -104,10 +104,6 @@ async function searchCompaniesSupabase(query, limit = 25) {
     }
   }
 
-  if (!merged.length) {
-    throw new Error(`No companies in Supabase matched "${query}"`);
-  }
-
   return merged.slice(0, limit);
 }
 

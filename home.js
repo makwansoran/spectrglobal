@@ -158,7 +158,20 @@
     if (row.kind === "commodity") {
       return row.subtitle || row.meta || "Commodity";
     }
+    if (row.kind === "waterway") {
+      return row.subtitle || row.meta || "Maritime waterway";
+    }
     return row.subtitle || row.ticker || row.meta || row.legalName;
+  }
+
+  function resultKindBadge(row) {
+    if (row.kind === "waterway") {
+      return '<span class="cb-search-kind cb-search-kind-waterway">Waterway</span>';
+    }
+    if (row.kind === "commodity") {
+      return '<span class="cb-search-kind cb-search-kind-commodity">Commodity</span>';
+    }
+    return "";
   }
 
   function createSearchWidget(inputEl, resultsEl, options) {
@@ -226,6 +239,7 @@
             '<span class="cb-search-result-mark">' +
             company.initials +
             "</span>" +
+            resultKindBadge(company) +
             '<span class="cb-search-result-name">' +
             highlightName(company.name, q) +
             '</span><span class="cb-search-result-sub"> · ' +

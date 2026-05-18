@@ -56,7 +56,12 @@ export function NavSearch() {
     (item: CompanySearchItem) => {
       setOpen(false);
       setQuery("");
-      if (item.kind === "commodity" || item.url?.startsWith("/commodity/")) {
+      if (
+        item.kind === "commodity" ||
+        item.kind === "waterway" ||
+        item.url?.startsWith("/commodity/") ||
+        item.url?.startsWith("/waterway/")
+      ) {
         window.location.href = item.url;
         return;
       }
@@ -99,7 +104,7 @@ export function NavSearch() {
             id="nav-company-search"
             type="search"
             className="nav-search-input"
-            placeholder="Search companies & commodities…"
+            placeholder="Search companies, commodities & waterways…"
             autoComplete="off"
             value={query}
             role="combobox"
@@ -146,6 +151,12 @@ export function NavSearch() {
                 onMouseEnter={() => setActiveIndex(i)}
               >
                 <span className="nav-search-result-mark">{company.initials}</span>
+                {company.kind === "waterway" && (
+                  <span className="nav-search-kind nav-search-kind-waterway">Waterway</span>
+                )}
+                {company.kind === "commodity" && (
+                  <span className="nav-search-kind nav-search-kind-commodity">Commodity</span>
+                )}
                 <span className="nav-search-result-text">
                   <span className="nav-search-result-name">{highlightMatch(company.name, q)}</span>
                   <span className="nav-search-result-sub">
@@ -153,7 +164,9 @@ export function NavSearch() {
                     ·{" "}
                     {company.kind === "commodity"
                       ? company.subtitle || company.meta || "Commodity"
-                      : company.subtitle || company.ticker || company.meta || company.legalName}
+                      : company.kind === "waterway"
+                        ? company.subtitle || company.meta || "Maritime waterway"
+                        : company.subtitle || company.ticker || company.meta || company.legalName}
                   </span>
                 </span>
               </button>

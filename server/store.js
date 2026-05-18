@@ -41,9 +41,13 @@ async function searchCompanies(query, limit = 25) {
  */
 async function searchUnified(query, limit = 25) {
   const commoditiesStore = require("./commodities-store");
-  const [companies, commodities] = await Promise.all([
-    searchCompanies(query, limit),
-    commoditiesStore.searchCommodities(query, limit),
+  const waterwaysStore = require("./waterways-store");
+  const { formatWaterwaySearchSubtitle } = require("./search-rank");
+
+  const [companies, commodities, waterways] = await Promise.all([
+    searchCompanies(query, limit).catch(() => []),
+    commoditiesStore.searchCommodities(query, limit).catch(() => []),
+    waterwaysStore.searchWaterways(query, limit).catch(() => []),
   ]);
 
   const commodityRows = commodities.map((row) => {
@@ -56,7 +60,17 @@ async function searchUnified(query, limit = 25) {
     };
   });
 
-  return mergeSearchResults(companies, commodityRows, query, limit);
+  const waterwayRows = waterways.map((row) => {
+    const { profile_json, profile, ...rest } = row;
+    return {
+      ...rest,
+      kind: "waterway",
+      source: "supabase",
+      subtitle: formatWaterwaySearchSubtitle(row),
+    };
+  });
+
+  return mergeSearchResults(companies, commodityRows, query, limit, waterwayRows);
 }
 
 async function getCompanyRaw(slug) {

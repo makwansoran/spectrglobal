@@ -8,6 +8,7 @@ const { getCompanyNews } = require("./company-news");
 const { getCompanyFinancials } = require("./company-financials");
 const { getCompanyQuote } = require("./company-quote");
 const commoditiesStore = require("./commodities-store");
+const waterwaysStore = require("./waterways-store");
 const { banks, investmentBanks, ventureCapital } = require("./catalog-stores");
 const chatStore = require("./chat-store");
 const { isSupabaseEnabled, getSupabaseUrl } = require("./supabase-client");
@@ -178,6 +179,44 @@ async function handleApi(req, res, pathname) {
     const commodityMatch = pathname.match(/^\/api\/commodities\/([^/]+)$/);
     if (commodityMatch && req.method === "GET") {
       await handleCatalogGet(res, commoditiesStore, decodeURIComponent(commodityMatch[1]));
+      return true;
+    }
+
+    if (pathname === "/api/waterways" && req.method === "GET") {
+      const url = new URL(req.url, `http://${req.headers.host || "localhost"}`);
+      const q = url.searchParams.get("q") || "";
+      const limit = Math.min(parseInt(url.searchParams.get("limit") || "25", 10) || 25, 50);
+      if (q.trim()) {
+        sendJson(res, 200, await waterwaysStore.searchWaterways(q, limit));
+      } else {
+        sendJson(res, 200, await waterwaysStore.listWaterways(limit));
+      }
+      return true;
+    }
+
+    const waterwayVesselsMatch = pathname.match(/^\/api\/waterways\/([^/]+)\/vessels$/);
+    if (waterwayVesselsMatch && req.method === "GET") {
+      const slug = decodeURIComponent(waterwayVesselsMatch[1]);
+      const url = new URL(req.url, `http://${req.headers.host || "localhost"}`);
+      const t = parseInt(url.searchParams.get("t") || String(Date.now()), 10);
+      const data = await waterwaysStore.getWaterwayVessels(slug, t);
+      if (!data) {
+        sendJson(res, 404, { error: "Waterway not found" });
+        return true;
+      }
+      sendJson(res, 200, data, { "Cache-Control": "public, max-age=15" });
+      return true;
+    }
+
+    const waterwayMatch = pathname.match(/^\/api\/waterways\/([^/]+)$/);
+    if (waterwayMatch && req.method === "GET") {
+      const slug = decodeURIComponent(waterwayMatch[1]);
+      const data = await waterwaysStore.getWaterway(slug);
+      if (!data) {
+        sendJson(res, 404, { error: "Waterway not found" });
+        return true;
+      }
+      sendJson(res, 200, data, { "Cache-Control": "public, max-age=3600" });
       return true;
     }
 

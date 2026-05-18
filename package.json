@@ -9,6 +9,7 @@
     "dev:profile": "npm run dev --prefix profile",
     "db:seed": "node scripts/build-oslo-listed.js && node scripts/seed-database.js",
     "db:seed-commodities": "node scripts/build-commodities-seed.js && node scripts/seed-commodities.js",
+    "db:seed-waterways": "node scripts/seed-waterways.js",
     "db:seed-people": "node scripts/seed-people.js",
     "db:seed-vessels": "node scripts/seed-vessels.js",
     "db:seed-planes": "node scripts/seed-planes.js",

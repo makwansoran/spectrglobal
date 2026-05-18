@@ -197,6 +197,14 @@
   margin-right: 0.35rem;
 }
 
+.cb-search-kind-waterway {
+  color: #0284c7;
+}
+
+.cb-search-kind-commodity {
+  color: #6366f1;
+}
+
 .cb-search-result-sub {
   color: #6b6b88;
   font-weight: 400;

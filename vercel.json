@@ -17,6 +17,9 @@
     },
     "api/holders/[[...path]].js": {
       "includeFiles": "server/**,api/_serve.js,node_modules/@supabase/**,data/institutions.json,scripts/load-env.js"
+    },
+    "api/waterways/[[...path]].js": {
+      "includeFiles": "server/**,api/_serve.js,node_modules/@supabase/**,data/seed/maritime-waterways.json,scripts/load-env.js"
     }
   },
   "rewrites": [
@@ -30,6 +33,9 @@
     { "source": "/company/", "destination": "/company/index.html" },
     { "source": "/company/us-brk.b", "destination": "/company/us-brk-b", "statusCode": 308 },
     { "source": "/company/us-brk.b/:path*", "destination": "/company/us-brk-b/:path*", "statusCode": 308 },
+    { "source": "/waterway", "destination": "/company/index.html" },
+    { "source": "/waterway/", "destination": "/company/index.html" },
+    { "source": "/waterway/:path*", "destination": "/company/index.html" },
     { "source": "/company/:path*", "destination": "/company/index.html" },
     { "source": "/login", "destination": "/login.html" }
   ]

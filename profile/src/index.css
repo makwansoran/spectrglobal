@@ -229,8 +229,321 @@
   font-weight: 400;
 }
 
+.nav-search-kind {
+  flex-shrink: 0;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.nav-search-kind-waterway {
+  background: rgba(14, 165, 233, 0.15);
+  color: #0284c7;
+}
+
+.nav-search-kind-commodity {
+  background: rgba(99, 102, 241, 0.12);
+  color: #6366f1;
+}
+
 @media (max-width: 480px) {
   .nav-search {
     max-width: none;
+  }
+}
+
+/* Maritime traffic map (straits & canals) */
+.maritime-page {
+  position: fixed;
+  inset: 0;
+  background: #0b1220;
+  color: #e2e8f0;
+}
+
+.maritime-page-loading,
+.maritime-page-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+  text-align: center;
+}
+
+.maritime-back-link,
+.maritime-back-fab {
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  font-size: 0.8125rem;
+  color: #94a3b8;
+  text-decoration: none;
+}
+
+.maritime-back-fab {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1000;
+  padding: 0.4rem 0.75rem;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 6px;
+  backdrop-filter: blur(8px);
+}
+
+.maritime-back-fab:hover {
+  color: #f8fafc;
+  border-color: rgba(148, 163, 184, 0.45);
+}
+
+.maritime-map-wrap {
+  position: absolute;
+  inset: 0;
+}
+
+.maritime-map {
+  width: 100%;
+  height: 100%;
+  background: #0c1929 !important;
+}
+
+.maritime-map-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: #94a3b8;
+  font-size: 0.875rem;
+}
+
+.leaflet-container.maritime-map {
+  background: #0c1929 !important;
+}
+
+.maritime-waterway-label {
+  background: rgba(14, 165, 233, 0.2) !important;
+  border: 1px solid rgba(56, 189, 248, 0.5) !important;
+  color: #e0f2fe !important;
+  font-family: "JetBrains Mono", monospace !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.maritime-hud {
+  position: absolute;
+  z-index: 900;
+  pointer-events: none;
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+}
+
+.maritime-hud-top {
+  top: 1rem;
+  left: 5.5rem;
+  right: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.maritime-hud-title h1 {
+  margin: 0.15rem 0 0;
+  font-family: "Syne", system-ui, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #f8fafc;
+  letter-spacing: -0.02em;
+}
+
+.maritime-hud-type {
+  display: inline-block;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #38bdf8;
+}
+
+.maritime-hud-region {
+  margin: 0.25rem 0 0;
+  font-size: 0.8125rem;
+  color: #94a3b8;
+}
+
+.maritime-hud-stats {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.6875rem;
+  color: #64748b;
+  text-align: right;
+}
+
+.maritime-hud-dot {
+  margin: 0 0.35rem;
+}
+
+.maritime-hud-bottom {
+  bottom: 1rem;
+  left: 1rem;
+  right: 12rem;
+  max-width: 36rem;
+}
+
+.maritime-hud-bottom p {
+  margin: 0;
+  padding: 0.65rem 0.85rem;
+  background: rgba(15, 23, 42, 0.82);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 8px;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: #cbd5e1;
+  backdrop-filter: blur(8px);
+}
+
+.maritime-legend {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 900;
+  padding: 0.75rem 0.9rem;
+  background: rgba(15, 23, 42, 0.88);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 8px;
+  backdrop-filter: blur(8px);
+  font-size: 0.75rem;
+}
+
+.maritime-legend-title {
+  margin: 0 0 0.5rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.maritime-legend ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.maritime-legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.2rem 0;
+  color: #e2e8f0;
+}
+
+.maritime-legend-swatch {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  box-shadow: 0 0 6px currentColor;
+}
+
+.maritime-vessel-panel {
+  position: absolute;
+  top: 5.5rem;
+  right: 1rem;
+  z-index: 950;
+  width: min(16rem, calc(100vw - 2rem));
+  padding: 1rem;
+  background: rgba(15, 23, 42, 0.94);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  border-radius: 10px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+  pointer-events: auto;
+}
+
+.maritime-vessel-close {
+  position: absolute;
+  top: 0.35rem;
+  right: 0.45rem;
+  border: none;
+  background: transparent;
+  color: #94a3b8;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.maritime-vessel-name {
+  margin: 0 0 0.65rem;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #f8fafc;
+}
+
+.maritime-vessel-meta {
+  margin: 0;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.maritime-vessel-meta div {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  gap: 0.35rem;
+  font-size: 0.8125rem;
+}
+
+.maritime-vessel-meta dt {
+  color: #64748b;
+  font-weight: 500;
+}
+
+.maritime-vessel-meta dd {
+  margin: 0;
+  color: #e2e8f0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.75rem;
+}
+
+.maritime-minimap {
+  position: absolute;
+  bottom: 5.5rem;
+  left: 1rem;
+  z-index: 800;
+  width: 140px;
+  height: 100px;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+}
+
+.maritime-minimap-map {
+  width: 100%;
+  height: 100%;
+  background: #0c1929 !important;
+}
+
+@media (max-width: 640px) {
+  .maritime-hud-top {
+    left: 1rem;
+    top: 3.25rem;
+  }
+
+  .maritime-hud-title h1 {
+    font-size: 1.15rem;
+  }
+
+  .maritime-minimap {
+    width: 110px;
+    height: 80px;
+    bottom: auto;
+    top: auto;
   }
 }

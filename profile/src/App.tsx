@@ -14,10 +14,12 @@ import { CompanyOwnershipTab } from "./pages/company/CompanyOwnershipTab";
 import { CompanyPeopleTab } from "./pages/company/CompanyPeopleTab";
 import { HolderProfilePage } from "./pages/HolderProfilePage";
 import { PersonProfilePage } from "./pages/PersonProfilePage";
+import { WaterwayProfilePage } from "./pages/waterway/WaterwayProfilePage";
 
 function getBasename() {
   if (typeof window !== "undefined") {
     if (window.location.pathname.startsWith("/person")) return "";
+    if (window.location.pathname.startsWith("/waterway")) return "/waterway";
     if (window.location.pathname.startsWith("/commodity")) return "/commodity";
   }
   return "/company";
@@ -33,6 +35,12 @@ export default function App() {
           <>
             <Route path="/person/:personId" element={<PersonProfilePage />} />
             <Route path="*" element={<Navigate to="/company/equinor" replace />} />
+          </>
+        ) : basename === "/waterway" ? (
+          <>
+            <Route path="/" element={<Navigate to="/strait-of-hormuz" replace />} />
+            <Route path="/:waterwayId" element={<WaterwayProfilePage />} />
+            <Route path="*" element={<Navigate to="/strait-of-hormuz" replace />} />
           </>
         ) : basename === "/commodity" ? (
           <>

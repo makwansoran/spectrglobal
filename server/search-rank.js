@@ -151,6 +151,12 @@ function scoreUnifiedSearch(row, query) {
   if (meta.includes(ql)) score += 40;
   if (row.id && String(row.id).includes(ql)) score += 30;
   if (row.kind === "commodity" && row.category && String(row.category).includes(ql)) score += 25;
+  if (row.kind === "waterway") {
+    if (name === ql) score += 220;
+    else if (name.startsWith(ql)) score += 140;
+    else if (name.includes(ql)) score += 90;
+    if (Array.isArray(row.terms) && row.terms.some((t) => t === ql || t.includes(ql))) score += 100;
+  }
 
   return score;
 }
@@ -166,11 +172,17 @@ function formatCommoditySearchSubtitle(row) {
   return parts.filter(Boolean).join(" · ");
 }
 
-/** Merge company + commodity hits; exact commodity/symbol matches can outrank weak company hits. */
-function mergeSearchResults(companies, commodities, query, limit = 25) {
+function formatWaterwaySearchSubtitle(row) {
+  const typeLabel = row.waterwayType === "canal" ? "Canal" : "Strait";
+  return row.subtitle || `${typeLabel} · ${row.regionLabel || "Maritime traffic"}`;
+}
+
+/** Merge company + commodity + waterway hits. */
+function mergeSearchResults(companies, commodities, query, limit = 25, waterways = []) {
   const pool = [
     ...companies.map((row) => ({ row, score: scoreUnifiedSearch(row, query) + 40 })),
     ...commodities.map((row) => ({ row, score: scoreUnifiedSearch(row, query) })),
+    ...waterways.map((row) => ({ row, score: scoreUnifiedSearch(row, query) + 50 })),
   ];
   pool.sort((a, b) => b.score - a.score || String(a.row.name).localeCompare(String(b.row.name)));
   return pool.slice(0, limit).map((x) => x.row);
@@ -182,6 +194,7 @@ module.exports = {
   formatSearchSubtitle,
   mergeSearchResults,
   formatCommoditySearchSubtitle,
+  formatWaterwaySearchSubtitle,
   scoreUnifiedSearch,
   getRowTicker,
   normalizeTicker,

@@ -7,7 +7,7 @@ export type CompanyPayload = {
 
 export type CompanySearchItem = {
   id: string;
-  kind?: "company" | "commodity";
+  kind?: "company" | "commodity" | "waterway";
   name: string;
   legalName: string;
   meta: string;

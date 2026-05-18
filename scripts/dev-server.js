@@ -59,8 +59,17 @@ function isCommodityRoute(pathname) {
   return pathname === "/commodity" || pathname.startsWith("/commodity/");
 }
 
+function isWaterwayRoute(pathname) {
+  return pathname === "/waterway" || pathname.startsWith("/waterway/");
+}
+
 function isProfileSpaRoute(pathname) {
-  return isCompanyAppRoute(pathname) || isPersonAppRoute(pathname) || isCommodityRoute(pathname);
+  return (
+    isCompanyAppRoute(pathname) ||
+    isPersonAppRoute(pathname) ||
+    isCommodityRoute(pathname) ||
+    isWaterwayRoute(pathname)
+  );
 }
 
 function sendFile(res, filePath) {
