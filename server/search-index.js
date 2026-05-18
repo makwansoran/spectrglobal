@@ -47,6 +47,8 @@ function seedToIndexItem(seed) {
     initials: profile.logoInitials || "??",
     url: `/company/${slug}`,
     terms: [...terms],
+    ticker: profile.stock?.ticker || null,
+    profile_json: profile,
   };
 }
 

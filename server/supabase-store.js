@@ -3,6 +3,7 @@
  * Set SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY in .env
  */
 const { buildMeta } = require("./local-store");
+const { PREFERRED_SLUG_BY_TICKER, normalizeTicker, queryLooksLikeTicker } = require("./search-rank");
 
 let adminClient;
 let createClient;
@@ -43,6 +44,7 @@ function getAdminClient() {
 }
 
 function rowToIndex(row) {
+  const ticker = row.profile_json?.stock?.ticker || null;
   return {
     id: row.slug,
     name: row.name,
@@ -51,6 +53,8 @@ function rowToIndex(row) {
     initials: row.initials,
     url: `/company/${row.slug}`,
     terms: Array.isArray(row.search_terms) ? row.search_terms : [],
+    ticker,
+    profile_json: row.profile_json || undefined,
   };
 }
 
@@ -79,7 +83,7 @@ async function searchCompaniesSupabase(query, limit = 25) {
   const safe = q.replace(/[%_,.()]/g, "");
   const pattern = `%${safe}%`;
   const client = getAdminClient();
-  const select = "slug, name, legal_name, meta, initials, search_terms";
+  const select = "slug, name, legal_name, meta, initials, search_terms, profile_json";
 
   const seen = new Set();
   const merged = [];
@@ -111,11 +115,21 @@ async function searchCompaniesSupabase(query, limit = 25) {
     if (!byTerms.error) addRows(byTerms.data);
   }
 
-  if (/^[a-z0-9.-]{1,8}$/i.test(safe) && merged.length < limit) {
+  const qTicker = queryLooksLikeTicker(q) ? normalizeTicker(q) : "";
+  if (qTicker) {
+    const preferred = PREFERRED_SLUG_BY_TICKER[qTicker];
+    if (preferred && !seen.has(preferred)) {
+      const pref = await client.from("companies").select(select).eq("slug", preferred).maybeSingle();
+      if (!pref.error && pref.data) {
+        seen.add(preferred);
+        merged.unshift(rowToIndex(pref.data));
+      }
+    }
     const slug = `us-${safe.replace(/\./g, "").toLowerCase()}`;
-    if (!seen.has(slug)) {
+    if (!seen.has(slug) && merged.length < limit) {
       const exact = await client.from("companies").select(select).eq("slug", slug).maybeSingle();
       if (!exact.error && exact.data) {
+        seen.add(slug);
         merged.unshift(rowToIndex(exact.data));
       }
     }

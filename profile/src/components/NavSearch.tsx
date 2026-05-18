@@ -144,7 +144,10 @@ export function NavSearch() {
                 <span className="nav-search-result-mark">{company.initials}</span>
                 <span className="nav-search-result-text">
                   <span className="nav-search-result-name">{highlightMatch(company.name, q)}</span>
-                  <span className="nav-search-result-sub"> · {company.legalName}</span>
+                  <span className="nav-search-result-sub">
+                    {" "}
+                    · {company.subtitle || company.ticker || company.legalName}
+                  </span>
                 </span>
               </button>
             ))

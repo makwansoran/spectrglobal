@@ -408,8 +408,10 @@ async function searchSymbols(query) {
 async function searchToIndexItems(query, limit = 25) {
   const { symbolToSeed } = require("./finnhub-import");
   const { buildMeta } = require("./local-store");
+  const { dedupeSearchResults, normalizeTicker, queryLooksLikeTicker } = require("./search-rank");
 
   const hits = await searchSymbols(query);
+  const qTicker = queryLooksLikeTicker(query) ? normalizeTicker(query) : "";
   const preferred = hits.filter((h) => {
     const t = String(h.type || "").toLowerCase();
     return !t || t.includes("stock") || t === "adr" || t === "etp";
@@ -420,6 +422,7 @@ async function searchToIndexItems(query, limit = 25) {
   for (const hit of preferred.length ? preferred : hits) {
     const ticker = String(hit.symbol || hit.displaySymbol || "").trim();
     if (!ticker || seen.has(ticker)) continue;
+    if (qTicker && normalizeTicker(ticker) !== qTicker) continue;
     seen.add(ticker);
 
     const seed = symbolToSeed(
@@ -441,10 +444,11 @@ async function searchToIndexItems(query, limit = 25) {
       initials: seed.profile.logoInitials,
       url: `/company/${seed.slug}`,
       terms: seed.searchTerms,
+      ticker: seed.profile.stock?.ticker || ticker,
     });
-    if (rows.length >= limit) break;
+    if (rows.length >= limit * 4) break;
   }
-  return rows;
+  return dedupeSearchResults(rows, query, limit);
 }
 
 async function buildCompanyFromSlug(slug) {

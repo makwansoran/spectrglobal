@@ -6,6 +6,7 @@ const supabase = require("./supabase-store");
 const searchIndex = require("./search-index");
 const seedStore = require("./seed-store");
 const finnhub = require("./finnhub");
+const { dedupeSearchResults, formatSearchSubtitle } = require("./search-rank");
 const { syncPeopleFromCompany } = require("./people-sync");
 const peopleStore = require("./people-store");
 
@@ -24,27 +25,35 @@ async function listCompanies(options = {}) {
 }
 
 async function searchCompanies(query, limit = 25) {
+  let rows = [];
+
   if (supabase.isSupabaseEnabled()) {
     try {
-      const rows = await supabase.searchCompaniesSupabase(query, limit);
-      if (rows.length) return rows;
+      rows = await supabase.searchCompaniesSupabase(query, limit * 4);
     } catch (err) {
       console.warn("Supabase search failed:", err.message);
     }
   }
 
-  if (finnhub.isEnabled()) {
+  if (!rows.length && finnhub.isEnabled()) {
     try {
-      const rows = await finnhub.searchToIndexItems(query, limit);
-      if (rows.length) return rows;
+      rows = await finnhub.searchToIndexItems(query, limit * 4);
     } catch (err) {
       console.warn("Finnhub search failed:", err.message);
     }
   }
 
-  const indexed = searchIndex.searchIndex(query, limit);
-  if (indexed.length) return indexed;
-  return local.searchCompaniesLocal(query, limit);
+  if (!rows.length) {
+    rows = searchIndex.searchIndex(query, limit * 4);
+  }
+  if (!rows.length) {
+    rows = local.searchCompaniesLocal(query, limit * 4);
+  }
+
+  return dedupeSearchResults(rows, query, limit).map((row) => {
+    const { profile_json, profile, ...rest } = row;
+    return { ...rest, subtitle: formatSearchSubtitle(row) };
+  });
 }
 
 async function getCompanyRaw(slug) {

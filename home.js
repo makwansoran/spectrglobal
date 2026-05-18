@@ -221,7 +221,7 @@
             '<span class="cb-search-result-name">' +
             highlightName(company.name, q) +
             '</span><span class="cb-search-result-sub"> · ' +
-            company.legalName +
+            (company.subtitle || company.ticker || company.legalName) +
             "</span>" +
             "</button>"
           );

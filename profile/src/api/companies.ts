@@ -13,6 +13,8 @@ export type CompanySearchItem = {
   initials: string;
   url: string;
   terms: string[];
+  ticker?: string;
+  subtitle?: string;
 };
 
 const apiBase = import.meta.env.VITE_API_BASE ?? "";
