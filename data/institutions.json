@@ -5,6 +5,7 @@
     "aliases": ["Vanguard", "The Vanguard Group", "Vanguard Group Inc", "Vanguard Group Inc.", "Vanguard Capital Management Llc", "Vanguard Portfolio Management Llc"],
     "orgType": "asset_manager",
     "isListed": false,
+    "companySlug": "vanguard-group",
     "website": "https://www.vanguard.com",
     "logoDomain": "vanguard.com",
     "about": "US mutual fund and ETF manager; one of the world's largest asset managers."
@@ -54,6 +55,7 @@
     "aliases": ["Geode Capital Management", "Geode Capital Management LLC", "Geode Capital Management, Llc"],
     "orgType": "asset_manager",
     "isListed": false,
+    "companySlug": "geode-capital",
     "website": "https://www.geodecapital.com",
     "logoDomain": "geodecapital.com",
     "about": "Quantitative and index asset manager (Fidelity affiliate)."
@@ -64,6 +66,7 @@
     "aliases": ["Fidelity", "FMR LLC", "Fmr Llc", "Fidelity Investments", "Fidelity Management & Research"],
     "orgType": "asset_manager",
     "isListed": false,
+    "companySlug": "fidelity-fmr",
     "website": "https://www.fidelity.com",
     "logoDomain": "fidelity.com",
     "about": "Private mutual fund and brokerage group (FMR LLC)."
@@ -76,7 +79,7 @@
     "isListed": true,
     "listedTicker": "BRK.B",
     "listedExchange": "NYSE",
-    "companySlug": "us-brwk-b",
+    "companySlug": "us-brk.b",
     "website": "https://www.berkshirehathaway.com",
     "logoDomain": "berkshirehathaway.com",
     "about": "Listed holding company led by Warren Buffett."
@@ -113,6 +116,7 @@
     "aliases": ["Norges Bank Investment Management", "NBIM", "Norway Government Pension Fund"],
     "orgType": "sovereign_wealth",
     "isListed": false,
+    "companySlug": "norges-bank",
     "website": "https://www.nbim.no",
     "logoDomain": "nbim.no",
     "about": "Norwegian sovereign wealth fund manager (Government Pension Fund Global)."

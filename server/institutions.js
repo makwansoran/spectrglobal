@@ -80,7 +80,7 @@ function enrichShareholder(stake) {
     isListed: inst.isListed,
     listedTicker: inst.listedTicker,
     listedExchange: inst.listedExchange,
-    companySlug: inst.companySlug,
+    companySlug: inst.companySlug || inst.slug,
     website: inst.website,
     institutionAbout: inst.about,
   };

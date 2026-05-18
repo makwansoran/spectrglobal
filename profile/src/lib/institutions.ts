@@ -36,7 +36,14 @@ function findInstitution(name: string): Institution | null {
 
 export function enrichShareholderStake(stake: ShareholderStake): ShareholderStake {
   if (!stake.name || stake.isOther) return stake;
-  if (stake.slug && stake.orgTypeLabel) return stake;
+  if (stake.slug && stake.orgTypeLabel) {
+    if (stake.companySlug) return stake;
+    const bySlug = institutions.find((i) => i.slug === stake.slug);
+    if (bySlug) {
+      return { ...stake, companySlug: bySlug.companySlug || bySlug.slug };
+    }
+    return stake;
+  }
 
   const inst = stake.slug
     ? institutions.find((i) => i.slug === stake.slug) ?? null
@@ -59,7 +66,7 @@ export function enrichShareholderStake(stake: ShareholderStake): ShareholderStak
     isListed: inst.isListed,
     listedTicker: inst.listedTicker,
     listedExchange: inst.listedExchange,
-    companySlug: inst.companySlug,
+    companySlug: inst.companySlug || inst.slug,
     website: inst.website,
   };
 }

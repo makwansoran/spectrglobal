@@ -1,9 +1,8 @@
-import { Link } from "react-router-dom";
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 import type { CompanyProfile } from "../../types/company";
 import { ShareholderLogo } from "../ShareholderLogo";
 import { buildPieSlices, holderMetaLine, resolveOwnership } from "../../lib/ownership";
-import { holderProfilePath } from "../../lib/paths";
+import { companyProfilePath } from "../../lib/paths";
 
 type Props = { company: CompanyProfile };
 
@@ -66,19 +65,21 @@ export function OwnershipSection({ company }: Props) {
         <ul className="divide-y divide-line">
           {slices.map((slice) => {
             const meta = holderMetaLine(slice);
-            const canLink = Boolean(slice.slug && !slice.isOther);
+            const companySlug = slice.companySlug || slice.slug;
+            const profileHref = companySlug ? companyProfilePath(companySlug) : null;
+            const canLink = Boolean(profileHref && !slice.isOther);
 
             return (
-              <li key={slice.slug || slice.name} className="flex items-center gap-2.5 py-2 first:pt-0 last:pb-0">
+              <li key={companySlug || slice.name} className="flex items-center gap-2.5 py-2 first:pt-0 last:pb-0">
                 <ShareholderLogo stake={slice} size="sm" color={slice.color} />
                 <div className="min-w-0 flex-1">
                   {canLink ? (
-                    <Link
-                      to={holderProfilePath(slice.slug!)}
+                    <a
+                      href={profileHref!}
                       className="block truncate text-left text-sm font-medium text-ink underline-offset-2 hover:text-accent hover:underline"
                     >
                       {slice.name}
-                    </Link>
+                    </a>
                   ) : (
                     <p className="truncate text-sm font-medium text-ink">{slice.name}</p>
                   )}
