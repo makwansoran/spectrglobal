@@ -257,10 +257,17 @@
 
 /* Maritime traffic map (straits & canals) */
 .maritime-page {
-  position: fixed;
-  inset: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   background: #0b1220;
   color: #e2e8f0;
+}
+
+.maritime-page-body {
+  position: relative;
+  flex: 1;
+  min-height: 0;
 }
 
 .maritime-page-loading,
@@ -269,7 +276,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  min-height: 100%;
   padding: 2rem;
   text-align: center;
 }
@@ -314,25 +321,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 100%;
   color: #94a3b8;
   font-size: 0.875rem;
 }
 
 .leaflet-container.maritime-map {
   background: #0c1929 !important;
-}
-
-.maritime-waterway-label {
-  background: rgba(14, 165, 233, 0.2) !important;
-  border: 1px solid rgba(56, 189, 248, 0.5) !important;
-  color: #e0f2fe !important;
-  font-family: "JetBrains Mono", monospace !important;
-  font-size: 11px !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
 .maritime-hud {
@@ -344,7 +339,7 @@
 
 .maritime-hud-top {
   top: 1rem;
-  left: 5.5rem;
+  left: 1rem;
   right: 1rem;
   display: flex;
   flex-wrap: wrap;
@@ -531,11 +526,6 @@
 }
 
 @media (max-width: 640px) {
-  .maritime-hud-top {
-    left: 1rem;
-    top: 3.25rem;
-  }
-
   .maritime-hud-title h1 {
     font-size: 1.15rem;
   }

@@ -2,7 +2,6 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   MapContainer,
   TileLayer,
-  GeoJSON,
   CircleMarker,
   Polyline,
   useMap,
@@ -103,20 +102,6 @@ export function MaritimeTrafficMap({ waterway }: Props) {
     return (waterway.waterwayLine || []).map(([lat, lng]) => [lat, lng] as [number, number]);
   }, [waterway.waterwayLine]);
 
-  const geoFeature = useMemo(() => {
-    if (waterway.waterwayGeojson?.type === "Feature") {
-      return waterway.waterwayGeojson as GeoJSON.Feature;
-    }
-    return {
-      type: "Feature" as const,
-      properties: { name: waterway.name },
-      geometry: {
-        type: "LineString" as const,
-        coordinates: linePositions.map(([lat, lng]) => [lng, lat]),
-      },
-    };
-  }, [waterway, linePositions]);
-
   const refreshVessels = useCallback(async () => {
     try {
       const data = await fetchWaterwayVessels(waterway.id);
@@ -133,6 +118,14 @@ export function MaritimeTrafficMap({ waterway }: Props) {
     const interval = window.setInterval(refreshVessels, 15000);
     return () => window.clearInterval(interval);
   }, [refreshVessels]);
+
+  useEffect(() => {
+    if (!ready) return;
+    const t = window.setTimeout(() => {
+      window.dispatchEvent(new Event("resize"));
+    }, 250);
+    return () => window.clearTimeout(t);
+  }, [ready]);
 
   const typeLabel = waterway.waterwayType === "canal" ? "Canal" : "Strait";
 
@@ -165,18 +158,6 @@ export function MaritimeTrafficMap({ waterway }: Props) {
             <Polyline positions={linePositions} pathOptions={waterwayStyle} />
           </>
         )}
-        <GeoJSON
-          key={waterway.id}
-          data={geoFeature}
-          style={() => ({ opacity: 0, weight: 0 })}
-          onEachFeature={(_feature, layer) => {
-            layer.bindTooltip(waterway.name, {
-              permanent: true,
-              direction: "center",
-              className: "maritime-waterway-label",
-            });
-          }}
-        />
         {vessels.map((v) => (
           <CircleMarker
             key={v.id}
