@@ -1,16 +1,9 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import {
-  MapContainer,
-  TileLayer,
-  CircleMarker,
-  Polyline,
-  useMap,
-  Rectangle,
-} from "react-leaflet";
+import { MapContainer, TileLayer, CircleMarker, Polyline, useMap } from "react-leaflet";
 import type { LatLngBoundsExpression, PathOptions } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { fetchWaterwayVessels } from "../../api/waterways";
-import { VESSEL_TYPE_COLORS, VESSEL_TYPE_LABELS, vesselColor } from "../../lib/vesselTypes";
+import { VESSEL_TYPE_LABELS, vesselColor } from "../../lib/vesselTypes";
 import type { SimulatedVessel, WaterwayProfile } from "../../types/waterway";
 
 const DARK_TILE =
@@ -40,39 +33,6 @@ function FitWaterwayBounds({ bounds }: { bounds: LatLngBoundsExpression }) {
     return () => window.clearTimeout(t);
   }, [map, bounds]);
   return null;
-}
-
-function MinimapInset({
-  bounds,
-  center,
-}: {
-  bounds: LatLngBoundsExpression;
-  center: [number, number];
-}) {
-  const rectBounds = bounds as [[number, number], [number, number]];
-
-  return (
-    <div className="maritime-minimap" aria-hidden>
-      <MapContainer
-        center={center}
-        zoom={4}
-        className="maritime-minimap-map"
-        zoomControl={false}
-        attributionControl={false}
-        dragging={false}
-        scrollWheelZoom={false}
-        doubleClickZoom={false}
-        boxZoom={false}
-        keyboard={false}
-      >
-        <TileLayer url={DARK_TILE} />
-        <Rectangle
-          bounds={rectBounds}
-          pathOptions={{ color: "#38bdf8", weight: 2, fillColor: "#38bdf8", fillOpacity: 0.12 }}
-        />
-      </MapContainer>
-    </div>
-  );
 }
 
 type Props = {
@@ -143,7 +103,7 @@ export function MaritimeTrafficMap({ waterway }: Props) {
         center={center}
         zoom={8}
         className="maritime-map"
-        zoomControl={true}
+        zoomControl={false}
         scrollWheelZoom={true}
       >
         <TileLayer url={DARK_TILE} attribution='&copy; <a href="https://carto.com/">CARTO</a>' />
@@ -176,8 +136,6 @@ export function MaritimeTrafficMap({ waterway }: Props) {
         ))}
       </MapContainer>
 
-      <MinimapInset bounds={bounds} center={center} />
-
       <header className="maritime-hud maritime-hud-top">
         <div className="maritime-hud-title">
           <span className="maritime-hud-type">{typeLabel}</span>
@@ -190,18 +148,6 @@ export function MaritimeTrafficMap({ waterway }: Props) {
           <span>Simulated AIS</span>
         </div>
       </header>
-
-      <aside className="maritime-legend" aria-label="Vessel types">
-        <p className="maritime-legend-title">Vessel types</p>
-        <ul>
-          {(Object.keys(VESSEL_TYPE_COLORS) as Array<keyof typeof VESSEL_TYPE_COLORS>).map((type) => (
-            <li key={type}>
-              <span className="maritime-legend-swatch" style={{ background: VESSEL_TYPE_COLORS[type] }} />
-              {VESSEL_TYPE_LABELS[type]}
-            </li>
-          ))}
-        </ul>
-      </aside>
 
       {selected && (
         <aside className="maritime-vessel-panel" role="dialog" aria-label="Vessel details">
