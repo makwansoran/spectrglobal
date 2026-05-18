@@ -127,15 +127,11 @@ async function resolveLogoViaNameSearch(profile) {
     return !t || t.includes("stock") || t === "adr" || t === "common stock";
   });
 
-  for (const hit of preferred.length ? preferred : hits.slice(0, 5)) {
+  for (const hit of preferred.length ? preferred : hits.slice(0, 8)) {
     if (!nameMatchesHit(query, hit)) continue;
     const sym = hit.symbol || hit.displaySymbol;
     const staticUrl = finnhubStaticLogo(sym);
     if (staticUrl && (await headExists(staticUrl))) return staticUrl;
-    if (finnhub.isEnabled()) {
-      const raw = await finnhub.fetchStockProfile(sym);
-      if (raw?.logo && (await headExists(raw.logo))) return raw.logo;
-    }
   }
   return null;
 }
@@ -166,8 +162,12 @@ async function resolveCompanyLogoUrl(profile, { useFinnhubApi = true } = {}) {
 
   if (useFinnhubApi && finnhub.isEnabled()) {
     for (const sym of logoSymbolCandidates(profile)) {
-      const raw = await finnhub.fetchStockProfile(sym);
-      if (raw?.logo && (await headExists(raw.logo))) return raw.logo;
+      try {
+        const raw = await finnhub.fetchStockProfile(sym);
+        if (raw?.logo && (await headExists(raw.logo))) return raw.logo;
+      } catch {
+        /* profile2 premium — static CDN only */
+      }
     }
   }
 
