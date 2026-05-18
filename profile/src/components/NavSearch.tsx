@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useId, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { searchCompanyIndex, type CompanySearchItem } from "../api/companies";
 import { normalizeQuery } from "../lib/companySearch";
+import { searchResultHref } from "../lib/paths";
 
 function highlightMatch(name: string, query: string) {
   if (!query) return name;
@@ -19,7 +19,6 @@ function highlightMatch(name: string, query: string) {
 
 export function NavSearch() {
   const listId = useId();
-  const navigate = useNavigate();
   const wrapRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -52,23 +51,11 @@ export function NavSearch() {
     setActiveIndex(0);
   }, [query, results]);
 
-  const goToResult = useCallback(
-    (item: CompanySearchItem) => {
-      setOpen(false);
-      setQuery("");
-      if (
-        item.kind === "commodity" ||
-        item.kind === "waterway" ||
-        item.url?.startsWith("/commodity/") ||
-        item.url?.startsWith("/waterway/")
-      ) {
-        window.location.href = item.url;
-        return;
-      }
-      navigate(`/${item.id}`);
-    },
-    [navigate]
-  );
+  const goToResult = useCallback((item: CompanySearchItem) => {
+    setOpen(false);
+    setQuery("");
+    window.location.href = searchResultHref(item);
+  }, []);
 
   useEffect(() => {
     const onDocClick = (e: MouseEvent) => {
