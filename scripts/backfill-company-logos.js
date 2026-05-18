@@ -142,7 +142,13 @@ async function main() {
       }
 
       if (opts.smart) await sleep(FINNHUB_DELAY_MS);
-      const logoUrl = await resolveLogo(profile, opts);
+      let logoUrl;
+      try {
+        logoUrl = await resolveLogo(profile, opts);
+      } catch (err) {
+        if (processed <= 3) console.warn(`  ${row.slug}: ${err.message}`);
+        continue;
+      }
       if (!logoUrl || (!opts.refresh && logoUrl === profile.logoUrl)) continue;
 
       batch.push(rowPatch(row.slug, applyLogoToProfile(profile, logoUrl), row.search_terms));

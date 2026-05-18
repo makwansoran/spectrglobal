@@ -118,10 +118,16 @@ function nameMatchesHit(companyName, hit) {
 /** Resolve logo via Finnhub symbol search on company name (for holdings without tickers). */
 async function resolveLogoViaNameSearch(profile) {
   if (!finnhub.isEnabled()) return null;
-  const query = String(profile.name || profile.legalName || "").trim();
+  let query = String(profile.name || profile.legalName || "").trim();
   if (query.length < 3) return null;
+  if (query.length > 48) query = query.slice(0, 48).replace(/\s+\S*$/, "").trim() || query.slice(0, 48);
 
-  const hits = await finnhub.searchSymbols(query);
+  let hits;
+  try {
+    hits = await finnhub.searchSymbols(query);
+  } catch {
+    return null;
+  }
   const preferred = hits.filter((h) => {
     const t = String(h.type || "").toLowerCase();
     return !t || t.includes("stock") || t === "adr" || t === "common stock";
