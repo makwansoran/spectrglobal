@@ -135,6 +135,25 @@ img {
   text-transform: uppercase;
 }
 
+.nav a.ph-nav-cta {
+  padding: 0.45rem 0.85rem;
+  border: 1px solid var(--fg);
+  border-radius: 2px;
+  color: var(--fg);
+  text-decoration: none;
+}
+
+.nav a.ph-nav-cta:hover {
+  background: var(--fg);
+  color: var(--bg-paper);
+  text-decoration: none;
+}
+
+.nav a.ph-nav-cta[aria-current="page"] {
+  background: var(--fg);
+  color: var(--bg-paper);
+}
+
 .nav-toggle {
   display: none;
   background: none;

@@ -20,6 +20,30 @@ body.theme-platform .nav a.nav-login:hover {
   text-decoration: none;
 }
 
+body.theme-platform .nav a.ph-nav-cta {
+  padding: 0.45rem 0.85rem;
+  border: 1px solid var(--plt-text);
+  border-radius: 2px;
+  color: var(--plt-text);
+  font-family: var(--plt-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+body.theme-platform .nav a.ph-nav-cta:hover {
+  background: var(--plt-text);
+  color: #fff;
+  text-decoration: none;
+}
+
+body.theme-platform .nav a.ph-nav-cta[aria-current="page"] {
+  background: var(--plt-text);
+  color: #fff;
+}
+
 /* Palantir-inspired light platform theme */
 
 body.theme-platform {

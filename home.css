@@ -23,25 +23,6 @@ body.page-home .site-header {
   box-shadow: none;
 }
 
-body.page-home .nav a.ph-nav-cta {
-  padding: 0.45rem 0.85rem;
-  border: 1px solid var(--ph-ink);
-  border-radius: 2px;
-  color: var(--ph-ink);
-  font-family: var(--plt-mono);
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  text-decoration: none;
-}
-
-body.page-home .nav a.ph-nav-cta:hover {
-  background: var(--ph-ink);
-  color: #fff;
-  text-decoration: none;
-}
-
 .ph-hero {
   padding: clamp(4rem, 14vh, 7rem) 0 clamp(3rem, 8vh, 5rem);
   border-bottom: 1px solid var(--ph-line);

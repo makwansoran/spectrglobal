@@ -36,29 +36,23 @@
 
     var text = document.createElement("p");
     text.className = "cookie-banner-text";
-    text.innerHTML =
-      'We use cookies and similar technologies to operate and secure this site. By clicking “Accept all cookies”, you agree to our use of cookies as described in our <a href="privacy.html#cookies">Privacy Policy</a>.';
+    text.textContent =
+      "We use essential cookies to operate and secure this site. By clicking “Accept”, you agree to our use of cookies.";
 
     var actions = document.createElement("div");
     actions.className = "cookie-banner-actions";
-
-    var settings = document.createElement("a");
-    settings.className = "cookie-banner-btn cookie-banner-btn--ghost";
-    settings.href = "privacy.html#cookies";
-    settings.textContent = "Cookie settings";
 
     var accept = document.createElement("button");
     accept.type = "button";
     accept.className = "cookie-banner-btn cookie-banner-btn--accept";
     accept.id = "cookie-banner-accept";
-    accept.textContent = "Accept all cookies";
+    accept.textContent = "Accept";
 
     accept.addEventListener("click", function () {
       saveConsent();
       dismiss(banner);
     });
 
-    actions.appendChild(settings);
     actions.appendChild(accept);
     banner.appendChild(text);
     banner.appendChild(actions);
