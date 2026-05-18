@@ -5,12 +5,20 @@ const { createClient } = require("@supabase/supabase-js");
 
 let adminClient;
 
+function getSupabaseUrl() {
+  return String(process.env.SUPABASE_URL || "")
+    .trim()
+    .replace(/\/$/, "");
+}
+
 function getSupabaseKey() {
-  return process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY || "";
+  return String(
+    process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY || ""
+  ).trim();
 }
 
 function isSupabaseEnabled() {
-  return Boolean(process.env.SUPABASE_URL && getSupabaseKey());
+  return Boolean(getSupabaseUrl() && getSupabaseKey());
 }
 
 function hasSupabaseWrites() {
@@ -28,7 +36,7 @@ function requireSupabase() {
 function getAdminClient() {
   requireSupabase();
   if (!adminClient) {
-    adminClient = createClient(process.env.SUPABASE_URL, getSupabaseKey(), {
+    adminClient = createClient(getSupabaseUrl(), getSupabaseKey(), {
       auth: { persistSession: false, autoRefreshToken: false },
     });
   }

@@ -77,7 +77,7 @@ async function handleApi(req, res, pathname) {
       if (q.trim()) {
         sendJson(res, 200, await searchCompanies(q, limit), { "X-Spectr-Source": "supabase:companies" });
       } else {
-        sendJson(res, 200, await listCompanies({ limit: 500 }), { "X-Spectr-Source": "supabase:companies" });
+        sendJson(res, 200, await listCompanies({ limit }), { "X-Spectr-Source": "supabase:companies" });
       }
       return true;
     }

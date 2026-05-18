@@ -4,7 +4,7 @@
   "outputDirectory": ".",
   "functions": {
     "api/**/*.js": {
-      "includeFiles": "server/**,data/company-search-index.json,data/commodity-search-index.json,data/seed/companies/**,data/seed/commodities.json,scripts/load-env.js"
+      "includeFiles": "server/**,node_modules/@supabase/**,data/company-search-index.json,data/commodity-search-index.json,data/seed/companies/**,data/seed/commodities.json,scripts/load-env.js"
     }
   },
   "rewrites": [

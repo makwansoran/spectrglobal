@@ -5,7 +5,6 @@ const supabase = require("./supabase-store");
 const { isSupabaseEnabled, requireSupabase } = require("./supabase-client");
 const { dedupeSearchResults, formatSearchSubtitle } = require("./search-rank");
 const { syncPeopleFromCompany } = require("./people-sync");
-const peopleStore = require("./people-store");
 
 async function listCompanies(options = {}) {
   requireSupabase();
@@ -46,6 +45,7 @@ async function getCompany(slug) {
   const company = await getCompanyRaw(slug);
   if (!company?.profile) return company;
 
+  const peopleStore = require("./people-store");
   company.profile = await peopleStore.hydrateCompanyPeople(company.profile, slug);
   return company;
 }
@@ -80,6 +80,6 @@ module.exports = {
   syncAfterSeed,
   storageMode,
   isSupabaseEnabled,
-  listPeople: peopleStore.listPeople,
-  getPerson: peopleStore.getPerson,
+  listPeople: (...args) => require("./people-store").listPeople(...args),
+  getPerson: (...args) => require("./people-store").getPerson(...args),
 };
