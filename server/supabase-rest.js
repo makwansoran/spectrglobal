@@ -1,13 +1,11 @@
 /**
  * Minimal PostgREST client for Vercel serverless (avoids fragile .or() filter strings).
  */
+const { getSupabaseUrl, getSupabaseKey } = require("./supabase-client");
+
 function getConfig() {
-  const baseUrl = String(process.env.SUPABASE_URL || "")
-    .trim()
-    .replace(/\/$/, "");
-  const key = String(
-    process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY || ""
-  ).trim();
+  const baseUrl = getSupabaseUrl();
+  const key = getSupabaseKey();
   if (!baseUrl || !key) {
     throw new Error("Supabase URL and API key are required");
   }

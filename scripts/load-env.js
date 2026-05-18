@@ -20,7 +20,9 @@ function loadEnvFile(filePath) {
     ) {
       value = value.slice(1, -1);
     }
-    process.env[key] = value;
+    if (process.env[key] === undefined || process.env[key] === "") {
+      process.env[key] = value;
+    }
   }
 }
 
