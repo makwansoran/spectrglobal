@@ -5,6 +5,7 @@ const local = require("./local-store");
 const supabase = require("./supabase-store");
 const searchIndex = require("./search-index");
 const seedStore = require("./seed-store");
+const finnhub = require("./finnhub");
 const { syncPeopleFromCompany } = require("./people-sync");
 const peopleStore = require("./people-store");
 
@@ -26,11 +27,21 @@ async function searchCompanies(query, limit = 25) {
   if (supabase.isSupabaseEnabled()) {
     try {
       const rows = await supabase.searchCompaniesSupabase(query, limit);
-      return rows;
+      if (rows.length) return rows;
     } catch (err) {
       console.warn("Supabase search failed:", err.message);
     }
   }
+
+  if (finnhub.isEnabled()) {
+    try {
+      const rows = await finnhub.searchToIndexItems(query, limit);
+      if (rows.length) return rows;
+    } catch (err) {
+      console.warn("Finnhub search failed:", err.message);
+    }
+  }
+
   const indexed = searchIndex.searchIndex(query, limit);
   if (indexed.length) return indexed;
   return local.searchCompaniesLocal(query, limit);
@@ -47,6 +58,15 @@ async function getCompanyRaw(slug) {
   }
   const fromSeed = seedStore.readSeed(slug);
   if (fromSeed?.profile) return fromSeed;
+
+  if (finnhub.isEnabled() && String(slug).startsWith("us-")) {
+    try {
+      const built = await finnhub.buildCompanyFromSlug(slug);
+      if (built?.profile) return built;
+    } catch (err) {
+      console.warn(`Finnhub profile(${slug}):`, err.message);
+    }
+  }
 
   return local.getCompanyLocal(slug);
 }
@@ -99,6 +119,7 @@ async function syncAfterSeed(activeSlugs) {
 
 function storageMode() {
   if (supabase.isSupabaseEnabled()) return "supabase";
+  if (finnhub.isEnabled()) return "finnhub";
   if (searchIndex.loadIndex().length) return "index";
   return "local";
 }

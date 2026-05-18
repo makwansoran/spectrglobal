@@ -234,6 +234,80 @@ async function fetchUsStockSymbols() {
   return data;
 }
 
+/** Live symbol search (Finnhub /search) — used when Supabase is empty or unavailable. */
+async function searchSymbols(query) {
+  const q = String(query || "").trim();
+  if (!q) return [];
+  const key = `search:${q.toLowerCase()}`;
+  const cached = cacheGet(key);
+  if (cached) return cached;
+  const data = await finnhubGet("/search", { q });
+  const results = Array.isArray(data?.result) ? data.result : [];
+  cacheSet(key, results);
+  return results;
+}
+
+async function searchToIndexItems(query, limit = 25) {
+  const { symbolToSeed } = require("./finnhub-import");
+  const { buildMeta } = require("./local-store");
+
+  const hits = await searchSymbols(query);
+  const preferred = hits.filter((h) => {
+    const t = String(h.type || "").toLowerCase();
+    return !t || t.includes("stock") || t === "adr" || t === "etp";
+  });
+
+  const rows = [];
+  const seen = new Set();
+  for (const hit of preferred.length ? preferred : hits) {
+    const ticker = String(hit.symbol || hit.displaySymbol || "").trim();
+    if (!ticker || seen.has(ticker)) continue;
+    seen.add(ticker);
+
+    const seed = symbolToSeed(
+      {
+        symbol: ticker,
+        description: hit.description || hit.symbol,
+        type: hit.type || "Common Stock",
+        displaySymbol: hit.displaySymbol,
+      },
+      null
+    );
+    if (!seed) continue;
+
+    rows.push({
+      id: seed.slug,
+      name: seed.profile.name,
+      legalName: seed.profile.legalName,
+      meta: buildMeta(seed.profile),
+      initials: seed.profile.logoInitials,
+      url: `/company/${seed.slug}`,
+      terms: seed.searchTerms,
+    });
+    if (rows.length >= limit) break;
+  }
+  return rows;
+}
+
+async function buildCompanyFromSlug(slug) {
+  if (!String(slug).startsWith("us-")) return null;
+  const ticker = String(slug).slice(3).replace(/\./g, "").toUpperCase();
+  if (!ticker) return null;
+
+  const { symbolToSeed } = require("./finnhub-import");
+  const profile2 = await fetchStockProfile(ticker);
+  const seed = symbolToSeed(
+    {
+      symbol: ticker,
+      description: profile2?.name || ticker,
+      type: "Common Stock",
+    },
+    profile2
+  );
+  if (!seed) return null;
+  return { profile: seed.profile, mapGeojson: null };
+}
+
 async function fetchStockProfile(symbol) {
   const key = `profile2:${symbol}`;
   const cached = cacheGet(key);
@@ -258,4 +332,7 @@ module.exports = {
   fetchCompanyMarket,
   fetchUsStockSymbols,
   fetchStockProfile,
+  searchSymbols,
+  searchToIndexItems,
+  buildCompanyFromSlug,
 };
