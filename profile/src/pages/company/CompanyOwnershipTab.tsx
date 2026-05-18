@@ -12,7 +12,7 @@ export function CompanyOwnershipTab() {
   }
 
   return (
-    <ProfileTabPanel title="Ownership" description="Shareholders and ownership structure.">
+    <ProfileTabPanel>
       <OwnershipSection company={company} />
     </ProfileTabPanel>
   );

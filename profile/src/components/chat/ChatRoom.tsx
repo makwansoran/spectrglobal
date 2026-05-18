@@ -7,6 +7,7 @@ type Props = {
   roomType: ChatRoomType;
   roomSlug: string;
   roomLabel: string;
+  compact?: boolean;
 };
 
 function formatTime(iso: string) {
@@ -20,7 +21,7 @@ function formatTime(iso: string) {
   }
 }
 
-export function ChatRoom({ roomType, roomSlug, roomLabel }: Props) {
+export function ChatRoom({ roomType, roomSlug, roomLabel, compact = false }: Props) {
   const { messages, loading, sending, error, live, authorId, send } = useChatRoom(
     roomType,
     roomSlug
@@ -53,11 +54,19 @@ export function ChatRoom({ roomType, roomSlug, roomLabel }: Props) {
   }
 
   return (
-    <div className="spectr-card flex min-h-[420px] flex-col overflow-hidden">
-      <header className="flex flex-wrap items-center justify-between gap-3 border-b border-line px-4 py-3">
+    <div
+      className={`flex flex-col overflow-hidden rounded-lg border border-line bg-white ${
+        compact ? "min-h-[260px]" : "spectr-card min-h-[420px]"
+      }`}
+    >
+      <header
+        className={`flex flex-wrap items-center justify-between gap-2 border-b border-line ${
+          compact ? "px-3 py-2" : "px-4 py-3"
+        }`}
+      >
         <div>
-          <p className="section-label mb-0">Live discussion</p>
-          <h3 className="text-base font-semibold text-ink">{roomLabel}</h3>
+          {!compact && <p className="section-label mb-0">Live discussion</p>}
+          <h3 className={`font-semibold text-ink ${compact ? "text-sm" : "text-base"}`}>{roomLabel}</h3>
         </div>
         <span
           className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-wider ${

@@ -6,8 +6,8 @@ export function CommodityChatTab() {
   const commodity = useCommodityProfile();
 
   return (
-    <ProfileTabPanel title="Chat" description={`Discussion for ${commodity.name}.`}>
-      <ChatRoom roomType="commodity" roomSlug={commodity.id} roomLabel={commodity.name} />
+    <ProfileTabPanel>
+      <ChatRoom roomType="commodity" roomSlug={commodity.id} roomLabel={commodity.name} compact />
     </ProfileTabPanel>
   );
 }

@@ -11,7 +11,7 @@ export function CompanyFilingsTab() {
   }
 
   return (
-    <ProfileTabPanel title="Filings">
+    <ProfileTabPanel>
       <FilingsSection company={company} />
     </ProfileTabPanel>
   );

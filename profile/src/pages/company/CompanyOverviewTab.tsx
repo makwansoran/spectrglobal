@@ -1,47 +1,22 @@
 import { AboutSection } from "../../components/sections/AboutSection";
-import { NewsSection } from "../../components/sections/NewsSection";
-import { FilingsSection } from "../../components/sections/FilingsSection";
-import { IndustryMap, hasIndustryMap } from "../../components/maps/IndustryMap";
 import { Sidebar } from "../../components/sidebar/Sidebar";
 import { ProfileTabPanel } from "../../components/ProfileTabPanel";
 import { useCompanyProfile } from "../../context/CompanyProfileContext";
 
 export function CompanyOverviewTab() {
-  const { company, mapGeojson } = useCompanyProfile();
+  const { company } = useCompanyProfile();
 
   return (
-    <>
+    <ProfileTabPanel>
       {company.about?.trim() ? (
-        <ProfileTabPanel title="Overview">
-          <AboutSection company={company} />
-        </ProfileTabPanel>
+        <AboutSection company={company} />
       ) : (
-        <ProfileTabPanel title="Overview" description="Company summary and key details.">
-          <p className="text-sm text-muted">No overview text is available for this company yet.</p>
-        </ProfileTabPanel>
+        <p className="text-sm text-muted">No overview text is available for this company yet.</p>
       )}
-
-      {company.news.length > 0 && (
-        <ProfileTabPanel title="News">
-          <NewsSection company={company} />
-        </ProfileTabPanel>
-      )}
-
-      {company.filings.length > 0 && (
-        <ProfileTabPanel title="Filings">
-          <FilingsSection company={company} />
-        </ProfileTabPanel>
-      )}
-
-      {hasIndustryMap(company.industry, mapGeojson) && (
-        <ProfileTabPanel title={company.industryTabLabel}>
-          <IndustryMap company={company} mapGeojson={mapGeojson} />
-        </ProfileTabPanel>
-      )}
-
-      <ProfileTabPanel title="Details">
+      <div className="mt-6 border-t border-line pt-5">
+        <p className="section-label">Details</p>
         <Sidebar company={company} layout="grid" />
-      </ProfileTabPanel>
-    </>
+      </div>
+    </ProfileTabPanel>
   );
 }

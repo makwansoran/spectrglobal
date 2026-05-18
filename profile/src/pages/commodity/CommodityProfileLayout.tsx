@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import { Navigate, Outlet, useLocation, useParams } from "react-router-dom";
 import { CommodityHero } from "../../components/CommodityHero";
 import { TabNav } from "../../components/TabNav";
@@ -26,10 +26,6 @@ export function CommodityProfileLayout() {
   const activeTab = commodityId ? companyTabFromPath(location.pathname, commodityId) : "overview";
   const basePath = commodityId ? `/${commodityId}` : "/";
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location.pathname]);
-
   if (loading) {
     return (
       <div className="min-h-screen bg-white">
@@ -52,8 +48,8 @@ export function CommodityProfileLayout() {
       <div className="min-h-screen bg-white">
         <SiteHeader />
         <CommodityHero commodity={commodity} />
-        <TabNav tabs={tabs} activeId={activeTab} basePath={basePath} chatTabId="chat" />
-        <main className="mx-auto max-w-7xl px-4 md:px-6">
+        <TabNav tabs={tabs} basePath={basePath} />
+        <main className="mx-auto max-w-5xl px-4 pb-8 pt-1 md:px-6">
           <Outlet />
         </main>
         <SiteFooter />

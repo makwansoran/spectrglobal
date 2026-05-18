@@ -14,7 +14,7 @@ export function CompanyFinancialsTab() {
   }
 
   return (
-    <ProfileTabPanel title="Financials" description="Revenue, margins, and other reported metrics.">
+    <ProfileTabPanel>
       <FinancialsSection company={company} />
     </ProfileTabPanel>
   );

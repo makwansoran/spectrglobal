@@ -6,8 +6,8 @@ export function CompanyChatTab() {
   const { company } = useCompanyProfile();
 
   return (
-    <ProfileTabPanel title="Chat" description={`Discussion for ${company.name}.`}>
-      <ChatRoom roomType="company" roomSlug={company.id} roomLabel={company.name} />
+    <ProfileTabPanel>
+      <ChatRoom roomType="company" roomSlug={company.id} roomLabel={company.name} compact />
     </ProfileTabPanel>
   );
 }

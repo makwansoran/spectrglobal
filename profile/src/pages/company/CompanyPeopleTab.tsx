@@ -11,7 +11,7 @@ export function CompanyPeopleTab() {
   }
 
   return (
-    <ProfileTabPanel title="People" description="Leadership and key people at this company.">
+    <ProfileTabPanel>
       <PeopleSection company={company} />
     </ProfileTabPanel>
   );

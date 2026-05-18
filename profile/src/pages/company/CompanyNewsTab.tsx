@@ -11,7 +11,7 @@ export function CompanyNewsTab() {
   }
 
   return (
-    <ProfileTabPanel title="News">
+    <ProfileTabPanel>
       <NewsSection company={company} />
     </ProfileTabPanel>
   );

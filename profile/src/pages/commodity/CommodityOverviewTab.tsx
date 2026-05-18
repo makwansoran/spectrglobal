@@ -7,20 +7,16 @@ export function CommodityOverviewTab() {
   const commodity = useCommodityProfile();
 
   return (
-    <>
+    <ProfileTabPanel>
       {commodity.about?.trim() ? (
-        <ProfileTabPanel title="Overview">
-          <CommodityAboutSection commodity={commodity} />
-        </ProfileTabPanel>
+        <CommodityAboutSection commodity={commodity} />
       ) : (
-        <ProfileTabPanel title="Overview">
-          <p className="text-sm text-muted">No overview text is available for this contract yet.</p>
-        </ProfileTabPanel>
+        <p className="text-sm text-muted">No overview text is available for this contract yet.</p>
       )}
-
-      <ProfileTabPanel title="Details">
+      <div className="mt-6 border-t border-line pt-5">
+        <p className="section-label">Details</p>
         <CommoditySidebar commodity={commodity} layout="grid" />
-      </ProfileTabPanel>
-    </>
+      </div>
+    </ProfileTabPanel>
   );
 }

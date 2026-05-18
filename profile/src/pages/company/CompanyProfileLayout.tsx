@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import { Navigate, Outlet, useLocation, useParams } from "react-router-dom";
 import { Hero } from "../../components/Hero";
 import { TabNav } from "../../components/TabNav";
@@ -22,10 +22,6 @@ export function CompanyProfileLayout() {
 
   const activeTab = companyId ? companyTabFromPath(location.pathname, companyId) : "overview";
   const basePath = companyId ? `/${companyId}` : "/";
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location.pathname]);
 
   if (loading) {
     return (
@@ -77,8 +73,8 @@ export function CompanyProfileLayout() {
       <div className="min-h-screen bg-white">
         <SiteHeader />
         <Hero company={company} />
-        <TabNav tabs={tabs} activeId={activeTab} basePath={basePath} chatTabId="chat" />
-        <main className="mx-auto max-w-7xl px-4 md:px-6">
+        <TabNav tabs={tabs} basePath={basePath} />
+        <main className="mx-auto max-w-5xl px-4 pb-8 pt-1 md:px-6">
           <Outlet />
         </main>
         <SiteFooter />

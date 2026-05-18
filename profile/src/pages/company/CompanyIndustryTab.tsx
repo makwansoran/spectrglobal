@@ -11,7 +11,7 @@ export function CompanyIndustryTab() {
   }
 
   return (
-    <ProfileTabPanel title={company.industryTabLabel}>
+    <ProfileTabPanel>
       <IndustryMap company={company} mapGeojson={mapGeojson} />
     </ProfileTabPanel>
   );
