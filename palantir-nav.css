@@ -232,6 +232,30 @@
   flex-shrink: 0;
 }
 
+.plt-header-login {
+  display: none;
+  padding: 0.5rem 0.85rem;
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--plt-white);
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  margin-right: 0.25rem;
+}
+
+.plt-header-login:hover {
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+@media (min-width: 640px) {
+  .plt-header-login {
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
 .plt-cta-get-started {
   margin-left: auto;
   padding: 0.85rem 1.35rem;

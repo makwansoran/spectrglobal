@@ -13,7 +13,6 @@
     { "source": "/company", "destination": "/company/index.html" },
     { "source": "/company/", "destination": "/company/index.html" },
     { "source": "/company/:path*", "destination": "/company/index.html" },
-    { "source": "/login", "destination": "/index.html" },
-    { "source": "/login.html", "destination": "/index.html" }
+    { "source": "/login", "destination": "/login.html" }
   ]
 }
