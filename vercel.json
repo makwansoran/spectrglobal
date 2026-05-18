@@ -19,6 +19,7 @@
       "includeFiles": "server/**,api/_serve.js,node_modules/@supabase/**,data/institutions.json,scripts/load-env.js"
     },
     "api/waterways/[[...path]].js": {
+      "maxDuration": 30,
       "includeFiles": "server/**,api/_serve.js,node_modules/@supabase/**,data/seed/maritime-waterways.json,scripts/load-env.js"
     }
   },

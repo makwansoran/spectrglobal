@@ -17,6 +17,7 @@ export type WaterwayProfile = {
 
 export type SimulatedVessel = {
   id: string;
+  mmsi?: string;
   name: string;
   type: string;
   flag: string;

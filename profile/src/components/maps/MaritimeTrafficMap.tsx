@@ -42,8 +42,8 @@ type Props = {
 export function MaritimeTrafficMap({ waterway }: Props) {
   const [ready, setReady] = useState(false);
   const [vessels, setVessels] = useState<SimulatedVessel[]>([]);
+  const [trafficSource, setTrafficSource] = useState<"aisstream" | "simulated">("simulated");
   const [selected, setSelected] = useState<SimulatedVessel | null>(null);
-  const startRef = useRef(Date.now());
 
   const bounds = useMemo((): LatLngBoundsExpression => {
     const [south, west, north, east] = waterway.bounds;
@@ -66,7 +66,7 @@ export function MaritimeTrafficMap({ waterway }: Props) {
     try {
       const data = await fetchWaterwayVessels(waterway.id);
       setVessels(data.vessels);
-      startRef.current = Date.now();
+      setTrafficSource(data.source === "aisstream" ? "aisstream" : "simulated");
     } catch {
       /* keep last positions */
     }
@@ -75,9 +75,10 @@ export function MaritimeTrafficMap({ waterway }: Props) {
   useEffect(() => {
     setReady(true);
     refreshVessels();
-    const interval = window.setInterval(refreshVessels, 15000);
+    const intervalMs = trafficSource === "aisstream" ? 20_000 : 15_000;
+    const interval = window.setInterval(refreshVessels, intervalMs);
     return () => window.clearInterval(interval);
-  }, [refreshVessels]);
+  }, [refreshVessels, trafficSource]);
 
   useEffect(() => {
     if (!ready) return;
@@ -145,7 +146,7 @@ export function MaritimeTrafficMap({ waterway }: Props) {
         <div className="maritime-hud-stats">
           <span>{vessels.length} vessels tracked</span>
           <span className="maritime-hud-dot">·</span>
-          <span>Simulated AIS</span>
+          <span>{trafficSource === "aisstream" ? "Live AIS (AIS Stream)" : "Simulated AIS"}</span>
         </div>
       </header>
 

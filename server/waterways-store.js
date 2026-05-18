@@ -5,6 +5,7 @@ const fs = require("fs");
 const path = require("path");
 const { getAdminClient, isSupabaseEnabled, hasSupabaseWrites, requireSupabase } = require("./supabase-client");
 const { simulateVessels } = require("./maritime-vessel-sim");
+const aisstream = require("./aisstream");
 
 const SEED_PATH = path.join(__dirname, "..", "data", "seed", "maritime-waterways.json");
 
@@ -165,15 +166,37 @@ async function getWaterwayVessels(slug, timeMs) {
   const row = await getWaterwayRaw(slug);
   if (!row) return null;
   const profile = rowToProfile(row);
-  const vessels = simulateVessels(
-    {
-      slug: row.slug,
-      importance: row.importance,
-      waterwayLine: profile.waterwayLine,
-    },
-    timeMs
-  );
-  return { vessels, generatedAt: new Date(timeMs || Date.now()).toISOString() };
+  const generatedAt = new Date(timeMs || Date.now()).toISOString();
+
+  let vessels = null;
+  let source = "simulated";
+
+  if (aisstream.isEnabled() && Array.isArray(row.bounds) && row.bounds.length === 4) {
+    const live = await aisstream.getAisVesselsForBounds(row.bounds, { maxVessels: 100 });
+    if (live?.length) {
+      vessels = live;
+      source = "aisstream";
+    }
+  }
+
+  if (!vessels?.length) {
+    vessels = simulateVessels(
+      {
+        slug: row.slug,
+        importance: row.importance,
+        waterwayLine: profile.waterwayLine,
+      },
+      timeMs
+    );
+    source = "simulated";
+  }
+
+  return {
+    vessels,
+    source,
+    live: source === "aisstream",
+    generatedAt,
+  };
 }
 
 async function upsertWaterwaysBatch(seeds, chunkSize = 50) {

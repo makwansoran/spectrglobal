@@ -204,7 +204,8 @@ async function handleApi(req, res, pathname) {
         sendJson(res, 404, { error: "Waterway not found" });
         return true;
       }
-      sendJson(res, 200, data, { "Cache-Control": "public, max-age=15" });
+      const cacheSec = data.source === "aisstream" ? 15 : 30;
+      sendJson(res, 200, data, { "Cache-Control": `public, max-age=${cacheSec}` });
       return true;
     }
 

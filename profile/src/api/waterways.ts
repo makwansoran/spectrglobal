@@ -21,12 +21,21 @@ export async function fetchWaterway(slug: string, signal?: AbortSignal): Promise
   return res.json();
 }
 
+export type WaterwayVesselsPayload = {
+  vessels: SimulatedVessel[];
+  generatedAt: string;
+  source?: "aisstream" | "simulated";
+  live?: boolean;
+};
+
 export async function fetchWaterwayVessels(
   slug: string,
   signal?: AbortSignal
-): Promise<{ vessels: SimulatedVessel[]; generatedAt: string }> {
+): Promise<WaterwayVesselsPayload> {
   const t = Date.now();
-  const res = await fetch(`${apiBase}/api/waterways/${encodeURIComponent(slug)}/vessels?t=${t}`, { signal });
+  const res = await fetch(`${apiBase}/api/waterways/${encodeURIComponent(slug)}/vessels?t=${t}`, {
+    signal,
+  });
   if (!res.ok) throw new Error("Failed to load vessel traffic");
   return res.json();
 }
