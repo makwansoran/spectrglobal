@@ -46,6 +46,19 @@ function buildSearchTerms(name, symbol, altSymbols, exchange, categoryLabel) {
 function item({ name, category, categoryLabel, exchange, symbol, altSymbols, about }) {
   const slug = slugify(name);
   const sym = symbol || null;
+  const ini = initials(name, sym);
+  const keyFacts = [
+    { label: "Category", value: categoryLabel },
+    ...(exchange ? [{ label: "Exchange", value: exchange }] : []),
+    ...(sym ? [{ label: "Contract symbol", value: sym }] : []),
+    ...(altSymbols?.length ? [{ label: "Alt symbols", value: altSymbols.join(", ") }] : []),
+  ];
+  const quickStats = [
+    { label: "Category", value: categoryLabel, format: "text" },
+    ...(exchange ? [{ label: "Exchange", value: exchange, format: "text" }] : []),
+    ...(sym ? [{ label: "Symbol", value: sym, format: "text" }] : []),
+  ];
+
   const profile = {
     id: slug,
     name,
@@ -54,10 +67,18 @@ function item({ name, category, categoryLabel, exchange, symbol, altSymbols, abo
     exchange: exchange || null,
     symbol: sym,
     alternateSymbols: altSymbols || [],
+    logoInitials: ini,
+    industryTags: [categoryLabel],
+    quickStats,
+    keyFacts,
     about:
       about ||
-      `${name} is traded on ${exchange || "global markets"}${sym ? ` (symbol ${sym})` : ""}. Category: ${categoryLabel}.`,
-    dataSources: [{ name: "Exchange contract specs", url: null }],
+      `${name} is a ${categoryLabel.toLowerCase()} futures contract${exchange ? ` listed on ${exchange}` : ""}${sym ? ` (ticker ${sym})` : ""}. Contract specifications and margin requirements are set by the listing exchange.`,
+    dataSources: [
+      { name: "Exchange contract specs" },
+      { name: "CME Group", url: "https://www.cmegroup.com" },
+      { name: "ICE", url: "https://www.ice.com" },
+    ],
     lastUpdated: new Date().toISOString(),
   };
 
@@ -66,7 +87,7 @@ function item({ name, category, categoryLabel, exchange, symbol, altSymbols, abo
     searchTerms: buildSearchTerms(name, sym, altSymbols, exchange, categoryLabel),
     profile,
     meta: buildMeta(categoryLabel, exchange, sym),
-    initials: initials(name, sym),
+    initials: ini,
   };
 }
 

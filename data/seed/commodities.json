@@ -19,14 +19,60 @@
       "alternateSymbols": [
         "WTIB"
       ],
-      "about": "WTI Crude Oil is traded on NYMEX / ICE (symbol CL). Category: Energy.",
-      "dataSources": [
+      "logoInitials": "WC",
+      "industryTags": [
+        "Energy"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Energy",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "NYMEX / ICE",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "CL",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.159Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Energy"
+        },
+        {
+          "label": "Exchange",
+          "value": "NYMEX / ICE"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "CL"
+        },
+        {
+          "label": "Alt symbols",
+          "value": "WTIB"
+        }
+      ],
+      "about": "WTI Crude Oil is a energy futures contract listed on NYMEX / ICE (ticker CL). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.619Z"
     },
     "meta": "Energy · NYMEX / ICE · CL",
     "initials": "WC"
@@ -47,14 +93,47 @@
       "exchange": "ICE",
       "symbol": null,
       "alternateSymbols": [],
-      "about": "Brent Crude Oil is traded on ICE. Category: Energy.",
-      "dataSources": [
+      "logoInitials": "BC",
+      "industryTags": [
+        "Energy"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Energy",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "ICE",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.160Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Energy"
+        },
+        {
+          "label": "Exchange",
+          "value": "ICE"
+        }
+      ],
+      "about": "Brent Crude Oil is a energy futures contract listed on ICE. Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.620Z"
     },
     "meta": "Energy · ICE",
     "initials": "BC"
@@ -76,14 +155,56 @@
       "exchange": "NYMEX",
       "symbol": "NG",
       "alternateSymbols": [],
-      "about": "Natural Gas is traded on NYMEX (symbol NG). Category: Energy.",
-      "dataSources": [
+      "logoInitials": "NG",
+      "industryTags": [
+        "Energy"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Energy",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "NYMEX",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "NG",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Energy"
+        },
+        {
+          "label": "Exchange",
+          "value": "NYMEX"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "NG"
+        }
+      ],
+      "about": "Natural Gas is a energy futures contract listed on NYMEX (ticker NG). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.620Z"
     },
     "meta": "Energy · NYMEX · NG",
     "initials": "NG"
@@ -105,14 +226,56 @@
       "exchange": "ICE",
       "symbol": "NBP",
       "alternateSymbols": [],
-      "about": "Natural Gas (UK) is traded on ICE (symbol NBP). Category: Energy.",
-      "dataSources": [
+      "logoInitials": "NG",
+      "industryTags": [
+        "Energy"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Energy",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "ICE",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "NBP",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Energy"
+        },
+        {
+          "label": "Exchange",
+          "value": "ICE"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "NBP"
+        }
+      ],
+      "about": "Natural Gas (UK) is a energy futures contract listed on ICE (ticker NBP). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.620Z"
     },
     "meta": "Energy · ICE · NBP",
     "initials": "NG"
@@ -134,14 +297,56 @@
       "exchange": "NYMEX",
       "symbol": "HO",
       "alternateSymbols": [],
-      "about": "Heating Oil is traded on NYMEX (symbol HO). Category: Energy.",
-      "dataSources": [
+      "logoInitials": "HO",
+      "industryTags": [
+        "Energy"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Energy",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "NYMEX",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "HO",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Energy"
+        },
+        {
+          "label": "Exchange",
+          "value": "NYMEX"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "HO"
+        }
+      ],
+      "about": "Heating Oil is a energy futures contract listed on NYMEX (ticker HO). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.620Z"
     },
     "meta": "Energy · NYMEX · HO",
     "initials": "HO"
@@ -163,14 +368,56 @@
       "exchange": "NYMEX",
       "symbol": "RB",
       "alternateSymbols": [],
-      "about": "RBOB Gasoline is traded on NYMEX (symbol RB). Category: Energy.",
-      "dataSources": [
+      "logoInitials": "RG",
+      "industryTags": [
+        "Energy"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Energy",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "NYMEX",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "RB",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Energy"
+        },
+        {
+          "label": "Exchange",
+          "value": "NYMEX"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "RB"
+        }
+      ],
+      "about": "RBOB Gasoline is a energy futures contract listed on NYMEX (ticker RB). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.620Z"
     },
     "meta": "Energy · NYMEX · RB",
     "initials": "RG"
@@ -192,14 +439,56 @@
       "exchange": "NYMEX",
       "symbol": "LR",
       "alternateSymbols": [],
-      "about": "Gulf Coast Gasoline is traded on NYMEX (symbol LR). Category: Energy.",
-      "dataSources": [
+      "logoInitials": "GC",
+      "industryTags": [
+        "Energy"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Energy",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "NYMEX",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "LR",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Energy"
+        },
+        {
+          "label": "Exchange",
+          "value": "NYMEX"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "LR"
+        }
+      ],
+      "about": "Gulf Coast Gasoline is a energy futures contract listed on NYMEX (ticker LR). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.620Z"
     },
     "meta": "Energy · NYMEX · LR",
     "initials": "GC"
@@ -220,14 +509,56 @@
       "exchange": "NYMEX",
       "symbol": "PN",
       "alternateSymbols": [],
-      "about": "Propane is traded on NYMEX (symbol PN). Category: Energy.",
-      "dataSources": [
+      "logoInitials": "PN",
+      "industryTags": [
+        "Energy"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Energy",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "NYMEX",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "PN",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Energy"
+        },
+        {
+          "label": "Exchange",
+          "value": "NYMEX"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "PN"
+        }
+      ],
+      "about": "Propane is a energy futures contract listed on NYMEX (ticker PN). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.620Z"
     },
     "meta": "Energy · NYMEX · PN",
     "initials": "PN"
@@ -248,14 +579,56 @@
       "exchange": "CBOT",
       "symbol": "ZE",
       "alternateSymbols": [],
-      "about": "Ethanol is traded on CBOT (symbol ZE). Category: Energy.",
-      "dataSources": [
+      "logoInitials": "ZE",
+      "industryTags": [
+        "Energy"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Energy",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "CBOT",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "ZE",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Energy"
+        },
+        {
+          "label": "Exchange",
+          "value": "CBOT"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "ZE"
+        }
+      ],
+      "about": "Ethanol is a energy futures contract listed on CBOT (ticker ZE). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.620Z"
     },
     "meta": "Energy · CBOT · ZE",
     "initials": "ZE"
@@ -277,14 +650,56 @@
       "exchange": "ZCE",
       "symbol": "TA",
       "alternateSymbols": [],
-      "about": "Purified Terephthalic Acid (PTA) is traded on ZCE (symbol TA). Category: Energy.",
-      "dataSources": [
+      "logoInitials": "PT",
+      "industryTags": [
+        "Energy"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Energy",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "ZCE",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "TA",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Energy"
+        },
+        {
+          "label": "Exchange",
+          "value": "ZCE"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "TA"
+        }
+      ],
+      "about": "Purified Terephthalic Acid (PTA) is a energy futures contract listed on ZCE (ticker TA). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.620Z"
     },
     "meta": "Energy · ZCE · TA",
     "initials": "PT"
@@ -305,14 +720,56 @@
       "exchange": "COMEX",
       "symbol": "GC",
       "alternateSymbols": [],
-      "about": "Gold is traded on COMEX (symbol GC). Category: Precious Metals.",
-      "dataSources": [
+      "logoInitials": "GC",
+      "industryTags": [
+        "Precious Metals"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Precious Metals",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "COMEX",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "GC",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Precious Metals"
+        },
+        {
+          "label": "Exchange",
+          "value": "COMEX"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "GC"
+        }
+      ],
+      "about": "Gold is a precious metals futures contract listed on COMEX (ticker GC). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.620Z"
     },
     "meta": "Precious Metals · COMEX · GC",
     "initials": "GC"
@@ -333,14 +790,56 @@
       "exchange": "COMEX",
       "symbol": "SI",
       "alternateSymbols": [],
-      "about": "Silver is traded on COMEX (symbol SI). Category: Precious Metals.",
-      "dataSources": [
+      "logoInitials": "SI",
+      "industryTags": [
+        "Precious Metals"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Precious Metals",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "COMEX",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "SI",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Precious Metals"
+        },
+        {
+          "label": "Exchange",
+          "value": "COMEX"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "SI"
+        }
+      ],
+      "about": "Silver is a precious metals futures contract listed on COMEX (ticker SI). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.620Z"
     },
     "meta": "Precious Metals · COMEX · SI",
     "initials": "SI"
@@ -361,14 +860,56 @@
       "exchange": "NYMEX",
       "symbol": "PL",
       "alternateSymbols": [],
-      "about": "Platinum is traded on NYMEX (symbol PL). Category: Precious Metals.",
-      "dataSources": [
+      "logoInitials": "PL",
+      "industryTags": [
+        "Precious Metals"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Precious Metals",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "NYMEX",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "PL",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Precious Metals"
+        },
+        {
+          "label": "Exchange",
+          "value": "NYMEX"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "PL"
+        }
+      ],
+      "about": "Platinum is a precious metals futures contract listed on NYMEX (ticker PL). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.620Z"
     },
     "meta": "Precious Metals · NYMEX · PL",
     "initials": "PL"
@@ -389,14 +930,56 @@
       "exchange": "NYMEX",
       "symbol": "PA",
       "alternateSymbols": [],
-      "about": "Palladium is traded on NYMEX (symbol PA). Category: Precious Metals.",
-      "dataSources": [
+      "logoInitials": "PA",
+      "industryTags": [
+        "Precious Metals"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Precious Metals",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "NYMEX",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "PA",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Precious Metals"
+        },
+        {
+          "label": "Exchange",
+          "value": "NYMEX"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "PA"
+        }
+      ],
+      "about": "Palladium is a precious metals futures contract listed on NYMEX (ticker PA). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.620Z"
     },
     "meta": "Precious Metals · NYMEX · PA",
     "initials": "PA"
@@ -416,14 +999,47 @@
       "exchange": "LME / COMEX",
       "symbol": null,
       "alternateSymbols": [],
-      "about": "Copper is traded on LME / COMEX. Category: Base / Industrial Metals.",
-      "dataSources": [
+      "logoInitials": "CO",
+      "industryTags": [
+        "Base / Industrial Metals"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Base / Industrial Metals",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "LME / COMEX",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Base / Industrial Metals"
+        },
+        {
+          "label": "Exchange",
+          "value": "LME / COMEX"
+        }
+      ],
+      "about": "Copper is a base / industrial metals futures contract listed on LME / COMEX. Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.620Z"
     },
     "meta": "Base / Industrial Metals · LME / COMEX",
     "initials": "CO"
@@ -443,14 +1059,47 @@
       "exchange": "LME",
       "symbol": null,
       "alternateSymbols": [],
-      "about": "Aluminium is traded on LME. Category: Base / Industrial Metals.",
-      "dataSources": [
+      "logoInitials": "AL",
+      "industryTags": [
+        "Base / Industrial Metals"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Base / Industrial Metals",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "LME",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Base / Industrial Metals"
+        },
+        {
+          "label": "Exchange",
+          "value": "LME"
+        }
+      ],
+      "about": "Aluminium is a base / industrial metals futures contract listed on LME. Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.620Z"
     },
     "meta": "Base / Industrial Metals · LME",
     "initials": "AL"
@@ -471,14 +1120,47 @@
       "exchange": "LME",
       "symbol": null,
       "alternateSymbols": [],
-      "about": "Aluminium Alloy is traded on LME. Category: Base / Industrial Metals.",
-      "dataSources": [
+      "logoInitials": "AA",
+      "industryTags": [
+        "Base / Industrial Metals"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Base / Industrial Metals",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "LME",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Base / Industrial Metals"
+        },
+        {
+          "label": "Exchange",
+          "value": "LME"
+        }
+      ],
+      "about": "Aluminium Alloy is a base / industrial metals futures contract listed on LME. Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.620Z"
     },
     "meta": "Base / Industrial Metals · LME",
     "initials": "AA"
@@ -498,14 +1180,47 @@
       "exchange": "LME",
       "symbol": null,
       "alternateSymbols": [],
-      "about": "Zinc is traded on LME. Category: Base / Industrial Metals.",
-      "dataSources": [
+      "logoInitials": "ZI",
+      "industryTags": [
+        "Base / Industrial Metals"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Base / Industrial Metals",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "LME",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Base / Industrial Metals"
+        },
+        {
+          "label": "Exchange",
+          "value": "LME"
+        }
+      ],
+      "about": "Zinc is a base / industrial metals futures contract listed on LME. Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.620Z"
     },
     "meta": "Base / Industrial Metals · LME",
     "initials": "ZI"
@@ -525,14 +1240,47 @@
       "exchange": "LME",
       "symbol": null,
       "alternateSymbols": [],
-      "about": "Lead is traded on LME. Category: Base / Industrial Metals.",
-      "dataSources": [
+      "logoInitials": "LE",
+      "industryTags": [
+        "Base / Industrial Metals"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Base / Industrial Metals",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "LME",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Base / Industrial Metals"
+        },
+        {
+          "label": "Exchange",
+          "value": "LME"
+        }
+      ],
+      "about": "Lead is a base / industrial metals futures contract listed on LME. Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.620Z"
     },
     "meta": "Base / Industrial Metals · LME",
     "initials": "LE"
@@ -552,14 +1300,47 @@
       "exchange": "LME",
       "symbol": null,
       "alternateSymbols": [],
-      "about": "Nickel is traded on LME. Category: Base / Industrial Metals.",
-      "dataSources": [
+      "logoInitials": "NI",
+      "industryTags": [
+        "Base / Industrial Metals"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Base / Industrial Metals",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "LME",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Base / Industrial Metals"
+        },
+        {
+          "label": "Exchange",
+          "value": "LME"
+        }
+      ],
+      "about": "Nickel is a base / industrial metals futures contract listed on LME. Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.620Z"
     },
     "meta": "Base / Industrial Metals · LME",
     "initials": "NI"
@@ -579,14 +1360,47 @@
       "exchange": "LME",
       "symbol": null,
       "alternateSymbols": [],
-      "about": "Tin is traded on LME. Category: Base / Industrial Metals.",
-      "dataSources": [
+      "logoInitials": "TI",
+      "industryTags": [
+        "Base / Industrial Metals"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Base / Industrial Metals",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "LME",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Base / Industrial Metals"
+        },
+        {
+          "label": "Exchange",
+          "value": "LME"
+        }
+      ],
+      "about": "Tin is a base / industrial metals futures contract listed on LME. Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.620Z"
     },
     "meta": "Base / Industrial Metals · LME",
     "initials": "TI"
@@ -606,14 +1420,47 @@
       "exchange": "LME",
       "symbol": null,
       "alternateSymbols": [],
-      "about": "Cobalt is traded on LME. Category: Base / Industrial Metals.",
-      "dataSources": [
+      "logoInitials": "CO",
+      "industryTags": [
+        "Base / Industrial Metals"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Base / Industrial Metals",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "LME",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Base / Industrial Metals"
+        },
+        {
+          "label": "Exchange",
+          "value": "LME"
+        }
+      ],
+      "about": "Cobalt is a base / industrial metals futures contract listed on LME. Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.620Z"
     },
     "meta": "Base / Industrial Metals · LME",
     "initials": "CO"
@@ -633,14 +1480,47 @@
       "exchange": "LME",
       "symbol": null,
       "alternateSymbols": [],
-      "about": "Molybdenum is traded on LME. Category: Base / Industrial Metals.",
-      "dataSources": [
+      "logoInitials": "MO",
+      "industryTags": [
+        "Base / Industrial Metals"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Base / Industrial Metals",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "LME",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Base / Industrial Metals"
+        },
+        {
+          "label": "Exchange",
+          "value": "LME"
+        }
+      ],
+      "about": "Molybdenum is a base / industrial metals futures contract listed on LME. Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.620Z"
     },
     "meta": "Base / Industrial Metals · LME",
     "initials": "MO"
@@ -664,14 +1544,60 @@
       "alternateSymbols": [
         "EMA"
       ],
-      "about": "Corn is traded on CBOT / Euronext / DCE (symbol ZC). Category: Grains & Oilseeds.",
-      "dataSources": [
+      "logoInitials": "ZC",
+      "industryTags": [
+        "Grains & Oilseeds"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Grains & Oilseeds",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "CBOT / Euronext / DCE",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "ZC",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Grains & Oilseeds"
+        },
+        {
+          "label": "Exchange",
+          "value": "CBOT / Euronext / DCE"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "ZC"
+        },
+        {
+          "label": "Alt symbols",
+          "value": "EMA"
+        }
+      ],
+      "about": "Corn is a grains & oilseeds futures contract listed on CBOT / Euronext / DCE (ticker ZC). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.620Z"
     },
     "meta": "Grains & Oilseeds · CBOT / Euronext / DCE · ZC",
     "initials": "ZC"
@@ -695,14 +1621,60 @@
       "alternateSymbols": [
         "EBM"
       ],
-      "about": "Wheat is traded on CBOT / Euronext (symbol ZW). Category: Grains & Oilseeds.",
-      "dataSources": [
+      "logoInitials": "ZW",
+      "industryTags": [
+        "Grains & Oilseeds"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Grains & Oilseeds",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "CBOT / Euronext",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "ZW",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Grains & Oilseeds"
+        },
+        {
+          "label": "Exchange",
+          "value": "CBOT / Euronext"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "ZW"
+        },
+        {
+          "label": "Alt symbols",
+          "value": "EBM"
+        }
+      ],
+      "about": "Wheat is a grains & oilseeds futures contract listed on CBOT / Euronext (ticker ZW). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.620Z"
     },
     "meta": "Grains & Oilseeds · CBOT / Euronext · ZW",
     "initials": "ZW"
@@ -724,14 +1696,56 @@
       "exchange": "ICE",
       "symbol": "TS",
       "alternateSymbols": [],
-      "about": "UK Feed Wheat is traded on ICE (symbol TS). Category: Grains & Oilseeds.",
-      "dataSources": [
+      "logoInitials": "UF",
+      "industryTags": [
+        "Grains & Oilseeds"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Grains & Oilseeds",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "ICE",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "TS",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Grains & Oilseeds"
+        },
+        {
+          "label": "Exchange",
+          "value": "ICE"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "TS"
+        }
+      ],
+      "about": "UK Feed Wheat is a grains & oilseeds futures contract listed on ICE (ticker TS). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.620Z"
     },
     "meta": "Grains & Oilseeds · ICE · TS",
     "initials": "UF"
@@ -752,14 +1766,56 @@
       "exchange": "CBOT / DCE",
       "symbol": "ZS",
       "alternateSymbols": [],
-      "about": "Soybeans is traded on CBOT / DCE (symbol ZS). Category: Grains & Oilseeds.",
-      "dataSources": [
+      "logoInitials": "ZS",
+      "industryTags": [
+        "Grains & Oilseeds"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Grains & Oilseeds",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "CBOT / DCE",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "ZS",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Grains & Oilseeds"
+        },
+        {
+          "label": "Exchange",
+          "value": "CBOT / DCE"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "ZS"
+        }
+      ],
+      "about": "Soybeans is a grains & oilseeds futures contract listed on CBOT / DCE (ticker ZS). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.620Z"
     },
     "meta": "Grains & Oilseeds · CBOT / DCE · ZS",
     "initials": "ZS"
@@ -781,14 +1837,56 @@
       "exchange": "CBOT / DCE",
       "symbol": "ZM",
       "alternateSymbols": [],
-      "about": "Soybean Meal is traded on CBOT / DCE (symbol ZM). Category: Grains & Oilseeds.",
-      "dataSources": [
+      "logoInitials": "SM",
+      "industryTags": [
+        "Grains & Oilseeds"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Grains & Oilseeds",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "CBOT / DCE",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "ZM",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Grains & Oilseeds"
+        },
+        {
+          "label": "Exchange",
+          "value": "CBOT / DCE"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "ZM"
+        }
+      ],
+      "about": "Soybean Meal is a grains & oilseeds futures contract listed on CBOT / DCE (ticker ZM). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.620Z"
     },
     "meta": "Grains & Oilseeds · CBOT / DCE · ZM",
     "initials": "SM"
@@ -810,14 +1908,56 @@
       "exchange": "CBOT / DCE",
       "symbol": "ZL",
       "alternateSymbols": [],
-      "about": "Soybean Oil is traded on CBOT / DCE (symbol ZL). Category: Grains & Oilseeds.",
-      "dataSources": [
+      "logoInitials": "SO",
+      "industryTags": [
+        "Grains & Oilseeds"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Grains & Oilseeds",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "CBOT / DCE",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "ZL",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Grains & Oilseeds"
+        },
+        {
+          "label": "Exchange",
+          "value": "CBOT / DCE"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "ZL"
+        }
+      ],
+      "about": "Soybean Oil is a grains & oilseeds futures contract listed on CBOT / DCE (ticker ZL). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.620Z"
     },
     "meta": "Grains & Oilseeds · CBOT / DCE · ZL",
     "initials": "SO"
@@ -838,14 +1978,56 @@
       "exchange": "CBOT",
       "symbol": "ZO",
       "alternateSymbols": [],
-      "about": "Oats is traded on CBOT (symbol ZO). Category: Grains & Oilseeds.",
-      "dataSources": [
+      "logoInitials": "ZO",
+      "industryTags": [
+        "Grains & Oilseeds"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Grains & Oilseeds",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "CBOT",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "ZO",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Grains & Oilseeds"
+        },
+        {
+          "label": "Exchange",
+          "value": "CBOT"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "ZO"
+        }
+      ],
+      "about": "Oats is a grains & oilseeds futures contract listed on CBOT (ticker ZO). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.620Z"
     },
     "meta": "Grains & Oilseeds · CBOT · ZO",
     "initials": "ZO"
@@ -867,14 +2049,56 @@
       "exchange": "CBOT",
       "symbol": "ZR",
       "alternateSymbols": [],
-      "about": "Rough Rice is traded on CBOT (symbol ZR). Category: Grains & Oilseeds.",
-      "dataSources": [
+      "logoInitials": "RR",
+      "industryTags": [
+        "Grains & Oilseeds"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Grains & Oilseeds",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "CBOT",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "ZR",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Grains & Oilseeds"
+        },
+        {
+          "label": "Exchange",
+          "value": "CBOT"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "ZR"
+        }
+      ],
+      "about": "Rough Rice is a grains & oilseeds futures contract listed on CBOT (ticker ZR). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.620Z"
     },
     "meta": "Grains & Oilseeds · CBOT · ZR",
     "initials": "RR"
@@ -895,14 +2119,56 @@
       "exchange": "Euronext",
       "symbol": "ECO",
       "alternateSymbols": [],
-      "about": "Rapeseed is traded on Euronext (symbol ECO). Category: Grains & Oilseeds.",
-      "dataSources": [
+      "logoInitials": "EC",
+      "industryTags": [
+        "Grains & Oilseeds"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Grains & Oilseeds",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "Euronext",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "ECO",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Grains & Oilseeds"
+        },
+        {
+          "label": "Exchange",
+          "value": "Euronext"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "ECO"
+        }
+      ],
+      "about": "Rapeseed is a grains & oilseeds futures contract listed on Euronext (ticker ECO). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.620Z"
     },
     "meta": "Grains & Oilseeds · Euronext · ECO",
     "initials": "EC"
@@ -923,14 +2189,47 @@
       "exchange": "OSE",
       "symbol": null,
       "alternateSymbols": [],
-      "about": "Adzuki Bean is traded on OSE. Category: Grains & Oilseeds.",
-      "dataSources": [
+      "logoInitials": "AB",
+      "industryTags": [
+        "Grains & Oilseeds"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Grains & Oilseeds",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "OSE",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Grains & Oilseeds"
+        },
+        {
+          "label": "Exchange",
+          "value": "OSE"
+        }
+      ],
+      "about": "Adzuki Bean is a grains & oilseeds futures contract listed on OSE. Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.620Z"
     },
     "meta": "Grains & Oilseeds · OSE",
     "initials": "AB"
@@ -952,14 +2251,56 @@
       "exchange": "ICE",
       "symbol": "KC",
       "alternateSymbols": [],
-      "about": "Coffee C (Arabica) is traded on ICE (symbol KC). Category: Soft Commodities.",
-      "dataSources": [
+      "logoInitials": "CC",
+      "industryTags": [
+        "Soft Commodities"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Soft Commodities",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "ICE",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "KC",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Soft Commodities"
+        },
+        {
+          "label": "Exchange",
+          "value": "ICE"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "KC"
+        }
+      ],
+      "about": "Coffee C (Arabica) is a soft commodities futures contract listed on ICE (ticker KC). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.620Z"
     },
     "meta": "Soft Commodities · ICE · KC",
     "initials": "CC"
@@ -980,14 +2321,47 @@
       "exchange": "ICE",
       "symbol": null,
       "alternateSymbols": [],
-      "about": "Robusta Coffee is traded on ICE. Category: Soft Commodities.",
-      "dataSources": [
+      "logoInitials": "RC",
+      "industryTags": [
+        "Soft Commodities"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Soft Commodities",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "ICE",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Soft Commodities"
+        },
+        {
+          "label": "Exchange",
+          "value": "ICE"
+        }
+      ],
+      "about": "Robusta Coffee is a soft commodities futures contract listed on ICE. Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.620Z"
     },
     "meta": "Soft Commodities · ICE",
     "initials": "RC"
@@ -1008,14 +2382,56 @@
       "exchange": "ICE",
       "symbol": "CC",
       "alternateSymbols": [],
-      "about": "Cocoa is traded on ICE (symbol CC). Category: Soft Commodities.",
-      "dataSources": [
+      "logoInitials": "CC",
+      "industryTags": [
+        "Soft Commodities"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Soft Commodities",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "ICE",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "CC",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Soft Commodities"
+        },
+        {
+          "label": "Exchange",
+          "value": "ICE"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "CC"
+        }
+      ],
+      "about": "Cocoa is a soft commodities futures contract listed on ICE (ticker CC). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.620Z"
     },
     "meta": "Soft Commodities · ICE · CC",
     "initials": "CC"
@@ -1037,14 +2453,56 @@
       "exchange": "ICE",
       "symbol": "SB",
       "alternateSymbols": [],
-      "about": "Sugar No. 11 (Raw) is traded on ICE (symbol SB). Category: Soft Commodities.",
-      "dataSources": [
+      "logoInitials": "SN",
+      "industryTags": [
+        "Soft Commodities"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Soft Commodities",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "ICE",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "SB",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Soft Commodities"
+        },
+        {
+          "label": "Exchange",
+          "value": "ICE"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "SB"
+        }
+      ],
+      "about": "Sugar No. 11 (Raw) is a soft commodities futures contract listed on ICE (ticker SB). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.620Z"
     },
     "meta": "Soft Commodities · ICE · SB",
     "initials": "SN"
@@ -1066,14 +2524,56 @@
       "exchange": "ICE",
       "symbol": "SE",
       "alternateSymbols": [],
-      "about": "Sugar No. 14 (Domestic) is traded on ICE (symbol SE). Category: Soft Commodities.",
-      "dataSources": [
+      "logoInitials": "SN",
+      "industryTags": [
+        "Soft Commodities"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Soft Commodities",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "ICE",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "SE",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Soft Commodities"
+        },
+        {
+          "label": "Exchange",
+          "value": "ICE"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "SE"
+        }
+      ],
+      "about": "Sugar No. 14 (Domestic) is a soft commodities futures contract listed on ICE (ticker SE). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.621Z"
     },
     "meta": "Soft Commodities · ICE · SE",
     "initials": "SN"
@@ -1095,14 +2595,56 @@
       "exchange": "ICE",
       "symbol": "CT",
       "alternateSymbols": [],
-      "about": "Cotton No. 2 is traded on ICE (symbol CT). Category: Soft Commodities.",
-      "dataSources": [
+      "logoInitials": "CN",
+      "industryTags": [
+        "Soft Commodities"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Soft Commodities",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "ICE",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "CT",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Soft Commodities"
+        },
+        {
+          "label": "Exchange",
+          "value": "ICE"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "CT"
+        }
+      ],
+      "about": "Cotton No. 2 is a soft commodities futures contract listed on ICE (ticker CT). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.621Z"
     },
     "meta": "Soft Commodities · ICE · CT",
     "initials": "CN"
@@ -1124,14 +2666,56 @@
       "exchange": "ICE",
       "symbol": "FCOJ-A",
       "alternateSymbols": [],
-      "about": "Frozen OJ (FCOJ) is traded on ICE (symbol FCOJ-A). Category: Soft Commodities.",
-      "dataSources": [
+      "logoInitials": "FO",
+      "industryTags": [
+        "Soft Commodities"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Soft Commodities",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "ICE",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "FCOJ-A",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Soft Commodities"
+        },
+        {
+          "label": "Exchange",
+          "value": "ICE"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "FCOJ-A"
+        }
+      ],
+      "about": "Frozen OJ (FCOJ) is a soft commodities futures contract listed on ICE (ticker FCOJ-A). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.621Z"
     },
     "meta": "Soft Commodities · ICE · FCOJ-A",
     "initials": "FO"
@@ -1153,14 +2737,56 @@
       "exchange": "CME",
       "symbol": "LE",
       "alternateSymbols": [],
-      "about": "Live Cattle is traded on CME (symbol LE). Category: Livestock & Dairy.",
-      "dataSources": [
+      "logoInitials": "LC",
+      "industryTags": [
+        "Livestock & Dairy"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Livestock & Dairy",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "CME",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "LE",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Livestock & Dairy"
+        },
+        {
+          "label": "Exchange",
+          "value": "CME"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "LE"
+        }
+      ],
+      "about": "Live Cattle is a livestock & dairy futures contract listed on CME (ticker LE). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.621Z"
     },
     "meta": "Livestock & Dairy · CME · LE",
     "initials": "LC"
@@ -1182,14 +2808,56 @@
       "exchange": "CME",
       "symbol": "GF",
       "alternateSymbols": [],
-      "about": "Feeder Cattle is traded on CME (symbol GF). Category: Livestock & Dairy.",
-      "dataSources": [
+      "logoInitials": "FC",
+      "industryTags": [
+        "Livestock & Dairy"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Livestock & Dairy",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "CME",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "GF",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Livestock & Dairy"
+        },
+        {
+          "label": "Exchange",
+          "value": "CME"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "GF"
+        }
+      ],
+      "about": "Feeder Cattle is a livestock & dairy futures contract listed on CME (ticker GF). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.621Z"
     },
     "meta": "Livestock & Dairy · CME · GF",
     "initials": "FC"
@@ -1211,14 +2879,56 @@
       "exchange": "CME",
       "symbol": "HE",
       "alternateSymbols": [],
-      "about": "Lean Hogs is traded on CME (symbol HE). Category: Livestock & Dairy.",
-      "dataSources": [
+      "logoInitials": "LH",
+      "industryTags": [
+        "Livestock & Dairy"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Livestock & Dairy",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "CME",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "HE",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Livestock & Dairy"
+        },
+        {
+          "label": "Exchange",
+          "value": "CME"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "HE"
+        }
+      ],
+      "about": "Lean Hogs is a livestock & dairy futures contract listed on CME (ticker HE). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.621Z"
     },
     "meta": "Livestock & Dairy · CME · HE",
     "initials": "LH"
@@ -1240,14 +2950,56 @@
       "exchange": "CME",
       "symbol": "DC",
       "alternateSymbols": [],
-      "about": "Class III Milk is traded on CME (symbol DC). Category: Livestock & Dairy.",
-      "dataSources": [
+      "logoInitials": "CI",
+      "industryTags": [
+        "Livestock & Dairy"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Livestock & Dairy",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "CME",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "DC",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Livestock & Dairy"
+        },
+        {
+          "label": "Exchange",
+          "value": "CME"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "DC"
+        }
+      ],
+      "about": "Class III Milk is a livestock & dairy futures contract listed on CME (ticker DC). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.621Z"
     },
     "meta": "Livestock & Dairy · CME · DC",
     "initials": "CI"
@@ -1269,14 +3021,56 @@
       "exchange": "CME",
       "symbol": "CB",
       "alternateSymbols": [],
-      "about": "Cash-Settled Butter is traded on CME (symbol CB). Category: Livestock & Dairy.",
-      "dataSources": [
+      "logoInitials": "CS",
+      "industryTags": [
+        "Livestock & Dairy"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Livestock & Dairy",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "CME",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "CB",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Livestock & Dairy"
+        },
+        {
+          "label": "Exchange",
+          "value": "CME"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "CB"
+        }
+      ],
+      "about": "Cash-Settled Butter is a livestock & dairy futures contract listed on CME (ticker CB). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.621Z"
     },
     "meta": "Livestock & Dairy · CME · CB",
     "initials": "CS"
@@ -1298,14 +3092,56 @@
       "exchange": "CME",
       "symbol": "GNF",
       "alternateSymbols": [],
-      "about": "Non-fat Dry Milk is traded on CME (symbol GNF). Category: Livestock & Dairy.",
-      "dataSources": [
+      "logoInitials": "NF",
+      "industryTags": [
+        "Livestock & Dairy"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Livestock & Dairy",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "CME",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "GNF",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Livestock & Dairy"
+        },
+        {
+          "label": "Exchange",
+          "value": "CME"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "GNF"
+        }
+      ],
+      "about": "Non-fat Dry Milk is a livestock & dairy futures contract listed on CME (ticker GNF). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.621Z"
     },
     "meta": "Livestock & Dairy · CME · GNF",
     "initials": "NF"
@@ -1327,14 +3163,56 @@
       "exchange": "SGX",
       "symbol": "WMP",
       "alternateSymbols": [],
-      "about": "Whole Milk Powder is traded on SGX (symbol WMP). Category: Livestock & Dairy.",
-      "dataSources": [
+      "logoInitials": "WM",
+      "industryTags": [
+        "Livestock & Dairy"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Livestock & Dairy",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "SGX",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "WMP",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Livestock & Dairy"
+        },
+        {
+          "label": "Exchange",
+          "value": "SGX"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "WMP"
+        }
+      ],
+      "about": "Whole Milk Powder is a livestock & dairy futures contract listed on SGX (ticker WMP). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.621Z"
     },
     "meta": "Livestock & Dairy · SGX · WMP",
     "initials": "WM"
@@ -1356,14 +3234,56 @@
       "exchange": "SGX",
       "symbol": "SMP",
       "alternateSymbols": [],
-      "about": "Skim Milk Powder is traded on SGX (symbol SMP). Category: Livestock & Dairy.",
-      "dataSources": [
+      "logoInitials": "SM",
+      "industryTags": [
+        "Livestock & Dairy"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Livestock & Dairy",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "SGX",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "SMP",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Livestock & Dairy"
+        },
+        {
+          "label": "Exchange",
+          "value": "SGX"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "SMP"
+        }
+      ],
+      "about": "Skim Milk Powder is a livestock & dairy futures contract listed on SGX (ticker SMP). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.621Z"
     },
     "meta": "Livestock & Dairy · SGX · SMP",
     "initials": "SM"
@@ -1385,14 +3305,56 @@
       "exchange": "CME",
       "symbol": "LBS",
       "alternateSymbols": [],
-      "about": "Random Length Lumber is traded on CME (symbol LBS). Category: Forestry & Fiber.",
-      "dataSources": [
+      "logoInitials": "RL",
+      "industryTags": [
+        "Forestry & Fiber"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Forestry & Fiber",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "CME",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "LBS",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Forestry & Fiber"
+        },
+        {
+          "label": "Exchange",
+          "value": "CME"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "LBS"
+        }
+      ],
+      "about": "Random Length Lumber is a forestry & fiber futures contract listed on CME (ticker LBS). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.621Z"
     },
     "meta": "Forestry & Fiber · CME · LBS",
     "initials": "RL"
@@ -1414,14 +3376,56 @@
       "exchange": "CME",
       "symbol": "HWP",
       "alternateSymbols": [],
-      "about": "Hardwood Pulp is traded on CME (symbol HWP). Category: Forestry & Fiber.",
-      "dataSources": [
+      "logoInitials": "HP",
+      "industryTags": [
+        "Forestry & Fiber"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Forestry & Fiber",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "CME",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "HWP",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Forestry & Fiber"
+        },
+        {
+          "label": "Exchange",
+          "value": "CME"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "HWP"
+        }
+      ],
+      "about": "Hardwood Pulp is a forestry & fiber futures contract listed on CME (ticker HWP). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.621Z"
     },
     "meta": "Forestry & Fiber · CME · HWP",
     "initials": "HP"
@@ -1443,14 +3447,56 @@
       "exchange": "CME",
       "symbol": "WP",
       "alternateSymbols": [],
-      "about": "Softwood Pulp is traded on CME (symbol WP). Category: Forestry & Fiber.",
-      "dataSources": [
+      "logoInitials": "SP",
+      "industryTags": [
+        "Forestry & Fiber"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Forestry & Fiber",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "CME",
+          "format": "text"
+        },
+        {
+          "label": "Symbol",
+          "value": "WP",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Forestry & Fiber"
+        },
+        {
+          "label": "Exchange",
+          "value": "CME"
+        },
+        {
+          "label": "Contract symbol",
+          "value": "WP"
+        }
+      ],
+      "about": "Softwood Pulp is a forestry & fiber futures contract listed on CME (ticker WP). Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.621Z"
     },
     "meta": "Forestry & Fiber · CME · WP",
     "initials": "SP"
@@ -1471,14 +3517,47 @@
       "exchange": "Bursa Malaysia",
       "symbol": null,
       "alternateSymbols": [],
-      "about": "Palm Oil is traded on Bursa Malaysia. Category: Other / Specialty.",
-      "dataSources": [
+      "logoInitials": "PO",
+      "industryTags": [
+        "Other / Specialty"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Other / Specialty",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "Bursa Malaysia",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Other / Specialty"
+        },
+        {
+          "label": "Exchange",
+          "value": "Bursa Malaysia"
+        }
+      ],
+      "about": "Palm Oil is a other / specialty futures contract listed on Bursa Malaysia. Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.621Z"
     },
     "meta": "Other / Specialty · Bursa Malaysia",
     "initials": "PO"
@@ -1498,14 +3577,47 @@
       "exchange": "Osaka Exchange",
       "symbol": null,
       "alternateSymbols": [],
-      "about": "Rubber is traded on Osaka Exchange. Category: Other / Specialty.",
-      "dataSources": [
+      "logoInitials": "RU",
+      "industryTags": [
+        "Other / Specialty"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Other / Specialty",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "Osaka Exchange",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Other / Specialty"
+        },
+        {
+          "label": "Exchange",
+          "value": "Osaka Exchange"
+        }
+      ],
+      "about": "Rubber is a other / specialty futures contract listed on Osaka Exchange. Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.621Z"
     },
     "meta": "Other / Specialty · Osaka Exchange",
     "initials": "RU"
@@ -1525,14 +3637,47 @@
       "exchange": "ASX",
       "symbol": null,
       "alternateSymbols": [],
-      "about": "Wool is traded on ASX. Category: Other / Specialty.",
-      "dataSources": [
+      "logoInitials": "WO",
+      "industryTags": [
+        "Other / Specialty"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Other / Specialty",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "ASX",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Other / Specialty"
+        },
+        {
+          "label": "Exchange",
+          "value": "ASX"
+        }
+      ],
+      "about": "Wool is a other / specialty futures contract listed on ASX. Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.621Z"
     },
     "meta": "Other / Specialty · ASX",
     "initials": "WO"
@@ -1552,14 +3697,47 @@
       "exchange": "Saint Petersburg Bourse",
       "symbol": null,
       "alternateSymbols": [],
-      "about": "Amber is traded on Saint Petersburg Bourse. Category: Other / Specialty.",
-      "dataSources": [
+      "logoInitials": "AM",
+      "industryTags": [
+        "Other / Specialty"
+      ],
+      "quickStats": [
         {
-          "name": "Exchange contract specs",
-          "url": null
+          "label": "Category",
+          "value": "Other / Specialty",
+          "format": "text"
+        },
+        {
+          "label": "Exchange",
+          "value": "Saint Petersburg Bourse",
+          "format": "text"
         }
       ],
-      "lastUpdated": "2026-05-18T17:24:08.161Z"
+      "keyFacts": [
+        {
+          "label": "Category",
+          "value": "Other / Specialty"
+        },
+        {
+          "label": "Exchange",
+          "value": "Saint Petersburg Bourse"
+        }
+      ],
+      "about": "Amber is a other / specialty futures contract listed on Saint Petersburg Bourse. Contract specifications and margin requirements are set by the listing exchange.",
+      "dataSources": [
+        {
+          "name": "Exchange contract specs"
+        },
+        {
+          "name": "CME Group",
+          "url": "https://www.cmegroup.com"
+        },
+        {
+          "name": "ICE",
+          "url": "https://www.ice.com"
+        }
+      ],
+      "lastUpdated": "2026-05-18T17:31:38.621Z"
     },
     "meta": "Other / Specialty · Saint Petersburg Bourse",
     "initials": "AM"

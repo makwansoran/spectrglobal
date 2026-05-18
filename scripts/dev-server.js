@@ -60,7 +60,7 @@ function isCommodityRoute(pathname) {
 }
 
 function isProfileSpaRoute(pathname) {
-  return isCompanyAppRoute(pathname) || isPersonAppRoute(pathname);
+  return isCompanyAppRoute(pathname) || isPersonAppRoute(pathname) || isCommodityRoute(pathname);
 }
 
 function sendFile(res, filePath) {
@@ -90,14 +90,6 @@ function serveStatic(req, res, pathname) {
     if (!err && stat.isFile()) {
       sendFile(res, filePath);
       return;
-    }
-
-    if (isCommodityRoute(pathname)) {
-      const commodityHtml = path.join(ROOT, "commodity.html");
-      if (fs.existsSync(commodityHtml)) {
-        sendFile(res, commodityHtml);
-        return;
-      }
     }
 
     if (isProfileSpaRoute(pathname) && fs.existsSync(COMPANY_SPA)) {
