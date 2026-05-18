@@ -17,23 +17,25 @@ function loadSupabaseSdk() {
   }
 }
 
+function getSupabaseKey() {
+  return process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY || "";
+}
+
 function isSupabaseEnabled() {
-  return Boolean(
-    process.env.SUPABASE_URL &&
-      process.env.SUPABASE_SERVICE_ROLE_KEY &&
-      loadSupabaseSdk()
-  );
+  return Boolean(process.env.SUPABASE_URL && getSupabaseKey() && loadSupabaseSdk());
 }
 
 function getAdminClient() {
   if (!isSupabaseEnabled()) {
-    throw new Error("Supabase is not configured (SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY)");
+    throw new Error(
+      "Supabase is not configured (set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY or SUPABASE_ANON_KEY)"
+    );
   }
   if (!loadSupabaseSdk()) {
     throw new Error("Install @supabase/supabase-js (run npm install in repo root)");
   }
   if (!adminClient) {
-    adminClient = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY, {
+    adminClient = createClient(process.env.SUPABASE_URL, getSupabaseKey(), {
       auth: { persistSession: false, autoRefreshToken: false },
     });
   }
@@ -62,6 +64,10 @@ async function listCompaniesSupabase(limit) {
   const { data, error } = await query;
   if (error) throw error;
   return (data || []).map(rowToIndex);
+}
+
+function hasSupabaseWrites() {
+  return Boolean(process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY && loadSupabaseSdk());
 }
 
 async function searchCompaniesSupabase(query, limit = 25) {
@@ -134,6 +140,9 @@ function seedToRow({ slug, profile, mapGeojson, searchTerms }) {
 
 async function upsertCompanySupabase(seed) {
   if (!seed?.profile || !seed?.slug) return;
+  if (!hasSupabaseWrites()) {
+    throw new Error("Writes require SUPABASE_SERVICE_ROLE_KEY");
+  }
   const { error } = await getAdminClient()
     .from("companies")
     .upsert(seedToRow(seed), { onConflict: "slug" });
@@ -141,6 +150,9 @@ async function upsertCompanySupabase(seed) {
 }
 
 async function upsertCompaniesBatchSupabase(seeds, chunkSize = 40) {
+  if (!hasSupabaseWrites()) {
+    throw new Error("Writes require SUPABASE_SERVICE_ROLE_KEY");
+  }
   const rows = seeds.filter((s) => s?.profile && s?.slug).map(seedToRow);
   for (let i = 0; i < rows.length; i += chunkSize) {
     const chunk = rows.slice(i, i + chunkSize);

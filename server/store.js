@@ -3,6 +3,7 @@
  */
 const local = require("./local-store");
 const supabase = require("./supabase-store");
+const searchIndex = require("./search-index");
 const { syncPeopleFromCompany } = require("./people-sync");
 const peopleStore = require("./people-store");
 
@@ -13,20 +14,25 @@ async function listCompanies(options = {}) {
       const rows = await supabase.listCompaniesSupabase(limit);
       if (rows.length) return rows;
     } catch (err) {
-      console.warn("Supabase list failed, using local data:", err.message);
+      console.warn("Supabase list failed:", err.message);
     }
   }
+  const indexed = searchIndex.listIndex(limit || 500);
+  if (indexed.length) return indexed;
   return local.listCompaniesLocal(limit);
 }
 
 async function searchCompanies(query, limit = 25) {
   if (supabase.isSupabaseEnabled()) {
     try {
-      return await supabase.searchCompaniesSupabase(query, limit);
+      const rows = await supabase.searchCompaniesSupabase(query, limit);
+      return rows;
     } catch (err) {
       console.warn("Supabase search failed:", err.message);
     }
   }
+  const indexed = searchIndex.searchIndex(query, limit);
+  if (indexed.length) return indexed;
   return local.searchCompaniesLocal(query, limit);
 }
 
@@ -90,6 +96,7 @@ async function syncAfterSeed(activeSlugs) {
 
 function storageMode() {
   if (supabase.isSupabaseEnabled()) return "supabase";
+  if (searchIndex.loadIndex().length) return "index";
   return "local";
 }
 

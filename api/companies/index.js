@@ -12,6 +12,14 @@ module.exports = async (req, res) => {
     res.setHeader("Cache-Control", "no-store");
     res.setHeader("X-Spectr-Storage", storageMode());
     const rows = q ? await searchCompanies(q, limit) : await listCompanies({ limit: 500 });
+    if (!rows.length && process.env.VERCEL && storageMode() === "local") {
+      res.status(503).json({
+        error: "Search database not configured",
+        hint: "Add SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY (or SUPABASE_ANON_KEY) in Vercel → Settings → Environment Variables, then redeploy.",
+        storage: storageMode(),
+      });
+      return;
+    }
     res.status(200).json(rows);
   } catch (err) {
     console.error(err);

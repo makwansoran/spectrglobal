@@ -6,7 +6,9 @@ module.exports = async (req, res) => {
     res.status(405).json({ error: "Method not allowed" });
     return;
   }
-  const slug = req.query.slug;
+  const slug =
+    req.query.slug ||
+    (req.url && String(req.url).match(/\/api\/companies\/([^/?]+)/)?.[1]);
   if (!slug) {
     res.status(400).json({ error: "Missing company slug" });
     return;

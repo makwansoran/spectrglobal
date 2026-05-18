@@ -117,15 +117,30 @@
     var reqId = ++searchRequestId;
     fetch("/api/companies?q=" + encodeURIComponent(query) + "&limit=25")
       .then(function (r) {
-        if (!r.ok) throw new Error("API error");
-        return r.json();
+        return r.json().then(function (data) {
+          if (!r.ok) {
+            var err = new Error((data && data.error) || "API error");
+            err.payload = data;
+            err.status = r.status;
+            throw err;
+          }
+          return data;
+        });
       })
       .then(function (data) {
         if (reqId !== searchRequestId) return;
         callback(Array.isArray(data) ? data : []);
       })
-      .catch(function () {
+      .catch(function (err) {
         if (reqId !== searchRequestId) return;
+        if (err && err.status === 503 && err.payload && err.payload.hint && cbResults) {
+          cbResults.innerHTML =
+            '<p class="cb-search-results-empty">' +
+            "Search is not connected to the database. Add Supabase keys in Vercel and redeploy." +
+            "</p>";
+          showResults();
+          return;
+        }
         callback([]);
       });
   }

@@ -13,7 +13,8 @@
     "db:import-us": "node scripts/import-finnhub-us.js",
     "db:import-us:fetch": "node scripts/import-finnhub-us.js --fetch-only",
     "db:link-oslo-us": "node scripts/import-finnhub-us.js --link-oslo",
-    "build:profile": "npm install --prefix profile && npm run build --prefix profile",
+    "build:search-index": "node scripts/build-search-index.js",
+    "build:profile": "npm install --prefix profile && npm run build:search-index && npm run build --prefix profile",
     "build": "npm run db:seed && npm run build:profile",
     "start": "npm run dev"
   },

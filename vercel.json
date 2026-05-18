@@ -2,6 +2,11 @@
   "installCommand": "npm install && npm install --prefix profile",
   "buildCommand": "npm run build --prefix profile",
   "outputDirectory": ".",
+  "functions": {
+    "api/**/*.js": {
+      "includeFiles": "server/**,data/company-search-index.json,scripts/load-env.js"
+    }
+  },
   "rewrites": [
     { "source": "/company", "destination": "/company/index.html" },
     { "source": "/company/", "destination": "/company/index.html" },
