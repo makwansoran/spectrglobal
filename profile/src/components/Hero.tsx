@@ -1,9 +1,12 @@
+import { useState } from "react";
 import type { CompanyProfile } from "../types/company";
 import { countryFlag, formatCurrency, formatPercent } from "../utils/format";
 
 type Props = { company: CompanyProfile };
 
 export function Hero({ company }: Props) {
+  const [logoFailed, setLogoFailed] = useState(false);
+  const showLogo = Boolean(company.logoUrl) && !logoFailed;
   const stock = company.stock;
   const showQuote =
     stock &&
@@ -27,8 +30,13 @@ export function Hero({ company }: Props) {
         <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
           <div className="flex gap-4 md:gap-5">
             <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-lg border border-line bg-canvas font-display text-xl font-bold text-ink md:h-20 md:w-20 md:text-2xl">
-              {company.logoUrl ? (
-                <img src={company.logoUrl} alt="" className="h-full w-full rounded-lg object-cover" />
+              {showLogo ? (
+                <img
+                  src={company.logoUrl}
+                  alt=""
+                  className="h-full w-full rounded-lg object-contain bg-white p-1"
+                  onError={() => setLogoFailed(true)}
+                />
               ) : (
                 company.logoInitials
               )}

@@ -45,6 +45,12 @@ async function getCompany(slug) {
   const company = await getCompanyRaw(slug);
   if (!company?.profile) return company;
 
+  const { defaultLogoUrl } = require("./company-logo");
+  if (!company.profile.logoUrl) {
+    const logoUrl = defaultLogoUrl(company.profile);
+    if (logoUrl) company.profile = { ...company.profile, logoUrl };
+  }
+
   const peopleStore = require("./people-store");
   company.profile = await peopleStore.hydrateCompanyPeople(company.profile, slug);
   return company;

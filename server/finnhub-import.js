@@ -68,7 +68,11 @@ function symbolToSeed(item, profile2 = null) {
     id: slug,
     name,
     legalName: name,
-    logoUrl: profile2?.logo || undefined,
+    logoUrl:
+      profile2?.logo ||
+      (ticker
+        ? `https://static2.finnhub.io/file/publicdatany/finnhubimage/stock_logo/${String(ticker).toUpperCase()}.png`
+        : undefined),
     logoInitials: initials(name, ticker),
     countryCode: countryCode.length === 2 ? countryCode : "US",
     countryName,

@@ -20,6 +20,7 @@
     "db:status": "node scripts/db-status.js",
     "db:build-list": "node scripts/build-oslo-listed.js",
     "db:list": "node -e \"require('./scripts/load-env').loadEnv(); require('./server/store').listCompanies().then(c=>console.log(c))\"",
+    "db:backfill-logos": "node scripts/backfill-company-logos.js",
     "db:import-us": "node scripts/import-finnhub-us.js",
     "db:import-us:fetch": "node scripts/import-finnhub-us.js --fetch-only",
     "db:link-oslo-us": "node scripts/import-finnhub-us.js --link-oslo",
