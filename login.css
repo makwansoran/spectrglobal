@@ -1,14 +1,14 @@
-/* Stripe-inspired login — dark mesh background, minimal color */
+/* Login — light theme aligned with Spectr platform */
 
 .login-page {
-  --login-bg: #0a0a0c;
-  --login-card: rgba(16, 16, 18, 0.72);
-  --login-border: rgba(255, 255, 255, 0.09);
-  --login-text: #f4f4f5;
-  --login-muted: #a1a1aa;
-  --login-input-bg: rgba(0, 0, 0, 0.35);
-  --login-accent: #fafafa;
-  --login-focus: rgba(255, 255, 255, 0.22);
+  --login-bg: #f7f9fc;
+  --login-card: #ffffff;
+  --login-border: #d8e0ea;
+  --login-text: #1b2838;
+  --login-muted: #5c6b7a;
+  --login-input-bg: #ffffff;
+  --login-accent: #1b2838;
+  --login-focus: #1f6feb;
 
   margin: 0;
   min-height: 100vh;
@@ -24,9 +24,6 @@
   z-index: 0;
   overflow: hidden;
   background: var(--login-bg);
-}
-
-.login-mesh {
   --mx: 0%;
   --my: 0%;
 }
@@ -37,10 +34,10 @@
   inset: -40%;
   transform: translate(var(--mx), var(--my));
   background:
-    radial-gradient(ellipse 55% 45% at 18% 22%, rgba(255, 255, 255, 0.07), transparent 55%),
-    radial-gradient(ellipse 50% 40% at 82% 18%, rgba(160, 170, 190, 0.06), transparent 52%),
-    radial-gradient(ellipse 60% 50% at 70% 78%, rgba(120, 130, 150, 0.05), transparent 58%),
-    radial-gradient(ellipse 45% 35% at 12% 85%, rgba(255, 255, 255, 0.04), transparent 50%);
+    radial-gradient(ellipse 55% 45% at 18% 22%, rgba(31, 111, 235, 0.08), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 82% 18%, rgba(27, 40, 56, 0.05), transparent 52%),
+    radial-gradient(ellipse 60% 50% at 70% 78%, rgba(31, 111, 235, 0.06), transparent 58%),
+    radial-gradient(ellipse 45% 35% at 12% 85%, rgba(240, 244, 248, 0.9), transparent 50%);
   filter: blur(48px);
   animation: login-mesh-drift 22s ease-in-out infinite alternate;
 }
@@ -50,8 +47,8 @@
   position: absolute;
   inset: -30%;
   background:
-    radial-gradient(ellipse 40% 35% at 55% 45%, rgba(255, 255, 255, 0.035), transparent 60%),
-    radial-gradient(ellipse 35% 30% at 35% 60%, rgba(90, 100, 120, 0.05), transparent 55%);
+    radial-gradient(ellipse 40% 35% at 55% 45%, rgba(255, 255, 255, 0.85), transparent 60%),
+    radial-gradient(ellipse 35% 30% at 35% 60%, rgba(216, 224, 234, 0.5), transparent 55%);
   filter: blur(64px);
   animation: login-mesh-drift-alt 28s ease-in-out infinite alternate;
 }
@@ -60,7 +57,7 @@
   position: absolute;
   border-radius: 50%;
   filter: blur(70px);
-  opacity: 0.55;
+  opacity: 0.7;
   will-change: transform;
 }
 
@@ -69,7 +66,7 @@
   height: min(52vw, 520px);
   top: -8%;
   right: -6%;
-  background: radial-gradient(circle, rgba(220, 225, 235, 0.09) 0%, transparent 68%);
+  background: radial-gradient(circle, rgba(31, 111, 235, 0.12) 0%, transparent 68%);
   animation: login-blob-1 18s ease-in-out infinite alternate;
 }
 
@@ -78,7 +75,7 @@
   height: min(48vw, 480px);
   bottom: -12%;
   left: -10%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.06) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(27, 40, 56, 0.06) 0%, transparent 70%);
   animation: login-blob-2 24s ease-in-out infinite alternate;
 }
 
@@ -87,16 +84,16 @@
   height: min(36vw, 360px);
   top: 42%;
   left: 38%;
-  background: radial-gradient(circle, rgba(130, 140, 160, 0.07) 0%, transparent 72%);
+  background: radial-gradient(circle, rgba(184, 196, 212, 0.35) 0%, transparent 72%);
   animation: login-blob-3 20s ease-in-out infinite alternate;
 }
 
 .login-mesh-grain {
   position: absolute;
   inset: 0;
-  opacity: 0.35;
+  opacity: 0.2;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
-  mix-blend-mode: overlay;
+  mix-blend-mode: multiply;
   pointer-events: none;
 }
 
@@ -173,7 +170,7 @@
 
 .login-logo:hover {
   text-decoration: none;
-  opacity: 0.9;
+  opacity: 0.85;
 }
 
 .login-logo-mark {
@@ -208,11 +205,8 @@
   border: 1px solid var(--login-border);
   border-radius: 10px;
   box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.4),
-    0 24px 48px rgba(0, 0, 0, 0.45),
-    0 1px 0 rgba(255, 255, 255, 0.04) inset;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+    0 1px 2px rgba(27, 40, 56, 0.04),
+    0 12px 40px rgba(27, 40, 56, 0.08);
 }
 
 .login-card-logo {
@@ -269,19 +263,20 @@
   transition:
     border-color 0.15s ease,
     box-shadow 0.15s ease;
+  box-sizing: border-box;
 }
 
 .login-field input::placeholder {
-  color: #71717a;
+  color: #94a3b8;
 }
 
 .login-field input:hover {
-  border-color: rgba(255, 255, 255, 0.14);
+  border-color: #b8c4d4;
 }
 
 .login-field input:focus {
   border-color: var(--login-focus);
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.06);
+  box-shadow: 0 0 0 3px rgba(31, 111, 235, 0.15);
 }
 
 .login-row {
@@ -303,7 +298,7 @@
 .login-remember input {
   width: 0.95rem;
   height: 0.95rem;
-  accent-color: var(--login-accent);
+  accent-color: var(--login-focus);
 }
 
 .login-forgot {
@@ -323,7 +318,7 @@
   border: none;
   border-radius: 6px;
   background: var(--login-accent);
-  color: #0a0a0c;
+  color: #ffffff;
   font-family: inherit;
   font-size: 0.9375rem;
   font-weight: 600;
@@ -334,7 +329,7 @@
 }
 
 .login-submit:hover {
-  background: #e4e4e7;
+  background: #2a3d52;
 }
 
 .login-submit:active {
@@ -378,16 +373,16 @@
   padding: 1rem 1.25rem 1.5rem;
   text-align: center;
   font-size: 0.75rem;
-  color: #52525b;
+  color: var(--login-muted);
 }
 
 .login-page-footer a {
-  color: #71717a;
+  color: var(--login-muted);
   text-decoration: none;
 }
 
 .login-page-footer a:hover {
-  color: var(--login-muted);
+  color: var(--login-text);
 }
 
 @media (max-width: 480px) {
