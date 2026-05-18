@@ -4,10 +4,12 @@
   "outputDirectory": ".",
   "functions": {
     "api/**/*.js": {
-      "includeFiles": "server/**,data/company-search-index.json,scripts/load-env.js"
+      "includeFiles": "server/**,data/company-search-index.json,data/seed/companies/**,scripts/load-env.js"
     }
   },
   "rewrites": [
+    { "source": "/api/companies/:slug", "destination": "/api/get-company?slug=:slug" },
+    { "source": "/api/companies/:slug/market", "destination": "/api/get-company-market?slug=:slug" },
     { "source": "/company", "destination": "/company/index.html" },
     { "source": "/company/", "destination": "/company/index.html" },
     { "source": "/company/:path*", "destination": "/company/index.html" },

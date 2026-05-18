@@ -81,26 +81,43 @@ async function searchCompaniesSupabase(query, limit = 25) {
   const client = getAdminClient();
   const select = "slug, name, legal_name, meta, initials, search_terms";
 
-  const { data, error } = await client
+  const seen = new Set();
+  const merged = [];
+
+  const addRows = (rows) => {
+    for (const row of rows || []) {
+      if (!row?.slug || seen.has(row.slug)) continue;
+      seen.add(row.slug);
+      merged.push(rowToIndex(row));
+    }
+  };
+
+  const byText = await client
     .from("companies")
     .select(select)
     .or(`name.ilike.${pattern},legal_name.ilike.${pattern},slug.ilike.${pattern}`)
     .order("name")
     .limit(limit);
+  if (byText.error) throw byText.error;
+  addRows(byText.data);
 
-  if (error) throw error;
-
-  const seen = new Set();
-  const merged = (data || []).map((row) => {
-    seen.add(row.slug);
-    return rowToIndex(row);
-  });
+  if (merged.length < limit && safe.length >= 2) {
+    const byTerms = await client
+      .from("companies")
+      .select(select)
+      .contains("search_terms", [safe])
+      .order("name")
+      .limit(limit);
+    if (!byTerms.error) addRows(byTerms.data);
+  }
 
   if (/^[a-z0-9.-]{1,8}$/i.test(safe) && merged.length < limit) {
     const slug = `us-${safe.replace(/\./g, "").toLowerCase()}`;
     if (!seen.has(slug)) {
-      const { data: exact } = await client.from("companies").select(select).eq("slug", slug).maybeSingle();
-      if (exact) merged.unshift(rowToIndex(exact));
+      const exact = await client.from("companies").select(select).eq("slug", slug).maybeSingle();
+      if (!exact.error && exact.data) {
+        merged.unshift(rowToIndex(exact.data));
+      }
     }
   }
 

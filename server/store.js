@@ -4,6 +4,7 @@
 const local = require("./local-store");
 const supabase = require("./supabase-store");
 const searchIndex = require("./search-index");
+const seedStore = require("./seed-store");
 const { syncPeopleFromCompany } = require("./people-sync");
 const peopleStore = require("./people-store");
 
@@ -11,8 +12,7 @@ async function listCompanies(options = {}) {
   const limit = options.limit || null;
   if (supabase.isSupabaseEnabled()) {
     try {
-      const rows = await supabase.listCompaniesSupabase(limit);
-      if (rows.length) return rows;
+      return await supabase.listCompaniesSupabase(limit);
     } catch (err) {
       console.warn("Supabase list failed:", err.message);
     }
@@ -45,6 +45,9 @@ async function getCompanyRaw(slug) {
       console.warn(`Supabase get(${slug}) failed, using local:`, err.message);
     }
   }
+  const fromSeed = seedStore.readSeed(slug);
+  if (fromSeed?.profile) return fromSeed;
+
   return local.getCompanyLocal(slug);
 }
 
