@@ -9,6 +9,7 @@ export function useCompanyTabs(company: CompanyProfile | null, mapGeojson: GeoJS
     const items: { id: string; label: string }[] = [{ id: "overview", label: "Overview" }];
     if (company.people?.length) items.push({ id: "people", label: "People" });
     if (resolveOwnership(company)) items.push({ id: "ownership", label: "Ownership" });
+    if (company.portfolio?.holdingCount) items.push({ id: "investments", label: "Investments" });
     const fin = company.financials;
     if (fin?.years?.length || fin?.metrics?.length) {
       items.push({ id: "financials", label: "Financials" });

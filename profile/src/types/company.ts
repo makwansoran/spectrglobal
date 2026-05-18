@@ -142,6 +142,15 @@ export interface OwnershipBreakdown {
   shareholders: ShareholderStake[];
 }
 
+export interface PortfolioSummary {
+  asOf?: string;
+  holdingCount?: number;
+  totalMarketValueNok?: number;
+  totalMarketValueUsd?: number;
+  source?: string;
+  regions?: string[];
+}
+
 export interface CompanyProfile {
   id: string;
   name: string;
@@ -168,6 +177,8 @@ export interface CompanyProfile {
   filings: Filing[];
   keyFacts: { label: string; value: string }[];
   ownership?: OwnershipBreakdown;
+  /** NBIM / sovereign fund equity book (summary only; rows served via API). */
+  portfolio?: PortfolioSummary;
   competitors: Competitor[];
   funding: FundingEvent[];
   esg: ESGScore;

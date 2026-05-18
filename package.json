@@ -26,6 +26,7 @@
     "db:backfill-ownership-nasdaq": "node scripts/backfill-ownership-nasdaq.js",
     "db:import-institutions": "node scripts/import-institution-companies.js",
     "db:migrate-brk-slug": "node scripts/migrate-brk-slug.js",
+    "db:import-nbim-holdings": "node scripts/import-nbim-equity-holdings.js",
     "db:import-us": "node scripts/import-finnhub-us.js",
     "db:import-us:fetch": "node scripts/import-finnhub-us.js --fetch-only",
     "db:link-oslo-us": "node scripts/import-finnhub-us.js --link-oslo",
@@ -35,7 +36,8 @@
     "start": "npm run dev"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.49.8"
+    "@supabase/supabase-js": "^2.49.8",
+    "xlsx": "^0.18.5"
   },
   "optionalDependencies": {
     "better-sqlite3": "^11.10.0"

@@ -3,6 +3,7 @@ export const COMPANY_TAB_IDS = [
   "overview",
   "people",
   "ownership",
+  "investments",
   "financials",
   "news",
   "filings",

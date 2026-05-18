@@ -6,6 +6,7 @@ import { CompanyProfileLayout } from "./pages/company/CompanyProfileLayout";
 import { CompanyChatTab } from "./pages/company/CompanyChatTab";
 import { CompanyFilingsTab } from "./pages/company/CompanyFilingsTab";
 import { CompanyFinancialsTab } from "./pages/company/CompanyFinancialsTab";
+import { CompanyInvestmentsTab } from "./pages/company/CompanyInvestmentsTab";
 import { CompanyIndustryTab } from "./pages/company/CompanyIndustryTab";
 import { CompanyNewsTab } from "./pages/company/CompanyNewsTab";
 import { CompanyOverviewTab } from "./pages/company/CompanyOverviewTab";
@@ -52,6 +53,7 @@ export default function App() {
               <Route index element={<CompanyOverviewTab />} />
               <Route path="people" element={<CompanyPeopleTab />} />
               <Route path="ownership" element={<CompanyOwnershipTab />} />
+              <Route path="investments" element={<CompanyInvestmentsTab />} />
               <Route path="financials" element={<CompanyFinancialsTab />} />
               <Route path="news" element={<CompanyNewsTab />} />
               <Route path="filings" element={<CompanyFilingsTab />} />
