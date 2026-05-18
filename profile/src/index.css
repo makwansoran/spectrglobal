@@ -330,6 +330,16 @@
   background: #0c1929 !important;
 }
 
+/* MarineTraffic-style vessel markers */
+.vessel-ship-icon {
+  background: transparent !important;
+  border: none !important;
+}
+
+.vessel-ship-icon--selected {
+  filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.85));
+}
+
 .maritime-hud {
   position: absolute;
   z-index: 900;

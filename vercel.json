@@ -18,6 +18,9 @@
     "api/holders/[[...path]].js": {
       "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,data/**,scripts/load-env.js"
     },
+    "api/portfolio/holdings.js": {
+      "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,data/**,scripts/load-env.js"
+    },
     "api/waterways/index.js": {
       "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,data/**,scripts/load-env.js"
     },

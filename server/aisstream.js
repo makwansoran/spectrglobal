@@ -32,7 +32,7 @@ function boundsKey(bounds) {
   return normalizeBounds(bounds)?.map((n) => n.toFixed(3)).join(",") || "";
 }
 
-function expandBounds(bounds, pad = 0.15) {
+function expandBounds(bounds, pad = 0.06) {
   const [south, west, north, east] = bounds;
   return [
     Math.max(-90, south - pad),

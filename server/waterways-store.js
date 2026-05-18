@@ -5,6 +5,7 @@ const fs = require("fs");
 const path = require("path");
 const { getAdminClient, isSupabaseEnabled, hasSupabaseWrites, requireSupabase } = require("./supabase-client");
 const { simulateVessels } = require("./maritime-vessel-sim");
+const { filterVesselsNearWaterway } = require("./maritime-geo");
 const aisstream = require("./aisstream");
 
 const SEED_PATH = path.join(__dirname, "..", "data", "seed", "maritime-waterways.json");
@@ -173,10 +174,12 @@ async function getWaterwayVessels(slug, timeMs, options = {}) {
   const simInput = {
     slug: row.slug,
     importance: row.importance,
+    waterwayType: row.waterway_type,
     bounds: row.bounds,
     waterwayLine: profile.waterwayLine,
   };
-  const simulated = simulateVessels(simInput, timeMs);
+  let simulated = simulateVessels(simInput, timeMs);
+  simulated = filterVesselsNearWaterway(simulated, profile.waterwayLine, row.waterway_type, row.bounds);
 
   let vessels = simulated;
   let source = "simulated";
@@ -190,9 +193,13 @@ async function getWaterwayVessels(slug, timeMs, options = {}) {
         new Promise((resolve) => setTimeout(() => resolve(null), 9000)),
       ]);
       if (live?.length) {
-        vessels = live;
-        source = "aisstream";
-        aisStatus = "ok";
+        vessels = filterVesselsNearWaterway(live, profile.waterwayLine, row.waterway_type, bounds);
+        if (vessels.length) {
+          source = "aisstream";
+          aisStatus = "ok";
+        } else {
+          aisStatus = "empty";
+        }
       } else {
         aisStatus = "empty";
       }
@@ -203,7 +210,9 @@ async function getWaterwayVessels(slug, timeMs, options = {}) {
   }
 
   if (!vessels?.length) {
-    vessels = simulated.length ? simulated : simulateVessels(simInput, timeMs);
+    vessels = simulated.length
+      ? simulated
+      : filterVesselsNearWaterway(simulateVessels(simInput, timeMs), profile.waterwayLine, row.waterway_type, row.bounds);
     source = "simulated";
   }
 

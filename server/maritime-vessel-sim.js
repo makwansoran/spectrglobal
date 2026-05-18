@@ -1,6 +1,7 @@
 /**
- * Deterministic simulated AIS-style traffic within a waterway bounding box.
+ * Deterministic simulated AIS-style traffic along a waterway corridor.
  */
+const { offsetFromHeading, maxCorridorKm } = require("./maritime-geo");
 
 const VESSEL_TYPES = [
   { type: "tanker", weight: 28 },
@@ -224,20 +225,25 @@ function simulateVesselsInBounds(waterway, bounds, timeMs) {
 function simulateVesselsOnLine(waterway, line, timeMs) {
   const slug = waterway.slug || "waterway";
   const importance = waterway.importance || 3;
+  const waterwayType = waterway.waterwayType || "strait";
+  const maxLateralKm = maxCorridorKm(waterwayType) * 0.42;
   const count = vesselCountForImportance(importance);
   const minuteBucket = Math.floor(timeMs / 60000);
   const rng = mulberry32(hashString(`${slug}:${minuteBucket}`));
+  const tAnim = timeMs / 1000;
 
   const vessels = [];
   for (let i = 0; i < count; i++) {
     const type = pickWeighted(rng, VESSEL_TYPES);
     const baseT = rng();
     const speedKnots = 8 + rng() * 14;
-    const drift = ((timeMs % 120000) / 120000) * 0.08 * (i % 2 === 0 ? 1 : -1);
-    const t = (baseT + drift + i * 0.017) % 1;
-    const [lat, lng] = interpolateLine(line, t);
-    const lateral = (rng() - 0.5) * 0.04;
+    const driftT = ((timeMs % 180000) / 180000) * 0.06 * (i % 2 === 0 ? 1 : -1);
+    const t = (baseT + driftT + i * 0.017) % 1;
+    const [lat0, lng0] = interpolateLine(line, t);
     const heading = headingFromSegment(line, t);
+    const lateralKm = (rng() - 0.5) * 2 * maxLateralKm;
+    const animKm = Math.sin(tAnim * 0.035 + i * 1.7) * maxLateralKm * 0.12;
+    const [lat, lng] = offsetFromHeading(lat0, lng0, heading, lateralKm + animKm);
 
     vessels.push({
       id: `${slug}-${i}`,
@@ -247,8 +253,8 @@ function simulateVesselsOnLine(waterway, line, timeMs) {
       speed: Math.round(speedKnots * 10) / 10,
       heading: Math.round(heading),
       destination: DESTINATIONS[Math.floor(rng() * DESTINATIONS.length)],
-      lat: lat + lateral,
-      lng: lng + lateral * 1.4,
+      lat,
+      lng,
       progress: t,
     });
   }
@@ -257,13 +263,13 @@ function simulateVesselsOnLine(waterway, line, timeMs) {
 }
 
 function simulateVessels(waterway, timeMs = Date.now()) {
+  const line = waterway.waterwayLine || waterway.profile_json?.waterwayLine;
+  if (line?.length >= 2) return simulateVesselsOnLine(waterway, line, timeMs);
+
   const bounds = normalizeBounds(waterway.bounds);
   if (bounds) return simulateVesselsInBounds(waterway, bounds, timeMs);
 
-  const line = waterway.waterwayLine || waterway.profile_json?.waterwayLine;
-  if (!line?.length) return [];
-
-  return simulateVesselsOnLine(waterway, line, timeMs);
+  return [];
 }
 
 module.exports = {

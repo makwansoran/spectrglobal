@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { MapContainer, TileLayer, CircleMarker, useMap } from "react-leaflet";
+import { MapContainer, TileLayer, useMap } from "react-leaflet";
 import type { LatLngBoundsExpression } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { fetchWaterwayVessels } from "../../api/waterways";
-import { VESSEL_TYPE_LABELS, vesselColor } from "../../lib/vesselTypes";
+import { VESSEL_TYPE_LABELS } from "../../lib/vesselTypes";
 import type { SimulatedVessel, WaterwayProfile } from "../../types/waterway";
+import { VesselShipMarker } from "./VesselShipMarker";
 
 const DARK_TILE =
   "https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png";
@@ -104,19 +105,11 @@ export function MaritimeTrafficMap({ waterway }: Props) {
         />
         <FitWaterwayBounds bounds={bounds} />
         {vessels.map((v) => (
-          <CircleMarker
+          <VesselShipMarker
             key={v.id}
-            center={[v.lat, v.lng]}
-            radius={selected?.id === v.id ? 7 : 5}
-            pathOptions={{
-              color: "#0f172a",
-              weight: 1.5,
-              fillColor: vesselColor(v.type),
-              fillOpacity: selected?.id === v.id ? 1 : 0.92,
-            }}
-            eventHandlers={{
-              click: () => setSelected(v),
-            }}
+            vessel={v}
+            selected={selected?.id === v.id}
+            onSelect={setSelected}
           />
         ))}
       </MapContainer>

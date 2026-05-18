@@ -106,10 +106,11 @@ export function PortfolioInvestmentsSection({ investorSlug, portfolio }: Props) 
 
       {loading ? (
         <p className="py-8 text-center text-sm text-muted">Loading investments…</p>
-      ) : (
+      ) : error ? null : (
         <>
           <p className="text-xs text-muted">
-            Showing {(page - 1) * 50 + 1}–{Math.min(page * 50, total)} of {total.toLocaleString("en-US")}
+            Showing {total === 0 ? 0 : (page - 1) * 50 + 1}–{Math.min(page * 50, total)} of{" "}
+            {total.toLocaleString("en-US")}
             {debouncedQ ? ` matching “${debouncedQ}”` : ""}
           </p>
           <div className="overflow-x-auto rounded-lg border border-line">
