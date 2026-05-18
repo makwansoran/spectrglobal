@@ -34,7 +34,10 @@ export async function searchCompanyIndex(query: string, limit = 10): Promise<Com
   return res.json();
 }
 
-function normalizeProfile(profile: CompanyProfile): CompanyProfile {
+function normalizeProfile(profile: CompanyProfile | null | undefined): CompanyProfile {
+  if (!profile) {
+    throw new Error("not_found");
+  }
   return {
     ...profile,
     industryTags: profile.industryTags ?? [],
@@ -60,8 +63,8 @@ function normalizeProfile(profile: CompanyProfile): CompanyProfile {
   };
 }
 
-export async function fetchCompany(slug: string): Promise<CompanyPayload> {
-  const res = await fetch(`${apiBase}/api/companies/${encodeURIComponent(slug)}`);
+export async function fetchCompany(slug: string, signal?: AbortSignal): Promise<CompanyPayload> {
+  const res = await fetch(`${apiBase}/api/companies/${encodeURIComponent(slug)}`, { signal });
   if (!res.ok) {
     if (res.status === 404) throw new Error("not_found");
     throw new Error("Failed to load company");

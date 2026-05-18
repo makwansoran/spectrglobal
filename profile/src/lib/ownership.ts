@@ -125,7 +125,7 @@ export function resolveOwnership(company: CompanyProfile): OwnershipBreakdown | 
   if (company.ownership?.shareholders?.length) {
     return enrichBreakdown(company.ownership);
   }
-  const fromFacts = parseOwnershipFromKeyFacts(company.keyFacts);
+  const fromFacts = parseOwnershipFromKeyFacts(company.keyFacts ?? []);
   return fromFacts ? enrichBreakdown(fromFacts) : null;
 }
 

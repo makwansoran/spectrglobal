@@ -7,13 +7,14 @@ export function useCompanyTabs(company: CompanyProfile | null, mapGeojson: GeoJS
   return useMemo(() => {
     if (!company) return [];
     const items: { id: string; label: string }[] = [{ id: "overview", label: "Overview" }];
-    if (company.people.length) items.push({ id: "people", label: "People" });
+    if (company.people?.length) items.push({ id: "people", label: "People" });
     if (resolveOwnership(company)) items.push({ id: "ownership", label: "Ownership" });
-    if (company.financials.years.length || company.financials.metrics.length) {
+    const fin = company.financials;
+    if (fin?.years?.length || fin?.metrics?.length) {
       items.push({ id: "financials", label: "Financials" });
     }
-    if (company.news.length) items.push({ id: "news", label: "News" });
-    if (company.filings.length) items.push({ id: "filings", label: "Filings" });
+    if (company.news?.length) items.push({ id: "news", label: "News" });
+    if (company.filings?.length) items.push({ id: "filings", label: "Filings" });
     if (hasIndustryMap(company.industry, mapGeojson)) {
       items.push({ id: "industry", label: company.industryTabLabel });
     }

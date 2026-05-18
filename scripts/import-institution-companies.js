@@ -41,6 +41,11 @@ function sleep(ms) {
   return new Promise((r) => setTimeout(r, ms));
 }
 
+/** US listed company slug (no dots — use us-brk-b not us-brk.b). */
+function listedCompanySlug(ticker) {
+  return `us-${String(ticker).toLowerCase().replace(/\./g, "-")}`;
+}
+
 function initials(name) {
   const words = String(name || "")
     .replace(/[^a-zA-Z\s]/g, " ")
@@ -143,7 +148,7 @@ async function listedInstitutionSeed(inst) {
   );
   if (!seed) throw new Error(`Could not build seed for ${ticker}`);
 
-  seed.slug = inst.companySlug || seed.slug;
+  seed.slug = inst.companySlug || listedCompanySlug(ticker);
   seed.profile.id = seed.slug;
   seed.searchTerms = searchTerms(inst);
 

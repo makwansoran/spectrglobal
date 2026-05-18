@@ -4,6 +4,7 @@ import { Hero } from "../../components/Hero";
 import { TabNav } from "../../components/TabNav";
 import { SiteHeader } from "../../components/SiteHeader";
 import { SiteFooter } from "../../components/SiteFooter";
+import { ProfileErrorBoundary } from "../../components/ProfileErrorBoundary";
 import { ProfileLoading } from "../../components/ProfileLoading";
 import { CompanyProfileProvider } from "../../context/CompanyProfileContext";
 import { useCompany } from "../../hooks/useCompany";
@@ -27,7 +28,7 @@ export function CompanyProfileLayout() {
     return (
       <div className="min-h-screen bg-white">
         <SiteHeader />
-        <ProfileLoading />
+        <ProfileLoading label={companyId ? `Loading profile…` : undefined} />
       </div>
     );
   }
@@ -49,13 +50,15 @@ export function CompanyProfileLayout() {
     );
   }
 
-  if (error === "load_failed" || !company) {
+  if (error === "timeout" || error === "load_failed" || !company) {
     return (
       <div className="min-h-screen bg-white">
         <SiteHeader />
         <main className="mx-auto max-w-lg px-4 py-24 text-center">
           <h1 className="font-display text-xl font-semibold text-ink">Could not load profile</h1>
-          <p className="mt-2 text-sm text-muted">Try refreshing the page.</p>
+          <p className="mt-2 text-sm text-muted">
+            {error === "timeout" ? "The request timed out. Try again in a moment." : "Try refreshing the page."}
+          </p>
           <a href="/index.html" className="btn-primary mt-6 inline-block no-underline">
             Back to search
           </a>
@@ -70,15 +73,17 @@ export function CompanyProfileLayout() {
 
   return (
     <CompanyProfileProvider value={{ company, mapGeojson }}>
-      <div className="min-h-screen bg-white">
-        <SiteHeader />
-        <Hero company={company} />
-        <TabNav tabs={tabs} basePath={basePath} />
-        <main className="mx-auto max-w-5xl px-4 pb-8 pt-1 md:px-6">
-          <Outlet />
-        </main>
-        <SiteFooter />
-      </div>
+      <ProfileErrorBoundary>
+        <div className="min-h-screen bg-white">
+          <SiteHeader />
+          <Hero company={company} />
+          <TabNav tabs={tabs} basePath={basePath} />
+          <main className="mx-auto max-w-5xl px-4 pb-8 pt-1 md:px-6">
+            <Outlet />
+          </main>
+          <SiteFooter />
+        </div>
+      </ProfileErrorBoundary>
     </CompanyProfileProvider>
   );
 }

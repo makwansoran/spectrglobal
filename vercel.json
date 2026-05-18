@@ -21,6 +21,9 @@
     { "source": "/commodity/:path*", "destination": "/company/index.html" },
     { "source": "/company", "destination": "/company/index.html" },
     { "source": "/company/", "destination": "/company/index.html" },
+    { "source": "/company/us-brk.b", "destination": "/company/us-brk-b", "statusCode": 308 },
+    { "source": "/company/us-brk.b/:path*", "destination": "/company/us-brk-b/:path*", "statusCode": 308 },
+    { "source": "/api/companies/us-brk.b", "destination": "/api/get-company?slug=us-brk-b" },
     { "source": "/company/:path*", "destination": "/company/index.html" },
     { "source": "/login", "destination": "/login.html" }
   ]

@@ -17,17 +17,24 @@ export function useCompany(slug: string | undefined) {
     setLoading(true);
     setError(null);
 
-    fetchCompany(slug)
+    const timeoutMs = 20_000;
+    const controller = new AbortController();
+    const timer = window.setTimeout(() => controller.abort(), timeoutMs);
+
+    fetchCompany(slug, controller.signal)
       .then((payload) => {
         if (!cancelled) setData(payload);
       })
       .catch((err: Error) => {
         if (!cancelled) {
           setData(null);
-          setError(err.message === "not_found" ? "not_found" : "load_failed");
+          if (err.message === "not_found") setError("not_found");
+          else if (err.name === "AbortError") setError("timeout");
+          else setError("load_failed");
         }
       })
       .finally(() => {
+        window.clearTimeout(timer);
         if (!cancelled) setLoading(false);
       });
 

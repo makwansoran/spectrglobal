@@ -25,6 +25,7 @@
     "db:backfill-ownership": "node scripts/backfill-ownership-finnhub.js",
     "db:backfill-ownership-nasdaq": "node scripts/backfill-ownership-nasdaq.js",
     "db:import-institutions": "node scripts/import-institution-companies.js",
+    "db:migrate-brk-slug": "node scripts/migrate-brk-slug.js",
     "db:import-us": "node scripts/import-finnhub-us.js",
     "db:import-us:fetch": "node scripts/import-finnhub-us.js --fetch-only",
     "db:link-oslo-us": "node scripts/import-finnhub-us.js --link-oslo",
