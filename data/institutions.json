@@ -1,0 +1,120 @@
+[
+  {
+    "slug": "vanguard-group",
+    "name": "Vanguard Group",
+    "aliases": ["Vanguard", "The Vanguard Group", "Vanguard Group Inc", "Vanguard Group Inc.", "Vanguard Capital Management Llc", "Vanguard Portfolio Management Llc"],
+    "orgType": "asset_manager",
+    "isListed": false,
+    "website": "https://www.vanguard.com",
+    "logoDomain": "vanguard.com",
+    "about": "US mutual fund and ETF manager; one of the world's largest asset managers."
+  },
+  {
+    "slug": "blackrock",
+    "name": "BlackRock",
+    "aliases": ["Blackrock", "BlackRock Inc", "Blackrock, Inc."],
+    "orgType": "asset_manager",
+    "isListed": true,
+    "listedTicker": "BLK",
+    "listedExchange": "NYSE",
+    "companySlug": "us-blk",
+    "website": "https://www.blackrock.com",
+    "logoDomain": "blackrock.com",
+    "about": "Global asset manager and ETF sponsor (iShares)."
+  },
+  {
+    "slug": "state-street",
+    "name": "State Street",
+    "aliases": ["State Street Corporation", "State Street Corp"],
+    "orgType": "bank",
+    "isListed": true,
+    "listedTicker": "STT",
+    "listedExchange": "NYSE",
+    "companySlug": "us-stt",
+    "website": "https://www.statestreet.com",
+    "logoDomain": "statestreet.com",
+    "about": "Custodian bank and asset servicing; SPDR ETF sponsor."
+  },
+  {
+    "slug": "jpmorgan-chase",
+    "name": "JPMorgan Chase",
+    "aliases": ["JPMorgan Chase & Co", "JP Morgan Chase", "JPMorgan"],
+    "orgType": "bank",
+    "isListed": true,
+    "listedTicker": "JPM",
+    "listedExchange": "NYSE",
+    "companySlug": "us-jpm",
+    "website": "https://www.jpmorganchase.com",
+    "logoDomain": "jpmorganchase.com",
+    "about": "Global universal bank and investment bank."
+  },
+  {
+    "slug": "geode-capital",
+    "name": "Geode Capital",
+    "aliases": ["Geode Capital Management", "Geode Capital Management LLC", "Geode Capital Management, Llc"],
+    "orgType": "asset_manager",
+    "isListed": false,
+    "website": "https://www.geodecapital.com",
+    "logoDomain": "geodecapital.com",
+    "about": "Quantitative and index asset manager (Fidelity affiliate)."
+  },
+  {
+    "slug": "fidelity-fmr",
+    "name": "Fidelity (FMR LLC)",
+    "aliases": ["Fidelity", "FMR LLC", "Fmr Llc", "Fidelity Investments", "Fidelity Management & Research"],
+    "orgType": "asset_manager",
+    "isListed": false,
+    "website": "https://www.fidelity.com",
+    "logoDomain": "fidelity.com",
+    "about": "Private mutual fund and brokerage group (FMR LLC)."
+  },
+  {
+    "slug": "berkshire-hathaway",
+    "name": "Berkshire Hathaway",
+    "aliases": ["Berkshire Hathaway Inc"],
+    "orgType": "conglomerate",
+    "isListed": true,
+    "listedTicker": "BRK.B",
+    "listedExchange": "NYSE",
+    "companySlug": "us-brwk-b",
+    "website": "https://www.berkshirehathaway.com",
+    "logoDomain": "berkshirehathaway.com",
+    "about": "Listed holding company led by Warren Buffett."
+  },
+  {
+    "slug": "morgan-stanley",
+    "name": "Morgan Stanley",
+    "aliases": ["Morgan Stanley & Co"],
+    "orgType": "bank",
+    "isListed": true,
+    "listedTicker": "MS",
+    "listedExchange": "NYSE",
+    "companySlug": "us-ms",
+    "website": "https://www.morganstanley.com",
+    "logoDomain": "morganstanley.com",
+    "about": "Global investment bank and wealth manager."
+  },
+  {
+    "slug": "t-rowe-price",
+    "name": "T. Rowe Price",
+    "aliases": ["T Rowe Price", "T. Rowe Price Group", "T. Rowe Price Associates", "Price T Rowe Associates Inc /Md/", "Price T Rowe Associates Inc"],
+    "orgType": "asset_manager",
+    "isListed": true,
+    "listedTicker": "TROW",
+    "listedExchange": "NASDAQ",
+    "companySlug": "us-trow",
+    "website": "https://www.troweprice.com",
+    "logoDomain": "troweprice.com",
+    "about": "Active equity and multi-asset manager."
+  },
+  {
+    "slug": "norges-bank",
+    "name": "Norges Bank",
+    "aliases": ["Norges Bank Investment Management", "NBIM", "Norway Government Pension Fund"],
+    "orgType": "sovereign_wealth",
+    "isListed": false,
+    "website": "https://www.nbim.no",
+    "logoDomain": "nbim.no",
+    "about": "Norwegian sovereign wealth fund manager (Government Pension Fund Global)."
+  }
+]

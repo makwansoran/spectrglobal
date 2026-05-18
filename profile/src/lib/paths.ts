@@ -9,3 +9,8 @@ export function companyProfilePath(companySlug: string, tab?: string) {
   if (!tab || tab === "overview") return base;
   return `${base}/${tab}`;
 }
+
+/** Institutional holder profile (under /company basename). */
+export function holderProfilePath(holderSlug: string) {
+  return `/holder/${holderSlug}`;
+}

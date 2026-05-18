@@ -107,12 +107,33 @@ export interface OilBlockProperties {
   status?: string;
 }
 
+export type InstitutionOrgType =
+  | "asset_manager"
+  | "bank"
+  | "sovereign_wealth"
+  | "insurance"
+  | "hedge_fund"
+  | "conglomerate"
+  | "pension"
+  | "other";
+
 export interface ShareholderStake {
   name: string;
   percent: number;
   detail?: string;
   logoUrl?: string;
   logoDomain?: string;
+  /** Link to /company/holder/:slug */
+  slug?: string;
+  orgType?: InstitutionOrgType;
+  orgTypeLabel?: string;
+  isListed?: boolean;
+  listedTicker?: string;
+  listedExchange?: string;
+  /** Spectr company profile when the holder is a listed company */
+  companySlug?: string;
+  website?: string;
+  isOther?: boolean;
 }
 
 export interface OwnershipBreakdown {

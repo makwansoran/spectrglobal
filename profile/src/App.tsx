@@ -11,6 +11,7 @@ import { CompanyNewsTab } from "./pages/company/CompanyNewsTab";
 import { CompanyOverviewTab } from "./pages/company/CompanyOverviewTab";
 import { CompanyOwnershipTab } from "./pages/company/CompanyOwnershipTab";
 import { CompanyPeopleTab } from "./pages/company/CompanyPeopleTab";
+import { HolderProfilePage } from "./pages/HolderProfilePage";
 import { PersonProfilePage } from "./pages/PersonProfilePage";
 
 function getBasename() {
@@ -46,6 +47,7 @@ export default function App() {
           <>
             <Route path="/" element={<Navigate to="/equinor" replace />} />
             <Route path="/person/:personId" element={<PersonProfilePage />} />
+            <Route path="/holder/:holderSlug" element={<HolderProfilePage />} />
             <Route path="/:companyId" element={<CompanyProfileLayout />}>
               <Route index element={<CompanyOverviewTab />} />
               <Route path="people" element={<CompanyPeopleTab />} />

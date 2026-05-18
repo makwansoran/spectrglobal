@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 import type { CompanyProfile } from "../../types/company";
 import { ShareholderLogo } from "../ShareholderLogo";
-import { buildPieSlices, resolveOwnership } from "../../lib/ownership";
+import { buildPieSlices, holderMetaLine, resolveOwnership } from "../../lib/ownership";
+import { holderProfilePath } from "../../lib/paths";
 
 type Props = { company: CompanyProfile };
 
@@ -16,14 +18,10 @@ export function OwnershipSection({ company }: Props) {
   const slices = buildPieSlices(ownership.shareholders);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {(ownership.asOf || ownership.note) && (
-        <p className="text-sm text-muted">
-          {ownership.asOf && (
-            <span className="font-mono text-xs uppercase tracking-wide text-muted">
-              As of {ownership.asOf}
-            </span>
-          )}
+        <p className="text-xs text-muted">
+          {ownership.asOf && <span className="font-mono uppercase tracking-wide">As of {ownership.asOf}</span>}
           {ownership.asOf && ownership.note ? " · " : null}
           {ownership.note}
         </p>
@@ -66,23 +64,38 @@ export function OwnershipSection({ company }: Props) {
         </div>
 
         <ul className="divide-y divide-line">
-          {slices.map((slice) => (
-            <li key={slice.name} className="flex items-center gap-2.5 py-2 first:pt-0 last:pb-0">
-              <ShareholderLogo stake={slice} size="sm" color={slice.color} />
-              <div className="min-w-0 flex-1">
-                <p className="truncate text-sm font-medium text-ink">{slice.name}</p>
-                {slice.detail && !slice.isOther && (
-                  <p className="truncate text-xs text-muted">{slice.detail}</p>
-                )}
-              </div>
-              <span
-                className="shrink-0 font-mono text-xs font-semibold tabular-nums"
-                style={{ color: slice.color }}
-              >
-                {formatPercent(slice.percent)}
-              </span>
-            </li>
-          ))}
+          {slices.map((slice) => {
+            const meta = holderMetaLine(slice);
+            const canLink = Boolean(slice.slug && !slice.isOther);
+
+            return (
+              <li key={slice.slug || slice.name} className="flex items-center gap-2.5 py-2 first:pt-0 last:pb-0">
+                <ShareholderLogo stake={slice} size="sm" color={slice.color} />
+                <div className="min-w-0 flex-1">
+                  {canLink ? (
+                    <Link
+                      to={holderProfilePath(slice.slug!)}
+                      className="block truncate text-left text-sm font-medium text-ink underline-offset-2 hover:text-accent hover:underline"
+                    >
+                      {slice.name}
+                    </Link>
+                  ) : (
+                    <p className="truncate text-sm font-medium text-ink">{slice.name}</p>
+                  )}
+                  {meta && <p className="truncate text-[11px] text-muted">{meta}</p>}
+                  {slice.detail && !slice.isOther && (
+                    <p className="truncate text-xs text-muted">{slice.detail}</p>
+                  )}
+                </div>
+                <span
+                  className="shrink-0 font-mono text-xs font-semibold tabular-nums"
+                  style={{ color: slice.color }}
+                >
+                  {formatPercent(slice.percent)}
+                </span>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </div>

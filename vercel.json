@@ -4,13 +4,14 @@
   "outputDirectory": ".",
   "functions": {
     "api/**/*.js": {
-      "includeFiles": "server/**,node_modules/@supabase/**,data/company-search-index.json,data/commodity-search-index.json,data/seed/companies/**,data/seed/commodities.json,scripts/load-env.js"
+      "includeFiles": "server/**,node_modules/@supabase/**,data/company-search-index.json,data/commodity-search-index.json,data/institutions.json,data/seed/companies/**,data/seed/commodities.json,scripts/load-env.js"
     }
   },
   "rewrites": [
     { "source": "/api/companies/:slug", "destination": "/api/get-company?slug=:slug" },
     { "source": "/api/companies/:slug/market", "destination": "/api/get-company-market?slug=:slug" },
     { "source": "/api/people/:slug", "destination": "/api/get-person?slug=:slug" },
+    { "source": "/api/holders/:slug", "destination": "/api/get-holder?slug=:slug" },
     { "source": "/person", "destination": "/company/index.html" },
     { "source": "/person/", "destination": "/company/index.html" },
     { "source": "/person/:path*", "destination": "/company/index.html" },

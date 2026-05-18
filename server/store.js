@@ -53,6 +53,15 @@ async function getCompany(slug) {
 
   const peopleStore = require("./people-store");
   company.profile = await peopleStore.hydrateCompanyPeople(company.profile, slug);
+
+  const { enrichOwnership } = require("./institutions");
+  if (company.profile.ownership) {
+    company.profile = {
+      ...company.profile,
+      ownership: enrichOwnership(company.profile.ownership),
+    };
+  }
+
   return company;
 }
 

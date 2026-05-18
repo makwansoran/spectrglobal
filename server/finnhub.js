@@ -484,6 +484,23 @@ async function fetchStockProfile(symbol) {
   }
 }
 
+/** Top institutional holders (premium on many Finnhub plans). */
+async function fetchInstitutionalOwnership(symbol) {
+  const sym = String(symbol || "").trim().toUpperCase();
+  if (!sym) return null;
+  const key = `ownership:${sym}`;
+  const cached = cacheGet(key, CACHE_LONG_MS);
+  if (cached) return cached;
+  try {
+    const data = await finnhubGet("/stock/ownership", { symbol: sym, limit: 20 });
+    cacheSet(key, data, CACHE_LONG_MS);
+    return data;
+  } catch (err) {
+    if (err.status === 403 || err.status === 401) return null;
+    throw err;
+  }
+}
+
 module.exports = {
   isEnabled,
   toFinnhubSymbol,
@@ -494,6 +511,7 @@ module.exports = {
   fetchCompanyMarket,
   fetchUsStockSymbols,
   fetchStockProfile,
+  fetchInstitutionalOwnership,
   searchSymbols,
   searchToIndexItems,
   buildCompanyFromSlug,

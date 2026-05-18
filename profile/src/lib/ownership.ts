@@ -1,4 +1,5 @@
 import type { CompanyProfile, OwnershipBreakdown, ShareholderStake } from "../types/company";
+import { enrichShareholderStake } from "./institutions";
 
 const SHAREHOLDER_LOGO_DOMAINS: Record<string, string> = {
   "Vanguard Group": "vanguard.com",
@@ -111,11 +112,21 @@ export function parseOwnershipFromKeyFacts(
   return { shareholders };
 }
 
+function enrichBreakdown(ownership: OwnershipBreakdown): OwnershipBreakdown {
+  return {
+    ...ownership,
+    shareholders: ownership.shareholders.map((s) =>
+      s.name === "Other holders" ? { ...s, isOther: true } : enrichShareholderStake(s)
+    ),
+  };
+}
+
 export function resolveOwnership(company: CompanyProfile): OwnershipBreakdown | null {
   if (company.ownership?.shareholders?.length) {
-    return company.ownership;
+    return enrichBreakdown(company.ownership);
   }
-  return parseOwnershipFromKeyFacts(company.keyFacts);
+  const fromFacts = parseOwnershipFromKeyFacts(company.keyFacts);
+  return fromFacts ? enrichBreakdown(fromFacts) : null;
 }
 
 export type PieSlice = ShareholderStake & {
@@ -146,6 +157,17 @@ export function buildPieSlices(shareholders: ShareholderStake[], maxSlices = 10)
   }
 
   return slices;
+}
+
+export function holderMetaLine(stake: ShareholderStake): string {
+  const parts: string[] = [];
+  if (stake.orgTypeLabel) parts.push(stake.orgTypeLabel);
+  if (stake.isListed && stake.listedTicker) {
+    parts.push(stake.listedExchange ? `Listed · ${stake.listedExchange}: ${stake.listedTicker}` : `Listed · ${stake.listedTicker}`);
+  } else if (stake.isListed === false) {
+    parts.push("Private");
+  }
+  return parts.join(" · ");
 }
 
 export function shareholderInitials(name: string) {
