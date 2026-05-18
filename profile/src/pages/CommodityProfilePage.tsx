@@ -5,7 +5,7 @@ import { TabNav } from "../components/TabNav";
 import { Section } from "../components/Section";
 import { CommoditySidebar } from "../components/sidebar/CommoditySidebar";
 import { CommodityAboutSection } from "../components/sections/CommodityAboutSection";
-import { scrollToSection, useScrollSpy } from "../hooks/useScrollSpy";
+import { useScrollSpy } from "../hooks/useScrollSpy";
 import { useCommodity } from "../hooks/useCommodity";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
@@ -30,13 +30,10 @@ export function CommodityProfilePage() {
     tabs.map((t) => t.id),
     110
   );
-  const goToChat = () => scrollToSection("chat", 120);
-  const chatActive = activeTab === "chat";
-
   if (loading) {
     return (
       <div className="min-h-screen bg-white">
-        <SiteHeader onChatClick={goToChat} />
+        <SiteHeader />
         <ProfileLoading />
       </div>
     );
@@ -50,38 +47,38 @@ export function CommodityProfilePage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <SiteHeader onChatClick={goToChat} chatActive={chatActive} />
+      <SiteHeader />
       <CommodityHero commodity={commodity} />
       <TabNav tabs={tabs} activeId={activeTab} chatTabId="chat" />
 
-      <div className="mx-auto max-w-7xl px-4 py-10 md:px-6">
-        <div className="flex flex-col gap-10 lg:flex-row lg:gap-8">
-          <div className="min-w-0 space-y-14 lg:w-[70%] lg:flex-[7]">
-            {showAbout && (
-              <Section id="overview" title="About">
-                <CommodityAboutSection commodity={commodity} />
-              </Section>
-            )}
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
+        <div className="border-t border-line">
+          {showAbout && (
+            <Section id="overview" title="Overview" variant="profile">
+              <CommodityAboutSection commodity={commodity} />
+            </Section>
+          )}
 
-            <section id="chat" className="scroll-mt-28">
-              <h2 className="section-title mb-5">Chat</h2>
-              <ChatRoom
-                roomType="commodity"
-                roomSlug={commodity.id}
-                roomLabel={commodity.name}
-              />
-            </section>
-          </div>
-
-          <aside className="lg:w-[30%] lg:flex-[3]">
-            <CommoditySidebar commodity={commodity} />
-          </aside>
+          <section
+            id="chat"
+            className="scroll-mt-28 border-b border-line py-12 md:py-14"
+          >
+            <h2 className="section-title mb-6">Chat</h2>
+            <ChatRoom
+              roomType="commodity"
+              roomSlug={commodity.id}
+              roomLabel={commodity.name}
+            />
+          </section>
         </div>
+
+        <section className="border-t border-line py-12 md:py-14" aria-label="Contract details">
+          <h2 className="section-title mb-6">Details</h2>
+          <CommoditySidebar commodity={commodity} layout="grid" />
+        </section>
       </div>
 
       <SiteFooter />
     </div>
   );
 }
-
-

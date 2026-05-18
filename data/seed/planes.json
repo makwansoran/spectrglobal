@@ -1,0 +1,34 @@
+[
+  {
+    "slug": "b737-osl-bgo",
+    "companySlug": null,
+    "searchTerms": ["osl", "bgo", "737"],
+    "profile": {
+      "id": "b737-osl-bgo",
+      "name": "OSL–BGO",
+      "registration": "LN-ABC",
+      "aircraftType": "B737",
+      "route": {
+        "from": [60.2, 11.1],
+        "to": [59.9, 10.75],
+        "label": "OSL–BGO · 14/wk · B737"
+      }
+    }
+  },
+  {
+    "slug": "b737-osl-trd",
+    "companySlug": null,
+    "searchTerms": ["osl", "trd", "737"],
+    "profile": {
+      "id": "b737-osl-trd",
+      "name": "OSL–TRD",
+      "registration": "LN-DEF",
+      "aircraftType": "B737",
+      "route": {
+        "from": [60.2, 11.1],
+        "to": [63.45, 10.92],
+        "label": "OSL–TRD · 12/wk · B737"
+      }
+    }
+  }
+]

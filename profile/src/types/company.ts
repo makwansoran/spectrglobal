@@ -107,6 +107,20 @@ export interface OilBlockProperties {
   status?: string;
 }
 
+export interface ShareholderStake {
+  name: string;
+  percent: number;
+  detail?: string;
+  logoUrl?: string;
+  logoDomain?: string;
+}
+
+export interface OwnershipBreakdown {
+  asOf?: string;
+  note?: string;
+  shareholders: ShareholderStake[];
+}
+
 export interface CompanyProfile {
   id: string;
   name: string;
@@ -132,6 +146,7 @@ export interface CompanyProfile {
   news: NewsItem[];
   filings: Filing[];
   keyFacts: { label: string; value: string }[];
+  ownership?: OwnershipBreakdown;
   competitors: Competitor[];
   funding: FundingEvent[];
   esg: ESGScore;

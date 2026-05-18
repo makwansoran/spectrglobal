@@ -1,4 +1,5 @@
 import type { CommodityProfile } from "../types/commodity";
+import { QuickStatsRow } from "./QuickStatsRow";
 
 type Props = { commodity: CommodityProfile };
 
@@ -61,16 +62,7 @@ export function CommodityHero({ commodity }: Props) {
           </div>
         </div>
 
-        {commodity.quickStats.length > 0 ? (
-          <div className="mt-8 grid grid-cols-2 gap-3 border-t border-line pt-6 sm:grid-cols-3">
-            {commodity.quickStats.map((stat) => (
-              <div key={stat.label} className="spectr-card px-4 py-3">
-                <p className="section-label mb-1">{stat.label}</p>
-                <p className="font-mono text-lg font-semibold tabular-nums text-ink md:text-xl">{stat.value}</p>
-              </div>
-            ))}
-          </div>
-        ) : null}
+        <QuickStatsRow stats={commodity.quickStats} />
       </div>
     </header>
   );

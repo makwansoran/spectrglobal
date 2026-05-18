@@ -10,22 +10,20 @@ function SidebarCard({ title, children }: { title: string; children: ReactNode }
   );
 }
 
-export function CommoditySidebar({ commodity }: { commodity: CommodityProfile }) {
-  return (
-    <div className="space-y-4 lg:sticky lg:top-32">
-      {commodity.keyFacts.length > 0 && (
-        <SidebarCard title="Contract details">
-          <dl className="space-y-2.5">
-            {commodity.keyFacts.map((f) => (
-              <div key={f.label}>
-                <dt className="text-xs text-muted">{f.label}</dt>
-                <dd className="text-sm font-medium text-ink">{f.value}</dd>
-              </div>
-            ))}
-          </dl>
-        </SidebarCard>
-      )}
+export function CommoditySidebar({
+  commodity,
+  layout = "stack",
+}: {
+  commodity: CommodityProfile;
+  layout?: "stack" | "grid";
+}) {
+  const wrapClass =
+    layout === "grid"
+      ? "grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+      : "space-y-4 lg:sticky lg:top-32";
 
+  return (
+    <div className={wrapClass}>
       <SidebarCard title="Data sources">
         <ul className="space-y-1.5 text-sm text-muted">
           {commodity.dataSources.map((s) => (

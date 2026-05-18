@@ -1,6 +1,7 @@
 import type { CompanyProfile } from "../types/company";
 import { useMarketData } from "../hooks/useMarketData";
-import { countryFlag, formatCurrency, formatNumber, formatPercent } from "../utils/format";
+import { QuickStatsRow } from "./QuickStatsRow";
+import { countryFlag, formatCurrency, formatPercent } from "../utils/format";
 
 type Props = { company: CompanyProfile };
 
@@ -130,20 +131,7 @@ export function Hero({ company }: Props) {
           </div>
         </div>
 
-        <div className="mt-8 grid grid-cols-2 gap-3 border-t border-line pt-6 sm:grid-cols-3">
-          {company.quickStats.map((stat) => (
-            <div key={stat.label} className="spectr-card px-4 py-3">
-              <p className="section-label mb-1">{stat.label}</p>
-              <p className="font-mono text-lg font-semibold tabular-nums text-ink md:text-xl">
-                {stat.format === "currency" && typeof stat.value === "number"
-                  ? formatCurrency(stat.value)
-                  : typeof stat.value === "number"
-                    ? formatNumber(stat.value)
-                    : stat.value}
-              </p>
-            </div>
-          ))}
-        </div>
+        <QuickStatsRow stats={company.quickStats} />
       </div>
     </header>
   );

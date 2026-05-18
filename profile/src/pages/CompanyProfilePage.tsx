@@ -9,8 +9,10 @@ import { PeopleSection } from "../components/sections/PeopleSection";
 import { FinancialsSection } from "../components/sections/FinancialsSection";
 import { NewsSection } from "../components/sections/NewsSection";
 import { FilingsSection } from "../components/sections/FilingsSection";
+import { OwnershipSection } from "../components/sections/OwnershipSection";
+import { resolveOwnership } from "../lib/ownership";
 import { IndustryMap, hasIndustryMap } from "../components/maps/IndustryMap";
-import { scrollToSection, useScrollSpy } from "../hooks/useScrollSpy";
+import { useScrollSpy } from "../hooks/useScrollSpy";
 import { useCompany } from "../hooks/useCompany";
 import { useMarketData } from "../hooks/useMarketData";
 import { FinnhubMetrics } from "../components/sections/FinnhubMetrics";
@@ -34,6 +36,7 @@ export function CompanyProfilePage() {
     const items: { id: string; label: string }[] = [];
     if (company.about?.trim()) items.push({ id: "overview", label: "Overview" });
     if (company.people.length) items.push({ id: "people", label: "People" });
+    if (resolveOwnership(company)) items.push({ id: "ownership", label: "Ownership" });
     const hasFinnhubMarket =
       market &&
       (market.metrics ||
@@ -60,13 +63,10 @@ export function CompanyProfilePage() {
     tabs.map((t) => t.id),
     110
   );
-  const goToChat = () => scrollToSection("chat", 120);
-  const chatActive = activeTab === "chat";
-
   if (loading) {
     return (
       <div className="min-h-screen bg-white">
-        <SiteHeader onChatClick={goToChat} />
+        <SiteHeader />
         <ProfileLoading />
       </div>
     );
@@ -78,6 +78,7 @@ export function CompanyProfilePage() {
 
   const showAbout = Boolean(company.about?.trim());
   const showPeople = company.people.length > 0;
+  const showOwnership = Boolean(resolveOwnership(company));
   const hasFinnhubMarket =
     market &&
     (market.metrics ||
@@ -94,77 +95,83 @@ export function CompanyProfilePage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <SiteHeader onChatClick={goToChat} chatActive={chatActive} />
+      <SiteHeader />
       <Hero company={company} />
       <TabNav tabs={tabs} activeId={activeTab} chatTabId="chat" />
 
-      <div className="mx-auto max-w-7xl px-4 py-10 md:px-6">
-        <div className="flex flex-col gap-10 lg:flex-row lg:gap-8">
-          <div className="min-w-0 space-y-14 lg:w-[70%] lg:flex-[7]">
-            {showAbout && (
-              <Section id="overview" title="About">
-                <AboutSection company={company} />
-              </Section>
-            )}
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
+        <div className="border-t border-line">
+          {showAbout && (
+            <Section id="overview" title="Overview" variant="profile">
+              <AboutSection company={company} />
+            </Section>
+          )}
 
-            {showPeople && (
-              <Section id="people" title="People">
-                <PeopleSection company={company} />
-              </Section>
-            )}
+          {showPeople && (
+            <Section id="people" title="People" variant="profile">
+              <PeopleSection company={company} />
+            </Section>
+          )}
 
-            {showFinancials && (
-              <Section id="financials" title="Financials">
-                <div className="space-y-8">
-                  <FinancialsSection company={company} />
-                  {market?.metrics && <FinnhubMetrics metrics={market.metrics} />}
-                  {hasFinnhubMarket && market && <FinnhubExtras market={market} includeNews={false} />}
-                </div>
-              </Section>
-            )}
+          {showOwnership && (
+            <Section id="ownership" title="Ownership" variant="profile">
+              <OwnershipSection company={company} />
+            </Section>
+          )}
 
-            {showNews && (
-              <Section id="news" title="News">
-                <div className="space-y-8">
-                  <NewsSection company={company} />
-                  {market && market.news.length > 0 && (
-                    <>
-                      <p className="section-label mb-4">Market news (Finnhub)</p>
-                      <FinnhubNews items={market.news} />
-                    </>
-                  )}
-                </div>
-              </Section>
-            )}
+          {showFinancials && (
+            <Section id="financials" title="Financials" variant="profile">
+              <div className="space-y-8">
+                <FinancialsSection company={company} />
+                {market?.metrics && <FinnhubMetrics metrics={market.metrics} />}
+                {hasFinnhubMarket && market && <FinnhubExtras market={market} includeNews={false} />}
+              </div>
+            </Section>
+          )}
 
-            {showFilings && (
-              <Section id="filings" title="Filings">
-                <FilingsSection company={company} />
-              </Section>
-            )}
+          {showNews && (
+            <Section id="news" title="News" variant="profile">
+              <div className="space-y-8">
+                <NewsSection company={company} />
+                {market && market.news.length > 0 && (
+                  <>
+                    <p className="section-label mb-4">Market news (Finnhub)</p>
+                    <FinnhubNews items={market.news} />
+                  </>
+                )}
+              </div>
+            </Section>
+          )}
 
-            <section id="chat" className="scroll-mt-28">
-              <h2 className="section-title mb-5">Chat</h2>
-              <ChatRoom
-                roomType="company"
-                roomSlug={company.id}
-                roomLabel={company.name}
-              />
-            </section>
-          </div>
+          {showFilings && (
+            <Section id="filings" title="Filings" variant="profile">
+              <FilingsSection company={company} />
+            </Section>
+          )}
 
-          <aside className="lg:w-[30%] lg:flex-[3]">
-            <Sidebar company={company} />
-          </aside>
-        </div>
+          <section
+            id="chat"
+            className="scroll-mt-28 border-b border-line py-12 md:py-14"
+          >
+            <h2 className="section-title mb-6">Chat</h2>
+            <ChatRoom
+              roomType="company"
+              roomSlug={company.id}
+              roomLabel={company.name}
+            />
+          </section>
 
-        {showIndustry && (
-          <div className="mt-14 w-full">
-            <Section id="industry" title={company.industryTabLabel}>
+          {showIndustry && (
+            <Section id="industry" title={company.industryTabLabel} variant="profile">
               <IndustryMap company={company} mapGeojson={mapGeojson} />
             </Section>
-          </div>
-        )}
+          )}
+        </div>
+
+        <section className="border-t border-line py-12 md:py-14" aria-label="Company details">
+          <h2 className="section-title mb-6">Details</h2>
+          <Sidebar company={company} layout="grid" />
+        </section>
       </div>
 
       <SiteFooter />

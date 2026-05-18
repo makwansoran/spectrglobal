@@ -1,5 +1,21 @@
--- Run in Supabase Dashboard → SQL → New query
+-- Run in Supabase Dashboard → SQL → New query (run the FULL file once)
 -- https://supabase.com/dashboard/project/_/sql
+--
+-- Tables in this project:
+--   companies        — company profiles (search + /company/:slug)
+--   people           — person profiles (/person/:slug)
+--   company_people   — links people ↔ companies (title, sort order)
+--   commodities      — commodity profiles (/commodity/:slug)
+--   vessels          — ships / offshore units (fleet data, maps)
+--   planes           — aircraft + route network data (aviation maps)
+--   chat_messages    — live chat per company / commodity room
+--
+-- After SQL: from repo root (with .env):
+--   npm run db:status
+--   npm run db:seed-commodities
+--   npm run db:seed-people
+--   npm run db:seed-vessels
+--   npm run db:seed-planes
 
 create table if not exists public.companies (
   slug text primary key,
@@ -89,6 +105,56 @@ alter table public.commodities enable row level security;
 drop policy if exists "Public read commodities" on public.commodities;
 create policy "Public read commodities"
   on public.commodities
+  for select
+  to anon, authenticated
+  using (true);
+
+-- Vessels (shipping fleet — positions, routes; optional company link)
+create table if not exists public.vessels (
+  slug text primary key,
+  name text not null,
+  company_slug text references public.companies (slug) on delete set null,
+  vessel_type text not null default 'vessel',
+  meta text not null default '',
+  initials text not null default '',
+  search_terms jsonb not null default '[]'::jsonb,
+  profile_json jsonb not null,
+  updated_at timestamptz not null default now()
+);
+
+create index if not exists vessels_name_idx on public.vessels (name);
+create index if not exists vessels_company_idx on public.vessels (company_slug);
+
+alter table public.vessels enable row level security;
+
+drop policy if exists "Public read vessels" on public.vessels;
+create policy "Public read vessels"
+  on public.vessels
+  for select
+  to anon, authenticated
+  using (true);
+
+-- Planes / aircraft (registration, type, routes in profile_json)
+create table if not exists public.planes (
+  slug text primary key,
+  name text not null,
+  company_slug text references public.companies (slug) on delete set null,
+  registration text,
+  meta text not null default '',
+  initials text not null default '',
+  search_terms jsonb not null default '[]'::jsonb,
+  profile_json jsonb not null,
+  updated_at timestamptz not null default now()
+);
+
+create index if not exists planes_name_idx on public.planes (name);
+create index if not exists planes_company_idx on public.planes (company_slug);
+
+alter table public.planes enable row level security;
+
+drop policy if exists "Public read planes" on public.planes;
+create policy "Public read planes"
+  on public.planes
   for select
   to anon, authenticated
   using (true);

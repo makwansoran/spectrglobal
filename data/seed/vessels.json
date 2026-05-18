@@ -1,0 +1,32 @@
+[
+  {
+    "slug": "mt-nordic-spirit",
+    "companySlug": null,
+    "searchTerms": ["nordic spirit", "tanker"],
+    "profile": {
+      "id": "mt-nordic-spirit",
+      "name": "MT Nordic Spirit",
+      "vesselType": "tanker",
+      "imo": "9123456",
+      "flag": "Norway",
+      "position": { "lat": 61.2, "lng": 4.8 },
+      "route": "Stavanger → Skagen",
+      "eta": "19 May 2026",
+      "meta": "Route: Stavanger → Skagen · ETA 19 May"
+    }
+  },
+  {
+    "slug": "fso-asgard",
+    "companySlug": null,
+    "searchTerms": ["asgard", "fso"],
+    "profile": {
+      "id": "fso-asgard",
+      "name": "FSO Asgard",
+      "vesselType": "fso",
+      "position": { "lat": 59.9, "lng": 5.7 },
+      "route": "Bergen → Rotterdam",
+      "eta": "22 May 2026",
+      "meta": "Route: Bergen → Rotterdam · ETA 22 May"
+    }
+  }
+]

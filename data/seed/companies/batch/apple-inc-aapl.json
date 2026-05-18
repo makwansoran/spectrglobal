@@ -114,32 +114,73 @@
     },
     "news": [],
     "filings": [],
-    "keyFacts": [
-      { "label": "CEO transition", "value": "John Ternus → CEO Sep 1, 2026; Tim Cook → Executive Chairman" },
-      { "label": "Board (2026)", "value": "Tim Cook, Wanda Austin, Alex Gorsky, Andrea Jung, Art Levinson, Monica Lozano, Ron Sugar, Sue Wagner" },
-      { "label": "Andrea Jung committee", "value": "Chair, People & Compensation Committee" },
-      { "label": "Institutional ownership", "value": "~65% of outstanding shares (institutions)" },
-      { "label": "Top 3 passive influence", "value": "Vanguard + BlackRock + State Street >20% combined voting power" },
-      { "label": "Insider ownership (total)", "value": "~0.12% of shares outstanding" },
-      { "label": "Largest insider", "value": "Art Levinson (Chairman) — ~4.22M shares (~$1B)" },
-      { "label": "2nd largest insider", "value": "Tim Cook — ~3.28M shares (~$853M)" },
-      { "label": "Shareholder: Vanguard Group", "value": "9.52% · ~1.40B shares · ~$364B" },
-      { "label": "Shareholder: BlackRock", "value": "7.80% · ~1.15B shares · ~$298B" },
-      { "label": "Shareholder: State Street", "value": "4.07% · ~598M shares · ~$155B" },
-      { "label": "Shareholder: JPMorgan Chase", "value": "3.22% · ~473M shares · ~$123B" },
-      { "label": "Shareholder: Geode Capital", "value": "2.42% · ~356M shares · ~$93B" },
-      { "label": "Shareholder: Fidelity (FMR LLC)", "value": "2.06% · ~303M shares · ~$72B" },
-      { "label": "Shareholder: Berkshire Hathaway", "value": "1.62% · ~238M shares · ~$62B (reduced from peak 2024)" },
-      { "label": "Shareholder: Morgan Stanley", "value": "1.56% · ~229M shares · ~$60B" },
-      { "label": "Shareholder: T. Rowe Price", "value": "1.45% · ~213M shares · ~$55B" },
-      { "label": "Shareholder: Norges Bank", "value": "1.29% · ~190M shares · ~$49B" },
-      { "label": "Fund: Vanguard Total Stock Market Index", "value": "3.18% stake" },
-      { "label": "Fund: Vanguard 500 Index Fund", "value": "2.49% stake" },
-      { "label": "Fund: Fidelity 500 Index Fund", "value": "1.28% stake" },
-      { "label": "Fund: iShares Core S&P 500 ETF", "value": "1.26% stake" },
-      { "label": "Fund: SPDR S&P 500 ETF Trust", "value": "1.21% stake" },
-      { "label": "Berkshire / Buffett note", "value": "Began buying 2016; peak position >$170B; significant reduction in 2024" }
-    ],
+    "keyFacts": [],
+    "ownership": {
+      "asOf": "January 2026",
+      "note": "Top institutional holders of outstanding shares. Sources: SEC 13F, Fintel, CoinCodex.",
+      "shareholders": [
+        {
+          "name": "Vanguard Group",
+          "percent": 9.52,
+          "detail": "~1.40B shares · ~$364B",
+          "logoDomain": "vanguard.com"
+        },
+        {
+          "name": "BlackRock",
+          "percent": 7.8,
+          "detail": "~1.15B shares · ~$298B",
+          "logoDomain": "blackrock.com"
+        },
+        {
+          "name": "State Street",
+          "percent": 4.07,
+          "detail": "~598M shares · ~$155B",
+          "logoDomain": "statestreet.com"
+        },
+        {
+          "name": "JPMorgan Chase",
+          "percent": 3.22,
+          "detail": "~473M shares · ~$123B",
+          "logoDomain": "jpmorganchase.com"
+        },
+        {
+          "name": "Geode Capital",
+          "percent": 2.42,
+          "detail": "~356M shares · ~$93B",
+          "logoDomain": "geodecapital.com"
+        },
+        {
+          "name": "Fidelity (FMR LLC)",
+          "percent": 2.06,
+          "detail": "~303M shares · ~$72B",
+          "logoDomain": "fidelity.com"
+        },
+        {
+          "name": "Berkshire Hathaway",
+          "percent": 1.62,
+          "detail": "~238M shares · ~$62B",
+          "logoDomain": "berkshirehathaway.com"
+        },
+        {
+          "name": "Morgan Stanley",
+          "percent": 1.56,
+          "detail": "~229M shares · ~$60B",
+          "logoDomain": "morganstanley.com"
+        },
+        {
+          "name": "T. Rowe Price",
+          "percent": 1.45,
+          "detail": "~213M shares · ~$55B",
+          "logoDomain": "troweprice.com"
+        },
+        {
+          "name": "Norges Bank",
+          "percent": 1.29,
+          "detail": "~190M shares · ~$49B",
+          "logoDomain": "nbim.no"
+        }
+      ]
+    },
     "competitors": [
       { "name": "Microsoft", "country": "US" },
       { "name": "Samsung Electronics", "country": "KR" },
