@@ -14,60 +14,44 @@ const {
 
 const SEARCH_SELECT = "slug,name,legal_name,meta,initials,search_terms";
 
-function tickerFromSlug(slug) {
-  const s = String(slug || "");
-  if (s.startsWith("us-")) return s.slice(3).toUpperCase();
-  const m = s.match(/-([a-z0-9]{1,6})$/i);
-  return m ? m[1].toUpperCase() : null;
-}
-
 function rowToIndex(row) {
-  const ticker = tickerFromSlug(row.slug);
+  const slug = row.slug || "";
+  let ticker = null;
+  if (slug.startsWith("us-")) ticker = slug.slice(3).toUpperCase();
+  else {
+    const m = slug.match(/-([a-z0-9]{1,6})$/i);
+    if (m) ticker = m[1].toUpperCase();
+  }
   return {
-    id: row.slug,
+    id: slug,
     kind: "company",
     name: row.name,
     legalName: row.legal_name,
     meta: row.meta,
     initials: row.initials,
-    url: `/company/${row.slug}`,
+    url: `/company/${slug}`,
     terms: Array.isArray(row.search_terms) ? row.search_terms : [],
     ticker,
   };
 }
 
 async function listCompaniesSupabase(limit) {
-  const params = {
-    select: "slug,name,legal_name,meta,initials,search_terms",
-    order: "name.asc",
-  };
-  if (limit) params.limit = String(limit);
+  let query = getAdminClient()
+    .from("companies")
+    .select(SEARCH_SELECT)
+    .order("name");
+  if (limit) query = query.limit(limit);
 
-  const data = await restGet("companies", params);
+  const { data, error } = await query;
+  if (error) throw error;
   return (data || []).map(rowToIndex);
 }
 
-async function fetchCompaniesIlike(column, pattern, limit) {
-  return restGet("companies", {
-    select: SEARCH_SELECT,
-    [column]: `ilike.${pattern}`,
-    order: "name.asc",
-    limit: String(limit),
-  });
-}
-
-async function searchCompaniesSupabase(query, limit = 25) {
-  const q = String(query || "")
-    .trim()
-    .toLowerCase();
-  if (!q) return listCompaniesSupabase(limit);
-
-  const safe = q.replace(/[%_,.()\\]/g, "");
-  if (!safe) return [];
-
+async function searchWithClient(client, safe, limit) {
   const pattern = `%${safe}%`;
   const seen = new Set();
   const merged = [];
+  const errors = [];
 
   const addRows = (rows) => {
     for (const row of rows || []) {
@@ -79,63 +63,103 @@ async function searchCompaniesSupabase(query, limit = 25) {
 
   for (const column of ["name", "legal_name", "slug", "meta"]) {
     if (merged.length >= limit) break;
-    try {
-      const data = await fetchCompaniesIlike(column, pattern, limit);
-      addRows(data);
-    } catch (err) {
-      console.warn(`Supabase search ${column}:`, err.message);
+    const { data, error } = await client
+      .from("companies")
+      .select(SEARCH_SELECT)
+      .ilike(column, pattern)
+      .order("name")
+      .limit(limit);
+    if (error) {
+      errors.push(`${column}: ${error.message}`);
+      continue;
     }
+    addRows(data);
   }
 
-  if (merged.length < limit && safe.length >= 2) {
-    try {
-      const data = await restGet("companies", {
-        select: SEARCH_SELECT,
-        search_terms: `cs.${JSON.stringify([safe])}`,
-        order: "name.asc",
-        limit: String(limit),
-      });
-      addRows(data);
-    } catch (err) {
-      console.warn("Supabase search terms:", err.message);
-    }
+  if (merged.length < limit) {
+    const { data, error } = await client
+      .from("companies")
+      .select(SEARCH_SELECT)
+      .contains("search_terms", [safe])
+      .order("name")
+      .limit(limit);
+    if (error) errors.push(`terms: ${error.message}`);
+    else addRows(data);
+  }
+
+  return { merged, seen, errors };
+}
+
+async function searchWithRest(safe, limit) {
+  const star = `*${safe}*`;
+  const errors = [];
+  let data = [];
+
+  try {
+    data = await restGet("companies", {
+      select: SEARCH_SELECT,
+      or: `(name.ilike.${star},legal_name.ilike.${star},slug.ilike.${star},meta.ilike.${star})`,
+      order: "name.asc",
+      limit: String(limit),
+    });
+  } catch (err) {
+    errors.push(`rest: ${err.message}`);
+  }
+
+  return { merged: (data || []).map(rowToIndex), seen: new Set((data || []).map((r) => r.slug)), errors };
+}
+
+async function searchCompaniesSupabase(query, limit = 25) {
+  const q = String(query || "")
+    .trim()
+    .toLowerCase();
+  if (!q) return listCompaniesSupabase(limit);
+
+  const safe = q.replace(/[%_,.()\\]/g, "");
+  if (!safe) return [];
+
+  const client = getAdminClient();
+  let { merged, seen, errors } = await searchWithClient(client, safe, limit);
+
+  if (!merged.length) {
+    const rest = await searchWithRest(safe, limit);
+    merged = rest.merged;
+    seen = rest.seen;
+    errors = errors.concat(rest.errors);
   }
 
   const qTicker = queryLooksLikeTicker(q) ? normalizeTicker(q) : "";
   if (qTicker) {
     const preferred = PREFERRED_SLUG_BY_TICKER[qTicker];
     if (preferred && !seen.has(preferred)) {
-      try {
-        const data = await restGet("companies", {
-          select: SEARCH_SELECT,
-          slug: `eq.${preferred}`,
-          limit: "1",
-        });
-        if (data?.[0]) {
-          seen.add(preferred);
-          merged.unshift(rowToIndex(data[0]));
-        }
-      } catch (err) {
-        console.warn("Supabase preferred slug:", err.message);
+      const { data, error } = await client
+        .from("companies")
+        .select(SEARCH_SELECT)
+        .eq("slug", preferred)
+        .maybeSingle();
+      if (!error && data) {
+        seen.add(preferred);
+        merged.unshift(rowToIndex(data));
       }
     }
 
     const slug = `us-${qTicker.toLowerCase()}`;
     if (!seen.has(slug)) {
-      try {
-        const data = await restGet("companies", {
-          select: SEARCH_SELECT,
-          slug: `eq.${slug}`,
-          limit: "1",
-        });
-        if (data?.[0]) {
-          seen.add(slug);
-          merged.unshift(rowToIndex(data[0]));
-        }
-      } catch (err) {
-        console.warn("Supabase ticker slug:", err.message);
+      const { data, error } = await client
+        .from("companies")
+        .select(SEARCH_SELECT)
+        .eq("slug", slug)
+        .maybeSingle();
+      if (!error && data) {
+        seen.add(slug);
+        merged.unshift(rowToIndex(data));
       }
     }
+  }
+
+  if (!merged.length) {
+    const hint = errors.length ? errors.join("; ") : "no rows matched";
+    throw new Error(`Company search failed (${hint})`);
   }
 
   return merged.slice(0, limit);
