@@ -14,6 +14,8 @@ import { useScrollSpy } from "../hooks/useScrollSpy";
 import { useCompany } from "../hooks/useCompany";
 import { useMarketData } from "../hooks/useMarketData";
 import { FinnhubMetrics } from "../components/sections/FinnhubMetrics";
+import { FinnhubExtras } from "../components/sections/FinnhubExtras";
+import { FinnhubNews } from "../components/sections/FinnhubNews";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
 import { ProfileLoading } from "../components/ProfileLoading";
@@ -31,16 +33,26 @@ export function CompanyProfilePage() {
     const items: { id: string; label: string }[] = [];
     if (company.about?.trim()) items.push({ id: "overview", label: "Overview" });
     if (company.people.length) items.push({ id: "people", label: "People" });
-    if (company.financials.years.length || company.financials.metrics.length) {
+    const hasFinnhubMarket =
+      market &&
+      (market.metrics ||
+        market.profile ||
+        market.news.length ||
+        market.peers.length ||
+        market.recommendations ||
+        market.earnings.length);
+    if (company.financials.years.length || company.financials.metrics.length || hasFinnhubMarket) {
       items.push({ id: "financials", label: "Financials" });
     }
-    if (company.news.length) items.push({ id: "news", label: "News" });
+    if (company.news.length || (market?.news?.length ?? 0) > 0) {
+      items.push({ id: "news", label: "News" });
+    }
     if (company.filings.length) items.push({ id: "filings", label: "Filings" });
     if (hasIndustryMap(company.industry)) {
       items.push({ id: "industry", label: company.industryTabLabel });
     }
     return items;
-  }, [company]);
+  }, [company, market]);
 
   const activeTab = useScrollSpy(
     tabs.map((t) => t.id),
@@ -62,9 +74,17 @@ export function CompanyProfilePage() {
 
   const showAbout = Boolean(company.about?.trim());
   const showPeople = company.people.length > 0;
+  const hasFinnhubMarket =
+    market &&
+    (market.metrics ||
+      market.profile ||
+      market.news.length > 0 ||
+      market.peers.length > 0 ||
+      market.recommendations ||
+      market.earnings.length > 0);
   const showFinancials =
-    company.financials.years.length > 0 || company.financials.metrics.length > 0;
-  const showNews = company.news.length > 0;
+    company.financials.years.length > 0 || company.financials.metrics.length > 0 || hasFinnhubMarket;
+  const showNews = company.news.length > 0 || (market?.news?.length ?? 0) > 0;
   const showFilings = company.filings.length > 0;
   const showIndustry = hasIndustryMap(company.industry);
 
@@ -94,13 +114,22 @@ export function CompanyProfilePage() {
                 <div className="space-y-8">
                   <FinancialsSection company={company} />
                   {market?.metrics && <FinnhubMetrics metrics={market.metrics} />}
+                  {hasFinnhubMarket && market && <FinnhubExtras market={market} includeNews={false} />}
                 </div>
               </Section>
             )}
 
             {showNews && (
               <Section id="news" title="News">
-                <NewsSection company={company} />
+                <div className="space-y-8">
+                  <NewsSection company={company} />
+                  {market && market.news.length > 0 && (
+                    <>
+                      <p className="section-label mb-4">Market news (Finnhub)</p>
+                      <FinnhubNews items={market.news} />
+                    </>
+                  )}
+                </div>
               </Section>
             )}
 

@@ -8,6 +8,7 @@ const FINNHUB_BASE = "https://finnhub.io/api/v1";
 
 const cache = new Map();
 const CACHE_MS = 60_000;
+const CACHE_LONG_MS = 300_000;
 
 function getApiKey() {
   return process.env.FINNHUB_API_KEY || "";
@@ -17,14 +18,16 @@ function isEnabled() {
   return Boolean(getApiKey());
 }
 
-function cacheGet(key) {
+function cacheGet(key, maxAge = CACHE_MS) {
   const hit = cache.get(key);
-  if (!hit || Date.now() - hit.at > CACHE_MS) return null;
+  if (!hit) return null;
+  const ttl = hit.maxAge ?? maxAge;
+  if (Date.now() - hit.at > ttl) return null;
   return hit.data;
 }
 
-function cacheSet(key, data) {
-  cache.set(key, { at: Date.now(), data });
+function cacheSet(key, data, maxAge = CACHE_MS) {
+  cache.set(key, { at: Date.now(), data, maxAge });
 }
 
 async function finnhubGet(path, params = {}) {
@@ -148,6 +151,14 @@ async function fetchBasicFinancials(symbol) {
 
   const pick = (k) => (m[k] != null && !Number.isNaN(m[k]) ? m[k] : null);
 
+  const revenueAnnual = series.annual?.revenue || null;
+  const revenueYears = revenueAnnual
+    ? Object.entries(revenueAnnual)
+        .map(([year, revenue]) => ({ year: parseInt(year, 10), revenue }))
+        .filter((y) => y.year && revenue != null)
+        .sort((a, b) => a.year - b.year)
+    : [];
+
   const out = {
     symbol,
     marketCap: pick("marketCapitalization"),
@@ -158,9 +169,18 @@ async function fetchBasicFinancials(symbol) {
     beta: pick("beta"),
     week52High: pick("52WeekHigh"),
     week52Low: pick("52WeekLow"),
+    roe: pick("roeTTM"),
+    roa: pick("roaTTM"),
+    currentRatio: pick("currentRatioAnnual"),
+    debtEquity: pick("totalDebt/totalEquityAnnual"),
+    grossMargin: pick("grossMarginTTM"),
+    operatingMargin: pick("operatingMarginTTM"),
+    revenueGrowth3Y: pick("revenueGrowth3Y"),
+    payoutRatio: pick("payoutRatioAnnual"),
     currency: raw.currency || null,
+    revenueYears,
     series: {
-      revenue: series.annual?.revenue || series.quarterly?.revenue || null,
+      revenue: revenueAnnual,
       netIncome: series.annual?.netIncome || series.quarterly?.netIncome || null,
     },
   };
@@ -181,9 +201,130 @@ async function fetchQuoteWithFallback(ticker, exchange, countryCode, finnhubSymb
   return null;
 }
 
+function newsDateRange(days = 90) {
+  const to = new Date();
+  const from = new Date(to);
+  from.setDate(from.getDate() - days);
+  const fmt = (d) => d.toISOString().slice(0, 10);
+  return { from: fmt(from), to: fmt(to) };
+}
+
+function normalizeProfile2(raw) {
+  if (!raw?.name) return null;
+  return {
+    name: raw.name,
+    ticker: raw.ticker || null,
+    exchange: raw.exchange || null,
+    ipo: raw.ipo || null,
+    marketCap: raw.marketCapitalization ?? null,
+    sharesOutstanding: raw.shareOutstanding ?? null,
+    weburl: raw.weburl || null,
+    phone: raw.phone || null,
+    industry: raw.finnhubIndustry || null,
+    logo: raw.logo || null,
+    country: raw.country || null,
+    currency: raw.currency || null,
+    employees: raw.employeeTotal ?? null,
+  };
+}
+
+function normalizeNews(items) {
+  return (items || []).slice(0, 15).map((n, i) => ({
+    id: String(n.id ?? `fh-${i}`),
+    title: n.headline || "",
+    summary: n.summary || "",
+    source: n.source || "Finnhub",
+    date: n.datetime ? new Date(n.datetime * 1000).toISOString().slice(0, 10) : "",
+    url: n.url || null,
+    image: n.image || null,
+  }));
+}
+
+function normalizeRecommendations(rows) {
+  const list = Array.isArray(rows) ? rows : [];
+  if (!list.length) return null;
+  const latest = list[list.length - 1];
+  return {
+    period: latest.period || null,
+    strongBuy: latest.strongBuy ?? 0,
+    buy: latest.buy ?? 0,
+    hold: latest.hold ?? 0,
+    sell: latest.sell ?? 0,
+    strongSell: latest.strongSell ?? 0,
+  };
+}
+
+function normalizeEarnings(rows) {
+  return (rows || [])
+    .slice(0, 8)
+    .map((e) => ({
+      period: e.period || null,
+      year: e.year ?? null,
+      quarter: e.quarter ?? null,
+      actual: e.actual ?? null,
+      estimate: e.estimate ?? null,
+      surprise: e.surprise ?? null,
+      surprisePercent: e.surprisePercent ?? null,
+      date: e.period || null,
+    }))
+    .filter((e) => e.period);
+}
+
+async function fetchCompanyNews(symbol, days = 90) {
+  const { from, to } = newsDateRange(days);
+  const key = `news:${symbol}:${from}:${to}`;
+  const cached = cacheGet(key, CACHE_LONG_MS);
+  if (cached) return cached;
+  const data = await finnhubGet("/company-news", { symbol, from, to });
+  const out = normalizeNews(data);
+  cacheSet(key, out, CACHE_LONG_MS);
+  return out;
+}
+
+async function fetchPeers(symbol) {
+  const key = `peers:${symbol}`;
+  const cached = cacheGet(key, CACHE_LONG_MS);
+  if (cached) return cached;
+  const data = await finnhubGet("/stock/peers", { symbol });
+  const out = Array.isArray(data) ? data : Array.isArray(data?.peers) ? data.peers : [];
+  cacheSet(key, out, CACHE_LONG_MS);
+  return out;
+}
+
+async function fetchRecommendations(symbol) {
+  const key = `rec:${symbol}`;
+  const cached = cacheGet(key, CACHE_LONG_MS);
+  if (cached) return cached;
+  const data = await finnhubGet("/stock/recommendation", { symbol });
+  const out = normalizeRecommendations(data);
+  cacheSet(key, out, CACHE_LONG_MS);
+  return out;
+}
+
+async function fetchEarnings(symbol) {
+  const key = `earnings:${symbol}`;
+  const cached = cacheGet(key, CACHE_LONG_MS);
+  if (cached) return cached;
+  const data = await finnhubGet("/stock/earnings", { symbol });
+  const out = normalizeEarnings(data);
+  cacheSet(key, out, CACHE_LONG_MS);
+  return out;
+}
+
+async function tryFinnhub(fn) {
+  try {
+    return await fn();
+  } catch (err) {
+    if (err.status !== 403 && err.status !== 401) {
+      console.warn("Finnhub:", err.message);
+    }
+    return null;
+  }
+}
+
 async function fetchCompanyMarket(profile) {
   if (!profile?.stock?.ticker) {
-    return { symbol: null, quote: null, metrics: null };
+    return { symbol: null, quote: null, metrics: null, profile: null, news: [], peers: [], recommendations: null, earnings: [] };
   }
 
   const finnhubSymbol = profile.stock.finnhubSymbol || null;
@@ -193,7 +334,9 @@ async function fetchCompanyMarket(profile) {
     profile.countryCode,
     finnhubSymbol
   );
-  if (!candidates.length) return { symbol: null, quote: null, metrics: null };
+  if (!candidates.length) {
+    return { symbol: null, quote: null, metrics: null, profile: null, news: [], peers: [], recommendations: null, earnings: [] };
+  }
 
   const quote = await fetchQuoteWithFallback(
     profile.stock.ticker,
@@ -203,25 +346,40 @@ async function fetchCompanyMarket(profile) {
   );
 
   const symbol = quote?.symbol || candidates[0];
+
   let metrics = null;
   for (const sym of [symbol, ...candidates]) {
-    try {
-      metrics = await fetchBasicFinancials(sym);
-      if (metrics?.marketCap != null) break;
-    } catch (err) {
-      if (err.status === 403 || err.status === 401) continue;
-      console.warn(`Finnhub metrics(${sym}):`, err.message);
+    const m = await tryFinnhub(() => fetchBasicFinancials(sym));
+    if (m?.marketCap != null || m?.peRatio != null) {
+      metrics = m;
+      break;
     }
+    if (m && !metrics) metrics = m;
   }
 
-  const useUsd = quote?.symbol && !quote.symbol.endsWith(".OL") && quote.symbol === profile.stock.ticker.toUpperCase();
+  const symForExtras = metrics?.symbol || symbol;
+  const [companyProfile, news, peers, recommendations, earnings] = await Promise.all([
+    tryFinnhub(() => fetchStockProfile(symForExtras).then(normalizeProfile2)),
+    tryFinnhub(() => fetchCompanyNews(symForExtras)),
+    tryFinnhub(() => fetchPeers(symForExtras)),
+    tryFinnhub(() => fetchRecommendations(symForExtras)),
+    tryFinnhub(() => fetchEarnings(symForExtras)),
+  ]);
+
+  const useUsd =
+    quote?.symbol && !quote.symbol.endsWith(".OL") && quote.symbol === profile.stock.ticker.toUpperCase();
 
   return {
-    symbol,
+    symbol: symForExtras,
     ticker: profile.stock.ticker,
-    currency: useUsd ? "USD" : profile.stock.currency || metrics?.currency || "NOK",
+    currency: useUsd ? "USD" : profile.stock.currency || metrics?.currency || companyProfile?.currency || "NOK",
     quote,
     metrics,
+    profile: companyProfile,
+    news: news || [],
+    peers: peers || [],
+    recommendations,
+    earnings: earnings || [],
   };
 }
 
@@ -310,11 +468,11 @@ async function buildCompanyFromSlug(slug) {
 
 async function fetchStockProfile(symbol) {
   const key = `profile2:${symbol}`;
-  const cached = cacheGet(key);
+  const cached = cacheGet(key, CACHE_LONG_MS);
   if (cached) return cached;
   try {
     const data = await finnhubGet("/stock/profile2", { symbol });
-    cacheSet(key, data);
+    cacheSet(key, data, CACHE_LONG_MS);
     return data;
   } catch (err) {
     if (err.status === 404) return null;
@@ -335,4 +493,8 @@ module.exports = {
   searchSymbols,
   searchToIndexItems,
   buildCompanyFromSlug,
+  fetchCompanyNews,
+  fetchPeers,
+  fetchRecommendations,
+  fetchEarnings,
 };

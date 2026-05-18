@@ -105,6 +105,13 @@ export function Hero({ company }: Props) {
                       Live · Finnhub · {market?.symbol}
                     </span>
                   )}
+                  {liveQuote?.open != null && liveQuote.high != null && liveQuote.low != null && (
+                    <span className="w-full font-mono text-xs text-muted">
+                      Open {liveQuote.open.toFixed(2)} · High {liveQuote.high.toFixed(2)} · Low{" "}
+                      {liveQuote.low.toFixed(2)}
+                      {liveQuote.previousClose != null && ` · Prev ${liveQuote.previousClose.toFixed(2)}`}
+                    </span>
+                  )}
                 </div>
               )}
             </div>
