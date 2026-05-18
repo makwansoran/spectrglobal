@@ -45,6 +45,9 @@ async function getCompany(slug) {
   const company = await getCompanyRaw(slug);
   if (!company?.profile) return company;
 
+  const { normalizeCompanyProfile } = require("./normalize-profile");
+  company.profile = normalizeCompanyProfile(company.profile);
+
   const { defaultLogoUrl } = require("./company-logo");
   if (!company.profile.logoUrl) {
     const logoUrl = defaultLogoUrl(company.profile);

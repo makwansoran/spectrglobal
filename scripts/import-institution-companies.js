@@ -102,6 +102,7 @@ function privateInstitutionSeed(inst) {
     competitors: [],
     funding: [],
     esg: { overall: 0, environmental: 0, social: 0, governance: 0, trend: "stable" },
+    quickStats: [],
     dataSources: [
       ...(inst.website ? [{ name: "Company website", url: inst.website }] : []),
       { name: "Spectr institutions registry", url: "https://spectr.no" },

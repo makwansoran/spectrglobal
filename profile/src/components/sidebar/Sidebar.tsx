@@ -25,7 +25,7 @@ export function Sidebar({
 
   return (
     <div className={wrapClass}>
-      {company.competitors.length > 0 && (
+      {(company.competitors?.length ?? 0) > 0 && (
         <SidebarCard title="Competitors">
           <ul className="space-y-2">
             {company.competitors.map((c) => (
@@ -38,7 +38,7 @@ export function Sidebar({
         </SidebarCard>
       )}
 
-      {company.funding.length > 0 && (
+      {(company.funding?.length ?? 0) > 0 && (
         <SidebarCard title="Funding & M&A">
           <ul className="space-y-3">
             {company.funding.map((e) => (
@@ -88,7 +88,7 @@ export function Sidebar({
 
       <SidebarCard title="Data sources">
         <ul className="space-y-1.5 text-sm text-muted">
-          {company.dataSources.map((s) => (
+          {(company.dataSources ?? []).map((s) => (
             <li key={s.name}>
               {s.url ? (
                 <a href={s.url} className="text-accent hover:underline" target="_blank" rel="noreferrer">

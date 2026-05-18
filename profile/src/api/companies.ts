@@ -34,11 +34,41 @@ export async function searchCompanyIndex(query: string, limit = 10): Promise<Com
   return res.json();
 }
 
+function normalizeProfile(profile: CompanyProfile): CompanyProfile {
+  return {
+    ...profile,
+    industryTags: profile.industryTags ?? [],
+    quickStats: profile.quickStats ?? [],
+    people: profile.people ?? [],
+    financials: profile.financials ?? { years: [], metrics: [] },
+    news: profile.news ?? [],
+    filings: profile.filings ?? [],
+    keyFacts: profile.keyFacts ?? [],
+    competitors: profile.competitors ?? [],
+    funding: profile.funding ?? [],
+    dataSources: profile.dataSources?.length
+      ? profile.dataSources
+      : [{ name: "Spectr", url: "https://spectr.no" }],
+    esg: profile.esg ?? {
+      overall: 0,
+      environmental: 0,
+      social: 0,
+      governance: 0,
+      trend: "stable",
+    },
+    industryTabLabel: profile.industryTabLabel ?? "Overview",
+  };
+}
+
 export async function fetchCompany(slug: string): Promise<CompanyPayload> {
   const res = await fetch(`${apiBase}/api/companies/${encodeURIComponent(slug)}`);
   if (!res.ok) {
     if (res.status === 404) throw new Error("not_found");
     throw new Error("Failed to load company");
   }
-  return res.json();
+  const data = await res.json();
+  return {
+    ...data,
+    profile: normalizeProfile(data.profile),
+  };
 }
