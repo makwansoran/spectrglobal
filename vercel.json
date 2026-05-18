@@ -1,5 +1,6 @@
 {
-  "buildCommand": "npm install && npm run build:profile",
+  "installCommand": "npm install && npm install --prefix profile",
+  "buildCommand": "npm run build --prefix profile",
   "rewrites": [
     { "source": "/company", "destination": "/company/index.html" },
     { "source": "/company/", "destination": "/company/index.html" },

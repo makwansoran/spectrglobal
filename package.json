@@ -1,6 +1,9 @@
 {
   "name": "spectrglobal",
   "private": true,
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "node scripts/dev-server.js",
     "dev:profile": "npm run dev --prefix profile",
@@ -10,12 +13,14 @@
     "db:import-us": "node scripts/import-finnhub-us.js",
     "db:import-us:fetch": "node scripts/import-finnhub-us.js --fetch-only",
     "db:link-oslo-us": "node scripts/import-finnhub-us.js --link-oslo",
-    "build:profile": "npm run build --prefix profile",
+    "build:profile": "npm install --prefix profile && npm run build --prefix profile",
     "build": "npm run db:seed && npm run build:profile",
     "start": "npm run dev"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.49.8",
+    "@supabase/supabase-js": "^2.49.8"
+  },
+  "optionalDependencies": {
     "better-sqlite3": "^11.10.0"
   },
   "devDependencies": {
