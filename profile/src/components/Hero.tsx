@@ -1,7 +1,7 @@
 import { useState } from "react";
 import type { CompanyProfile } from "../types/company";
 import { useCompanyQuote } from "../hooks/useCompanyQuote";
-import { countryFlag, formatCurrency, formatPercent } from "../utils/format";
+import { formatCurrency, formatPercent } from "../utils/format";
 
 type Props = { company: CompanyProfile };
 
@@ -45,9 +45,6 @@ export function Hero({ company }: Props) {
             <div>
               <div className="flex flex-wrap items-center gap-2">
                 <h1 className="text-3xl font-semibold tracking-tight text-ink md:text-4xl">{company.name}</h1>
-                <span className="text-2xl" title={company.countryName}>
-                  {countryFlag(company.countryCode)}
-                </span>
               </div>
               <p className="mt-1 text-sm text-muted">{company.legalName}</p>
               <div className="mt-3 flex flex-wrap items-center gap-2 text-sm text-muted">

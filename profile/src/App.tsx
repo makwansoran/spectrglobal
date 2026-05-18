@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { CommodityProfileLayout } from "./pages/commodity/CommodityProfileLayout";
 import { CommodityChatTab } from "./pages/commodity/CommodityChatTab";
@@ -27,6 +28,10 @@ function getBasename() {
 
 export default function App() {
   const basename = getBasename();
+
+  useEffect(() => {
+    document.title = "Spectr";
+  }, []);
 
   return (
     <BrowserRouter basename={basename}>
