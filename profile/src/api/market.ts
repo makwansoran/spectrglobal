@@ -56,8 +56,8 @@ export type FinnhubNewsItem = {
   summary: string;
   source: string;
   date: string;
-  url: string | null;
-  image: string | null;
+  url?: string | null;
+  image?: string | null;
 };
 
 export type FinnhubRecommendations = {

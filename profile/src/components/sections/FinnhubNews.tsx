@@ -1,6 +1,6 @@
-import type { FinnhubNewsItem } from "../../api/market";
+import type { NewsItem } from "../../types/company";
 
-export function FinnhubNews({ items }: { items: FinnhubNewsItem[] }) {
+export function FinnhubNews({ items }: { items: NewsItem[] }) {
   if (!items.length) return null;
 
   return (

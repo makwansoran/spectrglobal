@@ -14,7 +14,7 @@ export function useCompanyTabs(company: CompanyProfile | null, mapGeojson: GeoJS
     if (fin?.years?.length || fin?.metrics?.length) {
       items.push({ id: "financials", label: "Financials" });
     }
-    if (company.news?.length) items.push({ id: "news", label: "News" });
+    items.push({ id: "news", label: "News" });
     if (company.filings?.length) items.push({ id: "filings", label: "Filings" });
     if (hasIndustryMap(company.industry, mapGeojson)) {
       items.push({ id: "industry", label: company.industryTabLabel });

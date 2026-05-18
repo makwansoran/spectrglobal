@@ -4,6 +4,7 @@ const {
   getCompany,
   storageMode,
 } = require("./store");
+const { getCompanyNews } = require("./company-news");
 const commoditiesStore = require("./commodities-store");
 const { banks, investmentBanks, ventureCapital } = require("./catalog-stores");
 const chatStore = require("./chat-store");
@@ -87,6 +88,18 @@ async function handleApi(req, res, pathname) {
       sendJson(res, 410, {
         error: "Live market API removed. Store quotes in companies.profile_json via Supabase.",
       });
+      return true;
+    }
+
+    const newsMatch = pathname.match(/^\/api\/companies\/([^/]+)\/news$/);
+    if (newsMatch && req.method === "GET") {
+      const slug = decodeURIComponent(newsMatch[1]);
+      const data = await getCompanyNews(slug);
+      if (!data) {
+        sendJson(res, 404, { error: "Company not found" });
+        return true;
+      }
+      sendJson(res, 200, data, { "Cache-Control": "public, max-age=300" });
       return true;
     }
 

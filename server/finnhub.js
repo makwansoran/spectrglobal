@@ -322,21 +322,38 @@ async function tryFinnhub(fn) {
   }
 }
 
+function finnhubSymbolCandidates(profile) {
+  if (!profile?.stock?.ticker) return [];
+  return symbolCandidates(
+    profile.stock.ticker,
+    profile.stock.exchange,
+    profile.countryCode,
+    profile.stock.finnhubSymbol || null
+  );
+}
+
+/** Latest headlines for a profile (Finnhub company-news). */
+async function fetchCompanyNewsForProfile(profile) {
+  if (!isEnabled()) return [];
+  const candidates = finnhubSymbolCandidates(profile);
+  for (const sym of candidates) {
+    const news = await tryFinnhub(() => fetchCompanyNews(sym));
+    if (news?.length) return news;
+  }
+  return [];
+}
+
 async function fetchCompanyMarket(profile) {
   if (!profile?.stock?.ticker) {
     return { symbol: null, quote: null, metrics: null, profile: null, news: [], peers: [], recommendations: null, earnings: [] };
   }
 
-  const finnhubSymbol = profile.stock.finnhubSymbol || null;
-  const candidates = symbolCandidates(
-    profile.stock.ticker,
-    profile.stock.exchange,
-    profile.countryCode,
-    finnhubSymbol
-  );
+  const candidates = finnhubSymbolCandidates(profile);
   if (!candidates.length) {
     return { symbol: null, quote: null, metrics: null, profile: null, news: [], peers: [], recommendations: null, earnings: [] };
   }
+
+  const finnhubSymbol = profile.stock.finnhubSymbol || null;
 
   const quote = await fetchQuoteWithFallback(
     profile.stock.ticker,
@@ -516,6 +533,8 @@ module.exports = {
   searchToIndexItems,
   buildCompanyFromSlug,
   fetchCompanyNews,
+  fetchCompanyNewsForProfile,
+  finnhubSymbolCandidates,
   fetchPeers,
   fetchRecommendations,
   fetchEarnings,

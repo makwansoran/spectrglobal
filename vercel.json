@@ -10,6 +10,7 @@
   "rewrites": [
     { "source": "/api/companies/:slug", "destination": "/api/get-company?slug=:slug" },
     { "source": "/api/companies/:slug/market", "destination": "/api/get-company-market?slug=:slug" },
+    { "source": "/api/companies/:slug/news", "destination": "/api/get-company-news?slug=:slug" },
     { "source": "/api/people/:slug", "destination": "/api/get-person?slug=:slug" },
     { "source": "/api/holders/:slug", "destination": "/api/get-holder?slug=:slug" },
     { "source": "/api/portfolio/holdings", "destination": "/api/get-portfolio-holdings" },
