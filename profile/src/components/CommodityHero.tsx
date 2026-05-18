@@ -1,21 +1,8 @@
 import type { CommodityProfile } from "../types/commodity";
 
-const CATEGORY_EMOJI: Record<string, string> = {
-  energy: "⚡",
-  precious_metals: "🥇",
-  base_metals: "🔩",
-  grains: "🌾",
-  soft_commodities: "☕",
-  livestock: "🐄",
-  forestry: "🌲",
-  specialty: "🌴",
-};
-
 type Props = { commodity: CommodityProfile };
 
 export function CommodityHero({ commodity }: Props) {
-  const badge = CATEGORY_EMOJI[commodity.category] || "📦";
-
   return (
     <header className="relative border-b border-line bg-white">
       <div
@@ -33,12 +20,7 @@ export function CommodityHero({ commodity }: Props) {
               {commodity.logoInitials}
             </div>
             <div>
-              <div className="flex flex-wrap items-center gap-2">
-                <h1 className="text-3xl font-semibold tracking-tight text-ink md:text-4xl">{commodity.name}</h1>
-                <span className="text-2xl" title={commodity.categoryLabel}>
-                  {badge}
-                </span>
-              </div>
+              <h1 className="text-3xl font-semibold tracking-tight text-ink md:text-4xl">{commodity.name}</h1>
               <p className="mt-1 text-sm text-muted">Futures contract · {commodity.categoryLabel}</p>
               <div className="mt-3 flex flex-wrap gap-2">
                 {commodity.industryTags.map((tag) => (
