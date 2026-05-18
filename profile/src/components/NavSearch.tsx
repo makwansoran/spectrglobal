@@ -40,7 +40,7 @@ export function NavSearch() {
     setLoading(true);
     const timer = window.setTimeout(() => {
       searchCompanyIndex(q, 10)
-        .then(setResults)
+        .then((items) => setResults(items.filter((item) => !item.kind || item.kind === "company")))
         .catch(() => setResults([]))
         .finally(() => setLoading(false));
     }, 200);

@@ -122,13 +122,19 @@
       })
       .then(function (data) {
         if (reqId !== globalSearchReqId) return;
-        callback(Array.isArray(data) ? data : [], null);
+        var rows = Array.isArray(data) ? data : [];
+        callback(
+          rows.filter(function (row) {
+            return !row.kind || row.kind === "company";
+          }),
+          null
+        );
       })
       .catch(function (err) {
         if (reqId !== globalSearchReqId) return;
         var message = null;
         if (err && err.status === 503 && err.payload && err.payload.hint) {
-          message = "Search is not connected. Check Supabase and Finnhub keys in Vercel, then redeploy.";
+          message = "Search is not connected. Set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in Vercel, run supabase/schema.sql, then redeploy.";
         }
         callback([], message);
       });

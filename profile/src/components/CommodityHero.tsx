@@ -1,6 +1,4 @@
 import type { CommodityProfile } from "../types/commodity";
-import { QuickStatsRow } from "./QuickStatsRow";
-
 type Props = { commodity: CommodityProfile };
 
 export function CommodityHero({ commodity }: Props) {
@@ -62,7 +60,6 @@ export function CommodityHero({ commodity }: Props) {
           </div>
         </div>
 
-        <QuickStatsRow stats={commodity.quickStats} />
       </div>
     </header>
   );

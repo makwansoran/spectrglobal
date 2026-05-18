@@ -1,5 +1,5 @@
 /**
- * Extract people from company profiles into the people data source.
+ * Extract embedded company.people into company_people rows (Supabase + local export).
  */
 const {
   allocatePersonSlug,
@@ -34,24 +34,11 @@ async function getExistingPersonProfile(slug) {
 
 let supabasePeopleReady = true;
 
-async function savePerson(profile) {
-  batchProfiles.set(profile.slug, profile);
-  localPeople.upsertPersonLocal(profile);
+async function saveCompanyPeople(companySlug, entries) {
+  localPeople.upsertCompanyPeopleLocal(companySlug, entries);
   if (supabasePeople.isSupabaseEnabled() && supabasePeopleReady) {
     try {
-      await supabasePeople.upsertPersonSupabase(profile);
-    } catch (err) {
-      supabasePeopleReady = false;
-      console.warn("  Supabase people write disabled:", err.message);
-    }
-  }
-}
-
-async function saveCompanyLinks(companySlug, links) {
-  localPeople.upsertCompanyPeopleLinksLocal(companySlug, links);
-  if (supabasePeople.isSupabaseEnabled() && supabasePeopleReady) {
-    try {
-      await supabasePeople.upsertCompanyPeopleLinksSupabase(companySlug, links);
+      await supabasePeople.upsertCompanyPeopleSupabase(companySlug, entries);
     } catch (err) {
       supabasePeopleReady = false;
       console.warn("  Supabase company_people write disabled:", err.message);
@@ -60,18 +47,18 @@ async function saveCompanyLinks(companySlug, links) {
 }
 
 /**
- * Sync people from one company seed/profile.
- * Returns updated profile with people refs (not full embeds).
+ * Sync people from one company seed/profile into company_people.
+ * Returns updated profile with lightweight refs in profile_json.
  */
 async function syncPeopleFromCompany({ slug, profile }) {
-  const embedded = (profile.people || []).filter((p) => p?.name);
+  const embedded = (profile.people || []).filter((p) => p?.name && isEmbeddedPerson(p));
   if (!embedded.length) {
-    await saveCompanyLinks(slug, []);
+    await saveCompanyPeople(slug, []);
     return profile;
   }
 
   const reserved = new Set(batchProfiles.keys());
-  const links = [];
+  const entries = [];
 
   for (const person of embedded) {
     let personSlug = person.personSlug;
@@ -94,17 +81,23 @@ async function syncPeopleFromCompany({ slug, profile }) {
       nextProfile = personFromCompanyEmbed(person, slug, profile.name, personSlug).profile;
     }
 
-    await savePerson(nextProfile);
-    links.push({
-      personSlug,
+    batchProfiles.set(personSlug, nextProfile);
+    entries.push({
+      profile: nextProfile,
       title: person.title || "",
       localId: person.id || null,
     });
   }
 
-  await saveCompanyLinks(slug, links);
+  await saveCompanyPeople(slug, entries);
 
-  const refs = toCompanyPersonRefs(links);
+  const refs = toCompanyPersonRefs(
+    entries.map((e) => ({
+      personSlug: e.profile.slug,
+      title: e.title,
+      localId: e.localId,
+    }))
+  );
   return { ...profile, people: refs };
 }
 

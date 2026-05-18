@@ -8,11 +8,13 @@ const { createClient } = require("@supabase/supabase-js");
 
 const TABLES = [
   "companies",
-  "people",
   "company_people",
   "commodities",
   "vessels",
   "planes",
+  "banks",
+  "investment_banks",
+  "venture_capital",
   "chat_messages",
 ];
 
@@ -36,7 +38,11 @@ async function main() {
   let missing = 0;
 
   for (const table of TABLES) {
-    const { count, error } = await client.from(table).select("*", { count: "exact", head: true });
+    // Use a real SELECT (not HEAD-only) — PostgREST can return a false OK on head for missing tables.
+    const { data, count, error } = await client
+      .from(table)
+      .select("slug", { count: "exact" })
+      .limit(1);
 
     if (error) {
       const notFound =
@@ -44,7 +50,7 @@ async function main() {
       console.log(table.padEnd(20), notFound ? "MISSING" : "ERROR", notFound ? "—" : error.message);
       if (notFound) missing++;
     } else {
-      console.log(table.padEnd(20), "OK".padEnd(14), String(count ?? 0));
+      console.log(table.padEnd(20), "OK".padEnd(14), String(count ?? data?.length ?? 0));
     }
   }
 

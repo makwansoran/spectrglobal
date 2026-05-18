@@ -1,5 +1,5 @@
 /**
- * Supabase people + company_people stores.
+ * Supabase company_people — single table for executives / board per company.
  */
 const {
   personInitials,
@@ -7,47 +7,21 @@ const {
   buildPersonSearchTerms,
 } = require("./person-utils");
 
-let adminClient;
-let createClient;
+const { getAdminClient, isSupabaseEnabled } = require("./supabase-client");
 
-function loadSupabaseSdk() {
-  if (createClient) return true;
-  try {
-    createClient = require("@supabase/supabase-js").createClient;
-    return true;
-  } catch {
-    return false;
-  }
-}
-
-function isSupabaseEnabled() {
-  return Boolean(
-    process.env.SUPABASE_URL &&
-      process.env.SUPABASE_SERVICE_ROLE_KEY &&
-      loadSupabaseSdk()
-  );
-}
-
-function getAdminClient() {
-  if (!isSupabaseEnabled()) {
-    throw new Error("Supabase is not configured");
-  }
-  if (!adminClient) {
-    adminClient = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY, {
-      auth: { persistSession: false, autoRefreshToken: false },
-    });
-  }
-  return adminClient;
-}
-
-function personToRow(profile) {
+function profileToRow(companySlug, profile, { title = "", localId = null, sortOrder = 0 } = {}) {
+  const slug = profile.slug;
   return {
-    slug: profile.slug,
+    company_slug: companySlug,
+    slug,
     name: profile.name,
+    title: title || profile.currentTitle || "",
     meta: buildPersonMeta(profile),
     initials: personInitials(profile.name),
-    search_terms: buildPersonSearchTerms(profile),
+    search_terms: buildPersonSearchTerms(profile, companySlug),
     profile_json: profile,
+    local_id: localId,
+    sort_order: sortOrder,
     updated_at: profile.lastUpdated || new Date().toISOString(),
   };
 }
@@ -63,27 +37,49 @@ function rowToIndex(row) {
   };
 }
 
-async function upsertPersonSupabase(profile) {
-  const { error } = await getAdminClient().from("people").upsert(personToRow(profile), {
-    onConflict: "slug",
-  });
-  if (error) throw error;
+function rowToDisplayPerson(row) {
+  const p = row.profile_json || {};
+  return {
+    id: row.local_id || row.slug,
+    personSlug: row.slug,
+    name: row.name || p.name,
+    title: row.title || p.currentTitle || "",
+    photoUrl: p.photoUrl,
+    bio: p.bio,
+  };
 }
 
-async function upsertCompanyPeopleLinksSupabase(companySlug, links) {
+function mergeProfiles(profiles) {
+  if (!profiles.length) return null;
+  const base = { ...profiles[0] };
+  const affiliations = [...(base.affiliations || [])];
+  for (let i = 1; i < profiles.length; i++) {
+    for (const a of profiles[i].affiliations || []) {
+      if (!affiliations.some((x) => x.companySlug === a.companySlug)) {
+        affiliations.push(a);
+      }
+    }
+    if (!base.bio && profiles[i].bio) base.bio = profiles[i].bio;
+    if (!base.photoUrl && profiles[i].photoUrl) base.photoUrl = profiles[i].photoUrl;
+  }
+  base.affiliations = affiliations;
+  return base;
+}
+
+async function upsertCompanyPeopleSupabase(companySlug, entries) {
   const client = getAdminClient();
   const { error: delError } = await client.from("company_people").delete().eq("company_slug", companySlug);
   if (delError) throw delError;
 
-  if (!links.length) return;
+  if (!entries.length) return;
 
-  const rows = links.map((l, i) => ({
-    company_slug: companySlug,
-    person_slug: l.personSlug,
-    title: l.title || "",
-    local_id: l.localId || null,
-    sort_order: i,
-  }));
+  const rows = entries.map((e, i) =>
+    profileToRow(companySlug, e.profile, {
+      title: e.title,
+      localId: e.localId,
+      sortOrder: i,
+    })
+  );
 
   const { error } = await client.from("company_people").insert(rows);
   if (error) throw error;
@@ -91,58 +87,50 @@ async function upsertCompanyPeopleLinksSupabase(companySlug, links) {
 
 async function listPeopleSupabase() {
   const { data, error } = await getAdminClient()
-    .from("people")
+    .from("company_people")
     .select("slug, name, meta, initials, search_terms")
     .order("name");
   if (error) throw error;
-  return (data || []).map(rowToIndex);
+
+  const seen = new Set();
+  const out = [];
+  for (const row of data || []) {
+    if (seen.has(row.slug)) continue;
+    seen.add(row.slug);
+    out.push(rowToIndex(row));
+  }
+  return out;
 }
 
 async function getPersonSupabase(slug) {
   const { data, error } = await getAdminClient()
-    .from("people")
+    .from("company_people")
     .select("profile_json")
-    .eq("slug", slug)
-    .maybeSingle();
+    .eq("slug", slug);
   if (error) throw error;
-  return data?.profile_json ?? null;
+  const profiles = (data || []).map((r) => r.profile_json).filter(Boolean);
+  return mergeProfiles(profiles);
 }
 
-async function getPeopleBySlugsSupabase(slugs) {
-  if (!slugs.length) return {};
-  const { data, error } = await getAdminClient()
-    .from("people")
-    .select("slug, profile_json")
-    .in("slug", [...new Set(slugs)]);
-  if (error) throw error;
-  const map = {};
-  for (const row of data || []) {
-    map[row.slug] = row.profile_json;
-  }
-  return map;
-}
-
-async function getCompanyPeopleRefsSupabase(companySlug) {
+async function getCompanyPeopleForCompanySupabase(companySlug) {
   const { data, error } = await getAdminClient()
     .from("company_people")
-    .select("person_slug, title, local_id, sort_order")
+    .select(
+      "slug, name, title, meta, initials, search_terms, profile_json, local_id, sort_order"
+    )
     .eq("company_slug", companySlug)
     .order("sort_order");
   if (error) throw error;
-  return (data || []).map((r) => ({
-    personSlug: r.person_slug,
-    title: r.title,
-    id: r.local_id || r.person_slug,
-    sortOrder: r.sort_order,
-  }));
+  return data || [];
 }
 
 module.exports = {
   isSupabaseEnabled,
-  upsertPersonSupabase,
-  upsertCompanyPeopleLinksSupabase,
+  profileToRow,
+  rowToIndex,
+  rowToDisplayPerson,
+  upsertCompanyPeopleSupabase,
   listPeopleSupabase,
   getPersonSupabase,
-  getPeopleBySlugsSupabase,
-  getCompanyPeopleRefsSupabase,
+  getCompanyPeopleForCompanySupabase,
 };

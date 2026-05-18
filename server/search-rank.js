@@ -5,6 +5,7 @@
 /** Curated profiles win over auto-imported us-* stubs for the same ticker. */
 const PREFERRED_SLUG_BY_TICKER = {
   AAPL: "apple-inc-aapl",
+  NVDA: "us-nvda",
 };
 
 function normalizeTicker(value) {
@@ -20,9 +21,11 @@ function normalizeCompanyName(name) {
     .replace(/[^a-z0-9]/g, "");
 }
 
+/** Short symbols only (e.g. AAPL, NVDA) — not company names like "nvidia" or "apple". */
 function queryLooksLikeTicker(query) {
   const q = String(query || "").trim();
-  return /^[a-z][a-z0-9.-]{0,9}$/i.test(q);
+  if (q.length < 1 || q.length > 5) return false;
+  return /^[A-Za-z][A-Za-z0-9.-]*$/.test(q);
 }
 
 function tickerFromSlug(slug) {
@@ -48,6 +51,13 @@ function getGroupKey(row) {
   return `slug:${row.id || row.slug}`;
 }
 
+function isDerivativeListing(row) {
+  const name = String(row.name || row.legalName || "");
+  const profile = row.profile_json || row.profile || null;
+  const type = String(profile?.finnhub?.type || profile?.stock?.type || "");
+  return /ETP|ETF|ADR|Fund|Leverage|Inverse|2X|3X/i.test(`${type} ${name}`);
+}
+
 function scoreRow(row, query) {
   const slug = row.id || row.slug || "";
   const q = String(query || "").trim();
@@ -55,6 +65,7 @@ function scoreRow(row, query) {
   const qTicker = queryLooksLikeTicker(q) ? normalizeTicker(q) : "";
   const rowTicker = getRowTicker(row);
   const profile = row.profile_json || row.profile || null;
+  const nameLower = String(row.name || "").toLowerCase();
 
   let score = 0;
 
@@ -63,8 +74,10 @@ function scoreRow(row, query) {
   if (Array.isArray(profile?.people) && profile.people.length > 0) score += 80;
   if (qTicker && rowTicker === qTicker) score += 200;
   if (slug.toLowerCase() === qLower || slug.toLowerCase().includes(qLower)) score += 40;
-  if (String(row.name || "").toLowerCase() === qLower) score += 60;
+  if (nameLower === qLower) score += 60;
+  if (qLower.length >= 3 && nameLower.includes(qLower)) score += 150;
   if (Array.isArray(row.terms) && row.terms.includes(qLower)) score += 30;
+  if (isDerivativeListing(row)) score -= 90;
 
   return score;
 }

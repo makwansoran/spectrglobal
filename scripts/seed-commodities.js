@@ -7,7 +7,7 @@ require("./load-env").loadEnv();
 const { spawnSync } = require("child_process");
 const path = require("path");
 const commoditiesStore = require("../server/commodities-store");
-const supabaseCommodities = require("../server/supabase-commodities-store");
+const { isSupabaseEnabled, hasSupabaseWrites } = require("../server/supabase-client");
 
 const ROOT = path.resolve(__dirname, "..");
 
@@ -32,11 +32,11 @@ async function main() {
   const count = commoditiesStore.buildSearchIndexFile();
   console.log(`Local search index: ${count} commodities`);
 
-  if (supabaseCommodities.hasSupabaseWrites()) {
+  if (hasSupabaseWrites()) {
     console.log(`Uploading ${seeds.length} commodities to Supabase…`);
     await commoditiesStore.upsertCommoditiesBatch(seeds);
     console.log("Done (Supabase).");
-  } else if (supabaseCommodities.isSupabaseEnabled()) {
+  } else if (isSupabaseEnabled()) {
     console.warn("SUPABASE_SERVICE_ROLE_KEY missing — commodities index built locally only.");
     console.warn("Run SQL from supabase/schema.sql (commodities table), then seed again.");
   } else {

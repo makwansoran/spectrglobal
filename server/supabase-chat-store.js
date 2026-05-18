@@ -1,30 +1,14 @@
 /**
  * Supabase chat_messages storage + realtime-ready table.
  */
-const { createClient } = require("@supabase/supabase-js");
-
-let adminClient;
-
-function getSupabaseKey() {
-  return process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY || "";
-}
-
-function isSupabaseEnabled() {
-  return Boolean(process.env.SUPABASE_URL && getSupabaseKey());
-}
-
-function hasSupabaseWrites() {
-  return isSupabaseEnabled();
-}
+const {
+  getAdminClient,
+  isSupabaseEnabled,
+  hasSupabaseWrites,
+} = require("./supabase-client");
 
 function getClient() {
-  if (!isSupabaseEnabled()) throw new Error("Supabase is not configured");
-  if (!adminClient) {
-    adminClient = createClient(process.env.SUPABASE_URL, getSupabaseKey(), {
-      auth: { persistSession: false, autoRefreshToken: false },
-    });
-  }
-  return adminClient;
+  return getAdminClient();
 }
 
 function rowToMessage(row) {

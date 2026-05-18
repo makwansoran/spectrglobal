@@ -5,43 +5,11 @@
 const { buildMeta } = require("./local-store");
 const { PREFERRED_SLUG_BY_TICKER, normalizeTicker, queryLooksLikeTicker } = require("./search-rank");
 
-let adminClient;
-let createClient;
-
-function loadSupabaseSdk() {
-  if (createClient) return true;
-  try {
-    createClient = require("@supabase/supabase-js").createClient;
-    return true;
-  } catch {
-    return false;
-  }
-}
-
-function getSupabaseKey() {
-  return process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY || "";
-}
-
-function isSupabaseEnabled() {
-  return Boolean(process.env.SUPABASE_URL && getSupabaseKey() && loadSupabaseSdk());
-}
-
-function getAdminClient() {
-  if (!isSupabaseEnabled()) {
-    throw new Error(
-      "Supabase is not configured (set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY or SUPABASE_ANON_KEY)"
-    );
-  }
-  if (!loadSupabaseSdk()) {
-    throw new Error("Install @supabase/supabase-js (run npm install in repo root)");
-  }
-  if (!adminClient) {
-    adminClient = createClient(process.env.SUPABASE_URL, getSupabaseKey(), {
-      auth: { persistSession: false, autoRefreshToken: false },
-    });
-  }
-  return adminClient;
-}
+const {
+  getAdminClient,
+  isSupabaseEnabled,
+  hasSupabaseWrites,
+} = require("./supabase-client");
 
 function rowToIndex(row) {
   const ticker = row.profile_json?.stock?.ticker || null;
@@ -71,10 +39,6 @@ async function listCompaniesSupabase(limit) {
   return (data || []).map(rowToIndex);
 }
 
-function hasSupabaseWrites() {
-  return Boolean(process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY && loadSupabaseSdk());
-}
-
 async function searchCompaniesSupabase(query, limit = 25) {
   const q = String(query || "")
     .trim()
@@ -100,7 +64,7 @@ async function searchCompaniesSupabase(query, limit = 25) {
   const byText = await client
     .from("companies")
     .select(select)
-    .or(`name.ilike.${pattern},legal_name.ilike.${pattern},slug.ilike.${pattern}`)
+    .or(`name.ilike.${pattern},legal_name.ilike.${pattern},slug.ilike.${pattern},meta.ilike.${pattern}`)
     .order("name")
     .limit(limit);
   if (byText.error) throw byText.error;
@@ -126,7 +90,7 @@ async function searchCompaniesSupabase(query, limit = 25) {
         merged.unshift(rowToIndex(pref.data));
       }
     }
-    const slug = `us-${safe.replace(/\./g, "").toLowerCase()}`;
+    const slug = `us-${qTicker.toLowerCase()}`;
     if (!seen.has(slug) && merged.length < limit) {
       const exact = await client.from("companies").select(select).eq("slug", slug).maybeSingle();
       if (!exact.error && exact.data) {
@@ -216,6 +180,7 @@ async function deleteCompaniesNotInSupabase(activeSlugs) {
 
 module.exports = {
   isSupabaseEnabled,
+  hasSupabaseWrites,
   listCompaniesSupabase,
   searchCompaniesSupabase,
   getCompanySupabase,

@@ -1,6 +1,6 @@
 /**
- * Upload people + company_people links from data/people and data/company-people to Supabase.
- * Requires people + company_people tables (supabase/schema.sql).
+ * Upload company_people rows from data/company-people/*.json to Supabase.
+ * Requires company_people table (supabase/schema.sql).
  *
  *   node scripts/seed-people.js
  */
@@ -11,8 +11,7 @@ const path = require("path");
 const supabasePeople = require("../server/supabase-people-store");
 
 const ROOT = path.resolve(__dirname, "..");
-const PEOPLE_DIR = path.join(ROOT, "data", "people");
-const LINKS_DIR = path.join(ROOT, "data", "company-people");
+const EXPORT_DIR = path.join(ROOT, "data", "company-people");
 
 async function main() {
   if (!supabasePeople.isSupabaseEnabled()) {
@@ -20,44 +19,35 @@ async function main() {
     process.exit(1);
   }
 
-  if (!fs.existsSync(PEOPLE_DIR)) {
-    console.error(`No ${PEOPLE_DIR}`);
+  if (!fs.existsSync(EXPORT_DIR)) {
+    console.error(`No ${EXPORT_DIR} — run: npm run db:sync-people`);
     process.exit(1);
   }
 
-  const files = fs.readdirSync(PEOPLE_DIR).filter((f) => f.endsWith(".json"));
-  console.log(`Upserting ${files.length} people…`);
+  const files = fs.readdirSync(EXPORT_DIR).filter((f) => f.endsWith(".json"));
+  console.log(`Upserting company_people for ${files.length} companies…`);
 
-  let peopleOk = 0;
+  let ok = 0;
   for (const file of files) {
-    const data = JSON.parse(fs.readFileSync(path.join(PEOPLE_DIR, file), "utf8"));
-    const profile = data.profile;
-    if (!profile?.slug) continue;
-    await supabasePeople.upsertPersonSupabase(profile);
-    peopleOk++;
-    if (peopleOk % 25 === 0) console.log(`  ${peopleOk}/${files.length} people…`);
-  }
-  console.log(`People: ${peopleOk} upserted.`);
-
-  if (!fs.existsSync(LINKS_DIR)) {
-    console.log("No company_people directory — skipped links.");
-    return;
-  }
-
-  const linkFiles = fs.readdirSync(LINKS_DIR).filter((f) => f.endsWith(".json"));
-  console.log(`Upserting ${linkFiles.length} company_people link files…`);
-
-  let linksOk = 0;
-  for (const file of linkFiles) {
-    const data = JSON.parse(fs.readFileSync(path.join(LINKS_DIR, file), "utf8"));
+    const data = JSON.parse(fs.readFileSync(path.join(EXPORT_DIR, file), "utf8"));
     const companySlug = data.companySlug;
-    const links = data.links || [];
+    const people = data.people || [];
     if (!companySlug) continue;
-    await supabasePeople.upsertCompanyPeopleLinksSupabase(companySlug, links);
-    linksOk++;
+
+    const entries = people
+      .filter((row) => row.profile?.slug || row.slug)
+      .map((row) => ({
+        profile: row.profile || row,
+        title: row.title || "",
+        localId: row.localId || null,
+      }));
+
+    await supabasePeople.upsertCompanyPeopleSupabase(companySlug, entries);
+    ok++;
+    if (ok % 25 === 0) console.log(`  ${ok}/${files.length}…`);
   }
-  console.log(`Company links: ${linksOk} companies updated.`);
-  console.log("\nDone. View tables in Supabase → Table Editor → people / company_people");
+
+  console.log(`\nDone. ${ok} companies → company_people table.`);
 }
 
 main().catch((err) => {

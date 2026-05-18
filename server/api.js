@@ -2,18 +2,18 @@ const {
   listCompanies,
   searchCompanies,
   getCompany,
-  getCompanyRaw,
-  listPeople,
-  getPerson,
+  storageMode,
 } = require("./store");
 const commoditiesStore = require("./commodities-store");
+const { banks, investmentBanks, ventureCapital } = require("./catalog-stores");
 const chatStore = require("./chat-store");
-const finnhub = require("./finnhub");
+const { isSupabaseEnabled } = require("./supabase-client");
 
 function sendJson(res, status, body, extraHeaders = {}) {
   res.writeHead(status, {
     "Content-Type": "application/json; charset=utf-8",
     "Cache-Control": "no-store",
+    "X-Spectr-Storage": storageMode(),
     ...extraHeaders,
   });
   res.end(JSON.stringify(body));
@@ -36,34 +36,57 @@ function readJsonBody(req) {
   });
 }
 
+function supabaseRequired(res) {
+  if (!isSupabaseEnabled()) {
+    sendJson(res, 503, {
+      error: "Supabase is not configured. Set SUPABASE_URL and keys in .env, then run supabase/schema.sql",
+    });
+    return false;
+  }
+  return true;
+}
+
+async function handleCatalogList(req, res, store) {
+  const url = new URL(req.url, `http://${req.headers.host || "localhost"}`);
+  const q = url.searchParams.get("q") || "";
+  const limit = Math.min(parseInt(url.searchParams.get("limit") || "25", 10) || 25, 50);
+  if (q.trim()) {
+    sendJson(res, 200, await store.search(q, limit));
+  } else {
+    sendJson(res, 200, await store.list(limit));
+  }
+}
+
+async function handleCatalogGet(res, store, slug) {
+  const data = await store.get(slug);
+  if (!data) {
+    sendJson(res, 404, { error: "Not found" });
+    return;
+  }
+  sendJson(res, 200, data);
+}
+
 async function handleApi(req, res, pathname) {
   try {
+    if (!supabaseRequired(res)) return true;
+
     if (pathname === "/api/companies" && req.method === "GET") {
       const url = new URL(req.url, `http://${req.headers.host || "localhost"}`);
       const q = url.searchParams.get("q") || "";
       const limit = Math.min(parseInt(url.searchParams.get("limit") || "25", 10) || 25, 50);
       if (q.trim()) {
-        sendJson(res, 200, await searchCompanies(q, limit));
+        sendJson(res, 200, await searchCompanies(q, limit), { "X-Spectr-Source": "supabase:companies" });
       } else {
-        sendJson(res, 200, await listCompanies({ limit: 500 }));
+        sendJson(res, 200, await listCompanies({ limit: 500 }), { "X-Spectr-Source": "supabase:companies" });
       }
       return true;
     }
 
     const marketMatch = pathname.match(/^\/api\/companies\/([^/]+)\/market$/);
     if (marketMatch && req.method === "GET") {
-      const slug = decodeURIComponent(marketMatch[1]);
-      if (!finnhub.isEnabled()) {
-        sendJson(res, 503, { error: "Finnhub is not configured (set FINNHUB_API_KEY in .env)" });
-        return true;
-      }
-      const raw = await getCompanyRaw(slug);
-      if (!raw?.profile) {
-        sendJson(res, 404, { error: "Company not found" });
-        return true;
-      }
-      const market = await finnhub.fetchCompanyMarket(raw.profile);
-      sendJson(res, 200, market);
+      sendJson(res, 410, {
+        error: "Live market API removed. Store quotes in companies.profile_json via Supabase.",
+      });
       return true;
     }
 
@@ -80,36 +103,55 @@ async function handleApi(req, res, pathname) {
     }
 
     if (pathname === "/api/commodities" && req.method === "GET") {
-      const url = new URL(req.url, `http://${req.headers.host || "localhost"}`);
-      const q = url.searchParams.get("q") || "";
-      const limit = Math.min(parseInt(url.searchParams.get("limit") || "25", 10) || 25, 50);
-      if (q.trim()) {
-        sendJson(res, 200, await commoditiesStore.searchCommodities(q, limit));
-      } else {
-        sendJson(res, 200, commoditiesStore.loadLocalIndex().slice(0, limit));
-      }
+      await handleCatalogList(req, res, commoditiesStore);
       return true;
     }
 
     const commodityMatch = pathname.match(/^\/api\/commodities\/([^/]+)$/);
     if (commodityMatch && req.method === "GET") {
-      const slug = decodeURIComponent(commodityMatch[1]);
-      const data = await commoditiesStore.getCommodity(slug);
-      if (!data) {
-        sendJson(res, 404, { error: "Commodity not found" });
-        return true;
-      }
-      sendJson(res, 200, data);
+      await handleCatalogGet(res, commoditiesStore, decodeURIComponent(commodityMatch[1]));
+      return true;
+    }
+
+    if (pathname === "/api/banks" && req.method === "GET") {
+      await handleCatalogList(req, res, banks);
+      return true;
+    }
+    const bankMatch = pathname.match(/^\/api\/banks\/([^/]+)$/);
+    if (bankMatch && req.method === "GET") {
+      await handleCatalogGet(res, banks, decodeURIComponent(bankMatch[1]));
+      return true;
+    }
+
+    if (pathname === "/api/investment-banks" && req.method === "GET") {
+      await handleCatalogList(req, res, investmentBanks);
+      return true;
+    }
+    const ibMatch = pathname.match(/^\/api\/investment-banks\/([^/]+)$/);
+    if (ibMatch && req.method === "GET") {
+      await handleCatalogGet(res, investmentBanks, decodeURIComponent(ibMatch[1]));
+      return true;
+    }
+
+    if (pathname === "/api/venture-capital" && req.method === "GET") {
+      await handleCatalogList(req, res, ventureCapital);
+      return true;
+    }
+    const vcMatch = pathname.match(/^\/api\/venture-capital\/([^/]+)$/);
+    if (vcMatch && req.method === "GET") {
+      await handleCatalogGet(res, ventureCapital, decodeURIComponent(vcMatch[1]));
       return true;
     }
 
     if (pathname === "/api/people" && req.method === "GET") {
+      const { listPeople } = require("./store");
       sendJson(res, 200, await listPeople());
       return true;
     }
 
     const personMatch = pathname.match(/^\/api\/people\/([^/]+)$/);
     if (personMatch && req.method === "GET") {
+      const { getPerson } = require("./store");
       const slug = decodeURIComponent(personMatch[1]);
       const profile = await getPerson(slug);
       if (!profile) {
@@ -134,17 +176,10 @@ async function handleApi(req, res, pathname) {
         return true;
       }
 
-      const chatHeaders = { "X-Spectr-Chat-Storage": chatStore.storageMode() };
-
       if (req.method === "GET") {
         const limit = url.searchParams.get("limit") || "50";
         const messages = await chatStore.listMessages(roomType, roomSlug, limit);
-        sendJson(
-          res,
-          200,
-          { messages, realtime: chatStore.storageMode() === "supabase" },
-          chatHeaders
-        );
+        sendJson(res, 200, { messages, realtime: true });
         return true;
       }
 
@@ -156,26 +191,21 @@ async function handleApi(req, res, pathname) {
             authorName: payload?.authorName,
             body: payload?.body,
           });
-          sendJson(
-            res,
-            201,
-            { message, realtime: chatStore.storageMode() === "supabase" },
-            chatHeaders
-          );
+          sendJson(res, 201, { message, realtime: true });
         } catch (err) {
           const msg = err.message || "Chat error";
           const code = /empty|too long|Invalid|Missing/i.test(msg) ? 400 : 500;
-          sendJson(res, code, { error: msg }, chatHeaders);
+          sendJson(res, code, { error: msg });
         }
         return true;
       }
 
-      sendJson(res, 405, { error: "Method not allowed" }, chatHeaders);
+      sendJson(res, 405, { error: "Method not allowed" });
       return true;
     }
   } catch (err) {
     console.error("API error:", err);
-    sendJson(res, 500, { error: "Internal server error" });
+    sendJson(res, 500, { error: err.message || "Internal server error" });
     return true;
   }
 

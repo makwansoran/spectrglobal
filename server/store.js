@@ -1,111 +1,45 @@
 /**
- * Company data: Supabase when configured, else local SQLite/JSON.
+ * Company data — Supabase only (no Finnhub, local JSON, or SQLite fallbacks).
  */
-const local = require("./local-store");
 const supabase = require("./supabase-store");
-const searchIndex = require("./search-index");
-const seedStore = require("./seed-store");
-const finnhub = require("./finnhub");
-const commoditiesStore = require("./commodities-store");
-const { dedupeSearchResults, formatSearchSubtitle, mergeSearchResults } = require("./search-rank");
+const { isSupabaseEnabled, requireSupabase } = require("./supabase-client");
+const { dedupeSearchResults, formatSearchSubtitle } = require("./search-rank");
 const { syncPeopleFromCompany } = require("./people-sync");
 const peopleStore = require("./people-store");
 
 async function listCompanies(options = {}) {
+  requireSupabase();
   const limit = options.limit || null;
-  if (supabase.isSupabaseEnabled()) {
-    try {
-      return await supabase.listCompaniesSupabase(limit);
-    } catch (err) {
-      console.warn("Supabase list failed:", err.message);
-    }
-  }
-  const indexed = searchIndex.listIndex(limit || 500);
-  if (indexed.length) return indexed;
-  return local.listCompaniesLocal(limit);
+  return supabase.listCompaniesSupabase(limit);
 }
 
+/**
+ * Company search — public.companies in Supabase only (no Finnhub, JSON index, or commodities).
+ */
 async function searchCompanies(query, limit = 25) {
-  let rows = [];
+  requireSupabase();
 
-  if (supabase.isSupabaseEnabled()) {
-    try {
-      rows = await supabase.searchCompaniesSupabase(query, limit * 4);
-    } catch (err) {
-      console.warn("Supabase search failed:", err.message);
-    }
-  }
+  const rows = await supabase.searchCompaniesSupabase(query, limit * 4);
 
-  if (!rows.length && finnhub.isEnabled()) {
-    try {
-      rows = await finnhub.searchToIndexItems(query, limit * 4);
-    } catch (err) {
-      console.warn("Finnhub search failed:", err.message);
-    }
-  }
-
-  if (!rows.length) {
-    rows = searchIndex.searchIndex(query, limit * 4);
-  }
-  if (!rows.length) {
-    rows = local.searchCompaniesLocal(query, limit * 4);
-  }
-
-  const companies = dedupeSearchResults(rows, query, limit * 2).map((row) => {
+  return dedupeSearchResults(rows, query, limit).map((row) => {
     const { profile_json, profile, ...rest } = row;
     return {
       ...rest,
-      kind: rest.kind || "company",
+      kind: "company",
+      source: "supabase",
       subtitle: formatSearchSubtitle(row),
     };
-  });
-
-  let commodities = [];
-  try {
-    commodities = await commoditiesStore.searchCommodities(query, limit * 2);
-  } catch (err) {
-    console.warn("Commodity search failed:", err.message);
-  }
-
-  return mergeSearchResults(companies, commodities, query, limit).map((row) => {
-    const { profile_json, profile, ...rest } = row;
-    return rest;
   });
 }
 
 async function getCompanyRaw(slug) {
-  if (supabase.isSupabaseEnabled()) {
-    try {
-      const company = await supabase.getCompanySupabase(slug);
-      if (company) return company;
-    } catch (err) {
-      console.warn(`Supabase get(${slug}) failed, using local:`, err.message);
-    }
-  }
-  const fromSeed = seedStore.readSeed(slug);
-  if (fromSeed?.profile) return fromSeed;
-
-  if (finnhub.isEnabled() && String(slug).startsWith("us-")) {
-    try {
-      const built = await finnhub.buildCompanyFromSlug(slug);
-      if (built?.profile) return built;
-    } catch (err) {
-      console.warn(`Finnhub profile(${slug}):`, err.message);
-    }
-  }
-
-  return local.getCompanyLocal(slug);
+  requireSupabase();
+  return supabase.getCompanySupabase(slug);
 }
 
 async function saveCompanySeed(seed) {
-  local.upsertCompanyLocal(seed);
-  if (supabase.isSupabaseEnabled()) {
-    try {
-      await supabase.upsertCompanySupabase(seed);
-    } catch (err) {
-      console.warn(`  Supabase company save(${seed.slug}) skipped:`, err.message);
-    }
-  }
+  requireSupabase();
+  await supabase.upsertCompanySupabase(seed);
 }
 
 async function getCompany(slug) {
@@ -122,32 +56,18 @@ async function upsertCompany(seed) {
   const profileWithRefs = await syncPeopleFromCompany(seed);
   const nextSeed = { ...seed, profile: profileWithRefs };
 
-  local.upsertCompanyLocal(nextSeed);
-
-  if (supabase.isSupabaseEnabled()) {
-    await supabase.upsertCompanySupabase(nextSeed);
-    return "supabase+local";
-  }
-  return "local";
+  requireSupabase();
+  await supabase.upsertCompanySupabase(nextSeed);
+  return "supabase";
 }
 
 async function syncAfterSeed(activeSlugs) {
-  local.removeStaleExports(activeSlugs);
-
-  if (supabase.isSupabaseEnabled()) {
-    try {
-      await supabase.deleteCompaniesNotInSupabase(activeSlugs);
-    } catch (err) {
-      console.warn("Supabase cleanup failed:", err.message);
-    }
-  }
+  requireSupabase();
+  await supabase.deleteCompaniesNotInSupabase(activeSlugs);
 }
 
 function storageMode() {
-  if (supabase.isSupabaseEnabled()) return "supabase";
-  if (finnhub.isEnabled()) return "finnhub";
-  if (searchIndex.loadIndex().length) return "index";
-  return "local";
+  return isSupabaseEnabled() ? "supabase" : "unconfigured";
 }
 
 module.exports = {
@@ -159,9 +79,7 @@ module.exports = {
   upsertCompany,
   syncAfterSeed,
   storageMode,
-  isSupabaseEnabled: supabase.isSupabaseEnabled,
+  isSupabaseEnabled,
   listPeople: peopleStore.listPeople,
   getPerson: peopleStore.getPerson,
-  DB_PATH: local.DB_PATH,
-  EXPORT_DIR: local.EXPORT_DIR,
 };

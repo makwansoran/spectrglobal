@@ -1,6 +1,6 @@
 /**
- * Extract embedded company.people into the people table + company_people links.
- * Run after applying supabase/schema.sql (people + company_people tables).
+ * Extract embedded company.people into company_people rows.
+ * Run after applying supabase/schema.sql (company_people table).
  *
  *   node scripts/sync-people-from-companies.js
  */
@@ -37,12 +37,12 @@ async function main() {
 
     companiesUpdated++;
     peopleLinked += embedded.length;
-    console.log(`  ${slug}: ${embedded.length} people → people table`);
+    console.log(`  ${slug}: ${embedded.length} people → company_people`);
   }
 
   console.log(`\nDone. ${peopleLinked} people linked across ${companiesUpdated} companies.`);
   console.log("API: GET /api/people  ·  GET /api/people/:slug");
-  console.log("\nIf Supabase people tables are missing, run the SQL in supabase/schema.sql (people + company_people), then re-run this script.");
+  console.log("\nIf company_people is missing, run supabase/schema.sql, then: npm run db:seed-people");
 }
 
 main().catch((err) => {

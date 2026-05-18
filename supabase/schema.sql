@@ -1,21 +1,19 @@
 -- Run in Supabase Dashboard → SQL → New query (run the FULL file once)
 -- https://supabase.com/dashboard/project/_/sql
 --
--- Tables in this project:
---   companies        — company profiles (search + /company/:slug)
---   people           — person profiles (/person/:slug)
---   company_people   — links people ↔ companies (title, sort order)
---   commodities      — commodity profiles (/commodity/:slug)
---   vessels          — ships / offshore units (fleet data, maps)
---   planes           — aircraft + route network data (aviation maps)
---   chat_messages    — live chat per company / commodity room
+-- Tables in this project (public schema — visible in Table Editor):
+--   companies           — listed / private companies
+--   company_people      — executives & board (per company; full profile in profile_json)
+--   commodities         — futures / physical commodities
+--   vessels             — ships & offshore units
+--   planes              — aircraft & routes
+--   banks               — commercial & retail banks
+--   investment_banks    — bulge bracket / boutique IBs
+--   venture_capital     — VC firms & funds
+--   chat_messages       — profile chat rooms
 --
--- After SQL: from repo root (with .env):
---   npm run db:status
---   npm run db:seed-commodities
---   npm run db:seed-people
---   npm run db:seed-vessels
---   npm run db:seed-planes
+-- Run this ENTIRE file once in Supabase → SQL → New query → Run
+-- Then: npm run db:status  &&  npm run db:seed-all
 
 create table if not exists public.companies (
   slug text primary key,
@@ -43,38 +41,24 @@ create policy "Public read companies"
 
 -- Writes use SUPABASE_SERVICE_ROLE_KEY in seed/scripts (bypasses RLS)
 
--- People (standalone profiles; linked to companies via company_people)
-create table if not exists public.people (
-  slug text primary key,
-  name text not null,
-  meta text not null,
-  initials text not null,
-  search_terms jsonb not null default '[]'::jsonb,
-  profile_json jsonb not null,
-  updated_at timestamptz not null default now()
-);
-
-create index if not exists people_name_idx on public.people (name);
-
-alter table public.people enable row level security;
-
-drop policy if exists "Public read people" on public.people;
-create policy "Public read people"
-  on public.people
-  for select
-  to anon, authenticated
-  using (true);
-
+-- Company people (one table — person profile + company role)
 create table if not exists public.company_people (
   company_slug text not null references public.companies (slug) on delete cascade,
-  person_slug text not null references public.people (slug) on delete cascade,
+  slug text not null,
+  name text not null,
   title text not null default '',
+  meta text not null default '',
+  initials text not null default '',
+  search_terms jsonb not null default '[]'::jsonb,
+  profile_json jsonb not null,
   local_id text,
   sort_order int not null default 0,
-  primary key (company_slug, person_slug)
+  updated_at timestamptz not null default now(),
+  primary key (company_slug, slug)
 );
 
-create index if not exists company_people_person_idx on public.company_people (person_slug);
+create index if not exists company_people_slug_idx on public.company_people (slug);
+create index if not exists company_people_name_idx on public.company_people (name);
 
 alter table public.company_people enable row level security;
 
@@ -155,6 +139,72 @@ alter table public.planes enable row level security;
 drop policy if exists "Public read planes" on public.planes;
 create policy "Public read planes"
   on public.planes
+  for select
+  to anon, authenticated
+  using (true);
+
+-- Banks (commercial / retail)
+create table if not exists public.banks (
+  slug text primary key,
+  name text not null,
+  meta text not null default '',
+  initials text not null default '',
+  search_terms jsonb not null default '[]'::jsonb,
+  profile_json jsonb not null,
+  updated_at timestamptz not null default now()
+);
+
+create index if not exists banks_name_idx on public.banks (name);
+
+alter table public.banks enable row level security;
+
+drop policy if exists "Public read banks" on public.banks;
+create policy "Public read banks"
+  on public.banks
+  for select
+  to anon, authenticated
+  using (true);
+
+-- Investment banks
+create table if not exists public.investment_banks (
+  slug text primary key,
+  name text not null,
+  meta text not null default '',
+  initials text not null default '',
+  search_terms jsonb not null default '[]'::jsonb,
+  profile_json jsonb not null,
+  updated_at timestamptz not null default now()
+);
+
+create index if not exists investment_banks_name_idx on public.investment_banks (name);
+
+alter table public.investment_banks enable row level security;
+
+drop policy if exists "Public read investment_banks" on public.investment_banks;
+create policy "Public read investment_banks"
+  on public.investment_banks
+  for select
+  to anon, authenticated
+  using (true);
+
+-- Venture capital firms
+create table if not exists public.venture_capital (
+  slug text primary key,
+  name text not null,
+  meta text not null default '',
+  initials text not null default '',
+  search_terms jsonb not null default '[]'::jsonb,
+  profile_json jsonb not null,
+  updated_at timestamptz not null default now()
+);
+
+create index if not exists venture_capital_name_idx on public.venture_capital (name);
+
+alter table public.venture_capital enable row level security;
+
+drop policy if exists "Public read venture_capital" on public.venture_capital;
+create policy "Public read venture_capital"
+  on public.venture_capital
   for select
   to anon, authenticated
   using (true);

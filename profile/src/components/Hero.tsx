@@ -1,27 +1,10 @@
 import type { CompanyProfile } from "../types/company";
-import { useMarketData } from "../hooks/useMarketData";
-import { QuickStatsRow } from "./QuickStatsRow";
 import { countryFlag, formatCurrency, formatPercent } from "../utils/format";
 
 type Props = { company: CompanyProfile };
 
 export function Hero({ company }: Props) {
-  const { data: market, loading: marketLoading } = useMarketData(company.id, Boolean(company.stock?.ticker));
-
-  const liveQuote = market?.quote;
-  const currency = market?.currency || company.stock?.currency || "NOK";
-
-  const stock = company.stock
-    ? {
-        ...company.stock,
-        price:
-          liveQuote?.price != null && liveQuote.price > 0 ? liveQuote.price : company.stock.price,
-        change: liveQuote?.change ?? company.stock.change,
-        changePercent: liveQuote?.changePercent ?? company.stock.changePercent,
-        currency,
-      }
-    : undefined;
-
+  const stock = company.stock;
   const showQuote =
     stock &&
     stock.price != null &&
@@ -81,15 +64,12 @@ export function Hero({ company }: Props) {
                 >
                   {company.isPublic ? "Public" : "Private"}
                 </span>
-                {stock && (
+                {stock?.ticker && (
                   <span className="rounded border border-line bg-canvas px-2.5 py-0.5 font-mono text-xs text-muted">
                     {stock.ticker} · {stock.exchange}
                   </span>
                 )}
               </div>
-              {marketLoading && company.stock?.ticker && !showQuote && (
-                <p className="mt-3 font-mono text-xs text-muted">Loading live quote…</p>
-              )}
               {showQuote && stock && (
                 <div className="mt-3 flex flex-wrap items-baseline gap-3">
                   <span className="font-mono text-2xl font-semibold tabular-nums text-ink">
@@ -101,18 +81,6 @@ export function Hero({ company }: Props) {
                     {stockUp ? "+" : ""}
                     {stock.change!.toFixed(2)} ({formatPercent(stock.changePercent!)})
                   </span>
-                  {liveQuote?.asOf && (
-                    <span className="w-full font-mono text-xs text-muted">
-                      Live · Finnhub · {market?.symbol}
-                    </span>
-                  )}
-                  {liveQuote?.open != null && liveQuote.high != null && liveQuote.low != null && (
-                    <span className="w-full font-mono text-xs text-muted">
-                      Open {liveQuote.open.toFixed(2)} · High {liveQuote.high.toFixed(2)} · Low{" "}
-                      {liveQuote.low.toFixed(2)}
-                      {liveQuote.previousClose != null && ` · Prev ${liveQuote.previousClose.toFixed(2)}`}
-                    </span>
-                  )}
                 </div>
               )}
             </div>
@@ -130,8 +98,6 @@ export function Hero({ company }: Props) {
             </button>
           </div>
         </div>
-
-        <QuickStatsRow stats={company.quickStats} />
       </div>
     </header>
   );

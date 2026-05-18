@@ -392,7 +392,7 @@ async function fetchUsStockSymbols() {
   return data;
 }
 
-/** Live symbol search (Finnhub /search) — used when Supabase is empty or unavailable. */
+/** Finnhub symbol search — import/seed only; runtime company search uses Supabase public.companies. */
 async function searchSymbols(query) {
   const q = String(query || "").trim();
   if (!q) return [];
