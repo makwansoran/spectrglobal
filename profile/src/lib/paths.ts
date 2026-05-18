@@ -3,7 +3,9 @@ export function personProfilePath(personSlug: string) {
   return `/person/${personSlug}`;
 }
 
-/** Company profile URL. */
-export function companyProfilePath(companySlug: string) {
-  return `/company/${companySlug}`;
+/** Company profile URL (overview tab). */
+export function companyProfilePath(companySlug: string, tab?: string) {
+  const base = `/company/${companySlug}`;
+  if (!tab || tab === "overview") return base;
+  return `${base}/${tab}`;
 }
