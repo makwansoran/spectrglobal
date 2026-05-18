@@ -39,12 +39,12 @@ export function CompanyProfilePage() {
       items.push({ id: "news", label: "News" });
     }
     if (company.filings.length) items.push({ id: "filings", label: "Filings" });
-    if (hasIndustryMap(company.industry)) {
+    if (hasIndustryMap(company.industry, mapGeojson)) {
       items.push({ id: "industry", label: company.industryTabLabel });
     }
     items.push({ id: "chat", label: "Chat" });
     return items;
-  }, [company]);
+  }, [company, mapGeojson]);
 
   const activeTab = useScrollSpy(
     tabs.map((t) => t.id),
@@ -100,7 +100,7 @@ export function CompanyProfilePage() {
     company.financials.years.length > 0 || company.financials.metrics.length > 0;
   const showNews = company.news.length > 0;
   const showFilings = company.filings.length > 0;
-  const showIndustry = hasIndustryMap(company.industry);
+  const showIndustry = hasIndustryMap(company.industry, mapGeojson);
 
   return (
     <div className="min-h-screen bg-white">

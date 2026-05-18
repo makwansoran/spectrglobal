@@ -41,7 +41,7 @@ function mapIndustry(finnhubIndustry) {
   if (i.includes("tech") || i.includes("software")) return "technology";
   if (i.includes("biotech") || i.includes("pharma")) return "biotech";
   if (i.includes("mining")) return "mining";
-  return "energy";
+  return "technology";
 }
 
 function usCompanySlug(ticker) {
