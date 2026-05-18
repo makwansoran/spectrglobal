@@ -93,6 +93,21 @@ async function getCompany(slug) {
     };
   }
 
+  if (company.profile.stock?.ticker) {
+    try {
+      const { fetchLiveQuoteForProfile, applyQuoteToStock } = require("./company-quote");
+      const live = await fetchLiveQuoteForProfile(company.profile);
+      if (live?.price) {
+        company.profile = {
+          ...company.profile,
+          stock: applyQuoteToStock(company.profile.stock, live),
+        };
+      }
+    } catch {
+      /* quote optional */
+    }
+  }
+
   return company;
 }
 

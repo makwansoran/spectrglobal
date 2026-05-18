@@ -24,6 +24,8 @@
     "db:backfill-financials": "node scripts/backfill-company-financials.js --prefix us- --skip-existing",
     "db:backfill-financials:oslo": "node scripts/backfill-oslo-financials-from-seed.js",
     "db:backfill-financials:all": "node scripts/backfill-oslo-financials-from-seed.js && node scripts/backfill-company-financials.js --prefix us- --skip-existing",
+    "db:backfill-quotes": "node scripts/backfill-company-quotes.js --prefix us- --skip-existing",
+    "db:backfill-quotes:all": "node scripts/backfill-company-quotes.js --all-prefix --skip-existing",
     "db:enrich-ownership": "node scripts/enrich-ownership-holders.js",
     "db:backfill-ownership": "node scripts/backfill-ownership-finnhub.js",
     "db:backfill-ownership-nasdaq": "node scripts/backfill-ownership-nasdaq.js",

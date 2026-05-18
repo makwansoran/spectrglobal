@@ -6,6 +6,7 @@ const {
 } = require("./store");
 const { getCompanyNews } = require("./company-news");
 const { getCompanyFinancials } = require("./company-financials");
+const { getCompanyQuote } = require("./company-quote");
 const commoditiesStore = require("./commodities-store");
 const { banks, investmentBanks, ventureCapital } = require("./catalog-stores");
 const chatStore = require("./chat-store");
@@ -113,6 +114,18 @@ async function handleApi(req, res, pathname) {
         return true;
       }
       sendJson(res, 200, data, { "Cache-Control": "public, max-age=3600" });
+      return true;
+    }
+
+    const quoteMatch = pathname.match(/^\/api\/companies\/([^/]+)\/quote$/);
+    if (quoteMatch && req.method === "GET") {
+      const slug = decodeURIComponent(quoteMatch[1]);
+      const data = await getCompanyQuote(slug);
+      if (!data?.stock) {
+        sendJson(res, 404, { error: "No quote available" });
+        return true;
+      }
+      sendJson(res, 200, data, { "Cache-Control": "public, max-age=60" });
       return true;
     }
 

@@ -97,7 +97,6 @@ const apiBase = import.meta.env.VITE_API_BASE ?? "";
 
 export async function fetchCompanyMarket(slug: string): Promise<CompanyMarketData | null> {
   const res = await fetch(`${apiBase}/api/companies/${encodeURIComponent(slug)}/market`);
-  if (res.status === 503) return null;
   if (res.status === 404) return null;
   if (!res.ok) throw new Error("Failed to load market data");
   return res.json();

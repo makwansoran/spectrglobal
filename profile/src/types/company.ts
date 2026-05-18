@@ -108,6 +108,8 @@ export interface StockQuote {
   currency: string;
   /** Finnhub symbol for live quotes (e.g. US ticker for dual-listed names). */
   finnhubSymbol?: string;
+  /** ISO timestamp when price was last fetched from Finnhub. */
+  quoteAsOf?: string;
 }
 
 export interface OilBlockProperties {

@@ -1,4 +1,3 @@
-/** Live quote only (full market bundle deprecated). */
 require("../scripts/load-env").loadEnv();
 const { getCompanyQuote } = require("../server/company-quote");
 const { isSupabaseEnabled } = require("../server/supabase-client");
@@ -27,28 +26,10 @@ module.exports = async (req, res) => {
       return;
     }
 
-    const { stock, quote, asOf } = data;
     res.setHeader("Cache-Control", "public, s-maxage=60, stale-while-revalidate=120");
-    res.status(200).json({
-      symbol: quote?.symbol || stock.finnhubSymbol || stock.ticker,
-      ticker: stock.ticker,
-      currency: stock.currency || "USD",
-      quote: quote || {
-        symbol: stock.ticker,
-        price: stock.price,
-        change: stock.change ?? null,
-        changePercent: stock.changePercent ?? null,
-        asOf: asOf || stock.quoteAsOf || null,
-      },
-      news: [],
-      peers: [],
-      metrics: null,
-      profile: null,
-      recommendations: null,
-      earnings: [],
-    });
+    res.status(200).json(data);
   } catch (err) {
-    console.error("get-company-market", err);
-    res.status(500).json({ error: "Failed to load market data" });
+    console.error("get-company-quote", err);
+    res.status(500).json({ error: "Failed to load quote" });
   }
 };

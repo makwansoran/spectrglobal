@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { CompanyProfile } from "../types/company";
+import { useCompanyQuote } from "../hooks/useCompanyQuote";
 import { countryFlag, formatCurrency, formatPercent } from "../utils/format";
 
 type Props = { company: CompanyProfile };
@@ -7,7 +8,7 @@ type Props = { company: CompanyProfile };
 export function Hero({ company }: Props) {
   const [logoFailed, setLogoFailed] = useState(false);
   const showLogo = Boolean(company.logoUrl) && !logoFailed;
-  const stock = company.stock;
+  const stock = useCompanyQuote(company.id, company.stock);
   const showQuote =
     stock &&
     stock.price != null &&
