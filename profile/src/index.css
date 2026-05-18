@@ -465,6 +465,54 @@
   display: none;
 }
 
+.maritime-traffic-loading {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 900;
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  font-size: 0.75rem;
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+.maritime-traffic-error {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+  z-index: 900;
+  max-width: 22rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: 8px;
+  background: rgba(127, 29, 29, 0.88);
+  border: 1px solid rgba(248, 113, 113, 0.35);
+  font-size: 0.8125rem;
+  color: #fecaca;
+}
+
+.maritime-traffic-error p {
+  margin: 0 0 0.5rem;
+}
+
+.maritime-traffic-retry {
+  border: 1px solid rgba(254, 202, 202, 0.4);
+  background: transparent;
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.55rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.maritime-traffic-retry:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
 @media (max-width: 640px) {
   .maritime-hud-title h1 {
     font-size: 1.15rem;

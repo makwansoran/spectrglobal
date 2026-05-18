@@ -40,9 +40,11 @@ type Props = {
 };
 
 export function MaritimeTrafficMap({ waterway }: Props) {
-  const [ready, setReady] = useState(false);
+  const [mapReady, setMapReady] = useState(false);
   const [vessels, setVessels] = useState<SimulatedVessel[]>([]);
   const [trafficSource, setTrafficSource] = useState<"aisstream" | "simulated">("simulated");
+  const [trafficLoading, setTrafficLoading] = useState(true);
+  const [trafficError, setTrafficError] = useState<string | null>(null);
   const [selected, setSelected] = useState<SimulatedVessel | null>(null);
 
   const bounds = useMemo((): LatLngBoundsExpression => {
@@ -63,37 +65,45 @@ export function MaritimeTrafficMap({ waterway }: Props) {
   }, [waterway.waterwayLine]);
 
   const refreshVessels = useCallback(async () => {
+    setTrafficLoading(true);
+    setTrafficError(null);
     try {
       const data = await fetchWaterwayVessels(waterway.id);
-      setVessels(data.vessels);
+      const list = Array.isArray(data.vessels) ? data.vessels : [];
+      setVessels(list);
       setTrafficSource(data.source === "aisstream" ? "aisstream" : "simulated");
+      if (!list.length) {
+        setTrafficError("No vessel positions returned. Check API keys and try again.");
+      }
     } catch {
-      /* keep last positions */
+      setTrafficError("Could not load vessel traffic.");
+    } finally {
+      setTrafficLoading(false);
+      setMapReady(true);
     }
   }, [waterway.id]);
 
   useEffect(() => {
-    setReady(true);
     refreshVessels();
-    const intervalMs = trafficSource === "aisstream" ? 20_000 : 15_000;
+    const intervalMs = trafficSource === "aisstream" ? 25_000 : 15_000;
     const interval = window.setInterval(refreshVessels, intervalMs);
     return () => window.clearInterval(interval);
   }, [refreshVessels, trafficSource]);
 
   useEffect(() => {
-    if (!ready) return;
+    if (!mapReady) return;
     const t = window.setTimeout(() => {
       window.dispatchEvent(new Event("resize"));
     }, 250);
     return () => window.clearTimeout(t);
-  }, [ready]);
+  }, [mapReady]);
 
   const typeLabel = waterway.waterwayType === "canal" ? "Canal" : "Strait";
 
-  if (!ready) {
+  if (!mapReady && trafficLoading) {
     return (
       <div className="maritime-map-loading">
-        Initializing maritime traffic display…
+        Loading vessel traffic…
       </div>
     );
   }
@@ -137,6 +147,12 @@ export function MaritimeTrafficMap({ waterway }: Props) {
         ))}
       </MapContainer>
 
+      {trafficLoading && (
+        <div className="maritime-traffic-loading" aria-live="polite">
+          Updating traffic…
+        </div>
+      )}
+
       <header className="maritime-hud maritime-hud-top">
         <div className="maritime-hud-title">
           <span className="maritime-hud-type">{typeLabel}</span>
@@ -146,9 +162,24 @@ export function MaritimeTrafficMap({ waterway }: Props) {
         <div className="maritime-hud-stats">
           <span>{vessels.length} vessels tracked</span>
           <span className="maritime-hud-dot">·</span>
-          <span>{trafficSource === "aisstream" ? "Live AIS (AIS Stream)" : "Simulated AIS"}</span>
+          <span>
+            {trafficLoading
+              ? "Loading…"
+              : trafficSource === "aisstream"
+                ? "Live AIS (AIS Stream)"
+                : "Simulated AIS"}
+          </span>
         </div>
       </header>
+
+      {trafficError && !trafficLoading && (
+        <div className="maritime-traffic-error" role="alert">
+          <p>{trafficError}</p>
+          <button type="button" className="maritime-traffic-retry" onClick={() => refreshVessels()}>
+            Retry
+          </button>
+        </div>
+      )}
 
       {selected && (
         <aside className="maritime-vessel-panel" role="dialog" aria-label="Vessel details">

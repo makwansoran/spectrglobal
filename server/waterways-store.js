@@ -167,27 +167,41 @@ async function getWaterwayVessels(slug, timeMs) {
   if (!row) return null;
   const profile = rowToProfile(row);
   const generatedAt = new Date(timeMs || Date.now()).toISOString();
+  const bounds = aisstream.normalizeBounds(row.bounds);
 
-  let vessels = null;
+  const simInput = {
+    slug: row.slug,
+    importance: row.importance,
+    waterwayLine: profile.waterwayLine,
+  };
+  const simulated = simulateVessels(simInput, timeMs);
+
+  let vessels = simulated;
   let source = "simulated";
+  let aisStatus = aisstream.isEnabled() ? "skipped" : "disabled";
 
-  if (aisstream.isEnabled() && Array.isArray(row.bounds) && row.bounds.length === 4) {
-    const live = await aisstream.getAisVesselsForBounds(row.bounds, { maxVessels: 100 });
-    if (live?.length) {
-      vessels = live;
-      source = "aisstream";
+  if (aisstream.isEnabled() && bounds) {
+    aisStatus = "loading";
+    try {
+      const live = await Promise.race([
+        aisstream.getAisVesselsForBounds(bounds, { maxVessels: 120, collectMs: 6500 }),
+        new Promise((resolve) => setTimeout(() => resolve(null), 9000)),
+      ]);
+      if (live?.length) {
+        vessels = live;
+        source = "aisstream";
+        aisStatus = "ok";
+      } else {
+        aisStatus = "empty";
+      }
+    } catch (err) {
+      console.warn("[waterways] AIS failed for", slug, err.message);
+      aisStatus = "error";
     }
   }
 
   if (!vessels?.length) {
-    vessels = simulateVessels(
-      {
-        slug: row.slug,
-        importance: row.importance,
-        waterwayLine: profile.waterwayLine,
-      },
-      timeMs
-    );
+    vessels = simulated.length ? simulated : simulateVessels(simInput, timeMs);
     source = "simulated";
   }
 
@@ -195,6 +209,7 @@ async function getWaterwayVessels(slug, timeMs) {
     vessels,
     source,
     live: source === "aisstream",
+    aisStatus,
     generatedAt,
   };
 }

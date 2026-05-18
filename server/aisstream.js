@@ -4,7 +4,7 @@
  */
 const AISSTREAM_URL = "wss://stream.aisstream.io/v0/stream";
 
-const CACHE_TTL_MS = 15_000;
+const CACHE_TTL_MS = 20_000;
 const cache = new Map();
 const inflight = new Map();
 
@@ -12,11 +12,27 @@ function isEnabled() {
   return Boolean(String(process.env.AISSTREAM_API_KEY || "").trim());
 }
 
-function boundsKey(bounds) {
-  return (bounds || []).map((n) => Number(n).toFixed(3)).join(",");
+function normalizeBounds(bounds) {
+  if (!bounds) return null;
+  let b = bounds;
+  if (typeof b === "string") {
+    try {
+      b = JSON.parse(b);
+    } catch {
+      return null;
+    }
+  }
+  if (!Array.isArray(b) || b.length !== 4) return null;
+  const nums = b.map(Number);
+  if (nums.some((n) => Number.isNaN(n))) return null;
+  return nums;
 }
 
-function expandBounds(bounds, pad = 0.12) {
+function boundsKey(bounds) {
+  return normalizeBounds(bounds)?.map((n) => n.toFixed(3)).join(",") || "";
+}
+
+function expandBounds(bounds, pad = 0.15) {
   const [south, west, north, east] = bounds;
   return [
     Math.max(-90, south - pad),
@@ -24,14 +40,6 @@ function expandBounds(bounds, pad = 0.12) {
     Math.min(90, north + pad),
     east + pad,
   ];
-}
-
-function inBounds(lat, lng, bounds) {
-  if (lat == null || lng == null) return false;
-  const [south, west, north, east] = bounds;
-  if (lat < south || lat > north) return false;
-  if (west <= east) return lng >= west && lng <= east;
-  return lng >= west || lng <= east;
 }
 
 function cleanName(name) {
@@ -60,8 +68,30 @@ function flagFromMeta(meta, staticData) {
   );
 }
 
-function ingestMessage(msg, vessels, bounds) {
-  if (!msg || msg.error || msg.Error) return;
+function connectWebSocket(url) {
+  if (typeof globalThis.WebSocket !== "undefined") {
+    return new globalThis.WebSocket(url);
+  }
+  return new (require("ws"))(url);
+}
+
+function subscriptionPayload(apiKey, boundingBoxes) {
+  return {
+    APIKey: apiKey,
+    BoundingBoxes: boundingBoxes,
+    FilterMessageTypes: ["PositionReport", "ShipStaticData"],
+  };
+}
+
+function isErrorMessage(msg) {
+  if (!msg || typeof msg !== "object") return false;
+  if (msg.error || msg.Error) return true;
+  if (typeof msg.message === "string" && /invalid|error|denied|auth/i.test(msg.message)) return true;
+  return false;
+}
+
+function ingestMessage(msg, vessels) {
+  if (isErrorMessage(msg)) return;
 
   const meta = msg.Metadata || {};
   const type = msg.MessageType;
@@ -69,9 +99,9 @@ function ingestMessage(msg, vessels, bounds) {
   if (type === "PositionReport") {
     const pr = msg.Message?.PositionReport;
     if (!pr) return;
-    const lat = pr.Latitude ?? meta.Latitude;
-    const lng = pr.Longitude ?? meta.Longitude;
-    if (!inBounds(lat, lng, bounds)) return;
+    const lat = Number(pr.Latitude ?? meta.Latitude);
+    const lng = Number(pr.Longitude ?? meta.Longitude);
+    if (Number.isNaN(lat) || Number.isNaN(lng)) return;
 
     const id = String(pr.UserID || meta.MMSI || meta.ShipId || "");
     if (!id) return;
@@ -88,7 +118,7 @@ function ingestMessage(msg, vessels, bounds) {
           : typeof pr.TrueHeading === "number"
             ? Math.round(pr.TrueHeading)
             : prev.heading ?? 0,
-      name: prev.name || cleanName(meta.ShipName) || `MMSI ${id}`,
+      name: prev.name || cleanName(meta.ShipName) || cleanName(pr.Name) || `MMSI ${id}`,
       flag: prev.flag || flagFromMeta(meta),
       type: prev.type || "general",
       destination: prev.destination || "—",
@@ -104,6 +134,8 @@ function ingestMessage(msg, vessels, bounds) {
     const id = String(sd.UserID || meta.MMSI || meta.ShipId || "");
     if (!id) return;
 
+    const lat = Number(sd.Latitude ?? meta.Latitude);
+    const lng = Number(sd.Longitude ?? meta.Longitude);
     const prev = vessels.get(id) || { id, mmsi: id };
     vessels.set(id, {
       ...prev,
@@ -111,8 +143,8 @@ function ingestMessage(msg, vessels, bounds) {
       destination: cleanName(sd.Destination) || prev.destination || "—",
       type: shipTypeFromAis(sd.Type),
       flag: flagFromMeta(meta, sd),
-      lat: prev.lat ?? meta.Latitude,
-      lng: prev.lng ?? meta.Longitude,
+      lat: Number.isNaN(lat) ? prev.lat : lat,
+      lng: Number.isNaN(lng) ? prev.lng : lng,
       speed: prev.speed ?? 0,
       heading: prev.heading ?? 0,
       progress: 0,
@@ -122,15 +154,16 @@ function ingestMessage(msg, vessels, bounds) {
 
 function fetchAisVessels(bounds, options = {}) {
   const apiKey = String(process.env.AISSTREAM_API_KEY || "").trim();
-  if (!apiKey) return Promise.resolve(null);
+  const normalized = normalizeBounds(bounds);
+  if (!apiKey || !normalized) return Promise.resolve(null);
 
-  const collectMs = options.collectMs ?? 4000;
-  const maxVessels = options.maxVessels ?? 100;
-  const [south, west, north, east] = expandBounds(bounds);
-  const filterBounds = [south, west, north, east];
+  const collectMs = options.collectMs ?? 6500;
+  const maxVessels = options.maxVessels ?? 120;
+  const [south, west, north, east] = expandBounds(normalized);
   const boundingBoxes = [[[south, west], [north, east]]];
 
   const vessels = new Map();
+  let lastError = null;
 
   return new Promise((resolve) => {
     let settled = false;
@@ -145,31 +178,32 @@ function fetchAisVessels(bounds, options = {}) {
       } catch {
         /* ignore */
       }
+      if (lastError && !value?.length) {
+        console.warn("[aisstream]", lastError);
+      }
       resolve(value);
     };
 
     const timer = setTimeout(() => {
-      const list = [...vessels.values()].filter((v) => v.lat != null && v.lng != null);
+      const list = [...vessels.values()].filter(
+        (v) => typeof v.lat === "number" && typeof v.lng === "number" && !Number.isNaN(v.lat)
+      );
       finish(list.length ? list.slice(0, maxVessels) : null);
     }, collectMs);
 
     try {
-      ws = new WebSocket(AISSTREAM_URL);
-    } catch {
+      ws = connectWebSocket(AISSTREAM_URL);
+    } catch (err) {
+      lastError = err.message;
       finish(null);
       return;
     }
 
     ws.addEventListener("open", () => {
       try {
-        ws.send(
-          JSON.stringify({
-            APIKey: apiKey,
-            BoundingBoxes: boundingBoxes,
-            FilterMessageTypes: ["PositionReport", "ShipStaticData"],
-          })
-        );
-      } catch {
+        ws.send(JSON.stringify(subscriptionPayload(apiKey, boundingBoxes)));
+      } catch (err) {
+        lastError = err.message;
         finish(null);
       }
     });
@@ -177,13 +211,26 @@ function fetchAisVessels(bounds, options = {}) {
     ws.addEventListener("message", (event) => {
       try {
         const msg = JSON.parse(String(event.data));
-        ingestMessage(msg, vessels, filterBounds);
+        if (isErrorMessage(msg)) {
+          lastError =
+            typeof msg.error === "string"
+              ? msg.error
+              : typeof msg.Error === "string"
+                ? msg.Error
+                : "AIS subscription error";
+          return;
+        }
+        ingestMessage(msg, vessels);
       } catch {
         /* ignore malformed */
       }
     });
 
-    ws.addEventListener("error", () => finish(null));
+    ws.addEventListener("error", () => {
+      lastError = "WebSocket error";
+      finish(null);
+    });
+
     ws.addEventListener("close", () => {
       if (!settled) {
         const list = [...vessels.values()].filter((v) => v.lat != null && v.lng != null);
@@ -194,9 +241,12 @@ function fetchAisVessels(bounds, options = {}) {
 }
 
 async function getAisVesselsForBounds(bounds, options = {}) {
-  if (!isEnabled() || !bounds?.length) return null;
+  if (!isEnabled()) return null;
 
-  const key = boundsKey(bounds);
+  const normalized = normalizeBounds(bounds);
+  if (!normalized) return null;
+
+  const key = boundsKey(normalized);
   const cached = cache.get(key);
   if (cached && cached.expiresAt > Date.now()) {
     return cached.vessels;
@@ -206,7 +256,7 @@ async function getAisVesselsForBounds(bounds, options = {}) {
     return inflight.get(key);
   }
 
-  const promise = fetchAisVessels(bounds, options)
+  const promise = fetchAisVessels(normalized, options)
     .then((vessels) => {
       inflight.delete(key);
       if (vessels?.length) {
@@ -214,8 +264,9 @@ async function getAisVesselsForBounds(bounds, options = {}) {
       }
       return vessels;
     })
-    .catch(() => {
+    .catch((err) => {
       inflight.delete(key);
+      console.warn("[aisstream] fetch failed:", err.message);
       return null;
     });
 
@@ -225,6 +276,7 @@ async function getAisVesselsForBounds(bounds, options = {}) {
 
 module.exports = {
   isEnabled,
+  normalizeBounds,
   getAisVesselsForBounds,
   fetchAisVessels,
 };
