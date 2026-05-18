@@ -1,0 +1,20 @@
+{
+  "profile": {
+    "id": "subramanya",
+    "slug": "amar-subramanya",
+    "name": "Amar Subramanya",
+    "bio": "Reports to Craig Federighi; appointed following retirement of AI chief John Giannandrea.",
+    "currentTitle": "VP, Artificial Intelligence",
+    "currentCompanySlug": "apple-inc-aapl",
+    "currentCompanyName": "Apple",
+    "affiliations": [
+      {
+        "companySlug": "apple-inc-aapl",
+        "companyName": "Apple",
+        "title": "VP, Artificial Intelligence"
+      }
+    ],
+    "dataSources": [],
+    "lastUpdated": "2026-05-18T17:17:19.625Z"
+  }
+}

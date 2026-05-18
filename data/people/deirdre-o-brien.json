@@ -1,0 +1,20 @@
+{
+  "profile": {
+    "id": "obrien",
+    "slug": "deirdre-o-brien",
+    "name": "Deirdre O'Brien",
+    "bio": "Oversees human resources and Apple's global retail network (500+ stores).",
+    "currentTitle": "SVP, Retail + People",
+    "currentCompanySlug": "apple-inc-aapl",
+    "currentCompanyName": "Apple",
+    "affiliations": [
+      {
+        "companySlug": "apple-inc-aapl",
+        "companyName": "Apple",
+        "title": "SVP, Retail + People"
+      }
+    ],
+    "dataSources": [],
+    "lastUpdated": "2026-05-18T17:17:19.388Z"
+  }
+}

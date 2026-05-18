@@ -1,0 +1,20 @@
+{
+  "profile": {
+    "id": "ternus",
+    "slug": "john-ternus",
+    "name": "John Ternus",
+    "bio": "Currently SVP of Hardware Engineering. Will become CEO on September 1, 2026 after unanimous board approval; transitions from leading hardware engineering as he moves into the CEO role.",
+    "currentTitle": "Incoming CEO (from Sep 1, 2026)",
+    "currentCompanySlug": "apple-inc-aapl",
+    "currentCompanyName": "Apple",
+    "affiliations": [
+      {
+        "companySlug": "apple-inc-aapl",
+        "companyName": "Apple",
+        "title": "Incoming CEO (from Sep 1, 2026)"
+      }
+    ],
+    "dataSources": [],
+    "lastUpdated": "2026-05-18T17:17:19.103Z"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "profile": {
+    "id": "federighi",
+    "slug": "craig-federighi",
+    "name": "Craig Federighi",
+    "bio": "Leads iOS, macOS, and iPadOS. AI organization reports into this role following leadership changes.",
+    "currentTitle": "SVP, Software Engineering",
+    "currentCompanySlug": "apple-inc-aapl",
+    "currentCompanyName": "Apple",
+    "affiliations": [
+      {
+        "companySlug": "apple-inc-aapl",
+        "companyName": "Apple",
+        "title": "SVP, Software Engineering"
+      }
+    ],
+    "dataSources": [],
+    "lastUpdated": "2026-05-18T17:17:19.317Z"
+  }
+}

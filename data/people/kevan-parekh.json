@@ -1,0 +1,20 @@
+{
+  "profile": {
+    "id": "parekh",
+    "slug": "kevan-parekh",
+    "name": "Kevan Parekh",
+    "bio": "Apple's CFO; recently reported record March-quarter revenue of $111.2B.",
+    "currentTitle": "Chief Financial Officer",
+    "currentCompanySlug": "apple-inc-aapl",
+    "currentCompanyName": "Apple",
+    "affiliations": [
+      {
+        "companySlug": "apple-inc-aapl",
+        "companyName": "Apple",
+        "title": "Chief Financial Officer"
+      }
+    ],
+    "dataSources": [],
+    "lastUpdated": "2026-05-18T17:17:19.248Z"
+  }
+}

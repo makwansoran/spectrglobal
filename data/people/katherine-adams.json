@@ -1,0 +1,20 @@
+{
+  "profile": {
+    "id": "adams",
+    "slug": "katherine-adams",
+    "name": "Katherine Adams",
+    "bio": "Retiring late 2026; succeeded by Jennifer Newstead.",
+    "currentTitle": "Outgoing General Counsel",
+    "currentCompanySlug": "apple-inc-aapl",
+    "currentCompanyName": "Apple",
+    "affiliations": [
+      {
+        "companySlug": "apple-inc-aapl",
+        "companyName": "Apple",
+        "title": "Outgoing General Counsel"
+      }
+    ],
+    "dataSources": [],
+    "lastUpdated": "2026-05-18T17:17:19.770Z"
+  }
+}

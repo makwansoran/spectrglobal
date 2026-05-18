@@ -1,0 +1,20 @@
+{
+  "profile": {
+    "id": "newstead",
+    "slug": "jennifer-newstead",
+    "name": "Jennifer Newstead",
+    "bio": "Former Meta chief legal officer and former U.S. State Department legal adviser. Role combines legal and government affairs.",
+    "currentTitle": "General Counsel (from Mar 1, 2026)",
+    "currentCompanySlug": "apple-inc-aapl",
+    "currentCompanyName": "Apple",
+    "affiliations": [
+      {
+        "companySlug": "apple-inc-aapl",
+        "companyName": "Apple",
+        "title": "General Counsel (from Mar 1, 2026)"
+      }
+    ],
+    "dataSources": [],
+    "lastUpdated": "2026-05-18T17:17:19.541Z"
+  }
+}

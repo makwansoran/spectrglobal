@@ -1,0 +1,20 @@
+{
+  "profile": {
+    "id": "maestri",
+    "slug": "luca-maestri",
+    "name": "Luca Maestri",
+    "bio": "Served as CFO since 2014; departing as part of broader finance leadership transition.",
+    "currentTitle": "Outgoing CFO",
+    "currentCompanySlug": "apple-inc-aapl",
+    "currentCompanyName": "Apple",
+    "affiliations": [
+      {
+        "companySlug": "apple-inc-aapl",
+        "companyName": "Apple",
+        "title": "Outgoing CFO"
+      }
+    ],
+    "dataSources": [],
+    "lastUpdated": "2026-05-18T17:17:19.698Z"
+  }
+}

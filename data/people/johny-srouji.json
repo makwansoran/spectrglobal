@@ -1,0 +1,20 @@
+{
+  "profile": {
+    "id": "srouji",
+    "slug": "johny-srouji",
+    "name": "Johny Srouji",
+    "bio": "Named Chief Hardware Officer; takes over Hardware Engineering from John Ternus as Ternus moves to CEO.",
+    "currentTitle": "Chief Hardware Officer",
+    "currentCompanySlug": "apple-inc-aapl",
+    "currentCompanyName": "Apple",
+    "affiliations": [
+      {
+        "companySlug": "apple-inc-aapl",
+        "companyName": "Apple",
+        "title": "Chief Hardware Officer"
+      }
+    ],
+    "dataSources": [],
+    "lastUpdated": "2026-05-18T17:17:19.467Z"
+  }
+}
