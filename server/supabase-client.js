@@ -5,29 +5,39 @@ const { createClient } = require("@supabase/supabase-js");
 
 let adminClient;
 
-function getSupabaseUrl() {
-  const url = String(
-    process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || ""
-  )
-    .trim()
-    .replace(/\/$/, "");
-
-  if (!url) return "";
-
-  let host = "";
+function isProjectSupabaseUrl(url) {
   try {
-    host = new URL(url).hostname;
+    return new URL(url).hostname.endsWith(".supabase.co");
   } catch {
-    throw new Error("SUPABASE_URL is not a valid URL");
+    return false;
+  }
+}
+
+function getSupabaseUrl() {
+  const candidates = [
+    process.env.SUPABASE_URL,
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.VITE_SUPABASE_URL,
+  ]
+    .map((value) => String(value || "").trim().replace(/\/$/, ""))
+    .filter(Boolean);
+
+  const projectUrl = candidates.find(isProjectSupabaseUrl);
+  if (projectUrl) return projectUrl;
+
+  const first = candidates[0];
+  if (!first) return "";
+
+  let host = "missing";
+  try {
+    host = new URL(first).hostname;
+  } catch {
+    host = "invalid";
   }
 
-  if (!host.endsWith(".supabase.co")) {
-    throw new Error(
-      `SUPABASE_URL must be https://YOUR_PROJECT.supabase.co (got host "${host}"). Update Vercel env vars.`
-    );
-  }
-
-  return url;
+  throw new Error(
+    `SUPABASE_URL must be https://YOUR_PROJECT.supabase.co (got "${host}"). In Vercel → Settings → Environment Variables, set SUPABASE_URL to your project API URL.`
+  );
 }
 
 function getSupabaseKey() {
