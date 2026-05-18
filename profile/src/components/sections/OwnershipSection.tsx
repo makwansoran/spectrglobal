@@ -29,8 +29,8 @@ export function OwnershipSection({ company }: Props) {
         </p>
       )}
 
-      <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:items-center">
-        <div className="h-64 w-full md:h-72">
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:items-start">
+        <div className="h-52 w-full md:h-60">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
@@ -65,13 +65,10 @@ export function OwnershipSection({ company }: Props) {
           </ResponsiveContainer>
         </div>
 
-        <ul className="max-h-80 space-y-2 overflow-y-auto pr-1">
+        <ul className="divide-y divide-line">
           {slices.map((slice) => (
-            <li
-              key={slice.name}
-              className="flex items-center gap-3 rounded-lg border border-line bg-canvas/40 px-3 py-2.5"
-            >
-              <ShareholderLogo stake={slice} color={slice.color} />
+            <li key={slice.name} className="flex items-center gap-2.5 py-2 first:pt-0 last:pb-0">
+              <ShareholderLogo stake={slice} size="sm" color={slice.color} />
               <div className="min-w-0 flex-1">
                 <p className="truncate text-sm font-medium text-ink">{slice.name}</p>
                 {slice.detail && !slice.isOther && (
@@ -79,16 +76,11 @@ export function OwnershipSection({ company }: Props) {
                 )}
               </div>
               <span
-                className="shrink-0 font-mono text-sm font-semibold tabular-nums text-ink"
+                className="shrink-0 font-mono text-xs font-semibold tabular-nums"
                 style={{ color: slice.color }}
               >
                 {formatPercent(slice.percent)}
               </span>
-              <span
-                className="h-2.5 w-2.5 shrink-0 rounded-full"
-                style={{ backgroundColor: slice.color }}
-                aria-hidden
-              />
             </li>
           ))}
         </ul>
