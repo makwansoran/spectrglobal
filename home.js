@@ -7,16 +7,14 @@
   var searchPanel = document.getElementById("plt-search-panel");
   var searchOpenBtns = document.querySelectorAll("[data-plt-search-open]");
   var searchCloseBtn = document.getElementById("plt-search-close");
-  var searchInput = document.getElementById("plt-search-input");
+  var pltSearchInput = document.getElementById("plt-search-input");
+  var pltSearchResults = document.getElementById("plt-search-results");
   var cbSearch = document.getElementById("cb-search");
   var cbForm = document.getElementById("cb-search-form");
   var cbResults = document.getElementById("cb-search-results");
 
-  var searchTimer = null;
-  var searchRequestId = 0;
-
-  var activeResultIndex = -1;
-  var currentResults = [];
+  var globalSearchReqId = 0;
+  var searchWidgets = [];
 
   function openNav() {
     if (!navPanel) return;
@@ -43,9 +41,10 @@
     searchOpenBtns.forEach(function (btn) {
       btn.setAttribute("aria-expanded", "true");
     });
-    if (searchInput) {
+    if (pltSearchInput) {
       window.setTimeout(function () {
-        searchInput.focus();
+        pltSearchInput.focus();
+        if (pltSearchInput.value.trim()) pltWidget.onInput();
       }, 80);
     }
   }
@@ -85,27 +84,21 @@
 
   if (searchCloseBtn) searchCloseBtn.addEventListener("click", closeSearch);
 
+  function hideAllResults() {
+    searchWidgets.forEach(function (w) {
+      w.hideResults();
+    });
+  }
+
   document.addEventListener("keydown", function (e) {
     if (e.key !== "Escape") return;
     closeNav();
     closeSearch();
-    hideResults();
+    hideAllResults();
   });
 
   function normalizeQuery(q) {
     return q.trim().toLowerCase();
-  }
-
-  function matchCompany(company, query) {
-    if (!query) return false;
-    var name = company.name.toLowerCase();
-    var legal = company.legalName.toLowerCase();
-    if (name.indexOf(query) === 0 || legal.indexOf(query) === 0) return true;
-    var i;
-    for (i = 0; i < company.terms.length; i++) {
-      if (company.terms[i].indexOf(query) === 0) return true;
-    }
-    return false;
   }
 
   function fetchSearchResults(query, callback) {
@@ -114,7 +107,7 @@
       callback([]);
       return;
     }
-    var reqId = ++searchRequestId;
+    var reqId = ++globalSearchReqId;
     fetch("/api/companies?q=" + encodeURIComponent(query) + "&limit=25")
       .then(function (r) {
         return r.json().then(function (data) {
@@ -128,20 +121,16 @@
         });
       })
       .then(function (data) {
-        if (reqId !== searchRequestId) return;
-        callback(Array.isArray(data) ? data : []);
+        if (reqId !== globalSearchReqId) return;
+        callback(Array.isArray(data) ? data : [], null);
       })
       .catch(function (err) {
-        if (reqId !== searchRequestId) return;
-        if (err && err.status === 503 && err.payload && err.payload.hint && cbResults) {
-          cbResults.innerHTML =
-            '<p class="cb-search-results-empty">' +
-            "Search is not connected to the database. Add Supabase keys in Vercel and redeploy." +
-            "</p>";
-          showResults();
-          return;
+        if (reqId !== globalSearchReqId) return;
+        var message = null;
+        if (err && err.status === 503 && err.payload && err.payload.hint) {
+          message = "Search is not connected. Check Supabase and Finnhub keys in Vercel, then redeploy.";
         }
-        callback([]);
+        callback([], message);
       });
   }
 
@@ -159,143 +148,207 @@
     );
   }
 
-  function showResults() {
-    if (cbResults) cbResults.classList.add("is-open");
-    if (cbSearch) cbSearch.setAttribute("aria-expanded", "true");
-  }
-
-  function hideResults() {
-    if (!cbResults) return;
-    cbResults.classList.remove("is-open");
-    cbResults.innerHTML = "";
-    currentResults = [];
-    activeResultIndex = -1;
-    if (cbSearch) {
-      cbSearch.setAttribute("aria-expanded", "false");
-      cbSearch.removeAttribute("aria-activedescendant");
-    }
-  }
-
   function goToCompany(company) {
     if (!company || !company.url) return;
     window.location.href = company.url;
   }
 
-  function renderResults(results, query) {
-    if (!cbResults) return;
-    currentResults = results;
-    activeResultIndex = results.length ? 0 : -1;
-    var q = normalizeQuery(query);
+  function createSearchWidget(inputEl, resultsEl, options) {
+    var opts = options || {};
+    var idPrefix = opts.idPrefix || "search";
+    var resultClass = opts.resultClass || "cb-search-result";
+    var timer = null;
+    var currentResults = [];
+    var activeResultIndex = -1;
 
-    if (!results.length) {
+    function showResults() {
+      if (!resultsEl) return;
+      resultsEl.classList.add("is-open");
+      if (inputEl) inputEl.setAttribute("aria-expanded", "true");
+    }
+
+    function hideResults() {
+      if (!resultsEl) return;
+      resultsEl.classList.remove("is-open");
+      resultsEl.innerHTML = "";
+      currentResults = [];
+      activeResultIndex = -1;
+      if (inputEl) {
+        inputEl.setAttribute("aria-expanded", "false");
+        inputEl.removeAttribute("aria-activedescendant");
+      }
+    }
+
+    function renderResults(results, query, errorMessage) {
+      if (!resultsEl) return;
+      currentResults = results;
+      activeResultIndex = results.length ? 0 : -1;
+      var q = normalizeQuery(query);
+
+      if (errorMessage) {
+        resultsEl.innerHTML = '<p class="cb-search-results-empty">' + errorMessage + "</p>";
+        showResults();
+        return;
+      }
+
+      if (!results.length) {
+        if (!q) {
+          hideResults();
+          return;
+        }
+        resultsEl.innerHTML = '<p class="cb-search-results-empty">No matches</p>';
+        showResults();
+        return;
+      }
+
+      resultsEl.innerHTML = results
+        .map(function (company, i) {
+          var active = i === activeResultIndex ? " is-active" : "";
+          return (
+            '<button type="button" class="' +
+            resultClass +
+            active +
+            '" role="option" id="' +
+            idPrefix +
+            "-result-" +
+            i +
+            '" data-index="' +
+            i +
+            '">' +
+            '<span class="cb-search-result-mark">' +
+            company.initials +
+            "</span>" +
+            '<span class="cb-search-result-name">' +
+            highlightName(company.name, q) +
+            '</span><span class="cb-search-result-sub"> · ' +
+            company.legalName +
+            "</span>" +
+            "</button>"
+          );
+        })
+        .join("");
+
+      showResults();
+
+      if (inputEl) {
+        inputEl.setAttribute("aria-activedescendant", idPrefix + "-result-0");
+      }
+
+      resultsEl.querySelectorAll("." + resultClass.split(" ")[0]).forEach(function (btn) {
+        btn.addEventListener("mousedown", function (e) {
+          e.preventDefault();
+        });
+        btn.addEventListener("click", function () {
+          var idx = parseInt(btn.getAttribute("data-index"), 10);
+          goToCompany(currentResults[idx]);
+        });
+      });
+    }
+
+    function setActiveResult(index) {
+      if (!resultsEl || !currentResults.length) return;
+      var buttons = resultsEl.querySelectorAll("." + resultClass.split(" ")[0]);
+      if (!buttons.length) return;
+
+      activeResultIndex = Math.max(0, Math.min(index, buttons.length - 1));
+      buttons.forEach(function (btn, i) {
+        btn.classList.toggle("is-active", i === activeResultIndex);
+      });
+      if (inputEl) {
+        inputEl.setAttribute("aria-activedescendant", idPrefix + "-result-" + activeResultIndex);
+      }
+      var activeBtn = buttons[activeResultIndex];
+      if (activeBtn && activeBtn.scrollIntoView) {
+        activeBtn.scrollIntoView({ block: "nearest" });
+      }
+    }
+
+    function onInput() {
+      if (!inputEl) return;
+      var value = inputEl.value;
+      var q = normalizeQuery(value);
       if (!q) {
         hideResults();
         return;
       }
-      cbResults.innerHTML = '<p class="cb-search-results-empty">No matches</p>';
-      showResults();
-      return;
+      window.clearTimeout(timer);
+      timer = window.setTimeout(function () {
+        fetchSearchResults(value, function (results, errorMessage) {
+          renderResults(results, value, errorMessage);
+        });
+      }, 200);
     }
 
-    cbResults.innerHTML = results
-      .map(function (company, i) {
-        var active = i === activeResultIndex ? " is-active" : "";
-        return (
-          '<button type="button" class="cb-search-result' +
-          active +
-          '" role="option" id="cb-result-' +
-          i +
-          '" data-index="' +
-          i +
-          '">' +
-          '<span class="cb-search-result-mark">' +
-          company.initials +
-          "</span>" +
-          '<span class="cb-search-result-name">' +
-          highlightName(company.name, q) +
-          '</span><span class="cb-search-result-sub"> · ' +
-          company.legalName +
-          "</span>" +
-          "</button>"
-        );
-      })
-      .join("");
-
-    showResults();
-
-    if (cbSearch) {
-      cbSearch.setAttribute("aria-activedescendant", "cb-result-0");
+    function onSubmit() {
+      if (!inputEl) return;
+      var q = inputEl.value.trim();
+      if (!q) return;
+      fetchSearchResults(q, function (results) {
+        if (results.length) goToCompany(results[0]);
+      });
     }
 
-    cbResults.querySelectorAll(".cb-search-result").forEach(function (btn) {
-      btn.addEventListener("mousedown", function (e) {
-        e.preventDefault();
+    if (inputEl) {
+      inputEl.addEventListener("input", onInput);
+      inputEl.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowDown") {
+          if (!currentResults.length) return;
+          e.preventDefault();
+          setActiveResult(activeResultIndex + 1);
+        } else if (e.key === "ArrowUp") {
+          if (!currentResults.length) return;
+          e.preventDefault();
+          setActiveResult(activeResultIndex - 1);
+        } else if (
+          e.key === "Enter" &&
+          currentResults.length &&
+          resultsEl &&
+          resultsEl.classList.contains("is-open")
+        ) {
+          e.preventDefault();
+          var pick = activeResultIndex >= 0 ? activeResultIndex : 0;
+          goToCompany(currentResults[pick]);
+        } else if (e.key === "Escape") {
+          hideResults();
+        }
       });
-      btn.addEventListener("click", function () {
-        var idx = parseInt(btn.getAttribute("data-index"), 10);
-        goToCompany(currentResults[idx]);
-      });
+    }
+
+    return {
+      onInput: onInput,
+      onSubmit: onSubmit,
+      hideResults: hideResults,
+    };
+  }
+
+  var heroWidget = createSearchWidget(cbSearch, cbResults, { idPrefix: "cb" });
+  var pltWidget = createSearchWidget(pltSearchInput, pltSearchResults, {
+    idPrefix: "plt",
+    resultClass: "cb-search-result plt-search-result",
+  });
+
+  searchWidgets.push(heroWidget, pltWidget);
+
+  if (pltSearchInput && pltSearchInput.form) {
+    pltSearchInput.form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      pltWidget.onSubmit();
     });
   }
 
-  function setActiveResult(index) {
-    if (!cbResults || !currentResults.length) return;
-    var buttons = cbResults.querySelectorAll(".cb-search-result");
-    if (!buttons.length) return;
-
-    activeResultIndex = Math.max(0, Math.min(index, buttons.length - 1));
-    buttons.forEach(function (btn, i) {
-      btn.classList.toggle("is-active", i === activeResultIndex);
-    });
-    if (cbSearch) {
-      cbSearch.setAttribute("aria-activedescendant", "cb-result-" + activeResultIndex);
-    }
-    var activeBtn = buttons[activeResultIndex];
-    if (activeBtn && activeBtn.scrollIntoView) {
-      activeBtn.scrollIntoView({ block: "nearest" });
-    }
-  }
-
-  function onSearchInput() {
-    if (!cbSearch) return;
-    var value = cbSearch.value;
-    var q = normalizeQuery(value);
-    if (!q) {
-      hideResults();
-      return;
-    }
-    window.clearTimeout(searchTimer);
-    searchTimer = window.setTimeout(function () {
-      fetchSearchResults(value, function (results) {
-        renderResults(results, value);
-      });
-    }, 200);
-  }
-
-  if (cbSearch) {
-    cbSearch.addEventListener("input", onSearchInput);
-    cbSearch.addEventListener("keydown", function (e) {
-      if (e.key === "ArrowDown") {
-        if (!currentResults.length) return;
-        e.preventDefault();
-        setActiveResult(activeResultIndex + 1);
-      } else if (e.key === "ArrowUp") {
-        if (!currentResults.length) return;
-        e.preventDefault();
-        setActiveResult(activeResultIndex - 1);
-      } else if (e.key === "Enter" && currentResults.length && cbResults.classList.contains("is-open")) {
-        e.preventDefault();
-        var pick = activeResultIndex >= 0 ? activeResultIndex : 0;
-        goToCompany(currentResults[pick]);
-      } else if (e.key === "Escape") {
-        hideResults();
-      }
+  if (cbForm) {
+    cbForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      heroWidget.onSubmit();
     });
   }
 
   document.addEventListener("click", function (e) {
-    var wrap = document.querySelector(".cb-search-wrap");
-    if (wrap && !wrap.contains(e.target)) hideResults();
+    var heroWrap = document.querySelector(".cb-search-wrap");
+    var inHero = heroWrap && heroWrap.contains(e.target);
+    var inPanel = searchPanel && searchPanel.contains(e.target);
+    if (!inHero) heroWidget.hideResults();
+    if (!inPanel) pltWidget.hideResults();
   });
 
   document.querySelectorAll(".cb-suggestion").forEach(function (btn) {
@@ -304,19 +357,8 @@
       if (cbSearch && q) {
         cbSearch.value = q;
         cbSearch.focus();
-        onSearchInput();
+        heroWidget.onInput();
       }
     });
   });
-
-  if (cbForm) {
-    cbForm.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var q = cbSearch && cbSearch.value.trim();
-      if (!q) return;
-      fetchSearchResults(q, function (results) {
-        if (results.length) goToCompany(results[0]);
-      });
-    });
-  }
 })();
