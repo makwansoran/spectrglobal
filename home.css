@@ -1,59 +1,27 @@
 /* Palantir-inspired corporate home — Spectr */
 
-body.page-home {
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+body.page-home.plt-site {
   --ph-ink: #101820;
   --ph-muted: #5c6b7a;
   --ph-line: #d8e0ea;
   --ph-bg: #f7f9fc;
   --ph-surface: #ffffff;
   --ph-accent: #1f6feb;
-}
-
-body.page-home.theme-platform {
-  background: var(--ph-bg);
-  background-image:
-    linear-gradient(rgba(27, 40, 56, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(27, 40, 56, 0.035) 1px, transparent 1px);
-  background-size: 24px 24px;
-}
-
-body.page-home .site-header {
-  background: rgba(255, 255, 255, 0.92);
-  border-bottom: 1px solid var(--ph-line);
-  box-shadow: none;
-}
-
-.ph-hero {
-  padding: clamp(4rem, 14vh, 7rem) 0 clamp(3rem, 8vh, 5rem);
-  border-bottom: 1px solid var(--ph-line);
-  background: linear-gradient(180deg, #fff 0%, var(--ph-bg) 100%);
-}
-
-.ph-hero-inner {
-  max-width: 52rem;
-}
-
-.ph-hero h1 {
-  margin: 0 0 1.25rem;
-  font-size: clamp(2.35rem, 6.5vw, 4.25rem);
-  font-weight: 600;
-  letter-spacing: -0.04em;
-  line-height: 1.05;
+  background: #ffffff;
+  background-image: none;
   color: var(--ph-ink);
-}
-
-.ph-hero-lede {
-  margin: 0 0 2rem;
-  max-width: 38rem;
-  font-size: clamp(1rem, 1.8vw, 1.2rem);
-  line-height: 1.65;
-  color: var(--ph-muted);
-}
-
-.ph-hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
 }
 
 .ph-section-label {

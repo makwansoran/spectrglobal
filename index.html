@@ -17,28 +17,194 @@
     />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="platform.css" />
+    <link rel="stylesheet" href="palantir-nav.css" />
+    <link rel="stylesheet" href="crunchbase-search.css" />
     <link rel="stylesheet" href="home.css" />
     <link rel="stylesheet" href="cookies.css" />
   </head>
-  <body class="font-body theme-platform page-home">
-    <header class="site-header">
-      <div class="wrap header-inner">
-        <a class="logo-link" href="index.html" aria-label="Spectr home">
-          <img class="logo-mark" src="assets/brand/spectr-mark.png" width="40" height="40" alt="" decoding="async" />
-          <span class="wordmark">Spectr</span>
+  <body class="font-body page-home plt-site plt-promo-visible">
+    <div class="plt-promo" id="plt-promo" role="region" aria-label="Announcement">
+      <div class="plt-promo-inner">
+        <a href="#" class="plt-promo-link">
+          Read <span class="plt-promo-underline">Letter to Shareholders</span>
         </a>
+        <button type="button" class="plt-promo-close" id="plt-promo-close" aria-label="Close announcement">×</button>
+      </div>
+    </div>
+
+    <header class="plt-header">
+      <div class="plt-header-inner">
+        <a class="plt-logo" href="index.html" aria-label="Spectr home">
+          <img class="plt-logo-mark" src="assets/brand/spectr-mark.png" width="28" height="28" alt="" decoding="async" />
+          <span class="plt-logo-text">Spectr</span>
+        </a>
+        <div class="plt-header-tools">
+          <button
+            type="button"
+            class="plt-tool-btn"
+            id="plt-search-header-btn"
+            data-plt-search-open
+            aria-label="Show Search"
+            aria-expanded="false"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="11" cy="11" r="7" />
+              <path d="M20 20l-3-3" stroke-linecap="round" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            class="plt-tool-btn plt-menu-btn"
+            id="plt-nav-btn"
+            aria-label="Show Navigation"
+            aria-expanded="false"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" />
+            </svg>
+          </button>
+        </div>
       </div>
     </header>
 
+    <div class="plt-nav-panel" id="plt-nav-panel" aria-hidden="true">
+      <div class="plt-nav-scroll">
+        <a class="plt-nav-logo" href="index.html" aria-label="Spectr home">
+          <img class="plt-logo-mark" src="assets/brand/spectr-mark.png" width="28" height="28" alt="" decoding="async" />
+          <span class="plt-logo-text">Spectr</span>
+        </a>
+        <div class="plt-nav-divider" aria-hidden="true"></div>
+        <p class="plt-nav-label">Navigation</p>
+        <nav aria-label="Primary">
+          <ul class="plt-nav-list">
+            <li>
+              <a href="#" class="plt-nav-primary">Generate Alpha</a>
+              <ul class="plt-nav-sub">
+                <li><a href="#">↳ AIP</a></li>
+                <li><a href="#">↳ Foundry</a></li>
+                <li><a href="#">↳ Gotham</a></li>
+                <li><a href="#">↳ Ontology</a></li>
+                <li><a href="#">↳ Apollo</a></li>
+              </ul>
+            </li>
+            <li><a href="#" class="plt-nav-primary">Offerings</a></li>
+            <li><a href="#" class="plt-nav-primary">Impact Studies</a></li>
+            <li><a href="#" class="plt-nav-primary">Documentation</a></li>
+            <li><a href="#" class="plt-nav-primary">Careers</a></li>
+            <li><a href="#" class="plt-nav-primary">Newsroom</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="plt-nav-footer">
+        <button type="button" class="plt-nav-close" id="plt-nav-close" aria-label="Close navigation">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <path d="M6 6l12 12M18 6L6 18" stroke-linecap="round" />
+          </svg>
+        </button>
+        <button
+          type="button"
+          class="plt-tool-btn"
+          data-plt-search-open
+          aria-label="Show Search"
+          aria-expanded="false"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" />
+            <path d="M20 20l-3-3" stroke-linecap="round" />
+          </svg>
+        </button>
+        <a href="#" class="plt-cta-get-started">Get Started</a>
+      </div>
+    </div>
+
+    <div class="plt-search-panel" id="plt-search-panel" aria-hidden="true">
+      <div class="plt-search-panel-top">
+        <form class="plt-search-panel-form" role="search" action="#" onsubmit="return false">
+          <input
+            type="search"
+            class="plt-search-panel-input"
+            id="plt-search-input"
+            placeholder="Search"
+            autocomplete="off"
+          />
+        </form>
+        <button type="button" class="plt-search-panel-close" id="plt-search-close" aria-label="Close search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <path d="M6 6l12 12M18 6L6 18" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
     <main>
-      <section class="ph-hero" id="top">
-        <div class="wrap ph-hero-inner">
-          <p class="plt-eyebrow">Operational intelligence</p>
-          <h1>Software that turns data into decisions.</h1>
-          <p class="ph-hero-lede">
-            Spectr builds infrastructure for investment teams—multi-agent analysis, live fund analytics, and streaming
-            decision workflows.
+      <section class="cb-hero" id="top" aria-labelledby="cb-hero-title">
+        <div class="cb-hero-inner">
+          <h1 id="cb-hero-title">Make better decisions, faster</h1>
+          <p class="cb-hero-lede">
+            Discover and act on private market activity with predictive company intelligence.
           </p>
+          <form class="cb-search-form" id="cb-search-form" role="search">
+            <div class="cb-search-box">
+              <label class="visually-hidden" for="cb-search">Search companies, investors, or ask a question</label>
+              <input
+                type="search"
+                class="cb-search-input"
+                id="cb-search"
+                name="q"
+                placeholder="Search companies, investors, or ask a question…"
+                autocomplete="off"
+              />
+              <button type="submit" class="cb-search-submit" aria-label="Search">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                  <circle cx="11" cy="11" r="7" />
+                  <path d="M20 20l-3-3" stroke-linecap="round" />
+                </svg>
+              </button>
+            </div>
+          </form>
+          <ul class="cb-search-suggestions" aria-label="Suggested searches">
+            <li>
+              <button type="button" class="cb-suggestion" data-query="Find SaaS companies that are likely growing">
+                <span class="cb-suggestion-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 18V6M10 18V10M16 18v-6M22 18V4" stroke-linecap="round" />
+                  </svg>
+                </span>
+                Find SaaS companies that are likely growing
+              </button>
+            </li>
+            <li>
+              <button type="button" class="cb-suggestion" data-query="Healthcare companies that recently raised funding">
+                <span class="cb-suggestion-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2v20M17 7H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H7" stroke-linecap="round" />
+                  </svg>
+                </span>
+                Healthcare companies that recently raised funding
+              </button>
+            </li>
+            <li>
+              <button type="button" class="cb-suggestion" data-query="What's Mistral AI's business model?">
+                <span class="cb-suggestion-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="7" />
+                    <path d="M20 20l-3-3" stroke-linecap="round" />
+                  </svg>
+                </span>
+                What's Mistral AI's business model?
+              </button>
+            </li>
+            <li>
+              <button type="button" class="cb-suggestion" data-query="Compare Anthropic and OpenAI">
+                <span class="cb-suggestion-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M7 8h10M7 12h6M7 16h8M5 4h14v16H5z" stroke-linecap="round" />
+                  </svg>
+                </span>
+                Compare Anthropic and OpenAI
+              </button>
+            </li>
+          </ul>
         </div>
       </section>
 
@@ -109,5 +275,6 @@
 
     <script src="cookies.js" defer></script>
     <script src="script.js" defer></script>
+    <script src="home.js" defer></script>
   </body>
 </html>

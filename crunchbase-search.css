@@ -1,0 +1,196 @@
+/* Crunchbase.com-style hero search */
+
+.cb-hero {
+  position: relative;
+  padding: clamp(3rem, 10vh, 5.5rem) 0 clamp(4rem, 12vh, 6rem);
+  text-align: center;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.cb-hero::before {
+  content: "";
+  position: absolute;
+  inset: -20% -10%;
+  background:
+    radial-gradient(ellipse 55% 45% at 50% 35%, rgba(183, 148, 246, 0.22), transparent 70%),
+    radial-gradient(ellipse 40% 35% at 30% 55%, rgba(255, 182, 193, 0.18), transparent 65%),
+    radial-gradient(ellipse 45% 40% at 72% 48%, rgba(147, 197, 253, 0.2), transparent 68%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cb-hero-inner {
+  position: relative;
+  z-index: 1;
+  width: min(44rem, 100% - 2rem);
+  margin-inline: auto;
+}
+
+.cb-hero h1 {
+  margin: 0 0 1rem;
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  font-size: clamp(2rem, 5.5vw, 3.25rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+  color: #1a1a2e;
+}
+
+.cb-hero-lede {
+  margin: 0 auto 2.25rem;
+  max-width: 32rem;
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  font-size: clamp(0.95rem, 1.6vw, 1.125rem);
+  line-height: 1.55;
+  color: #4a4a68;
+}
+
+.cb-search-form {
+  margin: 0 auto;
+}
+
+.cb-search-box {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.35rem 0.35rem 1.25rem;
+  background: #ffffff;
+  border: 1px solid #e2e2ea;
+  border-radius: 999px;
+  box-shadow:
+    0 1px 2px rgba(26, 26, 46, 0.04),
+    0 8px 32px rgba(99, 102, 241, 0.08);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cb-search-box:focus-within {
+  border-color: #b8c4f0;
+  box-shadow:
+    0 1px 2px rgba(26, 26, 46, 0.04),
+    0 8px 40px rgba(99, 102, 241, 0.14);
+}
+
+.cb-search-input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.85rem 0;
+  border: none;
+  background: transparent;
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  font-size: 1rem;
+  color: #1a1a2e;
+  outline: none;
+}
+
+.cb-search-input::placeholder {
+  color: #8b8ba3;
+}
+
+.cb-search-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: #ffffff;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.cb-search-submit:hover {
+  opacity: 0.92;
+  transform: scale(1.03);
+}
+
+.cb-search-submit svg {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.cb-search-suggestions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+  margin: 1.75rem auto 0;
+  padding: 0;
+  list-style: none;
+  max-width: 36rem;
+}
+
+.cb-suggestion {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  width: 100%;
+  max-width: 28rem;
+  padding: 0.7rem 1.1rem;
+  border: 1px solid #ebebf0;
+  border-radius: 999px;
+  background: #ffffff;
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  font-size: 0.875rem;
+  color: #3d3d56;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(26, 26, 46, 0.04);
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
+}
+
+.cb-suggestion:hover {
+  border-color: #d4d4e8;
+  box-shadow: 0 4px 16px rgba(26, 26, 46, 0.08);
+  transform: translateY(-1px);
+}
+
+.cb-suggestion:nth-child(2) {
+  margin-left: 1.5rem;
+}
+
+.cb-suggestion:nth-child(3) {
+  margin-left: 0.75rem;
+}
+
+.cb-suggestion:nth-child(4) {
+  margin-left: 2rem;
+}
+
+.cb-suggestion-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  color: #6366f1;
+}
+
+.cb-suggestion-icon svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+@media (max-width: 600px) {
+  .cb-suggestion:nth-child(2),
+  .cb-suggestion:nth-child(3),
+  .cb-suggestion:nth-child(4) {
+    margin-left: 0;
+  }
+
+  .cb-search-box {
+    padding-left: 1rem;
+  }
+
+  .cb-search-input {
+    font-size: 0.9375rem;
+  }
+}
