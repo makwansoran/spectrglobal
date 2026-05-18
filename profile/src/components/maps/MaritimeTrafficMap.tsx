@@ -5,10 +5,8 @@ import "leaflet/dist/leaflet.css";
 import { fetchWaterwayVessels } from "../../api/waterways";
 import { VESSEL_TYPE_LABELS } from "../../lib/vesselTypes";
 import type { SimulatedVessel, WaterwayProfile } from "../../types/waterway";
+import { OSM_ATTRIBUTION, OSM_TILE_URL } from "../../lib/mapTiles";
 import { VesselShipMarker } from "./VesselShipMarker";
-
-const DARK_TILE =
-  "https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png";
 
 function FitWaterwayBounds({ bounds }: { bounds: LatLngBoundsExpression }) {
   const map = useMap();
@@ -98,11 +96,7 @@ export function MaritimeTrafficMap({ waterway }: Props) {
         zoomControl={false}
         scrollWheelZoom={true}
       >
-        <TileLayer url={DARK_TILE} attribution='&copy; <a href="https://carto.com/">CARTO</a>' />
-        <TileLayer
-          url="https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png"
-          attribution=""
-        />
+        <TileLayer url={OSM_TILE_URL} attribution={OSM_ATTRIBUTION} />
         <FitWaterwayBounds bounds={bounds} />
         {vessels.map((v) => (
           <VesselShipMarker

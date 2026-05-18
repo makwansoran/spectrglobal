@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { CircleMarker, MapContainer, Polyline, Popup, TileLayer, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import type { CompanyProfile } from "../../types/company";
+import { OSM_ATTRIBUTION, OSM_TILE_URL } from "../../lib/mapTiles";
 
 type Pin = { lat: number; lng: number; label: string; meta: string };
 type Route = { from: [number, number]; to: [number, number]; label: string };
@@ -44,7 +45,7 @@ export function GenericPinsMap({ company, title, hint, pins = [], routes = [] }:
       <p className="mb-2 text-xs text-muted">{hint}</p>
       <div className="h-[420px] overflow-hidden rounded-xl border border-line md:h-[480px]">
         <MapContainer center={center} zoom={zoom} className="h-full w-full" scrollWheelZoom>
-          <TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" />
+          <TileLayer url={OSM_TILE_URL} attribution={OSM_ATTRIBUTION} />
           <MapResizer center={center} zoom={zoom} />
           {pins.map((p) => (
             <CircleMarker

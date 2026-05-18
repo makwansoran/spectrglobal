@@ -314,7 +314,7 @@
 .maritime-map {
   width: 100%;
   height: 100%;
-  background: #0c1929 !important;
+  background: #f2f4f7 !important;
 }
 
 .maritime-map-loading {
@@ -327,7 +327,7 @@
 }
 
 .leaflet-container.maritime-map {
-  background: #0c1929 !important;
+  background: #f2f4f7 !important;
 }
 
 /* MarineTraffic-style vessel markers */
@@ -358,12 +358,22 @@
   gap: 1rem;
 }
 
+.maritime-hud-top .maritime-hud-title,
+.maritime-hud-top .maritime-hud-stats {
+  padding: 0.65rem 0.85rem;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.12);
+  backdrop-filter: blur(8px);
+}
+
 .maritime-hud-title h1 {
   margin: 0.15rem 0 0;
   font-family: "Syne", system-ui, sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
-  color: #f8fafc;
+  color: #0f172a;
   letter-spacing: -0.02em;
 }
 
@@ -380,13 +390,13 @@
 .maritime-hud-region {
   margin: 0.25rem 0 0;
   font-size: 0.8125rem;
-  color: #94a3b8;
+  color: #475569;
 }
 
 .maritime-hud-stats {
   font-family: "JetBrains Mono", monospace;
   font-size: 0.6875rem;
-  color: #64748b;
+  color: #334155;
   text-align: right;
 }
 

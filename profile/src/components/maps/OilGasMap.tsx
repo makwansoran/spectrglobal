@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, GeoJSON, useMap } from "react-leaflet";
 import type { Layer, Path, PathOptions } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import type { CompanyProfile } from "../../types/company";
+import { OSM_ATTRIBUTION, OSM_TILE_URL } from "../../lib/mapTiles";
 
 type BlockProps = {
   name: string;
@@ -82,10 +83,7 @@ export function OilGasMap({ company, mapGeojson }: Props) {
   return (
     <div className="h-[420px] overflow-hidden rounded-xl border border-line md:h-[480px]">
       <MapContainer center={center} zoom={zoom} className="h-full w-full" scrollWheelZoom>
-        <TileLayer
-          attribution="&copy; OSM &copy; CARTO"
-          url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-        />
+        <TileLayer url={OSM_TILE_URL} attribution={OSM_ATTRIBUTION} />
         <MapResizer center={center} zoom={zoom} />
         <GeoJSON
           data={blocks as GeoJSON.GeoJsonObject}
