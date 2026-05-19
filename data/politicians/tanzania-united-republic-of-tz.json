@@ -1,0 +1,77 @@
+{
+  "countrySlug": "tanzania-united-republic-of-tz",
+  "politicians": [
+    {
+      "office": "President",
+      "profile": {
+        "id": "samia-suluhu-hassan-president-tz",
+        "slug": "samia-suluhu-hassan-president-tz",
+        "name": "Samia Suluhu Hassan",
+        "countrySlug": "tanzania-united-republic-of-tz",
+        "countryName": "Tanzania, United Republic of",
+        "office": "President",
+        "searchTerms": [
+          "samia suluhu hassan",
+          "president",
+          "tanzania, united republic of",
+          "tz"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:22.024Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "mwigulu-nchemba-minister-of-finance-tz",
+        "slug": "mwigulu-nchemba-minister-of-finance-tz",
+        "name": "Mwigulu Nchemba",
+        "countrySlug": "tanzania-united-republic-of-tz",
+        "countryName": "Tanzania, United Republic of",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "mwigulu nchemba",
+          "minister of finance",
+          "tanzania, united republic of",
+          "tz"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:22.024Z"
+      }
+    },
+    {
+      "office": "Vice President",
+      "profile": {
+        "id": "philip-mpango-vice-president-tz",
+        "slug": "philip-mpango-vice-president-tz",
+        "name": "Philip Mpango",
+        "countrySlug": "tanzania-united-republic-of-tz",
+        "countryName": "Tanzania, United Republic of",
+        "office": "Vice President",
+        "searchTerms": [
+          "philip mpango",
+          "vice president",
+          "tanzania, united republic of",
+          "tz"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:22.024Z"
+      }
+    }
+  ]
+}

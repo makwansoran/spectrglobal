@@ -101,5 +101,7 @@ alter table public.venture_capital enable row level security;
 drop policy if exists "Public read venture_capital" on public.venture_capital;
 create policy "Public read venture_capital" on public.venture_capital for select to anon, authenticated using (true);
 
+-- Countries + politicians — run supabase/countries-politicians.sql if missing
+
 -- Reload PostgREST schema cache (Supabase picks this up automatically within ~1 min)
 notify pgrst, 'reload schema';

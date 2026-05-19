@@ -1,0 +1,77 @@
+{
+  "countrySlug": "trinidad-and-tobago-tt",
+  "politicians": [
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "christine-kangaloo-head-of-state-tt",
+        "slug": "christine-kangaloo-head-of-state-tt",
+        "name": "Christine Kangaloo",
+        "countrySlug": "trinidad-and-tobago-tt",
+        "countryName": "Trinidad and Tobago",
+        "office": "Head of State",
+        "searchTerms": [
+          "christine kangaloo",
+          "head of state",
+          "trinidad and tobago",
+          "tt"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.695Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "colm-imbert-minister-of-finance-tt",
+        "slug": "colm-imbert-minister-of-finance-tt",
+        "name": "Colm Imbert",
+        "countrySlug": "trinidad-and-tobago-tt",
+        "countryName": "Trinidad and Tobago",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "colm imbert",
+          "minister of finance",
+          "trinidad and tobago",
+          "tt"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:22.031Z"
+      }
+    },
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "keith-rowley-prime-minister-tt",
+        "slug": "keith-rowley-prime-minister-tt",
+        "name": "Keith Rowley",
+        "countrySlug": "trinidad-and-tobago-tt",
+        "countryName": "Trinidad and Tobago",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "keith rowley",
+          "prime minister",
+          "trinidad and tobago",
+          "tt"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:37:01.182Z"
+      }
+    }
+  ]
+}

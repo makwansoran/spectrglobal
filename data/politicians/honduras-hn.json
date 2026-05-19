@@ -1,0 +1,53 @@
+{
+  "countrySlug": "honduras-hn",
+  "politicians": [
+    {
+      "office": "President",
+      "profile": {
+        "id": "xiomara-castro-president-hn",
+        "slug": "xiomara-castro-president-hn",
+        "name": "Xiomara Castro",
+        "countrySlug": "honduras-hn",
+        "countryName": "Honduras",
+        "office": "President",
+        "searchTerms": [
+          "xiomara castro",
+          "president",
+          "honduras",
+          "hn"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.861Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "rixi-moncada-minister-of-finance-hn",
+        "slug": "rixi-moncada-minister-of-finance-hn",
+        "name": "Rixi Moncada",
+        "countrySlug": "honduras-hn",
+        "countryName": "Honduras",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "rixi moncada",
+          "minister of finance",
+          "honduras",
+          "hn"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.861Z"
+      }
+    }
+  ]
+}

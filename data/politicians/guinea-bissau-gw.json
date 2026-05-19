@@ -1,0 +1,77 @@
+{
+  "countrySlug": "guinea-bissau-gw",
+  "politicians": [
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "jose-mario-vaz-head-of-state-gw",
+        "slug": "jose-mario-vaz-head-of-state-gw",
+        "name": "José Mário Vaz",
+        "countrySlug": "guinea-bissau-gw",
+        "countryName": "Guinea-Bissau",
+        "office": "Head of State",
+        "searchTerms": [
+          "josé mário vaz",
+          "head of state",
+          "guinea-bissau",
+          "gw"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.411Z"
+      }
+    },
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "rui-duarte-de-barros-prime-minister-gw",
+        "slug": "rui-duarte-de-barros-prime-minister-gw",
+        "name": "Rui Duarte de Barros",
+        "countrySlug": "guinea-bissau-gw",
+        "countryName": "Guinea-Bissau",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "rui duarte de barros",
+          "prime minister",
+          "guinea-bissau",
+          "gw"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.411Z"
+      }
+    },
+    {
+      "office": "President",
+      "profile": {
+        "id": "umaro-sissoco-embalo-president-gw",
+        "slug": "umaro-sissoco-embalo-president-gw",
+        "name": "Umaro Sissoco Embaló",
+        "countrySlug": "guinea-bissau-gw",
+        "countryName": "Guinea-Bissau",
+        "office": "President",
+        "searchTerms": [
+          "umaro sissoco embaló",
+          "president",
+          "guinea-bissau",
+          "gw"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.858Z"
+      }
+    }
+  ]
+}

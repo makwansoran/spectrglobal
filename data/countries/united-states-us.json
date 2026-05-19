@@ -1,0 +1,24 @@
+{
+  "slug": "united-states-us",
+  "profile": {
+    "id": "united-states-us",
+    "slug": "united-states-us",
+    "name": "United States",
+    "isoCode": "US",
+    "region": "",
+    "capital": "Washington, D.C.",
+    "population": null,
+    "governmentType": "",
+    "about": "",
+    "flagEmoji": "",
+    "logoInitials": "US",
+    "searchTerms": [
+      "united states",
+      "us",
+      "united-states-us"
+    ],
+    "dataSources": [],
+    "lastUpdated": "2026-05-19T12:38:04.197Z"
+  },
+  "mapGeojson": null
+}

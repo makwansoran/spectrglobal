@@ -1,0 +1,24 @@
+{
+  "slug": "russia-ru",
+  "profile": {
+    "id": "russia-ru",
+    "slug": "russia-ru",
+    "name": "Russia",
+    "isoCode": "RU",
+    "region": "",
+    "capital": "Moscow",
+    "population": null,
+    "governmentType": "",
+    "about": "",
+    "flagEmoji": "",
+    "logoInitials": "RU",
+    "searchTerms": [
+      "russia",
+      "ru",
+      "russia-ru"
+    ],
+    "dataSources": [],
+    "lastUpdated": "2026-05-19T12:38:04.153Z"
+  },
+  "mapGeojson": null
+}

@@ -1,0 +1,24 @@
+{
+  "slug": "south-korea-kr",
+  "profile": {
+    "id": "south-korea-kr",
+    "slug": "south-korea-kr",
+    "name": "South Korea",
+    "isoCode": "KR",
+    "region": "",
+    "capital": "Seoul",
+    "population": null,
+    "governmentType": "",
+    "about": "",
+    "flagEmoji": "",
+    "logoInitials": "SK",
+    "searchTerms": [
+      "south korea",
+      "kr",
+      "south-korea-kr"
+    ],
+    "dataSources": [],
+    "lastUpdated": "2026-05-19T12:38:04.171Z"
+  },
+  "mapGeojson": null
+}

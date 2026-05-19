@@ -1,0 +1,31 @@
+{
+  "slug": "cote-d-ivoire-ci",
+  "profile": {
+    "id": "cote-d-ivoire-ci",
+    "slug": "cote-d-ivoire-ci",
+    "name": "Côte d'Ivoire",
+    "isoCode": "CI",
+    "region": "Africa · Sub-Saharan Africa",
+    "capital": "Yamoussoukro",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Yamoussoukro. Region: Africa (Sub-Saharan Africa).",
+    "flagEmoji": "",
+    "logoInitials": "CI",
+    "searchTerms": [
+      "côte d'ivoire",
+      "ci",
+      "civ",
+      "cote-d-ivoire-ci"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.461Z",
+    "flagUrl": "https://flagcdn.com/w320/ci.png"
+  },
+  "mapGeojson": null
+}

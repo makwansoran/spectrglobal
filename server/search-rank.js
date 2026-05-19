@@ -204,12 +204,60 @@ function formatWaterwaySearchSubtitle(row) {
   return row.subtitle || `${typeLabel} · ${row.regionLabel || "Maritime traffic"}`;
 }
 
-/** Merge company + commodity + waterway hits. */
-function mergeSearchResults(companies, commodities, query, limit = 25, waterways = []) {
+function formatPersonSearchSubtitle(row) {
+  return row.meta || row.title || row.companySlug || "Executive";
+}
+
+function formatCountrySearchSubtitle(row) {
+  if (row.subtitle) return row.subtitle;
+  if (row.meta) return row.meta;
+  if (row.isoCode) return row.isoCode;
+  return "Country";
+}
+
+function formatPoliticianSearchSubtitle(row) {
+  return row.subtitle || row.meta || row.office || "Politician";
+}
+
+/**
+ * Merge unified search hits across companies, commodities, waterways,
+ * people, countries, politicians, and vessels.
+ */
+function mergeSearchResults(opts, ...legacy) {
+  let companies, commodities, waterways, people, countries, politicians, vessels, query, limit;
+  if (opts && typeof opts === "object" && !Array.isArray(opts)) {
+    ({
+      companies = [],
+      commodities = [],
+      waterways = [],
+      people = [],
+      countries = [],
+      politicians = [],
+      vessels = [],
+      query = "",
+      limit = 25,
+    } = opts);
+  } else {
+    // Legacy positional: (companies, commodities, query, limit, waterways)
+    companies = opts || [];
+    commodities = legacy[0] || [];
+    query = legacy[1] || "";
+    limit = legacy[2] || 25;
+    waterways = legacy[3] || [];
+    people = [];
+    countries = [];
+    politicians = [];
+    vessels = [];
+  }
+
   const pool = [
     ...companies.map((row) => ({ row, score: scoreUnifiedSearch(row, query) + 40 })),
     ...commodities.map((row) => ({ row, score: scoreUnifiedSearch(row, query) })),
     ...waterways.map((row) => ({ row, score: scoreUnifiedSearch(row, query) + 50 })),
+    ...countries.map((row) => ({ row, score: scoreUnifiedSearch(row, query) + 30 })),
+    ...politicians.map((row) => ({ row, score: scoreUnifiedSearch(row, query) + 20 })),
+    ...people.map((row) => ({ row, score: scoreUnifiedSearch(row, query) + 10 })),
+    ...vessels.map((row) => ({ row, score: scoreUnifiedSearch(row, query) - 10 })),
   ];
   pool.sort((a, b) => b.score - a.score || String(a.row.name).localeCompare(String(b.row.name)));
   return pool.slice(0, limit).map((x) => x.row);
@@ -223,6 +271,9 @@ module.exports = {
   mergeSearchResults,
   formatCommoditySearchSubtitle,
   formatWaterwaySearchSubtitle,
+  formatPersonSearchSubtitle,
+  formatCountrySearchSubtitle,
+  formatPoliticianSearchSubtitle,
   scoreUnifiedSearch,
   getRowTicker,
   normalizeTicker,

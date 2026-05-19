@@ -1,0 +1,53 @@
+{
+  "countrySlug": "mexico-mx",
+  "politicians": [
+    {
+      "office": "President",
+      "profile": {
+        "id": "claudia-sheinbaum-president-mx",
+        "slug": "claudia-sheinbaum-president-mx",
+        "name": "Claudia Sheinbaum",
+        "countrySlug": "mexico-mx",
+        "countryName": "Mexico",
+        "office": "President",
+        "searchTerms": [
+          "claudia sheinbaum",
+          "president",
+          "mexico",
+          "mx"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.923Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "rogelio-ramirez-de-la-o-minister-of-finance-mx",
+        "slug": "rogelio-ramirez-de-la-o-minister-of-finance-mx",
+        "name": "Rogelio Ramírez de la O",
+        "countrySlug": "mexico-mx",
+        "countryName": "Mexico",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "rogelio ramírez de la o",
+          "minister of finance",
+          "mexico",
+          "mx"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.923Z"
+      }
+    }
+  ]
+}

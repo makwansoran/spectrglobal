@@ -1,0 +1,77 @@
+{
+  "countrySlug": "costa-rica-cr",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "rodrigo-chaves-prime-minister-cr",
+        "slug": "rodrigo-chaves-prime-minister-cr",
+        "name": "Rodrigo Chaves",
+        "countrySlug": "costa-rica-cr",
+        "countryName": "Costa Rica",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "rodrigo chaves",
+          "prime minister",
+          "costa rica",
+          "cr"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.307Z"
+      }
+    },
+    {
+      "office": "President",
+      "profile": {
+        "id": "rodrigo-chaves-robles-president-cr",
+        "slug": "rodrigo-chaves-robles-president-cr",
+        "name": "Rodrigo Chaves Robles",
+        "countrySlug": "costa-rica-cr",
+        "countryName": "Costa Rica",
+        "office": "President",
+        "searchTerms": [
+          "rodrigo chaves robles",
+          "president",
+          "costa rica",
+          "cr"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.825Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "nogui-acosta-jaen-minister-of-finance-cr",
+        "slug": "nogui-acosta-jaen-minister-of-finance-cr",
+        "name": "Nogui Acosta Jaén",
+        "countrySlug": "costa-rica-cr",
+        "countryName": "Costa Rica",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "nogui acosta jaén",
+          "minister of finance",
+          "costa rica",
+          "cr"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.825Z"
+      }
+    }
+  ]
+}

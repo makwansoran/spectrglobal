@@ -1,0 +1,31 @@
+{
+  "slug": "new-caledonia-nc",
+  "profile": {
+    "id": "new-caledonia-nc",
+    "slug": "new-caledonia-nc",
+    "name": "New Caledonia",
+    "isoCode": "NC",
+    "region": "Oceania · Melanesia",
+    "capital": "Nouméa",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Nouméa. Region: Oceania (Melanesia).",
+    "flagEmoji": "",
+    "logoInitials": "NC",
+    "searchTerms": [
+      "new caledonia",
+      "nc",
+      "ncl",
+      "new-caledonia-nc"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.684Z",
+    "flagUrl": "https://flagcdn.com/w320/nc.png"
+  },
+  "mapGeojson": null
+}

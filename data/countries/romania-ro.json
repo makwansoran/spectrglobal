@@ -1,0 +1,31 @@
+{
+  "slug": "romania-ro",
+  "profile": {
+    "id": "romania-ro",
+    "slug": "romania-ro",
+    "name": "Romania",
+    "isoCode": "RO",
+    "region": "Europe · Eastern Europe",
+    "capital": "Bucharest",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Bucharest. Region: Europe (Eastern Europe).",
+    "flagEmoji": "",
+    "logoInitials": "RO",
+    "searchTerms": [
+      "romania",
+      "ro",
+      "rou",
+      "romania-ro"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.735Z",
+    "flagUrl": "https://flagcdn.com/w320/ro.png"
+  },
+  "mapGeojson": null
+}

@@ -1,0 +1,77 @@
+{
+  "countrySlug": "venezuela-bolivarian-republic-of-ve",
+  "politicians": [
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "simon-zerpa-delgado-minister-of-finance-ve",
+        "slug": "simon-zerpa-delgado-minister-of-finance-ve",
+        "name": "Simón Zerpa Delgado",
+        "countrySlug": "venezuela-bolivarian-republic-of-ve",
+        "countryName": "Venezuela, Bolivarian Republic of",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "simón zerpa delgado",
+          "minister of finance",
+          "venezuela, bolivarian republic of",
+          "ve"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:22.056Z"
+      }
+    },
+    {
+      "office": "President",
+      "profile": {
+        "id": "nicolas-maduro-president-ve",
+        "slug": "nicolas-maduro-president-ve",
+        "name": "Nicolás Maduro",
+        "countrySlug": "venezuela-bolivarian-republic-of-ve",
+        "countryName": "Venezuela, Bolivarian Republic of",
+        "office": "President",
+        "searchTerms": [
+          "nicolás maduro",
+          "president",
+          "venezuela, bolivarian republic of",
+          "ve"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:37:01.182Z"
+      }
+    },
+    {
+      "office": "Vice President",
+      "profile": {
+        "id": "delcy-rodriguez-vice-president-ve",
+        "slug": "delcy-rodriguez-vice-president-ve",
+        "name": "Delcy Rodríguez",
+        "countrySlug": "venezuela-bolivarian-republic-of-ve",
+        "countryName": "Venezuela, Bolivarian Republic of",
+        "office": "Vice President",
+        "searchTerms": [
+          "delcy rodríguez",
+          "vice president",
+          "venezuela, bolivarian republic of",
+          "ve"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:22.056Z"
+      }
+    }
+  ]
+}

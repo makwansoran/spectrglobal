@@ -1,0 +1,31 @@
+{
+  "slug": "cyprus-cy",
+  "profile": {
+    "id": "cyprus-cy",
+    "slug": "cyprus-cy",
+    "name": "Cyprus",
+    "isoCode": "CY",
+    "region": "Asia · Western Asia",
+    "capital": "Nicosia",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Nicosia. Region: Asia (Western Asia).",
+    "flagEmoji": "",
+    "logoInitials": "CY",
+    "searchTerms": [
+      "cyprus",
+      "cy",
+      "cyp",
+      "cyprus-cy"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.466Z",
+    "flagUrl": "https://flagcdn.com/w320/cy.png"
+  },
+  "mapGeojson": null
+}

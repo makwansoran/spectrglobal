@@ -34,6 +34,7 @@ const COUNTRY_TO_ISO = {
   Malaysia: "MY",
   Mexico: "MX",
   Morocco: "MA",
+  Norway: "NO",
   Netherlands: "NL",
   "New Zealand": "NZ",
   Panama: "PA",
@@ -76,4 +77,29 @@ function countryCodeToName(code) {
   return cc === "XX" ? "Unknown" : cc;
 }
 
-module.exports = { COUNTRY_TO_ISO, countryNameToCode, countryCodeToName };
+function slugifyCountryName(name) {
+  return String(name || "country")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "")
+    .slice(0, 48);
+}
+
+/** URL slug: norway-no */
+function countrySlug(name, isoCode) {
+  const iso = String(isoCode || "").toLowerCase();
+  const base = slugifyCountryName(name);
+  if (!iso || iso === "xx") return base;
+  if (base.endsWith(`-${iso}`)) return base;
+  return `${base}-${iso}`;
+}
+
+module.exports = {
+  COUNTRY_TO_ISO,
+  countryNameToCode,
+  countryCodeToName,
+  slugifyCountryName,
+  countrySlug,
+};

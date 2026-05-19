@@ -1,0 +1,31 @@
+{
+  "slug": "ghana-gh",
+  "profile": {
+    "id": "ghana-gh",
+    "slug": "ghana-gh",
+    "name": "Ghana",
+    "isoCode": "GH",
+    "region": "Africa · Sub-Saharan Africa",
+    "capital": "Accra",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Accra. Region: Africa (Sub-Saharan Africa).",
+    "flagEmoji": "",
+    "logoInitials": "GH",
+    "searchTerms": [
+      "ghana",
+      "gh",
+      "gha",
+      "ghana-gh"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.595Z",
+    "flagUrl": "https://flagcdn.com/w320/gh.png"
+  },
+  "mapGeojson": null
+}

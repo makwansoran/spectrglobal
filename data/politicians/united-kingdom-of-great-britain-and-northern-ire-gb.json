@@ -1,0 +1,77 @@
+{
+  "countrySlug": "united-kingdom-of-great-britain-and-northern-ire-gb",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "keir-starmer-prime-minister-gb",
+        "slug": "keir-starmer-prime-minister-gb",
+        "name": "Keir Starmer",
+        "countrySlug": "united-kingdom-of-great-britain-and-northern-ire-gb",
+        "countryName": "United Kingdom of Great Britain and Northern Ireland",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "keir starmer",
+          "prime minister",
+          "united kingdom of great britain and northern ireland",
+          "gb"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.710Z"
+      }
+    },
+    {
+      "office": "Chancellor of the Exchequer",
+      "profile": {
+        "id": "rachel-reeves-chancellor-of-the-ex-gb-2",
+        "slug": "rachel-reeves-chancellor-of-the-ex-gb-2",
+        "name": "Rachel Reeves",
+        "countrySlug": "united-kingdom-of-great-britain-and-northern-ire-gb",
+        "countryName": "United Kingdom of Great Britain and Northern Ireland",
+        "office": "Chancellor of the Exchequer",
+        "searchTerms": [
+          "rachel reeves",
+          "chancellor of the exchequer",
+          "united kingdom of great britain and northern ireland",
+          "gb"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:37:01.182Z"
+      }
+    },
+    {
+      "office": "King",
+      "profile": {
+        "id": "charles-iii-king-gb-2",
+        "slug": "charles-iii-king-gb-2",
+        "name": "Charles III",
+        "countrySlug": "united-kingdom-of-great-britain-and-northern-ire-gb",
+        "countryName": "United Kingdom of Great Britain and Northern Ireland",
+        "office": "King",
+        "searchTerms": [
+          "charles iii",
+          "king",
+          "united kingdom of great britain and northern ireland",
+          "gb"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:45:57.996Z"
+      }
+    }
+  ]
+}

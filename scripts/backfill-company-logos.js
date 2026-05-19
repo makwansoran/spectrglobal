@@ -13,7 +13,6 @@ const { getAdminClient, isSupabaseEnabled, hasSupabaseWrites } = require("../ser
 const {
   defaultLogoUrl,
   resolveCompanyLogoUrl,
-  resolveLogoViaNameSearch,
   applyLogoToProfile,
 } = require("../server/company-logo");
 const { buildMeta } = require("../server/local-store");
@@ -68,11 +67,6 @@ function rowPatch(slug, profile, searchTerms) {
 
 async function resolveLogo(profile, opts) {
   if (opts.verify) return resolveCompanyLogoUrl(profile);
-  if (opts.smart) {
-    const fast = defaultLogoUrl(profile);
-    if (fast) return fast;
-    return resolveLogoViaNameSearch(profile);
-  }
   return defaultLogoUrl(profile);
 }
 

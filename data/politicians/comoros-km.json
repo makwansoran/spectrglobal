@@ -1,0 +1,53 @@
+{
+  "countrySlug": "comoros-km",
+  "politicians": [
+    {
+      "office": "President",
+      "profile": {
+        "id": "azali-assoumani-president-km",
+        "slug": "azali-assoumani-president-km",
+        "name": "Azali Assoumani",
+        "countrySlug": "comoros-km",
+        "countryName": "Comoros",
+        "office": "President",
+        "searchTerms": [
+          "azali assoumani",
+          "president",
+          "comoros",
+          "km"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.822Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "moindjie-mze-ibrahim-minister-of-finance-km",
+        "slug": "moindjie-mze-ibrahim-minister-of-finance-km",
+        "name": "Moindjie Mzé Ibrahim",
+        "countrySlug": "comoros-km",
+        "countryName": "Comoros",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "moindjie mzé ibrahim",
+          "minister of finance",
+          "comoros",
+          "km"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.822Z"
+      }
+    }
+  ]
+}

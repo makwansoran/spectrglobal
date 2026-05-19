@@ -1,0 +1,77 @@
+{
+  "countrySlug": "ireland-ie",
+  "politicians": [
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "catherine-connolly-head-of-state-ie",
+        "slug": "catherine-connolly-head-of-state-ie",
+        "name": "Catherine Connolly",
+        "countrySlug": "ireland-ie",
+        "countryName": "Ireland",
+        "office": "Head of State",
+        "searchTerms": [
+          "catherine connolly",
+          "head of state",
+          "ireland",
+          "ie"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.456Z"
+      }
+    },
+    {
+      "office": "Minister for Finance",
+      "profile": {
+        "id": "paschal-donohoe-minister-for-finance-ie",
+        "slug": "paschal-donohoe-minister-for-finance-ie",
+        "name": "Paschal Donohoe",
+        "countrySlug": "ireland-ie",
+        "countryName": "Ireland",
+        "office": "Minister for Finance",
+        "searchTerms": [
+          "paschal donohoe",
+          "minister for finance",
+          "ireland",
+          "ie"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.873Z"
+      }
+    },
+    {
+      "office": "Taoiseach",
+      "profile": {
+        "id": "micheal-martin-taoiseach-ie",
+        "slug": "micheal-martin-taoiseach-ie",
+        "name": "Micheál Martin",
+        "countrySlug": "ireland-ie",
+        "countryName": "Ireland",
+        "office": "Taoiseach",
+        "searchTerms": [
+          "micheál martin",
+          "taoiseach",
+          "ireland",
+          "ie"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:43:37.401Z"
+      }
+    }
+  ]
+}

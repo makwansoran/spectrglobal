@@ -1,0 +1,77 @@
+{
+  "countrySlug": "papua-new-guinea-pg",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "james-marape-prime-minister-pg",
+        "slug": "james-marape-prime-minister-pg",
+        "name": "James Marape",
+        "countrySlug": "papua-new-guinea-pg",
+        "countryName": "Papua New Guinea",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "james marape",
+          "prime minister",
+          "papua new guinea",
+          "pg"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.579Z"
+      }
+    },
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "charles-iii-head-of-state-pg",
+        "slug": "charles-iii-head-of-state-pg",
+        "name": "Charles III",
+        "countrySlug": "papua-new-guinea-pg",
+        "countryName": "Papua New Guinea",
+        "office": "Head of State",
+        "searchTerms": [
+          "charles iii",
+          "head of state",
+          "papua new guinea",
+          "pg"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.579Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "ian-ling-stuckey-minister-of-finance-pg",
+        "slug": "ian-ling-stuckey-minister-of-finance-pg",
+        "name": "Ian Ling-Stuckey",
+        "countrySlug": "papua-new-guinea-pg",
+        "countryName": "Papua New Guinea",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "ian ling-stuckey",
+          "minister of finance",
+          "papua new guinea",
+          "pg"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.954Z"
+      }
+    }
+  ]
+}

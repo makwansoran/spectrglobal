@@ -55,6 +55,14 @@ function isPersonAppRoute(pathname) {
   return pathname === "/person" || pathname.startsWith("/person/");
 }
 
+function isCountryAppRoute(pathname) {
+  return pathname === "/country" || pathname.startsWith("/country/");
+}
+
+function isPoliticianAppRoute(pathname) {
+  return pathname === "/politician" || pathname.startsWith("/politician/");
+}
+
 function isCommodityRoute(pathname) {
   return pathname === "/commodity" || pathname.startsWith("/commodity/");
 }
@@ -63,12 +71,19 @@ function isWaterwayRoute(pathname) {
   return pathname === "/waterway" || pathname.startsWith("/waterway/");
 }
 
+function isVesselRoute(pathname) {
+  return pathname === "/vessel" || pathname.startsWith("/vessel/");
+}
+
 function isProfileSpaRoute(pathname) {
   return (
     isCompanyAppRoute(pathname) ||
     isPersonAppRoute(pathname) ||
+    isCountryAppRoute(pathname) ||
+    isPoliticianAppRoute(pathname) ||
     isCommodityRoute(pathname) ||
-    isWaterwayRoute(pathname)
+    isWaterwayRoute(pathname) ||
+    isVesselRoute(pathname)
   );
 }
 

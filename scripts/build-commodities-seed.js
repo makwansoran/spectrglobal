@@ -7,7 +7,6 @@ const path = require("path");
 
 const ROOT = path.resolve(__dirname, "..");
 const OUT = path.join(ROOT, "data", "seed", "commodities.json");
-const { finnhubStaticLogo } = require("../server/company-logo");
 
 function slugify(name) {
   return String(name)
@@ -44,10 +43,8 @@ function buildSearchTerms(name, symbol, altSymbols, exchange, categoryLabel) {
   return [...terms];
 }
 
-function commodityLogoUrl(symbol) {
-  if (!symbol) return null;
-  const primary = String(symbol).split("/")[0].trim().toUpperCase();
-  return finnhubStaticLogo(primary);
+function commodityLogoUrl() {
+  return null;
 }
 
 function item({ name, category, categoryLabel, exchange, symbol, altSymbols, about }) {

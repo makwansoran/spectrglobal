@@ -1,0 +1,77 @@
+{
+  "countrySlug": "colombia-co",
+  "politicians": [
+    {
+      "office": "President",
+      "profile": {
+        "id": "gustavo-petro-president-co",
+        "slug": "gustavo-petro-president-co",
+        "name": "Gustavo Petro",
+        "countrySlug": "colombia-co",
+        "countryName": "Colombia",
+        "office": "President",
+        "searchTerms": [
+          "gustavo petro",
+          "president",
+          "colombia",
+          "co"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.822Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "diego-guevara-minister-of-finance-co",
+        "slug": "diego-guevara-minister-of-finance-co",
+        "name": "Diego Guevara",
+        "countrySlug": "colombia-co",
+        "countryName": "Colombia",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "diego guevara",
+          "minister of finance",
+          "colombia",
+          "co"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.822Z"
+      }
+    },
+    {
+      "office": "Vice President",
+      "profile": {
+        "id": "francia-marquez-vice-president-co",
+        "slug": "francia-marquez-vice-president-co",
+        "name": "Francia Márquez",
+        "countrySlug": "colombia-co",
+        "countryName": "Colombia",
+        "office": "Vice President",
+        "searchTerms": [
+          "francia márquez",
+          "vice president",
+          "colombia",
+          "co"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.822Z"
+      }
+    }
+  ]
+}

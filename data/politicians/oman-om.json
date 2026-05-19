@@ -1,0 +1,77 @@
+{
+  "countrySlug": "oman-om",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "haitham-bin-tarik-al-said-prime-minister-om",
+        "slug": "haitham-bin-tarik-al-said-prime-minister-om",
+        "name": "Haitham bin Tarik Al Said",
+        "countrySlug": "oman-om",
+        "countryName": "Oman",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "haitham bin tarik al said",
+          "prime minister",
+          "oman",
+          "om"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.572Z"
+      }
+    },
+    {
+      "office": "Sultan & Prime Minister",
+      "profile": {
+        "id": "haitham-bin-tariq-sultan-prime-ministe-om",
+        "slug": "haitham-bin-tariq-sultan-prime-ministe-om",
+        "name": "Haitham bin Tariq",
+        "countrySlug": "oman-om",
+        "countryName": "Oman",
+        "office": "Sultan & Prime Minister",
+        "searchTerms": [
+          "haitham bin tariq",
+          "sultan & prime minister",
+          "oman",
+          "om"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.950Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "sultan-bin-salim-al-habsi-minister-of-finance-om",
+        "slug": "sultan-bin-salim-al-habsi-minister-of-finance-om",
+        "name": "Sultan bin Salim Al Habsi",
+        "countrySlug": "oman-om",
+        "countryName": "Oman",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "sultan bin salim al habsi",
+          "minister of finance",
+          "oman",
+          "om"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.950Z"
+      }
+    }
+  ]
+}

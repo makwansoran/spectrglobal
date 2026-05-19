@@ -1,0 +1,77 @@
+{
+  "countrySlug": "india-in",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "narendra-modi-prime-minister-in",
+        "slug": "narendra-modi-prime-minister-in",
+        "name": "Narendra Modi",
+        "countrySlug": "india-in",
+        "countryName": "India",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "narendra modi",
+          "prime minister",
+          "india",
+          "in"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.443Z"
+      }
+    },
+    {
+      "office": "Finance Minister",
+      "profile": {
+        "id": "nirmala-sitharaman-finance-minister-in",
+        "slug": "nirmala-sitharaman-finance-minister-in",
+        "name": "Nirmala Sitharaman",
+        "countrySlug": "india-in",
+        "countryName": "India",
+        "office": "Finance Minister",
+        "searchTerms": [
+          "nirmala sitharaman",
+          "finance minister",
+          "india",
+          "in"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.868Z"
+      }
+    },
+    {
+      "office": "President",
+      "profile": {
+        "id": "droupadi-murmu-president-in",
+        "slug": "droupadi-murmu-president-in",
+        "name": "Droupadi Murmu",
+        "countrySlug": "india-in",
+        "countryName": "India",
+        "office": "President",
+        "searchTerms": [
+          "droupadi murmu",
+          "president",
+          "india",
+          "in"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:43:37.401Z"
+      }
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "countrySlug": "cyprus-cy",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "nicos-christodoulides-prime-minister-cy",
+        "slug": "nicos-christodoulides-prime-minister-cy",
+        "name": "Nicos Christodoulides",
+        "countrySlug": "cyprus-cy",
+        "countryName": "Cyprus",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "nicos christodoulides",
+          "prime minister",
+          "cyprus",
+          "cy"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.312Z"
+      }
+    },
+    {
+      "office": "President",
+      "profile": {
+        "id": "nikos-christodoulides-president-cy",
+        "slug": "nikos-christodoulides-president-cy",
+        "name": "Nikos Christodoulides",
+        "countrySlug": "cyprus-cy",
+        "countryName": "Cyprus",
+        "office": "President",
+        "searchTerms": [
+          "nikos christodoulides",
+          "president",
+          "cyprus",
+          "cy"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.829Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "makis-keravnos-minister-of-finance-cy",
+        "slug": "makis-keravnos-minister-of-finance-cy",
+        "name": "Makis Keravnos",
+        "countrySlug": "cyprus-cy",
+        "countryName": "Cyprus",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "makis keravnos",
+          "minister of finance",
+          "cyprus",
+          "cy"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.829Z"
+      }
+    }
+  ]
+}

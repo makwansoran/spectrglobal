@@ -1,0 +1,31 @@
+{
+  "slug": "israel-il",
+  "profile": {
+    "id": "israel-il",
+    "slug": "israel-il",
+    "name": "Israel",
+    "isoCode": "IL",
+    "region": "Asia · Western Asia",
+    "capital": "Jerusalem",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Jerusalem. Region: Asia (Western Asia).",
+    "flagEmoji": "",
+    "logoInitials": "IS",
+    "searchTerms": [
+      "israel",
+      "il",
+      "isr",
+      "israel-il"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.631Z",
+    "flagUrl": "https://flagcdn.com/w320/il.png"
+  },
+  "mapGeojson": null
+}

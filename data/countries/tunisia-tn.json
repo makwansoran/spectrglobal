@@ -1,0 +1,31 @@
+{
+  "slug": "tunisia-tn",
+  "profile": {
+    "id": "tunisia-tn",
+    "slug": "tunisia-tn",
+    "name": "Tunisia",
+    "isoCode": "TN",
+    "region": "Africa · Northern Africa",
+    "capital": "Tunis",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Tunis. Region: Africa (Northern Africa).",
+    "flagEmoji": "",
+    "logoInitials": "TU",
+    "searchTerms": [
+      "tunisia",
+      "tn",
+      "tun",
+      "tunisia-tn"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.842Z",
+    "flagUrl": "https://flagcdn.com/w320/tn.png"
+  },
+  "mapGeojson": null
+}

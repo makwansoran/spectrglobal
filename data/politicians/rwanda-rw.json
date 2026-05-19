@@ -1,0 +1,77 @@
+{
+  "countrySlug": "rwanda-rw",
+  "politicians": [
+    {
+      "office": "President",
+      "profile": {
+        "id": "paul-kagame-president-rw",
+        "slug": "paul-kagame-president-rw",
+        "name": "Paul Kagame",
+        "countrySlug": "rwanda-rw",
+        "countryName": "Rwanda",
+        "office": "President",
+        "searchTerms": [
+          "paul kagame",
+          "president",
+          "rwanda",
+          "rw"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.966Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "yusuf-murangwa-minister-of-finance-rw",
+        "slug": "yusuf-murangwa-minister-of-finance-rw",
+        "name": "Yusuf Murangwa",
+        "countrySlug": "rwanda-rw",
+        "countryName": "Rwanda",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "yusuf murangwa",
+          "minister of finance",
+          "rwanda",
+          "rw"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.966Z"
+      }
+    },
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "edouard-ngirente-prime-minister-rw",
+        "slug": "edouard-ngirente-prime-minister-rw",
+        "name": "Édouard Ngirente",
+        "countrySlug": "rwanda-rw",
+        "countryName": "Rwanda",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "édouard ngirente",
+          "prime minister",
+          "rwanda",
+          "rw"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:37:01.182Z"
+      }
+    }
+  ]
+}

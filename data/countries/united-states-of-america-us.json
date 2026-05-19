@@ -1,0 +1,31 @@
+{
+  "slug": "united-states-of-america-us",
+  "profile": {
+    "id": "united-states-of-america-us",
+    "slug": "united-states-of-america-us",
+    "name": "United States of America",
+    "isoCode": "US",
+    "region": "Americas · Northern America",
+    "capital": "Washington, D.C.",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Washington, D.C.. Region: Americas (Northern America).",
+    "flagEmoji": "",
+    "logoInitials": "UA",
+    "searchTerms": [
+      "united states of america",
+      "us",
+      "usa",
+      "united-states-of-america-us"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.856Z",
+    "flagUrl": "https://flagcdn.com/w320/us.png"
+  },
+  "mapGeojson": null
+}

@@ -1,0 +1,31 @@
+{
+  "slug": "ecuador-ec",
+  "profile": {
+    "id": "ecuador-ec",
+    "slug": "ecuador-ec",
+    "name": "Ecuador",
+    "isoCode": "EC",
+    "region": "Americas · Latin America and the Caribbean",
+    "capital": "Quito",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Quito. Region: Americas (Latin America and the Caribbean).",
+    "flagEmoji": "",
+    "logoInitials": "EC",
+    "searchTerms": [
+      "ecuador",
+      "ec",
+      "ecu",
+      "ecuador-ec"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.498Z",
+    "flagUrl": "https://flagcdn.com/w320/ec.png"
+  },
+  "mapGeojson": null
+}

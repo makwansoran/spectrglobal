@@ -13,6 +13,8 @@ const TABLES = [
   "commodities",
   "vessels",
   "planes",
+  "countries",
+  "politicians",
   "banks",
   "investment_banks",
   "venture_capital",

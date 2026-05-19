@@ -1,0 +1,77 @@
+{
+  "countrySlug": "iceland-is",
+  "politicians": [
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "halla-tomasdottir-head-of-state-is",
+        "slug": "halla-tomasdottir-head-of-state-is",
+        "name": "Halla Tómasdóttir",
+        "countrySlug": "iceland-is",
+        "countryName": "Iceland",
+        "office": "Head of State",
+        "searchTerms": [
+          "halla tómasdóttir",
+          "head of state",
+          "iceland",
+          "is"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.442Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "sigur-ur-ingi-johannsson-minister-of-finance-is",
+        "slug": "sigur-ur-ingi-johannsson-minister-of-finance-is",
+        "name": "Sigurður Ingi Jóhannsson",
+        "countrySlug": "iceland-is",
+        "countryName": "Iceland",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "sigurður ingi jóhannsson",
+          "minister of finance",
+          "iceland",
+          "is"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.866Z"
+      }
+    },
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "kristrun-frostadottir-prime-minister-is",
+        "slug": "kristrun-frostadottir-prime-minister-is",
+        "name": "Kristrún Frostadóttir",
+        "countrySlug": "iceland-is",
+        "countryName": "Iceland",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "kristrún frostadóttir",
+          "prime minister",
+          "iceland",
+          "is"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:37:01.182Z"
+      }
+    }
+  ]
+}

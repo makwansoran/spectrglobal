@@ -1,0 +1,77 @@
+{
+  "countrySlug": "moldova-republic-of-md",
+  "politicians": [
+    {
+      "office": "President",
+      "profile": {
+        "id": "maia-sandu-president-md",
+        "slug": "maia-sandu-president-md",
+        "name": "Maia Sandu",
+        "countrySlug": "moldova-republic-of-md",
+        "countryName": "Moldova, Republic of",
+        "office": "President",
+        "searchTerms": [
+          "maia sandu",
+          "president",
+          "moldova, republic of",
+          "md"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.924Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "natalia-gavrilita-minister-of-finance-md",
+        "slug": "natalia-gavrilita-minister-of-finance-md",
+        "name": "Natalia Gavrilița",
+        "countrySlug": "moldova-republic-of-md",
+        "countryName": "Moldova, Republic of",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "natalia gavrilița",
+          "minister of finance",
+          "moldova, republic of",
+          "md"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.924Z"
+      }
+    },
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "ion-ceban-prime-minister-md",
+        "slug": "ion-ceban-prime-minister-md",
+        "name": "Ion Ceban",
+        "countrySlug": "moldova-republic-of-md",
+        "countryName": "Moldova, Republic of",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "ion ceban",
+          "prime minister",
+          "moldova, republic of",
+          "md"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:37:01.182Z"
+      }
+    }
+  ]
+}

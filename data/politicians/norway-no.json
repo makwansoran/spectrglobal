@@ -1,0 +1,77 @@
+{
+  "countrySlug": "norway-no",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "jonas-gahr-st-re-prime-minister-no",
+        "slug": "jonas-gahr-st-re-prime-minister-no",
+        "name": "Jonas Gahr Støre",
+        "countrySlug": "norway-no",
+        "countryName": "Norway",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "jonas gahr støre",
+          "prime minister",
+          "norway",
+          "no"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:22:05.710Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "trygve-slagsvold-vedum-minister-of-finance-no",
+        "slug": "trygve-slagsvold-vedum-minister-of-finance-no",
+        "name": "Trygve Slagsvold Vedum",
+        "countrySlug": "norway-no",
+        "countryName": "Norway",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "trygve slagsvold vedum",
+          "minister of finance",
+          "norway",
+          "no"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:37:01.182Z"
+      }
+    },
+    {
+      "office": "King",
+      "profile": {
+        "id": "harald-v-of-norway-king-no",
+        "slug": "harald-v-of-norway-king-no",
+        "name": "Harald V of Norway",
+        "countrySlug": "norway-no",
+        "countryName": "Norway",
+        "office": "King",
+        "searchTerms": [
+          "harald v of norway",
+          "king",
+          "norway",
+          "no"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:43:37.401Z"
+      }
+    }
+  ]
+}

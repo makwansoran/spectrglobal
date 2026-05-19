@@ -1,0 +1,31 @@
+{
+  "slug": "germany-de",
+  "profile": {
+    "id": "germany-de",
+    "slug": "germany-de",
+    "name": "Germany",
+    "isoCode": "DE",
+    "region": "Europe · Western Europe",
+    "capital": "Berlin",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Berlin. Region: Europe (Western Europe).",
+    "flagEmoji": "",
+    "logoInitials": "GE",
+    "searchTerms": [
+      "germany",
+      "de",
+      "deu",
+      "germany-de"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.595Z",
+    "flagUrl": "https://flagcdn.com/w320/de.png"
+  },
+  "mapGeojson": null
+}

@@ -1,0 +1,53 @@
+{
+  "countrySlug": "cabo-verde-cv",
+  "politicians": [
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "olavo-correia-minister-of-finance-cv",
+        "slug": "olavo-correia-minister-of-finance-cv",
+        "name": "Olavo Correia",
+        "countrySlug": "cabo-verde-cv",
+        "countryName": "Cabo Verde",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "olavo correia",
+          "minister of finance",
+          "cabo verde",
+          "cv"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.808Z"
+      }
+    },
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "jose-maria-neves-prime-minister-cv",
+        "slug": "jose-maria-neves-prime-minister-cv",
+        "name": "José Maria Neves",
+        "countrySlug": "cabo-verde-cv",
+        "countryName": "Cabo Verde",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "josé maria neves",
+          "prime minister",
+          "cabo verde",
+          "cv"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:37:01.182Z"
+      }
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "countrySlug": "brazil-br",
+  "politicians": [
+    {
+      "office": "President",
+      "profile": {
+        "id": "luiz-inacio-lula-da-silva-president-br",
+        "slug": "luiz-inacio-lula-da-silva-president-br",
+        "name": "Luiz Inácio Lula da Silva",
+        "countrySlug": "brazil-br",
+        "countryName": "Brazil",
+        "office": "President",
+        "searchTerms": [
+          "luiz inácio lula da silva",
+          "president",
+          "brazil",
+          "br"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.803Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "fernando-haddad-minister-of-finance-br",
+        "slug": "fernando-haddad-minister-of-finance-br",
+        "name": "Fernando Haddad",
+        "countrySlug": "brazil-br",
+        "countryName": "Brazil",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "fernando haddad",
+          "minister of finance",
+          "brazil",
+          "br"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.803Z"
+      }
+    },
+    {
+      "office": "Vice President",
+      "profile": {
+        "id": "geraldo-alckmin-vice-president-br",
+        "slug": "geraldo-alckmin-vice-president-br",
+        "name": "Geraldo Alckmin",
+        "countrySlug": "brazil-br",
+        "countryName": "Brazil",
+        "office": "Vice President",
+        "searchTerms": [
+          "geraldo alckmin",
+          "vice president",
+          "brazil",
+          "br"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.803Z"
+      }
+    }
+  ]
+}

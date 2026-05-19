@@ -1,0 +1,31 @@
+{
+  "slug": "argentina-ar",
+  "profile": {
+    "id": "argentina-ar",
+    "slug": "argentina-ar",
+    "name": "Argentina",
+    "isoCode": "AR",
+    "region": "Americas · Latin America and the Caribbean",
+    "capital": "Buenos Aires",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Buenos Aires. Region: Americas (Latin America and the Caribbean).",
+    "flagEmoji": "",
+    "logoInitials": "AR",
+    "searchTerms": [
+      "argentina",
+      "ar",
+      "arg",
+      "argentina-ar"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.396Z",
+    "flagUrl": "https://flagcdn.com/w320/ar.png"
+  },
+  "mapGeojson": null
+}

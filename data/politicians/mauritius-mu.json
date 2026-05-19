@@ -1,0 +1,77 @@
+{
+  "countrySlug": "mauritius-mu",
+  "politicians": [
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "dharam-gokhool-head-of-state-mu",
+        "slug": "dharam-gokhool-head-of-state-mu",
+        "name": "Dharam Gokhool",
+        "countrySlug": "mauritius-mu",
+        "countryName": "Mauritius",
+        "office": "Head of State",
+        "searchTerms": [
+          "dharam gokhool",
+          "head of state",
+          "mauritius",
+          "mu"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.530Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "renganaden-padayachy-minister-of-finance-mu",
+        "slug": "renganaden-padayachy-minister-of-finance-mu",
+        "name": "Renganaden Padayachy",
+        "countrySlug": "mauritius-mu",
+        "countryName": "Mauritius",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "renganaden padayachy",
+          "minister of finance",
+          "mauritius",
+          "mu"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.922Z"
+      }
+    },
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "navin-ramgoolam-prime-minister-mu",
+        "slug": "navin-ramgoolam-prime-minister-mu",
+        "name": "Navin Ramgoolam",
+        "countrySlug": "mauritius-mu",
+        "countryName": "Mauritius",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "navin ramgoolam",
+          "prime minister",
+          "mauritius",
+          "mu"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:37:01.182Z"
+      }
+    }
+  ]
+}

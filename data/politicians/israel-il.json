@@ -1,0 +1,77 @@
+{
+  "countrySlug": "israel-il",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "benjamin-netanyahu-prime-minister-il",
+        "slug": "benjamin-netanyahu-prime-minister-il",
+        "name": "Benjamin Netanyahu",
+        "countrySlug": "israel-il",
+        "countryName": "Israel",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "benjamin netanyahu",
+          "prime minister",
+          "israel",
+          "il"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.460Z"
+      }
+    },
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "isaac-herzog-head-of-state-il",
+        "slug": "isaac-herzog-head-of-state-il",
+        "name": "Isaac Herzog",
+        "countrySlug": "israel-il",
+        "countryName": "Israel",
+        "office": "Head of State",
+        "searchTerms": [
+          "isaac herzog",
+          "head of state",
+          "israel",
+          "il"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.460Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "bezalel-smotrich-minister-of-finance-il",
+        "slug": "bezalel-smotrich-minister-of-finance-il",
+        "name": "Bezalel Smotrich",
+        "countrySlug": "israel-il",
+        "countryName": "Israel",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "bezalel smotrich",
+          "minister of finance",
+          "israel",
+          "il"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.884Z"
+      }
+    }
+  ]
+}

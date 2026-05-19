@@ -1,0 +1,31 @@
+{
+  "slug": "south-africa-za",
+  "profile": {
+    "id": "south-africa-za",
+    "slug": "south-africa-za",
+    "name": "South Africa",
+    "isoCode": "ZA",
+    "region": "Africa · Sub-Saharan Africa",
+    "capital": "Bloemfontein",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Bloemfontein. Region: Africa (Sub-Saharan Africa).",
+    "flagEmoji": "",
+    "logoInitials": "SA",
+    "searchTerms": [
+      "south africa",
+      "za",
+      "zaf",
+      "south-africa-za"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.778Z",
+    "flagUrl": "https://flagcdn.com/w320/za.png"
+  },
+  "mapGeojson": null
+}

@@ -1,0 +1,77 @@
+{
+  "countrySlug": "nicaragua-ni",
+  "politicians": [
+    {
+      "office": "President",
+      "profile": {
+        "id": "daniel-ortega-president-ni",
+        "slug": "daniel-ortega-president-ni",
+        "name": "Daniel Ortega",
+        "countrySlug": "nicaragua-ni",
+        "countryName": "Nicaragua",
+        "office": "President",
+        "searchTerms": [
+          "daniel ortega",
+          "president",
+          "nicaragua",
+          "ni"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.941Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "ivan-acosta-montalvan-minister-of-finance-ni",
+        "slug": "ivan-acosta-montalvan-minister-of-finance-ni",
+        "name": "Iván Acosta Montalván",
+        "countrySlug": "nicaragua-ni",
+        "countryName": "Nicaragua",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "iván acosta montalván",
+          "minister of finance",
+          "nicaragua",
+          "ni"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.941Z"
+      }
+    },
+    {
+      "office": "Vice President",
+      "profile": {
+        "id": "rosario-murillo-vice-president-ni",
+        "slug": "rosario-murillo-vice-president-ni",
+        "name": "Rosario Murillo",
+        "countrySlug": "nicaragua-ni",
+        "countryName": "Nicaragua",
+        "office": "Vice President",
+        "searchTerms": [
+          "rosario murillo",
+          "vice president",
+          "nicaragua",
+          "ni"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.941Z"
+      }
+    }
+  ]
+}

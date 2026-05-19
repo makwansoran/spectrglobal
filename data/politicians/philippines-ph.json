@@ -1,0 +1,101 @@
+{
+  "countrySlug": "philippines-ph",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "bongbong-marcos-prime-minister-ph",
+        "slug": "bongbong-marcos-prime-minister-ph",
+        "name": "Bongbong Marcos",
+        "countrySlug": "philippines-ph",
+        "countryName": "Philippines",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "bongbong marcos",
+          "prime minister",
+          "philippines",
+          "ph"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.587Z"
+      }
+    },
+    {
+      "office": "President",
+      "profile": {
+        "id": "ferdinand-marcos-jr-president-ph",
+        "slug": "ferdinand-marcos-jr-president-ph",
+        "name": "Ferdinand Marcos Jr",
+        "countrySlug": "philippines-ph",
+        "countryName": "Philippines",
+        "office": "President",
+        "searchTerms": [
+          "ferdinand marcos jr",
+          "president",
+          "philippines",
+          "ph"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.957Z"
+      }
+    },
+    {
+      "office": "Vice President",
+      "profile": {
+        "id": "sara-duterte-vice-president-ph",
+        "slug": "sara-duterte-vice-president-ph",
+        "name": "Sara Duterte",
+        "countrySlug": "philippines-ph",
+        "countryName": "Philippines",
+        "office": "Vice President",
+        "searchTerms": [
+          "sara duterte",
+          "vice president",
+          "philippines",
+          "ph"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.957Z"
+      }
+    },
+    {
+      "office": "Secretary of Finance",
+      "profile": {
+        "id": "ralph-recto-secretary-of-finance-ph",
+        "slug": "ralph-recto-secretary-of-finance-ph",
+        "name": "Ralph Recto",
+        "countrySlug": "philippines-ph",
+        "countryName": "Philippines",
+        "office": "Secretary of Finance",
+        "searchTerms": [
+          "ralph recto",
+          "secretary of finance",
+          "philippines",
+          "ph"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.957Z"
+      }
+    }
+  ]
+}

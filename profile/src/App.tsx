@@ -16,13 +16,24 @@ import { CompanyOwnershipTab } from "./pages/company/CompanyOwnershipTab";
 import { CompanyPeopleTab } from "./pages/company/CompanyPeopleTab";
 import { HolderProfilePage } from "./pages/HolderProfilePage";
 import { PersonProfilePage } from "./pages/PersonProfilePage";
+import { CountryProfilePage } from "./pages/CountryProfilePage";
+import { PoliticianProfilePage } from "./pages/PoliticianProfilePage";
+import { VesselProfilePage } from "./pages/VesselProfilePage";
 import { WaterwayProfilePage } from "./pages/waterway/WaterwayProfilePage";
 
 function getBasename() {
   if (typeof window !== "undefined") {
-    if (window.location.pathname.startsWith("/person")) return "";
-    if (window.location.pathname.startsWith("/waterway")) return "/waterway";
-    if (window.location.pathname.startsWith("/commodity")) return "/commodity";
+    const p = window.location.pathname;
+    if (
+      p.startsWith("/person") ||
+      p.startsWith("/country") ||
+      p.startsWith("/politician") ||
+      p.startsWith("/vessel")
+    ) {
+      return "";
+    }
+    if (p.startsWith("/waterway")) return "/waterway";
+    if (p.startsWith("/commodity")) return "/commodity";
   }
   return "/company";
 }
@@ -41,6 +52,9 @@ export default function App() {
         {basename === "" ? (
           <>
             <Route path="/person/:personId" element={<PersonProfilePage />} />
+            <Route path="/country/:countryId" element={<CountryProfilePage />} />
+            <Route path="/politician/:politicianId" element={<PoliticianProfilePage />} />
+            <Route path="/vessel/:vesselId" element={<VesselProfilePage />} />
             <Route path="*" element={<Navigate to="/company/equinor" replace />} />
           </>
         ) : basename === "/waterway" ? (
@@ -63,6 +77,9 @@ export default function App() {
           <>
             <Route path="/" element={<Navigate to="/equinor" replace />} />
             <Route path="/person/:personId" element={<PersonProfilePage />} />
+            <Route path="/country/:countryId" element={<CountryProfilePage />} />
+            <Route path="/politician/:politicianId" element={<PoliticianProfilePage />} />
+            <Route path="/vessel/:vesselId" element={<VesselProfilePage />} />
             <Route path="/holder/:holderSlug" element={<HolderProfilePage />} />
             <Route path="/:companyId" element={<CompanyProfileLayout />}>
               <Route index element={<CompanyOverviewTab />} />

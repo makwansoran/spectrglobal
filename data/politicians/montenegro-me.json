@@ -1,0 +1,77 @@
+{
+  "countrySlug": "montenegro-me",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "milojko-spajic-prime-minister-me",
+        "slug": "milojko-spajic-prime-minister-me",
+        "name": "Milojko Spajić",
+        "countrySlug": "montenegro-me",
+        "countryName": "Montenegro",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "milojko spajić",
+          "prime minister",
+          "montenegro",
+          "me"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.544Z"
+      }
+    },
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "jakov-milatovic-head-of-state-me",
+        "slug": "jakov-milatovic-head-of-state-me",
+        "name": "Jakov Milatović",
+        "countrySlug": "montenegro-me",
+        "countryName": "Montenegro",
+        "office": "Head of State",
+        "searchTerms": [
+          "jakov milatović",
+          "head of state",
+          "montenegro",
+          "me"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.544Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "novica-vukovic-minister-of-finance-me",
+        "slug": "novica-vukovic-minister-of-finance-me",
+        "name": "Novica Vuković",
+        "countrySlug": "montenegro-me",
+        "countryName": "Montenegro",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "novica vuković",
+          "minister of finance",
+          "montenegro",
+          "me"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.927Z"
+      }
+    }
+  ]
+}

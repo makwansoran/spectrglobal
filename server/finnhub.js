@@ -73,7 +73,8 @@ function symbolCandidates(ticker, exchange, countryCode, finnhubSymbol) {
 
   const ex = String(exchange || "").toLowerCase();
   const cc = String(countryCode || "").toUpperCase();
-  if (cc === "NO" || ex.includes("oslo") || ex.includes("euronext")) {
+  /** Bare tickers collide across markets (e.g. DNB = Dun & Bradstreet US vs DNB.OL). */
+  if (cc !== "NO" && !ex.includes("oslo") && !ex.includes("euronext")) {
     add(t);
   }
 

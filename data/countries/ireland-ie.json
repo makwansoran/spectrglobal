@@ -1,0 +1,31 @@
+{
+  "slug": "ireland-ie",
+  "profile": {
+    "id": "ireland-ie",
+    "slug": "ireland-ie",
+    "name": "Ireland",
+    "isoCode": "IE",
+    "region": "Europe · Northern Europe",
+    "capital": "Dublin",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Dublin. Region: Europe (Northern Europe).",
+    "flagEmoji": "",
+    "logoInitials": "IR",
+    "searchTerms": [
+      "ireland",
+      "ie",
+      "irl",
+      "ireland-ie"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.630Z",
+    "flagUrl": "https://flagcdn.com/w320/ie.png"
+  },
+  "mapGeojson": null
+}

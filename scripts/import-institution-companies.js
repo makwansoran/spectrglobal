@@ -84,7 +84,6 @@ function privateInstitutionSeed(inst) {
     logoInitials: initials(inst.name),
     countryCode: "US",
     countryName: "United States",
-    founded: 1900,
     headquarters: "United States",
     industryTags: [orgLabel, "Institutional investor"],
     isPublic: false,

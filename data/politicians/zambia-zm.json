@@ -1,0 +1,101 @@
+{
+  "countrySlug": "zambia-zm",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "edgar-lungu-prime-minister-zm",
+        "slug": "edgar-lungu-prime-minister-zm",
+        "name": "Edgar Lungu",
+        "countrySlug": "zambia-zm",
+        "countryName": "Zambia",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "edgar lungu",
+          "prime minister",
+          "zambia",
+          "zm"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.736Z"
+      }
+    },
+    {
+      "office": "President",
+      "profile": {
+        "id": "hakainde-hichilema-president-zm",
+        "slug": "hakainde-hichilema-president-zm",
+        "name": "Hakainde Hichilema",
+        "countrySlug": "zambia-zm",
+        "countryName": "Zambia",
+        "office": "President",
+        "searchTerms": [
+          "hakainde hichilema",
+          "president",
+          "zambia",
+          "zm"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:22.063Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "situmbeko-musokotwane-minister-of-finance-zm",
+        "slug": "situmbeko-musokotwane-minister-of-finance-zm",
+        "name": "Situmbeko Musokotwane",
+        "countrySlug": "zambia-zm",
+        "countryName": "Zambia",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "situmbeko musokotwane",
+          "minister of finance",
+          "zambia",
+          "zm"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:22.063Z"
+      }
+    },
+    {
+      "office": "Vice President",
+      "profile": {
+        "id": "w-k-mutale-nalumango-vice-president-zm",
+        "slug": "w-k-mutale-nalumango-vice-president-zm",
+        "name": "W.K. Mutale Nalumango",
+        "countrySlug": "zambia-zm",
+        "countryName": "Zambia",
+        "office": "Vice President",
+        "searchTerms": [
+          "w.k. mutale nalumango",
+          "vice president",
+          "zambia",
+          "zm"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:22.063Z"
+      }
+    }
+  ]
+}

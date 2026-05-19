@@ -1,0 +1,31 @@
+{
+  "slug": "bahrain-bh",
+  "profile": {
+    "id": "bahrain-bh",
+    "slug": "bahrain-bh",
+    "name": "Bahrain",
+    "isoCode": "BH",
+    "region": "Asia · Western Asia",
+    "capital": "Manama",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Manama. Region: Asia (Western Asia).",
+    "flagEmoji": "",
+    "logoInitials": "BA",
+    "searchTerms": [
+      "bahrain",
+      "bh",
+      "bhr",
+      "bahrain-bh"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.400Z",
+    "flagUrl": "https://flagcdn.com/w320/bh.png"
+  },
+  "mapGeojson": null
+}

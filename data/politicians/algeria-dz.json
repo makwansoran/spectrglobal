@@ -1,0 +1,77 @@
+{
+  "countrySlug": "algeria-dz",
+  "politicians": [
+    {
+      "office": "President",
+      "profile": {
+        "id": "abdelmadjid-tebboune-president-dz",
+        "slug": "abdelmadjid-tebboune-president-dz",
+        "name": "Abdelmadjid Tebboune",
+        "countrySlug": "algeria-dz",
+        "countryName": "Algeria",
+        "office": "President",
+        "searchTerms": [
+          "abdelmadjid tebboune",
+          "president",
+          "algeria",
+          "dz"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.773Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "laaziz-faid-minister-of-finance-dz",
+        "slug": "laaziz-faid-minister-of-finance-dz",
+        "name": "Laaziz Faid",
+        "countrySlug": "algeria-dz",
+        "countryName": "Algeria",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "laaziz faid",
+          "minister of finance",
+          "algeria",
+          "dz"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.773Z"
+      }
+    },
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "nadir-larbaoui-prime-minister-dz",
+        "slug": "nadir-larbaoui-prime-minister-dz",
+        "name": "Nadir Larbaoui",
+        "countrySlug": "algeria-dz",
+        "countryName": "Algeria",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "nadir larbaoui",
+          "prime minister",
+          "algeria",
+          "dz"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:37:01.182Z"
+      }
+    }
+  ]
+}

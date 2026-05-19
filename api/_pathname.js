@@ -18,6 +18,9 @@ function resolvePathname(url) {
   if (pathname === "/api/get-person") return `/api/people/${slug}`;
   if (pathname === "/api/get-holder") return `/api/holders/${slug}`;
   if (pathname === "/api/get-commodity") return `/api/commodities/${slug}`;
+  if (pathname === "/api/get-vessel") return `/api/vessels/${slug}`;
+  if (pathname === "/api/get-country") return `/api/countries/${slug}`;
+  if (pathname === "/api/get-politician") return `/api/politicians/${slug}`;
 
   return pathname;
 }

@@ -1,0 +1,31 @@
+{
+  "slug": "falkland-islands-malvinas-fk",
+  "profile": {
+    "id": "falkland-islands-malvinas-fk",
+    "slug": "falkland-islands-malvinas-fk",
+    "name": "Falkland Islands (Malvinas)",
+    "isoCode": "FK",
+    "region": "Americas · Latin America and the Caribbean",
+    "capital": "Stanley",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Stanley. Region: Americas (Latin America and the Caribbean).",
+    "flagEmoji": "",
+    "logoInitials": "FM",
+    "searchTerms": [
+      "falkland islands (malvinas)",
+      "fk",
+      "flk",
+      "falkland-islands-malvinas-fk"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.553Z",
+    "flagUrl": "https://flagcdn.com/w320/fk.png"
+  },
+  "mapGeojson": null
+}

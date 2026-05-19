@@ -1,0 +1,101 @@
+{
+  "countrySlug": "romania-ro",
+  "politicians": [
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "nicusor-dan-head-of-state-ro",
+        "slug": "nicusor-dan-head-of-state-ro",
+        "name": "Nicușor Dan",
+        "countrySlug": "romania-ro",
+        "countryName": "Romania",
+        "office": "Head of State",
+        "searchTerms": [
+          "nicușor dan",
+          "head of state",
+          "romania",
+          "ro"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.596Z"
+      }
+    },
+    {
+      "office": "President",
+      "profile": {
+        "id": "calin-georgescu-president-ro",
+        "slug": "calin-georgescu-president-ro",
+        "name": "Călin Georgescu",
+        "countrySlug": "romania-ro",
+        "countryName": "Romania",
+        "office": "President",
+        "searchTerms": [
+          "călin georgescu",
+          "president",
+          "romania",
+          "ro"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.960Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "marcel-bolos-minister-of-finance-ro",
+        "slug": "marcel-bolos-minister-of-finance-ro",
+        "name": "Marcel Boloș",
+        "countrySlug": "romania-ro",
+        "countryName": "Romania",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "marcel boloș",
+          "minister of finance",
+          "romania",
+          "ro"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.960Z"
+      }
+    },
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "marcel-ciolacu-prime-minister-ro",
+        "slug": "marcel-ciolacu-prime-minister-ro",
+        "name": "Marcel Ciolacu",
+        "countrySlug": "romania-ro",
+        "countryName": "Romania",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "marcel ciolacu",
+          "prime minister",
+          "romania",
+          "ro"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:37:01.182Z"
+      }
+    }
+  ]
+}

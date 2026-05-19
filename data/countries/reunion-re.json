@@ -1,0 +1,31 @@
+{
+  "slug": "reunion-re",
+  "profile": {
+    "id": "reunion-re",
+    "slug": "reunion-re",
+    "name": "Réunion",
+    "isoCode": "RE",
+    "region": "Africa · Sub-Saharan Africa",
+    "capital": "Saint-Denis",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Saint-Denis. Region: Africa (Sub-Saharan Africa).",
+    "flagEmoji": "",
+    "logoInitials": "RU",
+    "searchTerms": [
+      "réunion",
+      "re",
+      "reu",
+      "reunion-re"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.733Z",
+    "flagUrl": "https://flagcdn.com/w320/re.png"
+  },
+  "mapGeojson": null
+}

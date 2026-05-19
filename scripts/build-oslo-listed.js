@@ -42,6 +42,12 @@ function parseLine(line) {
   const name = legalName;
   const ini = initials(legalName, ticker);
 
+  const isBank =
+    /sparebank|bank\s+asa|bank\s+plc|pareto\s+bank|kraft\s+bank/i.test(legalName) ||
+    /bank/i.test(ticker);
+  const industry = isBank ? "finance" : null;
+  const industryTags = isBank ? ["Oslo Børs", "Bank"] : ["Oslo Børs"];
+
   const profile = {
     id: slug,
     name,
@@ -49,9 +55,8 @@ function parseLine(line) {
     logoInitials: ini,
     countryCode: "NO",
     countryName: "Norway",
-    founded: 1900,
     headquarters: "Norway",
-    industryTags: ["Oslo Børs"],
+    industryTags,
     isPublic: true,
     stock: {
       ticker,
@@ -61,7 +66,7 @@ function parseLine(line) {
       changePercent: 0,
       currency: "NOK",
     },
-    industry: "energy",
+    industry,
     industryTabLabel: "Overview",
     about: `${legalName} is listed on Oslo Børs (ticker ${ticker}). Profile data is a placeholder; enrich via admin or imports.`,
     quickStats: [],

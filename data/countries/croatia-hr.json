@@ -1,0 +1,31 @@
+{
+  "slug": "croatia-hr",
+  "profile": {
+    "id": "croatia-hr",
+    "slug": "croatia-hr",
+    "name": "Croatia",
+    "isoCode": "HR",
+    "region": "Europe · Southern Europe",
+    "capital": "Zagreb",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Zagreb. Region: Europe (Southern Europe).",
+    "flagEmoji": "",
+    "logoInitials": "CR",
+    "searchTerms": [
+      "croatia",
+      "hr",
+      "hrv",
+      "croatia-hr"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.462Z",
+    "flagUrl": "https://flagcdn.com/w320/hr.png"
+  },
+  "mapGeojson": null
+}

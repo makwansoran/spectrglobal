@@ -1,0 +1,101 @@
+{
+  "countrySlug": "bolivia-plurinational-state-of-bo",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "rodrigo-paz-pereira-prime-minister-bo",
+        "slug": "rodrigo-paz-pereira-prime-minister-bo",
+        "name": "Rodrigo Paz Pereira",
+        "countrySlug": "bolivia-plurinational-state-of-bo",
+        "countryName": "Bolivia, Plurinational State of",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "rodrigo paz pereira",
+          "prime minister",
+          "bolivia, plurinational state of",
+          "bo"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.258Z"
+      }
+    },
+    {
+      "office": "President",
+      "profile": {
+        "id": "luis-arce-president-bo",
+        "slug": "luis-arce-president-bo",
+        "name": "Luis Arce",
+        "countrySlug": "bolivia-plurinational-state-of-bo",
+        "countryName": "Bolivia, Plurinational State of",
+        "office": "President",
+        "searchTerms": [
+          "luis arce",
+          "president",
+          "bolivia, plurinational state of",
+          "bo"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.792Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "marcelo-montenegro-minister-of-finance-bo",
+        "slug": "marcelo-montenegro-minister-of-finance-bo",
+        "name": "Marcelo Montenegro",
+        "countrySlug": "bolivia-plurinational-state-of-bo",
+        "countryName": "Bolivia, Plurinational State of",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "marcelo montenegro",
+          "minister of finance",
+          "bolivia, plurinational state of",
+          "bo"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.792Z"
+      }
+    },
+    {
+      "office": "Vice President",
+      "profile": {
+        "id": "david-choquehuanca-vice-president-bo",
+        "slug": "david-choquehuanca-vice-president-bo",
+        "name": "David Choquehuanca",
+        "countrySlug": "bolivia-plurinational-state-of-bo",
+        "countryName": "Bolivia, Plurinational State of",
+        "office": "Vice President",
+        "searchTerms": [
+          "david choquehuanca",
+          "vice president",
+          "bolivia, plurinational state of",
+          "bo"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.792Z"
+      }
+    }
+  ]
+}

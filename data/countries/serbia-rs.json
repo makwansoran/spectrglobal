@@ -1,0 +1,31 @@
+{
+  "slug": "serbia-rs",
+  "profile": {
+    "id": "serbia-rs",
+    "slug": "serbia-rs",
+    "name": "Serbia",
+    "isoCode": "RS",
+    "region": "Europe · Southern Europe",
+    "capital": "Belgrade",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Belgrade. Region: Europe (Southern Europe).",
+    "flagEmoji": "",
+    "logoInitials": "SE",
+    "searchTerms": [
+      "serbia",
+      "rs",
+      "srb",
+      "serbia-rs"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.761Z",
+    "flagUrl": "https://flagcdn.com/w320/rs.png"
+  },
+  "mapGeojson": null
+}

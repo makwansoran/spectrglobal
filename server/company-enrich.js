@@ -1,16 +1,10 @@
 /**
- * Multi-country company enrichment: SEC EDGAR, Finnhub, Euronext, UK registry links, IR scrape.
- * Env: FINNHUB_API_KEY (market/news/filings); SUPABASE_URL + service key for persist via upsertCompany.
+ * Multi-country company enrichment: SEC EDGAR, Euronext, UK registry links, IR scrape.
+ * Finnhub is not used here — live quotes only via company-quote.js.
  */
 
 const { fetchEdgarFilings } = require("./sec-edgar");
-const {
-  isEnabled: finnhubEnabled,
-  fetchSecFilingsForProfile,
-  fetchCompanyNewsForProfile,
-  fetchCompanyMarket,
-} = require("./finnhub");
-const { fetchFinancialsForProfile } = require("./reported-financials");
+const { fetchLiveQuoteForProfile, applyQuoteToStock } = require("./company-quote");
 const { fetchEuronextFilingsForProfile } = require("./euronext/filings");
 const { fetchIrFilingsFromWebsite } = require("./company-scrape");
 const { getCompanyRaw, upsertCompany } = require("./store");
@@ -37,17 +31,12 @@ function mergeFilings(...lists) {
 }
 
 function profileIrUrl(profile) {
-  return (
-    profile.website ||
-    profile.finnhub?.weburl ||
-    profile.stock?.weburl ||
-    null
-  );
+  return profile.website || profile.stock?.weburl || null;
 }
 
 /** Region bucket for source ordering (countryCode / exchange / Euronext). */
 function detectRegion(profile) {
-  const cc = String(profile.countryCode || profile.finnhub?.country || "").toUpperCase();
+  const cc = String(profile.countryCode || "").toUpperCase();
   const ex = String(profile.stock?.exchange || "").toLowerCase();
 
   if (cc === "US" || ex.includes("nasdaq") || ex.includes("nyse") || ex.includes("amex")) {
@@ -114,7 +103,7 @@ function buildDataSources(profile, sources, region) {
   if (sources.includes("sec-edgar") && !names.has("SEC EDGAR")) {
     extra.push({ name: "SEC EDGAR", url: "https://www.sec.gov/edgar/search/" });
   }
-  if (sources.some((s) => s.startsWith("finnhub")) && !names.has("Finnhub")) {
+  if (sources.includes("finnhub-quote") && !names.has("Finnhub")) {
     extra.push({ name: "Finnhub", url: "https://finnhub.io" });
   }
   if (sources.includes("euronext") && !names.has("Euronext Live")) {
@@ -189,24 +178,6 @@ async function fetchAllFilings(profile, options = {}) {
     tasks.push(
       fetchEuronextFilingsForProfile(profile).then((rows) => {
         if (rows.length) sources.push("euronext");
-        return rows;
-      })
-    );
-  }
-
-  if (finnhubEnabled() && ticker && (region === "US" || region === "UK" || region === "GENERIC")) {
-    tasks.push(
-      fetchSecFilingsForProfile(profile, 10).then((rows) => {
-        if (rows.length) sources.push("finnhub-sec");
-        return rows;
-      })
-    );
-  }
-
-  if (finnhubEnabled() && ticker && region === "EU_NO") {
-    tasks.push(
-      fetchSecFilingsForProfile(profile, 8).then((rows) => {
-        if (rows.length) sources.push("finnhub-sec");
         return rows;
       })
     );
@@ -290,36 +261,15 @@ async function enrichCompany(slug, options = {}) {
     });
     sources.push(...filingSources);
 
-    if (finnhubEnabled() && hasTicker) {
-      const [market, news, financials] = await Promise.all([
-        fetchCompanyMarket(profile).catch(() => null),
-        fetchCompanyNewsForProfile(profile).catch(() => []),
-        fetchFinancialsForProfile(profile).catch(() => null),
-      ]);
-
-      if (market?.quote || market?.profile) sources.push("finnhub");
-      if (market?.profile?.weburl && !profile.website) {
-        profile.website = market.profile.weburl;
-        profile.finnhub = { ...(profile.finnhub || {}), weburl: market.profile.weburl };
-      }
-      if (market?.profile?.country && !profile.countryCode) {
-        profile.countryCode = market.profile.country;
-      }
-      if (news?.length) {
-        profile.news = mergeNews(profile.news, news);
-        sources.push("finnhub-news");
-      }
-      if (financials?.metrics?.length) {
-        profile.financials = financials;
-        sources.push("finnhub-financials");
-      }
-      if (market?.quote && profile.stock) {
-        profile.stock = {
-          ...profile.stock,
-          price: market.quote.c ?? market.quote.pc ?? profile.stock.price,
-          change: market.quote.d ?? profile.stock.change,
-          changePercent: market.quote.dp ?? profile.stock.changePercent,
-        };
+    if (hasTicker && profile.stock) {
+      try {
+        const quote = await fetchLiveQuoteForProfile(profile);
+        if (quote?.price) {
+          profile.stock = applyQuoteToStock(profile.stock, quote);
+          sources.push("finnhub-quote");
+        }
+      } catch (err) {
+        console.warn("quote:", slug, err.message);
       }
     }
 

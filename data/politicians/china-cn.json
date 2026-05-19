@@ -1,0 +1,77 @@
+{
+  "countrySlug": "china-cn",
+  "politicians": [
+    {
+      "office": "President",
+      "profile": {
+        "id": "xi-jinping-president-cn",
+        "slug": "xi-jinping-president-cn",
+        "name": "Xi Jinping",
+        "countrySlug": "china-cn",
+        "countryName": "China",
+        "office": "President",
+        "searchTerms": [
+          "xi jinping",
+          "president",
+          "china",
+          "cn"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.821Z"
+      }
+    },
+    {
+      "office": "Premier",
+      "profile": {
+        "id": "li-qiang-premier-cn",
+        "slug": "li-qiang-premier-cn",
+        "name": "Li Qiang",
+        "countrySlug": "china-cn",
+        "countryName": "China",
+        "office": "Premier",
+        "searchTerms": [
+          "li qiang",
+          "premier",
+          "china",
+          "cn"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.821Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "lan-fo-an-minister-of-finance-cn",
+        "slug": "lan-fo-an-minister-of-finance-cn",
+        "name": "Lan Fo'an",
+        "countrySlug": "china-cn",
+        "countryName": "China",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "lan fo'an",
+          "minister of finance",
+          "china",
+          "cn"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.821Z"
+      }
+    }
+  ]
+}

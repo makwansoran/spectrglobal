@@ -1,0 +1,31 @@
+{
+  "slug": "philippines-ph",
+  "profile": {
+    "id": "philippines-ph",
+    "slug": "philippines-ph",
+    "name": "Philippines",
+    "isoCode": "PH",
+    "region": "Asia · South-eastern Asia",
+    "capital": "Manila",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Manila. Region: Asia (South-eastern Asia).",
+    "flagEmoji": "",
+    "logoInitials": "PH",
+    "searchTerms": [
+      "philippines",
+      "ph",
+      "phl",
+      "philippines-ph"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.718Z",
+    "flagUrl": "https://flagcdn.com/w320/ph.png"
+  },
+  "mapGeojson": null
+}

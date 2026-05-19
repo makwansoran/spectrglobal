@@ -1,0 +1,53 @@
+{
+  "countrySlug": "eswatini-sz",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "russell-mmiso-dlamini-prime-minister-sz",
+        "slug": "russell-mmiso-dlamini-prime-minister-sz",
+        "name": "Russell Mmiso Dlamini",
+        "countrySlug": "eswatini-sz",
+        "countryName": "Eswatini",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "russell mmiso dlamini",
+          "prime minister",
+          "eswatini",
+          "sz"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:37:01.182Z"
+      }
+    },
+    {
+      "office": "King",
+      "profile": {
+        "id": "mswati-iii-king-sz",
+        "slug": "mswati-iii-king-sz",
+        "name": "Mswati III",
+        "countrySlug": "eswatini-sz",
+        "countryName": "Eswatini",
+        "office": "King",
+        "searchTerms": [
+          "mswati iii",
+          "king",
+          "eswatini",
+          "sz"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.842Z"
+      }
+    }
+  ]
+}

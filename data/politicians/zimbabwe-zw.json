@@ -1,0 +1,77 @@
+{
+  "countrySlug": "zimbabwe-zw",
+  "politicians": [
+    {
+      "office": "President",
+      "profile": {
+        "id": "emmerson-mnangagwa-president-zw",
+        "slug": "emmerson-mnangagwa-president-zw",
+        "name": "Emmerson Mnangagwa",
+        "countrySlug": "zimbabwe-zw",
+        "countryName": "Zimbabwe",
+        "office": "President",
+        "searchTerms": [
+          "emmerson mnangagwa",
+          "president",
+          "zimbabwe",
+          "zw"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:22.065Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "mthuli-ncube-minister-of-finance-zw",
+        "slug": "mthuli-ncube-minister-of-finance-zw",
+        "name": "Mthuli Ncube",
+        "countrySlug": "zimbabwe-zw",
+        "countryName": "Zimbabwe",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "mthuli ncube",
+          "minister of finance",
+          "zimbabwe",
+          "zw"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:22.065Z"
+      }
+    },
+    {
+      "office": "Vice President",
+      "profile": {
+        "id": "constantino-chiwenga-vice-president-zw",
+        "slug": "constantino-chiwenga-vice-president-zw",
+        "name": "Constantino Chiwenga",
+        "countrySlug": "zimbabwe-zw",
+        "countryName": "Zimbabwe",
+        "office": "Vice President",
+        "searchTerms": [
+          "constantino chiwenga",
+          "vice president",
+          "zimbabwe",
+          "zw"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:22.065Z"
+      }
+    }
+  ]
+}

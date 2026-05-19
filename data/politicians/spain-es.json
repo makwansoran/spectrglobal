@@ -1,0 +1,77 @@
+{
+  "countrySlug": "spain-es",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "pedro-sanchez-prime-minister-es",
+        "slug": "pedro-sanchez-prime-minister-es",
+        "name": "Pedro Sánchez",
+        "countrySlug": "spain-es",
+        "countryName": "Spain",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "pedro sánchez",
+          "prime minister",
+          "spain",
+          "es"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.666Z"
+      }
+    },
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "felipe-vi-of-spain-head-of-state-es",
+        "slug": "felipe-vi-of-spain-head-of-state-es",
+        "name": "Felipe VI of Spain",
+        "countrySlug": "spain-es",
+        "countryName": "Spain",
+        "office": "Head of State",
+        "searchTerms": [
+          "felipe vi of spain",
+          "head of state",
+          "spain",
+          "es"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.666Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "maria-jesus-montero-minister-of-finance-es",
+        "slug": "maria-jesus-montero-minister-of-finance-es",
+        "name": "María Jesús Montero",
+        "countrySlug": "spain-es",
+        "countryName": "Spain",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "maría jesús montero",
+          "minister of finance",
+          "spain",
+          "es"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:22.010Z"
+      }
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "slug": "indonesia-id",
+  "profile": {
+    "id": "indonesia-id",
+    "slug": "indonesia-id",
+    "name": "Indonesia",
+    "isoCode": "ID",
+    "region": "Asia · South-eastern Asia",
+    "capital": "Jakarta",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Jakarta. Region: Asia (South-eastern Asia).",
+    "flagEmoji": "",
+    "logoInitials": "IN",
+    "searchTerms": [
+      "indonesia",
+      "id",
+      "idn",
+      "indonesia-id"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.629Z",
+    "flagUrl": "https://flagcdn.com/w320/id.png"
+  },
+  "mapGeojson": null
+}

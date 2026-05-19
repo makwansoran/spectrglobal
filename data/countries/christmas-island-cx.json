@@ -1,0 +1,31 @@
+{
+  "slug": "christmas-island-cx",
+  "profile": {
+    "id": "christmas-island-cx",
+    "slug": "christmas-island-cx",
+    "name": "Christmas Island",
+    "isoCode": "CX",
+    "region": "Oceania · Australia and New Zealand",
+    "capital": "Flying Fish Cove",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Flying Fish Cove. Region: Oceania (Australia and New Zealand).",
+    "flagEmoji": "",
+    "logoInitials": "CI",
+    "searchTerms": [
+      "christmas island",
+      "cx",
+      "cxr",
+      "christmas-island-cx"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.453Z",
+    "flagUrl": "https://flagcdn.com/w320/cx.png"
+  },
+  "mapGeojson": null
+}

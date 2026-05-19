@@ -1,0 +1,77 @@
+{
+  "countrySlug": "tonga-to",
+  "politicians": [
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "tupou-vi-of-tonga-head-of-state-to",
+        "slug": "tupou-vi-of-tonga-head-of-state-to",
+        "name": "Tupou VI of Tonga",
+        "countrySlug": "tonga-to",
+        "countryName": "Tonga",
+        "office": "Head of State",
+        "searchTerms": [
+          "tupou vi of tonga",
+          "head of state",
+          "tonga",
+          "to"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.694Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "tiofilusi-tiueti-minister-of-finance-to",
+        "slug": "tiofilusi-tiueti-minister-of-finance-to",
+        "name": "Tiofilusi Tiueti",
+        "countrySlug": "tonga-to",
+        "countryName": "Tonga",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "tiofilusi tiueti",
+          "minister of finance",
+          "tonga",
+          "to"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:22.029Z"
+      }
+    },
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "siaosi-sovaleni-prime-minister-to",
+        "slug": "siaosi-sovaleni-prime-minister-to",
+        "name": "Siaosi Sovaleni",
+        "countrySlug": "tonga-to",
+        "countryName": "Tonga",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "siaosi sovaleni",
+          "prime minister",
+          "tonga",
+          "to"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:37:01.182Z"
+      }
+    }
+  ]
+}

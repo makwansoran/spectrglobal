@@ -1,0 +1,31 @@
+{
+  "slug": "french-guiana-gf",
+  "profile": {
+    "id": "french-guiana-gf",
+    "slug": "french-guiana-gf",
+    "name": "French Guiana",
+    "isoCode": "GF",
+    "region": "Americas · Latin America and the Caribbean",
+    "capital": "Cayenne",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Cayenne. Region: Americas (Latin America and the Caribbean).",
+    "flagEmoji": "",
+    "logoInitials": "FG",
+    "searchTerms": [
+      "french guiana",
+      "gf",
+      "guf",
+      "french-guiana-gf"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.585Z",
+    "flagUrl": "https://flagcdn.com/w320/gf.png"
+  },
+  "mapGeojson": null
+}

@@ -1,0 +1,77 @@
+{
+  "countrySlug": "slovenia-si",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "robert-golob-prime-minister-si",
+        "slug": "robert-golob-prime-minister-si",
+        "name": "Robert Golob",
+        "countrySlug": "slovenia-si",
+        "countryName": "Slovenia",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "robert golob",
+          "prime minister",
+          "slovenia",
+          "si"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.660Z"
+      }
+    },
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "natasa-pirc-musar-head-of-state-si",
+        "slug": "natasa-pirc-musar-head-of-state-si",
+        "name": "Nataša Pirc Musar",
+        "countrySlug": "slovenia-si",
+        "countryName": "Slovenia",
+        "office": "Head of State",
+        "searchTerms": [
+          "nataša pirc musar",
+          "head of state",
+          "slovenia",
+          "si"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.660Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "klemen-bostjancic-minister-of-finance-si",
+        "slug": "klemen-bostjancic-minister-of-finance-si",
+        "name": "Klemen Boštjančič",
+        "countrySlug": "slovenia-si",
+        "countryName": "Slovenia",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "klemen boštjančič",
+          "minister of finance",
+          "slovenia",
+          "si"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.986Z"
+      }
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "countrySlug": "sudan-sd",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "abdalla-hamdok-prime-minister-sd",
+        "slug": "abdalla-hamdok-prime-minister-sd",
+        "name": "Abdalla Hamdok",
+        "countrySlug": "sudan-sd",
+        "countryName": "Sudan",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "abdalla hamdok",
+          "prime minister",
+          "sudan",
+          "sd"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.671Z"
+      }
+    },
+    {
+      "office": "Chair, Sovereignty Council",
+      "profile": {
+        "id": "abdel-fattah-al-burhan-chair-sovereignty-co-sd",
+        "slug": "abdel-fattah-al-burhan-chair-sovereignty-co-sd",
+        "name": "Abdel Fattah al-Burhan",
+        "countrySlug": "sudan-sd",
+        "countryName": "Sudan",
+        "office": "Chair, Sovereignty Council",
+        "searchTerms": [
+          "abdel fattah al-burhan",
+          "chair, sovereignty council",
+          "sudan",
+          "sd"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:22.017Z"
+      }
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "slug": "bolivia-plurinational-state-of-bo",
+  "profile": {
+    "id": "bolivia-plurinational-state-of-bo",
+    "slug": "bolivia-plurinational-state-of-bo",
+    "name": "Bolivia, Plurinational State of",
+    "isoCode": "BO",
+    "region": "Americas · Latin America and the Caribbean",
+    "capital": "Sucre",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Sucre. Region: Americas (Latin America and the Caribbean).",
+    "flagEmoji": "",
+    "logoInitials": "BO",
+    "searchTerms": [
+      "bolivia, plurinational state of",
+      "bo",
+      "bol",
+      "bolivia-plurinational-state-of-bo"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.421Z",
+    "flagUrl": "https://flagcdn.com/w320/bo.png"
+  },
+  "mapGeojson": null
+}

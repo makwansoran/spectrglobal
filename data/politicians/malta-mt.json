@@ -1,0 +1,77 @@
+{
+  "countrySlug": "malta-mt",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "robert-abela-prime-minister-mt",
+        "slug": "robert-abela-prime-minister-mt",
+        "name": "Robert Abela",
+        "countrySlug": "malta-mt",
+        "countryName": "Malta",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "robert abela",
+          "prime minister",
+          "malta",
+          "mt"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.514Z"
+      }
+    },
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "myriam-spiteri-debono-head-of-state-mt",
+        "slug": "myriam-spiteri-debono-head-of-state-mt",
+        "name": "Myriam Spiteri Debono",
+        "countrySlug": "malta-mt",
+        "countryName": "Malta",
+        "office": "Head of State",
+        "searchTerms": [
+          "myriam spiteri debono",
+          "head of state",
+          "malta",
+          "mt"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.520Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "clyde-caruana-minister-of-finance-mt",
+        "slug": "clyde-caruana-minister-of-finance-mt",
+        "name": "Clyde Caruana",
+        "countrySlug": "malta-mt",
+        "countryName": "Malta",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "clyde caruana",
+          "minister of finance",
+          "malta",
+          "mt"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.919Z"
+      }
+    }
+  ]
+}

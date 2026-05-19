@@ -1,0 +1,53 @@
+{
+  "countrySlug": "benin-bj",
+  "politicians": [
+    {
+      "office": "President",
+      "profile": {
+        "id": "patrice-talon-president-bj",
+        "slug": "patrice-talon-president-bj",
+        "name": "Patrice Talon",
+        "countrySlug": "benin-bj",
+        "countryName": "Benin",
+        "office": "President",
+        "searchTerms": [
+          "patrice talon",
+          "president",
+          "benin",
+          "bj"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.791Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "romuald-wadagni-minister-of-finance-bj",
+        "slug": "romuald-wadagni-minister-of-finance-bj",
+        "name": "Romuald Wadagni",
+        "countrySlug": "benin-bj",
+        "countryName": "Benin",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "romuald wadagni",
+          "minister of finance",
+          "benin",
+          "bj"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.791Z"
+      }
+    }
+  ]
+}

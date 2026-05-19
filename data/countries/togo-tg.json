@@ -1,0 +1,31 @@
+{
+  "slug": "togo-tg",
+  "profile": {
+    "id": "togo-tg",
+    "slug": "togo-tg",
+    "name": "Togo",
+    "isoCode": "TG",
+    "region": "Africa · Sub-Saharan Africa",
+    "capital": "Lomé",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Lomé. Region: Africa (Sub-Saharan Africa).",
+    "flagEmoji": "",
+    "logoInitials": "TO",
+    "searchTerms": [
+      "togo",
+      "tg",
+      "tgo",
+      "togo-tg"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.835Z",
+    "flagUrl": "https://flagcdn.com/w320/tg.png"
+  },
+  "mapGeojson": null
+}

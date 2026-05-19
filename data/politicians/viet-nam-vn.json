@@ -1,0 +1,101 @@
+{
+  "countrySlug": "viet-nam-vn",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "pham-minh-chinh-prime-minister-vn",
+        "slug": "pham-minh-chinh-prime-minister-vn",
+        "name": "Phạm Minh Chính",
+        "countrySlug": "viet-nam-vn",
+        "countryName": "Viet Nam",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "phạm minh chính",
+          "prime minister",
+          "viet nam",
+          "vn"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.728Z"
+      }
+    },
+    {
+      "office": "President",
+      "profile": {
+        "id": "luong-cuong-president-vn",
+        "slug": "luong-cuong-president-vn",
+        "name": "Lương Cường",
+        "countrySlug": "viet-nam-vn",
+        "countryName": "Viet Nam",
+        "office": "President",
+        "searchTerms": [
+          "lương cường",
+          "president",
+          "viet nam",
+          "vn"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:22.057Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "nguyen-van-thang-minister-of-finance-vn",
+        "slug": "nguyen-van-thang-minister-of-finance-vn",
+        "name": "Nguyễn Văn Thắng",
+        "countrySlug": "viet-nam-vn",
+        "countryName": "Viet Nam",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "nguyễn văn thắng",
+          "minister of finance",
+          "viet nam",
+          "vn"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:22.057Z"
+      }
+    },
+    {
+      "office": "General Secretary",
+      "profile": {
+        "id": "to-lam-general-secretary-vn",
+        "slug": "to-lam-general-secretary-vn",
+        "name": "Tô Lâm",
+        "countrySlug": "viet-nam-vn",
+        "countryName": "Viet Nam",
+        "office": "General Secretary",
+        "searchTerms": [
+          "tô lâm",
+          "general secretary",
+          "viet nam",
+          "vn"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:22.057Z"
+      }
+    }
+  ]
+}

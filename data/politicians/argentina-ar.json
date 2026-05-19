@@ -1,0 +1,77 @@
+{
+  "countrySlug": "argentina-ar",
+  "politicians": [
+    {
+      "office": "President",
+      "profile": {
+        "id": "javier-milei-president-ar",
+        "slug": "javier-milei-president-ar",
+        "name": "Javier Milei",
+        "countrySlug": "argentina-ar",
+        "countryName": "Argentina",
+        "office": "President",
+        "searchTerms": [
+          "javier milei",
+          "president",
+          "argentina",
+          "ar"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.777Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "luis-caputo-minister-of-finance-ar",
+        "slug": "luis-caputo-minister-of-finance-ar",
+        "name": "Luis Caputo",
+        "countrySlug": "argentina-ar",
+        "countryName": "Argentina",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "luis caputo",
+          "minister of finance",
+          "argentina",
+          "ar"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.777Z"
+      }
+    },
+    {
+      "office": "Vice President",
+      "profile": {
+        "id": "victoria-villarruel-vice-president-ar",
+        "slug": "victoria-villarruel-vice-president-ar",
+        "name": "Victoria Villarruel",
+        "countrySlug": "argentina-ar",
+        "countryName": "Argentina",
+        "office": "Vice President",
+        "searchTerms": [
+          "victoria villarruel",
+          "vice president",
+          "argentina",
+          "ar"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.777Z"
+      }
+    }
+  ]
+}

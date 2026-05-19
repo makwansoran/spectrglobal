@@ -1,0 +1,31 @@
+{
+  "slug": "san-marino-sm",
+  "profile": {
+    "id": "san-marino-sm",
+    "slug": "san-marino-sm",
+    "name": "San Marino",
+    "isoCode": "SM",
+    "region": "Europe · Southern Europe",
+    "capital": "San Marino",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: San Marino. Region: Europe (Southern Europe).",
+    "flagEmoji": "",
+    "logoInitials": "SM",
+    "searchTerms": [
+      "san marino",
+      "sm",
+      "smr",
+      "san-marino-sm"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.753Z",
+    "flagUrl": "https://flagcdn.com/w320/sm.png"
+  },
+  "mapGeojson": null
+}

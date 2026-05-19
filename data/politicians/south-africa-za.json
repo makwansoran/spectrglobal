@@ -1,0 +1,77 @@
+{
+  "countrySlug": "south-africa-za",
+  "politicians": [
+    {
+      "office": "President",
+      "profile": {
+        "id": "cyril-ramaphosa-president-za",
+        "slug": "cyril-ramaphosa-president-za",
+        "name": "Cyril Ramaphosa",
+        "countrySlug": "south-africa-za",
+        "countryName": "South Africa",
+        "office": "President",
+        "searchTerms": [
+          "cyril ramaphosa",
+          "president",
+          "south africa",
+          "za"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.989Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "enoch-godongwana-minister-of-finance-za",
+        "slug": "enoch-godongwana-minister-of-finance-za",
+        "name": "Enoch Godongwana",
+        "countrySlug": "south-africa-za",
+        "countryName": "South Africa",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "enoch godongwana",
+          "minister of finance",
+          "south africa",
+          "za"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:37:01.182Z"
+      }
+    },
+    {
+      "office": "Deputy President",
+      "profile": {
+        "id": "paul-mashatile-deputy-president-za",
+        "slug": "paul-mashatile-deputy-president-za",
+        "name": "Paul Mashatile",
+        "countrySlug": "south-africa-za",
+        "countryName": "South Africa",
+        "office": "Deputy President",
+        "searchTerms": [
+          "paul mashatile",
+          "deputy president",
+          "south africa",
+          "za"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.989Z"
+      }
+    }
+  ]
+}

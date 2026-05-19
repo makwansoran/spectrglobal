@@ -1,0 +1,77 @@
+{
+  "countrySlug": "hungary-hu",
+  "politicians": [
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "tamas-sulyok-head-of-state-hu",
+        "slug": "tamas-sulyok-head-of-state-hu",
+        "name": "Tamás Sulyok",
+        "countrySlug": "hungary-hu",
+        "countryName": "Hungary",
+        "office": "Head of State",
+        "searchTerms": [
+          "tamás sulyok",
+          "head of state",
+          "hungary",
+          "hu"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.439Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "mihaly-varga-minister-of-finance-hu",
+        "slug": "mihaly-varga-minister-of-finance-hu",
+        "name": "Mihály Varga",
+        "countrySlug": "hungary-hu",
+        "countryName": "Hungary",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "mihály varga",
+          "minister of finance",
+          "hungary",
+          "hu"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.865Z"
+      }
+    },
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "viktor-orban-prime-minister-hu",
+        "slug": "viktor-orban-prime-minister-hu",
+        "name": "Viktor Orbán",
+        "countrySlug": "hungary-hu",
+        "countryName": "Hungary",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "viktor orbán",
+          "prime minister",
+          "hungary",
+          "hu"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:37:01.182Z"
+      }
+    }
+  ]
+}

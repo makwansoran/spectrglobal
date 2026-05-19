@@ -1,0 +1,31 @@
+{
+  "slug": "jordan-jo",
+  "profile": {
+    "id": "jordan-jo",
+    "slug": "jordan-jo",
+    "name": "Jordan",
+    "isoCode": "JO",
+    "region": "Asia · Western Asia",
+    "capital": "Amman",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Amman. Region: Asia (Western Asia).",
+    "flagEmoji": "",
+    "logoInitials": "JO",
+    "searchTerms": [
+      "jordan",
+      "jo",
+      "jor",
+      "jordan-jo"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.633Z",
+    "flagUrl": "https://flagcdn.com/w320/jo.png"
+  },
+  "mapGeojson": null
+}

@@ -1,0 +1,77 @@
+{
+  "countrySlug": "belgium-be",
+  "politicians": [
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "philippe-of-belgium-head-of-state-be",
+        "slug": "philippe-of-belgium-head-of-state-be",
+        "name": "Philippe of Belgium",
+        "countrySlug": "belgium-be",
+        "countryName": "Belgium",
+        "office": "Head of State",
+        "searchTerms": [
+          "philippe of belgium",
+          "head of state",
+          "belgium",
+          "be"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.248Z"
+      }
+    },
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "alexander-de-croo-prime-minister-be",
+        "slug": "alexander-de-croo-prime-minister-be",
+        "name": "Alexander De Croo",
+        "countrySlug": "belgium-be",
+        "countryName": "Belgium",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "alexander de croo",
+          "prime minister",
+          "belgium",
+          "be"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:37:01.182Z"
+      }
+    },
+    {
+      "office": "Finance Minister",
+      "profile": {
+        "id": "vincent-van-peteghem-finance-minister-be",
+        "slug": "vincent-van-peteghem-finance-minister-be",
+        "name": "Vincent Van Peteghem",
+        "countrySlug": "belgium-be",
+        "countryName": "Belgium",
+        "office": "Finance Minister",
+        "searchTerms": [
+          "vincent van peteghem",
+          "finance minister",
+          "belgium",
+          "be"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.789Z"
+      }
+    }
+  ]
+}

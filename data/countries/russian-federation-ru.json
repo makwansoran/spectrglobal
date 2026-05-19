@@ -1,0 +1,31 @@
+{
+  "slug": "russian-federation-ru",
+  "profile": {
+    "id": "russian-federation-ru",
+    "slug": "russian-federation-ru",
+    "name": "Russian Federation",
+    "isoCode": "RU",
+    "region": "Europe · Eastern Europe",
+    "capital": "Moscow",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Moscow. Region: Europe (Eastern Europe).",
+    "flagEmoji": "",
+    "logoInitials": "RF",
+    "searchTerms": [
+      "russian federation",
+      "ru",
+      "rus",
+      "russian-federation-ru"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.736Z",
+    "flagUrl": "https://flagcdn.com/w320/ru.png"
+  },
+  "mapGeojson": null
+}

@@ -1,0 +1,77 @@
+{
+  "countrySlug": "nigeria-ng",
+  "politicians": [
+    {
+      "office": "President",
+      "profile": {
+        "id": "bola-tinubu-president-ng",
+        "slug": "bola-tinubu-president-ng",
+        "name": "Bola Tinubu",
+        "countrySlug": "nigeria-ng",
+        "countryName": "Nigeria",
+        "office": "President",
+        "searchTerms": [
+          "bola tinubu",
+          "president",
+          "nigeria",
+          "ng"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.943Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "wale-edun-minister-of-finance-ng",
+        "slug": "wale-edun-minister-of-finance-ng",
+        "name": "Wale Edun",
+        "countrySlug": "nigeria-ng",
+        "countryName": "Nigeria",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "wale edun",
+          "minister of finance",
+          "nigeria",
+          "ng"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.943Z"
+      }
+    },
+    {
+      "office": "Vice President",
+      "profile": {
+        "id": "kashim-shettima-vice-president-ng",
+        "slug": "kashim-shettima-vice-president-ng",
+        "name": "Kashim Shettima",
+        "countrySlug": "nigeria-ng",
+        "countryName": "Nigeria",
+        "office": "Vice President",
+        "searchTerms": [
+          "kashim shettima",
+          "vice president",
+          "nigeria",
+          "ng"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.943Z"
+      }
+    }
+  ]
+}

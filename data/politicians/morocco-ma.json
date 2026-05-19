@@ -1,0 +1,77 @@
+{
+  "countrySlug": "morocco-ma",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "aziz-akhannouch-prime-minister-ma",
+        "slug": "aziz-akhannouch-prime-minister-ma",
+        "name": "Aziz Akhannouch",
+        "countrySlug": "morocco-ma",
+        "countryName": "Morocco",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "aziz akhannouch",
+          "prime minister",
+          "morocco",
+          "ma"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.547Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "nadia-fettah-alaoui-minister-of-finance-ma",
+        "slug": "nadia-fettah-alaoui-minister-of-finance-ma",
+        "name": "Nadia Fettah Alaoui",
+        "countrySlug": "morocco-ma",
+        "countryName": "Morocco",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "nadia fettah alaoui",
+          "minister of finance",
+          "morocco",
+          "ma"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.927Z"
+      }
+    },
+    {
+      "office": "King",
+      "profile": {
+        "id": "mohammed-vi-of-morocco-king-ma",
+        "slug": "mohammed-vi-of-morocco-king-ma",
+        "name": "Mohammed VI of Morocco",
+        "countrySlug": "morocco-ma",
+        "countryName": "Morocco",
+        "office": "King",
+        "searchTerms": [
+          "mohammed vi of morocco",
+          "king",
+          "morocco",
+          "ma"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.927Z"
+      }
+    }
+  ]
+}

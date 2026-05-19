@@ -80,8 +80,8 @@ function symbolToSeed(item, profile2 = null) {
     logoInitials: initials(name, ticker),
     countryCode: countryCode.length === 2 ? countryCode : "US",
     countryName,
-    founded: profile2?.ipo ? parseInt(profile2.ipo.slice(0, 4), 10) || 1900 : 1900,
-    headquarters: profile2?.exchange || countryName,
+    founded: profile2?.ipo ? parseInt(profile2.ipo.slice(0, 4), 10) || null : null,
+    headquarters: profile2?.weburl ? profile2.exchange || countryName : countryName,
     industryTags,
     isPublic: true,
     stock: {

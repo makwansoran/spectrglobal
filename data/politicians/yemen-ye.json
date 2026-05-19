@@ -1,0 +1,53 @@
+{
+  "countrySlug": "yemen-ye",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "ahmad-awad-bin-mubarak-prime-minister-ye",
+        "slug": "ahmad-awad-bin-mubarak-prime-minister-ye",
+        "name": "Ahmad Awad bin Mubarak",
+        "countrySlug": "yemen-ye",
+        "countryName": "Yemen",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "ahmad awad bin mubarak",
+          "prime minister",
+          "yemen",
+          "ye"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:37:01.182Z"
+      }
+    },
+    {
+      "office": "President (PLC)",
+      "profile": {
+        "id": "rashad-al-alimi-president-plc-ye",
+        "slug": "rashad-al-alimi-president-plc-ye",
+        "name": "Rashad al-Alimi",
+        "countrySlug": "yemen-ye",
+        "countryName": "Yemen",
+        "office": "President (PLC)",
+        "searchTerms": [
+          "rashad al-alimi",
+          "president (plc)",
+          "yemen",
+          "ye"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:22.061Z"
+      }
+    }
+  ]
+}

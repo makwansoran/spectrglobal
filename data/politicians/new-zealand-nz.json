@@ -1,0 +1,77 @@
+{
+  "countrySlug": "new-zealand-nz",
+  "politicians": [
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "charles-iii-head-of-state-nz",
+        "slug": "charles-iii-head-of-state-nz",
+        "name": "Charles III",
+        "countrySlug": "new-zealand-nz",
+        "countryName": "New Zealand",
+        "office": "Head of State",
+        "searchTerms": [
+          "charles iii",
+          "head of state",
+          "new zealand",
+          "nz"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.559Z"
+      }
+    },
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "christopher-luxon-prime-minister-nz",
+        "slug": "christopher-luxon-prime-minister-nz",
+        "name": "Christopher Luxon",
+        "countrySlug": "new-zealand-nz",
+        "countryName": "New Zealand",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "christopher luxon",
+          "prime minister",
+          "new zealand",
+          "nz"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.559Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "nicola-willis-minister-of-finance-nz",
+        "slug": "nicola-willis-minister-of-finance-nz",
+        "name": "Nicola Willis",
+        "countrySlug": "new-zealand-nz",
+        "countryName": "New Zealand",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "nicola willis",
+          "minister of finance",
+          "new zealand",
+          "nz"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.941Z"
+      }
+    }
+  ]
+}

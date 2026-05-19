@@ -1,0 +1,77 @@
+{
+  "countrySlug": "uruguay-uy",
+  "politicians": [
+    {
+      "office": "President",
+      "profile": {
+        "id": "yamandu-orsi-president-uy",
+        "slug": "yamandu-orsi-president-uy",
+        "name": "Yamandú Orsi",
+        "countrySlug": "uruguay-uy",
+        "countryName": "Uruguay",
+        "office": "President",
+        "searchTerms": [
+          "yamandú orsi",
+          "president",
+          "uruguay",
+          "uy"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:22.053Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "gabriel-oddone-minister-of-finance-uy",
+        "slug": "gabriel-oddone-minister-of-finance-uy",
+        "name": "Gabriel Oddone",
+        "countrySlug": "uruguay-uy",
+        "countryName": "Uruguay",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "gabriel oddone",
+          "minister of finance",
+          "uruguay",
+          "uy"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:22.053Z"
+      }
+    },
+    {
+      "office": "Vice President",
+      "profile": {
+        "id": "carolina-cosse-vice-president-uy",
+        "slug": "carolina-cosse-vice-president-uy",
+        "name": "Carolina Cosse",
+        "countrySlug": "uruguay-uy",
+        "countryName": "Uruguay",
+        "office": "Vice President",
+        "searchTerms": [
+          "carolina cosse",
+          "vice president",
+          "uruguay",
+          "uy"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:22.053Z"
+      }
+    }
+  ]
+}

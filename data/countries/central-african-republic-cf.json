@@ -1,0 +1,31 @@
+{
+  "slug": "central-african-republic-cf",
+  "profile": {
+    "id": "central-african-republic-cf",
+    "slug": "central-african-republic-cf",
+    "name": "Central African Republic",
+    "isoCode": "CF",
+    "region": "Africa · Sub-Saharan Africa",
+    "capital": "Bangui",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Bangui. Region: Africa (Sub-Saharan Africa).",
+    "flagEmoji": "",
+    "logoInitials": "CR",
+    "searchTerms": [
+      "central african republic",
+      "cf",
+      "caf",
+      "central-african-republic-cf"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.447Z",
+    "flagUrl": "https://flagcdn.com/w320/cf.png"
+  },
+  "mapGeojson": null
+}

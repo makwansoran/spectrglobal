@@ -1,0 +1,101 @@
+{
+  "countrySlug": "togo-tg",
+  "politicians": [
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "jean-lucien-savi-de-tove-head-of-state-tg",
+        "slug": "jean-lucien-savi-de-tove-head-of-state-tg",
+        "name": "Jean-Lucien Savi de Tové",
+        "countrySlug": "togo-tg",
+        "countryName": "Togo",
+        "office": "Head of State",
+        "searchTerms": [
+          "jean-lucien savi de tové",
+          "head of state",
+          "togo",
+          "tg"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.691Z"
+      }
+    },
+    {
+      "office": "President",
+      "profile": {
+        "id": "faure-gnassingbe-president-tg",
+        "slug": "faure-gnassingbe-president-tg",
+        "name": "Faure Gnassingbé",
+        "countrySlug": "togo-tg",
+        "countryName": "Togo",
+        "office": "President",
+        "searchTerms": [
+          "faure gnassingbé",
+          "president",
+          "togo",
+          "tg"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:22.027Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "sani-yaya-minister-of-finance-tg",
+        "slug": "sani-yaya-minister-of-finance-tg",
+        "name": "Sani Yaya",
+        "countrySlug": "togo-tg",
+        "countryName": "Togo",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "sani yaya",
+          "minister of finance",
+          "togo",
+          "tg"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:22.027Z"
+      }
+    },
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "victoire-dogbe-prime-minister-tg",
+        "slug": "victoire-dogbe-prime-minister-tg",
+        "name": "Victoire Dogbé",
+        "countrySlug": "togo-tg",
+        "countryName": "Togo",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "victoire dogbé",
+          "prime minister",
+          "togo",
+          "tg"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:37:01.182Z"
+      }
+    }
+  ]
+}

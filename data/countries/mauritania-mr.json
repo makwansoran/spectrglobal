@@ -1,0 +1,31 @@
+{
+  "slug": "mauritania-mr",
+  "profile": {
+    "id": "mauritania-mr",
+    "slug": "mauritania-mr",
+    "name": "Mauritania",
+    "isoCode": "MR",
+    "region": "Africa · Sub-Saharan Africa",
+    "capital": "Nouakchott",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Nouakchott. Region: Africa (Sub-Saharan Africa).",
+    "flagEmoji": "",
+    "logoInitials": "MA",
+    "searchTerms": [
+      "mauritania",
+      "mr",
+      "mrt",
+      "mauritania-mr"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.653Z",
+    "flagUrl": "https://flagcdn.com/w320/mr.png"
+  },
+  "mapGeojson": null
+}

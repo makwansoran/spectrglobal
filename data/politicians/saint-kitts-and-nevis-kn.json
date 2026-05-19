@@ -1,0 +1,53 @@
+{
+  "countrySlug": "saint-kitts-and-nevis-kn",
+  "politicians": [
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "charles-iii-head-of-state-kn",
+        "slug": "charles-iii-head-of-state-kn",
+        "name": "Charles III",
+        "countrySlug": "saint-kitts-and-nevis-kn",
+        "countryName": "Saint Kitts and Nevis",
+        "office": "Head of State",
+        "searchTerms": [
+          "charles iii",
+          "head of state",
+          "saint kitts and nevis",
+          "kn"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.608Z"
+      }
+    },
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "terrance-drew-prime-minister-kn",
+        "slug": "terrance-drew-prime-minister-kn",
+        "name": "Terrance Drew",
+        "countrySlug": "saint-kitts-and-nevis-kn",
+        "countryName": "Saint Kitts and Nevis",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "terrance drew",
+          "prime minister",
+          "saint kitts and nevis",
+          "kn"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.608Z"
+      }
+    }
+  ]
+}

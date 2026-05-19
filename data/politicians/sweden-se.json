@@ -1,0 +1,77 @@
+{
+  "countrySlug": "sweden-se",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "ulf-kristersson-prime-minister-se",
+        "slug": "ulf-kristersson-prime-minister-se",
+        "name": "Ulf Kristersson",
+        "countrySlug": "sweden-se",
+        "countryName": "Sweden",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "ulf kristersson",
+          "prime minister",
+          "sweden",
+          "se"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.676Z"
+      }
+    },
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "carl-xvi-gustaf-of-sweden-head-of-state-se",
+        "slug": "carl-xvi-gustaf-of-sweden-head-of-state-se",
+        "name": "Carl XVI Gustaf of Sweden",
+        "countrySlug": "sweden-se",
+        "countryName": "Sweden",
+        "office": "Head of State",
+        "searchTerms": [
+          "carl xvi gustaf of sweden",
+          "head of state",
+          "sweden",
+          "se"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.676Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "elisabeth-svantesson-minister-of-finance-se",
+        "slug": "elisabeth-svantesson-minister-of-finance-se",
+        "name": "Elisabeth Svantesson",
+        "countrySlug": "sweden-se",
+        "countryName": "Sweden",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "elisabeth svantesson",
+          "minister of finance",
+          "sweden",
+          "se"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:22.019Z"
+      }
+    }
+  ]
+}

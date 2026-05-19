@@ -1,0 +1,31 @@
+{
+  "slug": "greece-gr",
+  "profile": {
+    "id": "greece-gr",
+    "slug": "greece-gr",
+    "name": "Greece",
+    "isoCode": "GR",
+    "region": "Europe · Southern Europe",
+    "capital": "Athens",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Athens. Region: Europe (Southern Europe).",
+    "flagEmoji": "",
+    "logoInitials": "GR",
+    "searchTerms": [
+      "greece",
+      "gr",
+      "grc",
+      "greece-gr"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.596Z",
+    "flagUrl": "https://flagcdn.com/w320/gr.png"
+  },
+  "mapGeojson": null
+}

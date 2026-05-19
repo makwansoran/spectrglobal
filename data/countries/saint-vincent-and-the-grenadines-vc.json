@@ -1,0 +1,31 @@
+{
+  "slug": "saint-vincent-and-the-grenadines-vc",
+  "profile": {
+    "id": "saint-vincent-and-the-grenadines-vc",
+    "slug": "saint-vincent-and-the-grenadines-vc",
+    "name": "Saint Vincent and the Grenadines",
+    "isoCode": "VC",
+    "region": "Americas · Latin America and the Caribbean",
+    "capital": "Kingstown",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Kingstown. Region: Americas (Latin America and the Caribbean).",
+    "flagEmoji": "",
+    "logoInitials": "SG",
+    "searchTerms": [
+      "saint vincent and the grenadines",
+      "vc",
+      "vct",
+      "saint-vincent-and-the-grenadines-vc"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.751Z",
+    "flagUrl": "https://flagcdn.com/w320/vc.png"
+  },
+  "mapGeojson": null
+}

@@ -1,0 +1,31 @@
+{
+  "slug": "morocco-ma",
+  "profile": {
+    "id": "morocco-ma",
+    "slug": "morocco-ma",
+    "name": "Morocco",
+    "isoCode": "MA",
+    "region": "Africa · Northern Africa",
+    "capital": "Rabat",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Rabat. Region: Africa (Northern Africa).",
+    "flagEmoji": "",
+    "logoInitials": "MO",
+    "searchTerms": [
+      "morocco",
+      "ma",
+      "mar",
+      "morocco-ma"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.672Z",
+    "flagUrl": "https://flagcdn.com/w320/ma.png"
+  },
+  "mapGeojson": null
+}

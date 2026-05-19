@@ -5,9 +5,18 @@ export type CompanyPayload = {
   mapGeojson: GeoJSON.GeoJsonObject | null;
 };
 
+export type SearchItemKind =
+  | "company"
+  | "commodity"
+  | "waterway"
+  | "person"
+  | "country"
+  | "politician"
+  | "vessel";
+
 export type CompanySearchItem = {
   id: string;
-  kind?: "company" | "commodity" | "waterway";
+  kind?: SearchItemKind;
   name: string;
   legalName: string;
   meta: string;

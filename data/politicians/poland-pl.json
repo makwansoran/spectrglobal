@@ -1,0 +1,77 @@
+{
+  "countrySlug": "poland-pl",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "donald-tusk-prime-minister-pl",
+        "slug": "donald-tusk-prime-minister-pl",
+        "name": "Donald Tusk",
+        "countrySlug": "poland-pl",
+        "countryName": "Poland",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "donald tusk",
+          "prime minister",
+          "poland",
+          "pl"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.589Z"
+      }
+    },
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "karol-nawrocki-head-of-state-pl",
+        "slug": "karol-nawrocki-head-of-state-pl",
+        "name": "Karol Nawrocki",
+        "countrySlug": "poland-pl",
+        "countryName": "Poland",
+        "office": "Head of State",
+        "searchTerms": [
+          "karol nawrocki",
+          "head of state",
+          "poland",
+          "pl"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.589Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "andrzej-domanski-minister-of-finance-pl",
+        "slug": "andrzej-domanski-minister-of-finance-pl",
+        "name": "Andrzej Domański",
+        "countrySlug": "poland-pl",
+        "countryName": "Poland",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "andrzej domański",
+          "minister of finance",
+          "poland",
+          "pl"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:37:01.182Z"
+      }
+    }
+  ]
+}

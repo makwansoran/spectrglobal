@@ -92,7 +92,6 @@ function holdingToCompanySeed(holding, asOf = "2025-12-31") {
     logoInitials: initials(holding.name),
     countryCode: countryCode.length === 2 ? countryCode : "XX",
     countryName,
-    founded: 1900,
     headquarters: `${countryName}${holding.region ? ` · ${holding.region}` : ""}`,
     industryTags: [industryLabel, "Equity holding", "NBIM portfolio"],
     isPublic: true,

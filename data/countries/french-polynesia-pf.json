@@ -1,0 +1,31 @@
+{
+  "slug": "french-polynesia-pf",
+  "profile": {
+    "id": "french-polynesia-pf",
+    "slug": "french-polynesia-pf",
+    "name": "French Polynesia",
+    "isoCode": "PF",
+    "region": "Oceania · Polynesia",
+    "capital": "Papeete",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Papeete. Region: Oceania (Polynesia).",
+    "flagEmoji": "",
+    "logoInitials": "FP",
+    "searchTerms": [
+      "french polynesia",
+      "pf",
+      "pyf",
+      "french-polynesia-pf"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.586Z",
+    "flagUrl": "https://flagcdn.com/w320/pf.png"
+  },
+  "mapGeojson": null
+}

@@ -1,0 +1,31 @@
+{
+  "slug": "saudi-arabia-sa",
+  "profile": {
+    "id": "saudi-arabia-sa",
+    "slug": "saudi-arabia-sa",
+    "name": "Saudi Arabia",
+    "isoCode": "SA",
+    "region": "Asia · Western Asia",
+    "capital": "Riyadh",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Riyadh. Region: Asia (Western Asia).",
+    "flagEmoji": "",
+    "logoInitials": "SA",
+    "searchTerms": [
+      "saudi arabia",
+      "sa",
+      "sau",
+      "saudi-arabia-sa"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.759Z",
+    "flagUrl": "https://flagcdn.com/w320/sa.png"
+  },
+  "mapGeojson": null
+}

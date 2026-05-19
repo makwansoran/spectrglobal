@@ -1,0 +1,77 @@
+{
+  "countrySlug": "united-kingdom-gb",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "keir-starmer-prime-minister-gb-2",
+        "slug": "keir-starmer-prime-minister-gb-2",
+        "name": "Keir Starmer",
+        "countrySlug": "united-kingdom-gb",
+        "countryName": "United Kingdom",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "keir starmer",
+          "prime minister",
+          "united kingdom",
+          "gb"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:22.043Z"
+      }
+    },
+    {
+      "office": "Chancellor of the Exchequer",
+      "profile": {
+        "id": "rachel-reeves-chancellor-of-the-ex-gb",
+        "slug": "rachel-reeves-chancellor-of-the-ex-gb",
+        "name": "Rachel Reeves",
+        "countrySlug": "united-kingdom-gb",
+        "countryName": "United Kingdom",
+        "office": "Chancellor of the Exchequer",
+        "searchTerms": [
+          "rachel reeves",
+          "chancellor of the exchequer",
+          "united kingdom",
+          "gb"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:37:01.182Z"
+      }
+    },
+    {
+      "office": "King",
+      "profile": {
+        "id": "charles-iii-king-gb",
+        "slug": "charles-iii-king-gb",
+        "name": "Charles III",
+        "countrySlug": "united-kingdom-gb",
+        "countryName": "United Kingdom",
+        "office": "King",
+        "searchTerms": [
+          "charles iii",
+          "king",
+          "united kingdom",
+          "gb"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:45:57.996Z"
+      }
+    }
+  ]
+}

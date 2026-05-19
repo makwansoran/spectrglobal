@@ -1,0 +1,77 @@
+{
+  "countrySlug": "tuvalu-tv",
+  "politicians": [
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "charles-iii-head-of-state-tv",
+        "slug": "charles-iii-head-of-state-tv",
+        "name": "Charles III",
+        "countrySlug": "tuvalu-tv",
+        "countryName": "Tuvalu",
+        "office": "Head of State",
+        "searchTerms": [
+          "charles iii",
+          "head of state",
+          "tuvalu",
+          "tv"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.702Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "seve-paeniu-minister-of-finance-tv",
+        "slug": "seve-paeniu-minister-of-finance-tv",
+        "name": "Seve Paeniu",
+        "countrySlug": "tuvalu-tv",
+        "countryName": "Tuvalu",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "seve paeniu",
+          "minister of finance",
+          "tuvalu",
+          "tv"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:22.037Z"
+      }
+    },
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "feleti-teo-prime-minister-tv",
+        "slug": "feleti-teo-prime-minister-tv",
+        "name": "Feleti Teo",
+        "countrySlug": "tuvalu-tv",
+        "countryName": "Tuvalu",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "feleti teo",
+          "prime minister",
+          "tuvalu",
+          "tv"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:37:01.182Z"
+      }
+    }
+  ]
+}

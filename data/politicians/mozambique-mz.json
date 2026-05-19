@@ -1,0 +1,77 @@
+{
+  "countrySlug": "mozambique-mz",
+  "politicians": [
+    {
+      "office": "President",
+      "profile": {
+        "id": "daniel-chapo-president-mz",
+        "slug": "daniel-chapo-president-mz",
+        "name": "Daniel Chapo",
+        "countrySlug": "mozambique-mz",
+        "countryName": "Mozambique",
+        "office": "President",
+        "searchTerms": [
+          "daniel chapo",
+          "president",
+          "mozambique",
+          "mz"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.930Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "carla-louveira-minister-of-finance-mz",
+        "slug": "carla-louveira-minister-of-finance-mz",
+        "name": "Carla Louveira",
+        "countrySlug": "mozambique-mz",
+        "countryName": "Mozambique",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "carla louveira",
+          "minister of finance",
+          "mozambique",
+          "mz"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.930Z"
+      }
+    },
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "maria-benvinda-levi-prime-minister-mz",
+        "slug": "maria-benvinda-levi-prime-minister-mz",
+        "name": "Maria Benvinda Levi",
+        "countrySlug": "mozambique-mz",
+        "countryName": "Mozambique",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "maria benvinda levi",
+          "prime minister",
+          "mozambique",
+          "mz"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:37:01.182Z"
+      }
+    }
+  ]
+}

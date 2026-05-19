@@ -1,0 +1,77 @@
+{
+  "countrySlug": "czechia-cz",
+  "politicians": [
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "petr-pavel-head-of-state-cz",
+        "slug": "petr-pavel-head-of-state-cz",
+        "name": "Petr Pavel",
+        "countrySlug": "czechia-cz",
+        "countryName": "Czechia",
+        "office": "Head of State",
+        "searchTerms": [
+          "petr pavel",
+          "head of state",
+          "czechia",
+          "cz"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.312Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "zbynek-stanjura-minister-of-finance-cz-2",
+        "slug": "zbynek-stanjura-minister-of-finance-cz-2",
+        "name": "Zbyněk Stanjura",
+        "countrySlug": "czechia-cz",
+        "countryName": "Czechia",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "zbyněk stanjura",
+          "minister of finance",
+          "czechia",
+          "cz"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.832Z"
+      }
+    },
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "petr-fiala-prime-minister-cz-2",
+        "slug": "petr-fiala-prime-minister-cz-2",
+        "name": "Petr Fiala",
+        "countrySlug": "czechia-cz",
+        "countryName": "Czechia",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "petr fiala",
+          "prime minister",
+          "czechia",
+          "cz"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:37:01.182Z"
+      }
+    }
+  ]
+}

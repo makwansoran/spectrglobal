@@ -1,0 +1,53 @@
+{
+  "countrySlug": "myanmar-mm",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "min-aung-hlaing-prime-minister-mm",
+        "slug": "min-aung-hlaing-prime-minister-mm",
+        "name": "Min Aung Hlaing",
+        "countrySlug": "myanmar-mm",
+        "countryName": "Myanmar",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "min aung hlaing",
+          "prime minister",
+          "myanmar",
+          "mm"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.548Z"
+      }
+    },
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "myint-swe-head-of-state-mm",
+        "slug": "myint-swe-head-of-state-mm",
+        "name": "Myint Swe",
+        "countrySlug": "myanmar-mm",
+        "countryName": "Myanmar",
+        "office": "Head of State",
+        "searchTerms": [
+          "myint swe",
+          "head of state",
+          "myanmar",
+          "mm"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.548Z"
+      }
+    }
+  ]
+}

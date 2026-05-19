@@ -1,0 +1,29 @@
+{
+  "countrySlug": "nauru-nr",
+  "politicians": [
+    {
+      "office": "President",
+      "profile": {
+        "id": "david-adeang-president-nr",
+        "slug": "david-adeang-president-nr",
+        "name": "David Adeang",
+        "countrySlug": "nauru-nr",
+        "countryName": "Nauru",
+        "office": "President",
+        "searchTerms": [
+          "david adeang",
+          "president",
+          "nauru",
+          "nr"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.937Z"
+      }
+    }
+  ]
+}

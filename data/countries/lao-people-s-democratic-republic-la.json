@@ -1,0 +1,31 @@
+{
+  "slug": "lao-people-s-democratic-republic-la",
+  "profile": {
+    "id": "lao-people-s-democratic-republic-la",
+    "slug": "lao-people-s-democratic-republic-la",
+    "name": "Lao People's Democratic Republic",
+    "isoCode": "LA",
+    "region": "Asia · South-eastern Asia",
+    "capital": "Vientiane",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Vientiane. Region: Asia (South-eastern Asia).",
+    "flagEmoji": "",
+    "logoInitials": "LR",
+    "searchTerms": [
+      "lao people's democratic republic",
+      "la",
+      "lao",
+      "lao-people-s-democratic-republic-la"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.637Z",
+    "flagUrl": "https://flagcdn.com/w320/la.png"
+  },
+  "mapGeojson": null
+}

@@ -1,0 +1,77 @@
+{
+  "countrySlug": "jordan-jo",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "jafar-hassan-prime-minister-jo",
+        "slug": "jafar-hassan-prime-minister-jo",
+        "name": "Jafar Hassan",
+        "countrySlug": "jordan-jo",
+        "countryName": "Jordan",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "jafar hassan",
+          "prime minister",
+          "jordan",
+          "jo"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.472Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "mohamad-al-ississ-minister-of-finance-jo",
+        "slug": "mohamad-al-ississ-minister-of-finance-jo",
+        "name": "Mohamad Al-Ississ",
+        "countrySlug": "jordan-jo",
+        "countryName": "Jordan",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "mohamad al-ississ",
+          "minister of finance",
+          "jordan",
+          "jo"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.889Z"
+      }
+    },
+    {
+      "office": "King",
+      "profile": {
+        "id": "abdullah-ii-of-jordan-king-jo",
+        "slug": "abdullah-ii-of-jordan-king-jo",
+        "name": "Abdullah II of Jordan",
+        "countrySlug": "jordan-jo",
+        "countryName": "Jordan",
+        "office": "King",
+        "searchTerms": [
+          "abdullah ii of jordan",
+          "king",
+          "jordan",
+          "jo"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.889Z"
+      }
+    }
+  ]
+}

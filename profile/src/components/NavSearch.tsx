@@ -91,7 +91,7 @@ export function NavSearch() {
             id="nav-company-search"
             type="search"
             className="nav-search-input"
-            placeholder="Search companies, commodities & waterways…"
+            placeholder="Search companies, people, vessels, countries…"
             autoComplete="off"
             value={query}
             role="combobox"
@@ -144,6 +144,18 @@ export function NavSearch() {
                 {company.kind === "commodity" && (
                   <span className="nav-search-kind nav-search-kind-commodity">Commodity</span>
                 )}
+                {company.kind === "person" && (
+                  <span className="nav-search-kind nav-search-kind-person">Person</span>
+                )}
+                {company.kind === "country" && (
+                  <span className="nav-search-kind nav-search-kind-country">Country</span>
+                )}
+                {company.kind === "politician" && (
+                  <span className="nav-search-kind nav-search-kind-politician">Politician</span>
+                )}
+                {company.kind === "vessel" && (
+                  <span className="nav-search-kind nav-search-kind-vessel">Vessel</span>
+                )}
                 <span className="nav-search-result-text">
                   <span className="nav-search-result-name">{highlightMatch(company.name, q)}</span>
                   <span className="nav-search-result-sub">
@@ -153,7 +165,15 @@ export function NavSearch() {
                       ? company.subtitle || company.meta || "Commodity"
                       : company.kind === "waterway"
                         ? company.subtitle || company.meta || "Maritime waterway"
-                        : company.subtitle || company.ticker || company.meta || company.legalName}
+                        : company.kind === "person"
+                          ? company.subtitle || company.meta || "Executive"
+                          : company.kind === "country"
+                            ? company.subtitle || company.meta || "Country"
+                            : company.kind === "politician"
+                              ? company.subtitle || company.meta || "Politician"
+                              : company.kind === "vessel"
+                                ? company.subtitle || company.meta || "Vessel"
+                                : company.subtitle || company.ticker || company.meta || company.legalName}
                   </span>
                 </span>
               </button>

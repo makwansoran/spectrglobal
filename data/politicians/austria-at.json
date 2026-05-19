@@ -1,0 +1,101 @@
+{
+  "countrySlug": "austria-at",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "christian-stocker-prime-minister-at",
+        "slug": "christian-stocker-prime-minister-at",
+        "name": "Christian Stocker",
+        "countrySlug": "austria-at",
+        "countryName": "Austria",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "christian stocker",
+          "prime minister",
+          "austria",
+          "at"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.233Z"
+      }
+    },
+    {
+      "office": "President",
+      "profile": {
+        "id": "alexander-van-der-bellen-president-at",
+        "slug": "alexander-van-der-bellen-president-at",
+        "name": "Alexander Van der Bellen",
+        "countrySlug": "austria-at",
+        "countryName": "Austria",
+        "office": "President",
+        "searchTerms": [
+          "alexander van der bellen",
+          "president",
+          "austria",
+          "at"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.782Z"
+      }
+    },
+    {
+      "office": "Chancellor",
+      "profile": {
+        "id": "herbert-kickl-chancellor-at",
+        "slug": "herbert-kickl-chancellor-at",
+        "name": "Herbert Kickl",
+        "countrySlug": "austria-at",
+        "countryName": "Austria",
+        "office": "Chancellor",
+        "searchTerms": [
+          "herbert kickl",
+          "chancellor",
+          "austria",
+          "at"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.782Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "markus-marterbauer-minister-of-finance-at",
+        "slug": "markus-marterbauer-minister-of-finance-at",
+        "name": "Markus Marterbauer",
+        "countrySlug": "austria-at",
+        "countryName": "Austria",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "markus marterbauer",
+          "minister of finance",
+          "austria",
+          "at"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.782Z"
+      }
+    }
+  ]
+}

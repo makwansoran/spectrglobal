@@ -1,0 +1,77 @@
+{
+  "countrySlug": "korea-democratic-people-s-republic-of-kp",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "pak-thae-song-prime-minister-kp",
+        "slug": "pak-thae-song-prime-minister-kp",
+        "name": "Pak Thae-song",
+        "countrySlug": "korea-democratic-people-s-republic-of-kp",
+        "countryName": "Korea, Democratic People's Republic of",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "pak thae-song",
+          "prime minister",
+          "korea, democratic people's republic of",
+          "kp"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.479Z"
+      }
+    },
+    {
+      "office": "Premier",
+      "profile": {
+        "id": "kim-tok-hun-premier-kp",
+        "slug": "kim-tok-hun-premier-kp",
+        "name": "Kim Tok-hun",
+        "countrySlug": "korea-democratic-people-s-republic-of-kp",
+        "countryName": "Korea, Democratic People's Republic of",
+        "office": "Premier",
+        "searchTerms": [
+          "kim tok-hun",
+          "premier",
+          "korea, democratic people's republic of",
+          "kp"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.892Z"
+      }
+    },
+    {
+      "office": "Supreme Leader",
+      "profile": {
+        "id": "kim-jong-un-supreme-leader-kp",
+        "slug": "kim-jong-un-supreme-leader-kp",
+        "name": "Kim Jong-un",
+        "countrySlug": "korea-democratic-people-s-republic-of-kp",
+        "countryName": "Korea, Democratic People's Republic of",
+        "office": "Supreme Leader",
+        "searchTerms": [
+          "kim jong-un",
+          "supreme leader",
+          "korea, democratic people's republic of",
+          "kp"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.892Z"
+      }
+    }
+  ]
+}

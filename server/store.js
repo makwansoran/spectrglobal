@@ -47,12 +47,23 @@ async function searchCompanies(query, limit = 25) {
 }
 
 /**
- * Unified search — companies + commodities (homepage and nav).
+ * Unified search — companies, commodities, waterways, people, countries, politicians, vessels.
+ * Powers the homepage hero search and the in-app nav search.
  */
 async function searchUnified(query, limit = 25) {
   const commoditiesStore = require("./commodities-store");
   const waterwaysStore = require("./waterways-store");
-  const { formatWaterwaySearchSubtitle, queryLooksLikeTicker } = require("./search-rank");
+  const peopleStore = require("./supabase-people-store");
+  const countriesStore = require("./supabase-countries-store");
+  const politiciansStore = require("./supabase-politicians-store");
+  const fleetStore = require("./supabase-fleet-store");
+  const {
+    formatWaterwaySearchSubtitle,
+    formatPersonSearchSubtitle,
+    formatCountrySearchSubtitle,
+    formatPoliticianSearchSubtitle,
+    queryLooksLikeTicker,
+  } = require("./search-rank");
   const euronextSync = require("./euronext/sync");
 
   let companies = await searchCompanies(query, limit).catch(() => []);
@@ -66,9 +77,13 @@ async function searchUnified(query, limit = 25) {
     }
   }
 
-  const [commodities, waterways] = await Promise.all([
+  const [commodities, waterways, people, countries, politicians, vessels] = await Promise.all([
     commoditiesStore.searchCommodities(query, limit).catch(() => []),
     waterwaysStore.searchWaterways(query, limit).catch(() => []),
+    searchPeople(query, limit).catch(() => []),
+    countriesStore.searchCountries(query, limit).catch(() => []),
+    politiciansStore.searchPoliticians(query, limit).catch(() => []),
+    fleetStore.searchVessels(query, limit).catch(() => []),
   ]);
 
   const commodityRows = commodities.map((row) => {
@@ -91,7 +106,98 @@ async function searchUnified(query, limit = 25) {
     };
   });
 
-  return mergeSearchResults(companies, commodityRows, query, limit, waterwayRows);
+  const personRows = people.map((row) => ({
+    ...row,
+    kind: "person",
+    source: "supabase",
+    subtitle: row.subtitle || formatPersonSearchSubtitle(row),
+  }));
+
+  const countryRows = countries.map((row) => ({
+    ...row,
+    kind: "country",
+    source: "supabase",
+    subtitle: row.subtitle || formatCountrySearchSubtitle(row),
+  }));
+
+  const politicianRows = politicians.map((row) => ({
+    ...row,
+    kind: "politician",
+    source: "supabase",
+    subtitle: row.subtitle || formatPoliticianSearchSubtitle(row),
+  }));
+
+  const vesselRows = vessels.map((row) => ({
+    ...row,
+    kind: "vessel",
+    source: "supabase",
+  }));
+
+  return mergeSearchResults({
+    companies,
+    commodities: commodityRows,
+    waterways: waterwayRows,
+    people: personRows,
+    countries: countryRows,
+    politicians: politicianRows,
+    vessels: vesselRows,
+    query,
+    limit,
+  });
+}
+
+async function searchPeople(query, limit = 25) {
+  requireSupabase();
+  const peopleStore = require("./supabase-people-store");
+  const q = String(query || "").trim().toLowerCase();
+  if (!q) return [];
+  const safe = q.replace(/[%_,.()]/g, "");
+  if (!safe) return [];
+  const pattern = `%${safe}%`;
+  const { getAdminClient } = require("./supabase-client");
+  const client = getAdminClient();
+  const seen = new Set();
+  const merged = [];
+
+  const addRows = (rows) => {
+    for (const row of rows || []) {
+      if (!row?.slug || seen.has(row.slug)) continue;
+      seen.add(row.slug);
+      merged.push(row);
+    }
+  };
+
+  const byText = await client
+    .from("company_people")
+    .select("slug, name, meta, initials, search_terms, title, company_slug")
+    .or(`name.ilike.${pattern},meta.ilike.${pattern},slug.ilike.${pattern},title.ilike.${pattern}`)
+    .order("name")
+    .limit(limit * 2);
+  if (byText.error) throw byText.error;
+  addRows(byText.data);
+
+  if (merged.length < limit) {
+    const byTerms = await client
+      .from("company_people")
+      .select("slug, name, meta, initials, search_terms, title, company_slug")
+      .contains("search_terms", [safe])
+      .order("name")
+      .limit(limit);
+    if (!byTerms.error) addRows(byTerms.data);
+  }
+
+  return merged.slice(0, limit).map((row) => ({
+    id: row.slug,
+    kind: "person",
+    name: row.name,
+    meta: row.meta || "",
+    initials: row.initials,
+    url: `/person/${row.slug}`,
+    terms: Array.isArray(row.search_terms) ? row.search_terms : [],
+    title: row.title || "",
+    companySlug: row.company_slug || null,
+    subtitle: row.meta || row.title || "",
+  }));
 }
 
 async function getCompanyRaw(slug) {
@@ -179,6 +285,7 @@ module.exports = {
   listCompanies,
   searchCompanies,
   searchUnified,
+  searchPeople,
   getCompany,
   getCompanyRaw,
   saveCompanySeed,

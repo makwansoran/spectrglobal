@@ -1,0 +1,53 @@
+{
+  "countrySlug": "palestine-state-of-ps",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "mohammad-mustafa-prime-minister-ps",
+        "slug": "mohammad-mustafa-prime-minister-ps",
+        "name": "Mohammad Mustafa",
+        "countrySlug": "palestine-state-of-ps",
+        "countryName": "Palestine, State of",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "mohammad mustafa",
+          "prime minister",
+          "palestine, state of",
+          "ps"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.576Z"
+      }
+    },
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "mahmoud-abbas-head-of-state-ps",
+        "slug": "mahmoud-abbas-head-of-state-ps",
+        "name": "Mahmoud Abbas",
+        "countrySlug": "palestine-state-of-ps",
+        "countryName": "Palestine, State of",
+        "office": "Head of State",
+        "searchTerms": [
+          "mahmoud abbas",
+          "head of state",
+          "palestine, state of",
+          "ps"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.576Z"
+      }
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "countrySlug": "iraq-iq",
+  "politicians": [
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "abdul-latif-rashid-head-of-state-iq",
+        "slug": "abdul-latif-rashid-head-of-state-iq",
+        "name": "Abdul Latif Rashid",
+        "countrySlug": "iraq-iq",
+        "countryName": "Iraq",
+        "office": "Head of State",
+        "searchTerms": [
+          "abdul latif rashid",
+          "head of state",
+          "iraq",
+          "iq"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.454Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "taif-sami-mohammed-minister-of-finance-iq",
+        "slug": "taif-sami-mohammed-minister-of-finance-iq",
+        "name": "Taif Sami Mohammed",
+        "countrySlug": "iraq-iq",
+        "countryName": "Iraq",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "taif sami mohammed",
+          "minister of finance",
+          "iraq",
+          "iq"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.872Z"
+      }
+    },
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "mohammed-shia-al-sudani-prime-minister-iq",
+        "slug": "mohammed-shia-al-sudani-prime-minister-iq",
+        "name": "Mohammed Shia' Al-Sudani",
+        "countrySlug": "iraq-iq",
+        "countryName": "Iraq",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "mohammed shia' al-sudani",
+          "prime minister",
+          "iraq",
+          "iq"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:37:01.182Z"
+      }
+    }
+  ]
+}

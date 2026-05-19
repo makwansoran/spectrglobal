@@ -1,0 +1,31 @@
+{
+  "slug": "portugal-pt",
+  "profile": {
+    "id": "portugal-pt",
+    "slug": "portugal-pt",
+    "name": "Portugal",
+    "isoCode": "PT",
+    "region": "Europe · Southern Europe",
+    "capital": "Lisbon",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Lisbon. Region: Europe (Southern Europe).",
+    "flagEmoji": "",
+    "logoInitials": "PO",
+    "searchTerms": [
+      "portugal",
+      "pt",
+      "prt",
+      "portugal-pt"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.723Z",
+    "flagUrl": "https://flagcdn.com/w320/pt.png"
+  },
+  "mapGeojson": null
+}

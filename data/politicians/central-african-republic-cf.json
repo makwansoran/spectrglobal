@@ -1,0 +1,53 @@
+{
+  "countrySlug": "central-african-republic-cf",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "felix-moloua-prime-minister-cf",
+        "slug": "felix-moloua-prime-minister-cf",
+        "name": "Félix Moloua",
+        "countrySlug": "central-african-republic-cf",
+        "countryName": "Central African Republic",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "félix moloua",
+          "prime minister",
+          "central african republic",
+          "cf"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.280Z"
+      }
+    },
+    {
+      "office": "President",
+      "profile": {
+        "id": "faustin-archange-touadera-president-cf",
+        "slug": "faustin-archange-touadera-president-cf",
+        "name": "Faustin-Archange Touadéra",
+        "countrySlug": "central-african-republic-cf",
+        "countryName": "Central African Republic",
+        "office": "President",
+        "searchTerms": [
+          "faustin-archange touadéra",
+          "president",
+          "central african republic",
+          "cf"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.818Z"
+      }
+    }
+  ]
+}

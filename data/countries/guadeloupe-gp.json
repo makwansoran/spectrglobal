@@ -1,0 +1,31 @@
+{
+  "slug": "guadeloupe-gp",
+  "profile": {
+    "id": "guadeloupe-gp",
+    "slug": "guadeloupe-gp",
+    "name": "Guadeloupe",
+    "isoCode": "GP",
+    "region": "Americas · Latin America and the Caribbean",
+    "capital": "Basse-Terre",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Basse-Terre. Region: Americas (Latin America and the Caribbean).",
+    "flagEmoji": "",
+    "logoInitials": "GU",
+    "searchTerms": [
+      "guadeloupe",
+      "gp",
+      "glp",
+      "guadeloupe-gp"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.598Z",
+    "flagUrl": "https://flagcdn.com/w320/gp.png"
+  },
+  "mapGeojson": null
+}

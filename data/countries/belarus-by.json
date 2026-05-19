@@ -1,0 +1,31 @@
+{
+  "slug": "belarus-by",
+  "profile": {
+    "id": "belarus-by",
+    "slug": "belarus-by",
+    "name": "Belarus",
+    "isoCode": "BY",
+    "region": "Europe · Eastern Europe",
+    "capital": "Minsk",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Minsk. Region: Europe (Eastern Europe).",
+    "flagEmoji": "",
+    "logoInitials": "BE",
+    "searchTerms": [
+      "belarus",
+      "by",
+      "blr",
+      "belarus-by"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.409Z",
+    "flagUrl": "https://flagcdn.com/w320/by.png"
+  },
+  "mapGeojson": null
+}

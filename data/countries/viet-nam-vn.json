@@ -1,0 +1,31 @@
+{
+  "slug": "viet-nam-vn",
+  "profile": {
+    "id": "viet-nam-vn",
+    "slug": "viet-nam-vn",
+    "name": "Viet Nam",
+    "isoCode": "VN",
+    "region": "Asia · South-eastern Asia",
+    "capital": "Hanoi",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Hanoi. Region: Asia (South-eastern Asia).",
+    "flagEmoji": "",
+    "logoInitials": "VN",
+    "searchTerms": [
+      "viet nam",
+      "vn",
+      "vnm",
+      "viet-nam-vn"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.867Z",
+    "flagUrl": "https://flagcdn.com/w320/vn.png"
+  },
+  "mapGeojson": null
+}

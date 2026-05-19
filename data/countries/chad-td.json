@@ -1,0 +1,31 @@
+{
+  "slug": "chad-td",
+  "profile": {
+    "id": "chad-td",
+    "slug": "chad-td",
+    "name": "Chad",
+    "isoCode": "TD",
+    "region": "Africa · Sub-Saharan Africa",
+    "capital": "N'Djamena",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: N'Djamena. Region: Africa (Sub-Saharan Africa).",
+    "flagEmoji": "",
+    "logoInitials": "CH",
+    "searchTerms": [
+      "chad",
+      "td",
+      "tcd",
+      "chad-td"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.449Z",
+    "flagUrl": "https://flagcdn.com/w320/td.png"
+  },
+  "mapGeojson": null
+}

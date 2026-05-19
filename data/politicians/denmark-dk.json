@@ -1,0 +1,77 @@
+{
+  "countrySlug": "denmark-dk",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "mette-frederiksen-prime-minister-dk",
+        "slug": "mette-frederiksen-prime-minister-dk",
+        "name": "Mette Frederiksen",
+        "countrySlug": "denmark-dk",
+        "countryName": "Denmark",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "mette frederiksen",
+          "prime minister",
+          "denmark",
+          "dk"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.313Z"
+      }
+    },
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "frederik-x-of-denmark-head-of-state-dk",
+        "slug": "frederik-x-of-denmark-head-of-state-dk",
+        "name": "Frederik X of Denmark",
+        "countrySlug": "denmark-dk",
+        "countryName": "Denmark",
+        "office": "Head of State",
+        "searchTerms": [
+          "frederik x of denmark",
+          "head of state",
+          "denmark",
+          "dk"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.313Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "nicolai-wammen-minister-of-finance-dk",
+        "slug": "nicolai-wammen-minister-of-finance-dk",
+        "name": "Nicolai Wammen",
+        "countrySlug": "denmark-dk",
+        "countryName": "Denmark",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "nicolai wammen",
+          "minister of finance",
+          "denmark",
+          "dk"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.834Z"
+      }
+    }
+  ]
+}

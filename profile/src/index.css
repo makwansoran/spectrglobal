@@ -249,6 +249,26 @@
   color: #6366f1;
 }
 
+.nav-search-kind-person {
+  background: rgba(20, 184, 166, 0.12);
+  color: #0d9488;
+}
+
+.nav-search-kind-country {
+  background: rgba(245, 158, 11, 0.14);
+  color: #b45309;
+}
+
+.nav-search-kind-politician {
+  background: rgba(239, 68, 68, 0.12);
+  color: #b91c1c;
+}
+
+.nav-search-kind-vessel {
+  background: rgba(168, 85, 247, 0.12);
+  color: #7e22ce;
+}
+
 @media (max-width: 480px) {
   .nav-search {
     max-width: none;

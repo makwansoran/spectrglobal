@@ -1,0 +1,77 @@
+{
+  "countrySlug": "jamaica-jm",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "andrew-holness-prime-minister-jm",
+        "slug": "andrew-holness-prime-minister-jm",
+        "name": "Andrew Holness",
+        "countrySlug": "jamaica-jm",
+        "countryName": "Jamaica",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "andrew holness",
+          "prime minister",
+          "jamaica",
+          "jm"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.463Z"
+      }
+    },
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "charles-iii-head-of-state-jm",
+        "slug": "charles-iii-head-of-state-jm",
+        "name": "Charles III",
+        "countrySlug": "jamaica-jm",
+        "countryName": "Jamaica",
+        "office": "Head of State",
+        "searchTerms": [
+          "charles iii",
+          "head of state",
+          "jamaica",
+          "jm"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.463Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "nigel-clarke-minister-of-finance-jm",
+        "slug": "nigel-clarke-minister-of-finance-jm",
+        "name": "Nigel Clarke",
+        "countrySlug": "jamaica-jm",
+        "countryName": "Jamaica",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "nigel clarke",
+          "minister of finance",
+          "jamaica",
+          "jm"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.887Z"
+      }
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "countrySlug": "azerbaijan-az",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "ali-asadov-prime-minister-az",
+        "slug": "ali-asadov-prime-minister-az",
+        "name": "Ali Asadov",
+        "countrySlug": "azerbaijan-az",
+        "countryName": "Azerbaijan",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "ali asadov",
+          "prime minister",
+          "azerbaijan",
+          "az"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.241Z"
+      }
+    },
+    {
+      "office": "President",
+      "profile": {
+        "id": "ilham-aliyev-president-az",
+        "slug": "ilham-aliyev-president-az",
+        "name": "Ilham Aliyev",
+        "countrySlug": "azerbaijan-az",
+        "countryName": "Azerbaijan",
+        "office": "President",
+        "searchTerms": [
+          "ilham aliyev",
+          "president",
+          "azerbaijan",
+          "az"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.784Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "samir-sharifov-minister-of-finance-az",
+        "slug": "samir-sharifov-minister-of-finance-az",
+        "name": "Samir Sharifov",
+        "countrySlug": "azerbaijan-az",
+        "countryName": "Azerbaijan",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "samir sharifov",
+          "minister of finance",
+          "azerbaijan",
+          "az"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.784Z"
+      }
+    }
+  ]
+}

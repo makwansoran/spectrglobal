@@ -159,12 +159,12 @@
   }
 
   function resultSubtitle(row) {
-    if (row.kind === "commodity") {
-      return row.subtitle || row.meta || "Commodity";
-    }
-    if (row.kind === "waterway") {
-      return row.subtitle || row.meta || "Maritime waterway";
-    }
+    if (row.kind === "commodity") return row.subtitle || row.meta || "Commodity";
+    if (row.kind === "waterway") return row.subtitle || row.meta || "Maritime waterway";
+    if (row.kind === "person") return row.subtitle || row.meta || "Executive";
+    if (row.kind === "country") return row.subtitle || row.meta || "Country";
+    if (row.kind === "politician") return row.subtitle || row.meta || "Politician";
+    if (row.kind === "vessel") return row.subtitle || row.meta || "Vessel";
     return row.subtitle || row.ticker || row.meta || row.legalName;
   }
 
@@ -174,6 +174,18 @@
     }
     if (row.kind === "commodity") {
       return '<span class="cb-search-kind cb-search-kind-commodity">Commodity</span>';
+    }
+    if (row.kind === "person") {
+      return '<span class="cb-search-kind cb-search-kind-person">Person</span>';
+    }
+    if (row.kind === "country") {
+      return '<span class="cb-search-kind cb-search-kind-country">Country</span>';
+    }
+    if (row.kind === "politician") {
+      return '<span class="cb-search-kind cb-search-kind-politician">Politician</span>';
+    }
+    if (row.kind === "vessel") {
+      return '<span class="cb-search-kind cb-search-kind-vessel">Vessel</span>';
     }
     return "";
   }

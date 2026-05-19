@@ -1,0 +1,101 @@
+{
+  "countrySlug": "bahrain-bh",
+  "politicians": [
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "hamad-ii-of-bahrain-head-of-state-bh",
+        "slug": "hamad-ii-of-bahrain-head-of-state-bh",
+        "name": "Hamad II of Bahrain",
+        "countrySlug": "bahrain-bh",
+        "countryName": "Bahrain",
+        "office": "Head of State",
+        "searchTerms": [
+          "hamad ii of bahrain",
+          "head of state",
+          "bahrain",
+          "bh"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.244Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "salman-bin-khalifa-al-khalifa-minister-of-finance-bh",
+        "slug": "salman-bin-khalifa-al-khalifa-minister-of-finance-bh",
+        "name": "Salman bin Khalifa Al Khalifa",
+        "countrySlug": "bahrain-bh",
+        "countryName": "Bahrain",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "salman bin khalifa al khalifa",
+          "minister of finance",
+          "bahrain",
+          "bh"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.786Z"
+      }
+    },
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "salman-bin-hamad-al-khalifa-prime-minister-bh",
+        "slug": "salman-bin-hamad-al-khalifa-prime-minister-bh",
+        "name": "Salman bin Hamad Al Khalifa",
+        "countrySlug": "bahrain-bh",
+        "countryName": "Bahrain",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "salman bin hamad al khalifa",
+          "prime minister",
+          "bahrain",
+          "bh"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:37:01.182Z"
+      }
+    },
+    {
+      "office": "King",
+      "profile": {
+        "id": "hamad-bin-isa-al-khalifa-king-bh",
+        "slug": "hamad-bin-isa-al-khalifa-king-bh",
+        "name": "Hamad bin Isa Al Khalifa",
+        "countrySlug": "bahrain-bh",
+        "countryName": "Bahrain",
+        "office": "King",
+        "searchTerms": [
+          "hamad bin isa al khalifa",
+          "king",
+          "bahrain",
+          "bh"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.786Z"
+      }
+    }
+  ]
+}

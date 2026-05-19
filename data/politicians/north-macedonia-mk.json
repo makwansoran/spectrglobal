@@ -1,0 +1,77 @@
+{
+  "countrySlug": "north-macedonia-mk",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "hristijan-mickoski-prime-minister-mk",
+        "slug": "hristijan-mickoski-prime-minister-mk",
+        "name": "Hristijan Mickoski",
+        "countrySlug": "north-macedonia-mk",
+        "countryName": "North Macedonia",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "hristijan mickoski",
+          "prime minister",
+          "north macedonia",
+          "mk"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.567Z"
+      }
+    },
+    {
+      "office": "President",
+      "profile": {
+        "id": "gordana-siljanovska-davkova-president-mk",
+        "slug": "gordana-siljanovska-davkova-president-mk",
+        "name": "Gordana Siljanovska-Davkova",
+        "countrySlug": "north-macedonia-mk",
+        "countryName": "North Macedonia",
+        "office": "President",
+        "searchTerms": [
+          "gordana siljanovska-davkova",
+          "president",
+          "north macedonia",
+          "mk"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.948Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "gordana-dimitrieska-kocoska-minister-of-finance-mk",
+        "slug": "gordana-dimitrieska-kocoska-minister-of-finance-mk",
+        "name": "Gordana Dimitrieska Kocoska",
+        "countrySlug": "north-macedonia-mk",
+        "countryName": "North Macedonia",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "gordana dimitrieska kocoska",
+          "minister of finance",
+          "north macedonia",
+          "mk"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.948Z"
+      }
+    }
+  ]
+}

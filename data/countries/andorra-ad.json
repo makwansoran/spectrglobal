@@ -1,0 +1,31 @@
+{
+  "slug": "andorra-ad",
+  "profile": {
+    "id": "andorra-ad",
+    "slug": "andorra-ad",
+    "name": "Andorra",
+    "isoCode": "AD",
+    "region": "Europe · Southern Europe",
+    "capital": "Andorra la Vella",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Andorra la Vella. Region: Europe (Southern Europe).",
+    "flagEmoji": "",
+    "logoInitials": "AN",
+    "searchTerms": [
+      "andorra",
+      "ad",
+      "and",
+      "andorra-ad"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.393Z",
+    "flagUrl": "https://flagcdn.com/w320/ad.png"
+  },
+  "mapGeojson": null
+}

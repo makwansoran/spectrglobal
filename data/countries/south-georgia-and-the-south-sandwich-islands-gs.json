@@ -1,0 +1,31 @@
+{
+  "slug": "south-georgia-and-the-south-sandwich-islands-gs",
+  "profile": {
+    "id": "south-georgia-and-the-south-sandwich-islands-gs",
+    "slug": "south-georgia-and-the-south-sandwich-islands-gs",
+    "name": "South Georgia and the South Sandwich Islands",
+    "isoCode": "GS",
+    "region": "Americas · Latin America and the Caribbean",
+    "capital": "King Edward Point",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: King Edward Point. Region: Americas (Latin America and the Caribbean).",
+    "flagEmoji": "",
+    "logoInitials": "SI",
+    "searchTerms": [
+      "south georgia and the south sandwich islands",
+      "gs",
+      "sgs",
+      "south-georgia-and-the-south-sandwich-islands-gs"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.780Z",
+    "flagUrl": "https://flagcdn.com/w320/gs.png"
+  },
+  "mapGeojson": null
+}

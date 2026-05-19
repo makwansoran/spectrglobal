@@ -32,6 +32,8 @@ async function main() {
   run(["seed-catalog.js", "banks"], "Banks");
   run(["seed-catalog.js", "investment_banks"], "Investment banks");
   run(["seed-catalog.js", "venture_capital"], "Venture capital");
+  run("seed-countries.js", "Countries");
+  run("seed-politicians.js", "Politicians");
   console.log("\nDone. Check: npm run db:status");
 }
 

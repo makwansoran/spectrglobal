@@ -205,6 +205,26 @@ body.page-home.plt-site .cb-search-wrap {
   color: #6ba3f7;
 }
 
+.cb-search-kind-person,
+.nav-search-kind-person {
+  color: #14b8a6;
+}
+
+.cb-search-kind-country,
+.nav-search-kind-country {
+  color: #f59e0b;
+}
+
+.cb-search-kind-politician,
+.nav-search-kind-politician {
+  color: #ef4444;
+}
+
+.cb-search-kind-vessel,
+.nav-search-kind-vessel {
+  color: #a855f7;
+}
+
 .cb-search-result-sub {
   color: rgba(255, 255, 255, 0.5);
   font-weight: 400;

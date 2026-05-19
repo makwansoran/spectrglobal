@@ -1,0 +1,77 @@
+{
+  "countrySlug": "mauritania-mr",
+  "politicians": [
+    {
+      "office": "President",
+      "profile": {
+        "id": "mohamed-ould-ghazouani-president-mr",
+        "slug": "mohamed-ould-ghazouani-president-mr",
+        "name": "Mohamed Ould Ghazouani",
+        "countrySlug": "mauritania-mr",
+        "countryName": "Mauritania",
+        "office": "President",
+        "searchTerms": [
+          "mohamed ould ghazouani",
+          "president",
+          "mauritania",
+          "mr"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.921Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "oumar-mamadou-balde-minister-of-finance-mr",
+        "slug": "oumar-mamadou-balde-minister-of-finance-mr",
+        "name": "Oumar Mamadou Baldé",
+        "countrySlug": "mauritania-mr",
+        "countryName": "Mauritania",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "oumar mamadou baldé",
+          "minister of finance",
+          "mauritania",
+          "mr"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.921Z"
+      }
+    },
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "mokhtar-ould-djay-prime-minister-mr",
+        "slug": "mokhtar-ould-djay-prime-minister-mr",
+        "name": "Mokhtar Ould Djay",
+        "countrySlug": "mauritania-mr",
+        "countryName": "Mauritania",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "mokhtar ould djay",
+          "prime minister",
+          "mauritania",
+          "mr"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:37:01.182Z"
+      }
+    }
+  ]
+}

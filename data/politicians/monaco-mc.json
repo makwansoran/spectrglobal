@@ -1,0 +1,101 @@
+{
+  "countrySlug": "monaco-mc",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "philippe-mettoux-prime-minister-mc",
+        "slug": "philippe-mettoux-prime-minister-mc",
+        "name": "Philippe Mettoux",
+        "countrySlug": "monaco-mc",
+        "countryName": "Monaco",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "philippe mettoux",
+          "prime minister",
+          "monaco",
+          "mc"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.542Z"
+      }
+    },
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "albert-ii-prince-of-monaco-head-of-state-mc",
+        "slug": "albert-ii-prince-of-monaco-head-of-state-mc",
+        "name": "Albert II, Prince of Monaco",
+        "countrySlug": "monaco-mc",
+        "countryName": "Monaco",
+        "office": "Head of State",
+        "searchTerms": [
+          "albert ii, prince of monaco",
+          "head of state",
+          "monaco",
+          "mc"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.542Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "jean-luc-brossard-minister-of-finance-mc",
+        "slug": "jean-luc-brossard-minister-of-finance-mc",
+        "name": "Jean-Luc Brossard",
+        "countrySlug": "monaco-mc",
+        "countryName": "Monaco",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "jean-luc brossard",
+          "minister of finance",
+          "monaco",
+          "mc"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.925Z"
+      }
+    },
+    {
+      "office": "Minister of State",
+      "profile": {
+        "id": "didier-guillaume-minister-of-state-mc",
+        "slug": "didier-guillaume-minister-of-state-mc",
+        "name": "Didier Guillaume",
+        "countrySlug": "monaco-mc",
+        "countryName": "Monaco",
+        "office": "Minister of State",
+        "searchTerms": [
+          "didier guillaume",
+          "minister of state",
+          "monaco",
+          "mc"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.925Z"
+      }
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "countrySlug": "taiwan-tw",
+  "politicians": [
+    {
+      "office": "President",
+      "profile": {
+        "id": "lai-ching-te-president-tw-2",
+        "slug": "lai-ching-te-president-tw-2",
+        "name": "Lai Ching-te",
+        "countrySlug": "taiwan-tw",
+        "countryName": "Taiwan",
+        "office": "President",
+        "searchTerms": [
+          "lai ching-te",
+          "president",
+          "taiwan",
+          "tw"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:22.023Z"
+      }
+    },
+    {
+      "office": "Premier",
+      "profile": {
+        "id": "cho-jung-tai-premier-tw-2",
+        "slug": "cho-jung-tai-premier-tw-2",
+        "name": "Cho Jung-tai",
+        "countrySlug": "taiwan-tw",
+        "countryName": "Taiwan",
+        "office": "Premier",
+        "searchTerms": [
+          "cho jung-tai",
+          "premier",
+          "taiwan",
+          "tw"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:22.023Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "chuang-tsui-yun-minister-of-finance-tw-2",
+        "slug": "chuang-tsui-yun-minister-of-finance-tw-2",
+        "name": "Chuang Tsui-yun",
+        "countrySlug": "taiwan-tw",
+        "countryName": "Taiwan",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "chuang tsui-yun",
+          "minister of finance",
+          "taiwan",
+          "tw"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:22.023Z"
+      }
+    }
+  ]
+}

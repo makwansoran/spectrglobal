@@ -1,0 +1,31 @@
+{
+  "slug": "montserrat-ms",
+  "profile": {
+    "id": "montserrat-ms",
+    "slug": "montserrat-ms",
+    "name": "Montserrat",
+    "isoCode": "MS",
+    "region": "Americas · Latin America and the Caribbean",
+    "capital": "Brades",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Brades. Region: Americas (Latin America and the Caribbean).",
+    "flagEmoji": "",
+    "logoInitials": "MO",
+    "searchTerms": [
+      "montserrat",
+      "ms",
+      "msr",
+      "montserrat-ms"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.671Z",
+    "flagUrl": "https://flagcdn.com/w320/ms.png"
+  },
+  "mapGeojson": null
+}

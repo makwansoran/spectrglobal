@@ -1,0 +1,31 @@
+{
+  "slug": "suriname-sr",
+  "profile": {
+    "id": "suriname-sr",
+    "slug": "suriname-sr",
+    "name": "Suriname",
+    "isoCode": "SR",
+    "region": "Americas · Latin America and the Caribbean",
+    "capital": "Paramaribo",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Paramaribo. Region: Americas (Latin America and the Caribbean).",
+    "flagEmoji": "",
+    "logoInitials": "SU",
+    "searchTerms": [
+      "suriname",
+      "sr",
+      "sur",
+      "suriname-sr"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.810Z",
+    "flagUrl": "https://flagcdn.com/w320/sr.png"
+  },
+  "mapGeojson": null
+}

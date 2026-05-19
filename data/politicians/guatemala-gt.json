@@ -1,0 +1,101 @@
+{
+  "countrySlug": "guatemala-gt",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "bernardo-arevalo-de-leon-prime-minister-gt",
+        "slug": "bernardo-arevalo-de-leon-prime-minister-gt",
+        "name": "Bernardo Arévalo de León",
+        "countrySlug": "guatemala-gt",
+        "countryName": "Guatemala",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "bernardo arévalo de león",
+          "prime minister",
+          "guatemala",
+          "gt"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.393Z"
+      }
+    },
+    {
+      "office": "President",
+      "profile": {
+        "id": "bernardo-arevalo-president-gt",
+        "slug": "bernardo-arevalo-president-gt",
+        "name": "Bernardo Arévalo",
+        "countrySlug": "guatemala-gt",
+        "countryName": "Guatemala",
+        "office": "President",
+        "searchTerms": [
+          "bernardo arévalo",
+          "president",
+          "guatemala",
+          "gt"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.857Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "jonathan-menkos-zeissig-minister-of-finance-gt",
+        "slug": "jonathan-menkos-zeissig-minister-of-finance-gt",
+        "name": "Jonathan Menkos Zeissig",
+        "countrySlug": "guatemala-gt",
+        "countryName": "Guatemala",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "jonathan menkos zeissig",
+          "minister of finance",
+          "guatemala",
+          "gt"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.857Z"
+      }
+    },
+    {
+      "office": "Vice President",
+      "profile": {
+        "id": "karin-herrera-vice-president-gt",
+        "slug": "karin-herrera-vice-president-gt",
+        "name": "Karin Herrera",
+        "countrySlug": "guatemala-gt",
+        "countryName": "Guatemala",
+        "office": "Vice President",
+        "searchTerms": [
+          "karin herrera",
+          "vice president",
+          "guatemala",
+          "gt"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.857Z"
+      }
+    }
+  ]
+}

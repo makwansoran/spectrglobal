@@ -1,0 +1,77 @@
+{
+  "countrySlug": "liberia-lr",
+  "politicians": [
+    {
+      "office": "President",
+      "profile": {
+        "id": "joseph-boakai-president-lr",
+        "slug": "joseph-boakai-president-lr",
+        "name": "Joseph Boakai",
+        "countrySlug": "liberia-lr",
+        "countryName": "Liberia",
+        "office": "President",
+        "searchTerms": [
+          "joseph boakai",
+          "president",
+          "liberia",
+          "lr"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.905Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "augustine-ngafuan-minister-of-finance-lr",
+        "slug": "augustine-ngafuan-minister-of-finance-lr",
+        "name": "Augustine Ngafuan",
+        "countrySlug": "liberia-lr",
+        "countryName": "Liberia",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "augustine ngafuan",
+          "minister of finance",
+          "liberia",
+          "lr"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.905Z"
+      }
+    },
+    {
+      "office": "Vice President",
+      "profile": {
+        "id": "jeremiah-koung-vice-president-lr",
+        "slug": "jeremiah-koung-vice-president-lr",
+        "name": "Jeremiah Koung",
+        "countrySlug": "liberia-lr",
+        "countryName": "Liberia",
+        "office": "Vice President",
+        "searchTerms": [
+          "jeremiah koung",
+          "vice president",
+          "liberia",
+          "lr"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.905Z"
+      }
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "slug": "brazil-br",
+  "profile": {
+    "id": "brazil-br",
+    "slug": "brazil-br",
+    "name": "Brazil",
+    "isoCode": "BR",
+    "region": "Americas · Latin America and the Caribbean",
+    "capital": "Brasília",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Brasília. Region: Americas (Latin America and the Caribbean).",
+    "flagEmoji": "",
+    "logoInitials": "BR",
+    "searchTerms": [
+      "brazil",
+      "br",
+      "bra",
+      "brazil-br"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.427Z",
+    "flagUrl": "https://flagcdn.com/w320/br.png"
+  },
+  "mapGeojson": null
+}

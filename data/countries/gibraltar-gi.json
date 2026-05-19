@@ -1,0 +1,31 @@
+{
+  "slug": "gibraltar-gi",
+  "profile": {
+    "id": "gibraltar-gi",
+    "slug": "gibraltar-gi",
+    "name": "Gibraltar",
+    "isoCode": "GI",
+    "region": "Europe · Southern Europe",
+    "capital": "Gibraltar",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Gibraltar. Region: Europe (Southern Europe).",
+    "flagEmoji": "",
+    "logoInitials": "GI",
+    "searchTerms": [
+      "gibraltar",
+      "gi",
+      "gib",
+      "gibraltar-gi"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.596Z",
+    "flagUrl": "https://flagcdn.com/w320/gi.png"
+  },
+  "mapGeojson": null
+}

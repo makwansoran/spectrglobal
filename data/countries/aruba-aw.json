@@ -1,0 +1,31 @@
+{
+  "slug": "aruba-aw",
+  "profile": {
+    "id": "aruba-aw",
+    "slug": "aruba-aw",
+    "name": "Aruba",
+    "isoCode": "AW",
+    "region": "Americas · Latin America and the Caribbean",
+    "capital": "Oranjestad",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Oranjestad. Region: Americas (Latin America and the Caribbean).",
+    "flagEmoji": "",
+    "logoInitials": "AR",
+    "searchTerms": [
+      "aruba",
+      "aw",
+      "abw",
+      "aruba-aw"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.397Z",
+    "flagUrl": "https://flagcdn.com/w320/aw.png"
+  },
+  "mapGeojson": null
+}

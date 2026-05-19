@@ -1,0 +1,77 @@
+{
+  "countrySlug": "cameroon-cm",
+  "politicians": [
+    {
+      "office": "President",
+      "profile": {
+        "id": "paul-biya-president-cm",
+        "slug": "paul-biya-president-cm",
+        "name": "Paul Biya",
+        "countrySlug": "cameroon-cm",
+        "countryName": "Cameroon",
+        "office": "President",
+        "searchTerms": [
+          "paul biya",
+          "president",
+          "cameroon",
+          "cm"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.811Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "louis-paul-motaze-minister-of-finance-cm",
+        "slug": "louis-paul-motaze-minister-of-finance-cm",
+        "name": "Louis Paul Motaze",
+        "countrySlug": "cameroon-cm",
+        "countryName": "Cameroon",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "louis paul motaze",
+          "minister of finance",
+          "cameroon",
+          "cm"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.811Z"
+      }
+    },
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "joseph-dion-ngute-prime-minister-cm",
+        "slug": "joseph-dion-ngute-prime-minister-cm",
+        "name": "Joseph Dion Ngute",
+        "countrySlug": "cameroon-cm",
+        "countryName": "Cameroon",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "joseph dion ngute",
+          "prime minister",
+          "cameroon",
+          "cm"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:37:01.182Z"
+      }
+    }
+  ]
+}

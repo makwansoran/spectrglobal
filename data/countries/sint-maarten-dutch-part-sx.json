@@ -1,0 +1,31 @@
+{
+  "slug": "sint-maarten-dutch-part-sx",
+  "profile": {
+    "id": "sint-maarten-dutch-part-sx",
+    "slug": "sint-maarten-dutch-part-sx",
+    "name": "Sint Maarten (Dutch part)",
+    "isoCode": "SX",
+    "region": "Americas · Latin America and the Caribbean",
+    "capital": "Philipsburg",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Philipsburg. Region: Americas (Latin America and the Caribbean).",
+    "flagEmoji": "",
+    "logoInitials": "SP",
+    "searchTerms": [
+      "sint maarten (dutch part)",
+      "sx",
+      "sxm",
+      "sint-maarten-dutch-part-sx"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.770Z",
+    "flagUrl": "https://flagcdn.com/w320/sx.png"
+  },
+  "mapGeojson": null
+}

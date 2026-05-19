@@ -1,0 +1,31 @@
+{
+  "slug": "peru-pe",
+  "profile": {
+    "id": "peru-pe",
+    "slug": "peru-pe",
+    "name": "Peru",
+    "isoCode": "PE",
+    "region": "Americas · Latin America and the Caribbean",
+    "capital": "Lima",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Lima. Region: Americas (Latin America and the Caribbean).",
+    "flagEmoji": "",
+    "logoInitials": "PE",
+    "searchTerms": [
+      "peru",
+      "pe",
+      "per",
+      "peru-pe"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.717Z",
+    "flagUrl": "https://flagcdn.com/w320/pe.png"
+  },
+  "mapGeojson": null
+}

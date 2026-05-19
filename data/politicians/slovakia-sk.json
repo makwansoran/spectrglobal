@@ -1,0 +1,77 @@
+{
+  "countrySlug": "slovakia-sk",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "robert-fico-prime-minister-sk",
+        "slug": "robert-fico-prime-minister-sk",
+        "name": "Robert Fico",
+        "countrySlug": "slovakia-sk",
+        "countryName": "Slovakia",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "robert fico",
+          "prime minister",
+          "slovakia",
+          "sk"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.660Z"
+      }
+    },
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "peter-pellegrini-head-of-state-sk",
+        "slug": "peter-pellegrini-head-of-state-sk",
+        "name": "Peter Pellegrini",
+        "countrySlug": "slovakia-sk",
+        "countryName": "Slovakia",
+        "office": "Head of State",
+        "searchTerms": [
+          "peter pellegrini",
+          "head of state",
+          "slovakia",
+          "sk"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.660Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "ladislav-kamenicky-minister-of-finance-sk",
+        "slug": "ladislav-kamenicky-minister-of-finance-sk",
+        "name": "Ladislav Kamenický",
+        "countrySlug": "slovakia-sk",
+        "countryName": "Slovakia",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "ladislav kamenický",
+          "minister of finance",
+          "slovakia",
+          "sk"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.985Z"
+      }
+    }
+  ]
+}

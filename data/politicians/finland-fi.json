@@ -1,0 +1,77 @@
+{
+  "countrySlug": "finland-fi",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "petteri-orpo-prime-minister-fi",
+        "slug": "petteri-orpo-prime-minister-fi",
+        "name": "Petteri Orpo",
+        "countrySlug": "finland-fi",
+        "countryName": "Finland",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "petteri orpo",
+          "prime minister",
+          "finland",
+          "fi"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.362Z"
+      }
+    },
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "alexander-stubb-head-of-state-fi",
+        "slug": "alexander-stubb-head-of-state-fi",
+        "name": "Alexander Stubb",
+        "countrySlug": "finland-fi",
+        "countryName": "Finland",
+        "office": "Head of State",
+        "searchTerms": [
+          "alexander stubb",
+          "head of state",
+          "finland",
+          "fi"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.362Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "riikka-purra-minister-of-finance-fi",
+        "slug": "riikka-purra-minister-of-finance-fi",
+        "name": "Riikka Purra",
+        "countrySlug": "finland-fi",
+        "countryName": "Finland",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "riikka purra",
+          "minister of finance",
+          "finland",
+          "fi"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.845Z"
+      }
+    }
+  ]
+}

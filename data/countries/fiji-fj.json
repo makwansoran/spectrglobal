@@ -1,0 +1,31 @@
+{
+  "slug": "fiji-fj",
+  "profile": {
+    "id": "fiji-fj",
+    "slug": "fiji-fj",
+    "name": "Fiji",
+    "isoCode": "FJ",
+    "region": "Oceania · Melanesia",
+    "capital": "Suva",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Suva. Region: Oceania (Melanesia).",
+    "flagEmoji": "",
+    "logoInitials": "FI",
+    "searchTerms": [
+      "fiji",
+      "fj",
+      "fji",
+      "fiji-fj"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.563Z",
+    "flagUrl": "https://flagcdn.com/w320/fj.png"
+  },
+  "mapGeojson": null
+}

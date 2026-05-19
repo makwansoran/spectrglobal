@@ -1,0 +1,31 @@
+{
+  "slug": "namibia-na",
+  "profile": {
+    "id": "namibia-na",
+    "slug": "namibia-na",
+    "name": "Namibia",
+    "isoCode": "NA",
+    "region": "Africa · Sub-Saharan Africa",
+    "capital": "Windhoek",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Windhoek. Region: Africa (Sub-Saharan Africa).",
+    "flagEmoji": "",
+    "logoInitials": "NA",
+    "searchTerms": [
+      "namibia",
+      "na",
+      "nam",
+      "namibia-na"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.678Z",
+    "flagUrl": "https://flagcdn.com/w320/na.png"
+  },
+  "mapGeojson": null
+}

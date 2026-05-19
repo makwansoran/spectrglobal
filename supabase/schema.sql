@@ -10,6 +10,8 @@
 --   banks               — commercial & retail banks
 --   investment_banks    — bulge bracket / boutique IBs
 --   venture_capital     — VC firms & funds
+--   countries           — sovereign states / territories
+--   politicians         — office holders per country
 --   maritime_waterways  — straits & canals (maritime traffic maps)
 --   chat_messages       — profile chat rooms
 --   profiles            — user accounts (username, email); run supabase/auth-profiles.sql
@@ -322,3 +324,6 @@ create policy "Users update own profile"
   to authenticated
   using (auth.uid() = id)
   with check (auth.uid() = id);
+
+-- Countries + politicians — full DDL: supabase/countries-politicians.sql
+-- Seed: npm run db:build-countries && npm run db:seed-countries && npm run db:seed-politicians

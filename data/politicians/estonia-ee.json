@@ -1,0 +1,77 @@
+{
+  "countrySlug": "estonia-ee",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "kristen-michal-prime-minister-ee",
+        "slug": "kristen-michal-prime-minister-ee",
+        "name": "Kristen Michal",
+        "countrySlug": "estonia-ee",
+        "countryName": "Estonia",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "kristen michal",
+          "prime minister",
+          "estonia",
+          "ee"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.347Z"
+      }
+    },
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "alar-karis-head-of-state-ee",
+        "slug": "alar-karis-head-of-state-ee",
+        "name": "Alar Karis",
+        "countrySlug": "estonia-ee",
+        "countryName": "Estonia",
+        "office": "Head of State",
+        "searchTerms": [
+          "alar karis",
+          "head of state",
+          "estonia",
+          "ee"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.347Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "jurgen-ligi-minister-of-finance-ee",
+        "slug": "jurgen-ligi-minister-of-finance-ee",
+        "name": "Jürgen Ligi",
+        "countrySlug": "estonia-ee",
+        "countryName": "Estonia",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "jürgen ligi",
+          "minister of finance",
+          "estonia",
+          "ee"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.841Z"
+      }
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "countrySlug": "holy-see-va",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "raffaella-petrini-prime-minister-va",
+        "slug": "raffaella-petrini-prime-minister-va",
+        "name": "Raffaella Petrini",
+        "countrySlug": "holy-see-va",
+        "countryName": "Holy See",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "raffaella petrini",
+          "prime minister",
+          "holy see",
+          "va"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.437Z"
+      }
+    },
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "leo-xiv-head-of-state-va",
+        "slug": "leo-xiv-head-of-state-va",
+        "name": "Leo XIV",
+        "countrySlug": "holy-see-va",
+        "countryName": "Holy See",
+        "office": "Head of State",
+        "searchTerms": [
+          "leo xiv",
+          "head of state",
+          "holy see",
+          "va"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.437Z"
+      }
+    }
+  ]
+}

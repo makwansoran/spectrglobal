@@ -1,0 +1,31 @@
+{
+  "slug": "mexico-mx",
+  "profile": {
+    "id": "mexico-mx",
+    "slug": "mexico-mx",
+    "name": "Mexico",
+    "isoCode": "MX",
+    "region": "Americas · Latin America and the Caribbean",
+    "capital": "Mexico City",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Mexico City. Region: Americas (Latin America and the Caribbean).",
+    "flagEmoji": "",
+    "logoInitials": "ME",
+    "searchTerms": [
+      "mexico",
+      "mx",
+      "mex",
+      "mexico-mx"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.662Z",
+    "flagUrl": "https://flagcdn.com/w320/mx.png"
+  },
+  "mapGeojson": null
+}

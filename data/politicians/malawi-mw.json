@@ -1,0 +1,101 @@
+{
+  "countrySlug": "malawi-mw",
+  "politicians": [
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "peter-mutharika-head-of-state-mw",
+        "slug": "peter-mutharika-head-of-state-mw",
+        "name": "Peter Mutharika",
+        "countrySlug": "malawi-mw",
+        "countryName": "Malawi",
+        "office": "Head of State",
+        "searchTerms": [
+          "peter mutharika",
+          "head of state",
+          "malawi",
+          "mw"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.511Z"
+      }
+    },
+    {
+      "office": "President",
+      "profile": {
+        "id": "lazarus-chakwera-president-mw",
+        "slug": "lazarus-chakwera-president-mw",
+        "name": "Lazarus Chakwera",
+        "countrySlug": "malawi-mw",
+        "countryName": "Malawi",
+        "office": "President",
+        "searchTerms": [
+          "lazarus chakwera",
+          "president",
+          "malawi",
+          "mw"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.909Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "simplex-chithyola-banda-minister-of-finance-mw",
+        "slug": "simplex-chithyola-banda-minister-of-finance-mw",
+        "name": "Simplex Chithyola Banda",
+        "countrySlug": "malawi-mw",
+        "countryName": "Malawi",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "simplex chithyola banda",
+          "minister of finance",
+          "malawi",
+          "mw"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.909Z"
+      }
+    },
+    {
+      "office": "Vice President",
+      "profile": {
+        "id": "saulos-chilima-vice-president-mw",
+        "slug": "saulos-chilima-vice-president-mw",
+        "name": "Saulos Chilima",
+        "countrySlug": "malawi-mw",
+        "countryName": "Malawi",
+        "office": "Vice President",
+        "searchTerms": [
+          "saulos chilima",
+          "vice president",
+          "malawi",
+          "mw"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.909Z"
+      }
+    }
+  ]
+}

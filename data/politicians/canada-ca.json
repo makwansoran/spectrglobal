@@ -1,0 +1,77 @@
+{
+  "countrySlug": "canada-ca",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "mark-carney-prime-minister-ca",
+        "slug": "mark-carney-prime-minister-ca",
+        "name": "Mark Carney",
+        "countrySlug": "canada-ca",
+        "countryName": "Canada",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "mark carney",
+          "prime minister",
+          "canada",
+          "ca"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.279Z"
+      }
+    },
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "charles-iii-head-of-state-ca",
+        "slug": "charles-iii-head-of-state-ca",
+        "name": "Charles III",
+        "countrySlug": "canada-ca",
+        "countryName": "Canada",
+        "office": "Head of State",
+        "searchTerms": [
+          "charles iii",
+          "head of state",
+          "canada",
+          "ca"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.279Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "francois-philippe-champagne-minister-of-finance-ca",
+        "slug": "francois-philippe-champagne-minister-of-finance-ca",
+        "name": "François-Philippe Champagne",
+        "countrySlug": "canada-ca",
+        "countryName": "Canada",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "françois-philippe champagne",
+          "minister of finance",
+          "canada",
+          "ca"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.817Z"
+      }
+    }
+  ]
+}

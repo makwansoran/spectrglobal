@@ -1,0 +1,31 @@
+{
+  "slug": "singapore-sg",
+  "profile": {
+    "id": "singapore-sg",
+    "slug": "singapore-sg",
+    "name": "Singapore",
+    "isoCode": "SG",
+    "region": "Asia · South-eastern Asia",
+    "capital": "Singapore",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Singapore. Region: Asia (South-eastern Asia).",
+    "flagEmoji": "",
+    "logoInitials": "SI",
+    "searchTerms": [
+      "singapore",
+      "sg",
+      "sgp",
+      "singapore-sg"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.768Z",
+    "flagUrl": "https://flagcdn.com/w320/sg.png"
+  },
+  "mapGeojson": null
+}

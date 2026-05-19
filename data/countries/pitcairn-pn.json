@@ -1,0 +1,31 @@
+{
+  "slug": "pitcairn-pn",
+  "profile": {
+    "id": "pitcairn-pn",
+    "slug": "pitcairn-pn",
+    "name": "Pitcairn",
+    "isoCode": "PN",
+    "region": "Oceania · Polynesia",
+    "capital": "Adamstown",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Adamstown. Region: Oceania (Polynesia).",
+    "flagEmoji": "",
+    "logoInitials": "PI",
+    "searchTerms": [
+      "pitcairn",
+      "pn",
+      "pcn",
+      "pitcairn-pn"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.720Z",
+    "flagUrl": "https://flagcdn.com/w320/pn.png"
+  },
+  "mapGeojson": null
+}

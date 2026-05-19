@@ -1,6 +1,7 @@
 const {
   listCompanies,
   searchUnified,
+  searchPeople,
   getCompany,
   storageMode,
 } = require("./store");
@@ -13,6 +14,8 @@ const { getCompanyAssets } = require("./company-assets");
 const commoditiesStore = require("./commodities-store");
 const waterwaysStore = require("./waterways-store");
 const { banks, investmentBanks, ventureCapital } = require("./catalog-stores");
+const countriesStore = require("./supabase-countries-store");
+const politiciansStore = require("./supabase-politicians-store");
 const chatStore = require("./chat-store");
 const { isSupabaseEnabled, getSupabaseUrl } = require("./supabase-client");
 const { getInstitutionBySlug, ORG_TYPE_LABELS } = require("./institutions");
@@ -327,9 +330,71 @@ async function handleApi(req, res, pathname) {
       return true;
     }
 
+    if (pathname === "/api/countries" && req.method === "GET") {
+      const url = new URL(req.url, `http://${req.headers.host || "localhost"}`);
+      const q = url.searchParams.get("q") || "";
+      const limit = Math.min(parseInt(url.searchParams.get("limit") || "25", 10) || 25, 50);
+      if (q.trim()) {
+        sendJson(res, 200, await countriesStore.searchCountries(q, limit));
+      } else {
+        sendJson(res, 200, await countriesStore.listCountries(limit));
+      }
+      return true;
+    }
+
+    const countryPoliticiansMatch = pathname.match(/^\/api\/countries\/([^/]+)\/politicians$/);
+    if (countryPoliticiansMatch && req.method === "GET") {
+      const slug = decodeURIComponent(countryPoliticiansMatch[1]);
+      const politicians = await politiciansStore.getPoliticiansForCountry(slug);
+      sendJson(res, 200, { countrySlug: slug, politicians });
+      return true;
+    }
+
+    const countryMatch = pathname.match(/^\/api\/countries\/([^/]+)$/);
+    if (countryMatch && req.method === "GET") {
+      const slug = decodeURIComponent(countryMatch[1]);
+      const data = await countriesStore.getCountry(slug);
+      if (!data) {
+        sendJson(res, 404, { error: "Country not found" });
+        return true;
+      }
+      sendJson(res, 200, data);
+      return true;
+    }
+
+    if (pathname === "/api/politicians" && req.method === "GET") {
+      const url = new URL(req.url, `http://${req.headers.host || "localhost"}`);
+      const q = url.searchParams.get("q") || "";
+      const limit = Math.min(parseInt(url.searchParams.get("limit") || "25", 10) || 25, 50);
+      if (q.trim()) {
+        sendJson(res, 200, await politiciansStore.searchPoliticians(q, limit));
+      } else {
+        sendJson(res, 200, await politiciansStore.listPoliticians());
+      }
+      return true;
+    }
+
+    const politicianMatch = pathname.match(/^\/api\/politicians\/([^/]+)$/);
+    if (politicianMatch && req.method === "GET") {
+      const slug = decodeURIComponent(politicianMatch[1]);
+      const profile = await politiciansStore.getPolitician(slug);
+      if (!profile) {
+        sendJson(res, 404, { error: "Politician not found" });
+        return true;
+      }
+      sendJson(res, 200, { profile });
+      return true;
+    }
+
     if (pathname === "/api/people" && req.method === "GET") {
       const { listPeople } = require("./store");
-      sendJson(res, 200, await listPeople());
+      const q = reqUrl.searchParams.get("q") || "";
+      const limit = Math.min(parseInt(reqUrl.searchParams.get("limit") || "25", 10) || 25, 50);
+      if (q.trim()) {
+        sendJson(res, 200, await searchPeople(q, limit));
+      } else {
+        sendJson(res, 200, await listPeople());
+      }
       return true;
     }
 
@@ -343,6 +408,42 @@ async function handleApi(req, res, pathname) {
         return true;
       }
       sendJson(res, 200, { profile });
+      return true;
+    }
+
+    if (pathname === "/api/vessels" && req.method === "GET") {
+      const fleet = require("./supabase-fleet-store");
+      const q = reqUrl.searchParams.get("q") || "";
+      const limit = Math.min(parseInt(reqUrl.searchParams.get("limit") || "25", 10) || 25, 100);
+      if (q.trim()) {
+        sendJson(res, 200, await fleet.searchVessels(q, limit));
+      } else {
+        sendJson(res, 200, await fleet.listVessels(limit));
+      }
+      return true;
+    }
+
+    const vesselMatch = pathname.match(/^\/api\/vessels\/([^/]+)$/);
+    if (vesselMatch && req.method === "GET") {
+      const fleet = require("./supabase-fleet-store");
+      const slug = decodeURIComponent(vesselMatch[1]);
+      const profile = await fleet.getVessel(slug);
+      if (!profile) {
+        sendJson(res, 404, { error: "Vessel not found" });
+        return true;
+      }
+      let company = null;
+      if (profile.companySlug) {
+        try {
+          const c = await getCompany(profile.companySlug);
+          if (c?.profile) {
+            company = { slug: profile.companySlug, name: c.profile.name };
+          }
+        } catch {
+          /* optional */
+        }
+      }
+      sendJson(res, 200, { profile, company }, { "Cache-Control": "public, max-age=600" });
       return true;
     }
 

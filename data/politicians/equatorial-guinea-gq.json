@@ -1,0 +1,77 @@
+{
+  "countrySlug": "equatorial-guinea-gq",
+  "politicians": [
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "teodoro-obiang-head-of-state-gq",
+        "slug": "teodoro-obiang-head-of-state-gq",
+        "name": "Teodoro Obiang",
+        "countrySlug": "equatorial-guinea-gq",
+        "countryName": "Equatorial Guinea",
+        "office": "Head of State",
+        "searchTerms": [
+          "teodoro obiang",
+          "head of state",
+          "equatorial guinea",
+          "gq"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.343Z"
+      }
+    },
+    {
+      "office": "President",
+      "profile": {
+        "id": "teodoro-obiang-nguema-mbasogo-president-gq",
+        "slug": "teodoro-obiang-nguema-mbasogo-president-gq",
+        "name": "Teodoro Obiang Nguema Mbasogo",
+        "countrySlug": "equatorial-guinea-gq",
+        "countryName": "Equatorial Guinea",
+        "office": "President",
+        "searchTerms": [
+          "teodoro obiang nguema mbasogo",
+          "president",
+          "equatorial guinea",
+          "gq"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.840Z"
+      }
+    },
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "manuela-roka-botey-prime-minister-gq",
+        "slug": "manuela-roka-botey-prime-minister-gq",
+        "name": "Manuela Roka Botey",
+        "countrySlug": "equatorial-guinea-gq",
+        "countryName": "Equatorial Guinea",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "manuela roka botey",
+          "prime minister",
+          "equatorial guinea",
+          "gq"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:37:01.182Z"
+      }
+    }
+  ]
+}

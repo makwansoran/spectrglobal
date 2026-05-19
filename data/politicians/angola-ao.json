@@ -1,0 +1,53 @@
+{
+  "countrySlug": "angola-ao",
+  "politicians": [
+    {
+      "office": "President",
+      "profile": {
+        "id": "joao-lourenco-president-ao",
+        "slug": "joao-lourenco-president-ao",
+        "name": "João Lourenço",
+        "countrySlug": "angola-ao",
+        "countryName": "Angola",
+        "office": "President",
+        "searchTerms": [
+          "joão lourenço",
+          "president",
+          "angola",
+          "ao"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.774Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "vera-daves-de-sousa-minister-of-finance-ao",
+        "slug": "vera-daves-de-sousa-minister-of-finance-ao",
+        "name": "Vera Daves de Sousa",
+        "countrySlug": "angola-ao",
+        "countryName": "Angola",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "vera daves de sousa",
+          "minister of finance",
+          "angola",
+          "ao"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.774Z"
+      }
+    }
+  ]
+}

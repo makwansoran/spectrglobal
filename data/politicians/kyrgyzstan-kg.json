@@ -1,0 +1,77 @@
+{
+  "countrySlug": "kyrgyzstan-kg",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "adylbek-kasymaliev-prime-minister-kg",
+        "slug": "adylbek-kasymaliev-prime-minister-kg",
+        "name": "Adylbek Kasymaliev",
+        "countrySlug": "kyrgyzstan-kg",
+        "countryName": "Kyrgyzstan",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "adylbek kasymaliev",
+          "prime minister",
+          "kyrgyzstan",
+          "kg"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.488Z"
+      }
+    },
+    {
+      "office": "President",
+      "profile": {
+        "id": "sadyr-japarov-president-kg",
+        "slug": "sadyr-japarov-president-kg",
+        "name": "Sadyr Japarov",
+        "countrySlug": "kyrgyzstan-kg",
+        "countryName": "Kyrgyzstan",
+        "office": "President",
+        "searchTerms": [
+          "sadyr japarov",
+          "president",
+          "kyrgyzstan",
+          "kg"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.894Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "almaz-baketayev-minister-of-finance-kg",
+        "slug": "almaz-baketayev-minister-of-finance-kg",
+        "name": "Almaz Baketayev",
+        "countrySlug": "kyrgyzstan-kg",
+        "countryName": "Kyrgyzstan",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "almaz baketayev",
+          "minister of finance",
+          "kyrgyzstan",
+          "kg"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.894Z"
+      }
+    }
+  ]
+}

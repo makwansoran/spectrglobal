@@ -1,0 +1,101 @@
+{
+  "countrySlug": "congo-cg",
+  "politicians": [
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "denis-sassou-nguesso-head-of-state-cg",
+        "slug": "denis-sassou-nguesso-head-of-state-cg",
+        "name": "Denis Sassou-Nguesso",
+        "countrySlug": "congo-cg",
+        "countryName": "Congo",
+        "office": "Head of State",
+        "searchTerms": [
+          "denis sassou-nguesso",
+          "head of state",
+          "congo",
+          "cg"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.295Z"
+      }
+    },
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "anatole-collinet-makosso-prime-minister-cg",
+        "slug": "anatole-collinet-makosso-prime-minister-cg",
+        "name": "Anatole Collinet Makosso",
+        "countrySlug": "congo-cg",
+        "countryName": "Congo",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "anatole collinet makosso",
+          "prime minister",
+          "congo",
+          "cg"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.295Z"
+      }
+    },
+    {
+      "office": "President",
+      "profile": {
+        "id": "denis-sassou-nguesso-president-cg",
+        "slug": "denis-sassou-nguesso-president-cg",
+        "name": "Denis Sassou Nguesso",
+        "countrySlug": "congo-cg",
+        "countryName": "Congo",
+        "office": "President",
+        "searchTerms": [
+          "denis sassou nguesso",
+          "president",
+          "congo",
+          "cg"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.823Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "jean-baptiste-ondaye-minister-of-finance-cg",
+        "slug": "jean-baptiste-ondaye-minister-of-finance-cg",
+        "name": "Jean-Baptiste Ondaye",
+        "countrySlug": "congo-cg",
+        "countryName": "Congo",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "jean-baptiste ondaye",
+          "minister of finance",
+          "congo",
+          "cg"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.823Z"
+      }
+    }
+  ]
+}

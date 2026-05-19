@@ -1,0 +1,101 @@
+{
+  "countrySlug": "united-arab-emirates-ae",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "mohammed-bin-rashid-al-maktoum-prime-minister-ae",
+        "slug": "mohammed-bin-rashid-al-maktoum-prime-minister-ae",
+        "name": "Mohammed bin Rashid Al Maktoum",
+        "countrySlug": "united-arab-emirates-ae",
+        "countryName": "United Arab Emirates",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "mohammed bin rashid al maktoum",
+          "prime minister",
+          "united arab emirates",
+          "ae"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.708Z"
+      }
+    },
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "mohammed-bin-zayed-al-nahyan-head-of-state-ae",
+        "slug": "mohammed-bin-zayed-al-nahyan-head-of-state-ae",
+        "name": "Mohammed Bin Zayed Al Nahyan",
+        "countrySlug": "united-arab-emirates-ae",
+        "countryName": "United Arab Emirates",
+        "office": "Head of State",
+        "searchTerms": [
+          "mohammed bin zayed al nahyan",
+          "head of state",
+          "united arab emirates",
+          "ae"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.708Z"
+      }
+    },
+    {
+      "office": "President",
+      "profile": {
+        "id": "mohamed-bin-zayed-al-nahyan-president-ae",
+        "slug": "mohamed-bin-zayed-al-nahyan-president-ae",
+        "name": "Mohamed bin Zayed Al Nahyan",
+        "countrySlug": "united-arab-emirates-ae",
+        "countryName": "United Arab Emirates",
+        "office": "President",
+        "searchTerms": [
+          "mohamed bin zayed al nahyan",
+          "president",
+          "united arab emirates",
+          "ae"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:22.039Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "mohammed-al-jadaan-minister-of-finance-ae",
+        "slug": "mohammed-al-jadaan-minister-of-finance-ae",
+        "name": "Mohammed Al Jadaan",
+        "countrySlug": "united-arab-emirates-ae",
+        "countryName": "United Arab Emirates",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "mohammed al jadaan",
+          "minister of finance",
+          "united arab emirates",
+          "ae"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:22.039Z"
+      }
+    }
+  ]
+}

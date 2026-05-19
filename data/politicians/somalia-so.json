@@ -1,0 +1,77 @@
+{
+  "countrySlug": "somalia-so",
+  "politicians": [
+    {
+      "office": "President",
+      "profile": {
+        "id": "hassan-sheikh-mohamud-president-so",
+        "slug": "hassan-sheikh-mohamud-president-so",
+        "name": "Hassan Sheikh Mohamud",
+        "countrySlug": "somalia-so",
+        "countryName": "Somalia",
+        "office": "President",
+        "searchTerms": [
+          "hassan sheikh mohamud",
+          "president",
+          "somalia",
+          "so"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.988Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "bihi-iman-egeh-minister-of-finance-so",
+        "slug": "bihi-iman-egeh-minister-of-finance-so",
+        "name": "Bihi Iman Egeh",
+        "countrySlug": "somalia-so",
+        "countryName": "Somalia",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "bihi iman egeh",
+          "minister of finance",
+          "somalia",
+          "so"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.988Z"
+      }
+    },
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "hamza-abdi-barre-prime-minister-so",
+        "slug": "hamza-abdi-barre-prime-minister-so",
+        "name": "Hamza Abdi Barre",
+        "countrySlug": "somalia-so",
+        "countryName": "Somalia",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "hamza abdi barre",
+          "prime minister",
+          "somalia",
+          "so"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:37:01.182Z"
+      }
+    }
+  ]
+}

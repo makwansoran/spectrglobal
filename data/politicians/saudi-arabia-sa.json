@@ -1,0 +1,77 @@
+{
+  "countrySlug": "saudi-arabia-sa",
+  "politicians": [
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "mohammed-al-jadaan-minister-of-finance-sa",
+        "slug": "mohammed-al-jadaan-minister-of-finance-sa",
+        "name": "Mohammed Al-Jadaan",
+        "countrySlug": "saudi-arabia-sa",
+        "countryName": "Saudi Arabia",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "mohammed al-jadaan",
+          "minister of finance",
+          "saudi arabia",
+          "sa"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.973Z"
+      }
+    },
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "mohammed-bin-salman-prime-minister-sa",
+        "slug": "mohammed-bin-salman-prime-minister-sa",
+        "name": "Mohammed bin Salman",
+        "countrySlug": "saudi-arabia-sa",
+        "countryName": "Saudi Arabia",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "mohammed bin salman",
+          "prime minister",
+          "saudi arabia",
+          "sa"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:37:01.182Z"
+      }
+    },
+    {
+      "office": "King",
+      "profile": {
+        "id": "salman-bin-abdulaziz-al-saud-king-sa",
+        "slug": "salman-bin-abdulaziz-al-saud-king-sa",
+        "name": "Salman bin Abdulaziz Al Saud",
+        "countrySlug": "saudi-arabia-sa",
+        "countryName": "Saudi Arabia",
+        "office": "King",
+        "searchTerms": [
+          "salman bin abdulaziz al saud",
+          "king",
+          "saudi arabia",
+          "sa"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:43:37.401Z"
+      }
+    }
+  ]
+}

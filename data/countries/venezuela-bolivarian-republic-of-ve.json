@@ -1,0 +1,31 @@
+{
+  "slug": "venezuela-bolivarian-republic-of-ve",
+  "profile": {
+    "id": "venezuela-bolivarian-republic-of-ve",
+    "slug": "venezuela-bolivarian-republic-of-ve",
+    "name": "Venezuela, Bolivarian Republic of",
+    "isoCode": "VE",
+    "region": "Americas · Latin America and the Caribbean",
+    "capital": "Caracas",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Caracas. Region: Americas (Latin America and the Caribbean).",
+    "flagEmoji": "",
+    "logoInitials": "VO",
+    "searchTerms": [
+      "venezuela, bolivarian republic of",
+      "ve",
+      "ven",
+      "venezuela-bolivarian-republic-of-ve"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.866Z",
+    "flagUrl": "https://flagcdn.com/w320/ve.png"
+  },
+  "mapGeojson": null
+}

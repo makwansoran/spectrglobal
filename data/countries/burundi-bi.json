@@ -1,0 +1,31 @@
+{
+  "slug": "burundi-bi",
+  "profile": {
+    "id": "burundi-bi",
+    "slug": "burundi-bi",
+    "name": "Burundi",
+    "isoCode": "BI",
+    "region": "Africa · Sub-Saharan Africa",
+    "capital": "Gitega",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Gitega. Region: Africa (Sub-Saharan Africa).",
+    "flagEmoji": "",
+    "logoInitials": "BU",
+    "searchTerms": [
+      "burundi",
+      "bi",
+      "bdi",
+      "burundi-bi"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.432Z",
+    "flagUrl": "https://flagcdn.com/w320/bi.png"
+  },
+  "mapGeojson": null
+}

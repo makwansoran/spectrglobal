@@ -1,0 +1,31 @@
+{
+  "slug": "sudan-sd",
+  "profile": {
+    "id": "sudan-sd",
+    "slug": "sudan-sd",
+    "name": "Sudan",
+    "isoCode": "SD",
+    "region": "Africa · Northern Africa",
+    "capital": "Khartoum",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Khartoum. Region: Africa (Northern Africa).",
+    "flagEmoji": "",
+    "logoInitials": "SU",
+    "searchTerms": [
+      "sudan",
+      "sd",
+      "sdn",
+      "sudan-sd"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.803Z",
+    "flagUrl": "https://flagcdn.com/w320/sd.png"
+  },
+  "mapGeojson": null
+}

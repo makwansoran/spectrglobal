@@ -1,0 +1,31 @@
+{
+  "slug": "montenegro-me",
+  "profile": {
+    "id": "montenegro-me",
+    "slug": "montenegro-me",
+    "name": "Montenegro",
+    "isoCode": "ME",
+    "region": "Europe · Southern Europe",
+    "capital": "Podgorica",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Podgorica. Region: Europe (Southern Europe).",
+    "flagEmoji": "",
+    "logoInitials": "MO",
+    "searchTerms": [
+      "montenegro",
+      "me",
+      "mne",
+      "montenegro-me"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.670Z",
+    "flagUrl": "https://flagcdn.com/w320/me.png"
+  },
+  "mapGeojson": null
+}

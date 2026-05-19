@@ -1,0 +1,31 @@
+{
+  "slug": "japan-jp",
+  "profile": {
+    "id": "japan-jp",
+    "slug": "japan-jp",
+    "name": "Japan",
+    "isoCode": "JP",
+    "region": "Asia · Eastern Asia",
+    "capital": "Tokyo",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Tokyo. Region: Asia (Eastern Asia).",
+    "flagEmoji": "",
+    "logoInitials": "JA",
+    "searchTerms": [
+      "japan",
+      "jp",
+      "jpn",
+      "japan-jp"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.632Z",
+    "flagUrl": "https://flagcdn.com/w320/jp.png"
+  },
+  "mapGeojson": null
+}

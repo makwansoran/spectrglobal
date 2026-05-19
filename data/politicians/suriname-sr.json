@@ -1,0 +1,101 @@
+{
+  "countrySlug": "suriname-sr",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "jennifer-geerlings-simons-prime-minister-sr",
+        "slug": "jennifer-geerlings-simons-prime-minister-sr",
+        "name": "Jennifer Geerlings-Simons",
+        "countrySlug": "suriname-sr",
+        "countryName": "Suriname",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "jennifer geerlings-simons",
+          "prime minister",
+          "suriname",
+          "sr"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.673Z"
+      }
+    },
+    {
+      "office": "President",
+      "profile": {
+        "id": "chan-santokhi-president-sr",
+        "slug": "chan-santokhi-president-sr",
+        "name": "Chan Santokhi",
+        "countrySlug": "suriname-sr",
+        "countryName": "Suriname",
+        "office": "President",
+        "searchTerms": [
+          "chan santokhi",
+          "president",
+          "suriname",
+          "sr"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:22.018Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "stanley-raghoebarsing-minister-of-finance-sr",
+        "slug": "stanley-raghoebarsing-minister-of-finance-sr",
+        "name": "Stanley Raghoebarsing",
+        "countrySlug": "suriname-sr",
+        "countryName": "Suriname",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "stanley raghoebarsing",
+          "minister of finance",
+          "suriname",
+          "sr"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:22.018Z"
+      }
+    },
+    {
+      "office": "Vice President",
+      "profile": {
+        "id": "ronnie-brunswijk-vice-president-sr",
+        "slug": "ronnie-brunswijk-vice-president-sr",
+        "name": "Ronnie Brunswijk",
+        "countrySlug": "suriname-sr",
+        "countryName": "Suriname",
+        "office": "Vice President",
+        "searchTerms": [
+          "ronnie brunswijk",
+          "vice president",
+          "suriname",
+          "sr"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:22.018Z"
+      }
+    }
+  ]
+}

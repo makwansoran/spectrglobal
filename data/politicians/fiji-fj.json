@@ -1,0 +1,77 @@
+{
+  "countrySlug": "fiji-fj",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "sitiveni-rabuka-prime-minister-fj",
+        "slug": "sitiveni-rabuka-prime-minister-fj",
+        "name": "Sitiveni Rabuka",
+        "countrySlug": "fiji-fj",
+        "countryName": "Fiji",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "sitiveni rabuka",
+          "prime minister",
+          "fiji",
+          "fj"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.361Z"
+      }
+    },
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "wiliame-katonivere-head-of-state-fj",
+        "slug": "wiliame-katonivere-head-of-state-fj",
+        "name": "Wiliame Katonivere",
+        "countrySlug": "fiji-fj",
+        "countryName": "Fiji",
+        "office": "Head of State",
+        "searchTerms": [
+          "wiliame katonivere",
+          "head of state",
+          "fiji",
+          "fj"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.361Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "biman-prasad-minister-of-finance-fj",
+        "slug": "biman-prasad-minister-of-finance-fj",
+        "name": "Biman Prasad",
+        "countrySlug": "fiji-fj",
+        "countryName": "Fiji",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "biman prasad",
+          "minister of finance",
+          "fiji",
+          "fj"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.844Z"
+      }
+    }
+  ]
+}

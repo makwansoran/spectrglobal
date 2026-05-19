@@ -98,7 +98,6 @@ function listingToCompanySeed(listing, pageHtml) {
     logoInitials: ini,
     countryCode: "NO",
     countryName: "Norway",
-    founded: 1900,
     headquarters: "Norway",
     industryTags: ["Oslo Børs", listing.marketLabel].filter(Boolean),
     isPublic: true,

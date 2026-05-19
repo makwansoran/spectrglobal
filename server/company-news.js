@@ -1,8 +1,7 @@
 /**
- * Company news — profile_json items plus live Finnhub headlines when available.
+ * Company news — stored on profile_json only (no live Finnhub feed).
  */
 const { getCompanyRaw } = require("./store");
-const finnhub = require("./finnhub");
 
 function normalizeProfileNews(items) {
   return (items || [])
@@ -41,19 +40,11 @@ async function getCompanyNews(slug) {
 
   const profile = company.profile;
   const profileNews = normalizeProfileNews(profile.news);
-  let liveNews = [];
-
-  if (finnhub.isEnabled() && profile.stock?.ticker) {
-    liveNews = await finnhub.fetchCompanyNewsForProfile(profile);
-  }
-
-  const news = mergeNews(profileNews, liveNews);
   return {
     slug,
-    news,
+    news: profileNews,
     sources: {
       profile: profileNews.length,
-      finnhub: liveNews.length,
     },
   };
 }

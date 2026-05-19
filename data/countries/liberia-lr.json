@@ -1,0 +1,31 @@
+{
+  "slug": "liberia-lr",
+  "profile": {
+    "id": "liberia-lr",
+    "slug": "liberia-lr",
+    "name": "Liberia",
+    "isoCode": "LR",
+    "region": "Africa · Sub-Saharan Africa",
+    "capital": "Monrovia",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Monrovia. Region: Africa (Sub-Saharan Africa).",
+    "flagEmoji": "",
+    "logoInitials": "LI",
+    "searchTerms": [
+      "liberia",
+      "lr",
+      "lbr",
+      "liberia-lr"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.639Z",
+    "flagUrl": "https://flagcdn.com/w320/lr.png"
+  },
+  "mapGeojson": null
+}

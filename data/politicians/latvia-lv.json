@@ -1,0 +1,77 @@
+{
+  "countrySlug": "latvia-lv",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "evika-silina-prime-minister-lv",
+        "slug": "evika-silina-prime-minister-lv",
+        "name": "Evika Siliņa",
+        "countrySlug": "latvia-lv",
+        "countryName": "Latvia",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "evika siliņa",
+          "prime minister",
+          "latvia",
+          "lv"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.490Z"
+      }
+    },
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "edgars-rinkevics-head-of-state-lv",
+        "slug": "edgars-rinkevics-head-of-state-lv",
+        "name": "Edgars Rinkēvičs",
+        "countrySlug": "latvia-lv",
+        "countryName": "Latvia",
+        "office": "Head of State",
+        "searchTerms": [
+          "edgars rinkēvičs",
+          "head of state",
+          "latvia",
+          "lv"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.490Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "arvils-aseradens-minister-of-finance-lv",
+        "slug": "arvils-aseradens-minister-of-finance-lv",
+        "name": "Arvils Ašeradens",
+        "countrySlug": "latvia-lv",
+        "countryName": "Latvia",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "arvils ašeradens",
+          "minister of finance",
+          "latvia",
+          "lv"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.899Z"
+      }
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "slug": "congo-cg",
+  "profile": {
+    "id": "congo-cg",
+    "slug": "congo-cg",
+    "name": "Congo",
+    "isoCode": "CG",
+    "region": "Africa · Sub-Saharan Africa",
+    "capital": "Brazzaville",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Brazzaville. Region: Africa (Sub-Saharan Africa).",
+    "flagEmoji": "",
+    "logoInitials": "CO",
+    "searchTerms": [
+      "congo",
+      "cg",
+      "cog",
+      "congo-cg"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.457Z",
+    "flagUrl": "https://flagcdn.com/w320/cg.png"
+  },
+  "mapGeojson": null
+}

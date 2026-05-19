@@ -1,0 +1,125 @@
+{
+  "countrySlug": "ghana-gh",
+  "politicians": [
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "nana-akufo-addo-prime-minister-gh",
+        "slug": "nana-akufo-addo-prime-minister-gh",
+        "name": "Nana Akufo-Addo",
+        "countrySlug": "ghana-gh",
+        "countryName": "Ghana",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "nana akufo-addo",
+          "prime minister",
+          "ghana",
+          "gh"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.380Z"
+      }
+    },
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "john-mahama-head-of-state-gh",
+        "slug": "john-mahama-head-of-state-gh",
+        "name": "John Mahama",
+        "countrySlug": "ghana-gh",
+        "countryName": "Ghana",
+        "office": "Head of State",
+        "searchTerms": [
+          "john mahama",
+          "head of state",
+          "ghana",
+          "gh"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.380Z"
+      }
+    },
+    {
+      "office": "President",
+      "profile": {
+        "id": "john-dramani-mahama-president-gh",
+        "slug": "john-dramani-mahama-president-gh",
+        "name": "John Dramani Mahama",
+        "countrySlug": "ghana-gh",
+        "countryName": "Ghana",
+        "office": "President",
+        "searchTerms": [
+          "john dramani mahama",
+          "president",
+          "ghana",
+          "gh"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.854Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "cassiel-ato-forson-minister-of-finance-gh",
+        "slug": "cassiel-ato-forson-minister-of-finance-gh",
+        "name": "Cassiel Ato Forson",
+        "countrySlug": "ghana-gh",
+        "countryName": "Ghana",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "cassiel ato forson",
+          "minister of finance",
+          "ghana",
+          "gh"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.854Z"
+      }
+    },
+    {
+      "office": "Vice President",
+      "profile": {
+        "id": "jane-naana-opoku-agyemang-vice-president-gh",
+        "slug": "jane-naana-opoku-agyemang-vice-president-gh",
+        "name": "Jane Naana Opoku Agyemang",
+        "countrySlug": "ghana-gh",
+        "countryName": "Ghana",
+        "office": "Vice President",
+        "searchTerms": [
+          "jane naana opoku agyemang",
+          "vice president",
+          "ghana",
+          "gh"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.854Z"
+      }
+    }
+  ]
+}

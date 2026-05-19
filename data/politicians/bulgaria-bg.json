@@ -1,0 +1,77 @@
+{
+  "countrySlug": "bulgaria-bg",
+  "politicians": [
+    {
+      "office": "Head of State",
+      "profile": {
+        "id": "iliana-iotova-head-of-state-bg",
+        "slug": "iliana-iotova-head-of-state-bg",
+        "name": "Iliana Iotova",
+        "countrySlug": "bulgaria-bg",
+        "countryName": "Bulgaria",
+        "office": "Head of State",
+        "searchTerms": [
+          "iliana iotova",
+          "head of state",
+          "bulgaria",
+          "bg"
+        ],
+        "dataSources": [
+          {
+            "name": "Wikidata",
+            "url": "https://www.wikidata.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:30:03.273Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "temenuzhka-petkova-minister-of-finance-bg",
+        "slug": "temenuzhka-petkova-minister-of-finance-bg",
+        "name": "Temenuzhka Petkova",
+        "countrySlug": "bulgaria-bg",
+        "countryName": "Bulgaria",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "temenuzhka petkova",
+          "minister of finance",
+          "bulgaria",
+          "bg"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.806Z"
+      }
+    },
+    {
+      "office": "Prime Minister",
+      "profile": {
+        "id": "rosen-zhelyazkov-prime-minister-bg",
+        "slug": "rosen-zhelyazkov-prime-minister-bg",
+        "name": "Rosen Zhelyazkov",
+        "countrySlug": "bulgaria-bg",
+        "countryName": "Bulgaria",
+        "office": "Prime Minister",
+        "searchTerms": [
+          "rosen zhelyazkov",
+          "prime minister",
+          "bulgaria",
+          "bg"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:37:01.182Z"
+      }
+    }
+  ]
+}

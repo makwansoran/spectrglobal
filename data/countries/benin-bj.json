@@ -1,0 +1,31 @@
+{
+  "slug": "benin-bj",
+  "profile": {
+    "id": "benin-bj",
+    "slug": "benin-bj",
+    "name": "Benin",
+    "isoCode": "BJ",
+    "region": "Africa · Sub-Saharan Africa",
+    "capital": "Porto-Novo",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Porto-Novo. Region: Africa (Sub-Saharan Africa).",
+    "flagEmoji": "",
+    "logoInitials": "BE",
+    "searchTerms": [
+      "benin",
+      "bj",
+      "ben",
+      "benin-bj"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.417Z",
+    "flagUrl": "https://flagcdn.com/w320/bj.png"
+  },
+  "mapGeojson": null
+}

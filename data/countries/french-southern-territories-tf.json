@@ -1,0 +1,31 @@
+{
+  "slug": "french-southern-territories-tf",
+  "profile": {
+    "id": "french-southern-territories-tf",
+    "slug": "french-southern-territories-tf",
+    "name": "French Southern Territories",
+    "isoCode": "TF",
+    "region": "Africa · Sub-Saharan Africa",
+    "capital": "Port-aux-Français",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Port-aux-Français. Region: Africa (Sub-Saharan Africa).",
+    "flagEmoji": "",
+    "logoInitials": "FT",
+    "searchTerms": [
+      "french southern territories",
+      "tf",
+      "atf",
+      "french-southern-territories-tf"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.588Z",
+    "flagUrl": "https://flagcdn.com/w320/tf.png"
+  },
+  "mapGeojson": null
+}

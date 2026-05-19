@@ -1,0 +1,31 @@
+{
+  "slug": "slovenia-si",
+  "profile": {
+    "id": "slovenia-si",
+    "slug": "slovenia-si",
+    "name": "Slovenia",
+    "isoCode": "SI",
+    "region": "Europe · Southern Europe",
+    "capital": "Ljubljana",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Ljubljana. Region: Europe (Southern Europe).",
+    "flagEmoji": "",
+    "logoInitials": "SL",
+    "searchTerms": [
+      "slovenia",
+      "si",
+      "svn",
+      "slovenia-si"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.773Z",
+    "flagUrl": "https://flagcdn.com/w320/si.png"
+  },
+  "mapGeojson": null
+}

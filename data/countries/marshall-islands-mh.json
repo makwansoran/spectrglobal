@@ -1,0 +1,31 @@
+{
+  "slug": "marshall-islands-mh",
+  "profile": {
+    "id": "marshall-islands-mh",
+    "slug": "marshall-islands-mh",
+    "name": "Marshall Islands",
+    "isoCode": "MH",
+    "region": "Oceania · Micronesia",
+    "capital": "Majuro",
+    "population": null,
+    "governmentType": "",
+    "about": "Capital: Majuro. Region: Oceania (Micronesia).",
+    "flagEmoji": "",
+    "logoInitials": "MI",
+    "searchTerms": [
+      "marshall islands",
+      "mh",
+      "mhl",
+      "marshall-islands-mh"
+    ],
+    "dataSources": [
+      {
+        "name": "ISO 3166",
+        "url": "https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes"
+      }
+    ],
+    "lastUpdated": "2026-05-19T13:22:36.650Z",
+    "flagUrl": "https://flagcdn.com/w320/mh.png"
+  },
+  "mapGeojson": null
+}

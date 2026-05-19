@@ -1,0 +1,77 @@
+{
+  "countrySlug": "panama-pa",
+  "politicians": [
+    {
+      "office": "President",
+      "profile": {
+        "id": "jose-raul-mulino-president-pa",
+        "slug": "jose-raul-mulino-president-pa",
+        "name": "José Raúl Mulino",
+        "countrySlug": "panama-pa",
+        "countryName": "Panama",
+        "office": "President",
+        "searchTerms": [
+          "josé raúl mulino",
+          "president",
+          "panama",
+          "pa"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.954Z"
+      }
+    },
+    {
+      "office": "Minister of Finance",
+      "profile": {
+        "id": "felipe-chapman-minister-of-finance-pa",
+        "slug": "felipe-chapman-minister-of-finance-pa",
+        "name": "Felipe Chapman",
+        "countrySlug": "panama-pa",
+        "countryName": "Panama",
+        "office": "Minister of Finance",
+        "searchTerms": [
+          "felipe chapman",
+          "minister of finance",
+          "panama",
+          "pa"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.954Z"
+      }
+    },
+    {
+      "office": "Vice President",
+      "profile": {
+        "id": "jose-gabriel-carrizo-vice-president-pa",
+        "slug": "jose-gabriel-carrizo-vice-president-pa",
+        "name": "José Gabriel Carrizo",
+        "countrySlug": "panama-pa",
+        "countryName": "Panama",
+        "office": "Vice President",
+        "searchTerms": [
+          "josé gabriel carrizo",
+          "vice president",
+          "panama",
+          "pa"
+        ],
+        "dataSources": [
+          {
+            "name": "Curated static data",
+            "url": "https://en.wikipedia.org"
+          }
+        ],
+        "lastUpdated": "2026-05-19T13:35:21.954Z"
+      }
+    }
+  ]
+}
