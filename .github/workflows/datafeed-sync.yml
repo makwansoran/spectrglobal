@@ -1,5 +1,5 @@
-# Sync Euronext screeners + Finnhub quotes into Supabase (GitHub Actions worker).
-# Requires repository secrets: SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY (FINNHUB_API_KEY optional).
+# Triggers the production datafeed on Vercel (Supabase env vars live there, not in GitHub).
+# Add one repository secret: CRON_SECRET (same value as in Vercel project settings).
 
 name: Datafeed sync
 
@@ -8,7 +8,7 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/datafeed-sync.yml"
-      - "scripts/sync-datafeed.js"
+      - "vercel.json"
       - "server/datafeed/**"
       - "server/euronext/**"
   schedule:
@@ -16,88 +16,45 @@ on:
   workflow_dispatch:
     inputs:
       markets:
-        description: "Comma-separated Euronext markets (default oslo)"
+        description: "Euronext markets (comma-separated)"
         type: string
         default: "oslo"
       finnhub_limit:
-        description: "Max Finnhub quote refreshes"
+        description: "Finnhub quote refresh limit"
         type: number
         default: 80
-      scrape_pages:
-        description: "Scrape instrument HTML with agent-browser (Oslo only)"
-        type: boolean
-        default: false
-      max_page_scrapes:
-        description: "Max instrument pages when scrape_pages is true"
-        type: number
-        default: 25
-
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
-  sync:
+  trigger-vercel-sync:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "24"
-          cache: npm
-
-      - name: Check required secrets
-        shell: bash
+      - name: Trigger /api/datafeed/sync on spectr.no
         env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
         run: |
           set -euo pipefail
-          missing=()
-          [ -z "${SUPABASE_URL:-}" ] && missing+=("SUPABASE_URL")
-          [ -z "${SUPABASE_SERVICE_ROLE_KEY:-}" ] && missing+=("SUPABASE_SERVICE_ROLE_KEY")
-          if [ "${#missing[@]}" -gt 0 ]; then
-            echo "::error::Missing GitHub Actions secrets: ${missing[*]}"
-            echo "Repository → Settings → Secrets and variables → Actions → New repository secret"
-            echo "  SUPABASE_URL = https://YOUR_PROJECT.supabase.co"
-            echo "  SUPABASE_SERVICE_ROLE_KEY = service_role key from Supabase → Project Settings → API"
+          if [ -z "${CRON_SECRET:-}" ]; then
+            echo "::error::Missing GitHub Actions secret: CRON_SECRET"
+            echo "Use the same value as in Vercel → Project → Settings → Environment Variables."
+            echo "Vercel Cron already syncs on a schedule; this job mirrors that for push/schedule/manual runs."
             exit 1
           fi
-          case "$SUPABASE_URL" in
-            https://*.supabase.co) ;;
-            *)
-              echo "::error::SUPABASE_URL must be https://YOUR_PROJECT.supabase.co (got host from secret)"
-              exit 1
-              ;;
-          esac
-          echo "Supabase secrets present."
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Install agent-browser (optional)
-        continue-on-error: true
-        run: |
-          npm install agent-browser --no-save || true
-          npx agent-browser install --with-deps || echo "agent-browser install skipped"
-
-      - name: Sync Euronext + Finnhub into Supabase
-        env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-          FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
-        run: |
-          set -euo pipefail
           MARKETS="${{ github.event.inputs.markets || 'oslo' }}"
           FINNHUB_LIMIT="${{ github.event.inputs.finnhub_limit || 80 }}"
-          ARGS="--sources euronext,finnhub --markets ${MARKETS} --finnhub-limit ${FINNHUB_LIMIT} --no-agent-browser"
-          if [ "${{ github.event.inputs.scrape_pages }}" = "true" ]; then
-            ARGS="$ARGS --scrape-pages --max ${{ github.event.inputs.max_page_scrapes || 25 }} --markets oslo"
+          URL="https://www.spectr.no/api/datafeed/sync?sources=euronext,finnhub&markets=${MARKETS}&finnhubLimit=${FINNHUB_LIMIT}"
+          echo "GET $URL"
+          HTTP=$(curl -fsSL -w "%{http_code}" -o /tmp/datafeed-response.json \
+            -H "Authorization: Bearer ${CRON_SECRET}" \
+            "$URL")
+          echo "HTTP $HTTP"
+          head -c 4000 /tmp/datafeed-response.json
+          echo ""
+          if [ "$HTTP" != "200" ]; then
+            echo "::error::Datafeed sync returned HTTP $HTTP"
+            exit 1
           fi
-          echo "Running: node scripts/sync-datafeed.js $ARGS"
-          node scripts/sync-datafeed.js $ARGS
 
-      - name: Ping production status
+      - name: Check datafeed status
         continue-on-error: true
         run: curl -fsSL "https://www.spectr.no/api/datafeed/status" | head -c 2000 || true
