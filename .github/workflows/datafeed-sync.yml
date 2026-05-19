@@ -50,6 +50,5 @@ jobs:
           node scripts/sync-datafeed.js $ARGS
 
       - name: Ping production status (optional)
-        if: ${{ secrets.CRON_SECRET != '' }}
         run: |
-          curl -fsS "https://spectr.no/api/datafeed/status" | head -c 2000 || true
+          curl -fsSL "https://www.spectr.no/api/datafeed/status" | head -c 2000 || true
