@@ -10,8 +10,8 @@
   text-align: center;
   overflow-x: clip;
   overflow-y: visible;
-  background: #ffffff;
-  border-bottom: 1px solid var(--ph-line, #d8e0ea);
+  background: #0a0c10;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .cb-hero-inner {
@@ -28,7 +28,7 @@
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #5c6b7a;
+  color: rgba(255, 255, 255, 0.58);
 }
 
 .cb-hero h1 {
@@ -38,7 +38,7 @@
   font-weight: 600;
   letter-spacing: -0.04em;
   line-height: 1.05;
-  color: #101820;
+  color: #f2f4f7;
 }
 
 body.page-home.plt-site .cb-search-wrap {
@@ -69,20 +69,16 @@ body.page-home.plt-site .cb-search-wrap {
   align-items: center;
   gap: 0.5rem;
   padding: 0.45rem 0.45rem 0.45rem 1.5rem;
-  background: #ffffff;
-  border: 1px solid #d8e0ea;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 999px;
-  box-shadow:
-    0 1px 2px rgba(16, 24, 32, 0.04),
-    0 12px 40px rgba(31, 111, 235, 0.1);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.35);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .cb-search-box:focus-within {
-  border-color: #b8c4f0;
-  box-shadow:
-    0 1px 2px rgba(26, 26, 46, 0.04),
-    0 8px 40px rgba(99, 102, 241, 0.14);
+  border-color: rgba(61, 139, 253, 0.45);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(61, 139, 253, 0.2);
 }
 
 .cb-search-input {
@@ -93,12 +89,12 @@ body.page-home.plt-site .cb-search-wrap {
   background: transparent;
   font-family: "IBM Plex Sans", system-ui, sans-serif;
   font-size: 1.0625rem;
-  color: #101820;
+  color: #f2f4f7;
   outline: none;
 }
 
 .cb-search-input::placeholder {
-  color: #8b8ba3;
+  color: rgba(255, 255, 255, 0.38);
 }
 
 .cb-search-submit {
@@ -110,11 +106,11 @@ body.page-home.plt-site .cb-search-wrap {
   padding: 0;
   border: none;
   border-radius: 50%;
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  background: #1f6feb;
   color: #ffffff;
   cursor: pointer;
   flex-shrink: 0;
-  transition: transform 0.15s ease, opacity 0.15s ease;
+  transition: transform 0.15s ease, background 0.15s ease, opacity 0.15s ease;
 }
 
 .cb-search-submit:hover {
@@ -138,10 +134,10 @@ body.page-home.plt-site .cb-search-wrap {
   margin: 0;
   padding: 0.25rem;
   text-align: left;
-  background: #ffffff;
-  border: 1px solid #e2e2ea;
+  background: #161a22;
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 0.65rem;
-  box-shadow: 0 8px 24px rgba(26, 26, 46, 0.12);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
   max-height: 18rem;
   overflow-y: auto;
 }
@@ -164,12 +160,12 @@ body.page-home.plt-site .cb-search-wrap {
   line-height: 1.3;
   text-align: left;
   cursor: pointer;
-  color: #1a1a2e;
+  color: #f2f4f7;
 }
 
 .cb-search-result:hover,
 .cb-search-result.is-active {
-  background: #f0f0fa;
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .cb-search-result-mark {
@@ -177,7 +173,7 @@ body.page-home.plt-site .cb-search-wrap {
   width: 1.5rem;
   font-size: 0.625rem;
   font-weight: 700;
-  color: #6366f1;
+  color: #3d8bfd;
   text-align: center;
 }
 
@@ -186,7 +182,7 @@ body.page-home.plt-site .cb-search-wrap {
 }
 
 .cb-search-result-name mark {
-  background: rgba(99, 102, 241, 0.2);
+  background: rgba(61, 139, 253, 0.25);
   color: inherit;
   border-radius: 2px;
 }
@@ -206,18 +202,18 @@ body.page-home.plt-site .cb-search-wrap {
 }
 
 .cb-search-kind-commodity {
-  color: #6366f1;
+  color: #6ba3f7;
 }
 
 .cb-search-result-sub {
-  color: #6b6b88;
+  color: rgba(255, 255, 255, 0.5);
   font-weight: 400;
 }
 
 .cb-search-results-empty {
   padding: 0.5rem 0.65rem;
   font-size: 0.8125rem;
-  color: #8b8ba3;
+  color: rgba(255, 255, 255, 0.45);
 }
 
 .cb-search-suggestions {
@@ -240,12 +236,12 @@ body.page-home.plt-site .cb-search-wrap {
   width: 100%;
   max-width: 28rem;
   padding: 0.7rem 1.1rem;
-  border: 1px solid #ebebf0;
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 999px;
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
   font-family: "IBM Plex Sans", system-ui, sans-serif;
   font-size: 0.875rem;
-  color: #3d3d56;
+  color: rgba(255, 255, 255, 0.78);
   text-align: left;
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(26, 26, 46, 0.04);
@@ -256,8 +252,8 @@ body.page-home.plt-site .cb-search-wrap {
 }
 
 .cb-suggestion:hover {
-  border-color: #d4d4e8;
-  box-shadow: 0 4px 16px rgba(26, 26, 46, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
 }
 
 .cb-search-suggestions > li:nth-child(2) .cb-suggestion {
@@ -295,7 +291,7 @@ body.page-home.plt-site .cb-search-wrap {
   width: 1.5rem;
   height: 1.5rem;
   flex-shrink: 0;
-  color: #6366f1;
+  color: #3d8bfd;
 }
 
 .cb-suggestion-icon svg {
