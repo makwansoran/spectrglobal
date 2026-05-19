@@ -214,6 +214,13 @@ export interface CompanyProfile {
   esg: ESGScore;
   dataSources: DataSource[];
   enrichment?: CompanyEnrichment;
+  /** Corporate / IR website used for filing discovery when APIs have no data. */
+  website?: string;
+  /** Cached Finnhub profile2 fields merged during enrichment. */
+  finnhub?: {
+    weburl?: string;
+    country?: string;
+  };
   /** Live Oslo listing data synced from Euronext. */
   euronext?: {
     isin: string;
