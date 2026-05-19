@@ -175,6 +175,7 @@
           password: fd.get("password"),
         });
         SpectrAuth.saveSession(data, rememberEl && rememberEl.checked);
+        if (window.SpectrAuthNav && SpectrAuthNav.refresh) SpectrAuthNav.refresh();
         redirectAfterAuth();
       } catch (err) {
         showMessage(err.message || "Sign in failed.", "error");

@@ -78,6 +78,8 @@
     { "source": "/company/:path*", "destination": "/company/index.html" },
     { "source": "/login", "destination": "/login.html" },
     { "source": "/admin/company", "destination": "/admin-company.html" },
-    { "source": "/admin-company", "destination": "/admin-company.html" }
+    { "source": "/admin-company", "destination": "/admin-company.html" },
+    { "source": "/settings", "destination": "/settings.html" },
+    { "source": "/watchlist", "destination": "/watchlist.html" }
   ]
 }

@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="platform.css" />
     <link rel="stylesheet" href="palantir-nav.css" />
+    <link rel="stylesheet" href="auth-nav.css" />
     <link rel="stylesheet" href="home.css" />
     <link rel="stylesheet" href="news-feed.css" />
     <link rel="stylesheet" href="cookies.css" />
@@ -27,7 +28,7 @@
           <span class="plt-logo-text">Spectr</span>
         </a>
         <div class="plt-header-tools">
-          <a href="login.html" class="plt-header-login">Login</a>
+          <div class="spectr-auth-slot spectr-auth-slot--header" data-spectr-auth-slot></div>
           <button
             type="button"
             class="plt-tool-btn"
@@ -88,7 +89,7 @@
             <path d="M20 20l-3-3" stroke-linecap="round" />
           </svg>
         </button>
-        <a href="login.html" class="plt-cta-get-started">Login</a>
+        <div class="spectr-auth-slot spectr-auth-slot--nav" data-spectr-auth-slot data-spectr-auth-variant="nav"></div>
       </div>
     </div>
 
@@ -146,6 +147,8 @@
       </div>
     </footer>
 
+    <script src="auth-session.js" defer></script>
+    <script src="auth-nav.js" defer></script>
     <script src="analytics-static.js" defer></script>
     <script src="cookies.js" defer></script>
     <script src="script.js" defer></script>

@@ -1,4 +1,5 @@
 import { NavSearch } from "./NavSearch";
+import { UserMenu } from "./UserMenu";
 
 export function SiteHeader() {
   return (
@@ -19,6 +20,7 @@ export function SiteHeader() {
           <span className="hidden text-lg font-medium tracking-tight sm:inline">Spectr</span>
         </a>
         <NavSearch />
+        <UserMenu />
       </div>
     </header>
   );
