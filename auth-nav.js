@@ -32,6 +32,11 @@
     slot.replaceChildren(a);
   }
 
+  function editorMenuItems(user) {
+    if (user.role !== "editor") return "";
+    return '<a href="admin-company.html" role="menuitem" class="spectr-user-dropdown-editor">Add / edit company</a>';
+  }
+
   function renderMenu(slot, user) {
     var label = user.username ? "@" + user.username : user.email || "Account";
     var wrap = document.createElement("div");
@@ -45,6 +50,7 @@
       '<p class="spectr-user-dropdown-label">' +
       escapeHtml(label) +
       "</p>" +
+      editorMenuItems(user) +
       '<a href="settings.html" role="menuitem">Settings</a>' +
       '<a href="watchlist.html" role="menuitem">Watchlist</a>' +
       '<button type="button" role="menuitem" data-spectr-logout>Log out</button>' +

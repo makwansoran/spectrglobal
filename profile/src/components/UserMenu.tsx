@@ -71,6 +71,16 @@ export function UserMenu() {
           onClick={(e) => e.stopPropagation()}
         >
           <p className="user-menu-label">{label}</p>
+          {user.role === "editor" && (
+            <a
+              href="/admin-company.html"
+              className="user-menu-item user-menu-item--editor"
+              role="menuitem"
+              onClick={() => setOpen(false)}
+            >
+              Add / edit company
+            </a>
+          )}
           <a href="/settings.html" className="user-menu-item" role="menuitem" onClick={() => setOpen(false)}>
             Settings
           </a>

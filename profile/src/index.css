@@ -653,6 +653,11 @@
   background: #f4f7fb;
 }
 
+.user-menu-item--editor {
+  font-weight: 600;
+  color: #7eb6ff;
+}
+
 .user-menu-item--danger {
   color: #b42318;
   border-top: 1px solid #eef2f7;

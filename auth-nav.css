@@ -97,6 +97,11 @@
   background: #f4f7fb;
 }
 
+.spectr-user-dropdown-editor {
+  font-weight: 600;
+  color: #1f6feb;
+}
+
 .spectr-user-dropdown button {
   color: #b42318;
   border-top: 1px solid #eef2f7;

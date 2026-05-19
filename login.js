@@ -22,10 +22,7 @@
 
   function redirectAfterAuth(sessionData) {
     var params = new URLSearchParams(window.location.search);
-    var next = params.get("next");
-    var role = sessionData && sessionData.user && sessionData.user.role;
-    if (!next && role === "editor") next = "admin-company.html";
-    if (!next) next = "index.html";
+    var next = params.get("next") || "index.html";
     if (!/^[\w./?#=&%-]+$/.test(next) || next.indexOf("://") !== -1) next = "index.html";
     window.location.href = next;
   }
