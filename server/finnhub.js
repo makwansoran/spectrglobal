@@ -228,16 +228,51 @@ function normalizeProfile2(raw) {
   };
 }
 
-function normalizeNews(items) {
-  return (items || []).slice(0, 15).map((n, i) => ({
+function normalizeNews(items, max = 15) {
+  return (items || []).slice(0, max).map((n, i) => ({
     id: String(n.id ?? `fh-${i}`),
     title: n.headline || "",
     summary: n.summary || "",
     source: n.source || "Finnhub",
     date: n.datetime ? new Date(n.datetime * 1000).toISOString().slice(0, 10) : "",
+    publishedAt: n.datetime ? new Date(n.datetime * 1000).toISOString() : "",
     url: n.url || null,
     image: n.image || null,
+    category: n.category || null,
   }));
+}
+
+/** Market headlines — Finnhub /news (general, forex, merger, etc.). */
+async function fetchMarketNews(category = "general", limit = 30) {
+  const cat = String(category || "general").toLowerCase();
+  const key = `market-news:${cat}:${limit}`;
+  const cached = cacheGet(key, CACHE_LONG_MS);
+  if (cached) return cached;
+  const data = await finnhubGet("/news", { category: cat });
+  const out = normalizeNews(data, limit);
+  cacheSet(key, out, CACHE_LONG_MS);
+  return out;
+}
+
+async function fetchMarketNewsFeed({ limit = 24, categories = ["general", "forex", "merger"] } = {}) {
+  if (!isEnabled()) return [];
+  const seen = new Set();
+  const merged = [];
+
+  for (const cat of categories) {
+    const batch = await tryFinnhub(() => fetchMarketNews(cat, limit));
+    if (!batch?.length) continue;
+    for (const item of batch) {
+      const key = item.title.toLowerCase().trim();
+      if (!key || seen.has(key)) continue;
+      seen.add(key);
+      merged.push({ ...item, category: item.category || cat });
+    }
+  }
+
+  return merged
+    .sort((a, b) => String(b.publishedAt).localeCompare(String(a.publishedAt)))
+    .slice(0, limit);
 }
 
 function normalizeRecommendations(rows) {
@@ -571,6 +606,8 @@ module.exports = {
   searchToIndexItems,
   buildCompanyFromSlug,
   fetchCompanyNews,
+  fetchMarketNews,
+  fetchMarketNewsFeed,
   fetchCompanyNewsForProfile,
   fetchSecFilings,
   fetchSecFilingsForProfile,

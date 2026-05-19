@@ -4,6 +4,7 @@
 const { createClient } = require("@supabase/supabase-js");
 
 let adminClient;
+let anonAuthClient;
 
 function isProjectSupabaseUrl(url) {
   try {
@@ -40,13 +41,14 @@ function getSupabaseUrl() {
   );
 }
 
-function getSupabaseKey() {
+function getSupabaseAnonKey() {
   return String(
-    process.env.SUPABASE_SERVICE_ROLE_KEY ||
-      process.env.SUPABASE_ANON_KEY ||
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
-      ""
+    process.env.SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ""
   ).trim();
+}
+
+function getSupabaseKey() {
+  return String(process.env.SUPABASE_SERVICE_ROLE_KEY || getSupabaseAnonKey() || "").trim();
 }
 
 function getSupabaseUrlSafe() {
@@ -83,12 +85,35 @@ function getAdminClient() {
   return adminClient;
 }
 
+function requireServiceRole() {
+  if (!hasSupabaseWrites()) {
+    throw new Error("SUPABASE_SERVICE_ROLE_KEY is required for account registration.");
+  }
+}
+
+function getAnonAuthClient() {
+  const url = getSupabaseUrlSafe();
+  const anonKey = getSupabaseAnonKey();
+  if (!url || !anonKey) {
+    throw new Error("SUPABASE_ANON_KEY is required for sign-in and sessions.");
+  }
+  if (!anonAuthClient) {
+    anonAuthClient = createClient(url, anonKey, {
+      auth: { persistSession: false, autoRefreshToken: false },
+    });
+  }
+  return anonAuthClient;
+}
+
 module.exports = {
   getAdminClient,
+  getAnonAuthClient,
   getSupabaseUrl,
   getSupabaseUrlSafe,
   getSupabaseKey,
+  getSupabaseAnonKey,
   isSupabaseEnabled,
   hasSupabaseWrites,
   requireSupabase,
+  requireServiceRole,
 };

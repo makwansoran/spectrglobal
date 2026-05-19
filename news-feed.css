@@ -1,0 +1,248 @@
+/* Reuters-style article list — Spectr news feed */
+
+.nf-section {
+  padding: clamp(2rem, 5vw, 3rem) 0 clamp(3rem, 8vw, 4.5rem);
+  background: #fff;
+  border-top: 1px solid #e8edf2;
+}
+
+.nf-section--home {
+  padding-top: clamp(2rem, 5vw, 3rem);
+  border-top: none;
+  text-align: left;
+}
+
+.cb-hero .nf-section--home .nf-inner {
+  width: min(72rem, 100% - 2rem);
+  margin-inline: auto;
+  text-align: left;
+}
+
+.nf-inner {
+  width: min(72rem, 100% - 2rem);
+  margin-inline: auto;
+}
+
+.nf-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #101820;
+}
+
+.nf-head h2 {
+  margin: 0;
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #101820;
+}
+
+.nf-view-all {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #1f6feb;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.nf-view-all:hover {
+  text-decoration: underline;
+}
+
+.nf-feed {
+  display: flex;
+  flex-direction: column;
+}
+
+.nf-loading,
+.nf-empty,
+.nf-error {
+  margin: 0;
+  padding: 1.5rem 0;
+  font-size: 0.9375rem;
+  color: #5c6b7a;
+}
+
+.nf-error {
+  color: #991b1b;
+}
+
+.nf-article {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem 1.5rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid #e8edf2;
+}
+
+.nf-feed--compact .nf-article {
+  padding: 1rem 0;
+}
+
+.nf-article:last-child {
+  border-bottom: none;
+}
+
+@media (min-width: 640px) {
+  .nf-article:has(.nf-article-media) {
+    grid-template-columns: 1fr min(11rem, 28vw);
+  }
+
+  .nf-article--lead:has(.nf-article-media) {
+    grid-template-columns: 1fr min(14rem, 32vw);
+  }
+}
+
+.nf-article-body {
+  min-width: 0;
+}
+
+.nf-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.65rem;
+  margin-bottom: 0.45rem;
+  font-family: var(--plt-mono, "JetBrains Mono", ui-monospace, monospace);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #5c6b7a;
+}
+
+.nf-meta time {
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+
+.nf-meta-sep {
+  color: #c5ced8;
+}
+
+.nf-cat {
+  color: #c41e3a;
+}
+
+.nf-headline {
+  margin: 0;
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.nf-article--lead .nf-headline {
+  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+  line-height: 1.2;
+}
+
+.nf-feed--compact .nf-headline {
+  font-size: 1rem;
+}
+
+.nf-headline a {
+  color: #101820;
+  text-decoration: none;
+}
+
+.nf-headline a:hover {
+  color: #1f6feb;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.nf-dek {
+  margin: 0.5rem 0 0;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: #4a5568;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.nf-feed--compact .nf-dek {
+  -webkit-line-clamp: 2;
+  font-size: 0.875rem;
+}
+
+.nf-article--lead .nf-dek {
+  -webkit-line-clamp: 4;
+  font-size: 1rem;
+}
+
+.nf-article-media {
+  margin: 0;
+  order: -1;
+}
+
+@media (min-width: 640px) {
+  .nf-article-media {
+    order: 1;
+  }
+}
+
+.nf-article-media img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: #eef2f7;
+}
+
+/* Newsroom page */
+.nr-hero {
+  padding: clamp(2rem, 6vw, 3rem) 0 1.5rem;
+  background: #fff;
+  border-bottom: 1px solid #e8edf2;
+}
+
+.nr-hero-inner {
+  width: min(72rem, 100% - 2rem);
+  margin-inline: auto;
+}
+
+.nr-hero h1 {
+  margin: 0 0 0.5rem;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #101820;
+}
+
+.nr-hero p {
+  margin: 0;
+  max-width: 40rem;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: #5c6b7a;
+}
+
+.nr-main {
+  padding: clamp(1.5rem, 4vw, 2.5rem) 0 clamp(4rem, 10vw, 6rem);
+  background: #fff;
+}
+
+.nr-layout {
+  width: min(72rem, 100% - 2rem);
+  margin-inline: auto;
+}
+
+.nr-latest-label {
+  margin: 0 0 0.5rem;
+  font-family: var(--plt-mono, "JetBrains Mono", ui-monospace, monospace);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #5c6b7a;
+}

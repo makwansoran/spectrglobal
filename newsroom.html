@@ -1,29 +1,25 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="Spectr builds operational intelligence software for investment teams."
-    />
-    <title>Spectr</title>
+    <meta name="description" content="Spectr Newsroom — latest market headlines and intelligence." />
+    <title>Newsroom — Spectr</title>
     <link rel="icon" href="/assets/brand/spectr-mark.png" type="image/png" sizes="any" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600&family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="platform.css" />
     <link rel="stylesheet" href="palantir-nav.css" />
-    <link rel="stylesheet" href="crunchbase-search.css" />
     <link rel="stylesheet" href="home.css" />
     <link rel="stylesheet" href="news-feed.css" />
     <link rel="stylesheet" href="cookies.css" />
   </head>
-  <body class="font-body page-home plt-site">
+  <body class="font-body page-home plt-site page-newsroom">
     <header class="plt-header">
       <div class="plt-header-inner">
         <a class="plt-logo" href="index.html" aria-label="Spectr home">
@@ -76,7 +72,7 @@
             <li><a href="#" class="plt-nav-primary">Impact Studies</a></li>
             <li><a href="#" class="plt-nav-primary">Documentation</a></li>
             <li><a href="#" class="plt-nav-primary">Careers</a></li>
-            <li><a href="newsroom.html" class="plt-nav-primary">Newsroom</a></li>
+            <li><a href="newsroom.html" class="plt-nav-primary" aria-current="page">Newsroom</a></li>
           </ul>
         </nav>
       </div>
@@ -86,13 +82,7 @@
             <path d="M6 6l12 12M18 6L6 18" stroke-linecap="round" />
           </svg>
         </button>
-        <button
-          type="button"
-          class="plt-tool-btn"
-          data-plt-search-open
-          aria-label="Show Search"
-          aria-expanded="false"
-        >
+        <button type="button" class="plt-tool-btn" data-plt-search-open aria-label="Show Search" aria-expanded="false">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
             <circle cx="11" cy="11" r="7" />
             <path d="M20 20l-3-3" stroke-linecap="round" />
@@ -105,13 +95,7 @@
     <div class="plt-search-panel" id="plt-search-panel" aria-hidden="true">
       <div class="plt-search-panel-top">
         <form class="plt-search-panel-form" role="search" action="#" onsubmit="return false">
-          <input
-            type="search"
-            class="plt-search-panel-input"
-            id="plt-search-input"
-            placeholder="Search"
-            autocomplete="off"
-          />
+          <input type="search" class="plt-search-panel-input" id="plt-search-input" placeholder="Search" autocomplete="off" />
         </form>
         <button type="button" class="plt-search-panel-close" id="plt-search-close" aria-label="Close search">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
@@ -119,79 +103,25 @@
           </svg>
         </button>
       </div>
-      <div
-        id="plt-search-results"
-        class="plt-search-results"
-        role="listbox"
-        aria-label="Company results"
-      ></div>
+      <div id="plt-search-results" class="plt-search-results" role="listbox" aria-label="Company results"></div>
     </div>
 
     <main>
-      <section class="cb-hero" id="top" aria-labelledby="cb-hero-title">
-        <div class="cb-hero-inner">
-          <h1 id="cb-hero-title">Make better decisions, faster</h1>
-          <div class="cb-search-wrap">
-            <form class="cb-search-form" id="cb-search-form" role="search">
-              <div class="cb-search-box">
-                <label class="visually-hidden" for="cb-search">Search companies, commodities, waterways</label>
-                <input
-                  type="search"
-                  class="cb-search-input"
-                  id="cb-search"
-                  name="q"
-                  placeholder="Search companies, commodities, straits & canals..."
-                  autocomplete="off"
-                  role="combobox"
-                  aria-expanded="false"
-                  aria-controls="cb-search-results"
-                  aria-autocomplete="list"
-                />
-                <button type="submit" class="cb-search-submit" aria-label="Search">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
-                    <circle cx="11" cy="11" r="7" />
-                    <path d="M20 20l-3-3" stroke-linecap="round" />
-                  </svg>
-                </button>
-              </div>
-            </form>
-            <div
-              id="cb-search-results"
-              class="cb-search-results"
-              role="listbox"
-              aria-label="Search results"
-            ></div>
+      <header class="nr-hero">
+        <div class="nr-hero-inner">
+          <h1>Newsroom</h1>
+          <p>Market headlines across equities, currencies, and M&amp;A — curated for investment teams.</p>
+        </div>
+      </header>
+
+      <section class="nr-main" aria-label="Latest articles">
+        <div class="nr-layout">
+          <p class="nr-latest-label">Latest</p>
+          <div class="nf-feed" data-nf-feed data-limit="30" data-lead="true" aria-live="polite">
+            <p class="nf-loading">Loading headlines…</p>
           </div>
         </div>
-
-        <section class="nf-section nf-section--home" aria-labelledby="nf-home-heading">
-          <div class="nf-inner">
-            <div class="nf-head">
-              <h2 id="nf-home-heading">Latest</h2>
-              <a href="newsroom.html" class="nf-view-all">Newsroom</a>
-            </div>
-            <div
-              class="nf-feed nf-feed--compact"
-              data-nf-feed
-              data-limit="6"
-              data-lead="false"
-              aria-live="polite"
-            >
-              <p class="nf-loading">Loading headlines…</p>
-            </div>
-          </div>
-        </section>
       </section>
-
-      <section class="ph-statement" aria-label="Mission">
-        <div class="wrap">
-          <blockquote>
-            We build software that amplifies human judgment—so teams can see the full picture and act with conviction.
-            <cite>Makwan Ismail, Founder of Spectr</cite>
-          </blockquote>
-        </div>
-      </section>
-
     </main>
 
     <footer class="site-footer">

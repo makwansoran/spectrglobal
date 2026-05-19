@@ -7,6 +7,7 @@ require("./load-env").loadEnv();
 const { createClient } = require("@supabase/supabase-js");
 
 const TABLES = [
+  "profiles",
   "companies",
   "company_people",
   "commodities",
@@ -38,10 +39,11 @@ async function main() {
   let missing = 0;
 
   for (const table of TABLES) {
+    const selectCol = table === "profiles" ? "id" : "slug";
     // Use a real SELECT (not HEAD-only) — PostgREST can return a false OK on head for missing tables.
     const { data, count, error } = await client
       .from(table)
-      .select("slug", { count: "exact" })
+      .select(selectCol, { count: "exact" })
       .limit(1);
 
     if (error) {
