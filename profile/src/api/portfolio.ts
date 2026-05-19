@@ -1,24 +1,47 @@
 export type PortfolioHolding = {
   slug: string;
   name: string;
-  region: string;
-  listingCountry: string;
-  incorporationCountry: string;
-  industry: string;
-  marketValueNok: number;
-  marketValueUsd: number;
-  votingPercent: number;
-  ownershipPercent: number;
+  region?: string;
+  listingCountry?: string;
+  incorporationCountry?: string;
+  industry?: string;
+  marketValueNok?: number;
+  marketValueUsd?: number;
+  votingPercent?: number;
+  ownershipPercent?: number;
+};
+
+export type IndustrialPortfolioHolding = {
+  slug: string;
+  name: string;
+  listing: "listed" | "unlisted";
+  sector: string;
+  category?: string;
+  ownershipPercent: number | null;
+  ownershipLabel?: string;
+  assetShare?: string;
+  exchange?: string;
+  ticker?: string;
+  tagline?: string;
+  description?: string;
+  chair?: string;
+  ceo?: string;
+  website?: string;
+  logoUrl?: string;
+  companySlug?: string;
 };
 
 export type PortfolioHoldingsResponse = {
   investorSlug: string;
+  kind?: "equity" | "industrial";
   asOf: string;
+  listedCount?: number;
+  unlistedCount?: number;
   total: number;
   page: number;
   limit: number;
   pages: number;
-  items: PortfolioHolding[];
+  items: PortfolioHolding[] | IndustrialPortfolioHolding[];
 };
 
 const apiBase = import.meta.env.VITE_API_BASE ?? "";

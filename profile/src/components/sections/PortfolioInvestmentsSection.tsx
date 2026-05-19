@@ -48,7 +48,7 @@ export function PortfolioInvestmentsSection({ investorSlug, portfolio }: Props) 
     fetchPortfolioHoldings(investorSlug, { page, limit: 50, q: debouncedQ, sort, order: "desc" })
       .then((data) => {
         if (cancelled) return;
-        setItems(data.items);
+        setItems(data.items as PortfolioHolding[]);
         setTotal(data.total);
         setPages(data.pages);
         setAsOf(data.asOf);
@@ -139,10 +139,10 @@ export function PortfolioInvestmentsSection({ investorSlug, portfolio }: Props) 
                     <td className="px-3 py-2 text-muted">{row.listingCountry}</td>
                     <td className="max-w-[140px] truncate px-3 py-2 text-muted">{row.industry}</td>
                     <td className="px-3 py-2 text-right font-mono tabular-nums">
-                      {row.ownershipPercent.toFixed(2)}%
+                      {row.ownershipPercent != null ? `${row.ownershipPercent.toFixed(2)}%` : "—"}
                     </td>
                     <td className="px-3 py-2 text-right font-mono tabular-nums">
-                      {formatUsd(row.marketValueUsd)}
+                      {row.marketValueUsd != null ? formatUsd(row.marketValueUsd) : "—"}
                     </td>
                   </tr>
                 ))}

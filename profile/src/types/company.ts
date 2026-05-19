@@ -205,10 +205,14 @@ export interface OwnershipBreakdown {
 export interface PortfolioSummary {
   asOf?: string;
   holdingCount?: number;
+  listedCount?: number;
+  unlistedCount?: number;
   totalMarketValueNok?: number;
   totalMarketValueUsd?: number;
   source?: string;
   regions?: string[];
+  /** equity = NBIM-style market-value book; industrial = active ownership stakes */
+  kind?: "equity" | "industrial";
 }
 
 export interface CompanyProfile {

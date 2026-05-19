@@ -7,6 +7,7 @@
     "name": "Aker ASA",
     "legalName": "Aker ASA",
     "logoInitials": "AA",
+    "logoUrl": "/company/logos/aker-asa.png",
     "countryCode": "NO",
     "countryName": "Norway",
     "founded": 1841,
@@ -67,6 +68,14 @@
       { "name": "Statkraft", "country": "Norway" }
     ],
     "funding": [],
+    "portfolio": {
+      "kind": "industrial",
+      "asOf": "Q1 2026",
+      "holdingCount": 17,
+      "listedCount": 9,
+      "unlistedCount": 8,
+      "source": "https://www.akerasa.com/investment"
+    },
     "esg": { "overall": 0, "environmental": 0, "social": 0, "governance": 0, "trend": "stable" },
     "dataSources": [
       { "name": "akerasa.com", "url": "https://www.akerasa.com" },
