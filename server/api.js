@@ -114,7 +114,15 @@ async function handleApi(req, res, pathname) {
       const q = url.searchParams.get("q") || "";
       const limit = Math.min(parseInt(url.searchParams.get("limit") || "25", 10) || 25, 50);
       if (q.trim()) {
-        sendJson(res, 200, await searchUnified(q, limit), { "X-Spectr-Source": "supabase:unified" });
+        let results = [];
+        try {
+          results = await searchUnified(q, limit);
+        } catch (err) {
+          console.error("[searchUnified]", err.message);
+          sendJson(res, 500, { error: "Search failed", message: err.message });
+          return true;
+        }
+        sendJson(res, 200, results, { "X-Spectr-Source": "supabase:unified" });
       } else {
         sendJson(res, 200, await listCompanies({ limit }), { "X-Spectr-Source": "supabase:companies" });
       }

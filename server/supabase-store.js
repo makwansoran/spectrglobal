@@ -51,16 +51,22 @@ async function listCompaniesSupabase(limit) {
   return (data || []).map(rowToIndex);
 }
 
+/** PostgREST ilike pattern (% = SQL wildcard; also supported as * in some versions). */
+function ilikePattern(term) {
+  const t = String(term || "")
+    .trim()
+    .replace(/[%_\\]/g, "")
+    .slice(0, 48);
+  if (!t) return null;
+  return `%${t}%`;
+}
+
 async function searchCompaniesSupabase(query, limit = 25) {
   const q = String(query || "")
     .trim()
     .toLowerCase();
   if (!q) return listCompaniesSupabase(limit);
 
-  const safe = q.replace(/[%_,.()\\]/g, "");
-  if (!safe) return [];
-
-  const star = `*${safe}*`;
   const seen = new Set();
   const merged = [];
 
@@ -72,25 +78,33 @@ async function searchCompaniesSupabase(query, limit = 25) {
     }
   };
 
-  const data = await restGet("companies", {
-    select: SEARCH_SELECT,
-    or: `(name.ilike.${star},legal_name.ilike.${star},slug.ilike.${star},meta.ilike.${star})`,
-    order: "name.asc",
-    limit: String(limit),
-  });
-  addRows(data);
+  const pattern = ilikePattern(q);
+  if (pattern) {
+    try {
+      const data = await restGet("companies", {
+        select: SEARCH_SELECT,
+        or: `(name.ilike.${pattern},legal_name.ilike.${pattern},slug.ilike.${pattern},meta.ilike.${pattern})`,
+        order: "name.asc",
+        limit: String(limit * 2),
+      });
+      addRows(data);
+    } catch (err) {
+      console.warn("[search] ilike:", err.message);
+    }
+  }
 
-  if (merged.length < limit) {
+  const termSafe = q.replace(/[^\w\s-]/g, "").trim();
+  if (termSafe && merged.length < limit) {
     try {
       const termRows = await restGet("companies", {
         select: SEARCH_SELECT,
-        search_terms: `cs.${JSON.stringify([safe])}`,
+        search_terms: `cs.${JSON.stringify([termSafe])}`,
         order: "name.asc",
-        limit: String(limit),
+        limit: String(limit * 2),
       });
       addRows(termRows);
-    } catch {
-      /* optional */
+    } catch (err) {
+      console.warn("[search] search_terms:", err.message);
     }
   }
 
@@ -99,15 +113,38 @@ async function searchCompaniesSupabase(query, limit = 25) {
     const preferred = PREFERRED_SLUG_BY_TICKER[qTicker];
     for (const slug of [preferred, `us-${qTicker.toLowerCase()}`].filter(Boolean)) {
       if (!slug || seen.has(slug)) continue;
+      try {
+        const rows = await restGet("companies", {
+          select: SEARCH_SELECT,
+          slug: `eq.${slug}`,
+          limit: "1",
+        });
+        if (rows?.[0]) {
+          seen.add(slug);
+          merged.unshift(rowToIndex(rows[0]));
+        }
+      } catch {
+        /* optional */
+      }
+    }
+  }
+
+  const SEARCH_ALIASES = {
+    statoil: "equinor",
+    "statoil asa": "equinor",
+    "berkshire hathaway": "berkshire",
+  };
+  const alias = SEARCH_ALIASES[q] || SEARCH_ALIASES[termSafe];
+  if (alias && !seen.has(alias) && merged.length < limit) {
+    try {
       const rows = await restGet("companies", {
         select: SEARCH_SELECT,
-        slug: `eq.${slug}`,
+        slug: `eq.${alias}`,
         limit: "1",
       });
-      if (rows?.[0]) {
-        seen.add(slug);
-        merged.unshift(rowToIndex(rows[0]));
-      }
+      if (rows?.[0]) addRows(rows);
+    } catch {
+      /* optional */
     }
   }
 

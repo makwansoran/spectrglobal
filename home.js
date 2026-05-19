@@ -130,6 +130,10 @@
         var message = null;
         if (err && err.status === 503 && err.payload && err.payload.hint) {
           message = "Search is not connected. Set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in Vercel, run supabase/schema.sql, then redeploy.";
+        } else if (err && err.status >= 500) {
+          message = "Search is temporarily unavailable. Try again in a moment.";
+        } else if (err && err.message) {
+          message = err.message;
         }
         callback([], message);
       });

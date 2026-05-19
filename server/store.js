@@ -23,10 +23,16 @@ async function listCompanies(options = {}) {
 async function searchCompanies(query, limit = 25) {
   requireSupabase();
 
-  const rows = await supabase.searchCompaniesSupabase(query, limit * 4);
+  let rows = [];
+  try {
+    rows = await supabase.searchCompaniesSupabase(query, limit * 4);
+  } catch (err) {
+    console.error("[searchCompanies]", err.message);
+    return [];
+  }
 
   const ranked = dedupeSearchResults(rows, query, limit);
-  const results = ranked.map((row) => {
+  return ranked.map((row) => {
     const { profile_json, profile, slug, ...rest } = row;
     const canonicalId = row.id || slug;
     return {
@@ -38,21 +44,6 @@ async function searchCompanies(query, limit = 25) {
       subtitle: formatSearchSubtitle(row),
     };
   });
-
-  const { enrichCompanyIfStale, profileIrUrl } = require("./company-enrich");
-  for (let i = 0; i < Math.min(5, ranked.length); i += 1) {
-    const row = ranked[i];
-    const slug = row.id || row.slug;
-    if (!slug) continue;
-    const profile = row.profile_json || row.profile;
-    const hasTicker = Boolean(profile?.stock?.ticker || row.ticker);
-    const hasWebsite = Boolean(profileIrUrl(profile || {}));
-    if (hasTicker || hasWebsite) {
-      enrichCompanyIfStale(slug).catch(() => {});
-    }
-  }
-
-  return results;
 }
 
 /**
