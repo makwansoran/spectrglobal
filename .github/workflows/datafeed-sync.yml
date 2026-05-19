@@ -1,5 +1,5 @@
-# Keeps the market datafeed alive: Euronext screeners + optional agent-browser scrapes.
-# Vercel cron handles lightweight daily sync; this workflow runs fuller syncs with Chrome.
+# Sync Euronext screeners + Finnhub quotes into Supabase (GitHub Actions worker).
+# Requires repository secrets: SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY (FINNHUB_API_KEY optional).
 
 name: Datafeed sync
 
@@ -15,14 +15,25 @@ on:
     - cron: "0 */6 * * *"
   workflow_dispatch:
     inputs:
+      markets:
+        description: "Comma-separated Euronext markets (default oslo)"
+        type: string
+        default: "oslo"
+      finnhub_limit:
+        description: "Max Finnhub quote refreshes"
+        type: number
+        default: 80
       scrape_pages:
-        description: "Scrape instrument HTML with agent-browser"
+        description: "Scrape instrument HTML with agent-browser (Oslo only)"
         type: boolean
         default: false
       max_page_scrapes:
-        description: "Max instrument pages per Oslo run"
+        description: "Max instrument pages when scrape_pages is true"
         type: number
         default: 25
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   sync:
@@ -33,13 +44,40 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "24"
           cache: npm
+
+      - name: Check required secrets
+        shell: bash
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          set -euo pipefail
+          missing=()
+          [ -z "${SUPABASE_URL:-}" ] && missing+=("SUPABASE_URL")
+          [ -z "${SUPABASE_SERVICE_ROLE_KEY:-}" ] && missing+=("SUPABASE_SERVICE_ROLE_KEY")
+          if [ "${#missing[@]}" -gt 0 ]; then
+            echo "::error::Missing GitHub Actions secrets: ${missing[*]}"
+            echo "Repository → Settings → Secrets and variables → Actions → New repository secret"
+            echo "  SUPABASE_URL = https://YOUR_PROJECT.supabase.co"
+            echo "  SUPABASE_SERVICE_ROLE_KEY = service_role key from Supabase → Project Settings → API"
+            exit 1
+          fi
+          case "$SUPABASE_URL" in
+            https://*.supabase.co) ;;
+            *)
+              echo "::error::SUPABASE_URL must be https://YOUR_PROJECT.supabase.co (got host from secret)"
+              exit 1
+              ;;
+          esac
+          echo "Supabase secrets present."
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Install agent-browser (optional Chrome scraper)
+      - name: Install agent-browser (optional)
+        continue-on-error: true
         run: |
           npm install agent-browser --no-save || true
           npx agent-browser install --with-deps || echo "agent-browser install skipped"
@@ -50,12 +88,16 @@ jobs:
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
           FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
         run: |
-          ARGS="--sources euronext,finnhub --finnhub-limit 200"
+          set -euo pipefail
+          MARKETS="${{ github.event.inputs.markets || 'oslo' }}"
+          FINNHUB_LIMIT="${{ github.event.inputs.finnhub_limit || 80 }}"
+          ARGS="--sources euronext,finnhub --markets ${MARKETS} --finnhub-limit ${FINNHUB_LIMIT} --no-agent-browser"
           if [ "${{ github.event.inputs.scrape_pages }}" = "true" ]; then
             ARGS="$ARGS --scrape-pages --max ${{ github.event.inputs.max_page_scrapes || 25 }} --markets oslo"
           fi
+          echo "Running: node scripts/sync-datafeed.js $ARGS"
           node scripts/sync-datafeed.js $ARGS
 
-      - name: Ping production status (optional)
-        run: |
-          curl -fsSL "https://www.spectr.no/api/datafeed/status" | head -c 2000 || true
+      - name: Ping production status
+        continue-on-error: true
+        run: curl -fsSL "https://www.spectr.no/api/datafeed/status" | head -c 2000 || true

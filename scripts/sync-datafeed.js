@@ -11,6 +11,7 @@ loadEnv();
 
 const orchestrator = require("../server/datafeed/orchestrator");
 const agentBrowser = require("../server/euronext/agent-browser");
+const { hasSupabaseWrites, getSupabaseUrlSafe } = require("../server/supabase-client");
 
 function argFlag(name) {
   return process.argv.includes(name);
@@ -22,7 +23,20 @@ function argValue(flag, fallback) {
   return process.argv[i + 1];
 }
 
+function ensureSupabaseConfigured() {
+  if (hasSupabaseWrites()) return;
+  const url = getSupabaseUrlSafe();
+  console.error(
+    "Supabase writes are not configured.\n" +
+      "Set SUPABASE_URL (https://YOUR_PROJECT.supabase.co) and SUPABASE_SERVICE_ROLE_KEY.\n" +
+      (url ? `URL host looks set; missing or invalid service role key.` : `SUPABASE_URL is missing or invalid.`)
+  );
+  process.exit(1);
+}
+
 async function main() {
+  ensureSupabaseConfigured();
+
   const marketsArg = argValue("--markets", null);
   const sourcesArg = argValue("--sources", "euronext,finnhub");
 
@@ -40,7 +54,16 @@ async function main() {
   });
 
   console.log(JSON.stringify(result, null, 2));
-  process.exit(result.ok ? 0 : 1);
+  if (!result.ok) {
+    const euronext = result.sources?.euronext;
+    if (euronext?.results?.length) {
+      for (const r of euronext.results) {
+        if (!r.ok) console.error(`[euronext:${r.market}] ${r.error || "failed"}`);
+      }
+    }
+    process.exit(1);
+  }
+  process.exit(0);
 }
 
 main().catch((err) => {

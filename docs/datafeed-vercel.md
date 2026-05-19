@@ -14,7 +14,19 @@ The datafeed runs **entirely on Vercel** via scheduled Cron Jobs. You do not nee
 
 **agent-browser** (headless Chrome) cannot run in serverless functions. Full HTML page scrapes need a machine with Chrome (local dev or GitHub Actions). For the product datafeed, the CSV/API path is enough.
 
-## One-time setup
+## GitHub Actions (`datafeed-sync.yml`)
+
+Repository → **Settings → Secrets and variables → Actions**:
+
+| Secret | Required |
+|--------|----------|
+| `SUPABASE_URL` | Yes — `https://YOUR_PROJECT.supabase.co` |
+| `SUPABASE_SERVICE_ROLE_KEY` | Yes — Supabase → Project Settings → API |
+| `FINNHUB_API_KEY` | No — US quote refresh in CI |
+
+The workflow syncs **Oslo only** by default (fast, fits CI). Use **Run workflow** to change markets.
+
+## One-time setup (Vercel)
 
 1. **Vercel → Project → Settings → Environment Variables**
    - `SUPABASE_URL`
