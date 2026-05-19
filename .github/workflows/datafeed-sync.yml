@@ -1,5 +1,5 @@
-# Triggers the production datafeed on Vercel (Supabase env vars live there, not in GitHub).
-# Add one repository secret: CRON_SECRET (same value as in Vercel project settings).
+# Optional: triggers production datafeed on Vercel when CRON_SECRET is set in GitHub.
+# Vercel Cron (vercel.json) runs the sync even if this workflow skips — no GitHub secrets required.
 
 name: Datafeed sync
 
@@ -35,23 +35,29 @@ jobs:
         run: |
           set -euo pipefail
           if [ -z "${CRON_SECRET:-}" ]; then
-            echo "::error::Missing GitHub Actions secret: CRON_SECRET"
-            echo "Use the same value as in Vercel → Project → Settings → Environment Variables."
-            echo "Vercel Cron already syncs on a schedule; this job mirrors that for push/schedule/manual runs."
-            exit 1
+            echo "::warning::CRON_SECRET is not set in GitHub Actions — skipping remote trigger."
+            echo "Datafeed still runs on Vercel Cron (see vercel.json). To enable this job:"
+            echo "  GitHub repo → Settings → Secrets and variables → Actions → New secret"
+            echo "  Name: CRON_SECRET  Value: same as Vercel → Project → Environment Variables"
+            if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+              echo "::error::Manual run requires CRON_SECRET (see above)."
+              exit 1
+            fi
+            exit 0
           fi
           MARKETS="${{ github.event.inputs.markets || 'oslo' }}"
           FINNHUB_LIMIT="${{ github.event.inputs.finnhub_limit || 80 }}"
           URL="https://www.spectr.no/api/datafeed/sync?sources=euronext,finnhub&markets=${MARKETS}&finnhubLimit=${FINNHUB_LIMIT}"
           echo "GET $URL"
-          HTTP=$(curl -fsSL -w "%{http_code}" -o /tmp/datafeed-response.json \
+          HTTP=$(curl -sS -w "%{http_code}" -o /tmp/datafeed-response.json \
             -H "Authorization: Bearer ${CRON_SECRET}" \
             "$URL")
           echo "HTTP $HTTP"
-          head -c 4000 /tmp/datafeed-response.json
+          head -c 4000 /tmp/datafeed-response.json || true
           echo ""
           if [ "$HTTP" != "200" ]; then
             echo "::error::Datafeed sync returned HTTP $HTTP"
+            cat /tmp/datafeed-response.json 2>/dev/null || true
             exit 1
           fi
 
