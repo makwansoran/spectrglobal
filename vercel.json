@@ -7,7 +7,7 @@
       "maxDuration": 120,
       "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,data/**,scripts/load-env.js"
     },
-    "api/companies/index.js": {
+    "api/companies/[slug].js": {
       "maxDuration": 60,
       "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,node_modules/ws/**,data/**,scripts/load-env.js"
     },

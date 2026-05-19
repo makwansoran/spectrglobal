@@ -39,9 +39,15 @@ function pathnameFromRequest(req, mountPrefix) {
 
   if (mountPrefix === "/api/companies" && qSlug) {
     const canonical = resourceTail
-      ? `${mountPrefix}/${qSlug}/${resourceTail}`
-      : `${mountPrefix}/${qSlug}`;
-    if (!pathname.includes(qSlug) || pathname === mountPrefix || pathname === `${mountPrefix}/`) {
+      ? `${mountPrefix}/${encodeURIComponent(qSlug)}/${resourceTail}`
+      : `${mountPrefix}/${encodeURIComponent(qSlug)}`;
+    const decodedPath = decodeURIComponent(pathname);
+    if (
+      !decodedPath.includes(qSlug) ||
+      pathname === mountPrefix ||
+      pathname === `${mountPrefix}/` ||
+      pathname === `/${qSlug}`
+    ) {
       pathname = canonical;
     }
   }
