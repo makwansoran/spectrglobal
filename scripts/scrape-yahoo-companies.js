@@ -226,35 +226,40 @@ function countryToCode(name) {
   return COUNTRY_NAME_TO_CODE[name] || null;
 }
 
-function buildQuery(opts, offset) {
+function buildQuery(opts, afterSlug) {
   let q = getAdminClient()
     .from("companies")
     .select("slug, profile_json, ticker, enriched_at")
-    .order("slug")
-    .range(offset, offset + PAGE - 1);
+    .order("slug", { ascending: true })
+    .limit(PAGE);
   if (opts.slug) q = q.eq("slug", opts.slug);
   if (opts.prefix) q = q.like("slug", `${opts.prefix}%`);
   if (opts.country) q = q.eq("country_code", opts.country);
   if (!opts.refresh) q = q.is("enriched_at", null);
   if (opts.skipUsStubs) q = q.not("slug", "like", "us-%");
+  if (afterSlug) q = q.gt("slug", afterSlug);
   return q;
 }
 
-/** Async generator: yields rows in pages, never loads everything in memory. */
+/**
+ * Cursor-based iterator: avoids the offset-with-updates bug.
+ * After processing each page, advances past the last slug seen — works
+ * even when rows get marked enriched (no longer matching the filter) mid-run.
+ */
 async function* iterateCandidates(opts) {
-  let offset = 0;
+  let afterSlug = null;
   let yielded = 0;
   for (;;) {
-    const { data, error } = await buildQuery(opts, offset);
+    const { data, error } = await buildQuery(opts, afterSlug);
     if (error) throw error;
     if (!data?.length) return;
     for (const row of data) {
       if (yielded >= opts.limit) return;
       yield row;
       yielded += 1;
+      afterSlug = row.slug;
     }
     if (data.length < PAGE) return;
-    offset += PAGE;
   }
 }
 

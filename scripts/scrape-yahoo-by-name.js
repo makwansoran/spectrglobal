@@ -204,7 +204,7 @@ async function processRow(row) {
 
   let quotes;
   try {
-    quotes = await yahoo.searchSymbol(`${name} ${cc || ""}`.trim());
+    quotes = await yahoo.searchSymbol(name);
   } catch (e) {
     return { slug: row.slug, status: "search-error", error: e.message };
   }
@@ -234,32 +234,33 @@ async function processRow(row) {
   return { slug: row.slug, status: "ok", symbol: best.symbol, sector: n.profile.sector, employees: n.profile.employees };
 }
 
-function buildQuery(opts, offset) {
+function buildQuery(opts, afterSlug) {
   let q = getAdminClient()
     .from("companies")
     .select("slug, name, country_code, profile_json")
     .is("enriched_at", null)
     .is("ticker", null)
-    .order("slug")
-    .range(offset, offset + PAGE - 1);
+    .order("slug", { ascending: true })
+    .limit(PAGE);
   if (opts.prefix) q = q.like("slug", `${opts.prefix}%`);
+  if (afterSlug) q = q.gt("slug", afterSlug);
   return q;
 }
 
 async function* iterateCandidates(opts) {
-  let offset = 0;
+  let afterSlug = null;
   let yielded = 0;
   for (;;) {
-    const { data, error } = await buildQuery(opts, offset);
+    const { data, error } = await buildQuery(opts, afterSlug);
     if (error) throw error;
     if (!data?.length) return;
     for (const row of data) {
       if (yielded >= opts.limit) return;
       yield row;
       yielded += 1;
+      afterSlug = row.slug;
     }
     if (data.length < PAGE) return;
-    offset += PAGE;
   }
 }
 
