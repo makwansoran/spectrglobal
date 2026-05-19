@@ -205,6 +205,17 @@ export interface CompanyProfile {
   funding: FundingEvent[];
   esg: ESGScore;
   dataSources: DataSource[];
+  /** Live Oslo listing data synced from Euronext. */
+  euronext?: {
+    isin: string;
+    mic: string;
+    productPath?: string;
+    productUrl?: string;
+    lastPrice?: number | null;
+    dayChangePct?: number | null;
+    lastTradeLabel?: string | null;
+    syncedAt?: string;
+  };
   lastUpdated: string;
   mapConfig?: {
     center: [number, number];

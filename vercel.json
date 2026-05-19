@@ -32,6 +32,12 @@
       "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,node_modules/ws/**,data/**,scripts/load-env.js"
     }
   },
+  "crons": [
+    {
+      "path": "/api/euronext/sync",
+      "schedule": "0 6 * * *"
+    }
+  ],
   "rewrites": [
     { "source": "/person", "destination": "/company/index.html" },
     { "source": "/person/", "destination": "/company/index.html" },

@@ -42,10 +42,21 @@ async function searchCompanies(query, limit = 25) {
 async function searchUnified(query, limit = 25) {
   const commoditiesStore = require("./commodities-store");
   const waterwaysStore = require("./waterways-store");
-  const { formatWaterwaySearchSubtitle } = require("./search-rank");
+  const { formatWaterwaySearchSubtitle, queryLooksLikeTicker } = require("./search-rank");
+  const euronextSync = require("./euronext/sync");
 
-  const [companies, commodities, waterways] = await Promise.all([
-    searchCompanies(query, limit).catch(() => []),
+  let companies = await searchCompanies(query, limit).catch(() => []);
+
+  if (query.trim() && companies.length < 3 && queryLooksLikeTicker(query)) {
+    try {
+      await euronextSync.ensureOsloTickerSynced(query);
+      companies = await searchCompanies(query, limit).catch(() => companies);
+    } catch (err) {
+      console.warn("[euronext] search sync:", err.message);
+    }
+  }
+
+  const [commodities, waterways] = await Promise.all([
     commoditiesStore.searchCommodities(query, limit).catch(() => []),
     waterwaysStore.searchWaterways(query, limit).catch(() => []),
   ]);

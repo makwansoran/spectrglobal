@@ -12,6 +12,8 @@
 --   venture_capital     — VC firms & funds
 --   maritime_waterways  — straits & canals (maritime traffic maps)
 --   chat_messages       — profile chat rooms
+--   euronext_listings   — Oslo Børs instruments (Euronext Live sync)
+--   euronext_market_snapshots — scraped Oslo market page snapshots
 --
 -- Run this ENTIRE file once in Supabase → SQL → New query → Run
 -- Then: npm run db:status  &&  npm run db:seed-all

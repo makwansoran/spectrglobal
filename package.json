@@ -36,6 +36,9 @@
     "db:import-us": "node scripts/import-finnhub-us.js",
     "db:import-us:fetch": "node scripts/import-finnhub-us.js --fetch-only",
     "db:link-oslo-us": "node scripts/import-finnhub-us.js --link-oslo",
+    "euronext:sync": "node scripts/sync-euronext-oslo.js",
+    "euronext:sync:ticker": "node scripts/sync-euronext-oslo.js --ticker",
+    "euronext:sync:full": "node scripts/sync-euronext-oslo.js --scrape-pages --max 50",
     "build:search-index": "node scripts/build-search-index.js",
     "build:profile": "npm install --prefix profile && npm run build:search-index && npm run build --prefix profile",
     "build": "npm run db:seed && npm run build:profile",
@@ -47,6 +50,7 @@
     "xlsx": "^0.18.5"
   },
   "optionalDependencies": {
+    "agent-browser": "^0.6.0",
     "better-sqlite3": "^11.10.0"
   },
   "devDependencies": {
