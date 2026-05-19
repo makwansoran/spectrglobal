@@ -36,10 +36,10 @@
             <img src="assets/brand/spectr-mark.png" width="40" height="40" alt="" />
           </div>
 
-          <h1 class="login-title" id="login-title">Sign in to Spectr</h1>
-          <p class="login-subtitle" id="login-subtitle">Operational intelligence for investment teams</p>
+          <h1 class="login-title" id="login-title">Spectr editor sign-in</h1>
+          <p class="login-subtitle" id="login-subtitle">Sign in to add and edit company profiles</p>
 
-          <div class="login-tabs" role="tablist" aria-label="Account">
+          <div class="login-tabs" id="login-tabs" role="tablist" aria-label="Account" hidden>
             <button
               type="button"
               class="login-tab is-active"
@@ -50,16 +50,6 @@
             >
               Sign in
             </button>
-            <button
-              type="button"
-              class="login-tab"
-              id="tab-signup"
-              role="tab"
-              aria-selected="false"
-              aria-controls="panel-signup"
-            >
-              Create account
-            </button>
           </div>
 
           <p class="login-message" id="login-message" role="alert" hidden></p>
@@ -67,13 +57,13 @@
           <div id="panel-signin" role="tabpanel" aria-labelledby="tab-signin">
             <form class="login-form" id="signin-form" novalidate>
               <div class="login-field">
-                <label for="signin-email">Email</label>
+                <label for="signin-email">Email or username</label>
                 <input
                   id="signin-email"
                   name="email"
-                  type="email"
-                  autocomplete="email"
-                  placeholder="you@company.com"
+                  type="text"
+                  autocomplete="username"
+                  placeholder="makwan or you@company.com"
                   required
                 />
               </div>

@@ -95,16 +95,31 @@ function validateSignupBody(body) {
   return { username, email, password };
 }
 
-function validateLoginBody(body) {
-  const email = normalizeEmail(body.email);
-  const password = String(body.password || "");
-  if (!EMAIL_RE.test(email)) {
-    return { error: "Enter a valid email address." };
+async function resolveLoginEmail(raw) {
+  const value = String(raw || "").trim().toLowerCase();
+  if (!value) return { error: "Email or username is required." };
+  if (EMAIL_RE.test(value)) return { email: value };
+  if (USERNAME_RE.test(value)) {
+    const { data, error } = await getAdminClient()
+      .from("profiles")
+      .select("email")
+      .ilike("username", value)
+      .maybeSingle();
+    if (error) throw error;
+    if (data?.email) return { email: normalizeEmail(data.email) };
+    return { error: "No account found for that username." };
   }
+  return { error: "Use your full email (name@company.com) or username." };
+}
+
+async function validateLoginBody(body) {
+  const password = String(body.password || "");
+  const resolved = await resolveLoginEmail(body.email || body.username || body.login);
+  if (resolved.error) return resolved;
   if (!password) {
     return { error: "Password is required." };
   }
-  return { email, password };
+  return { email: resolved.email, password };
 }
 
 async function handleSignup(body) {
@@ -180,7 +195,7 @@ async function handleSignup(body) {
 }
 
 async function handleLogin(body) {
-  const parsed = validateLoginBody(body);
+  const parsed = await validateLoginBody(body);
   if (parsed.error) return { status: 400, body: { error: parsed.error } };
 
   const { email, password } = parsed;

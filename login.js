@@ -20,9 +20,12 @@
   var forgotBtn = document.getElementById("forgot-password-btn");
   var forgotBack = document.getElementById("forgot-back");
 
-  function redirectAfterAuth() {
+  function redirectAfterAuth(sessionData) {
     var params = new URLSearchParams(window.location.search);
-    var next = params.get("next") || "index.html";
+    var next = params.get("next");
+    var role = sessionData && sessionData.user && sessionData.user.role;
+    if (!next && role === "editor") next = "admin-company.html";
+    if (!next) next = "index.html";
     if (!/^[\w./?#=&%-]+$/.test(next) || next.indexOf("://") !== -1) next = "index.html";
     window.location.href = next;
   }
@@ -144,7 +147,7 @@
       try {
         var refreshed = await apiPost("/api/auth/refresh", { refresh_token: session.refresh_token });
         SpectrAuth.saveSession(refreshed, SpectrAuth.rememberEnabled());
-        redirectAfterAuth();
+        redirectAfterAuth(refreshed);
         return;
       } catch {
         SpectrAuth.clearSession();
@@ -157,7 +160,10 @@
     }
     try {
       var res = await fetch("/api/auth/me", { headers: SpectrAuth.authHeaders(session) });
-      if (res.ok) redirectAfterAuth();
+      if (res.ok) {
+        var me = await res.json();
+        redirectAfterAuth({ user: me.user });
+      }
     } catch {
       /* stay on login */
     }
@@ -176,7 +182,7 @@
         });
         SpectrAuth.saveSession(data, rememberEl && rememberEl.checked);
         if (window.SpectrAuthNav && SpectrAuthNav.refresh) SpectrAuthNav.refresh();
-        redirectAfterAuth();
+        redirectAfterAuth(data);
       } catch (err) {
         showMessage(err.message || "Sign in failed.", "error");
       } finally {
