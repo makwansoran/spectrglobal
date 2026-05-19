@@ -8,10 +8,8 @@ const ASSET_INDUSTRIES = new Set(["oil_gas", "energy", "shipping", "aviation"]);
 export function CompanyIndustryTab() {
   const { company, mapGeojson: ctxGeo } = useCompanyProfile();
   const wantsAssets = ASSET_INDUSTRIES.has(company.industry);
-  const { vessels, aircraft, mapGeojson, loading, error, reload, sources } = useCompanyAssets(
-    company.id,
-    wantsAssets
-  );
+  const { vessels, aircraft, mapGeojson, loading, error, reload, sources, aisMatched } =
+    useCompanyAssets(company.id, wantsAssets || company.id === "frontline-plc-fro");
 
   const blocks = mapGeojson ?? ctxGeo;
   const show = hasIndustryAssets(company, blocks, vessels, aircraft);
@@ -61,7 +59,13 @@ export function CompanyIndustryTab() {
       ) : null}
 
       {show ? (
-        <IndustryMap company={company} mapGeojson={blocks} vessels={vessels} aircraft={aircraft} />
+        <IndustryMap
+          company={company}
+          mapGeojson={blocks}
+          vessels={vessels}
+          aircraft={aircraft}
+          aisMatched={aisMatched}
+        />
       ) : !loading ? (
         <p className="text-sm text-muted">
           No mapped assets yet. Open the company again after enrichment runs, or use Refresh to

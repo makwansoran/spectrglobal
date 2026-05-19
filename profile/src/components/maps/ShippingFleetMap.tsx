@@ -89,7 +89,7 @@ export function ShippingFleetMap({ vessels, center = [62, 10], zoom = 4, aisMatc
           {aisMatched != null ? ` (${aisMatched} on this refresh)` : ""}.
         </p>
       ) : null}
-      <motionPlaceholder className="h-[420px] overflow-hidden rounded-xl border border-line md:h-[480px]">
+      <div className="h-[420px] overflow-hidden rounded-xl border border-line md:h-[480px]">
         <MapContainer center={center} zoom={zoom} className="h-full w-full" scrollWheelZoom>
           <TileLayer url={OSM_TILE_URL} attribution={OSM_ATTRIBUTION} />
           {bounds ? <FitFleetBounds bounds={bounds} /> : null}

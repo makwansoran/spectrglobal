@@ -12,6 +12,7 @@
     "db:seed-waterways": "node scripts/seed-waterways.js",
     "db:seed-people": "node scripts/seed-people.js",
     "db:seed-vessels": "node scripts/seed-vessels.js",
+    "db:import-frontline-fleet": "node scripts/import-frontline-fleet.js",
     "db:seed-planes": "node scripts/seed-planes.js",
     "db:seed-banks": "node scripts/seed-catalog.js banks",
     "db:seed-investment-banks": "node scripts/seed-catalog.js investment_banks",
