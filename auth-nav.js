@@ -32,9 +32,32 @@
     slot.replaceChildren(a);
   }
 
+  function isEditor(user) {
+    return !!(user && user.role === "editor");
+  }
+
   function editorMenuItems(user) {
-    if (user.role !== "editor") return "";
+    if (!isEditor(user)) return "";
     return '<a href="admin-company.html" role="menuitem" class="spectr-user-dropdown-editor">Add / edit company</a>';
+  }
+
+  function syncEditorNavLink(user) {
+    var list = document.querySelector(".plt-nav-list");
+    if (!list) return;
+    var existing = list.querySelector("[data-spectr-editor-nav]");
+    if (!isEditor(user)) {
+      if (existing) existing.closest("li")?.remove();
+      return;
+    }
+    if (existing) return;
+    var li = document.createElement("li");
+    var a = document.createElement("a");
+    a.href = "admin-company.html";
+    a.className = "plt-nav-primary";
+    a.setAttribute("data-spectr-editor-nav", "");
+    a.textContent = "Add / edit company";
+    li.appendChild(a);
+    list.insertBefore(li, list.firstChild);
   }
 
   function renderMenu(slot, user) {
@@ -103,6 +126,7 @@
       if (user) renderMenu(slot, user);
       else renderLogin(slot);
     });
+    syncEditorNavLink(user);
   }
 
   async function resolveUser() {
@@ -141,7 +165,9 @@
       return null;
     }
 
-    if (session.user && session.user.username) return session.user;
+    if (session.user && session.user.role && session.user.username) {
+      return session.user;
+    }
 
     try {
       var meRes = await fetch("/api/auth/me", { headers: SpectrAuth.authHeaders(session) });

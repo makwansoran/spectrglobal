@@ -83,7 +83,7 @@ export function useAuthSession() {
       return;
     }
 
-    if (session.user?.email) {
+    if (session.user?.email && session.user?.role) {
       setUser(session.user);
       setReady(true);
       return;
