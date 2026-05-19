@@ -1,4 +1,4 @@
-/* Palantir-inspired corporate home — Spectr */
+/* Palantir-inspired corporate home — Spectr — white theme */
 
 .visually-hidden {
   position: absolute;
@@ -12,16 +12,19 @@
   border: 0;
 }
 
+/* ── Root tokens ─────────────────────────────────────────── */
 body.page-home.plt-site {
-  --ph-ink: #f2f4f7;
-  --ph-muted: rgba(255, 255, 255, 0.58);
-  --ph-line: rgba(255, 255, 255, 0.1);
-  --ph-bg: #0a0c10;
-  --ph-surface: #12161c;
-  --ph-accent: #3d8bfd;
-  background: #0a0c10;
+  --ph-ink: #0a0c10;
+  --ph-muted: rgba(10, 12, 16, 0.5);
+  --ph-line: rgba(10, 12, 16, 0.09);
+  --ph-bg: #ffffff;
+  --ph-surface: #f6f7f9;
+  --ph-accent: #1f6feb;
+  --ph-font: "Inter", system-ui, sans-serif;
+  background: #ffffff;
   background-image: none;
   color: var(--ph-ink);
+  font-family: var(--ph-font);
   overflow-x: hidden;
 }
 
@@ -29,9 +32,10 @@ body.page-home.plt-site main {
   overflow-x: clip;
 }
 
+/* ── Section label ───────────────────────────────────────── */
 .ph-section-label {
   margin: 0 0 1rem;
-  font-family: var(--plt-mono);
+  font-family: var(--ph-font);
   font-size: 0.62rem;
   font-weight: 600;
   letter-spacing: 0.14em;
@@ -39,6 +43,7 @@ body.page-home.plt-site main {
   color: var(--ph-muted);
 }
 
+/* ── Platforms strip ─────────────────────────────────────── */
 .ph-platforms {
   padding: 0;
   border-bottom: 1px solid var(--ph-line);
@@ -51,6 +56,7 @@ body.page-home.plt-site main {
 
 .ph-platforms-head h2 {
   margin: 0;
+  font-family: var(--ph-font);
   font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: 600;
   letter-spacing: -0.03em;
@@ -81,7 +87,7 @@ body.page-home.plt-site main {
 
 .ph-platform-link:hover {
   text-decoration: none;
-  background: color-mix(in srgb, var(--ph-accent) 4%, #fff);
+  background: color-mix(in srgb, var(--ph-accent) 5%, transparent);
 }
 
 .ph-platform-link:hover .ph-platform-arrow {
@@ -90,6 +96,7 @@ body.page-home.plt-site main {
 
 .ph-platform-title {
   margin: 0 0 0.35rem;
+  font-family: var(--ph-font);
   font-size: clamp(1.35rem, 2.5vw, 1.85rem);
   font-weight: 600;
   letter-spacing: -0.02em;
@@ -111,7 +118,7 @@ body.page-home.plt-site main {
   transition: transform 0.2s ease;
 }
 
-/* Dark Palantir-style mesh (hero + statement) */
+/* ── Mesh background (hero + statement) — light edition ──── */
 .ph-mesh {
   position: absolute;
   inset: 0;
@@ -125,10 +132,10 @@ body.page-home.plt-site main {
   position: absolute;
   inset: -35%;
   background:
-    radial-gradient(ellipse 50% 42% at 18% 22%, rgba(31, 111, 235, 0.14), transparent 58%),
-    radial-gradient(ellipse 45% 40% at 82% 28%, rgba(27, 40, 56, 0.35), transparent 55%),
-    radial-gradient(ellipse 55% 48% at 65% 82%, rgba(16, 24, 32, 0.5), transparent 60%);
-  filter: blur(48px);
+    radial-gradient(ellipse 50% 42% at 18% 22%, rgba(31, 111, 235, 0.07), transparent 58%),
+    radial-gradient(ellipse 45% 40% at 82% 28%, rgba(200, 215, 240, 0.18), transparent 55%),
+    radial-gradient(ellipse 55% 48% at 65% 82%, rgba(220, 228, 240, 0.22), transparent 60%);
+  filter: blur(52px);
   animation: ph-mesh-drift 24s ease-in-out infinite alternate;
 }
 
@@ -136,7 +143,7 @@ body.page-home.plt-site main {
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
-  opacity: 0.7;
+  opacity: 0.65;
   will-change: transform;
 }
 
@@ -145,7 +152,7 @@ body.page-home.plt-site main {
   height: min(58vw, 560px);
   top: -12%;
   right: -8%;
-  background: radial-gradient(circle, rgba(31, 111, 235, 0.22) 0%, rgba(16, 24, 32, 0.08) 50%, transparent 72%);
+  background: radial-gradient(circle, rgba(31, 111, 235, 0.09) 0%, rgba(200, 220, 255, 0.04) 50%, transparent 72%);
   animation: ph-blob-1 20s ease-in-out infinite alternate;
 }
 
@@ -154,7 +161,7 @@ body.page-home.plt-site main {
   height: min(50vw, 480px);
   bottom: -15%;
   left: -12%;
-  background: radial-gradient(circle, rgba(27, 40, 56, 0.45) 0%, rgba(10, 12, 16, 0.2) 55%, transparent 72%);
+  background: radial-gradient(circle, rgba(200, 215, 235, 0.3) 0%, rgba(230, 235, 245, 0.12) 55%, transparent 72%);
   animation: ph-blob-2 26s ease-in-out infinite alternate;
 }
 
@@ -163,7 +170,7 @@ body.page-home.plt-site main {
   height: min(42vw, 400px);
   top: 38%;
   left: 32%;
-  background: radial-gradient(circle, rgba(31, 111, 235, 0.12) 0%, rgba(18, 22, 28, 0.15) 55%, transparent 70%);
+  background: radial-gradient(circle, rgba(31, 111, 235, 0.05) 0%, rgba(210, 220, 240, 0.08) 55%, transparent 70%);
   animation: ph-blob-3 22s ease-in-out infinite alternate;
 }
 
@@ -172,7 +179,7 @@ body.page-home.plt-site main {
   height: min(36vw, 340px);
   top: 8%;
   left: 12%;
-  background: radial-gradient(circle, rgba(45, 55, 72, 0.35) 0%, rgba(10, 12, 16, 0.1) 50%, transparent 68%);
+  background: radial-gradient(circle, rgba(210, 220, 235, 0.22) 0%, rgba(235, 238, 245, 0.06) 50%, transparent 68%);
   animation: ph-blob-4 18s ease-in-out infinite alternate;
 }
 
@@ -183,10 +190,10 @@ body.page-home.plt-site main {
 .ph-mesh-grid {
   position: absolute;
   inset: 0;
-  opacity: 0.22;
+  opacity: 0.18;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    linear-gradient(rgba(0, 0, 0, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.06) 1px, transparent 1px);
   background-size: 48px 48px;
   mask-image: radial-gradient(ellipse 85% 75% at 50% 45%, #000 20%, transparent 72%);
 }
@@ -194,54 +201,34 @@ body.page-home.plt-site main {
 .ph-mesh-grain {
   position: absolute;
   inset: 0;
-  opacity: 0.14;
+  opacity: 0.06;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
-  mix-blend-mode: overlay;
+  mix-blend-mode: multiply;
 }
 
 @keyframes ph-mesh-drift {
-  0% {
-    transform: translate(0, 0) scale(1);
-  }
-  100% {
-    transform: translate(2%, 3%) scale(1.05);
-  }
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(2%, 3%) scale(1.05); }
 }
 
 @keyframes ph-blob-1 {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(-5%, 8%);
-  }
+  0%   { transform: translate(0, 0); }
+  100% { transform: translate(-5%, 8%); }
 }
 
 @keyframes ph-blob-2 {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(6%, -5%);
-  }
+  0%   { transform: translate(0, 0); }
+  100% { transform: translate(6%, -5%); }
 }
 
 @keyframes ph-blob-3 {
-  0% {
-    transform: translate(0, 0) scale(1);
-  }
-  100% {
-    transform: translate(-7%, 4%) scale(1.1);
-  }
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-7%, 4%) scale(1.1); }
 }
 
 @keyframes ph-blob-4 {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(4%, 6%);
-  }
+  0%   { transform: translate(0, 0); }
+  100% { transform: translate(4%, 6%); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -251,10 +238,11 @@ body.page-home.plt-site main {
   }
 }
 
+/* ── Statement band ──────────────────────────────────────── */
 .ph-statement {
   position: relative;
   padding: clamp(5rem, 14vw, 9rem) 0;
-  background: #0a0c10;
+  background: var(--ph-surface);
   color: var(--ph-ink);
   border-bottom: 1px solid var(--ph-line);
   overflow: hidden;
@@ -268,7 +256,7 @@ body.page-home.plt-site main {
 .ph-statement blockquote {
   margin: 0;
   max-width: 18ch;
-  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  font-family: var(--ph-font);
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 600;
   letter-spacing: -0.035em;
@@ -288,60 +276,65 @@ body.page-home.plt-site main {
   color: var(--ph-muted);
 }
 
-/* Home hero + search — dark theme */
+/* ── Hero overrides (light) ──────────────────────────────── */
 body.page-home.plt-site .cb-hero {
-  background: #0a0c10;
+  background: #ffffff;
   border-bottom-color: var(--ph-line);
 }
 
 body.page-home.plt-site .cb-hero-kicker {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
   color: var(--ph-muted);
 }
 
 body.page-home.plt-site .cb-hero h1 {
+  font-family: var(--ph-font);
   color: var(--ph-ink);
 }
 
 body.page-home.plt-site .cb-search-box {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.14);
-  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.35);
+  background: #ffffff;
+  border-color: rgba(10, 12, 16, 0.16);
+  box-shadow: 0 4px 24px rgba(10, 12, 16, 0.08), 0 1px 4px rgba(10, 12, 16, 0.05);
 }
 
 body.page-home.plt-site .cb-search-box:focus-within {
-  border-color: rgba(61, 139, 253, 0.45);
-  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(61, 139, 253, 0.2);
+  border-color: rgba(31, 111, 235, 0.5);
+  box-shadow: 0 4px 24px rgba(10, 12, 16, 0.1), 0 0 0 1px rgba(31, 111, 235, 0.2);
 }
 
 body.page-home.plt-site .cb-search-input {
+  font-family: var(--ph-font);
   color: var(--ph-ink);
 }
 
 body.page-home.plt-site .cb-search-input::placeholder {
-  color: rgba(255, 255, 255, 0.38);
+  color: rgba(10, 12, 16, 0.36);
 }
 
 body.page-home.plt-site .cb-search-submit {
-  background: #1f6feb;
+  background: #0a0c10;
 }
 
 body.page-home.plt-site .cb-search-submit:hover {
-  background: #3d8bfd;
+  background: #1f6feb;
 }
 
+/* Dropdown */
 body.page-home.plt-site .cb-search-results {
-  background: #161a22;
-  border-color: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  background: #ffffff;
+  border-color: rgba(10, 12, 16, 0.1);
+  box-shadow: 0 16px 40px rgba(10, 12, 16, 0.12), 0 2px 8px rgba(10, 12, 16, 0.06);
 }
 
 body.page-home.plt-site .cb-search-result {
+  font-family: var(--ph-font);
   color: var(--ph-ink);
 }
 
 body.page-home.plt-site .cb-search-result:hover,
 body.page-home.plt-site .cb-search-result.is-active {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(10, 12, 16, 0.04);
 }
 
 body.page-home.plt-site .cb-search-result-mark {
@@ -349,11 +342,12 @@ body.page-home.plt-site .cb-search-result-mark {
 }
 
 body.page-home.plt-site .cb-search-result-name mark {
-  background: rgba(61, 139, 253, 0.25);
+  background: rgba(31, 111, 235, 0.12);
+  color: inherit;
 }
 
 body.page-home.plt-site .cb-search-kind-commodity {
-  color: #6ba3f7;
+  color: #1f6feb;
 }
 
 body.page-home.plt-site .cb-search-result-sub,
@@ -361,6 +355,25 @@ body.page-home.plt-site .cb-search-results-empty {
   color: var(--ph-muted);
 }
 
+/* Suggestion pills */
+body.page-home.plt-site .cb-suggestion {
+  font-family: var(--ph-font);
+  background: #ffffff;
+  border-color: rgba(10, 12, 16, 0.12);
+  color: rgba(10, 12, 16, 0.72);
+  box-shadow: 0 2px 8px rgba(10, 12, 16, 0.05);
+}
+
+body.page-home.plt-site .cb-suggestion:hover {
+  border-color: rgba(31, 111, 235, 0.35);
+  box-shadow: 0 4px 16px rgba(31, 111, 235, 0.1);
+}
+
+body.page-home.plt-site .cb-suggestion-icon {
+  color: var(--ph-accent);
+}
+
+/* ── Capabilities grid ───────────────────────────────────── */
 .ph-capabilities {
   padding: clamp(2.5rem, 6vw, 4rem) 0;
   border-bottom: 1px solid var(--ph-line);
@@ -399,6 +412,7 @@ body.page-home.plt-site .cb-search-results-empty {
 
 .ph-cap-item h3 {
   margin: 0 0 0.5rem;
+  font-family: var(--ph-font);
   font-size: 0.95rem;
   font-weight: 600;
   color: var(--ph-ink);
@@ -411,6 +425,7 @@ body.page-home.plt-site .cb-search-results-empty {
   color: var(--ph-muted);
 }
 
+/* ── News list ───────────────────────────────────────────── */
 .ph-news {
   padding: clamp(2.5rem, 6vw, 4rem) 0;
   background: var(--ph-bg);
@@ -441,29 +456,33 @@ body.page-home.plt-site .cb-search-results-empty {
 }
 
 .ph-news-item strong {
+  font-family: var(--ph-font);
   font-weight: 600;
 }
 
 .ph-news-item span {
-  font-family: var(--plt-mono);
+  font-family: "JetBrains Mono", ui-monospace, monospace;
   font-size: 0.65rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--ph-muted);
 }
 
+/* ── CTA band ────────────────────────────────────────────── */
 .ph-cta {
   padding: clamp(3rem, 8vw, 5rem) 0;
   border-top: 1px solid var(--ph-line);
-  background: #fff;
+  background: #ffffff;
   text-align: center;
 }
 
 .ph-cta h2 {
   margin: 0 0 0.75rem;
+  font-family: var(--ph-font);
   font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: 600;
   letter-spacing: -0.03em;
+  color: var(--ph-ink);
 }
 
 .ph-cta p {
@@ -472,6 +491,7 @@ body.page-home.plt-site .cb-search-results-empty {
   color: var(--ph-muted);
 }
 
+/* ── Footer overrides (unchanged — stays black) ──────────── */
 body.page-home.plt-site .site-footer {
   background: #000000;
   color: #ffffff;
