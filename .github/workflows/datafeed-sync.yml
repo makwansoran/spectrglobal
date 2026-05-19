@@ -4,6 +4,13 @@
 name: Datafeed sync
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/datafeed-sync.yml"
+      - "scripts/sync-datafeed.js"
+      - "server/datafeed/**"
+      - "server/euronext/**"
   schedule:
     - cron: "0 */6 * * *"
   workflow_dispatch:
