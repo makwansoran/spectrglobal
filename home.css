@@ -111,31 +111,183 @@ body.page-home.plt-site main {
   transition: transform 0.2s ease;
 }
 
+/* Colorful Palantir-style mesh (hero + statement) */
+.ph-mesh {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ph-mesh::before {
+  content: "";
+  position: absolute;
+  inset: -35%;
+  background:
+    radial-gradient(ellipse 50% 42% at 15% 25%, rgba(31, 111, 235, 0.2), transparent 58%),
+    radial-gradient(ellipse 45% 40% at 88% 20%, rgba(168, 85, 247, 0.22), transparent 55%),
+    radial-gradient(ellipse 55% 48% at 72% 78%, rgba(6, 182, 212, 0.18), transparent 60%),
+    radial-gradient(ellipse 40% 38% at 8% 82%, rgba(251, 146, 60, 0.16), transparent 58%),
+    radial-gradient(ellipse 35% 30% at 48% 52%, rgba(236, 72, 153, 0.12), transparent 62%);
+  filter: blur(40px);
+  animation: ph-mesh-drift 24s ease-in-out infinite alternate;
+}
+
+.ph-mesh-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(72px);
+  opacity: 0.85;
+  will-change: transform;
+}
+
+.ph-mesh-blob--1 {
+  width: min(58vw, 560px);
+  height: min(58vw, 560px);
+  top: -12%;
+  right: -8%;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.45) 0%, rgba(139, 92, 246, 0.2) 45%, transparent 70%);
+  animation: ph-blob-1 20s ease-in-out infinite alternate;
+}
+
+.ph-mesh-blob--2 {
+  width: min(50vw, 480px);
+  height: min(50vw, 480px);
+  bottom: -15%;
+  left: -12%;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.4) 0%, rgba(59, 130, 246, 0.15) 50%, transparent 72%);
+  animation: ph-blob-2 26s ease-in-out infinite alternate;
+}
+
+.ph-mesh-blob--3 {
+  width: min(42vw, 400px);
+  height: min(42vw, 400px);
+  top: 38%;
+  left: 32%;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.35) 0%, rgba(251, 113, 133, 0.12) 55%, transparent 70%);
+  animation: ph-blob-3 22s ease-in-out infinite alternate;
+}
+
+.ph-mesh-blob--4 {
+  width: min(36vw, 340px);
+  height: min(36vw, 340px);
+  top: 8%;
+  left: 12%;
+  background: radial-gradient(circle, rgba(251, 191, 36, 0.38) 0%, rgba(251, 146, 60, 0.12) 50%, transparent 68%);
+  animation: ph-blob-4 18s ease-in-out infinite alternate;
+}
+
+.ph-mesh--statement .ph-mesh-blob--4 {
+  display: none;
+}
+
+.ph-mesh-grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--ph-line) 55%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--ph-line) 55%, transparent) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 85% 75% at 50% 45%, #000 20%, transparent 72%);
+}
+
+.ph-mesh-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.18;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+}
+
+@keyframes ph-mesh-drift {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(2%, 3%) scale(1.05);
+  }
+}
+
+@keyframes ph-blob-1 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-5%, 8%);
+  }
+}
+
+@keyframes ph-blob-2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(6%, -5%);
+  }
+}
+
+@keyframes ph-blob-3 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(-7%, 4%) scale(1.1);
+  }
+}
+
+@keyframes ph-blob-4 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(4%, 6%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ph-mesh::before,
+  .ph-mesh-blob {
+    animation: none;
+  }
+}
+
 .ph-statement {
-  padding: clamp(3.5rem, 10vw, 6rem) 0;
-  background: var(--ph-ink);
-  color: #fff;
+  position: relative;
+  padding: clamp(5rem, 14vw, 9rem) 0;
+  background: #ffffff;
+  color: var(--ph-ink);
+  border-bottom: 1px solid var(--ph-line);
+  overflow: hidden;
+}
+
+.ph-statement-inner {
+  position: relative;
+  z-index: 1;
 }
 
 .ph-statement blockquote {
   margin: 0;
-  max-width: 22ch;
-  font-size: clamp(1.65rem, 4vw, 2.75rem);
+  max-width: 18ch;
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 600;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
+  letter-spacing: -0.035em;
+  line-height: 1.12;
+  color: var(--ph-ink);
 }
 
 .ph-statement cite {
   display: block;
-  margin-top: 1.5rem;
-  font-family: "IBM Plex Sans", system-ui, sans-serif;
-  font-size: 0.9375rem;
+  margin-top: 2rem;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
   font-style: normal;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  text-transform: none;
-  color: color-mix(in srgb, #fff 65%, transparent);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ph-muted);
 }
 
 .ph-capabilities {

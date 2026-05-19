@@ -2,43 +2,47 @@
 
 .cb-hero {
   position: relative;
-  padding: clamp(3rem, 10vh, 5.5rem) 0 clamp(4rem, 12vh, 6rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: min(88vh, 52rem);
+  padding: clamp(4rem, 14vh, 7rem) 0 clamp(5rem, 16vh, 8rem);
   text-align: center;
   overflow-x: clip;
   overflow-y: visible;
   background: #ffffff;
-}
-
-.cb-hero::before {
-  content: "";
-  position: absolute;
-  top: -20%;
-  right: 0;
-  bottom: -20%;
-  left: 0;
-  background:
-    radial-gradient(ellipse 55% 45% at 50% 35%, rgba(183, 148, 246, 0.22), transparent 70%),
-    radial-gradient(ellipse 40% 35% at 30% 55%, rgba(255, 182, 193, 0.18), transparent 65%),
-    radial-gradient(ellipse 45% 40% at 72% 48%, rgba(147, 197, 253, 0.2), transparent 68%);
-  pointer-events: none;
-  z-index: 0;
+  border-bottom: 1px solid var(--ph-line, #d8e0ea);
 }
 
 .cb-hero-inner {
   position: relative;
-  z-index: 1;
-  width: min(52rem, 100% - 2rem);
+  z-index: 2;
+  width: min(56rem, 100% - 2rem);
   margin-inline: auto;
 }
 
-.cb-hero h1 {
-  margin: 0 0 1rem;
-  font-family: "IBM Plex Sans", system-ui, sans-serif;
-  font-size: clamp(2rem, 5.5vw, 3.25rem);
+.cb-hero-kicker {
+  margin: 0 0 1.25rem;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.68rem;
   font-weight: 600;
-  letter-spacing: -0.035em;
-  line-height: 1.1;
-  color: #1a1a2e;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #5c6b7a;
+}
+
+.cb-hero h1 {
+  margin: 0 0 1.75rem;
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  font-size: clamp(2.5rem, 6.5vw, 4.25rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: #101820;
+}
+
+body.page-home.plt-site .cb-search-wrap {
+  max-width: 42rem;
 }
 
 .cb-hero-lede {
@@ -53,7 +57,7 @@
 .cb-search-wrap {
   position: relative;
   margin: 0 auto;
-  max-width: 36rem;
+  max-width: 42rem;
 }
 
 .cb-search-form {
@@ -64,13 +68,13 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.35rem 0.35rem 0.35rem 1.25rem;
+  padding: 0.45rem 0.45rem 0.45rem 1.5rem;
   background: #ffffff;
-  border: 1px solid #e2e2ea;
+  border: 1px solid #d8e0ea;
   border-radius: 999px;
   box-shadow:
-    0 1px 2px rgba(26, 26, 46, 0.04),
-    0 8px 32px rgba(99, 102, 241, 0.08);
+    0 1px 2px rgba(16, 24, 32, 0.04),
+    0 12px 40px rgba(31, 111, 235, 0.1);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -84,12 +88,12 @@
 .cb-search-input {
   flex: 1;
   min-width: 0;
-  padding: 0.85rem 0;
+  padding: 1rem 0;
   border: none;
   background: transparent;
   font-family: "IBM Plex Sans", system-ui, sans-serif;
-  font-size: 1rem;
-  color: #1a1a2e;
+  font-size: 1.0625rem;
+  color: #101820;
   outline: none;
 }
 
