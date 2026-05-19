@@ -35,15 +35,15 @@
     "api/portfolio/holdings.js": {
       "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,data/**,scripts/load-env.js"
     },
-    "api/waterways/index.js": {
-      "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,data/**,scripts/load-env.js"
-    },
-    "api/waterways/[slug].js": {
-      "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,data/**,scripts/load-env.js"
-    },
-    "api/waterways/[slug]/vessels.js": {
+    "api/waterways/[[...path]].js": {
       "maxDuration": 30,
       "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,node_modules/ws/**,data/**,scripts/load-env.js"
+    },
+    "api/auth/[[...path]].js": {
+      "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,data/**,scripts/load-env.js"
+    },
+    "api/admin/[[...path]].js": {
+      "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,data/**,scripts/load-env.js"
     }
   },
   "crons": [

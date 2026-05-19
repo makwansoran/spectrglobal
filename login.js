@@ -53,17 +53,29 @@
       headers: { "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify(body || {}),
     });
-    var data = {};
+    var raw = "";
     try {
-      data = await res.json();
+      raw = await res.text();
     } catch {
-      data = {};
+      raw = "";
+    }
+    var data = {};
+    if (raw) {
+      try {
+        data = JSON.parse(raw);
+      } catch {
+        data = {};
+      }
     }
     if (!res.ok) {
+      var fallback = res.status === 404 ? "Service unavailable (API not found). Try again after deploy." : "Request failed";
       var msg =
         window.SpectrAuth && SpectrAuth.formatApiError
-          ? SpectrAuth.formatApiError(data, "Request failed")
-          : data.error || data.message || "Request failed";
+          ? SpectrAuth.formatApiError(data, fallback)
+          : data.error || data.message || fallback;
+      if ((!msg || msg === fallback) && raw && !raw.trim().startsWith("{")) {
+        msg = raw.split("\n")[0].trim() || fallback;
+      }
       if (typeof msg !== "string") msg = String(msg);
       var err = new Error(msg);
       err.status = res.status;
