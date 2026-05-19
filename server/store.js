@@ -26,9 +26,12 @@ async function searchCompanies(query, limit = 25) {
   const rows = await supabase.searchCompaniesSupabase(query, limit * 4);
 
   return dedupeSearchResults(rows, query, limit).map((row) => {
-    const { profile_json, profile, ...rest } = row;
+    const { profile_json, profile, slug, ...rest } = row;
+    const canonicalId = row.id || slug;
     return {
       ...rest,
+      id: canonicalId,
+      url: `/company/${canonicalId}`,
       kind: "company",
       source: "supabase",
       subtitle: formatSearchSubtitle(row),

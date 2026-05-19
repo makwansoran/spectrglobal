@@ -2,11 +2,11 @@
  * Deduplicate and rank company search results (e.g. many us-aapl* stubs → one Apple).
  */
 
-/** Curated profiles win over auto-imported us-* stubs for the same ticker. */
-const PREFERRED_SLUG_BY_TICKER = {
-  AAPL: "apple-inc-aapl",
-  NVDA: "us-nvda",
-};
+const {
+  PREFERRED_SLUG_BY_TICKER,
+  CANONICAL_SLUG_BY_NORMALIZED_NAME,
+  resolveCanonicalSlug,
+} = require("./company-canonical");
 
 function normalizeTicker(value) {
   return String(value || "")
@@ -44,9 +44,15 @@ function getRowTicker(row) {
 }
 
 function getGroupKey(row) {
-  const ticker = getRowTicker(row);
-  if (ticker) return `ticker:${ticker}`;
   const name = normalizeCompanyName(row.name || row.legalName);
+  if (name && CANONICAL_SLUG_BY_NORMALIZED_NAME[name]) {
+    return `canonical:${name}`;
+  }
+  const ticker = getRowTicker(row);
+  if (ticker && PREFERRED_SLUG_BY_TICKER[ticker]) {
+    return `canonical:${normalizeCompanyName(PREFERRED_SLUG_BY_TICKER[ticker])}`;
+  }
+  if (ticker) return `ticker:${ticker}`;
   if (name) return `name:${name}`;
   return `slug:${row.id || row.slug}`;
 }
@@ -70,8 +76,14 @@ function scoreRow(row, query) {
   let score = 0;
 
   if (qTicker && PREFERRED_SLUG_BY_TICKER[qTicker] === slug) score += 1000;
+  const nameKey = normalizeCompanyName(row.name || row.legalName);
+  if (nameKey && CANONICAL_SLUG_BY_NORMALIZED_NAME[nameKey] === slug) score += 950;
+  if (profile?.logoUrl) score += 200;
   if (!slug.startsWith("us-")) score += 120;
   if (Array.isArray(profile?.people) && profile.people.length > 0) score += 80;
+  if (profile?.euronext) score += 15;
+  if ((profile?.about || "").length > 120) score += 60;
+  if (slug.includes("-") && /^[a-z]+-[a-z0-9]{1,6}$/.test(slug) && !slug.startsWith("us-")) score -= 40;
   if (qTicker && rowTicker === qTicker) score += 200;
   if (slug.toLowerCase() === qLower || slug.toLowerCase().includes(qLower)) score += 40;
   if (nameLower === qLower) score += 60;
@@ -110,6 +122,19 @@ function dedupeSearchResults(rows, query, limit = 25) {
   }
 
   return [...groups.values()]
+    .map((row) => {
+      const slug = row.id || row.slug || "";
+      const canonical = resolveCanonicalSlug({
+        ticker: getRowTicker(row),
+        name: row.name,
+        legalName: row.legalName,
+        slug,
+      });
+      if (canonical && canonical !== slug) {
+        return { ...row, id: canonical, slug: canonical, url: `/company/${canonical}` };
+      }
+      return row;
+    })
     .sort((a, b) => scoreRow(b, q) - scoreRow(a, q))
     .slice(0, limit);
 }
@@ -190,6 +215,7 @@ function mergeSearchResults(companies, commodities, query, limit = 25, waterways
 
 module.exports = {
   PREFERRED_SLUG_BY_TICKER,
+  CANONICAL_SLUG_BY_NORMALIZED_NAME,
   dedupeSearchResults,
   formatSearchSubtitle,
   mergeSearchResults,

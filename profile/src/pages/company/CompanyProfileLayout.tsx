@@ -10,19 +10,27 @@ import { CompanyProfileProvider } from "../../context/CompanyProfileContext";
 import { useCompany } from "../../hooks/useCompany";
 import { useCompanyTabs } from "../../hooks/useCompanyTabs";
 import { companyTabFromPath } from "../../lib/profileTabs";
+import { canonicalCompanySlug } from "../../lib/canonicalCompanySlugs";
 
 export function CompanyProfileLayout() {
   const { companyId } = useParams<{ companyId: string }>();
   const location = useLocation();
-  const { data, loading, error } = useCompany(companyId);
+  const resolvedId = canonicalCompanySlug(companyId) ?? companyId;
+
+  if (companyId && resolvedId !== companyId) {
+    const suffix = location.pathname.replace(new RegExp(`^/company/${companyId}`), "") || "";
+    return <Navigate to={`/company/${resolvedId}${suffix}${location.search}`} replace />;
+  }
+
+  const { data, loading, error } = useCompany(resolvedId);
 
   const company = data?.profile ?? null;
   const mapGeojson = data?.mapGeojson ?? null;
   const tabs = useCompanyTabs(company, mapGeojson);
   const tabIds = useMemo(() => new Set(tabs.map((t) => t.id)), [tabs]);
 
-  const activeTab = companyId ? companyTabFromPath(location.pathname, companyId) : "overview";
-  const basePath = companyId ? `/${companyId}` : "/";
+  const activeTab = resolvedId ? companyTabFromPath(location.pathname, resolvedId) : "overview";
+  const basePath = resolvedId ? `/${resolvedId}` : "/";
 
   if (loading) {
     return (

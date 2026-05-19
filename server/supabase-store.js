@@ -2,7 +2,8 @@
  * Supabase (Postgres) company store — reads via PostgREST fetch (reliable on Vercel).
  */
 const { buildMeta } = require("./local-store");
-const { PREFERRED_SLUG_BY_TICKER, normalizeTicker, queryLooksLikeTicker } = require("./search-rank");
+const { normalizeTicker, queryLooksLikeTicker } = require("./search-rank");
+const { PREFERRED_SLUG_BY_TICKER } = require("./company-canonical");
 const { restGet } = require("./supabase-rest");
 
 const {
@@ -11,7 +12,7 @@ const {
   hasSupabaseWrites,
 } = require("./supabase-client");
 
-const SEARCH_SELECT = "slug,name,legal_name,meta,initials,search_terms";
+const SEARCH_SELECT = "slug,name,legal_name,meta,initials,search_terms,profile_json";
 
 function rowToIndex(row) {
   const slug = row.slug || "";
@@ -21,8 +22,13 @@ function rowToIndex(row) {
     const m = slug.match(/-([a-z0-9]{1,6})$/i);
     if (m) ticker = m[1].toUpperCase();
   }
+  const profile = row.profile_json || null;
+  const fromProfile = profile?.stock?.ticker;
+  if (fromProfile) ticker = normalizeTicker(fromProfile);
+
   return {
     id: slug,
+    slug,
     kind: "company",
     name: row.name,
     legalName: row.legal_name,
@@ -31,6 +37,7 @@ function rowToIndex(row) {
     url: `/company/${slug}`,
     terms: Array.isArray(row.search_terms) ? row.search_terms : [],
     ticker,
+    profile_json: profile,
   };
 }
 

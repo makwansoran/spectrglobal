@@ -4,12 +4,48 @@
 
 const client = require("./client");
 const { parseListingRow, listingToCompanySeed } = require("./parse");
+const { mergeEuronextIntoProfile } = require("./merge-canonical");
 const store = require("./store");
 const agentBrowser = require("./agent-browser");
-const { upsertCompaniesBatchSupabase, upsertCompanySupabase } = require("../supabase-store");
+const {
+  upsertCompaniesBatchSupabase,
+  upsertCompanySupabase,
+  getCompanySupabase,
+} = require("../supabase-store");
 const { queryLooksLikeTicker, normalizeTicker } = require("../search-rank");
+const { resolveCanonicalSlug } = require("../company-canonical");
 
 let syncInFlight = null;
+
+async function seedFromListing(listing, pageHtml) {
+  const canonical = resolveCanonicalSlug({
+    ticker: listing.ticker,
+    name: listing.name,
+    legalName: listing.name,
+  });
+
+  if (canonical) {
+    const existing = await getCompanySupabase(canonical);
+    if (existing?.profile) {
+      const profile = mergeEuronextIntoProfile(existing.profile, listing);
+      const terms = new Set([
+        ...(Array.isArray(existing.profile.searchTerms) ? existing.profile.searchTerms : []),
+        listing.ticker.toLowerCase(),
+        listing.isin.toLowerCase(),
+        "euronext",
+        "oslo",
+      ]);
+      return {
+        slug: canonical,
+        profile: { ...profile, id: canonical },
+        mapGeojson: existing.mapGeojson ?? null,
+        searchTerms: [...terms],
+      };
+    }
+  }
+
+  return listingToCompanySeed(listing, pageHtml);
+}
 
 async function syncOsloDirectory(options = {}) {
   const useAgentBrowser = options.useAgentBrowser !== false;
@@ -66,7 +102,7 @@ async function syncOsloDirectory(options = {}) {
       }
     }
 
-    const seed = listingToCompanySeed(listing, pageHtml);
+    const seed = await seedFromListing(listing, pageHtml);
     listings.push({
       ...listing,
       companySlug: seed.slug,
@@ -123,7 +159,7 @@ async function syncTickerFromDirectory(ticker, options = {}) {
     }
   }
 
-  const seed = listingToCompanySeed(match, pageHtml);
+  const seed = await seedFromListing(match, pageHtml);
   const listing = {
     ...match,
     companySlug: seed.slug,
