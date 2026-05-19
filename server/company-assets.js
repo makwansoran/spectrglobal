@@ -4,11 +4,15 @@
 
 const { getCompanyRaw } = require("./store");
 const fleet = require("./supabase-fleet-store");
+const { loadFleetSeed } = require("./fleet-seed-store");
 const {
   scrapeVesselsFromWebsite,
   scrapeAircraftFromWebsite,
   oilGeojsonForCompany,
 } = require("./company-assets-scrape");
+
+const AIS_ATTACH_MAX_MS = 4000;
+const AIS_ATTACH_MAX_VESSELS = 35;
 
 const COUNTRY_CENTER = {
   NO: [62, 10],
@@ -81,10 +85,15 @@ async function getCompanyAssets(slug) {
   if (!row?.profile) return null;
 
   const profile = row.profile;
-  const [dbVessels, dbPlanes] = await Promise.all([
+  let [dbVessels, dbPlanes] = await Promise.all([
     fleet.listVesselsForCompany(slug).catch(() => []),
     fleet.listPlanesForCompany(slug).catch(() => []),
   ]);
+  let usedFleetSeed = false;
+  if (!dbVessels.length) {
+    dbVessels = loadFleetSeed(slug);
+    usedFleetSeed = dbVessels.length > 0;
+  }
 
   const merged = mergeAssets(profile, dbVessels, dbPlanes, profile.operatingAssets);
   const center = mapCenter(profile);
@@ -94,11 +103,19 @@ async function getCompanyAssets(slug) {
   if (vessels.length > 0 && vessels.some((v) => v.mmsi)) {
     try {
       const { attachAisPositions } = require("./company-fleet-ais");
-      const ais = await attachAisPositions(vessels, {
-        collectMs: vessels.length > 40 ? 14000 : 10000,
+      const collectMs =
+        vessels.length > AIS_ATTACH_MAX_VESSELS
+          ? 2500
+          : Math.min(8000, AIS_ATTACH_MAX_MS);
+      const aisPromise = attachAisPositions(vessels, { collectMs });
+      const timeout = new Promise((resolve) => {
+        setTimeout(() => resolve(null), AIS_ATTACH_MAX_MS);
       });
-      vessels = ais.vessels;
-      aisMeta = { aisSource: ais.aisSource, aisMatched: ais.matched };
+      const ais = await Promise.race([aisPromise, timeout]);
+      if (ais?.vessels) {
+        vessels = ais.vessels;
+        aisMeta = { aisSource: ais.aisSource, aisMatched: ais.matched };
+      }
     } catch (err) {
       console.warn("[assets] AIS:", err.message);
     }
@@ -120,7 +137,12 @@ async function getCompanyAssets(slug) {
     vesselCount: vessels.length,
     aircraftCount: merged.aircraft.length,
     hasBlocks: Boolean(row.mapGeojson && row.mapGeojson.features?.length),
-    sources: profile.operatingAssets?.sources || [],
+    sources: [
+      ...new Set([
+        ...(profile.operatingAssets?.sources || []),
+        ...(usedFleetSeed ? ["fleet-seed"] : []),
+      ]),
+    ],
     ...aisMeta,
   };
 }

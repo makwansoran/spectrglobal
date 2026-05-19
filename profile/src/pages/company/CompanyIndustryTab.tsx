@@ -1,15 +1,23 @@
+import { useParams } from "react-router-dom";
 import { IndustryMap, hasIndustryAssets } from "../../components/maps/IndustryMap";
 import { ProfileTabPanel } from "../../components/ProfileTabPanel";
 import { useCompanyProfile } from "../../context/CompanyProfileContext";
 import { useCompanyAssets } from "../../hooks/useCompanyAssets";
+import { canonicalCompanySlug } from "../../lib/canonicalCompanySlugs";
 
 const ASSET_INDUSTRIES = new Set(["oil_gas", "energy", "shipping", "aviation"]);
 
 export function CompanyIndustryTab() {
+  const { companyId } = useParams<{ companyId: string }>();
   const { company, mapGeojson: ctxGeo } = useCompanyProfile();
+  const slug = canonicalCompanySlug(companyId) ?? companyId ?? company.id;
   const wantsAssets = ASSET_INDUSTRIES.has(company.industry);
   const { vessels, aircraft, mapGeojson, loading, error, reload, sources, aisMatched } =
-    useCompanyAssets(company.id, wantsAssets || company.id === "frontline-plc-fro");
+    useCompanyAssets(slug, wantsAssets || slug === "frontline-plc-fro", {
+      vessels: company.operatingAssets?.vessels,
+      aircraft: company.operatingAssets?.aircraft,
+      mapGeojson: ctxGeo ?? undefined,
+    });
 
   const blocks = mapGeojson ?? ctxGeo;
   const show = hasIndustryAssets(company, blocks, vessels, aircraft);
@@ -55,7 +63,11 @@ export function CompanyIndustryTab() {
       ) : null}
 
       {error && !show ? (
-        <p className="text-sm text-muted">Could not load assets. Try refresh.</p>
+        <p className="text-sm text-muted">
+          {error === "timeout"
+            ? "Fleet data is taking longer than usual. Try Refresh again."
+            : "Could not load assets. Try refresh."}
+        </p>
       ) : null}
 
       {show ? (
@@ -75,4 +87,3 @@ export function CompanyIndustryTab() {
     </ProfileTabPanel>
   );
 }
-
