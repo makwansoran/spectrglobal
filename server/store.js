@@ -25,7 +25,8 @@ async function searchCompanies(query, limit = 25) {
 
   const rows = await supabase.searchCompaniesSupabase(query, limit * 4);
 
-  return dedupeSearchResults(rows, query, limit).map((row) => {
+  const ranked = dedupeSearchResults(rows, query, limit);
+  const results = ranked.map((row) => {
     const { profile_json, profile, slug, ...rest } = row;
     const canonicalId = row.id || slug;
     return {
@@ -37,6 +38,21 @@ async function searchCompanies(query, limit = 25) {
       subtitle: formatSearchSubtitle(row),
     };
   });
+
+  const { enrichCompanyIfStale, profileIrUrl } = require("./company-enrich");
+  for (let i = 0; i < Math.min(5, ranked.length); i += 1) {
+    const row = ranked[i];
+    const slug = row.id || row.slug;
+    if (!slug) continue;
+    const profile = row.profile_json || row.profile;
+    const hasTicker = Boolean(profile?.stock?.ticker || row.ticker);
+    const hasWebsite = Boolean(profileIrUrl(profile || {}));
+    if (hasTicker || hasWebsite) {
+      enrichCompanyIfStale(slug).catch(() => {});
+    }
+  }
+
+  return results;
 }
 
 /**
@@ -121,6 +137,10 @@ async function getCompany(slug) {
     };
   }
 
+  const { profileIrUrl } = require("./company-enrich");
+  const canEnrich =
+    company.profile.stock?.ticker || profileIrUrl(company.profile);
+
   if (company.profile.stock?.ticker) {
     try {
       const { fetchLiveQuoteForProfile, applyQuoteToStock } = require("./company-quote");
@@ -134,6 +154,11 @@ async function getCompany(slug) {
     } catch {
       /* quote optional */
     }
+  }
+
+  if (canEnrich) {
+    const { enrichCompanyIfStale } = require("./company-enrich");
+    enrichCompanyIfStale(slug);
   }
 
   return company;

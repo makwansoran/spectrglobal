@@ -1,4 +1,4 @@
-import type { CompanyProfile } from "../types/company";
+import type { CompanyProfile, Filing } from "../types/company";
 
 export type CompanyPayload = {
   profile: CompanyProfile;
@@ -61,6 +61,37 @@ function normalizeProfile(profile: CompanyProfile | null | undefined): CompanyPr
     },
     industryTabLabel: profile.industryTabLabel ?? "Overview",
   };
+}
+
+export type CompanyFilingsPayload = {
+  filings: Filing[];
+  sources: string[];
+  enriched: boolean;
+  enrichment?: { at?: string; sources?: string[]; filingCount?: number };
+};
+
+export async function fetchCompanyFilings(
+  slug: string,
+  options?: { refresh?: boolean; signal?: AbortSignal }
+): Promise<CompanyFilingsPayload> {
+  const params = options?.refresh ? "?refresh=1" : "";
+  const res = await fetch(`${apiBase}/api/companies/${encodeURIComponent(slug)}/filings${params}`, {
+    signal: options?.signal,
+  });
+  if (!res.ok) {
+    if (res.status === 404) throw new Error("not_found");
+    throw new Error("Failed to load filings");
+  }
+  return res.json();
+}
+
+export async function enrichCompany(slug: string, force = false): Promise<Record<string, unknown>> {
+  const q = force ? "?force=1" : "";
+  const res = await fetch(`${apiBase}/api/companies/${encodeURIComponent(slug)}/enrich${q}`, {
+    method: "POST",
+  });
+  if (!res.ok) throw new Error("Enrichment failed");
+  return res.json();
 }
 
 export async function fetchCompany(slug: string, signal?: AbortSignal): Promise<CompanyPayload> {

@@ -343,6 +343,43 @@ async function fetchCompanyNewsForProfile(profile) {
   return [];
 }
 
+function normalizeSecFilings(rows) {
+  return (rows || []).map((f, i) => ({
+    id: String(f.accessNumber || f.filingUrl || `fh-sec-${i}`),
+    title: f.reportUrl ? String(f.reportUrl).split("/").pop() || f.form : f.form || "SEC filing",
+    type: f.form || "SEC",
+    date: f.filedDate || f.acceptedDate || "",
+    jurisdiction: "SEC",
+    url: f.filingUrl || f.reportUrl || null,
+    source: "finnhub-sec",
+  }));
+}
+
+/** SEC filings via Finnhub (10-K, 10-Q, 8-K, etc.). */
+async function fetchSecFilings(symbol, yearsBack = 8) {
+  const to = new Date();
+  const from = new Date();
+  from.setFullYear(from.getFullYear() - yearsBack);
+  const fmt = (d) => d.toISOString().slice(0, 10);
+  const key = `filings:${symbol}:${fmt(from)}:${fmt(to)}`;
+  const cached = cacheGet(key, CACHE_LONG_MS);
+  if (cached) return cached;
+  const data = await finnhubGet("/stock/filings", { symbol, from: fmt(from), to: fmt(to) });
+  const out = normalizeSecFilings(Array.isArray(data) ? data : []);
+  cacheSet(key, out, CACHE_LONG_MS);
+  return out;
+}
+
+async function fetchSecFilingsForProfile(profile, yearsBack = 8) {
+  if (!isEnabled() || !profile?.stock?.ticker) return [];
+  const candidates = finnhubSymbolCandidates(profile);
+  for (const sym of candidates) {
+    const rows = await tryFinnhub(() => fetchSecFilings(sym, yearsBack));
+    if (rows?.length) return rows;
+  }
+  return [];
+}
+
 async function fetchCompanyMarket(profile) {
   if (!profile?.stock?.ticker) {
     return { symbol: null, quote: null, metrics: null, profile: null, news: [], peers: [], recommendations: null, earnings: [] };
@@ -535,6 +572,8 @@ module.exports = {
   buildCompanyFromSlug,
   fetchCompanyNews,
   fetchCompanyNewsForProfile,
+  fetchSecFilings,
+  fetchSecFilingsForProfile,
   finnhubSymbolCandidates,
   fetchPeers,
   fetchRecommendations,

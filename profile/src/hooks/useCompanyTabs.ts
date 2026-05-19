@@ -22,7 +22,9 @@ export function useCompanyTabs(company: CompanyProfile | null, mapGeojson: GeoJS
       items.push({ id: "financials", label: "Financials" });
     }
     items.push({ id: "news", label: "News" });
-    if (company.filings?.length) items.push({ id: "filings", label: "Filings" });
+    if (company.isPublic || company.stock?.ticker || (company.filings?.length ?? 0) > 0) {
+      items.push({ id: "filings", label: "Filings" });
+    }
     if (hasIndustryMap(company.industry, mapGeojson)) {
       items.push({ id: "industry", label: company.industryTabLabel });
     }

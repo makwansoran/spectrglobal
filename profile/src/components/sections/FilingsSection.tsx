@@ -17,7 +17,20 @@ export function FilingsSection({ company }: { company: CompanyProfile }) {
         <tbody>
           {company.filings.map((f) => (
             <tr key={f.id} className="border-b border-line last:border-0 hover:bg-canvas/80">
-              <td className="px-4 py-3 font-medium text-ink">{f.title}</td>
+              <td className="px-4 py-3 font-medium text-ink">
+                {f.url ? (
+                  <a
+                    href={f.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-accent hover:underline"
+                  >
+                    {f.title}
+                  </a>
+                ) : (
+                  f.title
+                )}
+              </td>
               <td className="px-4 py-3 text-muted">{f.type}</td>
               <td className="px-4 py-3 font-mono text-muted">{f.date}</td>
               <td className="px-4 py-3 text-muted">{f.jurisdiction}</td>

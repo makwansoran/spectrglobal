@@ -7,6 +7,8 @@ const {
 const { getCompanyNews } = require("./company-news");
 const { getCompanyFinancials } = require("./company-financials");
 const { getCompanyQuote } = require("./company-quote");
+const { getCompanyFilings } = require("./company-filings");
+const { enrichCompany } = require("./company-enrich");
 const commoditiesStore = require("./commodities-store");
 const waterwaysStore = require("./waterways-store");
 const { banks, investmentBanks, ventureCapital } = require("./catalog-stores");
@@ -75,6 +77,7 @@ async function handleCatalogGet(res, store, slug) {
 }
 
 async function handleApi(req, res, pathname) {
+  const reqUrl = new URL(req.url, `http://${req.headers.host || "localhost"}`);
   try {
     if (pathname.startsWith("/api/datafeed")) {
       if (!supabaseRequired(res)) return true;
@@ -146,6 +149,28 @@ async function handleApi(req, res, pathname) {
         return true;
       }
       sendJson(res, 200, data, { "Cache-Control": "public, max-age=300" });
+      return true;
+    }
+
+    const filingsMatch = pathname.match(/^\/api\/companies\/([^/]+)\/filings$/);
+    if (filingsMatch && req.method === "GET") {
+      const slug = decodeURIComponent(filingsMatch[1]);
+      const refresh = reqUrl.searchParams.get("refresh") === "1";
+      const data = await getCompanyFilings(slug, { refresh });
+      if (!data) {
+        sendJson(res, 404, { error: "Company not found" });
+        return true;
+      }
+      sendJson(res, 200, data, { "Cache-Control": "public, max-age=300" });
+      return true;
+    }
+
+    const enrichMatch = pathname.match(/^\/api\/companies\/([^/]+)\/enrich$/);
+    if (enrichMatch && (req.method === "POST" || req.method === "GET")) {
+      const slug = decodeURIComponent(enrichMatch[1]);
+      const force = reqUrl.searchParams.get("force") === "1";
+      const result = await enrichCompany(slug, { force });
+      sendJson(res, 200, result, { "Cache-Control": "no-store" });
       return true;
     }
 

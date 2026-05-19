@@ -69,6 +69,14 @@ export interface Filing {
   type: string;
   date: string;
   jurisdiction: string;
+  url?: string | null;
+  source?: string;
+}
+
+export interface CompanyEnrichment {
+  at?: string;
+  sources?: string[];
+  filingCount?: number;
 }
 
 export interface Competitor {
@@ -205,6 +213,7 @@ export interface CompanyProfile {
   funding: FundingEvent[];
   esg: ESGScore;
   dataSources: DataSource[];
+  enrichment?: CompanyEnrichment;
   /** Live Oslo listing data synced from Euronext. */
   euronext?: {
     isin: string;
