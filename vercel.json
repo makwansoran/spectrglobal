@@ -43,32 +43,8 @@
   },
   "crons": [
     {
-      "path": "/api/datafeed/sync?sources=euronext,finnhub&markets=oslo&finnhubLimit=60",
-      "schedule": "0 * * * *"
-    },
-    {
-      "path": "/api/datafeed/sync?sources=euronext&markets=amsterdam",
-      "schedule": "15 6 * * *"
-    },
-    {
-      "path": "/api/datafeed/sync?sources=euronext&markets=paris",
-      "schedule": "30 6 * * *"
-    },
-    {
-      "path": "/api/datafeed/sync?sources=euronext&markets=brussels",
-      "schedule": "45 6 * * *"
-    },
-    {
-      "path": "/api/datafeed/sync?sources=euronext&markets=dublin",
-      "schedule": "0 7 * * *"
-    },
-    {
-      "path": "/api/datafeed/sync?sources=euronext&markets=lisbon",
-      "schedule": "15 7 * * *"
-    },
-    {
-      "path": "/api/datafeed/sync?sources=euronext&markets=milan",
-      "schedule": "30 7 * * *"
+      "path": "/api/datafeed/sync?sources=euronext,finnhub&markets=oslo&finnhubLimit=80",
+      "schedule": "0 6 * * *"
     }
   ],
   "rewrites": [
