@@ -89,6 +89,21 @@ async function getCompanyAssets(slug) {
   const merged = mergeAssets(profile, dbVessels, dbPlanes, profile.operatingAssets);
   const center = mapCenter(profile);
 
+  let vessels = spreadPositions(merged.vessels, center);
+  let aisMeta = { aisSource: null, aisMatched: 0 };
+  if (vessels.length > 0 && vessels.some((v) => v.mmsi)) {
+    try {
+      const { attachAisPositions } = require("./company-fleet-ais");
+      const ais = await attachAisPositions(vessels, {
+        collectMs: vessels.length > 40 ? 14000 : 10000,
+      });
+      vessels = ais.vessels;
+      aisMeta = { aisSource: ais.aisSource, aisMatched: ais.matched };
+    } catch (err) {
+      console.warn("[assets] AIS:", err.message);
+    }
+  }
+
   let mapGeojson = row.mapGeojson || null;
   if (
     !mapGeojson?.features?.length &&
@@ -100,12 +115,13 @@ async function getCompanyAssets(slug) {
   return {
     industry: profile.industry,
     mapGeojson,
-    vessels: spreadPositions(merged.vessels, center),
+    vessels,
     aircraft: spreadPositions(merged.aircraft, center),
-    vesselCount: merged.vessels.length,
+    vesselCount: vessels.length,
     aircraftCount: merged.aircraft.length,
     hasBlocks: Boolean(row.mapGeojson && row.mapGeojson.features?.length),
     sources: profile.operatingAssets?.sources || [],
+    ...aisMeta,
   };
 }
 

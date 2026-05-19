@@ -8,6 +8,7 @@ export function useCompanyAssets(slug: string | undefined, enabled: boolean) {
   const [aircraft, setAircraft] = useState<CompanyAircraft[]>([]);
   const [mapGeojson, setMapGeojson] = useState<GeoJSON.GeoJsonObject | null>(null);
   const [sources, setSources] = useState<string[]>([]);
+  const [aisMatched, setAisMatched] = useState<number | undefined>(undefined);
   const [loading, setLoading] = useState(Boolean(slug && enabled));
   const [error, setError] = useState<string | null>(null);
 
@@ -26,6 +27,7 @@ export function useCompanyAssets(slug: string | undefined, enabled: boolean) {
         setAircraft(data.aircraft ?? []);
         setMapGeojson(data.mapGeojson ?? null);
         setSources(data.sources ?? []);
+        setAisMatched(data.aisMatched);
       } catch {
         setError("load_failed");
       } finally {
@@ -44,6 +46,7 @@ export function useCompanyAssets(slug: string | undefined, enabled: boolean) {
     aircraft,
     mapGeojson,
     sources,
+    aisMatched,
     loading,
     error,
     reload: () => load(true),

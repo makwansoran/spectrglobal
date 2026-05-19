@@ -85,12 +85,17 @@ export interface CompanyVessel {
   name: string;
   type: string;
   imo?: string | null;
+  mmsi?: string | null;
   dwt?: string | null;
   flag?: string | null;
   lat?: number | null;
   lng?: number | null;
+  heading?: number | null;
+  speed?: number | null;
+  marineTrafficUrl?: string | null;
   meta?: string;
   source?: string;
+  aisSource?: string | null;
 }
 
 export interface CompanyAircraft {

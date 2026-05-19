@@ -11,6 +11,8 @@ export type CompanyAssetsPayload = {
   aircraftCount: number;
   hasBlocks: boolean;
   sources: string[];
+  aisSource?: string | null;
+  aisMatched?: number;
 };
 
 export async function fetchCompanyAssets(

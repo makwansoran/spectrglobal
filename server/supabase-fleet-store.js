@@ -54,18 +54,24 @@ async function upsertPlanesBatch(seeds) {
 
 function rowToVessel(row) {
   const p = row.profile_json || {};
+  const pos = p.position || {};
   return {
     id: row.slug,
     slug: row.slug,
     name: row.name || p.name,
     type: row.vessel_type || p.type || p.vesselType || "general",
     imo: p.imo || null,
+    mmsi: p.mmsi || null,
     dwt: p.dwt || null,
     flag: p.flag || null,
-    lat: p.lat ?? null,
-    lng: p.lng ?? null,
-    meta: row.meta || "",
+    lat: p.lat ?? pos.lat ?? null,
+    lng: p.lng ?? pos.lng ?? null,
+    heading: p.heading ?? null,
+    speed: p.speed ?? null,
+    marineTrafficUrl: p.marineTrafficUrl || null,
+    meta: row.meta || p.meta || "",
     source: p.source || "supabase",
+    aisSource: p.aisSource || null,
   };
 }
 
@@ -90,7 +96,7 @@ async function listVesselsForCompany(companySlug) {
   const rows = await restGet("vessels", {
     select: "slug,name,vessel_type,meta,profile_json",
     company_slug: `eq.${companySlug}`,
-    limit: "120",
+    limit: "200",
   });
   return (rows || []).map(rowToVessel);
 }

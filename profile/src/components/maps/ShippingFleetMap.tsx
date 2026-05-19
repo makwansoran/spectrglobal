@@ -24,8 +24,8 @@ function toSimulated(v: CompanyVessel): SimulatedVessel {
     name: v.name,
     type: v.type || "general",
     flag: v.flag || "—",
-    speed: 0,
-    heading: 0,
+    speed: typeof v.speed === "number" ? v.speed : 0,
+    heading: typeof v.heading === "number" ? v.heading : 0,
     destination: v.meta || "",
     lat: v.lat ?? 0,
     lng: v.lng ?? 0,
@@ -37,9 +37,10 @@ type Props = {
   vessels: CompanyVessel[];
   center?: [number, number];
   zoom?: number;
+  aisMatched?: number;
 };
 
-export function ShippingFleetMap({ vessels, center = [62, 10], zoom = 4 }: Props) {
+export function ShippingFleetMap({ vessels, center = [62, 10], zoom = 4, aisMatched }: Props) {
   const [ready, setReady] = useState(false);
   const [selected, setSelected] = useState<SimulatedVessel | null>(null);
 
@@ -78,9 +79,17 @@ export function ShippingFleetMap({ vessels, center = [62, 10], zoom = 4 }: Props
     );
   }
 
+  const liveCount = vessels.filter((v) => v.aisSource && v.lat != null).length;
+
   return (
     <div className="space-y-4">
-      <div className="h-[420px] overflow-hidden rounded-xl border border-line md:h-[480px]">
+      {liveCount > 0 ? (
+        <p className="text-sm text-muted">
+          {liveCount} of {vessels.length} vessels with live AIS
+          {aisMatched != null ? ` (${aisMatched} on this refresh)` : ""}.
+        </p>
+      ) : null}
+      <motionPlaceholder className="h-[420px] overflow-hidden rounded-xl border border-line md:h-[480px]">
         <MapContainer center={center} zoom={zoom} className="h-full w-full" scrollWheelZoom>
           <TileLayer url={OSM_TILE_URL} attribution={OSM_ATTRIBUTION} />
           {bounds ? <FitFleetBounds bounds={bounds} /> : null}
@@ -102,8 +111,9 @@ export function ShippingFleetMap({ vessels, center = [62, 10], zoom = 4 }: Props
               <tr className="border-b border-line bg-canvas text-xs uppercase tracking-wider text-muted">
                 <th className="px-4 py-3 font-medium">Vessel</th>
                 <th className="px-4 py-3 font-medium">Type</th>
+                <th className="px-4 py-3 font-medium">IMO / MMSI</th>
                 <th className="px-4 py-3 font-medium">Size</th>
-                <th className="px-4 py-3 font-medium">Flag</th>
+                <th className="px-4 py-3 font-medium">AIS</th>
               </tr>
             </thead>
             <tbody>
@@ -112,15 +122,35 @@ export function ShippingFleetMap({ vessels, center = [62, 10], zoom = 4 }: Props
                   <td className="px-4 py-3 font-medium text-ink">
                     <span
                       className="mr-2 inline-block h-2 w-2 rounded-full"
-                      style={{ background: vesselColor(v.type) }}
+                      style={{ background: vesselColor(v.aisSource ? v.type : "general") }}
                     />
-                    {v.name}
+                    {v.marineTrafficUrl ? (
+                      <a
+                        href={v.marineTrafficUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-accent hover:underline"
+                      >
+                        {v.name}
+                      </a>
+                    ) : (
+                      v.name
+                    )}
                   </td>
                   <td className="px-4 py-3 text-muted">
                     {VESSEL_TYPE_LABELS[v.type as keyof typeof VESSEL_TYPE_LABELS] || v.type}
                   </td>
+                  <td className="px-4 py-3 font-mono text-xs text-muted">
+                    {[v.imo, v.mmsi].filter(Boolean).join(" · ") || "—"}
+                  </td>
                   <td className="px-4 py-3 text-muted">{v.dwt ? `${v.dwt} DWT` : "—"}</td>
-                  <td className="px-4 py-3 text-muted">{v.flag || "—"}</td>
+                  <td className="px-4 py-3 text-muted">
+                    {v.aisSource ? (
+                      <span className="text-emerald-700">Live</span>
+                    ) : (
+                      "—"
+                    )}
+                  </td>
                 </tr>
               ))}
             </tbody>

@@ -40,9 +40,10 @@ type Props = {
   mapGeojson?: GeoJSON.GeoJsonObject | null;
   vessels?: CompanyVessel[];
   aircraft?: CompanyAircraft[];
+  aisMatched?: number;
 };
 
-export function IndustryMap({ company, mapGeojson, vessels = [], aircraft = [] }: Props) {
+export function IndustryMap({ company, mapGeojson, vessels = [], aircraft = [], aisMatched }: Props) {
   const center = (company.mapConfig?.center ?? [62, 10]) as [number, number];
   const zoom = company.mapConfig?.zoom ?? 5;
 
@@ -50,13 +51,13 @@ export function IndustryMap({ company, mapGeojson, vessels = [], aircraft = [] }
     return <OilGasMap company={company} mapGeojson={mapGeojson!} />;
   }
   if (company.industry === "shipping" && vessels.length > 0) {
-    return <ShippingFleetMap vessels={vessels} center={center} zoom={zoom} />;
+    return <ShippingFleetMap vessels={vessels} center={center} zoom={zoom} aisMatched={aisMatched} />;
   }
   if (company.industry === "aviation" && aircraft.length > 0) {
     return <AviationFleetMap aircraft={aircraft} center={center} zoom={zoom} />;
   }
   if (vessels.length > 0) {
-    return <ShippingFleetMap vessels={vessels} center={center} zoom={zoom} />;
+    return <ShippingFleetMap vessels={vessels} center={center} zoom={zoom} aisMatched={aisMatched} />;
   }
   if (aircraft.length > 0) {
     return <AviationFleetMap aircraft={aircraft} center={center} zoom={zoom} />;
