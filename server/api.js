@@ -37,6 +37,18 @@ function sendJson(res, status, body, extraHeaders = {}) {
 }
 
 function readJsonBody(req) {
+  // Vercel serverless often pre-parses JSON into req.body; the stream is then empty.
+  if (req.body != null && typeof req.body === "object" && !Buffer.isBuffer(req.body)) {
+    return Promise.resolve(req.body);
+  }
+  if (typeof req.body === "string" && req.body.trim()) {
+    try {
+      return Promise.resolve(JSON.parse(req.body));
+    } catch {
+      return Promise.resolve({});
+    }
+  }
+
   return new Promise((resolve, reject) => {
     let buf = "";
     req.on("data", (chunk) => {

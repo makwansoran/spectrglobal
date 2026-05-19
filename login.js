@@ -172,11 +172,19 @@
       showMessage("");
       setLoading(signinForm, true);
       try {
-        var fd = new FormData(signinForm);
-        var data = await apiPost("/api/auth/login", {
-          email: fd.get("email"),
-          password: fd.get("password"),
-        });
+        var emailEl = document.getElementById("signin-email");
+        var passwordEl = document.getElementById("signin-password");
+        var email = String((emailEl && emailEl.value) || "").trim();
+        var password = String((passwordEl && passwordEl.value) || "");
+        if (!email) {
+          showMessage("Email or username is required.", "error");
+          return;
+        }
+        if (!password) {
+          showMessage("Password is required.", "error");
+          return;
+        }
+        var data = await apiPost("/api/auth/login", { email: email, password: password });
         SpectrAuth.saveSession(data, rememberEl && rememberEl.checked);
         if (window.SpectrAuthNav && SpectrAuthNav.refresh) SpectrAuthNav.refresh();
         redirectAfterAuth(data);
