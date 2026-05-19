@@ -82,6 +82,26 @@
     return { Authorization: "Bearer " + session.access_token };
   }
 
+  /** Extract a string message from /api/* JSON error bodies. */
+  function formatApiError(data, fallback) {
+    fallback = fallback || "Request failed";
+    if (!data || typeof data !== "object") return fallback;
+
+    var err = data.error;
+    if (typeof err === "string" && err) return err;
+    if (err && typeof err.message === "string" && err.message) return err.message;
+    if (typeof data.message === "string" && data.message) return data.message;
+
+    if (err && typeof err === "object") {
+      try {
+        return JSON.stringify(err);
+      } catch {
+        return fallback;
+      }
+    }
+    return fallback;
+  }
+
   global.SpectrAuth = {
     getSession: getSession,
     saveSession: saveSession,
@@ -90,5 +110,6 @@
     authHeaders: authHeaders,
     setRemember: setRemember,
     rememberEnabled: rememberEnabled,
+    formatApiError: formatApiError,
   };
 })(typeof window !== "undefined" ? window : globalThis);

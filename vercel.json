@@ -76,6 +76,8 @@
     { "source": "/waterway/", "destination": "/company/index.html" },
     { "source": "/waterway/:path*", "destination": "/company/index.html" },
     { "source": "/company/:path*", "destination": "/company/index.html" },
-    { "source": "/login", "destination": "/login.html" }
+    { "source": "/login", "destination": "/login.html" },
+    { "source": "/admin/company", "destination": "/admin-company.html" },
+    { "source": "/admin-company", "destination": "/admin-company.html" }
   ]
 }

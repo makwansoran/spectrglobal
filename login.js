@@ -60,7 +60,12 @@
       data = {};
     }
     if (!res.ok) {
-      var err = new Error(data.error || data.message || "Request failed");
+      var msg =
+        window.SpectrAuth && SpectrAuth.formatApiError
+          ? SpectrAuth.formatApiError(data, "Request failed")
+          : data.error || data.message || "Request failed";
+      if (typeof msg !== "string") msg = String(msg);
+      var err = new Error(msg);
       err.status = res.status;
       throw err;
     }

@@ -299,10 +299,12 @@ create table if not exists public.profiles (
   id uuid primary key references auth.users (id) on delete cascade,
   username text not null,
   email text not null,
+  role text not null default 'user',
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now(),
   constraint profiles_username_len check (char_length(username) between 3 and 32),
-  constraint profiles_username_format check (username ~ '^[a-zA-Z0-9_]+$')
+  constraint profiles_username_format check (username ~ '^[a-zA-Z0-9_]+$'),
+  constraint profiles_role_check check (role in ('user', 'editor'))
 );
 
 create unique index if not exists profiles_username_lower_idx on public.profiles (lower(username));

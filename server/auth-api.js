@@ -40,7 +40,7 @@ function bearerToken(req) {
 async function getProfileByUserId(userId) {
   const { data, error } = await getAdminClient()
     .from("profiles")
-    .select("id, username, email, created_at, updated_at")
+    .select("id, username, email, role, created_at, updated_at")
     .eq("id", userId)
     .maybeSingle();
   if (error) throw error;
@@ -73,6 +73,7 @@ function sessionPayload(session, profile) {
       id: session.user.id,
       email: session.user.email,
       username: profile?.username || session.user.user_metadata?.username || null,
+      role: profile?.role || session.user.app_metadata?.role || "user",
     },
   };
 }
@@ -219,6 +220,7 @@ async function handleMe(token) {
         id: data.user.id,
         email: data.user.email,
         username: profile?.username || data.user.user_metadata?.username || null,
+        role: profile?.role || data.user.app_metadata?.role || "user",
         created_at: profile?.created_at || null,
       },
     },

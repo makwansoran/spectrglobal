@@ -23,6 +23,7 @@ const { handlePortfolioHoldings } = require("./portfolio-holdings-api");
 const { handleEuronextApi } = require("./euronext-api");
 const { handleDatafeedApi } = require("./datafeed-api");
 const { handleAuthApi } = require("./auth-api");
+const { handleAdminApi } = require("./admin-api");
 const { getSiteNews } = require("./site-news");
 
 function sendJson(res, status, body, extraHeaders = {}) {
@@ -87,6 +88,11 @@ async function handleApi(req, res, pathname) {
   try {
     if (pathname.startsWith("/api/auth")) {
       const handled = await handleAuthApi(req, res, pathname, { sendJson, readJsonBody });
+      if (handled) return true;
+    }
+
+    if (pathname.startsWith("/api/admin")) {
+      const handled = await handleAdminApi(req, res, pathname, { sendJson, readJsonBody });
       if (handled) return true;
     }
 
