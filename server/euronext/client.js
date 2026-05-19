@@ -1,7 +1,8 @@
 /**
- * Euronext Live HTTP client (product directory JSON gateway).
- * @see https://live.euronext.com/nb/markets/oslo
+ * Euronext Live HTTP client (product directory CSV + JSON gateway).
  */
+
+const { getMarket, listMarkets } = require("./markets");
 
 const OSLO_MARKET_URL = "https://live.euronext.com/nb/markets/oslo";
 const OSLO_DIRECTORY_PATH = "/nb/product_directory/data/stocks-oslo";
@@ -36,14 +37,19 @@ async function fetchHtml(url) {
   return res.text();
 }
 
-function directoryUrl(offset, length) {
+function directoryUrl(market, offset, length) {
   const params = new URLSearchParams({
-    mics: OSLO_MICS,
+    mics: market.mics,
     iDisplayStart: String(offset),
     iDisplayLength: String(length),
     sEcho: "1",
   });
-  return `https://live.euronext.com${OSLO_DIRECTORY_PATH}?${params}`;
+  return `https://live.euronext.com/${market.locale}/product_directory/data/${market.pathSegment}?${params}`;
+}
+
+function directoryDownloadUrl(market) {
+  const mics = encodeURIComponent(market.mics);
+  return `https://live.euronext.com/${market.locale}/product_directory/data/${market.pathSegment}/download?mics=${mics}`;
 }
 
 function parseCsvLine(line) {
@@ -67,12 +73,26 @@ function parseCsvLine(line) {
   return out;
 }
 
-function parseOsloCsv(text) {
+function inferMic(marketLabel, market) {
+  const label = String(marketLabel || "");
+  const fromLabel = label.match(/\b(X[A-Z]{3})\b/);
+  if (fromLabel) return fromLabel[1];
+
+  if (market.micRules) {
+    for (const rule of market.micRules) {
+      if (rule.test.test(label)) return rule.mic;
+    }
+  }
+  return market.defaultMic || "XOSL";
+}
+
+function parseEuronextCsv(text, market) {
   const lines = String(text || "")
     .split(/\r?\n/)
     .map((l) => l.trim())
     .filter(Boolean);
 
+  const locale = market.locale || "en";
   const rows = [];
   for (const line of lines) {
     if (!line.includes(";") || line.startsWith("European Equities")) continue;
@@ -86,49 +106,70 @@ function parseOsloCsv(text) {
 
     const lastPriceRaw = cols[8] || cols[7];
     const lastPrice = parseFloat(String(lastPriceRaw || "").replace(",", "."));
-    const mic =
-      /growth/i.test(marketLabel) ? "XOAS" : /merkur/i.test(marketLabel) ? "MERK" : "XOSL";
+    const mic = inferMic(marketLabel, market);
 
     rows.push({
       name,
       isin,
       ticker: String(ticker).trim(),
       mic,
-      marketLabel: marketLabel || "Oslo Børs",
-      currency: cols[4] || "NOK",
+      marketLabel: marketLabel || market.key,
+      marketKey: market.key,
+      currency: cols[4] || market.defaultCurrency || "EUR",
       lastPrice: Number.isFinite(lastPrice) ? lastPrice : null,
       dayChangePct: null,
       lastTradeLabel: cols[9] ? String(cols[9]).trim() : null,
-      productPath: `/nb/product/equities/${isin}-${mic}`,
-      productUrl: `https://live.euronext.com/nb/product/equities/${isin}-${mic}`,
+      productPath: `/${locale}/product/equities/${isin}-${mic}`,
+      productUrl: `https://live.euronext.com/${locale}/product/equities/${isin}-${mic}`,
       rawRow: cols,
     });
   }
   return rows;
 }
 
-async function fetchAllOsloListingsFromCsv() {
-  const url = `https://live.euronext.com${OSLO_DIRECTORY_DOWNLOAD}`;
+/** @deprecated use parseEuronextCsv */
+function parseOsloCsv(text) {
+  const oslo = getMarket("oslo");
+  return parseEuronextCsv(text, oslo);
+}
+
+async function fetchMarketListingsFromCsv(market) {
+  const url = directoryDownloadUrl(market);
   const text = await fetchHtml(url);
-  const listings = parseOsloCsv(text);
-  return { total: listings.length, rows: listings, format: "csv" };
+  const listings = parseEuronextCsv(text, market);
+  return { total: listings.length, rows: listings, format: "csv", marketKey: market.key };
+}
+
+async function fetchMarketListingsFromJson(market) {
+  const first = await fetchJson(directoryUrl(market, 0, PAGE_SIZE));
+  const total = Number(first.iTotalRecords || 0);
+  const rows = [...(first.aaData || [])];
+  return { total, rows, format: "datatables", marketKey: market.key };
+}
+
+async function fetchMarketListings(marketKey) {
+  const market = typeof marketKey === "string" ? getMarket(marketKey) : marketKey;
+  if (!market) throw new Error(`Unknown Euronext market: ${marketKey}`);
+
+  try {
+    const csv = await fetchMarketListingsFromCsv(market);
+    if (csv.rows.length > 10) return csv;
+  } catch (err) {
+    console.warn(`[euronext:${market.key}] CSV download failed:`, err.message);
+  }
+  return fetchMarketListingsFromJson(market);
+}
+
+async function fetchAllOsloListingsFromCsv() {
+  return fetchMarketListingsFromCsv(getMarket("oslo"));
 }
 
 async function fetchAllOsloListingsFromJson() {
-  const first = await fetchJson(directoryUrl(0, PAGE_SIZE));
-  const total = Number(first.iTotalRecords || 0);
-  const rows = [...(first.aaData || [])];
-  return { total, rows, format: "datatables" };
+  return fetchMarketListingsFromJson(getMarket("oslo"));
 }
 
 async function fetchAllOsloListings() {
-  try {
-    const csv = await fetchAllOsloListingsFromCsv();
-    if (csv.rows.length > 50) return csv;
-  } catch (err) {
-    console.warn("[euronext] CSV download failed:", err.message);
-  }
-  return fetchAllOsloListingsFromJson();
+  return fetchMarketListings("oslo");
 }
 
 async function fetchOsloMarketHtml() {
@@ -137,9 +178,15 @@ async function fetchOsloMarketHtml() {
 
 module.exports = {
   OSLO_MARKET_URL,
+  OSLO_DIRECTORY_PATH,
+  OSLO_DIRECTORY_DOWNLOAD,
+  OSLO_MICS,
+  fetchMarketListings,
   fetchAllOsloListings,
   fetchAllOsloListingsFromCsv,
   parseOsloCsv,
+  parseEuronextCsv,
   fetchOsloMarketHtml,
   fetchHtml,
+  listMarkets,
 };

@@ -2,6 +2,7 @@
  * Build company seeds from Finnhub symbol list + profile2.
  */
 const { buildMeta } = require("./local-store");
+const { resolveCanonicalSlug, normalizeCompanyName } = require("./company-canonical");
 
 const IMPORT_TYPES = new Set([
   "Common Stock",
@@ -53,6 +54,9 @@ function symbolToSeed(item, profile2 = null) {
   if (!ticker) return null;
 
   const name = profile2?.name || item.description || ticker;
+  const canonical = resolveCanonicalSlug({ ticker, name, legalName: name });
+  if (canonical) return null;
+
   const slug = usCompanySlug(ticker);
   const exchange = profile2?.exchange || item.mic || "US";
   const countryCode = profile2?.country || "US";

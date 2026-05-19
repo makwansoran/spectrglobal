@@ -6,16 +6,8 @@ const sync = require("./euronext/sync");
 const store = require("./euronext/store");
 const client = require("./euronext/client");
 const agentBrowser = require("./euronext/agent-browser");
-
-function authorizeSync(req) {
-  const secret = process.env.EURONEXT_SYNC_SECRET || process.env.CRON_SECRET;
-  if (!secret) return true;
-  const header = req.headers["x-spectr-sync-secret"] || req.headers.authorization;
-  if (!header) return false;
-  if (header === secret) return true;
-  if (header === `Bearer ${secret}`) return true;
-  return false;
-}
+const { authorizeDatafeedSync } = require("./datafeed/auth");
+const orchestrator = require("./datafeed/orchestrator");
 
 function readJsonBody(req) {
   return new Promise((resolve, reject) => {
@@ -98,7 +90,7 @@ async function handleEuronextApi(req, res, pathname, sendJson) {
   }
 
   if (pathname === "/api/euronext/sync" && (req.method === "POST" || req.method === "GET")) {
-    if (!authorizeSync(req)) {
+    if (!authorizeDatafeedSync(req)) {
       sendJson(res, 401, { error: "Unauthorized" });
       return true;
     }
@@ -110,6 +102,7 @@ async function handleEuronextApi(req, res, pathname, sendJson) {
             ticker: url.searchParams.get("ticker"),
             scrapePages: url.searchParams.get("scrapePages") === "1",
             maxPageScrapes: parseInt(url.searchParams.get("maxPageScrapes") || "0", 10) || 0,
+            markets: url.searchParams.get("markets"),
           }
         : await readJsonBody(req);
 
@@ -122,10 +115,23 @@ async function handleEuronextApi(req, res, pathname, sendJson) {
       return true;
     }
 
-    const result = await sync.syncOsloDirectory({
-      useAgentBrowser: body.useAgentBrowser !== false,
+    const marketKeys = body.markets ? String(body.markets).split(",") : ["oslo"];
+    if (marketKeys.length === 1) {
+      const result = await sync.syncMarketDirectory(marketKeys[0], {
+        useAgentBrowser: body.useAgentBrowser !== false,
+        scrapePages: Boolean(body.scrapePages),
+        maxPageScrapes: body.maxPageScrapes ?? 0,
+      });
+      sendJson(res, 200, result);
+      return true;
+    }
+
+    const result = await orchestrator.runDatafeed({
+      sources: ["euronext"],
+      euronextMarkets: marketKeys,
       scrapePages: Boolean(body.scrapePages),
       maxPageScrapes: body.maxPageScrapes ?? 0,
+      useAgentBrowser: body.useAgentBrowser !== false,
     });
     sendJson(res, 200, result);
     return true;

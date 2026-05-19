@@ -15,6 +15,7 @@ const { isSupabaseEnabled, getSupabaseUrl } = require("./supabase-client");
 const { getInstitutionBySlug, ORG_TYPE_LABELS } = require("./institutions");
 const { handlePortfolioHoldings } = require("./portfolio-holdings-api");
 const { handleEuronextApi } = require("./euronext-api");
+const { handleDatafeedApi } = require("./datafeed-api");
 
 function sendJson(res, status, body, extraHeaders = {}) {
   res.writeHead(status, {
@@ -75,6 +76,12 @@ async function handleCatalogGet(res, store, slug) {
 
 async function handleApi(req, res, pathname) {
   try {
+    if (pathname.startsWith("/api/datafeed")) {
+      if (!supabaseRequired(res)) return true;
+      const handled = await handleDatafeedApi(req, res, pathname, sendJson);
+      if (handled) return true;
+    }
+
     if (pathname.startsWith("/api/euronext")) {
       if (!supabaseRequired(res)) return true;
       const handled = await handleEuronextApi(req, res, pathname, sendJson);

@@ -14,7 +14,7 @@ const fs = require("fs");
 const path = require("path");
 const finnhub = require("../server/finnhub");
 const { symbolToSeed, filterUsSymbols, usCompanySlug } = require("../server/finnhub-import");
-const { PREFERRED_SLUG_BY_TICKER } = require("../server/search-rank");
+const { PREFERRED_SLUG_BY_TICKER, resolveCanonicalSlug } = require("../server/company-canonical");
 const store = require("../server/store");
 const supabase = require("../server/supabase-store");
 const local = require("../server/local-store");
@@ -154,6 +154,12 @@ async function main() {
     }
 
     if (tickerMap.has(ticker) && !tickerMap.get(ticker).startsWith("us-")) {
+      skipped++;
+      continue;
+    }
+
+    const earlyName = item.description || ticker;
+    if (resolveCanonicalSlug({ ticker, name: earlyName, legalName: earlyName })) {
       skipped++;
       continue;
     }

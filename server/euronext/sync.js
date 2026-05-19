@@ -1,8 +1,9 @@
 /**
- * Sync Oslo Børs listings from Euronext → Supabase (+ companies table).
+ * Sync Euronext market screeners → Supabase (+ companies table).
  */
 
 const client = require("./client");
+const { getMarket, listMarkets } = require("./markets");
 const { parseListingRow, listingToCompanySeed } = require("./parse");
 const { mergeEuronextIntoProfile } = require("./merge-canonical");
 const store = require("./store");
@@ -16,6 +17,11 @@ const { queryLooksLikeTicker, normalizeTicker } = require("../search-rank");
 const { resolveCanonicalSlug } = require("../company-canonical");
 
 let syncInFlight = null;
+
+function marketTag(marketKey) {
+  if (marketKey === "oslo") return "oslo";
+  return marketKey;
+}
 
 async function seedFromListing(listing, pageHtml) {
   const canonical = resolveCanonicalSlug({
@@ -33,7 +39,7 @@ async function seedFromListing(listing, pageHtml) {
         listing.ticker.toLowerCase(),
         listing.isin.toLowerCase(),
         "euronext",
-        "oslo",
+        marketTag(listing.marketKey || "oslo"),
       ]);
       return {
         slug: canonical,
@@ -47,12 +53,15 @@ async function seedFromListing(listing, pageHtml) {
   return listingToCompanySeed(listing, pageHtml);
 }
 
-async function syncOsloDirectory(options = {}) {
+async function syncMarketDirectory(marketKey, options = {}) {
+  const market = getMarket(marketKey);
+  if (!market) throw new Error(`Unknown market: ${marketKey}`);
+
   const useAgentBrowser = options.useAgentBrowser !== false;
   const scrapePages = Boolean(options.scrapePages);
   const maxPageScrapes = options.maxPageScrapes ?? 0;
 
-  const directory = await client.fetchAllOsloListings();
+  const directory = await client.fetchMarketListings(marketKey);
   const parsed =
     directory.format === "csv"
       ? directory.rows
@@ -62,19 +71,19 @@ async function syncOsloDirectory(options = {}) {
   let marketHtml = null;
   let marketMethod = "http";
   if (useAgentBrowser && agentBrowser.isAvailable()) {
-    const scraped = agentBrowser.scrapePageHtml(client.OSLO_MARKET_URL, { extraWaitMs: 2000 });
+    const scraped = agentBrowser.scrapePageHtml(market.marketUrl, { extraWaitMs: 2000 });
     if (scraped.html) {
       marketHtml = scraped.html;
       marketMethod = "agent-browser";
     }
   }
   if (!marketHtml) {
-    marketHtml = await client.fetchOsloMarketHtml();
+    marketHtml = await client.fetchHtml(market.marketUrl);
   }
 
   await store.saveMarketSnapshot({
-    marketKey: "oslo",
-    sourceUrl: client.OSLO_MARKET_URL,
+    marketKey: market.key,
+    sourceUrl: market.marketUrl,
     payloadJson: {
       listingCount: parsed.length,
       totalReported: total,
@@ -113,17 +122,38 @@ async function syncOsloDirectory(options = {}) {
   }
 
   await store.upsertListings(listings);
-  await upsertCompaniesBatchSupabase(seeds);
+  let companiesUpserted = 0;
+  if (options.seedCompanies !== false) {
+    await upsertCompaniesBatchSupabase(seeds);
+    companiesUpserted = seeds.length;
+  }
 
   return {
     ok: true,
+    market: market.key,
     listings: listings.length,
     totalReported: total,
-    companiesUpserted: seeds.length,
+    companiesUpserted,
+    seedCompanies: options.seedCompanies !== false,
     pageScrapes: scrapeCount,
     agentBrowser: agentBrowser.isAvailable(),
     marketScrapeMethod: marketMethod,
   };
+}
+
+/** @deprecated use syncMarketDirectory('oslo') */
+async function syncOsloDirectory(options = {}) {
+  return syncMarketDirectory("oslo", options);
+}
+
+async function syncAllEuronextMarkets(options = {}) {
+  const markets = listMarkets({ includeOptional: options.includeOptional });
+  const results = [];
+  for (const m of markets) {
+    results.push(await syncMarketDirectory(m.key, options));
+  }
+  const listings = results.reduce((n, r) => n + (r.listings || 0), 0);
+  return { ok: true, markets: results.length, listings, results };
 }
 
 async function syncTickerFromDirectory(ticker, options = {}) {
@@ -214,7 +244,9 @@ async function searchEuronext(query, limit = 10) {
 }
 
 module.exports = {
+  syncMarketDirectory,
   syncOsloDirectory,
+  syncAllEuronextMarkets,
   syncTickerFromDirectory,
   ensureOsloTickerSynced,
   searchEuronext,

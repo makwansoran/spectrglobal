@@ -178,8 +178,6 @@
     var opts = options || {};
     var idPrefix = opts.idPrefix || "search";
     var resultClass = opts.resultClass || "cb-search-result";
-    var slideshowEl =
-      idPrefix === "cb" ? document.getElementById("cb-hero-slideshow") : null;
     var timer = null;
     var currentResults = [];
     var activeResultIndex = -1;
@@ -188,7 +186,6 @@
       if (!resultsEl) return;
       resultsEl.classList.add("is-open");
       if (inputEl) inputEl.setAttribute("aria-expanded", "true");
-      if (slideshowEl) slideshowEl.classList.add("is-hidden");
     }
 
     function hideResults() {
@@ -201,7 +198,6 @@
         inputEl.setAttribute("aria-expanded", "false");
         inputEl.removeAttribute("aria-activedescendant");
       }
-      if (slideshowEl) slideshowEl.classList.remove("is-hidden");
     }
 
     function renderResults(results, query, errorMessage) {

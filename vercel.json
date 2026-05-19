@@ -4,9 +4,18 @@
   "outputDirectory": ".",
   "functions": {
     "api/[[...path]].js": {
+      "maxDuration": 120,
       "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,data/**,scripts/load-env.js"
     },
     "api/companies/[[...path]].js": {
+      "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,data/**,scripts/load-env.js"
+    },
+    "api/euronext/[[...path]].js": {
+      "maxDuration": 120,
+      "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,data/**,scripts/load-env.js"
+    },
+    "api/datafeed/[[...path]].js": {
+      "maxDuration": 120,
       "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,data/**,scripts/load-env.js"
     },
     "api/commodities/[[...path]].js": {
@@ -34,8 +43,32 @@
   },
   "crons": [
     {
-      "path": "/api/euronext/sync",
-      "schedule": "0 6 * * *"
+      "path": "/api/datafeed/sync?sources=euronext,finnhub&markets=oslo&finnhubLimit=60",
+      "schedule": "0 * * * *"
+    },
+    {
+      "path": "/api/datafeed/sync?sources=euronext&markets=amsterdam",
+      "schedule": "15 6 * * *"
+    },
+    {
+      "path": "/api/datafeed/sync?sources=euronext&markets=paris",
+      "schedule": "30 6 * * *"
+    },
+    {
+      "path": "/api/datafeed/sync?sources=euronext&markets=brussels",
+      "schedule": "45 6 * * *"
+    },
+    {
+      "path": "/api/datafeed/sync?sources=euronext&markets=dublin",
+      "schedule": "0 7 * * *"
+    },
+    {
+      "path": "/api/datafeed/sync?sources=euronext&markets=lisbon",
+      "schedule": "15 7 * * *"
+    },
+    {
+      "path": "/api/datafeed/sync?sources=euronext&markets=milan",
+      "schedule": "30 7 * * *"
     }
   ],
   "rewrites": [

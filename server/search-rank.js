@@ -52,6 +52,8 @@ function getGroupKey(row) {
   if (ticker && PREFERRED_SLUG_BY_TICKER[ticker]) {
     return `canonical:${normalizeCompanyName(PREFERRED_SLUG_BY_TICKER[ticker])}`;
   }
+  // Same legal name (e.g. Aker BP ASA) — one result even if tickers differ (AKRBP vs AKRBF).
+  if (name && name.length >= 5) return `name:${name}`;
   if (ticker) return `ticker:${ticker}`;
   if (name) return `name:${name}`;
   return `slug:${row.id || row.slug}`;
