@@ -9,6 +9,7 @@ const { getCompanyFinancials } = require("./company-financials");
 const { getCompanyQuote } = require("./company-quote");
 const { getCompanyFilings } = require("./company-filings");
 const { enrichCompany } = require("./company-enrich");
+const { getCompanyAssets } = require("./company-assets");
 const commoditiesStore = require("./commodities-store");
 const waterwaysStore = require("./waterways-store");
 const { banks, investmentBanks, ventureCapital } = require("./catalog-stores");
@@ -18,6 +19,8 @@ const { getInstitutionBySlug, ORG_TYPE_LABELS } = require("./institutions");
 const { handlePortfolioHoldings } = require("./portfolio-holdings-api");
 const { handleEuronextApi } = require("./euronext-api");
 const { handleDatafeedApi } = require("./datafeed-api");
+const { handleAuthApi } = require("./auth-api");
+const { getSiteNews } = require("./site-news");
 
 function sendJson(res, status, body, extraHeaders = {}) {
   res.writeHead(status, {
@@ -79,6 +82,19 @@ async function handleCatalogGet(res, store, slug) {
 async function handleApi(req, res, pathname) {
   const reqUrl = new URL(req.url, `http://${req.headers.host || "localhost"}`);
   try {
+    if (pathname.startsWith("/api/auth")) {
+      const handled = await handleAuthApi(req, res, pathname, { sendJson, readJsonBody });
+      if (handled) return true;
+    }
+
+    if (pathname === "/api/news" && req.method === "GET") {
+      const url = new URL(req.url, `http://${req.headers.host || "localhost"}`);
+      const limit = url.searchParams.get("limit") || "20";
+      const data = await getSiteNews({ limit });
+      sendJson(res, 200, data, { "Cache-Control": "public, max-age=120" });
+      return true;
+    }
+
     if (pathname.startsWith("/api/datafeed")) {
       if (!supabaseRequired(res)) return true;
       const handled = await handleDatafeedApi(req, res, pathname, sendJson);
@@ -144,6 +160,18 @@ async function handleApi(req, res, pathname) {
     if (newsMatch && req.method === "GET") {
       const slug = decodeURIComponent(newsMatch[1]);
       const data = await getCompanyNews(slug);
+      if (!data) {
+        sendJson(res, 404, { error: "Company not found" });
+        return true;
+      }
+      sendJson(res, 200, data, { "Cache-Control": "public, max-age=300" });
+      return true;
+    }
+
+    const assetsMatch = pathname.match(/^\/api\/companies\/([^/]+)\/assets$/);
+    if (assetsMatch && req.method === "GET") {
+      const slug = decodeURIComponent(assetsMatch[1]);
+      const data = await getCompanyAssets(slug);
       if (!data) {
         sendJson(res, 404, { error: "Company not found" });
         return true;

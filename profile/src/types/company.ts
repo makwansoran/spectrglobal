@@ -79,6 +79,40 @@ export interface CompanyEnrichment {
   filingCount?: number;
 }
 
+export interface CompanyVessel {
+  id: string;
+  slug?: string;
+  name: string;
+  type: string;
+  imo?: string | null;
+  dwt?: string | null;
+  flag?: string | null;
+  lat?: number | null;
+  lng?: number | null;
+  meta?: string;
+  source?: string;
+}
+
+export interface CompanyAircraft {
+  id: string;
+  slug?: string;
+  name: string;
+  registration?: string | null;
+  type: string;
+  lat?: number | null;
+  lng?: number | null;
+  homeBase?: string | null;
+  meta?: string;
+  source?: string;
+}
+
+export interface OperatingAssets {
+  vessels?: CompanyVessel[];
+  aircraft?: CompanyAircraft[];
+  sources?: string[];
+  at?: string;
+}
+
 export interface Competitor {
   name: string;
   country: string;
@@ -214,6 +248,7 @@ export interface CompanyProfile {
   esg: ESGScore;
   dataSources: DataSource[];
   enrichment?: CompanyEnrichment;
+  operatingAssets?: OperatingAssets;
   /** Corporate / IR website used for filing discovery when APIs have no data. */
   website?: string;
   /** Cached Finnhub profile2 fields merged during enrichment. */

@@ -332,7 +332,20 @@ async function enrichCompany(slug, options = {}) {
       region,
     };
 
-    await persistEnrichedProfile(slug, profile, row.mapGeojson);
+    let mapGeojson = row.mapGeojson;
+    try {
+      const { enrichCompanyAssets } = require("./company-assets");
+      const assets = await enrichCompanyAssets(slug, profile, { force });
+      if (assets.profile?.operatingAssets) profile.operatingAssets = assets.profile.operatingAssets;
+      if (assets.mapGeojson?.features?.length) mapGeojson = assets.mapGeojson;
+      if (assets.sources?.length) {
+        profile.enrichment.sources = [...new Set([...profile.enrichment.sources, ...assets.sources])];
+      }
+    } catch (err) {
+      console.warn("assets enrich:", err.message);
+    }
+
+    await persistEnrichedProfile(slug, profile, mapGeojson);
 
     return {
       ok: true,

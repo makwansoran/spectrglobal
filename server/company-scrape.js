@@ -173,6 +173,7 @@ async function fetchIrFilingsFromWebsite(url, companyName = "") {
 }
 
 module.exports = {
+  fetchText,
   fetchIrFilingsFromWebsite,
   FETCH_TIMEOUT_MS,
   MAX_LINKS,

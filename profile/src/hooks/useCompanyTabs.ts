@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import type { CompanyProfile } from "../types/company";
-import { hasIndustryMap } from "../components/maps/IndustryMap";
+import { hasOilBlocks } from "../components/maps/IndustryMap";
 import { resolveOwnership } from "../lib/ownership";
 
 export function useCompanyTabs(company: CompanyProfile | null, mapGeojson: GeoJSON.GeoJsonObject | null) {
@@ -25,8 +25,21 @@ export function useCompanyTabs(company: CompanyProfile | null, mapGeojson: GeoJS
     if (company.isPublic || company.stock?.ticker || (company.filings?.length ?? 0) > 0) {
       items.push({ id: "filings", label: "Filings" });
     }
-    if (hasIndustryMap(company.industry, mapGeojson)) {
-      items.push({ id: "industry", label: company.industryTabLabel });
+    const assetIndustries = ["oil_gas", "energy", "shipping", "aviation"];
+    const hasAssets =
+      hasOilBlocks(company.industry, mapGeojson) ||
+      assetIndustries.includes(company.industry) ||
+      (company.operatingAssets?.vessels?.length ?? 0) > 0 ||
+      (company.operatingAssets?.aircraft?.length ?? 0) > 0;
+    if (hasAssets) {
+      const label =
+        company.industryTabLabel ||
+        (company.industry === "shipping"
+          ? "Fleet"
+          : company.industry === "aviation"
+            ? "Aircraft"
+            : "Operations");
+      items.push({ id: "industry", label });
     }
     items.push({ id: "chat", label: "Chat" });
     return items;

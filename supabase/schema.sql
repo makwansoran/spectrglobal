@@ -12,6 +12,7 @@
 --   venture_capital     — VC firms & funds
 --   maritime_waterways  — straits & canals (maritime traffic maps)
 --   chat_messages       — profile chat rooms
+--   profiles            — user accounts (username, email); run supabase/auth-profiles.sql
 --   euronext_listings   — Oslo Børs instruments (Euronext Live sync)
 --   euronext_market_snapshots — scraped Oslo market page snapshots
 --
@@ -290,3 +291,34 @@ create policy "Public read maritime_waterways"
   for select
   to anon, authenticated
   using (true);
+
+-- User accounts (Supabase Auth + profiles)
+create table if not exists public.profiles (
+  id uuid primary key references auth.users (id) on delete cascade,
+  username text not null,
+  email text not null,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now(),
+  constraint profiles_username_len check (char_length(username) between 3 and 32),
+  constraint profiles_username_format check (username ~ '^[a-zA-Z0-9_]+$')
+);
+
+create unique index if not exists profiles_username_lower_idx on public.profiles (lower(username));
+create unique index if not exists profiles_email_lower_idx on public.profiles (lower(email));
+
+alter table public.profiles enable row level security;
+
+drop policy if exists "Users read own profile" on public.profiles;
+create policy "Users read own profile"
+  on public.profiles
+  for select
+  to authenticated
+  using (auth.uid() = id);
+
+drop policy if exists "Users update own profile" on public.profiles;
+create policy "Users update own profile"
+  on public.profiles
+  for update
+  to authenticated
+  using (auth.uid() = id)
+  with check (auth.uid() = id);

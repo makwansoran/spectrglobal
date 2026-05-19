@@ -6,6 +6,7 @@ const {
   isSupabaseEnabled,
   hasSupabaseWrites,
 } = require("./supabase-client");
+const { restGet } = require("./supabase-rest");
 
 function vesselToRow(seed) {
   const p = seed.profile || seed;
@@ -51,9 +52,66 @@ async function upsertPlanesBatch(seeds) {
   return rows.length;
 }
 
+function rowToVessel(row) {
+  const p = row.profile_json || {};
+  return {
+    id: row.slug,
+    slug: row.slug,
+    name: row.name || p.name,
+    type: row.vessel_type || p.type || p.vesselType || "general",
+    imo: p.imo || null,
+    dwt: p.dwt || null,
+    flag: p.flag || null,
+    lat: p.lat ?? null,
+    lng: p.lng ?? null,
+    meta: row.meta || "",
+    source: p.source || "supabase",
+  };
+}
+
+function rowToPlane(row) {
+  const p = row.profile_json || {};
+  return {
+    id: row.slug,
+    slug: row.slug,
+    name: row.name || p.name,
+    registration: row.registration || p.registration || null,
+    type: p.type || p.aircraftType || "Aircraft",
+    lat: p.lat ?? null,
+    lng: p.lng ?? null,
+    homeBase: p.homeBase || null,
+    meta: row.meta || "",
+    source: p.source || "supabase",
+  };
+}
+
+async function listVesselsForCompany(companySlug) {
+  if (!isSupabaseEnabled() || !companySlug) return [];
+  const rows = await restGet("vessels", {
+    select: "slug,name,vessel_type,meta,profile_json",
+    company_slug: `eq.${companySlug}`,
+    limit: "120",
+  });
+  return (rows || []).map(rowToVessel);
+}
+
+async function listPlanesForCompany(companySlug) {
+  if (!isSupabaseEnabled() || !companySlug) return [];
+  const rows = await restGet("planes", {
+    select: "slug,name,registration,meta,profile_json",
+    company_slug: `eq.${companySlug}`,
+    limit: "120",
+  });
+  return (rows || []).map(rowToPlane);
+}
+
 module.exports = {
   isSupabaseEnabled,
   hasSupabaseWrites,
   upsertVesselsBatch,
   upsertPlanesBatch,
+  listVesselsForCompany,
+  listPlanesForCompany,
+  vesselToRow,
+  planeToRow,
 };
