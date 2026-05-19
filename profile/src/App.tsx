@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react";
 import { useEffect } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { CommodityProfileLayout } from "./pages/commodity/CommodityProfileLayout";
@@ -35,6 +36,7 @@ export default function App() {
 
   return (
     <BrowserRouter basename={basename}>
+      <Analytics />
       <Routes>
         {basename === "" ? (
           <>
