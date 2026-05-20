@@ -5,219 +5,149 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Spectr builds operational intelligence software for investment teams."
+      content="Spectr is an authorized red-team operations group helping organizations expose, understand, and close real attack paths."
     />
-    <title>Spectr</title>
+    <title>Spectr | Red Team Operations</title>
     <link rel="icon" href="/assets/brand/spectr-mark.png" type="image/png" sizes="any" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Syne:wght@500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="platform.css" />
-    <link rel="stylesheet" href="palantir-nav.css" />
-    <link rel="stylesheet" href="auth-nav.css" />
-    <link rel="stylesheet" href="crunchbase-search.css" />
-    <link rel="stylesheet" href="home.css" />
-    <link rel="stylesheet" href="cookies.css" />
+    <link rel="stylesheet" href="landing.css" />
   </head>
-  <body class="font-body page-home plt-site">
-    <header class="plt-header">
-      <div class="plt-header-inner">
-        <a class="plt-logo" href="index.html" aria-label="Spectr home">
-          <img class="plt-logo-mark" src="assets/brand/spectr-mark.png" width="28" height="28" alt="" decoding="async" />
-          <span class="plt-logo-text">Spectr</span>
-        </a>
-        <div class="plt-header-tools">
-          <div class="spectr-auth-slot spectr-auth-slot--header" data-spectr-auth-slot></div>
-          <button
-            type="button"
-            class="plt-tool-btn"
-            id="plt-search-header-btn"
-            data-plt-search-open
-            aria-label="Show Search"
-            aria-expanded="false"
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <circle cx="11" cy="11" r="7" />
-              <path d="M20 20l-3-3" stroke-linecap="round" />
-            </svg>
-          </button>
-          <button
-            type="button"
-            class="plt-tool-btn plt-menu-btn"
-            id="plt-nav-btn"
-            aria-label="Show Navigation"
-            aria-expanded="false"
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" />
-            </svg>
-          </button>
-        </div>
-      </div>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Spectr home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Spectr</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#platform">Platform</a>
+        <a href="#operations">Operations</a>
+        <a href="#method">Method</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </header>
 
-    <div class="plt-nav-panel" id="plt-nav-panel" aria-hidden="true">
-      <div class="plt-nav-scroll">
-        <a class="plt-nav-logo" href="index.html" aria-label="Spectr home">
-          <img class="plt-logo-mark" src="assets/brand/spectr-mark.png" width="28" height="28" alt="" decoding="async" />
-          <span class="plt-logo-text">Spectr</span>
-        </a>
-        <div class="plt-nav-divider" aria-hidden="true"></div>
-        <p class="plt-nav-label">Navigation</p>
-        <nav aria-label="Primary">
-          <ul class="plt-nav-list">
-            <li><a href="#" class="plt-nav-primary">AIP</a></li>
-            <li><a href="#" class="plt-nav-primary">Chat Room</a></li>
-            <li><a href="#" class="plt-nav-primary">Offerings</a></li>
-            <li><a href="#" class="plt-nav-primary">Impact Studies</a></li>
-            <li><a href="#" class="plt-nav-primary">Documentation</a></li>
-            <li><a href="#" class="plt-nav-primary">Careers</a></li>
-          </ul>
-        </nav>
-      </div>
-      <div class="plt-nav-footer">
-        <button type="button" class="plt-nav-close" id="plt-nav-close" aria-label="Close navigation">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-            <path d="M6 6l12 12M18 6L6 18" stroke-linecap="round" />
-          </svg>
-        </button>
-        <button
-          type="button"
-          class="plt-tool-btn"
-          data-plt-search-open
-          aria-label="Show Search"
-          aria-expanded="false"
-        >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <circle cx="11" cy="11" r="7" />
-            <path d="M20 20l-3-3" stroke-linecap="round" />
-          </svg>
-        </button>
-        <div class="spectr-auth-slot spectr-auth-slot--nav" data-spectr-auth-slot data-spectr-auth-variant="nav"></div>
-      </div>
-    </div>
-
-    <div class="plt-search-panel" id="plt-search-panel" aria-hidden="true">
-      <div class="plt-search-panel-top">
-        <form class="plt-search-panel-form" role="search" action="#" onsubmit="return false">
-          <input
-            type="search"
-            class="plt-search-panel-input"
-            id="plt-search-input"
-            placeholder="Search"
-            autocomplete="off"
-          />
-        </form>
-        <button type="button" class="plt-search-panel-close" id="plt-search-close" aria-label="Close search">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-            <path d="M6 6l12 12M18 6L6 18" stroke-linecap="round" />
-          </svg>
-        </button>
-      </div>
-      <div
-        id="plt-search-results"
-        class="plt-search-results"
-        role="listbox"
-        aria-label="Company results"
-      ></div>
-    </div>
-
     <main>
-      <section class="cb-hero" id="top" aria-labelledby="cb-hero-title">
-        <div class="ph-mesh ph-mesh--hero" aria-hidden="true">
-          <div class="ph-mesh-blob ph-mesh-blob--1"></div>
-          <div class="ph-mesh-blob ph-mesh-blob--2"></div>
-          <div class="ph-mesh-blob ph-mesh-blob--3"></div>
-          <div class="ph-mesh-blob ph-mesh-blob--4"></div>
-          <div class="ph-mesh-grid"></div>
-          <div class="ph-mesh-grain"></div>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-content">
+          <p class="eyebrow">Authorized Red Team Operations</p>
+          <h1 id="hero-title">Expose the attack paths your adversaries are already mapping.</h1>
+          <p class="hero-copy">
+            Spectr combines adversary emulation, attack-surface intelligence, and executive-grade reporting for
+            organizations that need to know exactly where they stand before a real intrusion begins.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="mailto:contact@spectr.no">Request a briefing</a>
+            <a class="button button-secondary" href="#operations">View capabilities</a>
+          </div>
         </div>
-        <div class="cb-hero-inner">
-          <p class="cb-hero-kicker">Operational intelligence</p>
-          <h1 id="cb-hero-title">Make better decisions, faster</h1>
-          <div class="cb-search-wrap">
-            <form class="cb-search-form" id="cb-search-form" role="search">
-              <div class="cb-search-box">
-                <label class="visually-hidden" for="cb-search">Search companies, people, vessels, countries</label>
-                <input
-                  type="search"
-                  class="cb-search-input"
-                  id="cb-search"
-                  name="q"
-                  placeholder="Search companies, people, vessels, countries..."
-                  autocomplete="off"
-                  role="combobox"
-                  aria-expanded="false"
-                  aria-controls="cb-search-results"
-                  aria-autocomplete="list"
-                />
-                <button type="submit" class="cb-search-submit" aria-label="Search">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
-                    <circle cx="11" cy="11" r="7" />
-                    <path d="M20 20l-3-3" stroke-linecap="round" />
-                  </svg>
-                </button>
-              </div>
-            </form>
-            <div
-              id="cb-search-results"
-              class="cb-search-results"
-              role="listbox"
-              aria-label="Search results"
-            ></div>
+        <aside class="ops-console" aria-label="Operation telemetry preview">
+          <div class="console-header">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div class="console-body">
+            <p><strong>OPERATION</strong> BLACKFIELD / authorized</p>
+            <p><strong>SCOPE</strong> identity, cloud, perimeter, endpoint</p>
+            <p><strong>OBJECTIVE</strong> validate breach resistance</p>
+            <p><strong>STATUS</strong> attack path simulation active</p>
+          </div>
+          <div class="signal-map">
+            <span class="node node-a"></span>
+            <span class="node node-b"></span>
+            <span class="node node-c"></span>
+            <span class="node node-d"></span>
+          </div>
+        </aside>
+      </section>
+
+      <section class="metrics" aria-label="Operational metrics">
+        <div>
+          <strong>24/7</strong>
+          <span>operator-led monitoring windows</span>
+        </div>
+        <div>
+          <strong>4x</strong>
+          <span>identity, cloud, network, human layers</span>
+        </div>
+        <div>
+          <strong>0</strong>
+          <span>unsanctioned activity outside scope</span>
+        </div>
+      </section>
+
+      <section class="section split" id="platform">
+        <div>
+          <p class="eyebrow">Operational Intelligence</p>
+          <h2>Built for leaders who need evidence, not assumptions.</h2>
+        </div>
+        <p>
+          We turn complex security exposure into a single operational picture: likely entry points, reachable crown
+          jewels, identity weaknesses, detection gaps, and the decisions required to reduce risk.
+        </p>
+      </section>
+
+      <section class="capability-grid" id="operations" aria-label="Capabilities">
+        <article>
+          <span>01</span>
+          <h3>External Attack Surface</h3>
+          <p>Map internet-facing systems, exposed services, leaked credentials, and misconfigurations before they are weaponized.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Adversary Emulation</h3>
+          <p>Run controlled simulations aligned to real threat behavior, with clear rules of engagement and measurable outcomes.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Cloud & Identity Review</h3>
+          <p>Identify privilege escalation paths across SaaS, cloud infrastructure, identity providers, and administrative workflows.</p>
+        </article>
+        <article>
+          <span>04</span>
+          <h3>Detection Validation</h3>
+          <p>Pressure-test your SOC, logging, alerting, and incident response process against realistic attacker movement.</p>
+        </article>
+      </section>
+
+      <section class="section method" id="method">
+        <p class="eyebrow">The Method</p>
+        <h2>Reconnaissance to remediation, without losing the thread.</h2>
+        <div class="method-list">
+          <div>
+            <span>Prepare</span>
+            <p>Define scope, business priorities, legal boundaries, communication channels, and safety constraints.</p>
+          </div>
+          <div>
+            <span>Operate</span>
+            <p>Execute controlled red-team activity while preserving uptime and keeping stakeholders informed.</p>
+          </div>
+          <div>
+            <span>Report</span>
+            <p>Deliver attack narratives, technical evidence, executive summaries, and a prioritized remediation plan.</p>
           </div>
         </div>
       </section>
 
-      <section class="ph-statement" aria-label="Mission">
-        <div class="ph-mesh ph-mesh--statement" aria-hidden="true">
-          <div class="ph-mesh-blob ph-mesh-blob--1"></div>
-          <div class="ph-mesh-blob ph-mesh-blob--2"></div>
-          <div class="ph-mesh-blob ph-mesh-blob--3"></div>
-          <div class="ph-mesh-grid"></div>
-          <div class="ph-mesh-grain"></div>
-        </div>
-        <div class="wrap ph-statement-inner">
-          <blockquote>
-            We build software that amplifies human judgment—so teams can see the full picture and act with conviction.
-            <cite>Makwan Ismail, Founder of Spectr</cite>
-          </blockquote>
-        </div>
+      <section class="cta" id="contact">
+        <p class="eyebrow">Spectr AS</p>
+        <h2>Make better security decisions, faster.</h2>
+        <p>
+          For organizations that want a clear view of their real exposure before the next intrusion attempt.
+        </p>
+        <a class="button button-primary" href="mailto:contact@spectr.no">contact@spectr.no</a>
       </section>
-
     </main>
 
     <footer class="site-footer">
-      <div class="wrap site-footer-inner">
-        <div class="site-footer-brand">
-          <a class="site-footer-logo" href="index.html">
-            <img class="site-footer-logo-mark" src="assets/brand/spectr-mark.png" width="36" height="36" alt="" decoding="async" />
-            <span class="site-footer-logo-text">Spectr</span>
-          </a>
-          <p class="site-footer-tagline">Operational intelligence &mdash; <strong>SPECTR AS</strong></p>
-        </div>
-        <div class="site-footer-meta">
-          <address class="site-footer-address">
-            <span class="site-footer-legal-name">SPECTR AS</span><br />
-            Org. nr. <span class="mono">926 574 892</span><br />
-            Eksempelgata 1, NO-0162 Oslo, Norway
-          </address>
-          <p class="site-footer-copy">
-            <span class="mono">&copy; <span data-current-year></span> SPECTR AS</span>
-          </p>
-        </div>
-      </div>
+      <span>Spectr</span>
+      <span>Operational intelligence for authorized security teams.</span>
     </footer>
-
-    <script src="auth-session.js" defer></script>
-    <script src="auth-nav.js" defer></script>
-    <script src="analytics-static.js" defer></script>
-    <script src="cookies.js" defer></script>
-    <script src="script.js" defer></script>
-    <script src="home.js" defer></script>
   </body>
 </html>
