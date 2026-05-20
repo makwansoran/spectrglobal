@@ -157,9 +157,9 @@ body {
 .red-team-landing h1 {
   max-width: none;
   margin-bottom: 0;
-  font-size: clamp(4rem, 10vw, 9rem);
-  line-height: 0.86;
-  letter-spacing: -0.08em;
+  font-size: clamp(2.6rem, 5vw, 4.5rem);
+  line-height: 1;
+  letter-spacing: -0.05em;
 }
 
 .red-team-landing h2 {
@@ -188,13 +188,14 @@ body {
 }
 
 .hero-subtitle {
-  max-width: none;
+  max-width: 36rem;
+  margin-inline: auto;
   margin-bottom: 0;
   color: var(--text);
-  font-size: clamp(1.4rem, 3vw, 2.8rem);
+  font-size: clamp(1.25rem, 2.6vw, 2.4rem);
   font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.05em;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
 }
 
 .hero-actions {
