@@ -97,6 +97,18 @@ body {
   padding: clamp(4rem, 8vw, 8rem) clamp(1rem, 4vw, 4.5rem);
 }
 
+.hero-brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.hero-brand-lockup img {
+  width: clamp(3.25rem, 6vw, 4.5rem);
+  height: clamp(3.25rem, 6vw, 4.5rem);
+}
+
 .hero-grid {
   position: absolute;
   inset: 0;
@@ -137,11 +149,11 @@ body {
 }
 
 .red-team-landing h1 {
-  max-width: 13ch;
-  margin-bottom: 1.5rem;
-  font-size: clamp(3.4rem, 9vw, 8.6rem);
-  line-height: 0.88;
-  letter-spacing: -0.08em;
+  max-width: 10ch;
+  margin-bottom: 0.8rem;
+  font-size: clamp(5rem, 15vw, 14rem);
+  line-height: 0.78;
+  letter-spacing: -0.1em;
 }
 
 .red-team-landing h2 {
@@ -158,11 +170,21 @@ body {
 }
 
 .hero-copy {
-  max-width: 47rem;
+  max-width: 43rem;
   margin-bottom: 2rem;
   color: var(--muted);
   font-size: clamp(1.05rem, 1.8vw, 1.35rem);
   line-height: 1.55;
+}
+
+.hero-subtitle {
+  max-width: 46rem;
+  margin-bottom: 1.5rem;
+  color: var(--text);
+  font-size: clamp(2rem, 4vw, 4.4rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.07em;
 }
 
 .hero-actions {
@@ -208,6 +230,48 @@ body {
     var(--panel);
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.08);
   backdrop-filter: blur(18px);
+}
+
+.hero-platform-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: clamp(24rem, 42vw, 34rem);
+  padding: clamp(1.5rem, 3vw, 2.2rem);
+}
+
+.hero-platform-card h2 {
+  max-width: 8ch;
+  margin: auto 0 1.4rem;
+  font-size: clamp(3rem, 7vw, 7rem);
+}
+
+.hero-platform-card p:not(.eyebrow) {
+  max-width: 28rem;
+  margin-bottom: 2rem;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.platform-lines {
+  display: grid;
+  gap: 0.7rem;
+  margin-top: auto;
+}
+
+.platform-lines span {
+  display: block;
+  height: 1px;
+  background: var(--line);
+}
+
+.platform-lines span:nth-child(2) {
+  width: 72%;
+}
+
+.platform-lines span:nth-child(3) {
+  width: 44%;
 }
 
 .console-header {
