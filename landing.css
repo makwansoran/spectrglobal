@@ -3,14 +3,14 @@
 }
 
 :root {
-  --bg: #05070a;
-  --panel: rgba(14, 18, 25, 0.78);
-  --panel-strong: #101620;
-  --text: #f4f7fb;
-  --muted: #9aa7b8;
-  --line: rgba(255, 255, 255, 0.12);
-  --accent: #ffffff;
-  --accent-2: #ffffff;
+  --bg: #ffffff;
+  --panel: rgba(255, 255, 255, 0.92);
+  --panel-strong: #f4f4f4;
+  --text: #050505;
+  --muted: rgba(5, 5, 5, 0.62);
+  --line: rgba(5, 5, 5, 0.14);
+  --accent: #050505;
+  --accent-2: #050505;
   --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
   --sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
@@ -80,9 +80,9 @@ body {
 
 .red-team-landing {
   background:
-    radial-gradient(circle at 70% 0%, rgba(255, 255, 255, 0.12), transparent 35rem),
-    radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.08), transparent 32rem),
-    linear-gradient(180deg, #070a0f 0%, var(--bg) 46%, #030405 100%);
+    radial-gradient(circle at 70% 0%, rgba(5, 5, 5, 0.05), transparent 35rem),
+    radial-gradient(circle at 12% 18%, rgba(5, 5, 5, 0.035), transparent 32rem),
+    linear-gradient(180deg, #ffffff 0%, var(--bg) 55%, #f7f7f7 100%);
   color: var(--text);
   overflow: hidden;
 }
@@ -102,8 +102,8 @@ body {
   inset: 0;
   opacity: 0.25;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.09) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.09) 1px, transparent 1px);
+    linear-gradient(rgba(5, 5, 5, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(5, 5, 5, 0.1) 1px, transparent 1px);
   background-size: 72px 72px;
   mask-image: radial-gradient(circle at 54% 34%, #000 0%, transparent 68%);
 }
@@ -160,7 +160,7 @@ body {
 .hero-copy {
   max-width: 47rem;
   margin-bottom: 2rem;
-  color: #c2cad5;
+  color: var(--muted);
   font-size: clamp(1.05rem, 1.8vw, 1.35rem);
   line-height: 1.55;
 }
@@ -192,11 +192,11 @@ body {
 .button-primary {
   border-color: var(--accent);
   background: var(--accent);
-  color: #05070a;
+  color: #ffffff;
 }
 
 .button-secondary {
-  background: rgba(255, 255, 255, 0.04);
+  background: transparent;
   color: var(--text);
 }
 
@@ -204,9 +204,9 @@ body {
   min-height: 30rem;
   border: 1px solid var(--line);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent),
+    linear-gradient(180deg, rgba(5, 5, 5, 0.035), transparent),
     var(--panel);
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.08);
   backdrop-filter: blur(18px);
 }
 
@@ -245,11 +245,11 @@ body {
   position: absolute;
   inset: auto 1.5rem 1.5rem 1.5rem;
   height: 13rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(5, 5, 5, 0.12);
   background:
-    linear-gradient(90deg, transparent 49%, rgba(255, 255, 255, 0.24) 50%, transparent 51%),
-    linear-gradient(0deg, transparent 49%, rgba(255, 255, 255, 0.16) 50%, transparent 51%),
-    rgba(255, 255, 255, 0.03);
+    linear-gradient(90deg, transparent 49%, rgba(5, 5, 5, 0.22) 50%, transparent 51%),
+    linear-gradient(0deg, transparent 49%, rgba(5, 5, 5, 0.12) 50%, transparent 51%),
+    rgba(5, 5, 5, 0.025);
 }
 
 .signal-map::before,
@@ -257,12 +257,12 @@ body {
   content: "";
   position: absolute;
   inset: 24% 18%;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(5, 5, 5, 0.16);
 }
 
 .signal-map::after {
   inset: 42% 8% 18% 34%;
-  border-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(5, 5, 5, 0.18);
 }
 
 .node {
@@ -271,7 +271,7 @@ body {
   height: 0.82rem;
   border-radius: 999px;
   background: var(--accent-2);
-  box-shadow: 0 0 22px rgba(255, 255, 255, 0.65);
+  box-shadow: 0 0 22px rgba(5, 5, 5, 0.28);
 }
 
 .node-a {
@@ -283,7 +283,7 @@ body {
   top: 54%;
   left: 46%;
   background: var(--accent);
-  box-shadow: 0 0 26px rgba(255, 255, 255, 0.75);
+  box-shadow: 0 0 26px rgba(5, 5, 5, 0.32);
 }
 
 .node-c {
@@ -343,7 +343,7 @@ body {
 .cta p,
 .stack-list p,
 .archive-copy p {
-  color: #c2cad5;
+  color: var(--muted);
   font-size: clamp(1rem, 1.8vw, 1.28rem);
   line-height: 1.65;
 }
@@ -356,10 +356,10 @@ body {
   padding: clamp(3rem, 8vw, 7rem);
   border-block: 1px solid var(--line);
   background:
-    linear-gradient(115deg, rgba(255, 255, 255, 0.12), transparent 24%),
-    linear-gradient(245deg, rgba(255, 255, 255, 0.1), transparent 28%),
-    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.045) 0 1px, transparent 1px 9rem),
-    #020304;
+    linear-gradient(115deg, rgba(5, 5, 5, 0.08), transparent 24%),
+    linear-gradient(245deg, rgba(5, 5, 5, 0.07), transparent 28%),
+    repeating-linear-gradient(90deg, rgba(5, 5, 5, 0.045) 0 1px, transparent 1px 9rem),
+    #f2f2f2;
   overflow: hidden;
 }
 
@@ -368,9 +368,9 @@ body {
   position: absolute;
   width: min(70vw, 820px);
   height: min(70vw, 820px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(5, 5, 5, 0.12);
   border-radius: 999px;
-  box-shadow: inset 0 0 80px rgba(255, 255, 255, 0.04);
+  box-shadow: inset 0 0 80px rgba(5, 5, 5, 0.04);
 }
 
 .cinematic-band p {
@@ -399,7 +399,7 @@ body {
 }
 
 .capability-grid article:nth-child(even) {
-  background: rgba(255, 255, 255, 0.035);
+  background: #ffffff;
 }
 
 .capability-grid article:last-child {
@@ -425,8 +425,8 @@ body {
 .dark-panel {
   border-block: 1px solid var(--line);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent),
-    #05070a;
+    linear-gradient(180deg, rgba(5, 5, 5, 0.035), transparent),
+    #ffffff;
 }
 
 .stack-list {
@@ -446,8 +446,8 @@ body {
 
 .method {
   background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.08), transparent),
-    #070a0f;
+    linear-gradient(90deg, rgba(5, 5, 5, 0.05), transparent),
+    #ffffff;
 }
 
 .method h2 {
@@ -464,7 +464,7 @@ body {
 
 .method-list div {
   padding: 2rem;
-  background: #080c12;
+  background: #ffffff;
 }
 
 .method-list span {
