@@ -92,12 +92,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: calc(100vh - 74px);
-  padding: clamp(4rem, 8vw, 8rem) clamp(1rem, 4vw, 4.5rem);
+  min-height: clamp(30rem, 72vh, 42rem);
+  padding: clamp(3rem, 6vw, 5.5rem) clamp(1rem, 4vw, 4.5rem);
 }
 
 .hero-content--centered {
-  width: min(100%, 72rem);
+  width: min(100%, 56rem);
   text-align: center;
 }
 
@@ -105,13 +105,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(0.9rem, 2vw, 1.6rem);
-  margin-bottom: clamp(1.5rem, 3vw, 2.6rem);
+  gap: clamp(0.7rem, 1.6vw, 1.2rem);
+  margin-bottom: clamp(1rem, 2vw, 1.8rem);
 }
 
 .hero-title-lockup img {
-  width: clamp(3.2rem, 7vw, 6.5rem);
-  height: clamp(3.2rem, 7vw, 6.5rem);
+  width: clamp(2.6rem, 5vw, 4.5rem);
+  height: clamp(2.6rem, 5vw, 4.5rem);
   flex: 0 0 auto;
 }
 
@@ -157,9 +157,9 @@ body {
 .red-team-landing h1 {
   max-width: none;
   margin-bottom: 0;
-  font-size: clamp(5rem, 15vw, 14rem);
-  line-height: 0.78;
-  letter-spacing: -0.1em;
+  font-size: clamp(4rem, 10vw, 9rem);
+  line-height: 0.86;
+  letter-spacing: -0.08em;
 }
 
 .red-team-landing h2 {
@@ -189,12 +189,12 @@ body {
 
 .hero-subtitle {
   max-width: none;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0;
   color: var(--text);
-  font-size: clamp(2rem, 4vw, 4.4rem);
+  font-size: clamp(1.4rem, 3vw, 2.8rem);
   font-weight: 700;
-  line-height: 0.95;
-  letter-spacing: -0.07em;
+  line-height: 1;
+  letter-spacing: -0.05em;
 }
 
 .hero-actions {
