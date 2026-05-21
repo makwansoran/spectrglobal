@@ -273,6 +273,92 @@
     }
   }
 
+  function svgText(value) {
+    return String(value == null ? "" : value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function compactLabel(value, max) {
+    var text = String(value || "").replace(/\s+/g, " ").trim();
+    if (!max || text.length <= max) return text;
+    return text.slice(0, max - 1).trim() + "…";
+  }
+
+  function productVisualType(part) {
+    var source = String(((part && part.category) || "") + " " + ((part && part.name) || "")).toLowerCase();
+    if (source.indexOf("oil") !== -1 || source.indexOf("5w") !== -1 || source.indexOf("0w") !== -1) return "oil";
+    if (source.indexOf("brake") !== -1 || source.indexOf("disc") !== -1 || source.indexOf("pad") !== -1) return "brake";
+    if (source.indexOf("tire") !== -1 || source.indexOf("tyre") !== -1 || /\b\d{3}\/\d{2}\s*r\d{2}\b/i.test(source)) return "tire";
+    return "part";
+  }
+
+  function generatedProductSvg(part) {
+    var type = productVisualType(part || {});
+    var title = compactLabel((part && part.name) || "Spectr part", 34);
+    var code = compactLabel((part && (part.article_number || part.sku || part.id)) || "", 22);
+    var category = compactLabel((part && part.category) || "Auto part", 20);
+    var illustration = "";
+
+    if (type === "oil") {
+      illustration =
+        '<g transform="translate(236 70)">' +
+          '<rect x="78" y="0" width="92" height="44" rx="10" fill="#111827"/>' +
+          '<path d="M52 42h144l24 72v218c0 42-30 78-72 78H98c-42 0-72-36-72-78V114L52 42Z" fill="#f8fafc" stroke="#111827" stroke-width="10"/>' +
+          '<path d="M26 114h194v218c0 42-30 78-72 78H98c-42 0-72-36-72-78V114Z" fill="#ffffff"/>' +
+          '<rect x="54" y="152" width="138" height="150" rx="18" fill="#f97316"/>' +
+          '<text x="123" y="204" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="26" font-weight="800" fill="#fff">SPECTR</text>' +
+          '<text x="123" y="244" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="34" font-weight="900" fill="#fff">' + svgText(compactLabel(((part && part.name) || "").match(/\b\d+w-?\d+\b/i), 8) || "OIL") + '</text>' +
+        '</g>';
+    } else if (type === "brake") {
+      illustration =
+        '<g transform="translate(184 86)">' +
+          '<circle cx="176" cy="170" r="132" fill="#f8fafc" stroke="#111827" stroke-width="12"/>' +
+          '<circle cx="176" cy="170" r="64" fill="#ffffff" stroke="#cbd5e1" stroke-width="12"/>' +
+          '<circle cx="176" cy="170" r="18" fill="#111827"/>' +
+          '<g fill="#cbd5e1">' +
+            '<circle cx="176" cy="70" r="13"/><circle cx="176" cy="270" r="13"/><circle cx="76" cy="170" r="13"/><circle cx="276" cy="170" r="13"/>' +
+          '</g>' +
+          '<rect x="272" y="82" width="72" height="176" rx="22" fill="#f97316" stroke="#111827" stroke-width="8"/>' +
+        '</g>';
+    } else if (type === "tire") {
+      illustration =
+        '<g transform="translate(180 70)">' +
+          '<circle cx="180" cy="180" r="150" fill="#111827"/>' +
+          '<circle cx="180" cy="180" r="102" fill="#f8fafc"/>' +
+          '<circle cx="180" cy="180" r="58" fill="#ffffff" stroke="#94a3b8" stroke-width="10"/>' +
+          '<g stroke="#ffffff" stroke-width="10" stroke-linecap="round" opacity=".9">' +
+            '<path d="M180 40v54M180 266v54M40 180h54M266 180h54M82 82l38 38M240 240l38 38M278 82l-38 38M120 240l-38 38"/>' +
+          '</g>' +
+        '</g>';
+    } else {
+      illustration =
+        '<g transform="translate(210 92)">' +
+          '<rect x="20" y="64" width="260" height="196" rx="34" fill="#f8fafc" stroke="#111827" stroke-width="10"/>' +
+          '<path d="M78 64V36c0-20 16-36 36-36h72c20 0 36 16 36 36v28" fill="none" stroke="#111827" stroke-width="10"/>' +
+          '<rect x="58" y="112" width="184" height="52" rx="14" fill="#f97316"/>' +
+          '<circle cx="96" cy="216" r="18" fill="#111827"/><circle cx="204" cy="216" r="18" fill="#111827"/>' +
+        '</g>';
+    }
+
+    return (
+      '<svg xmlns="http://www.w3.org/2000/svg" width="720" height="520" viewBox="0 0 720 520" role="img" aria-label="' + svgText(title) + '">' +
+        '<rect width="720" height="520" rx="34" fill="#ffffff"/>' +
+        '<rect x="18" y="18" width="684" height="484" rx="28" fill="#ffffff" stroke="#e5e7eb" stroke-width="2"/>' +
+        illustration +
+        '<text x="360" y="438" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="27" font-weight="800" fill="#111827">' + svgText(title) + '</text>' +
+        '<text x="360" y="474" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="700" fill="#64748b">' + svgText([category, code].filter(Boolean).join(" · ")) + '</text>' +
+      '</svg>'
+    );
+  }
+
+  function productImageUrl(part) {
+    if (part && part.image_url) return part.image_url;
+    return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(generatedProductSvg(part || {}));
+  }
+
   function partsForVehicle(parts, criteria) {
     var list = Array.isArray(parts) ? parts : [];
     var brand = (criteria && criteria.brand) || "";
@@ -341,6 +427,7 @@
     clearCart: clearCart,
     celebrateAddToCart: celebrateAddToCart,
     formatNok: formatNok,
+    productImageUrl: productImageUrl,
     partsForVehicle: partsForVehicle,
     fetchCatalogParts: fetchCatalogParts,
     resetCatalogPartsCache: resetCatalogPartsCache,

@@ -99,9 +99,7 @@
         var lineTotal = (Number(part.price) || 0) * qty;
         sum += lineTotal;
         var stockLabel = (Number(part.stock) || 0) > 0 ? "In stock" : "Out of stock";
-        var media = part.image_url
-          ? '<div class="checkout-line-media checkout-line-media--has-image"><img src="' + escapeHtml(part.image_url) + '" alt="' + escapeHtml(part.name) + '" loading="lazy" /></div>'
-          : '<div class="checkout-line-media"><span>' + escapeHtml(initials(part.name)) + '</span></div>';
+        var media = '<div class="checkout-line-media checkout-line-media--has-image"><img src="' + escapeHtml(Shop.productImageUrl(part)) + '" alt="' + escapeHtml(part.name) + '" loading="lazy" /></div>';
         return '' +
           '<article class="checkout-line" data-line="' + escapeHtml(part.id) + '">' +
             media +

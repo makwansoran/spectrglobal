@@ -49,10 +49,13 @@
 
   function renderProductFacts(product) {
     var facts = [
-      ["Article number", product.article_number || product.sku || product.id],
+      product.brand ? ["Manufacturer", product.brand] : null,
+      product.article_number ? ["Article number", product.article_number] : null,
+      product.sku ? ["SKU", product.sku] : null,
       ["EAN", product.ean_code],
       ["Delivery", product.delivery_time || "2-5 days"],
-    ].filter(function (fact) { return fact[1]; });
+      ["Availability", stockLabel(product.stock)],
+    ].filter(function (fact) { return fact && fact[1]; });
     if (!facts.length) return "";
     return '<dl class="product-detail-facts">' + facts.map(function (fact) {
       return '<div><dt>' + escapeHtml(fact[0]) + '</dt><dd>' + escapeHtml(fact[1]) + '</dd></div>';
@@ -93,28 +96,19 @@
   }
 
   function renderProductMedia(product) {
-    if (product.image_url) {
-      return '<div class="product-detail-media product-detail-media--image"><img src="' + escapeHtml(product.image_url) + '" alt="' + escapeHtml(product.name) + '" /></div>';
-    }
-    return '<div class="product-detail-media"><span>' + escapeHtml(initials(product.name)) + '</span></div>';
+    return '<div class="product-detail-media product-detail-media--image"><img src="' + escapeHtml(Shop.productImageUrl(product)) + '" alt="' + escapeHtml(product.name) + '" /></div>';
   }
 
   function productCardMedia(part) {
-    if (part.image_url) {
-      return (
-        '<div class="product-image product-image--has-image">' +
-          '<img src="' + escapeHtml(part.image_url) + '" alt="' + escapeHtml(part.name) + '" loading="lazy" />' +
-        '</div>'
-      );
-    }
-    return '<div class="product-image"><span>' + escapeHtml(initials(part.name)) + '</span></div>';
+    return (
+      '<div class="product-image product-image--has-image">' +
+        '<img src="' + escapeHtml(Shop.productImageUrl(part)) + '" alt="' + escapeHtml(part.name) + '" loading="lazy" />' +
+      '</div>'
+    );
   }
 
   function cartLineMedia(part) {
-    if (part.image_url) {
-      return '<div class="cart-line-media cart-line-media--has-image"><img src="' + escapeHtml(part.image_url) + '" alt="' + escapeHtml(part.name) + '" loading="lazy" /></div>';
-    }
-    return '<div class="cart-line-media"><span>' + escapeHtml(initials(part.name)) + '</span></div>';
+    return '<div class="cart-line-media cart-line-media--has-image"><img src="' + escapeHtml(Shop.productImageUrl(part)) + '" alt="' + escapeHtml(part.name) + '" loading="lazy" /></div>';
   }
 
   function renderFeatures(product) {
@@ -133,9 +127,12 @@
   function renderReviews(product) {
     var reviews = Array.isArray(product.reviews) ? product.reviews : [];
     if (!reviews.length) {
-      reviews = [
-        { name: "Spectr customer", rating: 5, text: "Quality product selected for reliable everyday fitment." }
-      ];
+      return (
+        '<section class="product-detail-section">' +
+          '<h2>Reviews</h2>' +
+          '<p class="product-detail-muted">No verified reviews yet.</p>' +
+        '</section>'
+      );
     }
     return (
       '<section class="product-detail-section">' +
@@ -176,7 +173,7 @@
           '<p class="shop-eyebrow">' + escapeHtml(product.category || "Car part") + '</p>' +
           '<h1>' + escapeHtml(product.name) + '</h1>' +
           '<p class="product-detail-sku">' + escapeHtml(product.article_number || product.sku || product.id) + '</p>' +
-          '<p class="product-detail-description">' + escapeHtml(product.description || "No product description has been added yet.") + '</p>' +
+          '<p class="product-detail-description">' + escapeHtml(product.description || "Product details are generated from the Spectr compatibility catalog.") + '</p>' +
           renderProductFacts(product) +
           '<div class="product-detail-buy">' +
             '<strong>' + escapeHtml(Shop.formatNok(product.price || 0)) + '</strong>' +
@@ -185,6 +182,11 @@
           '<button type="button" class="btn btn-primary product-detail-add" id="product-detail-add" ' + (outOfStock ? "disabled" : "") + '>' +
             (line ? "In cart · " + line.qty : "Add to cart") +
           '</button>' +
+          '<div class="product-detail-service">' +
+            '<span>White-background product view</span>' +
+            '<span>' + escapeHtml(product.delivery_time || "2-5 days") + ' delivery</span>' +
+            '<span>Secure checkout</span>' +
+          '</div>' +
           '<section class="product-detail-section">' +
             '<h2>Product description</h2>' +
             '<p>' + escapeHtml(product.description || "This product is available in the Spectr catalog. Add detailed specifications in the admin panel.") + '</p>' +

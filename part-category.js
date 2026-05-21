@@ -108,21 +108,15 @@
   }
 
   function productCardMedia(part) {
-    if (part.image_url) {
-      return (
-        '<div class="product-image product-image--has-image">' +
-          '<img src="' + escapeHtml(part.image_url) + '" alt="' + escapeHtml(part.name) + '" loading="lazy" />' +
-        '</div>'
-      );
-    }
-    return '<div class="product-image"><span>' + escapeHtml(initials(part.name)) + '</span></div>';
+    return (
+      '<div class="product-image product-image--has-image">' +
+        '<img src="' + escapeHtml(Shop.productImageUrl(part)) + '" alt="' + escapeHtml(part.name) + '" loading="lazy" />' +
+      '</div>'
+    );
   }
 
   function cartLineMedia(part) {
-    if (part.image_url) {
-      return '<div class="cart-line-media cart-line-media--has-image"><img src="' + escapeHtml(part.image_url) + '" alt="' + escapeHtml(part.name) + '" loading="lazy" /></div>';
-    }
-    return '<div class="cart-line-media"><span>' + escapeHtml(initials(part.name)) + '</span></div>';
+    return '<div class="cart-line-media cart-line-media--has-image"><img src="' + escapeHtml(Shop.productImageUrl(part)) + '" alt="' + escapeHtml(part.name) + '" loading="lazy" /></div>';
   }
 
   function modelSupportsYear(model, year) {

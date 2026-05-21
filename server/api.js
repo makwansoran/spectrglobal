@@ -229,6 +229,39 @@ function oilBrandName(row) {
   return (brand && brand.name) || "";
 }
 
+function productSpec(label, value) {
+  const text = Array.isArray(value) ? value.filter(Boolean).join(", ") : value;
+  const normalized = String(text == null ? "" : text).trim();
+  if (!normalized) return null;
+  return { label, value: normalized };
+}
+
+function mergeProductSpecs(existing, generated) {
+  const result = [];
+  const seen = new Set();
+  for (const spec of [...(Array.isArray(existing) ? existing : []), ...(generated || [])]) {
+    if (!spec) continue;
+    const label = String(spec.label || spec.name || "Detail").trim();
+    const value = String(spec.value == null ? "" : spec.value).trim();
+    if (!label || !value) continue;
+    const key = `${label.toLowerCase()}|${value.toLowerCase()}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    result.push({ label, value });
+  }
+  return result;
+}
+
+function oilProductSpecs(row, brandName, volume, approvals) {
+  return [
+    productSpec("Manufacturer", brandName),
+    productSpec("SAE viscosity", row.viscosity),
+    productSpec("Oil type", row.base_type),
+    productSpec("Capacity", volume),
+    productSpec("Approvals", approvals),
+  ].filter(Boolean);
+}
+
 function oilProductFromRow(row, fitments) {
   const brandName = oilBrandName(row);
   const volume = row.volume_liters == null ? "" : `${Number(row.volume_liters)}L`;
@@ -244,6 +277,7 @@ function oilProductFromRow(row, fitments) {
     id: `oil-product-${row.id}`,
     name: [brandName, row.name, volume].filter(Boolean).join(" "),
     category: "Oils",
+    brand: brandName,
     sku: `OIL-${String(row.id || "").slice(0, 8).toUpperCase()}`,
     article_number: row.article_number || "",
     ean_code: row.ean_code || "",
@@ -254,7 +288,7 @@ function oilProductFromRow(row, fitments) {
     image_url: row.image_url || "",
     features: Array.isArray(row.features) ? row.features : [],
     reviews: Array.isArray(row.reviews) ? row.reviews : [],
-    specifications: Array.isArray(row.specifications) ? row.specifications : [],
+    specifications: mergeProductSpecs(row.specifications, oilProductSpecs(row, brandName, volume, approvals)),
     vehicles: fitments,
   };
 }
@@ -316,11 +350,28 @@ function brakeProductFromRow(row, fitments) {
         row.pad_with_sensor ? "with sensor" : "",
       ]
     : [];
+  const generatedSpecs = [
+    productSpec("Manufacturer", brandName),
+    productSpec("Part type", typeLabel),
+    productSpec("Position", row.position ? `${row.position} axle` : ""),
+    productSpec("Diameter", row.disc_diameter_mm ? `${row.disc_diameter_mm} mm` : ""),
+    productSpec("Thickness", row.disc_thickness_mm ? `${Number(row.disc_thickness_mm).toFixed(1)} mm` : ""),
+    productSpec("Minimum thickness", row.disc_min_thickness_mm ? `${Number(row.disc_min_thickness_mm).toFixed(1)} mm` : ""),
+    productSpec("Ventilated", row.disc_ventilated ? "Yes" : ""),
+    productSpec("Drilled", row.disc_drilled ? "Yes" : ""),
+    productSpec("Slotted", row.disc_slotted ? "Yes" : ""),
+    productSpec("Coated", row.disc_coated ? "Yes" : ""),
+    productSpec("Pad dimensions", row.pad_height_mm && row.pad_width_mm ? `${Number(row.pad_height_mm).toFixed(1)} x ${Number(row.pad_width_mm).toFixed(1)} mm` : ""),
+    productSpec("Pad thickness", row.pad_thickness_mm ? `${Number(row.pad_thickness_mm).toFixed(1)} mm` : ""),
+    productSpec("Pad material", row.pad_material),
+    productSpec("Wear sensor", row.pad_with_sensor ? "Included" : ""),
+  ].filter(Boolean);
 
   return {
     id: `brake-product-${row.id}`,
     name: [brandName, row.name].filter(Boolean).join(" "),
     category: "Brakes",
+    brand: brandName,
     sku: `BRAKE-${String(row.id || "").slice(0, 8).toUpperCase()}`,
     article_number: row.article_number || "",
     ean_code: row.ean_code || row.ean || "",
@@ -331,7 +382,7 @@ function brakeProductFromRow(row, fitments) {
     image_url: row.image_url || "",
     features: Array.isArray(row.features) ? row.features : [],
     reviews: Array.isArray(row.reviews) ? row.reviews : [],
-    specifications: Array.isArray(row.specifications) ? row.specifications : [],
+    specifications: mergeProductSpecs(row.specifications, generatedSpecs),
     vehicles: fitments,
   };
 }
@@ -384,6 +435,7 @@ function tyrePartFromGroup(key, rows) {
     id: `tyre-size-${key}`,
     name: `${brand} ${label}`,
     category: "Tires",
+    brand,
     sku: `TYRE-${first.width}-${first.aspect_ratio}-R${first.rim_diameter}`,
     article_number: `TYRE-${key}`,
     ean_code: "",
