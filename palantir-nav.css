@@ -252,11 +252,10 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 0.45rem;
-  max-height: min(24rem, calc(100vh - 5rem));
   width: 3.75rem;
   max-width: calc(100vw - 1.5rem);
   padding: 0.75rem;
-  overflow-y: auto;
+  overflow: visible;
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 22px;
   background:
@@ -265,8 +264,6 @@
   box-shadow: 0 24px 65px rgba(0, 0, 0, 0.48), inset 0 1px 0 rgba(255, 255, 255, 0.08);
   transform-origin: top right;
   animation: plt-language-pop 0.22s cubic-bezier(0.18, 0.82, 0.22, 1) both;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.38) transparent;
 }
 
 .plt-language-menu[hidden] {
