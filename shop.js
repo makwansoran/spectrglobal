@@ -135,11 +135,12 @@
     var plateForm = $("finder-plate-form");
     var plateInput = $("finder-plate");
     var vehicleForm = $("finder-vehicle-form");
+    var brandsFromDatabase = [];
 
     if (!brandSelect || !modelSelect || !engineSelect) return;
 
     function populateBrands() {
-      var brands = Shop.getBrands();
+      var brands = brandsFromDatabase;
       var current = brandSelect.value;
       brandSelect.innerHTML = '<option value="">Choose brand</option>' +
         brands.map(function (b) {
@@ -150,7 +151,32 @@
     }
 
     function findBrand(name) {
-      return Shop.getBrands().find(function (b) { return b.name === name; });
+      return brandsFromDatabase.find(function (b) { return b.name === name; });
+    }
+
+    function mergeDatabaseMake(make) {
+      var local = Shop.getBrands().find(function (b) { return b.name === make.name; });
+      return {
+        id: make.slug || make.name,
+        name: make.name,
+        slug: make.slug,
+        logoText: make.logo_text,
+        country: make.country,
+        region: make.region,
+        models: local ? local.models : []
+      };
+    }
+
+    function applyMakeFromUrl() {
+      var params = new URLSearchParams(window.location.search);
+      var requested = params.get("make");
+      if (!requested) return;
+      var match = brandsFromDatabase.find(function (brand) {
+        return brand.slug === requested || brand.name.toLowerCase() === requested.toLowerCase();
+      });
+      if (!match) return;
+      brandSelect.value = match.name;
+      onBrandChange();
     }
 
     function onBrandChange() {
@@ -239,7 +265,30 @@
       });
     }
 
-    populateBrands();
+    brandSelect.innerHTML = '<option value="">Loading brands...</option>';
+    brandSelect.disabled = true;
+    fetch("/api/makes?active=1&limit=300", { headers: { Accept: "application/json" } })
+      .then(function (res) {
+        return res.json().then(function (data) {
+          if (!res.ok) throw new Error(data.error || "Car makes database unavailable.");
+          return Array.isArray(data.makes) ? data.makes : [];
+        });
+      })
+      .then(function (makes) {
+        brandsFromDatabase = makes.map(mergeDatabaseMake);
+        brandSelect.disabled = false;
+        populateBrands();
+        applyMakeFromUrl();
+      })
+      .catch(function () {
+        brandsFromDatabase = [];
+        brandSelect.innerHTML = '<option value="">No database brands available</option>';
+        brandSelect.disabled = true;
+        modelSelect.innerHTML = '<option value="">Choose model</option>';
+        modelSelect.disabled = true;
+        engineSelect.innerHTML = '<option value="">Choose engine</option>';
+        engineSelect.disabled = true;
+      });
 
     window.addEventListener("spectr-shop-change", function (event) {
       if (event.detail && event.detail.key === Shop.KEYS.brands) populateBrands();

@@ -2,12 +2,12 @@
   "use strict";
 
   var LOGIN_CLASS = "plt-header-login";
-  var NAV_CTA_CLASS = "plt-cta-get-started";
+  var CUSTOMER_SESSION_KEY = "spectr_shop_customer_v1";
 
   function initials(user) {
-    var name = (user && user.username) || (user && user.email) || "?";
-    var parts = String(name).replace(/^@/, "").split(/[\s._-]+/).filter(Boolean);
-    if (parts.length >= 2) return (parts[0][0] + parts[1][0]).toUpperCase();
+    var name = (user && user.name) || (user && user.email) || "?";
+    var parts = String(name).split(/\s+/).filter(Boolean);
+    if (parts.length >= 2) return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
     return String(name).slice(0, 2).toUpperCase();
   }
 
@@ -23,55 +23,49 @@
       .replace(/"/g, "&quot;");
   }
 
+  function readCustomerSession() {
+    var raw = null;
+    try {
+      raw =
+        localStorage.getItem(CUSTOMER_SESSION_KEY) ||
+        sessionStorage.getItem(CUSTOMER_SESSION_KEY);
+    } catch {
+      return null;
+    }
+    if (!raw) return null;
+    try {
+      var data = JSON.parse(raw);
+      if (!data || !data.email) return null;
+      return {
+        id: data.id || null,
+        email: data.email,
+        name: data.name || data.email,
+        role: "customer",
+      };
+    } catch {
+      return null;
+    }
+  }
+
+  function clearCustomerSession() {
+    try {
+      localStorage.removeItem(CUSTOMER_SESSION_KEY);
+      sessionStorage.removeItem(CUSTOMER_SESSION_KEY);
+    } catch {
+      /* ignore */
+    }
+  }
+
   function renderLogin(slot) {
-    var isNav = slot.getAttribute("data-spectr-auth-variant") === "nav";
     var a = document.createElement("a");
     a.href = loginHref();
-    a.textContent = "Sign in";
-    a.className = isNav ? NAV_CTA_CLASS : LOGIN_CLASS;
+    a.textContent = "Login";
+    a.className = LOGIN_CLASS;
     slot.replaceChildren(a);
   }
 
-  function isEditor(user) {
-    return !!(user && user.role === "editor");
-  }
-
-  function editorMenuItems(user) {
-    if (!isEditor(user)) return "";
-    return '<a href="admin-company.html" role="menuitem" class="spectr-user-dropdown-editor">Add / edit company</a>';
-  }
-
-  function accountMenuItems(user) {
-    if (user && user.role === "customer") return "";
-    return (
-      '<a href="settings.html" role="menuitem">Settings</a>' +
-      '<a href="watchlist.html" role="menuitem">Watchlist</a>'
-    );
-  }
-
-  function syncEditorNavLink(user) {
-    var list = document.querySelector(".plt-nav-list");
-    if (!list) return;
-    var existing = list.querySelector("[data-spectr-editor-nav]");
-    if (!isEditor(user)) {
-      if (existing) existing.closest("li")?.remove();
-      return;
-    }
-    if (existing) return;
-    var li = document.createElement("li");
-    var a = document.createElement("a");
-    a.href = "admin-company.html";
-    a.className = "plt-nav-primary";
-    a.setAttribute("data-spectr-editor-nav", "");
-    a.textContent = "Add / edit company";
-    li.appendChild(a);
-    list.insertBefore(li, list.firstChild);
-  }
-
   function renderMenu(slot, user) {
-    var label = user.username
-      ? "@" + user.username
-      : user.name || user.email || "Account";
+    var label = user.name || user.email || "Account";
     var wrap = document.createElement("div");
     wrap.className = "spectr-user-menu";
     wrap.innerHTML =
@@ -83,8 +77,6 @@
       '<p class="spectr-user-dropdown-label">' +
       escapeHtml(label) +
       "</p>" +
-      editorMenuItems(user) +
-      accountMenuItems(user) +
       '<button type="button" role="menuitem" data-spectr-logout>Log out</button>' +
       "</div>";
 
@@ -123,7 +115,6 @@
 
     wrap.querySelector("[data-spectr-logout]").addEventListener("click", function () {
       clearCustomerSession();
-      if (window.SpectrAuth) SpectrAuth.clearSession();
       close();
       renderAllSlots(null);
     });
@@ -136,106 +127,12 @@
       if (user) renderMenu(slot, user);
       else renderLogin(slot);
     });
-    syncEditorNavLink(user);
   }
 
-  var CUSTOMER_SESSION_KEY = "spectr_shop_customer_v1";
-
-  function readCustomerSession() {
-    var raw = null;
-    try {
-      raw =
-        localStorage.getItem(CUSTOMER_SESSION_KEY) ||
-        sessionStorage.getItem(CUSTOMER_SESSION_KEY);
-    } catch {
-      return null;
-    }
-    if (!raw) return null;
-    try {
-      var data = JSON.parse(raw);
-      if (!data || !data.email) return null;
-      return {
-        id: data.id || null,
-        email: data.email,
-        name: data.name || data.email,
-        username: null,
-        role: "customer",
-      };
-    } catch {
-      return null;
-    }
-  }
-
-  function clearCustomerSession() {
-    try {
-      localStorage.removeItem(CUSTOMER_SESSION_KEY);
-      sessionStorage.removeItem(CUSTOMER_SESSION_KEY);
-    } catch {
-      /* ignore */
-    }
-  }
-
-  async function resolveUser() {
-    var customer = readCustomerSession();
-    if (customer) return customer;
-
-    if (!window.SpectrAuth) return null;
-    var session = SpectrAuth.getSession();
-    if (!session || !session.access_token) return null;
-
-    if (SpectrAuth.isExpired(session) && session.refresh_token) {
-      try {
-        var res = await fetch("/api/auth/refresh", {
-          method: "POST",
-          headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify({ refresh_token: session.refresh_token }),
-        });
-        var data = {};
-        try {
-          data = await res.json();
-        } catch {
-          data = {};
-        }
-        if (res.ok && data.access_token) {
-          SpectrAuth.saveSession(data, SpectrAuth.rememberEnabled());
-          session = SpectrAuth.getSession();
-        } else {
-          SpectrAuth.clearSession();
-          return null;
-        }
-      } catch {
-        SpectrAuth.clearSession();
-        return null;
-      }
-    }
-
-    if (SpectrAuth.isExpired(session)) {
-      SpectrAuth.clearSession();
-      return null;
-    }
-
-    if (session.user && session.user.role && session.user.username) {
-      return session.user;
-    }
-
-    try {
-      var meRes = await fetch("/api/auth/me", { headers: SpectrAuth.authHeaders(session) });
-      var me = {};
-      try {
-        me = await meRes.json();
-      } catch {
-        me = {};
-      }
-      if (meRes.ok && me.user) {
-        session.user = me.user;
-        SpectrAuth.saveSession(session, SpectrAuth.rememberEnabled());
-        return me.user;
-      }
-    } catch {
-      /* optional */
-    }
-
-    return session.user || null;
+  function init() {
+    var slots = document.querySelectorAll("[data-spectr-auth-slot]");
+    if (!slots.length) return;
+    renderAllSlots(readCustomerSession());
   }
 
   document.addEventListener("click", function () {
@@ -249,27 +146,15 @@
   });
 
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") {
-      document.querySelectorAll(".spectr-user-menu.is-open").forEach(function (menu) {
-        menu.classList.remove("is-open");
-        var btn = menu.querySelector(".spectr-user-menu-btn");
-        var panel = menu.querySelector(".spectr-user-dropdown");
-        if (btn) btn.setAttribute("aria-expanded", "false");
-        if (panel) panel.hidden = true;
-      });
-    }
-  });
-
-  function init() {
-    var slots = document.querySelectorAll("[data-spectr-auth-slot]");
-    if (!slots.length) return;
-
-    renderAllSlots(null);
-
-    resolveUser().then(function (user) {
-      renderAllSlots(user);
+    if (e.key !== "Escape") return;
+    document.querySelectorAll(".spectr-user-menu.is-open").forEach(function (menu) {
+      menu.classList.remove("is-open");
+      var btn = menu.querySelector(".spectr-user-menu-btn");
+      var panel = menu.querySelector(".spectr-user-dropdown");
+      if (btn) btn.setAttribute("aria-expanded", "false");
+      if (panel) panel.hidden = true;
     });
-  }
+  });
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);
@@ -277,5 +162,9 @@
     init();
   }
 
-  window.SpectrAuthNav = { refresh: function () { resolveUser().then(renderAllSlots); } };
+  window.SpectrAuthNav = {
+    refresh: function () {
+      renderAllSlots(readCustomerSession());
+    },
+  };
 })();

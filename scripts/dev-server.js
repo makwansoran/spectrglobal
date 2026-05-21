@@ -1,24 +1,16 @@
 /**
- * Local static dev server for spectrglobal (no npm install required).
+ * Local static dev server for Spectr Parts.
  * Usage: node scripts/dev-server.js
- *
- * Serves /company/* as the React SPA (company/index.html) when built.
  */
 require("./load-env").loadEnv();
 
 const http = require("http");
 const fs = require("fs");
 const path = require("path");
+const { handleApi } = require("../server/api");
+const { isSupabaseEnabled } = require("../server/supabase-client");
 
 const ROOT = path.resolve(__dirname, "..");
-const COMPANY_SPA = path.join(ROOT, "company", "index.html");
-const { handleApi } = require("../server/api");
-const { listCompanies, storageMode, isSupabaseEnabled } = require("../server/store");
-
-function isInsideRoot(filePath) {
-  const rel = path.relative(ROOT, filePath);
-  return rel && !rel.startsWith("..") && !path.isAbsolute(rel);
-}
 const HOST = process.env.HOST || "127.0.0.1";
 const PORT = Number(process.env.PORT) || 3000;
 
@@ -39,52 +31,17 @@ const MIME = {
   ".txt": "text/plain; charset=utf-8",
 };
 
+function isInsideRoot(filePath) {
+  const rel = path.relative(ROOT, filePath);
+  return rel && !rel.startsWith("..") && !path.isAbsolute(rel);
+}
+
 function resolveFilePath(urlPath) {
   const decoded = decodeURIComponent(urlPath.split("?")[0]);
   const rel = decoded === "/" ? "index.html" : decoded.replace(/^\//, "");
   const filePath = path.resolve(ROOT, rel);
   if (!isInsideRoot(filePath)) return null;
   return filePath;
-}
-
-function isCompanyAppRoute(pathname) {
-  return pathname === "/company" || pathname.startsWith("/company/");
-}
-
-function isPersonAppRoute(pathname) {
-  return pathname === "/person" || pathname.startsWith("/person/");
-}
-
-function isCountryAppRoute(pathname) {
-  return pathname === "/country" || pathname.startsWith("/country/");
-}
-
-function isPoliticianAppRoute(pathname) {
-  return pathname === "/politician" || pathname.startsWith("/politician/");
-}
-
-function isCommodityRoute(pathname) {
-  return pathname === "/commodity" || pathname.startsWith("/commodity/");
-}
-
-function isWaterwayRoute(pathname) {
-  return pathname === "/waterway" || pathname.startsWith("/waterway/");
-}
-
-function isVesselRoute(pathname) {
-  return pathname === "/vessel" || pathname.startsWith("/vessel/");
-}
-
-function isProfileSpaRoute(pathname) {
-  return (
-    isCompanyAppRoute(pathname) ||
-    isPersonAppRoute(pathname) ||
-    isCountryAppRoute(pathname) ||
-    isPoliticianAppRoute(pathname) ||
-    isCommodityRoute(pathname) ||
-    isWaterwayRoute(pathname) ||
-    isVesselRoute(pathname)
-  );
 }
 
 function sendFile(res, filePath) {
@@ -103,7 +60,6 @@ function sendFile(res, filePath) {
 
 function serveStatic(req, res, pathname) {
   const filePath = resolveFilePath(pathname);
-
   if (!filePath) {
     res.writeHead(403, { "Content-Type": "text/plain; charset=utf-8" });
     res.end("Forbidden");
@@ -115,23 +71,6 @@ function serveStatic(req, res, pathname) {
       sendFile(res, filePath);
       return;
     }
-
-    if (isProfileSpaRoute(pathname) && fs.existsSync(COMPANY_SPA)) {
-      sendFile(res, COMPANY_SPA);
-      return;
-    }
-
-    if (isProfileSpaRoute(pathname)) {
-      res.writeHead(503, { "Content-Type": "text/html; charset=utf-8" });
-      res.end(
-        "<!DOCTYPE html><html><body style='font-family:sans-serif;padding:2rem'>" +
-          "<h1>Company profile not built</h1>" +
-          "<p>Run <code>npm run build:profile</code> from the repo root, then refresh this page.</p>" +
-          "</body></html>"
-      );
-      return;
-    }
-
     res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
     res.end("Not found");
   });
@@ -161,42 +100,19 @@ const server = http.createServer((req, res) => {
 
 server.on("error", (err) => {
   if (err.code === "EADDRINUSE") {
-    console.error("");
-    console.error(`  Port ${PORT} is already in use.`);
-    console.error(`  Open http://${HOST}:${PORT}/ in your browser, or stop the other process:`);
-    console.error(`    netstat -ano | findstr :${PORT}`);
-    console.error("    taskkill /PID <pid> /F");
-    console.error("");
+    console.error(`Port ${PORT} is already in use.`);
     process.exit(1);
   }
   throw err;
 });
 
 server.listen(PORT, HOST, () => {
-  const companyReady = fs.existsSync(COMPANY_SPA);
   console.log("");
-  console.log("  Spectr local dev server");
+  console.log("  Spectr Parts dev server");
   console.log(`  → http://${HOST}:${PORT}/`);
-  console.log(`  → http://${HOST}:${PORT}/index.html`);
-  if (companyReady) {
-    console.log(`  → http://${HOST}:${PORT}/company/equinor  (company profile)`);
-    console.log(`  → http://${HOST}:${PORT}/person/karl-johnny-hersvik  (person profile)`);
-  } else {
-    console.log("  Warning: company profile missing — run: npm run build:profile");
-  }
-  console.log(`  Storage  ${storageMode()}${isSupabaseEnabled() ? " (Supabase)" : " (local SQLite/JSON)"}`);
-  listCompanies()
-    .then((rows) => {
-      console.log(`  API      /api/companies (${rows.length} companies)`);
-      if (rows.length === 0) {
-        console.log("  Warning: empty — run: npm run db:seed");
-      }
-    })
-    .catch((err) => {
-      console.log("  Warning: could not list companies —", err.message);
-    });
-  console.log("");
-  console.log("  Edit files and refresh the browser to see changes.");
-  console.log("  Press Ctrl+C to stop.");
+  console.log(`  → http://${HOST}:${PORT}/login.html`);
+  console.log(
+    `  Supabase ${isSupabaseEnabled() ? "configured" : "not configured (set SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY)"}`
+  );
   console.log("");
 });

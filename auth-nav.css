@@ -128,16 +128,8 @@
   left: auto;
 }
 
-.spectr-auth-slot--header .spectr-user-menu {
-  display: none;
-}
-
 @media (min-width: 640px) {
   .spectr-auth-slot--header {
     margin-right: 0.25rem;
-  }
-
-  .spectr-auth-slot--header .spectr-user-menu {
-    display: inline-flex;
   }
 }

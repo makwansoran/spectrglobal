@@ -1,85 +1,12 @@
 {
-  "installCommand": "npm install && npm install --prefix profile",
-  "buildCommand": "npm run build --prefix profile",
+  "installCommand": "npm install",
   "outputDirectory": ".",
   "functions": {
-    "api/[[...path]].js": {
-      "maxDuration": 120,
-      "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,data/**,scripts/load-env.js"
-    },
-    "api/companies/[slug].js": {
-      "maxDuration": 60,
-      "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,node_modules/ws/**,data/**,scripts/load-env.js"
-    },
-    "api/companies/[slug]/[[...resource]].js": {
-      "maxDuration": 60,
-      "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,node_modules/ws/**,data/**,scripts/load-env.js"
-    },
-    "api/euronext/[[...path]].js": {
-      "maxDuration": 120,
-      "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,data/**,scripts/load-env.js"
-    },
-    "api/datafeed/[[...path]].js": {
-      "maxDuration": 120,
-      "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,data/**,scripts/load-env.js"
-    },
-    "api/commodities/[[...path]].js": {
-      "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,data/**,scripts/load-env.js"
-    },
-    "api/people/[[...path]].js": {
-      "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,data/**,scripts/load-env.js"
-    },
-    "api/holders/[[...path]].js": {
-      "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,data/**,scripts/load-env.js"
-    },
-    "api/portfolio/holdings.js": {
-      "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,data/**,scripts/load-env.js"
-    },
-    "api/waterways/[[...path]].js": {
-      "maxDuration": 30,
-      "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,node_modules/ws/**,data/**,scripts/load-env.js"
-    },
     "api/auth/[[...path]].js": {
-      "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,data/**,scripts/load-env.js"
-    },
-    "api/admin/[[...path]].js": {
-      "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,data/**,scripts/load-env.js"
+      "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,scripts/load-env.js"
     }
   },
-  "crons": [
-    {
-      "path": "/api/datafeed/sync?sources=euronext,finnhub&markets=oslo&finnhubLimit=80",
-      "schedule": "0 6 * * *"
-    }
-  ],
   "rewrites": [
-    { "source": "/person", "destination": "/company/index.html" },
-    { "source": "/person/", "destination": "/company/index.html" },
-    { "source": "/person/:path*", "destination": "/company/index.html" },
-    { "source": "/country", "destination": "/company/index.html" },
-    { "source": "/country/", "destination": "/company/index.html" },
-    { "source": "/country/:path*", "destination": "/company/index.html" },
-    { "source": "/politician", "destination": "/company/index.html" },
-    { "source": "/politician/", "destination": "/company/index.html" },
-    { "source": "/politician/:path*", "destination": "/company/index.html" },
-    { "source": "/vessel", "destination": "/company/index.html" },
-    { "source": "/vessel/", "destination": "/company/index.html" },
-    { "source": "/vessel/:path*", "destination": "/company/index.html" },
-    { "source": "/commodity", "destination": "/company/index.html" },
-    { "source": "/commodity/", "destination": "/company/index.html" },
-    { "source": "/commodity/:path*", "destination": "/company/index.html" },
-    { "source": "/company", "destination": "/company/index.html" },
-    { "source": "/company/", "destination": "/company/index.html" },
-    { "source": "/company/us-brk.b", "destination": "/company/us-brk-b", "statusCode": 308 },
-    { "source": "/company/us-brk.b/:path*", "destination": "/company/us-brk-b/:path*", "statusCode": 308 },
-    { "source": "/waterway", "destination": "/company/index.html" },
-    { "source": "/waterway/", "destination": "/company/index.html" },
-    { "source": "/waterway/:path*", "destination": "/company/index.html" },
-    { "source": "/company/:path*", "destination": "/company/index.html" },
-    { "source": "/login", "destination": "/login.html" },
-    { "source": "/admin/company", "destination": "/admin-company.html" },
-    { "source": "/admin-company", "destination": "/admin-company.html" },
-    { "source": "/settings", "destination": "/settings.html" },
-    { "source": "/watchlist", "destination": "/watchlist.html" }
+    { "source": "/login", "destination": "/login.html" }
   ]
 }

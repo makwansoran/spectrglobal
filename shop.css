@@ -624,7 +624,7 @@
   line-height: 1;
 }
 
-.brand-more-link {
+.shop-page .brand-more-link {
   width: fit-content;
   display: flex;
   align-items: center;
@@ -645,9 +645,10 @@
   transition: background 0.15s, color 0.15s;
 }
 
-.brand-more-link:hover {
-  background: #ffffff;
-  color: var(--shop-ink);
+.shop-page .brand-more-link:hover {
+  background: #1f6feb;
+  border-color: #1f6feb;
+  color: #ffffff;
 }
 
 .all-brands-page {

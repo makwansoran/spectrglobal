@@ -120,25 +120,10 @@
     });
   }
 
-  function initCreateAccount() {
-    var form = document.getElementById("create-account-form");
-    if (!form) return;
-    form.addEventListener("submit", function (event) {
-      event.preventDefault();
-      submitCustomerForm(form, {
-        nameId: "account-name",
-        emailId: "account-email",
-        phoneId: "account-phone",
-        source: "create_account_page"
-      });
-    });
-  }
-
   document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll("[data-current-year]").forEach(function (node) {
       node.textContent = String(new Date().getFullYear());
     });
     initSignIn();
-    initCreateAccount();
   });
 })();

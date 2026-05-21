@@ -39,9 +39,7 @@ jobs:
         with:
           node-version: "22"
           cache: npm
-          cache-dependency-path: |
-            package-lock.json
-            profile/package-lock.json
+          cache-dependency-path: package-lock.json
 
       - name: Install Vercel CLI
         if: steps.secrets.outputs.skip != 'true'
