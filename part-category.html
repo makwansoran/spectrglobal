@@ -120,49 +120,87 @@
           </aside>
 
           <div class="category-fit-products">
-          <form class="brand-fit-form" id="category-fit-form" autocomplete="off">
-            <div class="brand-fit-head">
-              <p class="shop-eyebrow">Identify your car</p>
-              <h2 id="category-fit-title">Choose year, model, or VIN</h2>
-            </div>
-            <label class="brand-fit-field">
-              <span>Car brand</span>
-              <select id="category-brand-select">
-                <option value="">Loading brands...</option>
-              </select>
-            </label>
-            <label class="brand-fit-field">
-              <span>Year</span>
-              <select id="category-year-select" disabled>
-                <option value="">Choose year</option>
-              </select>
-            </label>
-            <label class="brand-fit-field">
-              <span>Model</span>
-              <select id="category-model-select" disabled>
-                <option value="">Choose model</option>
-              </select>
-            </label>
-            <label class="brand-fit-field">
-              <span>VIN number</span>
-              <input id="category-vin-input" type="text" inputmode="latin" autocomplete="off" maxlength="17" placeholder="Enter VIN" />
-            </label>
-            <button type="submit" class="btn btn-primary">Show matching products</button>
-            <button type="button" class="brand-fit-reset" id="category-fit-reset" hidden>Clear selection</button>
-            <p class="brand-fit-status" id="category-fit-status" aria-live="polite"></p>
-          </form>
-
-          <section class="category-products" aria-labelledby="category-products-title">
-            <div class="catalog-head">
-              <div>
-                <h2 id="category-products-title">Matching products</h2>
-                <p class="catalog-summary" id="category-products-summary">Loading products...</p>
+            <form class="brand-fit-form" id="category-fit-form" autocomplete="off">
+              <div class="brand-fit-head">
+                <p class="shop-eyebrow">Identify your car</p>
+                <h2 id="category-fit-title">Choose year, model, or VIN</h2>
               </div>
-            </div>
-            <div class="catalog-grid" id="category-products-grid" aria-live="polite">
-              <div class="catalog-empty"><strong>Loading products from database...</strong></div>
-            </div>
-          </section>
+              <label class="brand-fit-field">
+                <span>Car brand</span>
+                <select id="category-brand-select">
+                  <option value="">Loading brands...</option>
+                </select>
+              </label>
+              <label class="brand-fit-field">
+                <span>Year</span>
+                <select id="category-year-select" disabled>
+                  <option value="">Choose year</option>
+                </select>
+              </label>
+              <label class="brand-fit-field">
+                <span>Model</span>
+                <select id="category-model-select" disabled>
+                  <option value="">Choose model</option>
+                </select>
+              </label>
+              <label class="brand-fit-field">
+                <span>VIN number</span>
+                <input id="category-vin-input" type="text" inputmode="latin" autocomplete="off" maxlength="17" placeholder="Enter VIN" />
+              </label>
+              <button type="submit" class="btn btn-primary">Show matching products</button>
+              <button type="button" class="brand-fit-reset" id="category-fit-reset" hidden>Clear selection</button>
+              <p class="brand-fit-status" id="category-fit-status" aria-live="polite"></p>
+            </form>
+
+            <div class="category-product-stack">
+              <section class="category-products" aria-labelledby="category-products-title">
+                <div class="catalog-head">
+                  <div>
+                    <h2 id="category-products-title">Matching products</h2>
+                    <p class="catalog-summary" id="category-products-summary">Loading products...</p>
+                  </div>
+                </div>
+                <div class="catalog-grid" id="category-products-grid" aria-live="polite">
+                  <div class="catalog-empty"><strong>Loading products from database...</strong></div>
+                </div>
+              </section>
+
+              <section class="category-review-strip" aria-label="Customer reviews">
+                <article class="category-review-card">
+                  <div class="category-review-head">
+                    <span class="category-review-avatar category-review-avatar--blue" role="img" aria-label="Profile picture for Erik Hansen">EH</span>
+                    <div>
+                      <strong>Erik Hansen</strong>
+                      <small>Oslo, Norway</small>
+                    </div>
+                  </div>
+                  <p>The selector found the right fit for my car quickly, and the parts arrived before the weekend service.</p>
+                  <div class="category-review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+                </article>
+                <article class="category-review-card">
+                  <div class="category-review-head">
+                    <span class="category-review-avatar category-review-avatar--green" role="img" aria-label="Profile picture for Maria Solberg">MS</span>
+                    <div>
+                      <strong>Maria Solberg</strong>
+                      <small>Bergen, Norway</small>
+                    </div>
+                  </div>
+                  <p>I compared matching products by VIN and avoided ordering the wrong size. The product list was clear and simple.</p>
+                  <div class="category-review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+                </article>
+                <article class="category-review-card">
+                  <div class="category-review-head">
+                    <span class="category-review-avatar category-review-avatar--orange" role="img" aria-label="Profile picture for Jonas Berg">JB</span>
+                    <div>
+                      <strong>Jonas Berg</strong>
+                      <small>Trondheim, Norway</small>
+                    </div>
+                  </div>
+                  <p>Stock status and delivery time made it easy to plan the repair. I had everything ready for installation.</p>
+                  <div class="category-review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+                </article>
+              </section>
+              </div>
           </div>
         </div>
       </div>
