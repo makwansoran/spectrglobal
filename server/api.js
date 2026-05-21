@@ -661,14 +661,256 @@ async function handleAdminProductUpdate(req, res, kind, id, body) {
   return true;
 }
 
+function orderRow(row) {
+  return {
+    id: row.id,
+    number: row.number || "",
+    customer_email: row.customer_email || "",
+    customer_name: row.customer_name || "",
+    customer_id: row.customer_id || null,
+    items: Array.isArray(row.items) ? row.items : [],
+    subtotal: Number(row.subtotal) || 0,
+    total: Number(row.total) || 0,
+    status: row.status || "pending",
+    notes: row.notes || "",
+    created_at: row.created_at || null,
+    updated_at: row.updated_at || null,
+  };
+}
+
+function ordersSummary(orders) {
+  const counts = { pending: 0, confirmed: 0, shipped: 0, delivered: 0, cancelled: 0 };
+  let total = 0;
+  for (const order of orders) {
+    if (counts[order.status] != null) counts[order.status] += 1;
+    if (order.status !== "cancelled") total += Number(order.total) || 0;
+  }
+  return {
+    orders: orders.length,
+    pending: counts.pending,
+    confirmed: counts.confirmed,
+    shipped: counts.shipped,
+    delivered: counts.delivered,
+    cancelled: counts.cancelled,
+    revenue: Number(total.toFixed(2)),
+  };
+}
+
+async function handleAdminOrders(req, res) {
+  const user = await requireAdmin(req, res);
+  if (!user) return true;
+
+  const { data, error } = await getAdminClient()
+    .from("orders")
+    .select("id, number, customer_email, customer_name, customer_id, items, subtotal, total, status, notes, created_at, updated_at")
+    .order("created_at", { ascending: false })
+    .limit(500);
+
+  if (error) {
+    sendJson(res, 500, { error: error.message || "Could not load orders." });
+    return true;
+  }
+
+  const orders = (data || []).map(orderRow);
+  sendJson(res, 200, { orders, summary: ordersSummary(orders) });
+  return true;
+}
+
+const ORDER_STATUSES = new Set(["pending", "confirmed", "shipped", "delivered", "cancelled"]);
+
+async function handleAdminOrderUpdate(req, res, id, body) {
+  const user = await requireAdmin(req, res);
+  if (!user) return true;
+
+  const updates = {};
+  if (body.status != null) {
+    const status = String(body.status || "").trim().toLowerCase();
+    if (!ORDER_STATUSES.has(status)) {
+      sendJson(res, 400, { error: "Unknown order status." });
+      return true;
+    }
+    updates.status = status;
+  }
+  if (body.notes != null) updates.notes = String(body.notes || "").trim() || null;
+  if (body.customer_name != null) updates.customer_name = String(body.customer_name || "").trim() || null;
+  updates.updated_at = new Date().toISOString();
+
+  const { data, error } = await getAdminClient()
+    .from("orders")
+    .update(updates)
+    .eq("id", id)
+    .select("id, number, customer_email, customer_name, customer_id, items, subtotal, total, status, notes, created_at, updated_at")
+    .single();
+
+  if (error) {
+    sendJson(res, 500, { error: error.message || "Could not update order." });
+    return true;
+  }
+  if (!data) {
+    sendJson(res, 404, { error: "Order not found." });
+    return true;
+  }
+
+  sendJson(res, 200, { order: orderRow(data) });
+  return true;
+}
+
+async function handleAdminOrderDelete(req, res, id) {
+  const user = await requireAdmin(req, res);
+  if (!user) return true;
+
+  const { error } = await getAdminClient().from("orders").delete().eq("id", id);
+  if (error) {
+    sendJson(res, 500, { error: error.message || "Could not delete order." });
+    return true;
+  }
+  sendJson(res, 200, { ok: true });
+  return true;
+}
+
+function userRow(authUser, profileByAuthId) {
+  const profile = profileByAuthId.get(authUser.id) || {};
+  const meta = authUser.app_metadata || {};
+  return {
+    id: authUser.id,
+    email: authUser.email || "",
+    name: profile.display_name || (authUser.user_metadata && authUser.user_metadata.name) || "",
+    role: meta.role || "customer",
+    created_at: authUser.created_at || null,
+    last_sign_in_at: authUser.last_sign_in_at || profile.last_sign_in_at || null,
+    confirmed: Boolean(authUser.email_confirmed_at || authUser.confirmed_at),
+  };
+}
+
+async function handleAdminUsers(req, res) {
+  const user = await requireAdmin(req, res);
+  if (!user) return true;
+
+  const [{ data: authData, error: authError }, profileResult] = await Promise.all([
+    getAdminClient().auth.admin.listUsers({ page: 1, perPage: 1000 }),
+    getAdminClient()
+      .from("customer_profiles")
+      .select("auth_user_id, display_name, last_sign_in_at"),
+  ]);
+
+  if (authError) {
+    sendJson(res, 500, { error: authError.message || "Could not list users." });
+    return true;
+  }
+
+  const profileByAuthId = new Map();
+  for (const row of profileResult.data || []) {
+    profileByAuthId.set(row.auth_user_id, row);
+  }
+
+  const users = ((authData && authData.users) || []).map((u) => userRow(u, profileByAuthId));
+  users.sort((a, b) => (a.email || "").localeCompare(b.email || ""));
+
+  const summary = {
+    users: users.length,
+    admins: users.filter((u) => u.role === "admin").length,
+    customers: users.filter((u) => u.role !== "admin").length,
+  };
+
+  sendJson(res, 200, { users, summary });
+  return true;
+}
+
+const USER_ROLES = new Set(["customer", "editor", "admin"]);
+
+async function handleAdminUserUpdate(req, res, id, body) {
+  const user = await requireAdmin(req, res);
+  if (!user) return true;
+
+  const updates = {};
+  if (body.role != null) {
+    const role = String(body.role || "").trim().toLowerCase();
+    if (!USER_ROLES.has(role)) {
+      sendJson(res, 400, { error: "Unknown user role." });
+      return true;
+    }
+    updates.app_metadata = { role };
+  }
+  if (body.name != null) {
+    updates.user_metadata = { name: String(body.name || "").trim() };
+  }
+
+  if (!Object.keys(updates).length) {
+    sendJson(res, 400, { error: "Nothing to update." });
+    return true;
+  }
+
+  const { data, error } = await getAdminClient().auth.admin.updateUserById(id, updates);
+  if (error) {
+    sendJson(res, 500, { error: error.message || "Could not update user." });
+    return true;
+  }
+
+  if (body.name != null) {
+    await getAdminClient()
+      .from("customer_profiles")
+      .update({ display_name: String(body.name || "").trim() || null, updated_at: new Date().toISOString() })
+      .eq("auth_user_id", id);
+  }
+
+  const profileResult = await getAdminClient()
+    .from("customer_profiles")
+    .select("auth_user_id, display_name, last_sign_in_at")
+    .eq("auth_user_id", id)
+    .maybeSingle();
+
+  const profileByAuthId = new Map();
+  if (profileResult.data) profileByAuthId.set(id, profileResult.data);
+
+  sendJson(res, 200, { user: userRow(data.user, profileByAuthId) });
+  return true;
+}
+
+async function handleAdminUserDelete(req, res, id) {
+  const adminUser = await requireAdmin(req, res);
+  if (!adminUser) return true;
+  if (adminUser.id === id) {
+    sendJson(res, 400, { error: "You cannot delete your own admin account." });
+    return true;
+  }
+
+  const { error } = await getAdminClient().auth.admin.deleteUser(id);
+  if (error) {
+    sendJson(res, 500, { error: error.message || "Could not delete user." });
+    return true;
+  }
+  sendJson(res, 200, { ok: true });
+  return true;
+}
+
 async function handleAdminApi(req, res, pathname) {
   if (pathname === "/api/admin/me" && req.method === "GET") return handleAdminMe(req, res);
   if (pathname === "/api/admin/supply" && req.method === "GET") return handleAdminSupply(req, res);
+  if (pathname === "/api/admin/orders" && req.method === "GET") return handleAdminOrders(req, res);
+  if (pathname === "/api/admin/users" && req.method === "GET") return handleAdminUsers(req, res);
 
   const productMatch = pathname.match(/^\/api\/admin\/products\/([^/]+)\/([^/]+)$/);
   if (productMatch && req.method === "PUT") {
     const body = await readJsonBody(req);
     return handleAdminProductUpdate(req, res, productMatch[1], decodeURIComponent(productMatch[2]), body);
+  }
+
+  const orderMatch = pathname.match(/^\/api\/admin\/orders\/([^/]+)$/);
+  if (orderMatch && req.method === "PATCH") {
+    const body = await readJsonBody(req);
+    return handleAdminOrderUpdate(req, res, decodeURIComponent(orderMatch[1]), body);
+  }
+  if (orderMatch && req.method === "DELETE") {
+    return handleAdminOrderDelete(req, res, decodeURIComponent(orderMatch[1]));
+  }
+
+  const userMatch = pathname.match(/^\/api\/admin\/users\/([^/]+)$/);
+  if (userMatch && req.method === "PATCH") {
+    const body = await readJsonBody(req);
+    return handleAdminUserUpdate(req, res, decodeURIComponent(userMatch[1]), body);
+  }
+  if (userMatch && req.method === "DELETE") {
+    return handleAdminUserDelete(req, res, decodeURIComponent(userMatch[1]));
   }
 
   return false;

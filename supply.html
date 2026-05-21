@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Supply Management | Spectr</title>
+    <title>Management | Spectr</title>
     <link rel="icon" href="/assets/brand/spectr-mark.png" type="image/png" sizes="any" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,8 +17,9 @@
     <link rel="stylesheet" href="auth-nav.css" />
     <link rel="stylesheet" href="shop.css" />
     <link rel="stylesheet" href="admin-parts.css" />
+    <link rel="stylesheet" href="management.css" />
   </head>
-  <body class="font-body plt-site supply-page">
+  <body class="font-body plt-site management-page">
     <header class="plt-header">
       <div class="plt-header-inner">
         <a class="plt-logo" href="index.html" aria-label="Spectr home">
@@ -34,129 +35,228 @@
       </div>
     </header>
 
-    <main class="admin-main supply-main">
-      <section id="supply-app">
-        <header class="admin-hero supply-hero">
-          <div>
-            <p class="shop-eyebrow">Supply Management</p>
-            <h1>Inventory overview</h1>
-            <p class="admin-summary">
-              Track stock, product status, pricing, and catalog records across parts, oils, and brake products.
-            </p>
+    <main class="management-main">
+      <header class="management-hero">
+        <div>
+          <p class="shop-eyebrow">Management</p>
+          <h1>Operations dashboard</h1>
+          <p class="management-summary">
+            Inventory, pricing, orders, and customers — all live from the database. Every change writes back instantly.
+          </p>
+        </div>
+        <div class="management-hero-meta" id="management-meta">
+          <span class="management-pill" id="admin-pill">Sign in to manage</span>
+        </div>
+      </header>
+
+      <nav class="management-tabs" role="tablist" aria-label="Management sections">
+        <button type="button" class="management-tab is-active" data-tab="overview" role="tab" aria-selected="true">Overview</button>
+        <button type="button" class="management-tab" data-tab="products" role="tab" aria-selected="false">Products</button>
+        <button type="button" class="management-tab" data-tab="orders" role="tab" aria-selected="false">Orders</button>
+        <button type="button" class="management-tab" data-tab="customers" role="tab" aria-selected="false">Customers</button>
+      </nav>
+
+      <section class="management-section is-active" data-panel="overview">
+        <div class="management-grid" id="overview-grid">
+          <article class="management-stat" data-stat="products">
+            <span>Total products</span>
+            <strong id="stat-products">—</strong>
+            <small>Across parts, oils, brakes</small>
+          </article>
+          <article class="management-stat" data-stat="stock">
+            <span>Units in stock</span>
+            <strong id="stat-stock">—</strong>
+            <small>Sum of all stock levels</small>
+          </article>
+          <article class="management-stat" data-stat="low">
+            <span>Low stock</span>
+            <strong id="stat-low">—</strong>
+            <small>Products with ≤ 5 units</small>
+          </article>
+          <article class="management-stat" data-stat="out">
+            <span>Out of stock</span>
+            <strong id="stat-out">—</strong>
+            <small>Need restocking</small>
+          </article>
+          <article class="management-stat" data-stat="value">
+            <span>Inventory value</span>
+            <strong id="stat-value">—</strong>
+            <small>Price × stock total</small>
+          </article>
+          <article class="management-stat" data-stat="orders">
+            <span>Pending orders</span>
+            <strong id="stat-pending">—</strong>
+            <small>Awaiting fulfillment</small>
+          </article>
+          <article class="management-stat" data-stat="revenue">
+            <span>Order revenue</span>
+            <strong id="stat-revenue">—</strong>
+            <small>All orders, excl. cancelled</small>
+          </article>
+          <article class="management-stat" data-stat="customers">
+            <span>Customers</span>
+            <strong id="stat-customers">—</strong>
+            <small>Registered accounts</small>
+          </article>
+        </div>
+
+        <div class="management-overview-lists">
+          <section class="management-card">
+            <header>
+              <h2>Needs restocking</h2>
+              <button type="button" class="link-button" data-jump="products">View all</button>
+            </header>
+            <ul class="management-list" id="overview-low-stock">
+              <li class="empty-state">Loading...</li>
+            </ul>
+          </section>
+          <section class="management-card">
+            <header>
+              <h2>Recent orders</h2>
+              <button type="button" class="link-button" data-jump="orders">View all</button>
+            </header>
+            <ul class="management-list" id="overview-orders">
+              <li class="empty-state">Loading...</li>
+            </ul>
+          </section>
+        </div>
+      </section>
+
+      <section class="management-section" data-panel="products" hidden>
+        <header class="management-toolbar">
+          <div class="management-toolbar-search">
+            <input type="search" id="products-search" placeholder="Search by name, brand, or SKU" autocomplete="off" />
           </div>
-          <div class="admin-hero-actions">
-            <button type="button" class="btn btn-secondary" id="supply-refresh">Refresh</button>
+          <div class="management-toolbar-filters">
+            <select id="products-kind" aria-label="Filter product kind">
+              <option value="">All products</option>
+              <option value="parts">Parts</option>
+              <option value="oil">Oils</option>
+              <option value="brake">Brakes</option>
+            </select>
+            <select id="products-stock" aria-label="Filter stock level">
+              <option value="">All stock</option>
+              <option value="low">Low (≤ 5)</option>
+              <option value="out">Out of stock</option>
+              <option value="ok">In stock</option>
+            </select>
+            <select id="products-sort" aria-label="Sort products">
+              <option value="name">Sort: name</option>
+              <option value="stock-asc">Stock (low → high)</option>
+              <option value="stock-desc">Stock (high → low)</option>
+              <option value="price-asc">Price (low → high)</option>
+              <option value="price-desc">Price (high → low)</option>
+            </select>
+            <button type="button" class="btn btn-secondary" id="products-refresh" title="Reload from database">Refresh</button>
           </div>
         </header>
 
-        <section class="supply-stats" aria-label="Supply overview">
-          <article>
-            <span>Total products</span>
-            <strong id="stat-products">0</strong>
-          </article>
-          <article>
-            <span>Units in stock</span>
-            <strong id="stat-stock">0</strong>
-          </article>
-          <article>
-            <span>Low stock</span>
-            <strong id="stat-low">0</strong>
-          </article>
-          <article>
-            <span>Out of stock</span>
-            <strong id="stat-out">0</strong>
-          </article>
-          <article>
-            <span>Inventory value</span>
-            <strong id="stat-value">€0</strong>
-          </article>
-        </section>
+        <p class="management-note" id="products-note">Tip: change price, stock, or active state directly in the table — it saves instantly.</p>
 
-        <section class="admin-panel supply-panel">
-          <div class="panel-head">
-            <div>
-              <h2>Product database</h2>
-              <p class="supply-note">Select a row to edit price, stock, status, and supported product fields.</p>
-            </div>
-            <div class="supply-controls">
-              <select id="supply-kind" aria-label="Filter product type">
-                <option value="">All products</option>
-                <option value="parts">Parts</option>
-                <option value="oil">Oil products</option>
-                <option value="brake">Brake products</option>
-              </select>
-              <select id="supply-stock-filter" aria-label="Filter stock status">
-                <option value="">All stock</option>
-                <option value="low">Low stock</option>
-                <option value="out">Out of stock</option>
-              </select>
-              <input type="search" id="supply-search" class="panel-search" placeholder="Search inventory" />
-            </div>
-          </div>
-
-          <div class="supply-layout">
-            <div class="table-scroll">
-              <table class="admin-table supply-table" id="supply-table">
-                <thead>
-                  <tr>
-                    <th>Product</th>
-                    <th>Type</th>
-                    <th>SKU</th>
-                    <th>Price</th>
-                    <th>Stock</th>
-                    <th>Status</th>
-                    <th aria-label="Actions"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr><td colspan="7"><div class="empty-state">Loading supply database...</div></td></tr>
-                </tbody>
-              </table>
-            </div>
-
-            <aside class="supply-editor" id="supply-editor" aria-live="polite">
-              <p class="shop-eyebrow">Product editor</p>
-              <h2 id="editor-title">Select a product</h2>
-              <p class="supply-note" id="editor-note">Choose a product from the table to edit it.</p>
-
-              <form id="supply-form" class="admin-form" hidden>
-                <input type="hidden" id="editor-kind" />
-                <input type="hidden" id="editor-id" />
-                <label>Name
-                  <input type="text" id="editor-name" required />
-                </label>
-                <div class="form-row">
-                  <label>Category
-                    <input type="text" id="editor-category" />
-                  </label>
-                  <label>SKU
-                    <input type="text" id="editor-sku" />
-                  </label>
-                </div>
-                <div class="form-row">
-                  <label>Price
-                    <input type="number" id="editor-price" min="0" step="0.01" />
-                  </label>
-                  <label>Stock
-                    <input type="number" id="editor-stock" min="0" step="1" />
-                  </label>
-                </div>
-                <label>Description
-                  <textarea id="editor-description" rows="4"></textarea>
-                </label>
-                <label class="admin-check">
-                  <input type="checkbox" id="editor-active" />
-                  <span>Product is active in catalog</span>
-                </label>
-                <div class="form-actions">
-                  <button type="submit" class="btn btn-primary">Save changes</button>
-                  <button type="button" class="btn btn-secondary" id="editor-cancel">Cancel</button>
-                </div>
-              </form>
-            </aside>
-          </div>
-        </section>
+        <div class="management-table-wrap">
+          <table class="management-table" id="products-table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Kind</th>
+                <th>SKU</th>
+                <th>Price (€)</th>
+                <th>Stock</th>
+                <th>Status</th>
+                <th>Active</th>
+                <th aria-label="Actions"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td colspan="8"><div class="empty-state">Loading products from database...</div></td></tr>
+            </tbody>
+          </table>
+        </div>
       </section>
+
+      <section class="management-section" data-panel="orders" hidden>
+        <header class="management-toolbar">
+          <div class="management-toolbar-search">
+            <input type="search" id="orders-search" placeholder="Search by order number, customer, or email" autocomplete="off" />
+          </div>
+          <div class="management-toolbar-filters">
+            <select id="orders-status" aria-label="Filter order status">
+              <option value="">All orders</option>
+              <option value="pending">Pending</option>
+              <option value="confirmed">Confirmed</option>
+              <option value="shipped">Shipped</option>
+              <option value="delivered">Delivered</option>
+              <option value="cancelled">Cancelled</option>
+            </select>
+            <button type="button" class="btn btn-secondary" id="orders-refresh" title="Reload from database">Refresh</button>
+          </div>
+        </header>
+
+        <div class="management-table-wrap">
+          <table class="management-table" id="orders-table">
+            <thead>
+              <tr>
+                <th>Order #</th>
+                <th>Customer</th>
+                <th>Items</th>
+                <th>Total (€)</th>
+                <th>Status</th>
+                <th>Placed</th>
+                <th aria-label="Actions"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td colspan="7"><div class="empty-state">Loading orders...</div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="management-section" data-panel="customers" hidden>
+        <header class="management-toolbar">
+          <div class="management-toolbar-search">
+            <input type="search" id="customers-search" placeholder="Search by name, email, or role" autocomplete="off" />
+          </div>
+          <div class="management-toolbar-filters">
+            <select id="customers-role" aria-label="Filter role">
+              <option value="">All roles</option>
+              <option value="admin">Admins</option>
+              <option value="editor">Editors</option>
+              <option value="customer">Customers</option>
+            </select>
+            <button type="button" class="btn btn-secondary" id="customers-refresh" title="Reload from database">Refresh</button>
+          </div>
+        </header>
+
+        <div class="management-table-wrap">
+          <table class="management-table" id="customers-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Joined</th>
+                <th>Last sign-in</th>
+                <th aria-label="Actions"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td colspan="6"><div class="empty-state">Loading customers...</div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <aside class="management-drawer" id="order-drawer" hidden aria-hidden="true">
+        <div class="management-drawer-backdrop" data-drawer-close></div>
+        <section class="management-drawer-panel" role="dialog" aria-labelledby="order-drawer-title">
+          <header>
+            <h2 id="order-drawer-title">Order details</h2>
+            <button type="button" class="management-drawer-close" data-drawer-close aria-label="Close">×</button>
+          </header>
+          <div id="order-drawer-body"></div>
+        </section>
+      </aside>
     </main>
 
     <script src="auth-nav.js" defer></script>
