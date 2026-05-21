@@ -31,6 +31,21 @@
     return "index.html?make=" + encodeURIComponent(make.slug || make.name) + "#catalog";
   }
 
+  function normalizeSearch(value) {
+    return String(value || "").trim().toLowerCase();
+  }
+
+  function filterMakes(makes, query) {
+    var q = normalizeSearch(query);
+    if (!q) return makes;
+    return makes.filter(function (make) {
+      return normalizeSearch(make.name).indexOf(q) !== -1 ||
+        normalizeSearch(make.country).indexOf(q) !== -1 ||
+        normalizeSearch(make.region).indexOf(q) !== -1 ||
+        normalizeSearch(make.slug).indexOf(q) !== -1;
+    });
+  }
+
   function renderTopGrid(node, makes) {
     if (!makes.length) {
       node.innerHTML = '<p class="make-grid-status">No car makes found in the database.</p>';
@@ -50,13 +65,17 @@
       .join("");
   }
 
-  function renderAllGrid(node, makes) {
-    if (!makes.length) {
-      node.innerHTML = '<p class="make-grid-status">No car makes found in the database.</p>';
+  function renderAllGrid(node, makes, query) {
+    var filteredMakes = filterMakes(makes, query);
+
+    if (!filteredMakes.length) {
+      node.innerHTML = query
+        ? '<p class="make-grid-status">No car brands match "' + escapeHtml(query) + '".</p>'
+        : '<p class="make-grid-status">No car makes found in the database.</p>';
       return;
     }
 
-    node.innerHTML = makes
+    node.innerHTML = filteredMakes
       .map(function (make) {
         return (
           '<a href="' + makeHref(make) + '" data-make-slug="' + escapeHtml(make.slug) + '">' +
@@ -69,11 +88,42 @@
       .join("");
   }
 
-  async function hydrateGrid(node, renderer) {
+  function bindAllBrandSearch(node, makes) {
+    var input = document.getElementById("all-brands-search-input");
+    var clearButton = document.getElementById("all-brands-search-clear");
+    var form = input && input.form;
+
+    if (!input) return;
+
+    function updateGrid() {
+      var query = input.value;
+      renderAllGrid(node, makes, query);
+      if (clearButton) clearButton.hidden = !query;
+    }
+
+    input.addEventListener("input", updateGrid);
+
+    if (clearButton) {
+      clearButton.addEventListener("click", function () {
+        input.value = "";
+        updateGrid();
+        input.focus();
+      });
+    }
+
+    if (form) {
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+      });
+    }
+  }
+
+  async function hydrateGrid(node, renderer, onHydrated) {
     var limit = parseInt(node.getAttribute("data-makes-limit") || "200", 10) || 200;
     try {
       var makes = await fetchMakes(limit);
       renderer(node, makes);
+      if (onHydrated) onHydrated(makes);
     } catch (err) {
       node.innerHTML =
         '<p class="make-grid-status">Car makes are not available because the database is not connected.</p>';
@@ -85,6 +135,8 @@
     var allGrid = document.getElementById("all-brands-grid");
 
     if (topGrid) hydrateGrid(topGrid, renderTopGrid);
-    if (allGrid) hydrateGrid(allGrid, renderAllGrid);
+    if (allGrid) hydrateGrid(allGrid, renderAllGrid, function (makes) {
+      bindAllBrandSearch(allGrid, makes);
+    });
   });
 })();

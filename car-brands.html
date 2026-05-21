@@ -144,7 +144,20 @@
       <section class="all-brands-hero" aria-labelledby="all-brands-title">
         <p class="shop-eyebrow">All car brands</p>
         <h1 id="all-brands-title">Find part by model</h1>
-        <p>Choose a car brand to continue browsing compatible parts and model families.</p>
+        <form class="all-brands-search" role="search" aria-label="Search car brands">
+          <label class="visually-hidden" for="all-brands-search-input">Search car brands</label>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" />
+            <path d="M20 20l-3-3" stroke-linecap="round" />
+          </svg>
+          <input
+            type="search"
+            id="all-brands-search-input"
+            placeholder="Search car brand"
+            autocomplete="off"
+          />
+          <button type="button" id="all-brands-search-clear" aria-label="Clear brand search" hidden>Clear</button>
+        </form>
       </section>
 
       <section class="all-brands-list" aria-label="Car brands">
