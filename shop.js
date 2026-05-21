@@ -718,9 +718,7 @@
     if (checkout) {
       checkout.addEventListener("click", function () {
         if (Shop.getCart().length === 0) return;
-        alert("Thanks for your order! A checkout integration can be connected in the next step.");
-        Shop.clearCart();
-        closeCart();
+        window.location.href = "checkout.html";
       });
     }
   }

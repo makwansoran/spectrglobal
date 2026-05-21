@@ -290,12 +290,7 @@
 
     $("cart-checkout").addEventListener("click", function () {
       if (!Shop.getCart().length) return;
-      alert("Thanks for your order! A checkout integration can be connected in the next step.");
-      Shop.clearCart();
-      renderDetail();
-      renderSimilar();
-      renderCart();
-      closeCart();
+      window.location.href = "checkout.html";
     });
   }
 

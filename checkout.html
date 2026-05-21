@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Checkout securely with Spectr." />
+    <title>Checkout | Spectr</title>
+    <link rel="icon" href="/assets/brand/spectr-mark.png" type="image/png" sizes="any" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="platform.css" />
+    <link rel="stylesheet" href="palantir-nav.css" />
+    <link rel="stylesheet" href="auth-nav.css" />
+    <link rel="stylesheet" href="shop.css" />
+  </head>
+  <body class="font-body page-home plt-site">
+    <header class="plt-header">
+      <div class="plt-header-inner">
+        <a class="plt-logo" href="index.html" aria-label="Spectr home">
+          <img class="plt-logo-mark" src="assets/brand/spectr-mark.png" width="28" height="28" alt="" decoding="async" />
+          <span class="plt-logo-text">Spectr</span>
+        </a>
+        <div class="plt-header-tools">
+          <div class="spectr-auth-slot spectr-auth-slot--header" data-spectr-auth-slot>
+            <a class="plt-header-login" href="login.html">Sign in</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="shop-page checkout-page">
+      <section class="checkout-hero">
+        <a class="brand-back-link" href="index.html">Back to store</a>
+        <p class="shop-eyebrow">Secure checkout</p>
+        <h1>Review your cart</h1>
+        <p>Pay with Stripe-hosted checkout. Sign in first to earn rewards, or continue as a guest.</p>
+      </section>
+
+      <section class="checkout-layout" aria-live="polite">
+        <div class="checkout-panel">
+          <div class="checkout-panel-head">
+            <h2>Your order</h2>
+            <span id="checkout-count">0 items</span>
+          </div>
+          <div class="checkout-lines" id="checkout-lines">
+            <p class="cart-empty">Loading cart...</p>
+          </div>
+          <div class="checkout-total">
+            <span>Total</span>
+            <strong id="checkout-total">kr 0</strong>
+          </div>
+        </div>
+
+        <div class="checkout-panel checkout-customer-panel">
+          <p class="checkout-message" id="checkout-message" role="alert" hidden></p>
+          <div id="checkout-customer"></div>
+        </div>
+      </section>
+    </main>
+
+    <script src="auth-nav.js" defer></script>
+    <script src="shop-data.js" defer></script>
+    <script src="checkout.js" defer></script>
+  </body>
+</html>

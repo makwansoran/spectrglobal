@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Order Confirmed | Spectr</title>
+    <link rel="icon" href="/assets/brand/spectr-mark.png" type="image/png" sizes="any" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="platform.css" />
+    <link rel="stylesheet" href="shop.css" />
+  </head>
+  <body class="font-body page-home plt-site">
+    <main class="shop-page checkout-page checkout-success-page">
+      <section class="checkout-hero checkout-success-card">
+        <p class="shop-eyebrow">Payment received</p>
+        <h1>Thank you for your order.</h1>
+        <p>Your Stripe payment was completed. We will send your receipt and order details by email.</p>
+        <a class="btn btn-primary" href="index.html">Continue shopping</a>
+      </section>
+    </main>
+    <script src="shop-data.js"></script>
+    <script>
+      if (window.SpectrShop) window.SpectrShop.clearCart();
+    </script>
+  </body>
+</html>
