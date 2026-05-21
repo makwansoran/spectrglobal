@@ -1283,6 +1283,21 @@
   gap: clamp(1rem, 2vw, 1.4rem);
 }
 
+.catalog-editorial {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 4vw, 4.5rem) clamp(3rem, 6vw, 6rem);
+  display: grid;
+  gap: clamp(1rem, 2vw, 1.4rem);
+}
+
+.category-editorial {
+  max-width: none;
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+  padding-inline: 0;
+  padding-bottom: 0;
+}
+
 .catalog-categories {
   position: sticky;
   top: 90px;
