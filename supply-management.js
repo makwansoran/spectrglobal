@@ -47,17 +47,6 @@
     );
   }
 
-  function showLocked(message) {
-    $("admin-lock-message").textContent = message || "Sign in with an admin account to manage inventory.";
-    $("admin-lock").hidden = false;
-    $("supply-app").hidden = true;
-  }
-
-  function showApp() {
-    $("admin-lock").hidden = true;
-    $("supply-app").hidden = false;
-  }
-
   function formatMoney(value) {
     return "€" + (Number(value) || 0).toFixed(2);
   }
@@ -93,22 +82,6 @@
       throw error;
     }
     return data;
-  }
-
-  async function verifyAdmin() {
-    if (!token()) {
-      showLocked("Sign in with Makwan's admin account to manage supply.");
-      return false;
-    }
-
-    try {
-      await api("/api/admin/me");
-      showApp();
-      return true;
-    } catch (err) {
-      showLocked(err.message || "Admin access required.");
-      return false;
-    }
   }
 
   function renderStats(summary) {
@@ -280,11 +253,8 @@
 
   document.addEventListener("DOMContentLoaded", function () {
     bindEvents();
-    verifyAdmin().then(function (ok) {
-      if (!ok) return;
-      return loadSupply();
-    }).catch(function (err) {
-      showLocked(err.message || "Admin access required.");
+    loadSupply().catch(function (err) {
+      toast(err.message || "Could not load supply.");
     });
   });
 })();

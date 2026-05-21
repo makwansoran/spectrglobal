@@ -77,7 +77,7 @@
       '<p class="spectr-user-dropdown-label">' +
       escapeHtml(label) +
       "</p>" +
-      (user.role === "admin" ? '<a href="supply.html" role="menuitem">Supply management</a>' : "") +
+      '<a href="supply.html" role="menuitem">Supply management</a>' +
       '<button type="button" role="menuitem" data-spectr-logout>Log out</button>' +
       "</div>";
 

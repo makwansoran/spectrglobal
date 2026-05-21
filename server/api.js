@@ -583,9 +583,6 @@ async function handleAdminMe(req, res) {
 }
 
 async function handleAdminSupply(req, res) {
-  const user = await requireAdmin(req, res);
-  if (!user) return true;
-
   const [partsResult, oilsResult, brakesResult] = await Promise.all([
     getAdminClient()
       .from("parts")
