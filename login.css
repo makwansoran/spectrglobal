@@ -136,6 +136,11 @@
   gap: 0.38rem;
 }
 
+.auth-field small {
+  color: var(--auth-muted);
+  font-weight: 500;
+}
+
 .auth-field label,
 .auth-row {
   color: var(--auth-muted);
@@ -203,6 +208,11 @@
 .auth-submit:hover {
   background: #1f2937;
   border-color: #1f2937;
+}
+
+.auth-submit:disabled {
+  cursor: progress;
+  opacity: 0.72;
 }
 
 .auth-switch {

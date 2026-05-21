@@ -1,20 +1,7 @@
 (function () {
   "use strict";
 
-  var ACCOUNTS_KEY = "spectr_shop_accounts_v1";
-  var SESSION_KEY = "spectr_shop_session_v1";
-
-  function readAccounts() {
-    try {
-      return JSON.parse(localStorage.getItem(ACCOUNTS_KEY) || "[]");
-    } catch (e) {
-      return [];
-    }
-  }
-
-  function writeAccounts(accounts) {
-    localStorage.setItem(ACCOUNTS_KEY, JSON.stringify(accounts || []));
-  }
+  var SESSION_KEY = "spectr_shop_customer_v1";
 
   function showMessage(text, type) {
     var node = document.getElementById("auth-message");
@@ -28,12 +15,93 @@
     return String(value || "").trim().toLowerCase();
   }
 
-  function createSession(account) {
-    localStorage.setItem(SESSION_KEY, JSON.stringify({
-      email: account.email,
-      name: account.name,
-      createdAt: new Date().toISOString()
-    }));
+  function readValue(id) {
+    var node = document.getElementById(id);
+    return node ? String(node.value || "").trim() : "";
+  }
+
+  function setSubmitting(form, submitting) {
+    var button = form.querySelector("button[type='submit']");
+    if (!button) return;
+    if (!button.dataset.defaultText) button.dataset.defaultText = button.textContent;
+    button.disabled = submitting;
+    button.textContent = submitting ? "Saving..." : button.dataset.defaultText;
+  }
+
+  function nextUrl() {
+    var params = new URLSearchParams(window.location.search);
+    var next = params.get("next");
+    if (!next || !next.startsWith("/") || next.startsWith("//")) return "index.html";
+    return next;
+  }
+
+  function saveLocalCustomer(customer, remember) {
+    var payload = {
+      id: customer.id,
+      name: customer.name,
+      email: customer.email,
+      createdAt: customer.created_at || new Date().toISOString()
+    };
+    var storage = remember ? localStorage : sessionStorage;
+    localStorage.removeItem(SESSION_KEY);
+    sessionStorage.removeItem(SESSION_KEY);
+    storage.setItem(SESSION_KEY, JSON.stringify(payload));
+  }
+
+  async function saveCustomerSignin(details) {
+    var res = await fetch("/api/auth/customer-signin", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(details)
+    });
+    var data = null;
+    try {
+      data = await res.json();
+    } catch (e) {
+      data = {};
+    }
+    if (!res.ok) {
+      throw new Error(data.error || "Could not save your details. Please try again.");
+    }
+    return data;
+  }
+
+  async function submitCustomerForm(form, options) {
+    var name = readValue(options.nameId);
+    var email = normalizeEmail(readValue(options.emailId));
+    var phone = readValue(options.phoneId);
+    var rememberNode = document.getElementById(options.rememberId || "");
+    var remember = rememberNode ? rememberNode.checked : true;
+
+    if (!name) {
+      showMessage("Enter your name to continue.", "error");
+      return;
+    }
+    if (!email) {
+      showMessage("Enter your email to continue.", "error");
+      return;
+    }
+
+    setSubmitting(form, true);
+    try {
+      var data = await saveCustomerSignin({
+        name: name,
+        email: email,
+        phone: phone,
+        remember: remember,
+        source: options.source,
+        page: window.location.pathname,
+        referrer: document.referrer
+      });
+      saveLocalCustomer(data.user || { name: name, email: email }, remember);
+      showMessage("Details saved. Redirecting to the store...", "success");
+      setTimeout(function () {
+        window.location.href = nextUrl();
+      }, 650);
+    } catch (err) {
+      showMessage(err.message || "Could not save your details. Please try again.", "error");
+      setSubmitting(form, false);
+    }
   }
 
   function initSignIn() {
@@ -41,21 +109,13 @@
     if (!form) return;
     form.addEventListener("submit", function (event) {
       event.preventDefault();
-      var email = normalizeEmail(document.getElementById("signin-email").value);
-      var password = document.getElementById("signin-password").value;
-      var accounts = readAccounts();
-      var account = accounts.find(function (entry) {
-        return entry.email === email && entry.password === password;
+      submitCustomerForm(form, {
+        nameId: "signin-name",
+        emailId: "signin-email",
+        phoneId: "signin-phone",
+        rememberId: "signin-remember",
+        source: "login_page"
       });
-      if (!account) {
-        showMessage("We could not find an account with those details.", "error");
-        return;
-      }
-      createSession(account);
-      showMessage("Signed in. Redirecting to the store...", "success");
-      setTimeout(function () {
-        window.location.href = "index.html";
-      }, 700);
     });
   }
 
@@ -64,36 +124,12 @@
     if (!form) return;
     form.addEventListener("submit", function (event) {
       event.preventDefault();
-      var name = document.getElementById("account-name").value.trim();
-      var email = normalizeEmail(document.getElementById("account-email").value);
-      var password = document.getElementById("account-password").value;
-      var confirm = document.getElementById("account-password-confirm").value;
-      if (password.length < 8) {
-        showMessage("Password must be at least 8 characters.", "error");
-        return;
-      }
-      if (password !== confirm) {
-        showMessage("Passwords do not match.", "error");
-        return;
-      }
-      var accounts = readAccounts();
-      if (accounts.some(function (entry) { return entry.email === email; })) {
-        showMessage("An account with that email already exists.", "error");
-        return;
-      }
-      var account = {
-        name: name,
-        email: email,
-        password: password,
-        createdAt: new Date().toISOString()
-      };
-      accounts.push(account);
-      writeAccounts(accounts);
-      createSession(account);
-      showMessage("Account created. Redirecting to the store...", "success");
-      setTimeout(function () {
-        window.location.href = "index.html";
-      }, 700);
+      submitCustomerForm(form, {
+        nameId: "account-name",
+        emailId: "account-email",
+        phoneId: "account-phone",
+        source: "create_account_page"
+      });
     });
   }
 

@@ -28,7 +28,7 @@
         <section class="auth-panel" aria-labelledby="create-account-title">
           <p class="auth-kicker">Account</p>
           <h1 id="create-account-title">Create account</h1>
-          <p class="auth-copy">Set up your profile to save vehicles, cart history, and compatible parts lists.</p>
+          <p class="auth-copy">Share your details to set up a customer profile. No password or authentication is required.</p>
 
           <p class="auth-message" id="auth-message" role="alert" hidden></p>
 
@@ -42,20 +42,15 @@
               <input id="account-email" type="email" autocomplete="email" placeholder="you@example.com" required />
             </label>
             <label class="auth-field">
-              <span>Password</span>
-              <input id="account-password" type="password" autocomplete="new-password" placeholder="At least 8 characters" minlength="8" required />
-              <span class="auth-hint">Use at least 8 characters.</span>
+              <span>Phone <small>(optional)</small></span>
+              <input id="account-phone" type="tel" autocomplete="tel" placeholder="+47 000 00 000" />
             </label>
-            <label class="auth-field">
-              <span>Confirm password</span>
-              <input id="account-password-confirm" type="password" autocomplete="new-password" placeholder="••••••••" minlength="8" required />
-            </label>
-            <button type="submit" class="auth-submit">Create account</button>
+            <button type="submit" class="auth-submit">Continue</button>
           </form>
 
           <p class="auth-switch">
-            Already have an account?
-            <a href="login.html">Sign in</a>
+            Already filled this in?
+            <a href="login.html">Continue from sign in</a>
           </p>
         </section>
 
