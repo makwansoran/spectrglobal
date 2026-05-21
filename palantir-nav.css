@@ -18,6 +18,7 @@
 }
 
 .plt-header-inner {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -60,9 +61,12 @@
 }
 
 .plt-header-search {
-  position: relative;
-  width: clamp(13rem, 28vw, 26rem);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: clamp(18rem, 36vw, 34rem);
   min-width: 12rem;
+  transform: translate(-50%, -50%);
 }
 
 .plt-header-search-input {
@@ -452,9 +456,13 @@ body.plt-nav-open {
   }
 
   .plt-header-search {
+    position: relative;
+    left: auto;
+    top: auto;
     flex: 1;
     min-width: 0;
     width: auto;
+    transform: none;
   }
 
   .plt-header-search-input {
