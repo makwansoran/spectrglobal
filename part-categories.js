@@ -1,8 +1,6 @@
 (function () {
   "use strict";
 
-  if (!window.SpectrShop) return;
-
   function escapeHtml(value) {
     return String(value == null ? "" : value)
       .replace(/&/g, "&amp;")
@@ -38,37 +36,46 @@
     return "+";
   }
 
-  function buildCategories(parts) {
-    var byName = new Map();
+  function fetchCategories() {
+    return fetch("/api/categories?limit=600", { headers: { Accept: "application/json" } })
+      .then(function (res) {
+        return res.json().then(function (data) {
+          if (!res.ok) throw new Error(data.error || "Categories database unavailable.");
+          return Array.isArray(data.categories) ? data.categories : [];
+        });
+      });
+  }
 
-    parts.forEach(function (part) {
-      var name = String(part.category || "Other").trim() || "Other";
-      var key = name.toLowerCase();
-      var current = byName.get(key) || {
-        name: name,
-        count: 0,
-        inStock: 0,
-        examples: []
-      };
-
-      current.count += 1;
-      if ((parseInt(part.stock, 10) || 0) > 0) current.inStock += 1;
-      if (part.name && current.examples.length < 2) current.examples.push(part.name);
-      byName.set(key, current);
+  function buildCategories(rows) {
+    var byId = new Map();
+    rows.forEach(function (category) {
+      byId.set(category.id, category);
     });
 
-    var categories = Array.from(byName.values()).sort(function (a, b) {
-      return a.name.localeCompare(b.name);
-    });
-
-    categories.unshift({
-      name: "Deals",
-      count: Math.min(12, parts.length),
-      inStock: parts.filter(function (part) { return (parseInt(part.stock, 10) || 0) > 0; }).slice(0, 12).length,
-      examples: ["Best deals of the week"]
-    });
-
-    return categories;
+    return rows
+      .filter(function (category) {
+        return Number(category.level) === 3;
+      })
+      .map(function (category) {
+        var group = byId.get(category.parent_id);
+        var section = group && byId.get(group.parent_id);
+        return {
+          name: category.name,
+          slug: category.slug,
+          icon: (section && section.icon) || categoryIcon(category.name),
+          group: (group && group.name) || "",
+          section: (section && section.name) || "",
+          sortKey: [
+            section ? String(section.sort_order).padStart(4, "0") : "9999",
+            group ? String(group.sort_order).padStart(4, "0") : "9999",
+            String(category.sort_order || 0).padStart(4, "0"),
+            category.name
+          ].join("|")
+        };
+      })
+      .sort(function (a, b) {
+        return a.sortKey.localeCompare(b.sortKey);
+      });
   }
 
   function filterCategories(categories, query) {
@@ -76,7 +83,8 @@
     if (!q) return categories;
     return categories.filter(function (category) {
       return normalizeSearch(category.name).indexOf(q) !== -1 ||
-        normalizeSearch(category.examples.join(" ")).indexOf(q) !== -1;
+        normalizeSearch(category.group).indexOf(q) !== -1 ||
+        normalizeSearch(category.section).indexOf(q) !== -1;
     });
   }
 
@@ -92,13 +100,10 @@
 
     node.innerHTML = filtered.map(function (category) {
       var href = "part-category.html?category=" + encodeURIComponent(category.name);
-      var details = category.count + " part" + (category.count === 1 ? "" : "s");
-      if (category.inStock) {
-        details += " · " + category.inStock + " in stock";
-      }
+      var details = [category.section, category.group].filter(Boolean).join(" · ") || "Parts category";
       return (
-        '<a class="part-category-list-card" href="' + href + '" data-category="' + escapeHtml(categorySlug(category.name)) + '">' +
-          '<span class="part-category-icon" aria-hidden="true">' + escapeHtml(categoryIcon(category.name)) + "</span>" +
+        '<a class="part-category-list-card" href="' + href + '" data-category="' + escapeHtml(category.slug || categorySlug(category.name)) + '">' +
+          '<span class="part-category-icon" aria-hidden="true">' + escapeHtml(category.icon || categoryIcon(category.name)) + "</span>" +
           '<span class="make-name">' + escapeHtml(category.name) + "</span>" +
           '<small>' + escapeHtml(details) + "</small>" +
         "</a>"
@@ -140,9 +145,9 @@
     var grid = document.getElementById("part-categories-grid");
     if (!grid) return;
 
-    window.SpectrShop.fetchCatalogParts()
-      .then(function (parts) {
-        var categories = buildCategories(Array.isArray(parts) ? parts : []);
+    fetchCategories()
+      .then(function (rows) {
+        var categories = buildCategories(rows);
         renderCategories(grid, categories, "");
         bindSearch(grid, categories);
       })

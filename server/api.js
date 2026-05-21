@@ -174,6 +174,69 @@ async function handleModels(req, res) {
   return true;
 }
 
+function categoryFromRow(row) {
+  return {
+    id: row.id,
+    parent_id: row.parent_id || null,
+    name: row.name,
+    slug: row.slug,
+    level: Number(row.level) || 0,
+    icon: row.icon || "",
+    sort_order: Number(row.sort_order) || 0,
+  };
+}
+
+async function handleCategories(req, res) {
+  if (!isSupabaseEnabled()) {
+    sendJson(res, 503, { error: "Categories database is not configured." });
+    return true;
+  }
+
+  const url = new URL(req.url, `http://${req.headers.host || "localhost"}`);
+  const level = parseInt(url.searchParams.get("level") || "", 10);
+  const parentSlug = String(url.searchParams.get("parent_slug") || "").trim();
+  const limit = Math.min(Math.max(parseInt(url.searchParams.get("limit") || "600", 10) || 600, 1), 800);
+
+  let query = getReadClient()
+    .from("categories")
+    .select("id, parent_id, name, slug, level, icon, sort_order")
+    .order("level", { ascending: true })
+    .order("sort_order", { ascending: true })
+    .order("name", { ascending: true })
+    .limit(limit);
+
+  if (level >= 1 && level <= 3) query = query.eq("level", level);
+
+  if (parentSlug) {
+    const { data: parent, error: parentError } = await getReadClient()
+      .from("categories")
+      .select("id")
+      .eq("slug", parentSlug)
+      .maybeSingle();
+
+    if (parentError) {
+      sendJson(res, 500, { error: parentError.message || "Could not load category parent." });
+      return true;
+    }
+
+    if (!parent) {
+      sendJson(res, 200, { categories: [] });
+      return true;
+    }
+
+    query = query.eq("parent_id", parent.id);
+  }
+
+  const { data, error } = await query;
+  if (error) {
+    sendJson(res, 500, { error: error.message || "Could not load categories." });
+    return true;
+  }
+
+  sendJson(res, 200, { categories: (data || []).map(categoryFromRow) });
+  return true;
+}
+
 function partFromRow(row) {
   return {
     id: row.id,
@@ -1574,6 +1637,10 @@ async function handleApi(req, res, pathname) {
 
     if (pathname === "/api/models" && req.method === "GET") {
       return await handleModels(req, res);
+    }
+
+    if (pathname === "/api/categories" && req.method === "GET") {
+      return await handleCategories(req, res);
     }
 
     if (pathname === "/api/checkout/session") {
