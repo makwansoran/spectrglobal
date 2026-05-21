@@ -10,8 +10,36 @@
   var Shop = window.SpectrShop;
   var state = {
     selectedBrandId: null,
-    partFilter: ""
+    partFilter: "",
+    parts: [],
+    partsStatus: "loading"
   };
+
+  function getAdminParts() {
+    return state.parts;
+  }
+
+  function reloadParts() {
+    state.partsStatus = "loading";
+    renderPartsTable();
+    return fetch("/api/parts?active=0&limit=500", { headers: { Accept: "application/json" } })
+      .then(function (res) {
+        return res.json().then(function (data) {
+          if (!res.ok) throw new Error((data && data.error) || "Could not load parts.");
+          state.parts = Array.isArray(data.parts) ? data.parts : [];
+          state.partsStatus = "ready";
+          Shop.resetCatalogPartsCache();
+          renderCategoryOptions();
+          renderPartsTable();
+        });
+      })
+      .catch(function (err) {
+        state.parts = [];
+        state.partsStatus = "error";
+        toast(err.message || "Could not load parts from database.");
+        renderPartsTable();
+      });
+  }
 
   function $(id) { return document.getElementById(id); }
   function $$(selector, root) { return Array.from((root || document).querySelectorAll(selector)); }
@@ -62,7 +90,7 @@
   function renderCategoryOptions() {
     var datalist = $("category-options");
     if (!datalist) return;
-    var categories = Array.from(new Set(Shop.getParts().map(function (p) { return p.category || ""; }).filter(Boolean))).sort();
+    var categories = Array.from(new Set(getAdminParts().map(function (p) { return p.category || ""; }).filter(Boolean))).sort();
     datalist.innerHTML = categories.map(function (c) { return '<option value="' + escapeHtml(c) + '"></option>'; }).join("");
   }
 
@@ -180,8 +208,7 @@
   function savePart(event) {
     event.preventDefault();
     var id = $("part-id").value || Shop.nextId("part");
-    var parts = Shop.getParts();
-    var existingIndex = parts.findIndex(function (p) { return p.id === id; });
+    var existingIndex = getAdminParts().findIndex(function (p) { return p.id === id; });
     var record = {
       id: id,
       name: $("part-name").value.trim(),
@@ -194,23 +221,43 @@
     };
     if (!record.name) { toast("Name is missing"); return; }
 
-    if (existingIndex >= 0) {
-      parts[existingIndex] = record;
-      toast("Part updated");
-    } else {
-      parts.push(record);
-      toast("Part added");
-    }
-    Shop.setParts(parts);
-    resetPartForm();
-    renderPartsTable();
-    renderCategoryOptions();
+    var isUpdate = existingIndex >= 0;
+    var url = isUpdate ? "/api/parts/" + encodeURIComponent(id) : "/api/parts";
+    var method = isUpdate ? "PUT" : "POST";
+
+    fetch(url, {
+      method: method,
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(record)
+    })
+      .then(function (res) {
+        return res.json().then(function (data) {
+          if (!res.ok) throw new Error((data && data.error) || "Could not save part.");
+          toast(isUpdate ? "Part updated" : "Part added");
+          resetPartForm();
+          return reloadParts();
+        });
+      })
+      .catch(function (err) {
+        toast(err.message || "Could not save part.");
+      });
   }
 
   function renderPartsTable() {
     var tbody = document.querySelector("#parts-table tbody");
     if (!tbody) return;
-    var parts = Shop.getParts();
+
+    if (state.partsStatus === "loading") {
+      tbody.innerHTML = '<tr><td colspan="7"><div class="empty-state">Loading parts from database...</div></td></tr>';
+      return;
+    }
+
+    if (state.partsStatus === "error") {
+      tbody.innerHTML = '<tr><td colspan="7"><div class="empty-state">Parts could not be loaded from the database.</div></td></tr>';
+      return;
+    }
+
+    var parts = getAdminParts();
     var filter = state.partFilter.toLowerCase();
     var filtered = filter
       ? parts.filter(function (p) {
@@ -257,14 +304,24 @@
         if (!row) return;
         var partId = row.dataset.partId;
         if (event.target.closest("[data-edit-part]")) {
-          var part = Shop.getParts().find(function (p) { return p.id === partId; });
+          var part = getAdminParts().find(function (p) { return p.id === partId; });
           if (part) loadPartIntoForm(part);
         } else if (event.target.closest("[data-delete-part]")) {
           if (!confirm("Delete this part?")) return;
-          Shop.setParts(Shop.getParts().filter(function (p) { return p.id !== partId; }));
-          toast("Part deleted");
-          renderPartsTable();
-          renderCategoryOptions();
+          fetch("/api/parts/" + encodeURIComponent(partId), {
+            method: "DELETE",
+            headers: { Accept: "application/json" }
+          })
+            .then(function (res) {
+              return res.json().then(function (data) {
+                if (!res.ok) throw new Error((data && data.error) || "Could not delete part.");
+                toast("Part deleted");
+                return reloadParts();
+              });
+            })
+            .catch(function (err) {
+              toast(err.message || "Could not delete part.");
+            });
         }
       });
     }
@@ -579,7 +636,7 @@
       exportBtn.addEventListener("click", function () {
         var payload = {
           brands: Shop.getBrands(),
-          parts: Shop.getParts(),
+          parts: getAdminParts(),
           slides: Shop.getSlides()
         };
         var blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
@@ -597,7 +654,7 @@
     var resetBtn = $("reset-data");
     if (resetBtn) {
       resetBtn.addEventListener("click", function () {
-        if (!confirm("Reset parts, vehicles and promotions to the default content?")) return;
+        if (!confirm("Reset vehicles and promotions to the default content? Parts in the database are not changed.")) return;
         Shop.resetToDefaults();
         renderEverything();
         toast("Data reset");
@@ -606,11 +663,10 @@
   }
 
   function renderEverything() {
-    renderCategoryOptions();
-    renderPartsTable();
     renderBrands();
     renderModels();
     renderSlides();
+    reloadParts();
     // refresh footer year if needed
     document.querySelectorAll("[data-current-year]").forEach(function (el) {
       el.textContent = String(new Date().getFullYear());

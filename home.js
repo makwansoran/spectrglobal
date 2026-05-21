@@ -10,6 +10,7 @@
   var searchInput = document.getElementById("plt-search-input");
   var searchResults = document.getElementById("plt-search-results");
   var makesPromise = null;
+  var partsPromise = null;
   var searchTimer = null;
   var activeIndex = -1;
   var currentResults = [];
@@ -123,11 +124,19 @@
     return makesPromise;
   }
 
-  function localShopResults(query) {
-    if (!window.SpectrShop) return [];
+  function loadParts() {
+    if (partsPromise) return partsPromise;
+    if (window.SpectrShop && window.SpectrShop.fetchCatalogParts) {
+      partsPromise = window.SpectrShop.fetchCatalogParts();
+      return partsPromise;
+    }
+    partsPromise = Promise.resolve([]);
+    return partsPromise;
+  }
+
+  function localShopResults(query, parts) {
     var q = normalize(query);
-    var parts = window.SpectrShop.getParts ? window.SpectrShop.getParts() : [];
-    return parts
+    return (parts || [])
       .filter(function (part) {
         return normalize(part.name).indexOf(q) !== -1 ||
           normalize(part.category).indexOf(q) !== -1 ||
@@ -236,8 +245,10 @@
       hideResults();
       return;
     }
-    loadMakes().then(function (makes) {
-      renderResults(makeResults(makes, q).concat(localShopResults(q)).slice(0, 12));
+    Promise.all([loadMakes(), loadParts()]).then(function (results) {
+      var makes = results[0];
+      var parts = results[1];
+      renderResults(makeResults(makes, q).concat(localShopResults(q, parts)).slice(0, 12));
     });
   }
 

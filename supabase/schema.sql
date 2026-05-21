@@ -219,3 +219,35 @@ where public.makes.slug = ranked.slug;
 update public.makes
 set popularity_rank = null
 where slug not in ('toyota', 'volkswagen', 'ford', 'honda', 'hyundai', 'nissan', 'chevrolet', 'kia');
+
+-- Car parts catalog (storefront lists active rows via GET /api/parts).
+create table if not exists public.parts (
+  id text primary key,
+  name text not null,
+  category text not null default 'Other',
+  sku text,
+  price numeric(12, 2) not null default 0 check (price >= 0),
+  stock integer not null default 0 check (stock >= 0),
+  description text,
+  vehicles jsonb not null default '[]'::jsonb,
+  active boolean not null default true,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now(),
+  constraint parts_name_len check (char_length(trim(name)) between 1 and 200),
+  constraint parts_category_len check (char_length(trim(category)) between 1 and 80),
+  constraint parts_sku_len check (sku is null or char_length(trim(sku)) <= 64),
+  constraint parts_vehicles_is_array check (jsonb_typeof(vehicles) = 'array')
+);
+
+alter table public.parts enable row level security;
+
+drop policy if exists "Public read parts" on public.parts;
+create policy "Public read parts"
+  on public.parts
+  for select
+  to anon, authenticated
+  using (true);
+
+create index if not exists parts_active_category_idx
+  on public.parts (active, category)
+  where active = true;

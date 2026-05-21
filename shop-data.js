@@ -105,156 +105,6 @@
     ];
   }
 
-  function defaultParts() {
-    return [
-      {
-        id: "part-brake-pads-front",
-        name: "Front brake pads (set)",
-        category: "Brakes",
-        sku: "SP-BR-001",
-        price: 749,
-        stock: 32,
-        description: "Ceramic brake pads for passenger cars, low dust and long service life.",
-        vehicles: [
-          { brand: "Volkswagen", model: "Golf VII", engine: "" },
-          { brand: "Audi", model: "A4 B9", engine: "" }
-        ]
-      },
-      {
-        id: "part-brake-disc-front",
-        name: "Front brake discs (pair)",
-        category: "Brakes",
-        sku: "SP-BR-014",
-        price: 1290,
-        stock: 18,
-        description: "Vented brake discs with corrosion protection, supplied in pairs.",
-        vehicles: [
-          { brand: "BMW", model: "3-serie F30", engine: "320d" },
-          { brand: "Volkswagen", model: "Passat B8", engine: "" }
-        ]
-      },
-      {
-        id: "part-oil-filter",
-        name: "Oil filter",
-        category: "Filter",
-        sku: "SP-FL-202",
-        price: 119,
-        stock: 124,
-        description: "OEM-fit oil filter for combustion and hybrid engines.",
-        vehicles: [
-          { brand: "Toyota", model: "RAV4 V", engine: "2.5 Hybrid" },
-          { brand: "Volvo", model: "XC60 II", engine: "B4 mild hybrid" }
-        ]
-      },
-      {
-        id: "part-air-filter",
-        name: "Air filter",
-        category: "Filter",
-        sku: "SP-FL-204",
-        price: 199,
-        stock: 86,
-        description: "High-flow air filter for clean intake air and reliable performance.",
-        vehicles: [
-          { brand: "Audi", model: "A4 B9", engine: "" },
-          { brand: "BMW", model: "X3 G01", engine: "" }
-        ]
-      },
-      {
-        id: "part-spark-plug-set",
-        name: "Spark plug set (4 pcs)",
-        category: "Ignition",
-        sku: "SP-TN-088",
-        price: 349,
-        stock: 58,
-        description: "Iridium spark plugs for stable ignition and reduced consumption.",
-        vehicles: [
-          { brand: "Ford", model: "Focus IV", engine: "1.0 EcoBoost" },
-          { brand: "Volkswagen", model: "Golf VII", engine: "1.4 TSI" }
-        ]
-      },
-      {
-        id: "part-engine-oil-5w30",
-        name: "Engine oil 5W-30 (5L)",
-        category: "Oil and fluids",
-        sku: "SP-OL-501",
-        price: 549,
-        stock: 73,
-        description: "Fully synthetic engine oil for modern diesel and petrol engines.",
-        vehicles: []
-      },
-      {
-        id: "part-wiper-blades",
-        name: "Wiper blades (pair)",
-        category: "Exterior",
-        sku: "SP-EK-310",
-        price: 289,
-        stock: 41,
-        description: "Aerodynamic flat wiper blades for smooth wiping.",
-        vehicles: []
-      },
-      {
-        id: "part-battery-12v-72ah",
-        name: "Starter battery 12V 72Ah",
-        category: "Electrical",
-        sku: "SP-EL-720",
-        price: 1990,
-        stock: 9,
-        description: "AGM battery ready for start-stop systems and electronic loads.",
-        vehicles: []
-      },
-      {
-        id: "part-cabin-filter",
-        name: "Cabin filter with carbon layer",
-        category: "Filter",
-        sku: "SP-FL-330",
-        price: 279,
-        stock: 64,
-        description: "Activated carbon filter for pollen, soot and cabin odor.",
-        vehicles: [
-          { brand: "Mercedes-Benz", model: "C-klasse W205", engine: "" }
-        ]
-      },
-      {
-        id: "part-shock-absorber",
-        name: "Rear shock absorber",
-        category: "Suspension",
-        sku: "SP-US-450",
-        price: 1490,
-        stock: 14,
-        description: "Gas-pressure shock absorber, supplied individually.",
-        vehicles: [
-          { brand: "Volkswagen", model: "Tiguan II", engine: "" },
-          { brand: "Volvo", model: "V60 II", engine: "" }
-        ]
-      },
-      {
-        id: "part-timing-belt-kit",
-        name: "Timing belt kit",
-        category: "Engine",
-        sku: "SP-MO-820",
-        price: 2790,
-        stock: 6,
-        description: "Complete timing belt kit with pulleys and water pump.",
-        vehicles: [
-          { brand: "Audi", model: "A4 B9", engine: "2.0 TDI quattro" }
-        ]
-      },
-      {
-        id: "part-tesla-cabin-filter",
-        name: "EV cabin filter",
-        category: "Filter",
-        sku: "SP-FL-901",
-        price: 459,
-        stock: 22,
-        description: "HEPA filter for electric vehicles, capturing fine particles and pollen.",
-        vehicles: [
-          { brand: "Tesla", model: "Model 3", engine: "" },
-          { brand: "Tesla", model: "Model Y", engine: "" }
-        ]
-      }
-    ];
-  }
-
   function defaultSlides() {
     return [
       {
@@ -293,7 +143,7 @@
   function ensureSeed() {
     if (localStorage.getItem(KEYS.seeded) === "1") return;
     if (!localStorage.getItem(KEYS.brands)) writeJSON(KEYS.brands, defaultBrands());
-    if (!localStorage.getItem(KEYS.parts)) writeJSON(KEYS.parts, defaultParts());
+    if (!localStorage.getItem(KEYS.parts)) writeJSON(KEYS.parts, []);
     if (!localStorage.getItem(KEYS.slides)) writeJSON(KEYS.slides, defaultSlides());
     if (!localStorage.getItem(KEYS.cart)) writeJSON(KEYS.cart, []);
     localStorage.setItem(KEYS.seeded, "1");
@@ -384,13 +234,13 @@
     }
   }
 
-  function partsForVehicle(criteria) {
+  function partsForVehicle(parts, criteria) {
+    var list = Array.isArray(parts) ? parts : [];
     var brand = (criteria && criteria.brand) || "";
     var model = (criteria && criteria.model) || "";
     var engine = (criteria && criteria.engine) || "";
-    var parts = getParts();
-    if (!brand && !model && !engine) return parts;
-    return parts.filter(function (part) {
+    if (!brand && !model && !engine) return list;
+    return list.filter(function (part) {
       if (!part.vehicles || part.vehicles.length === 0) return false;
       return part.vehicles.some(function (fit) {
         if (brand && fit.brand !== brand) return false;
@@ -399,6 +249,27 @@
         return true;
       });
     });
+  }
+
+  var catalogPartsPromise = null;
+
+  function fetchCatalogParts() {
+    if (catalogPartsPromise) return catalogPartsPromise;
+    catalogPartsPromise = fetch("/api/parts?active=1&limit=500", { headers: { Accept: "application/json" } })
+      .then(function (res) {
+        return res.json().then(function (data) {
+          if (!res.ok) throw new Error((data && data.error) || "Parts database unavailable.");
+          return Array.isArray(data.parts) ? data.parts : [];
+        });
+      })
+      .catch(function () {
+        return [];
+      });
+    return catalogPartsPromise;
+  }
+
+  function resetCatalogPartsCache() {
+    catalogPartsPromise = null;
   }
 
   function nextId(prefix) {
@@ -421,12 +292,15 @@
     clearCart: clearCart,
     formatNok: formatNok,
     partsForVehicle: partsForVehicle,
+    fetchCatalogParts: fetchCatalogParts,
+    resetCatalogPartsCache: resetCatalogPartsCache,
     nextId: nextId,
     resetToDefaults: function () {
       writeJSON(KEYS.brands, defaultBrands());
-      writeJSON(KEYS.parts, defaultParts());
+      writeJSON(KEYS.parts, []);
       writeJSON(KEYS.slides, defaultSlides());
       writeJSON(KEYS.cart, []);
+      resetCatalogPartsCache();
     }
   };
 })();

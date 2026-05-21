@@ -11,7 +11,9 @@
   var Shop = window.SpectrShop;
   var state = {
     activeCategory: null,
-    vehicle: null
+    vehicle: null,
+    catalogParts: [],
+    catalogStatus: "loading"
   };
 
   function $(id) { return document.getElementById(id); }
@@ -300,6 +302,17 @@
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
+  function loadCatalogParts() {
+    state.catalogStatus = "loading";
+    renderCatalog();
+    return Shop.fetchCatalogParts().then(function (parts) {
+      state.catalogParts = parts;
+      state.catalogStatus = "ready";
+      renderCatalog();
+      renderCart();
+    });
+  }
+
   /* ── Catalog grid ────────────────────────────────────────── */
   function renderCatalog() {
     var grid = $("catalog-grid");
@@ -308,14 +321,21 @@
     var categoryList = $("category-list");
     if (!grid || !categoryList) return;
 
-    var allParts = Shop.getParts();
+    if (state.catalogStatus === "loading") {
+      grid.innerHTML = '<div class="catalog-empty"><strong>Loading parts from database...</strong></div>';
+      if (summary) summary.textContent = "";
+      categoryList.innerHTML = "";
+      return;
+    }
+
+    var allParts = state.catalogParts;
     var visibleParts = allParts;
 
     if (state.vehicle) {
       if (state.vehicle.plate) {
         visibleParts = allParts;
       } else if (state.vehicle.brand) {
-        visibleParts = Shop.partsForVehicle({
+        visibleParts = Shop.partsForVehicle(allParts, {
           brand: state.vehicle.brand,
           model: state.vehicle.model,
           engine: state.vehicle.engine
@@ -358,8 +378,10 @@
     if (visibleParts.length === 0) {
       grid.innerHTML = '' +
         '<div class="catalog-empty">' +
-          '<strong>No parts match your selection</strong>' +
-          '<span>Try another category or adjust the search.</span>' +
+          '<strong>' + (allParts.length === 0 ? "No parts in the catalog yet" : "No parts match your selection") + '</strong>' +
+          '<span>' + (allParts.length === 0
+            ? "Add parts in the admin panel to publish listings."
+            : "Try another category or adjust the search.") + '</span>' +
         '</div>';
       return;
     }
@@ -429,7 +451,7 @@
 
   /* ── Cart drawer ─────────────────────────────────────────── */
   function findPart(id) {
-    return Shop.getParts().find(function (p) { return p.id === id; });
+    return state.catalogParts.find(function (p) { return p.id === id; });
   }
 
   function renderCart() {
@@ -539,7 +561,7 @@
   function onStorageChange(event) {
     var key = event && event.detail && event.detail.key;
     if (!key) return;
-    if (key === Shop.KEYS.parts || key === Shop.KEYS.brands || key === Shop.KEYS.cart) {
+    if (key === Shop.KEYS.brands || key === Shop.KEYS.cart) {
       renderCatalog();
       renderCart();
     }
@@ -550,12 +572,11 @@
     initFinder();
     initCatalogInteractions();
     initCart();
-    renderCatalog();
+    loadCatalogParts();
     renderCart();
     window.addEventListener("spectr-shop-change", onStorageChange);
     window.addEventListener("storage", function (event) {
       if (!event.key || event.key.indexOf("spectr_shop_") !== 0) return;
-      renderCatalog();
       renderCart();
     });
   });
