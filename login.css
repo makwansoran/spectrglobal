@@ -1,5 +1,6 @@
 .login-page {
   --spectr-logo-font: "Syne", system-ui, sans-serif;
+  --spectr-ui-font: "Instrument Sans", "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --auth-bg: #ffffff;
   --auth-surface: #f6f7f8;
   --auth-ink: #0a0c10;
@@ -13,17 +14,7 @@
     radial-gradient(circle at 78% 20%, rgba(10, 12, 16, 0.06), transparent 28rem),
     linear-gradient(180deg, #ffffff 0%, #f6f7f8 100%);
   color: var(--auth-ink);
-  font-family: var(--spectr-logo-font);
-}
-
-.login-page,
-.login-page *,
-.login-page button,
-.login-page input,
-.login-page textarea,
-.login-page select,
-.login-page option {
-  font-family: var(--spectr-logo-font) !important;
+  font-family: var(--spectr-ui-font);
 }
 
 .auth-shell {
