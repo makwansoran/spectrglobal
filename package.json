@@ -5,6 +5,7 @@
     "node": ">=20"
   },
   "scripts": {
+    "build": "node -e \"console.log('Static site — no compile step')\"",
     "dev": "node scripts/dev-server.js",
     "start": "npm run dev"
   },

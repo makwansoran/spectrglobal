@@ -5,7 +5,9 @@ Production is **https://www.spectr.no** (project `spectrglobal`).
 ## If pushes to `main` do not deploy
 
 1. **Vercel Dashboard** → [spectrglobal](https://vercel.com/makwansorans-projects/spectrglobal) → **Deployments**  
-   Check for failed builds (red). Common fix: invalid `vercel.json` crons (Hobby plan allows **once per day** per cron, not hourly).
+   Check for failed builds (red). Common fixes:
+   - **ENOENT `profile/package.json`**: remove any old **Build Command** in Project Settings (e.g. `npm run build --prefix profile`). The repo uses root `npm run build` from `vercel.json` instead.
+   - Invalid `vercel.json` crons (Hobby plan allows **once per day** per cron, not hourly).
 
 2. **Reconnect Git** → Project **Settings** → **Git** → confirm `makwansoran/spectrglobal` and branch `main` for Production.
 
