@@ -55,24 +55,85 @@ async function handleMakes(req, res) {
 
   const url = new URL(req.url, `http://${req.headers.host || "localhost"}`);
   const activeOnly = url.searchParams.get("active") !== "0";
+  const withModels = url.searchParams.get("with_models") === "1";
   const limit = Math.min(Math.max(parseInt(url.searchParams.get("limit") || "200", 10) || 200, 1), 300);
 
   let query = getReadClient()
     .from("makes")
-    .select("slug, name, country, region, active, logo_text, popularity_rank")
+    .select("id, slug, name, country, region, active, logo_text, logo_url, popularity_rank")
     .order("popularity_rank", { ascending: true, nullsFirst: false })
     .order("name", { ascending: true })
     .limit(limit);
 
   if (activeOnly) query = query.eq("active", true);
 
-  const { data, error } = await query;
+  let { data, error } = await query;
   if (error) {
     sendJson(res, 500, { error: error.message || "Could not load car makes." });
     return true;
   }
 
+  if (withModels) {
+    const makeIds = (data || []).map((make) => make.id);
+    if (makeIds.length) {
+      const { data: modelRows, error: modelError } = await getReadClient()
+        .from("models")
+        .select("make_id")
+        .in("make_id", makeIds);
+
+      if (modelError) {
+        sendJson(res, 500, { error: modelError.message || "Could not load supported makes." });
+        return true;
+      }
+
+      const supportedMakeIds = new Set((modelRows || []).map((row) => row.make_id));
+      data = (data || []).filter((make) => supportedMakeIds.has(make.id));
+    }
+  }
+
   sendJson(res, 200, { makes: data || [] });
+  return true;
+}
+
+function modelFromRow(row) {
+  return {
+    id: row.id,
+    make_id: row.make_id,
+    name: row.name,
+    body_type: row.body_type || "",
+    year_from: row.year_from == null ? null : Number(row.year_from),
+    year_to: row.year_to == null ? null : Number(row.year_to),
+  };
+}
+
+async function handleModels(req, res) {
+  if (!isSupabaseEnabled()) {
+    sendJson(res, 503, { error: "Car models database is not configured." });
+    return true;
+  }
+
+  const url = new URL(req.url, `http://${req.headers.host || "localhost"}`);
+  const makeId = String(url.searchParams.get("make_id") || "").trim();
+  const limit = Math.min(Math.max(parseInt(url.searchParams.get("limit") || "400", 10) || 400, 1), 500);
+
+  if (!makeId) {
+    sendJson(res, 400, { error: "make_id is required." });
+    return true;
+  }
+
+  const { data, error } = await getReadClient()
+    .from("models")
+    .select("id, make_id, name, body_type, year_from, year_to")
+    .eq("make_id", makeId)
+    .order("name", { ascending: true })
+    .limit(limit);
+
+  if (error) {
+    sendJson(res, 500, { error: error.message || "Could not load car models." });
+    return true;
+  }
+
+  sendJson(res, 200, { models: (data || []).map(modelFromRow) });
   return true;
 }
 
@@ -262,6 +323,10 @@ async function handleApi(req, res, pathname) {
 
     if (pathname === "/api/makes" && req.method === "GET") {
       return await handleMakes(req, res);
+    }
+
+    if (pathname === "/api/models" && req.method === "GET") {
+      return await handleModels(req, res);
     }
 
     if (pathname === "/api/parts" || pathname.startsWith("/api/parts/")) {

@@ -28,6 +28,7 @@ create table if not exists public.makes (
   region text,
   active boolean not null default true,
   logo_text text not null,
+  logo_url text,
   popularity_rank integer,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now(),
@@ -44,6 +45,33 @@ create policy "Public read makes"
   for select
   to anon, authenticated
   using (true);
+
+-- Car models supported by the parts finder. Models are linked to makes by FK.
+create table if not exists public.models (
+  id uuid primary key default gen_random_uuid(),
+  make_id uuid not null references public.makes(id) on delete cascade,
+  name text not null,
+  body_type text,
+  year_from integer,
+  year_to integer,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now(),
+  constraint models_name_len check (char_length(trim(name)) between 1 and 160),
+  constraint models_year_range check (year_to is null or year_from is null or year_to >= year_from),
+  constraint models_make_name_unique unique (make_id, name)
+);
+
+alter table public.models enable row level security;
+
+drop policy if exists "Public read models" on public.models;
+create policy "Public read models"
+  on public.models
+  for select
+  to anon, authenticated
+  using (true);
+
+create index if not exists models_make_name_idx on public.models (make_id, name);
+create index if not exists models_years_idx on public.models (year_from, year_to);
 
 with seed(name, country, region, active) as (
   values
@@ -187,11 +215,36 @@ normalized as (
     country,
     region,
     active,
-    upper(left(regexp_replace(translate(name, 'ŠšëéÉöø', 'sseeeoo'), '[^A-Za-z0-9]', '', 'g'), 3)) as logo_text
+    upper(left(regexp_replace(translate(name, 'ŠšëéÉöø', 'sseeeoo'), '[^A-Za-z0-9]', '', 'g'), 3)) as logo_text,
+    'https://cdn.simpleicons.org/' ||
+      case trim(both '-' from regexp_replace(
+        lower(translate(replace(name, '&', ' and '), 'ŠšëéÉöø', 'sseeeoo')),
+        '[^a-z0-9]+',
+        '-',
+        'g'
+      ))
+        when 'mercedes-benz' then 'mercedes'
+        when 'alfa-romeo' then 'alfaromeo'
+        when 'ds-automobiles' then 'dsautomobiles'
+        when 'rolls-royce' then 'rollsroyce'
+        when 'land-rover' then 'landrover'
+        when 'aston-martin' then 'astonmartin'
+        when 'mini' then 'mini'
+        when 'great-wall' then 'greatwall'
+        when 'li-auto' then 'liauto'
+        when 'lynk-and-co' then 'lynkco'
+        when 'kg-mobility' then 'kgmobility'
+        else replace(trim(both '-' from regexp_replace(
+          lower(translate(replace(name, '&', ' and '), 'ŠšëéÉöø', 'sseeeoo')),
+          '[^a-z0-9]+',
+          '-',
+          'g'
+        )), '-', '')
+      end || '/111827' as logo_url
   from seed
 )
-insert into public.makes (slug, name, country, region, active, logo_text)
-select slug, name, country, region, active, logo_text
+insert into public.makes (slug, name, country, region, active, logo_text, logo_url)
+select slug, name, country, region, active, logo_text, logo_url
 from normalized
 on conflict (slug) do update set
   name = excluded.name,
@@ -199,6 +252,7 @@ on conflict (slug) do update set
   region = excluded.region,
   active = excluded.active,
   logo_text = excluded.logo_text,
+  logo_url = excluded.logo_url,
   updated_at = now();
 
 update public.makes

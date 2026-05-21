@@ -6,6 +6,9 @@
     "api/makes.js": {
       "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,scripts/load-env.js"
     },
+    "api/models.js": {
+      "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,scripts/load-env.js"
+    },
     "api/parts.js": {
       "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,scripts/load-env.js"
     },

@@ -138,6 +138,8 @@
     var plateInput = $("finder-plate");
     var vehicleForm = $("finder-vehicle-form");
     var brandsFromDatabase = [];
+    var modelsByMakeId = {};
+    var modelRequestId = 0;
 
     if (!brandSelect || !modelSelect || !engineSelect) return;
 
@@ -156,17 +158,47 @@
       return brandsFromDatabase.find(function (b) { return b.name === name; });
     }
 
-    function mergeDatabaseMake(make) {
-      var local = Shop.getBrands().find(function (b) { return b.name === make.name; });
+    function mapDatabaseMake(make) {
       return {
+        databaseId: make.id,
         id: make.slug || make.name,
         name: make.name,
         slug: make.slug,
         logoText: make.logo_text,
+        logoUrl: make.logo_url,
         country: make.country,
         region: make.region,
-        models: local ? local.models : []
+        models: []
       };
+    }
+
+    function renderModelOptions(models) {
+      if (!models.length) {
+        modelSelect.innerHTML = '<option value="">No supported models</option>';
+        modelSelect.disabled = true;
+        return;
+      }
+
+      modelSelect.disabled = false;
+      modelSelect.innerHTML = '<option value="">Choose model</option>' +
+        models.map(function (m) {
+          var years = m.year_from ? " (" + m.year_from + (m.year_to ? "-" + m.year_to : "-") + ")" : "";
+          return '<option value="' + escapeHtml(m.name) + '">' + escapeHtml(m.name + years) + '</option>';
+        }).join("");
+    }
+
+    function loadModelsForBrand(brand) {
+      if (!brand || !brand.databaseId) return Promise.resolve([]);
+      if (modelsByMakeId[brand.databaseId]) return Promise.resolve(modelsByMakeId[brand.databaseId]);
+
+      return fetch("/api/models?make_id=" + encodeURIComponent(brand.databaseId), { headers: { Accept: "application/json" } })
+        .then(function (res) {
+          return res.json().then(function (data) {
+            if (!res.ok) throw new Error(data.error || "Car models database unavailable.");
+            modelsByMakeId[brand.databaseId] = Array.isArray(data.models) ? data.models : [];
+            return modelsByMakeId[brand.databaseId];
+          });
+        });
     }
 
     function applyMakeFromUrl() {
@@ -183,35 +215,35 @@
 
     function onBrandChange() {
       var brand = findBrand(brandSelect.value);
+      modelRequestId += 1;
+      var requestId = modelRequestId;
+
+      modelSelect.innerHTML = '<option value="">Choose model</option>';
+      modelSelect.disabled = true;
+      engineSelect.innerHTML = '<option value="">All engines</option>';
+      engineSelect.disabled = true;
+
       if (!brand) {
-        modelSelect.innerHTML = '<option value="">Choose model</option>';
-        modelSelect.disabled = true;
-        engineSelect.innerHTML = '<option value="">Choose engine</option>';
-        engineSelect.disabled = true;
         return;
       }
-      modelSelect.disabled = false;
-      modelSelect.innerHTML = '<option value="">Choose model</option>' +
-        brand.models.map(function (m) {
-          return '<option value="' + escapeHtml(m.name) + '">' + escapeHtml(m.name) + '</option>';
-        }).join("");
-      engineSelect.innerHTML = '<option value="">Choose engine</option>';
-      engineSelect.disabled = true;
+
+      modelSelect.innerHTML = '<option value="">Loading models...</option>';
+      loadModelsForBrand(brand)
+        .then(function (models) {
+          if (requestId !== modelRequestId) return;
+          brand.models = models;
+          renderModelOptions(models);
+        })
+        .catch(function () {
+          if (requestId !== modelRequestId) return;
+          modelSelect.innerHTML = '<option value="">Models unavailable</option>';
+          modelSelect.disabled = true;
+        });
     }
 
     function onModelChange() {
-      var brand = findBrand(brandSelect.value);
-      var model = brand && brand.models.find(function (m) { return m.name === modelSelect.value; });
-      if (!model) {
-        engineSelect.innerHTML = '<option value="">Choose engine</option>';
-        engineSelect.disabled = true;
-        return;
-      }
-      engineSelect.disabled = false;
-      engineSelect.innerHTML = '<option value="">All engines</option>' +
-        (model.engines || []).map(function (e) {
-          return '<option value="' + escapeHtml(e) + '">' + escapeHtml(e) + '</option>';
-        }).join("");
+      engineSelect.innerHTML = '<option value="">All engines</option>';
+      engineSelect.disabled = true;
     }
 
     brandSelect.addEventListener("change", onBrandChange);
@@ -269,7 +301,7 @@
 
     brandSelect.innerHTML = '<option value="">Loading brands...</option>';
     brandSelect.disabled = true;
-    fetch("/api/makes?active=1&limit=300", { headers: { Accept: "application/json" } })
+    fetch("/api/makes?active=1&with_models=1&limit=300", { headers: { Accept: "application/json" } })
       .then(function (res) {
         return res.json().then(function (data) {
           if (!res.ok) throw new Error(data.error || "Car makes database unavailable.");
@@ -277,7 +309,7 @@
         });
       })
       .then(function (makes) {
-        brandsFromDatabase = makes.map(mergeDatabaseMake);
+        brandsFromDatabase = makes.map(mapDatabaseMake);
         brandSelect.disabled = false;
         populateBrands();
         applyMakeFromUrl();
@@ -288,13 +320,9 @@
         brandSelect.disabled = true;
         modelSelect.innerHTML = '<option value="">Choose model</option>';
         modelSelect.disabled = true;
-        engineSelect.innerHTML = '<option value="">Choose engine</option>';
+        engineSelect.innerHTML = '<option value="">All engines</option>';
         engineSelect.disabled = true;
       });
-
-    window.addEventListener("spectr-shop-change", function (event) {
-      if (event.detail && event.detail.key === Shop.KEYS.brands) populateBrands();
-    });
   }
 
   function scrollToCatalog() {
