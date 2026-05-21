@@ -22,18 +22,51 @@
       .replace(/^-+|-+$/g, "") || "other";
   }
 
-  function categoryIcon(category) {
-    var value = normalizeSearch(category);
-    if (value.indexOf("rim") !== -1 || value.indexOf("wheel") !== -1) return "◌";
-    if (value.indexOf("deal") !== -1) return "%";
-    if (value.indexOf("tyre") !== -1 || value.indexOf("tire") !== -1) return "◉";
-    if (value.indexOf("oil") !== -1) return "◍";
-    if (value.indexOf("brake") !== -1) return "▣";
-    if (value.indexOf("filter") !== -1) return "▤";
-    if (value.indexOf("suspension") !== -1) return "⌁";
-    if (value.indexOf("engine") !== -1) return "⚙";
-    if (value.indexOf("body") !== -1) return "▰";
-    return "+";
+  function fallbackImage(category) {
+    var value = normalizeSearch([
+      category && category.name,
+      category && category.group,
+      category && category.section
+    ].filter(Boolean).join(" "));
+    var art = '<path d="M224 146h192l42 72v72H182v-72l42-72Z" fill="#f8fafc" stroke="#cfd6df" stroke-width="14" stroke-linejoin="round"/><circle cx="234" cy="302" r="34" fill="#fff" stroke="#cfd6df" stroke-width="14"/><circle cx="406" cy="302" r="34" fill="#fff" stroke="#cfd6df" stroke-width="14"/>';
+
+    if (value.indexOf("brake") !== -1 || value.indexOf("abs") !== -1) {
+      art = '<circle cx="300" cy="220" r="86" fill="#f8fafc" stroke="#cfd6df" stroke-width="18"/><circle cx="300" cy="220" r="26" fill="#fff" stroke="#cfd6df" stroke-width="12"/><path d="M388 152c38 32 52 82 34 129l-58-23c9-24 2-50-18-67l42-39Z" fill="#e7ecf3" stroke="#cfd6df" stroke-width="12" stroke-linejoin="round"/>';
+    } else if (value.indexOf("oil") !== -1 || value.indexOf("fluid") !== -1 || value.indexOf("coolant") !== -1 || value.indexOf("additive") !== -1) {
+      art = '<path d="M262 112h112v42l48 58v118H214V212l48-58v-42Z" fill="#f8fafc" stroke="#cfd6df" stroke-width="14" stroke-linejoin="round"/><path d="M260 250h116" stroke="#cfd6df" stroke-width="14" stroke-linecap="round"/><path d="M288 112h58" stroke="#cfd6df" stroke-width="22" stroke-linecap="round"/>';
+    } else if (value.indexOf("tyre") !== -1 || value.indexOf("tire") !== -1 || value.indexOf("wheel") !== -1 || value.indexOf("rim") !== -1) {
+      art = '<circle cx="320" cy="220" r="116" fill="#f8fafc" stroke="#cfd6df" stroke-width="24"/><circle cx="320" cy="220" r="58" fill="#fff" stroke="#cfd6df" stroke-width="14"/><path d="M320 162v116M262 220h116M278 178l84 84M362 178l-84 84" stroke="#cfd6df" stroke-width="10" stroke-linecap="round"/>';
+    } else if (value.indexOf("filter") !== -1) {
+      art = '<rect x="198" y="128" width="244" height="184" rx="24" fill="#f8fafc" stroke="#cfd6df" stroke-width="14"/><path d="M240 150v140M280 150v140M320 150v140M360 150v140M400 150v140" stroke="#cfd6df" stroke-width="10" stroke-linecap="round"/>';
+    } else if (value.indexOf("spring") !== -1 || value.indexOf("shock") !== -1 || value.indexOf("strut") !== -1 || value.indexOf("suspension") !== -1) {
+      art = '<path d="M320 98v244" stroke="#cfd6df" stroke-width="16" stroke-linecap="round"/><path d="M258 130c72 0 124 24 124 52s-124 28-124 56 52 52 124 52" fill="none" stroke="#cfd6df" stroke-width="16" stroke-linecap="round"/><path d="M280 96h80M280 344h80" stroke="#cfd6df" stroke-width="18" stroke-linecap="round"/>';
+    } else if (value.indexOf("battery") !== -1 || value.indexOf("alternator") !== -1 || value.indexOf("starter") !== -1 || value.indexOf("fuse") !== -1 || value.indexOf("relay") !== -1 || value.indexOf("wiring") !== -1) {
+      art = '<rect x="194" y="150" width="252" height="142" rx="20" fill="#f8fafc" stroke="#cfd6df" stroke-width="14"/><path d="M248 128h46M346 128h46M258 220h54M285 193v54M352 220h54" stroke="#cfd6df" stroke-width="14" stroke-linecap="round"/>';
+    } else if (value.indexOf("light") !== -1 || value.indexOf("bulb") !== -1 || value.indexOf("lamp") !== -1) {
+      art = '<path d="M248 198c0-52 34-92 72-92s72 40 72 92c0 34-18 58-38 78H286c-20-20-38-44-38-78Z" fill="#f8fafc" stroke="#cfd6df" stroke-width="14" stroke-linejoin="round"/><path d="M286 304h68M296 334h48M222 180h-42M460 180h-42M242 116l-30-30M398 116l30-30" stroke="#cfd6df" stroke-width="14" stroke-linecap="round"/>';
+    } else if (value.indexOf("exhaust") !== -1 || value.indexOf("muffler") !== -1 || value.indexOf("catalytic") !== -1 || value.indexOf("dpf") !== -1) {
+      art = '<path d="M156 232h126" stroke="#cfd6df" stroke-width="18" stroke-linecap="round"/><rect x="282" y="172" width="148" height="120" rx="52" fill="#f8fafc" stroke="#cfd6df" stroke-width="14"/><path d="M430 232h62M492 216h42M492 248h42" stroke="#cfd6df" stroke-width="18" stroke-linecap="round"/>';
+    } else if (value.indexOf("wiper") !== -1 || value.indexOf("washer") !== -1) {
+      art = '<path d="M168 292h304" stroke="#cfd6df" stroke-width="16" stroke-linecap="round"/><path d="M320 292l114-138" stroke="#cfd6df" stroke-width="18" stroke-linecap="round"/><path d="M410 150l64 54" stroke="#cfd6df" stroke-width="14" stroke-linecap="round"/><path d="M198 170c44-42 98-62 162-58" fill="none" stroke="#e7ecf3" stroke-width="14" stroke-linecap="round"/>';
+    } else if (value.indexOf("sensor") !== -1 || value.indexOf("switch") !== -1 || value.indexOf("module") !== -1 || value.indexOf("camera") !== -1) {
+      art = '<rect x="230" y="136" width="180" height="168" rx="24" fill="#f8fafc" stroke="#cfd6df" stroke-width="14"/><circle cx="320" cy="220" r="42" fill="#fff" stroke="#cfd6df" stroke-width="12"/><path d="M196 172h34M196 220h34M196 268h34M410 172h34M410 220h34M410 268h34" stroke="#cfd6df" stroke-width="12" stroke-linecap="round"/>';
+    } else if (value.indexOf("seat") !== -1 || value.indexOf("interior") !== -1 || value.indexOf("airbag") !== -1 || value.indexOf("dashboard") !== -1) {
+      art = '<path d="M242 120h112c30 0 46 20 40 50l-28 138H214l28-188Z" fill="#f8fafc" stroke="#cfd6df" stroke-width="14" stroke-linejoin="round"/><path d="M210 308h170l38 46" stroke="#cfd6df" stroke-width="16" stroke-linecap="round"/>';
+    }
+
+    return (
+      "data:image/svg+xml;charset=UTF-8," +
+      encodeURIComponent(
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420">' +
+          '<rect width="640" height="420" fill="#ffffff"/>' +
+          art +
+          "</svg>"
+      )
+    );
+  }
+
+  function categoryImageUrl(category) {
+    return fallbackImage(category);
   }
 
   function fetchCategories() {
@@ -62,7 +95,12 @@
         return {
           name: category.name,
           slug: category.slug,
-          icon: (section && section.icon) || categoryIcon(category.name),
+          image: categoryImageUrl({
+            name: category.name,
+            group: (group && group.name) || "",
+            section: (section && section.name) || ""
+          }),
+          fallbackImage: fallbackImage(category),
           group: (group && group.name) || "",
           section: (section && section.name) || "",
           sortKey: [
@@ -103,9 +141,11 @@
       var details = [category.section, category.group].filter(Boolean).join(" · ") || "Parts category";
       return (
         '<a class="part-category-list-card" href="' + href + '" data-category="' + escapeHtml(category.slug || categorySlug(category.name)) + '">' +
-          '<span class="part-category-icon" aria-hidden="true">' + escapeHtml(category.icon || categoryIcon(category.name)) + "</span>" +
-          '<span class="make-name">' + escapeHtml(category.name) + "</span>" +
-          '<small>' + escapeHtml(details) + "</small>" +
+          '<img class="part-category-image" src="' + escapeHtml(category.image) + '" alt="" loading="lazy" decoding="async" onerror="this.onerror=null;this.src=\'' + escapeHtml(category.fallbackImage) + '\'">' +
+          '<span class="part-category-image-copy">' +
+            '<span class="make-name">' + escapeHtml(category.name) + "</span>" +
+            '<small>' + escapeHtml(details) + "</small>" +
+          "</span>" +
         "</a>"
       );
     }).join("");

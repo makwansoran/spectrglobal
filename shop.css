@@ -842,22 +842,45 @@
 }
 
 .all-categories-grid .part-category-list-card {
-  gap: 0.55rem;
+  position: relative;
+  min-height: 13.5rem;
+  padding: 0;
+  overflow: hidden;
+  background: #ffffff;
+  isolation: isolate;
 }
 
-.part-category-icon {
-  width: 3rem;
-  height: 3rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--shop-line);
-  border-radius: 999px;
-  background: var(--shop-surface);
-  color: var(--shop-ink);
-  font-family: var(--shop-mono);
-  font-size: 1.1rem;
-  font-weight: 800;
+.part-category-image {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 1.15rem;
+  background: #ffffff;
+  transition: transform 0.28s ease;
+}
+
+.part-category-list-card::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  z-index: -1;
+  height: 58%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.92) 54%, #ffffff 100%);
+}
+
+.part-category-image-copy {
+  display: grid;
+  gap: 0.25rem;
+  width: 100%;
+  margin-top: auto;
+  padding: 5rem 1rem 1rem;
+}
+
+.all-categories-grid .part-category-list-card:hover .part-category-image {
+  transform: scale(1.04);
 }
 
 .all-brands-grid a:hover {
