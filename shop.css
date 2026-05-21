@@ -570,9 +570,12 @@
 
 /* ── Brand model showcase ────────────────────────────────── */
 .parts-categories-showcase {
-  max-width: 1440px;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
   padding: clamp(2.4rem, 5vw, 4.5rem) clamp(1rem, 4vw, 4.5rem) clamp(1.5rem, 3vw, 2.5rem);
+  border-top: 1px solid var(--shop-line);
+  border-bottom: 1px solid var(--shop-line);
+  background: #ffffff;
 }
 
 .parts-categories-head {
@@ -1284,11 +1287,14 @@
 }
 
 .catalog-editorial {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 clamp(1rem, 4vw, 4.5rem) clamp(3rem, 6vw, 6rem);
+  max-width: 100%;
+  margin: 0;
+  padding: clamp(3rem, 6vw, 6rem) clamp(1rem, 4vw, 4.5rem);
   display: grid;
-  gap: clamp(1rem, 2vw, 1.4rem);
+  gap: clamp(2rem, 4vw, 4rem);
+  background: var(--shop-surface, #f3f5f8);
+  border-top: 1px solid var(--shop-line);
+  border-bottom: 1px solid var(--shop-line);
 }
 
 .category-editorial {
@@ -1607,6 +1613,12 @@
   min-width: 0;
   display: grid;
   gap: clamp(1rem, 2vw, 1.4rem);
+}
+
+.catalog-editorial > * {
+  max-width: 1440px;
+  width: 100%;
+  margin-inline: auto;
 }
 
 .category-review-strip {
