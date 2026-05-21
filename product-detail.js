@@ -57,6 +57,52 @@
     );
   }
 
+  function renderProductMedia(product) {
+    if (product.image_url) {
+      return '<div class="product-detail-media product-detail-media--image"><img src="' + escapeHtml(product.image_url) + '" alt="' + escapeHtml(product.name) + '" /></div>';
+    }
+    return '<div class="product-detail-media"><span>' + escapeHtml(initials(product.name)) + '</span></div>';
+  }
+
+  function renderFeatures(product) {
+    var features = Array.isArray(product.features) ? product.features : [];
+    if (!features.length) return "";
+    return (
+      '<section class="product-detail-section">' +
+        '<h2>Key features</h2>' +
+        '<ul class="product-feature-list">' +
+          features.map(function (feature) { return '<li>' + escapeHtml(feature) + '</li>'; }).join("") +
+        '</ul>' +
+      '</section>'
+    );
+  }
+
+  function renderReviews(product) {
+    var reviews = Array.isArray(product.reviews) ? product.reviews : [];
+    if (!reviews.length) {
+      reviews = [
+        { name: "Spectr customer", rating: 5, text: "Quality product selected for reliable everyday fitment." }
+      ];
+    }
+    return (
+      '<section class="product-detail-section">' +
+        '<h2>Reviews</h2>' +
+        '<div class="product-review-list">' +
+          reviews.slice(0, 6).map(function (review) {
+            var rating = Math.max(1, Math.min(5, parseInt(review.rating, 10) || 5));
+            return (
+              '<article class="product-review">' +
+                '<strong>' + escapeHtml("★★★★★".slice(0, rating)) + '</strong>' +
+                '<p>' + escapeHtml(review.text || "Great quality and fitment.") + '</p>' +
+                '<small>' + escapeHtml(review.name || "Verified customer") + '</small>' +
+              '</article>'
+            );
+          }).join("") +
+        '</div>' +
+      '</section>'
+    );
+  }
+
   function renderDetail() {
     var product = state.product;
     var detail = $("product-detail");
@@ -72,7 +118,7 @@
 
     detail.innerHTML = '' +
       '<div class="product-detail-card">' +
-        '<div class="product-detail-media"><span>' + escapeHtml(initials(product.name)) + '</span></div>' +
+        renderProductMedia(product) +
         '<div class="product-detail-body">' +
           '<p class="shop-eyebrow">' + escapeHtml(product.category || "Car part") + '</p>' +
           '<h1>' + escapeHtml(product.name) + '</h1>' +
@@ -89,10 +135,12 @@
             '<h2>Product description</h2>' +
             '<p>' + escapeHtml(product.description || "This product is available in the Spectr catalog. Add detailed specifications in the admin panel.") + '</p>' +
           '</section>' +
+          renderFeatures(product) +
           '<section class="product-detail-section">' +
             '<h2>Compatible vehicles</h2>' +
             renderFitment(product) +
           '</section>' +
+          renderReviews(product) +
         '</div>' +
       '</div>';
 

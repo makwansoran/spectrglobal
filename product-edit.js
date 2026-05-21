@@ -49,7 +49,12 @@
     } catch (_) {
       data = {};
     }
-    if (!res.ok) throw new Error(data.error || "Request failed.");
+    if (!res.ok) {
+      var message = data && data.error && typeof data.error === "object"
+        ? (data.error.message || JSON.stringify(data.error))
+        : data.error;
+      throw new Error(message || "Request failed.");
+    }
     return data;
   }
 
@@ -139,17 +144,32 @@
   }
 
   function renderPreview(product) {
+    var e = product.editable || {};
+    var image = e.image_url || product.image_url || "";
+    var features = Array.isArray(e.features) ? e.features : [];
+    var reviews = Array.isArray(e.reviews) ? e.reviews : [];
     return (
       '<aside class="product-edit-preview">' +
-      '<div class="product-detail-media"><span>' + escapeHtml(initials(product.name)) + '</span></div>' +
+      '<div class="product-edit-preview-media">' +
+        (image
+          ? '<img src="' + escapeHtml(image) + '" alt="' + escapeHtml(product.name) + '" />'
+          : '<span>' + escapeHtml(initials(product.name)) + '</span>') +
+      '</div>' +
       '<p class="shop-eyebrow">' + escapeHtml(product.category || product.kind) + '</p>' +
       '<h1>' + escapeHtml([product.brand, product.name].filter(Boolean).join(" ")) + '</h1>' +
       '<p class="product-detail-sku">' + escapeHtml(product.sku || product.id) + '</p>' +
       '<p class="product-detail-description">' + escapeHtml(productDescription(product)) + '</p>' +
+      (features.length
+        ? '<ul class="product-edit-preview-features">' + features.slice(0, 5).map(function (feature) { return '<li>' + escapeHtml(feature) + '</li>'; }).join("") + '</ul>'
+        : '') +
       '<div class="product-detail-buy">' +
       '<strong>' + escapeHtml(formatMoney(product.price)) + '</strong>' +
       '<span class="' + (product.stock <= 0 ? "is-out" : "") + '">' + (product.stock <= 0 ? "Out of stock" : product.stock + " in stock") + '</span>' +
       "</div>" +
+      '<div class="product-edit-preview-reviews">' +
+        '<strong>' + escapeHtml(reviews.length || 0) + ' review' + (reviews.length === 1 ? '' : 's') + '</strong>' +
+        '<span>Displayed on product page</span>' +
+      '</div>' +
       '<p class="management-note">Preview of how this product information appears to customers.</p>' +
       "</aside>"
     );
@@ -161,6 +181,10 @@
       field("name", "Product name", e.name),
       field(product.kind === "parts" ? "price" : "price_eur", "Price (€)", product.kind === "parts" ? e.price : e.price_eur, "number", 'min="0" step="0.01"'),
       field("stock", "Inventory stock", e.stock, "number", 'min="0" step="1"'),
+      field("image_url", "Product image URL", e.image_url || "", "url", 'placeholder="https://..."'),
+      textarea("description", "Product description", e.description || productDescription(product), 'rows="5"'),
+      textarea("features", "Key features (one per line)", (e.features || []).join("\n"), 'rows="5"'),
+      textarea("reviews", "Reviews JSON", JSON.stringify(e.reviews || [], null, 2), 'rows="8" spellcheck="false"'),
       checkbox("active", "Visible on website", e.active !== false),
     ].join("");
   }
@@ -171,7 +195,6 @@
       commonFields(product) +
       field("category", "Category", e.category) +
       field("sku", "SKU", e.sku) +
-      textarea("description", "Description", e.description, 'rows="5"') +
       textarea("vehicles", "Compatible vehicles JSON", JSON.stringify(e.vehicles || [], null, 2), 'rows="8" spellcheck="false"')
     );
   }
@@ -248,14 +271,23 @@
     var payload = {
       name: String(data.get("name") || "").trim(),
       stock: Math.max(0, parseInt(data.get("stock"), 10) || 0),
+      image_url: String(data.get("image_url") || "").trim(),
+      description: String(data.get("description") || "").trim(),
+      features: String(data.get("features") || "").split("\n").map(function (item) { return item.trim(); }).filter(Boolean),
       active: data.get("active") === "on",
     };
+
+    try {
+      payload.reviews = JSON.parse(String(data.get("reviews") || "[]"));
+      if (!Array.isArray(payload.reviews)) throw new Error("Reviews must be an array.");
+    } catch (_) {
+      throw new Error('Reviews must be valid JSON, for example [{"name":"Customer","rating":5,"text":"Great quality"}].');
+    }
 
     if (kind === "parts") {
       payload.price = Math.max(0, Number(data.get("price")) || 0);
       payload.category = String(data.get("category") || "").trim();
       payload.sku = String(data.get("sku") || "").trim();
-      payload.description = String(data.get("description") || "").trim();
       try {
         payload.vehicles = JSON.parse(String(data.get("vehicles") || "[]"));
         if (!Array.isArray(payload.vehicles)) throw new Error("Vehicles must be an array.");

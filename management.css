@@ -653,6 +653,68 @@
   line-height: 1.2;
 }
 
+.product-edit-preview-media {
+  min-height: 240px;
+  border: 1px solid #e6e8ec;
+  border-radius: 12px;
+  background:
+    radial-gradient(circle at 70% 25%, rgba(33, 80, 255, 0.08), transparent 55%),
+    #f7f9fb;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.product-edit-preview-media img {
+  width: 100%;
+  height: 100%;
+  max-height: 280px;
+  object-fit: contain;
+  padding: 18px;
+  background: #ffffff;
+}
+
+.product-edit-preview-media span {
+  padding: 12px 18px;
+  border: 1px solid #d8dde4;
+  border-radius: 8px;
+  background: #ffffff;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.product-edit-preview-features {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+
+.product-edit-preview-features li {
+  background: #f7f9fb;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 13px;
+  color: #3b4452;
+}
+
+.product-edit-preview-reviews {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  border: 1px solid #e6e8ec;
+  border-radius: 10px;
+  padding: 10px 12px;
+  color: #6c7787;
+  font-size: 13px;
+}
+
+.product-edit-preview-reviews strong {
+  color: #0b1726;
+}
+
 .product-edit-card-head {
   display: flex;
   justify-content: space-between;

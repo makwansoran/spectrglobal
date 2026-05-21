@@ -10,6 +10,9 @@ const {
   hasSupabaseWrites,
 } = require("./supabase-client");
 
+const STRIPE_API_VERSION = "2026-04-22.dahlia";
+const STRIPE_KEY = process.env.STRIPE_SECRET_KEY || process.env.STRIPE_API_KEY || "";
+
 function sendJson(res, status, body) {
   res.writeHead(status, {
     "Content-Type": "application/json; charset=utf-8",
@@ -180,6 +183,9 @@ function partFromRow(row) {
     price: Number(row.price) || 0,
     stock: Number(row.stock) || 0,
     description: row.description || "",
+    image_url: row.image_url || "",
+    features: Array.isArray(row.features) ? row.features : [],
+    reviews: Array.isArray(row.reviews) ? row.reviews : [],
     vehicles: Array.isArray(row.vehicles) ? row.vehicles : [],
   };
 }
@@ -237,7 +243,10 @@ function oilProductFromRow(row, fitments) {
     sku: `OIL-${String(row.id || "").slice(0, 8).toUpperCase()}`,
     price: Number(row.price_eur) || 0,
     stock: Number(row.stock) || 0,
-    description: descriptionParts.join(" · "),
+    description: row.marketing_description || descriptionParts.join(" · "),
+    image_url: row.image_url || "",
+    features: Array.isArray(row.features) ? row.features : [],
+    reviews: Array.isArray(row.reviews) ? row.reviews : [],
     vehicles: fitments,
   };
 }
@@ -307,7 +316,10 @@ function brakeProductFromRow(row, fitments) {
     sku: `BRAKE-${String(row.id || "").slice(0, 8).toUpperCase()}`,
     price: Number(row.price_eur) || 0,
     stock: Number(row.stock) || 0,
-    description: [typeLabel, position, ...discSpecs, ...padSpecs].filter(Boolean).join(" · "),
+    description: row.marketing_description || [typeLabel, position, ...discSpecs, ...padSpecs].filter(Boolean).join(" · "),
+    image_url: row.image_url || "",
+    features: Array.isArray(row.features) ? row.features : [],
+    reviews: Array.isArray(row.reviews) ? row.reviews : [],
     vehicles: fitments,
   };
 }
@@ -418,7 +430,7 @@ function oilProductMatchesFitment(product, fitment) {
 async function fetchOilProductParts(activeOnly) {
   let oilProductsQuery = getReadClient()
     .from("oil_products")
-      .select("id, name, viscosity, base_type, approvals, volume_liters, price_eur, stock, active, oil_brands(name)")
+      .select("id, name, viscosity, base_type, approvals, volume_liters, price_eur, stock, active, image_url, marketing_description, features, reviews, oil_brands(name)")
     .order("name", { ascending: true });
 
   if (activeOnly) oilProductsQuery = oilProductsQuery.eq("active", true);
@@ -453,7 +465,7 @@ async function fetchOilProductParts(activeOnly) {
 async function fetchBrakeProductParts(activeOnly) {
   let brakeProductsQuery = getReadClient()
     .from("brake_products")
-      .select("id, name, type, position, disc_diameter_mm, disc_thickness_mm, disc_ventilated, disc_drilled, disc_slotted, disc_coated, pad_height_mm, pad_width_mm, pad_thickness_mm, pad_material, pad_with_sensor, price_eur, stock, active, brake_brands(name)")
+      .select("id, name, type, position, disc_diameter_mm, disc_thickness_mm, disc_ventilated, disc_drilled, disc_slotted, disc_coated, pad_height_mm, pad_width_mm, pad_thickness_mm, pad_material, pad_with_sensor, price_eur, stock, active, image_url, marketing_description, features, reviews, brake_brands(name)")
     .order("name", { ascending: true });
 
   if (activeOnly) brakeProductsQuery = brakeProductsQuery.eq("active", true);
@@ -483,6 +495,33 @@ async function fetchBrakeProductParts(activeOnly) {
       .filter((vehicle) => vehicle.brand && vehicle.model);
     return brakeProductFromRow(product, dedupeVehicleFits(vehicles));
   });
+}
+
+async function loadCatalogParts(activeOnly, limit) {
+  let query = getReadClient()
+    .from("parts")
+    .select("id, name, category, sku, price, stock, description, image_url, features, reviews, vehicles, active")
+    .order("name", { ascending: true })
+    .limit(limit);
+
+  if (activeOnly) query = query.eq("active", true);
+
+  const { data, error } = await query;
+
+  if (error) throw error;
+
+  const [oilParts, tyreParts, brakeParts] = await Promise.all([
+    fetchOilProductParts(activeOnly),
+    fetchTyreSizeParts(),
+    fetchBrakeProductParts(activeOnly),
+  ]);
+
+  return dedupeCatalogParts([
+    ...(data || []).map(partFromRow),
+    ...oilParts,
+    ...tyreParts,
+    ...brakeParts,
+  ]).slice(0, limit);
 }
 
 function dedupeVehicleFits(vehicles) {
@@ -536,17 +575,55 @@ function supplySku(kind, row) {
   return row.ean || `BRAKE-${String(row.id || "").slice(0, 8).toUpperCase()}`;
 }
 
+function generatedProductDescription(kind, row) {
+  if (kind === "oil") {
+    const volume = row.volume_liters == null ? "" : `${Number(row.volume_liters)}L`;
+    const approvals = Array.isArray(row.approvals) ? row.approvals.filter(Boolean) : [];
+    return [
+      row.base_type,
+      row.viscosity,
+      volume,
+      approvals.length ? `Approvals: ${approvals.join(", ")}` : "",
+    ].filter(Boolean).join(" · ");
+  }
+
+  if (kind === "brake") {
+    const typeLabel = row.type === "disc" ? "Brake disc" : row.type === "pad" ? "Brake pad" : "Brake part";
+    const position = row.position ? `${row.position} axle` : "";
+    const discSpecs = row.type === "disc"
+      ? [
+          row.disc_diameter_mm ? `${row.disc_diameter_mm}mm` : "",
+          row.disc_thickness_mm ? `${Number(row.disc_thickness_mm).toFixed(1)}mm thick` : "",
+          row.disc_ventilated ? "ventilated" : "",
+          row.disc_drilled ? "drilled" : "",
+          row.disc_slotted ? "slotted" : "",
+          row.disc_coated ? "coated" : "",
+        ]
+      : [];
+    const padSpecs = row.type === "pad"
+      ? [
+          row.pad_material || "",
+          row.pad_height_mm && row.pad_width_mm ? `${Number(row.pad_height_mm).toFixed(1)}x${Number(row.pad_width_mm).toFixed(1)}mm` : "",
+          row.pad_with_sensor ? "with sensor" : "",
+        ]
+      : [];
+    return [typeLabel, position, ...discSpecs, ...padSpecs].filter(Boolean).join(" · ");
+  }
+
+  return row.description || "";
+}
+
 function productTable(kind) {
   return kind === "parts" ? "parts" : kind === "oil" ? "oil_products" : kind === "brake" ? "brake_products" : "";
 }
 
 function productSelect(kind) {
-  if (kind === "parts") return "id, name, category, sku, price, stock, description, vehicles, active, created_at, updated_at";
+  if (kind === "parts") return "id, name, category, sku, price, stock, description, image_url, features, reviews, vehicles, active, created_at, updated_at";
   if (kind === "oil") {
-    return "id, brand_id, name, viscosity, base_type, approvals, volume_liters, price_eur, stock, active, created_at, updated_at, oil_brands(name)";
+    return "id, brand_id, name, viscosity, base_type, approvals, volume_liters, price_eur, stock, active, image_url, marketing_description, features, reviews, created_at, updated_at, oil_brands(name)";
   }
   if (kind === "brake") {
-    return "id, brand_id, name, type, position, disc_diameter_mm, disc_thickness_mm, disc_min_thickness_mm, disc_ventilated, disc_drilled, disc_slotted, disc_coated, pad_height_mm, pad_width_mm, pad_thickness_mm, pad_material, pad_with_sensor, ean, price_eur, stock, active, created_at, updated_at, brake_brands(name)";
+    return "id, brand_id, name, type, position, disc_diameter_mm, disc_thickness_mm, disc_min_thickness_mm, disc_ventilated, disc_drilled, disc_slotted, disc_coated, pad_height_mm, pad_width_mm, pad_thickness_mm, pad_material, pad_with_sensor, ean, price_eur, stock, active, image_url, marketing_description, features, reviews, created_at, updated_at, brake_brands(name)";
   }
   return "";
 }
@@ -571,8 +648,11 @@ function supplyItem(kind, row) {
       volume_liters: row.volume_liters == null ? null : Number(row.volume_liters),
       base_type: row.base_type || "",
       approvals: Array.isArray(row.approvals) ? row.approvals : [],
-      description: row.description || "",
+      description: row.description || row.marketing_description || generatedProductDescription(kind, row),
     },
+    image_url: row.image_url || "",
+    features: Array.isArray(row.features) ? row.features : [],
+    reviews: Array.isArray(row.reviews) ? row.reviews : [],
   };
 }
 
@@ -595,6 +675,9 @@ function editableProduct(kind, row) {
         price: Number(row.price) || 0,
         stock: Number(row.stock) || 0,
         description: row.description || "",
+        image_url: row.image_url || "",
+        features: Array.isArray(row.features) ? row.features : [],
+        reviews: Array.isArray(row.reviews) ? row.reviews : [],
         vehicles: Array.isArray(row.vehicles) ? row.vehicles : [],
         active: row.active !== false,
       },
@@ -612,6 +695,10 @@ function editableProduct(kind, row) {
         volume_liters: row.volume_liters == null ? null : Number(row.volume_liters),
         price_eur: Number(row.price_eur) || 0,
         stock: Number(row.stock) || 0,
+        image_url: row.image_url || "",
+        description: row.marketing_description || generatedProductDescription(kind, row),
+        features: Array.isArray(row.features) ? row.features : [],
+        reviews: Array.isArray(row.reviews) ? row.reviews : [],
         active: row.active !== false,
       },
     };
@@ -638,6 +725,10 @@ function editableProduct(kind, row) {
       ean: row.ean || "",
       price_eur: Number(row.price_eur) || 0,
       stock: Number(row.stock) || 0,
+      image_url: row.image_url || "",
+      description: row.marketing_description || generatedProductDescription(kind, row),
+      features: Array.isArray(row.features) ? row.features : [],
+      reviews: Array.isArray(row.reviews) ? row.reviews : [],
       active: row.active !== false,
     },
   };
@@ -675,15 +766,15 @@ async function handleAdminSupply(req, res) {
   const [partsResult, oilsResult, brakesResult] = await Promise.all([
     getAdminClient()
       .from("parts")
-      .select("id, name, category, sku, price, stock, description, vehicles, active")
+      .select("id, name, category, sku, price, stock, description, image_url, features, reviews, vehicles, active")
       .order("name", { ascending: true }),
     getAdminClient()
       .from("oil_products")
-      .select("id, name, viscosity, base_type, approvals, volume_liters, price_eur, stock, active, oil_brands(name)")
+      .select("id, name, viscosity, base_type, approvals, volume_liters, price_eur, stock, active, image_url, marketing_description, features, reviews, oil_brands(name)")
       .order("name", { ascending: true }),
     getAdminClient()
       .from("brake_products")
-      .select("id, name, type, position, ean, price_eur, stock, active, brake_brands(name)")
+      .select("id, name, type, position, ean, price_eur, stock, active, image_url, marketing_description, features, reviews, brake_brands(name)")
       .order("name", { ascending: true }),
   ]);
 
@@ -713,9 +804,19 @@ function cleanProductUpdates(kind, body) {
   if (body.stock != null) updates.stock = Math.max(0, parseInt(body.stock, 10) || 0);
   if (body.active != null) updates.active = body.active === true;
   if (kind === "parts" && body.description != null) updates.description = String(body.description || "").trim() || null;
+  if (body.image_url != null) updates.image_url = String(body.image_url || "").trim() || null;
+  if (body.features != null) {
+    updates.features = Array.isArray(body.features)
+      ? body.features.map((item) => String(item || "").trim()).filter(Boolean)
+      : String(body.features || "").split("\n").map((item) => item.trim()).filter(Boolean);
+  }
+  if (body.reviews != null) {
+    updates.reviews = Array.isArray(body.reviews) ? body.reviews : [];
+  }
   if (kind === "parts" && body.vehicles != null) updates.vehicles = Array.isArray(body.vehicles) ? body.vehicles : [];
 
   if (kind === "oil") {
+    if (body.description != null) updates.marketing_description = String(body.description || "").trim() || null;
     if (body.viscosity != null) updates.viscosity = String(body.viscosity || "").trim() || null;
     if (body.base_type != null) updates.base_type = String(body.base_type || "").trim() || null;
     if (body.approvals != null) {
@@ -727,6 +828,7 @@ function cleanProductUpdates(kind, body) {
   }
 
   if (kind === "brake") {
+    if (body.description != null) updates.marketing_description = String(body.description || "").trim() || null;
     if (body.type != null) updates.type = String(body.type || "").trim() || null;
     if (body.position != null) updates.position = String(body.position || "").trim() || null;
     if (body.disc_diameter_mm != null) updates.disc_diameter_mm = body.disc_diameter_mm === "" ? null : Math.max(0, parseInt(body.disc_diameter_mm, 10) || 0);
@@ -1072,42 +1174,12 @@ async function handlePartsList(req, res) {
   const activeOnly = url.searchParams.get("active") !== "0";
   const limit = Math.min(Math.max(parseInt(url.searchParams.get("limit") || "500", 10) || 500, 1), 500);
 
-  let query = getReadClient()
-    .from("parts")
-    .select("id, name, category, sku, price, stock, description, vehicles, active")
-    .order("name", { ascending: true })
-    .limit(limit);
-
-  if (activeOnly) query = query.eq("active", true);
-
-  const { data, error } = await query;
-  if (error) {
-    sendJson(res, 500, { error: error.message || "Could not load parts." });
-    return true;
-  }
-
-  let oilParts = [];
-  let tyreParts = [];
-  let brakeParts = [];
   try {
-    [oilParts, tyreParts, brakeParts] = await Promise.all([
-      fetchOilProductParts(activeOnly),
-      fetchTyreSizeParts(),
-      fetchBrakeProductParts(activeOnly),
-    ]);
+    const parts = await loadCatalogParts(activeOnly, limit);
+    sendJson(res, 200, { parts });
   } catch (catalogError) {
     sendJson(res, 500, { error: catalogError.message || "Could not load derived catalog products." });
-    return true;
   }
-
-  const parts = dedupeCatalogParts([
-    ...(data || []).map(partFromRow),
-    ...oilParts,
-    ...tyreParts,
-    ...brakeParts,
-  ]).slice(0, limit);
-
-  sendJson(res, 200, { parts });
   return true;
 }
 
@@ -1130,7 +1202,7 @@ async function handlePartsCreate(req, res, body) {
   const { data, error } = await getAdminClient()
     .from("parts")
     .insert({ ...record, created_at: new Date().toISOString() })
-    .select("id, name, category, sku, price, stock, description, vehicles, active")
+    .select("id, name, category, sku, price, stock, description, image_url, features, reviews, vehicles, active")
     .single();
 
   if (error) {
@@ -1168,7 +1240,7 @@ async function handlePartsUpdate(req, res, partId, body) {
     .from("parts")
     .update(updates)
     .eq("id", partId)
-    .select("id, name, category, sku, price, stock, description, vehicles, active")
+    .select("id, name, category, sku, price, stock, description, image_url, features, reviews, vehicles, active")
     .single();
 
   if (error) {
@@ -1229,6 +1301,119 @@ async function handleParts(req, res, pathname) {
   return false;
 }
 
+function requestOrigin(req) {
+  const proto = req.headers["x-forwarded-proto"] || "http";
+  const host = req.headers["x-forwarded-host"] || req.headers.host || "localhost:3000";
+  return `${String(proto).split(",")[0]}://${String(host).split(",")[0]}`;
+}
+
+function normalizeCheckoutLines(body) {
+  const rawLines = Array.isArray(body && body.lines) ? body.lines : [];
+  return rawLines
+    .map((line) => ({
+      partId: String((line && line.partId) || "").trim(),
+      qty: Math.min(Math.max(parseInt(line && line.qty, 10) || 0, 0), 99),
+    }))
+    .filter((line) => line.partId && line.qty > 0);
+}
+
+function normalizeCheckoutEmail(value) {
+  return String(value || "").trim().toLowerCase();
+}
+
+async function userFromCheckoutRequest(req, body) {
+  const token = bearerToken(req) || String((body && body.accessToken) || "").trim();
+  if (!token || !isSupabaseEnabled()) return null;
+  const { data, error } = await getAuthClient().auth.getUser(token);
+  if (error || !data || !data.user) return null;
+  return data.user;
+}
+
+async function handleCheckoutSession(req, res) {
+  if (req.method !== "POST") return false;
+  if (!STRIPE_KEY) {
+    sendJson(res, 503, { error: "Stripe is not configured. Set STRIPE_SECRET_KEY on the server." });
+    return true;
+  }
+  if (!isSupabaseEnabled()) {
+    sendJson(res, 503, { error: "Checkout requires the product database to be configured." });
+    return true;
+  }
+
+  const body = await readJsonBody(req);
+  const lines = normalizeCheckoutLines(body);
+  if (!lines.length) {
+    sendJson(res, 400, { error: "Your cart is empty." });
+    return true;
+  }
+
+  const catalog = await loadCatalogParts(true, 500);
+  const byId = new Map(catalog.map((part) => [String(part.id), part]));
+  const lineItems = [];
+
+  for (const line of lines) {
+    const part = byId.get(line.partId);
+    if (!part) {
+      sendJson(res, 400, { error: "One of the products in your cart is no longer available." });
+      return true;
+    }
+    const price = Number(part.price) || 0;
+    const stock = Number(part.stock) || 0;
+    if (price <= 0) {
+      sendJson(res, 400, { error: `${part.name} cannot be checked out because it has no price.` });
+      return true;
+    }
+    if (stock < line.qty) {
+      sendJson(res, 400, { error: `${part.name} only has ${stock} in stock.` });
+      return true;
+    }
+
+    lineItems.push({
+      quantity: line.qty,
+      price_data: {
+        currency: "nok",
+        unit_amount: Math.round(price * 100),
+        product_data: {
+          name: part.name,
+          description: [part.sku, part.category].filter(Boolean).join(" · ").slice(0, 500),
+          metadata: {
+            part_id: String(part.id),
+            sku: String(part.sku || ""),
+          },
+        },
+      },
+    });
+  }
+
+  const authUser = await userFromCheckoutRequest(req, body);
+  const customerEmail = normalizeCheckoutEmail(
+    (authUser && authUser.email) || (body.customer && body.customer.email)
+  );
+  if (!customerEmail) {
+    sendJson(res, 400, { error: "Enter an email address to continue as guest, or sign in for rewards." });
+    return true;
+  }
+
+  const Stripe = require("stripe");
+  const stripe = new Stripe(STRIPE_KEY, { apiVersion: STRIPE_API_VERSION });
+  const origin = requestOrigin(req);
+  const session = await stripe.checkout.sessions.create({
+    mode: "payment",
+    line_items: lineItems,
+    customer_email: customerEmail,
+    success_url: `${origin}/checkout-success.html?session_id={CHECKOUT_SESSION_ID}`,
+    cancel_url: `${origin}/checkout.html?checkout=cancelled`,
+    metadata: {
+      checkout_mode: authUser ? "customer" : "guest",
+      customer_id: authUser ? authUser.id : "",
+      cart_items: String(lineItems.length),
+    },
+  });
+
+  sendJson(res, 200, { url: session.url, id: session.id });
+  return true;
+}
+
 async function handleApi(req, res, pathname) {
   try {
     if (pathname.startsWith("/api/auth")) {
@@ -1247,6 +1432,10 @@ async function handleApi(req, res, pathname) {
 
     if (pathname === "/api/models" && req.method === "GET") {
       return await handleModels(req, res);
+    }
+
+    if (pathname === "/api/checkout/session") {
+      return await handleCheckoutSession(req, res);
     }
 
     if (pathname === "/api/parts" || pathname.startsWith("/api/parts/")) {

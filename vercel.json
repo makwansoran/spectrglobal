@@ -20,6 +20,12 @@
     },
     "api/admin/[[...path]].js": {
       "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,scripts/load-env.js"
+    },
+    "api/admin/products/[kind]/[id].js": {
+      "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,scripts/load-env.js"
+    },
+    "api/checkout/session.js": {
+      "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,node_modules/stripe/**,scripts/load-env.js"
     }
   },
   "rewrites": [

@@ -378,6 +378,9 @@ create table if not exists public.parts (
   price numeric(12, 2) not null default 0 check (price >= 0),
   stock integer not null default 0 check (stock >= 0),
   description text,
+  image_url text,
+  features jsonb not null default '[]'::jsonb,
+  reviews jsonb not null default '[]'::jsonb,
   vehicles jsonb not null default '[]'::jsonb,
   active boolean not null default true,
   created_at timestamptz not null default now(),
@@ -385,8 +388,15 @@ create table if not exists public.parts (
   constraint parts_name_len check (char_length(trim(name)) between 1 and 200),
   constraint parts_category_len check (char_length(trim(category)) between 1 and 80),
   constraint parts_sku_len check (sku is null or char_length(trim(sku)) <= 64),
-  constraint parts_vehicles_is_array check (jsonb_typeof(vehicles) = 'array')
+  constraint parts_vehicles_is_array check (jsonb_typeof(vehicles) = 'array'),
+  constraint parts_features_is_array check (jsonb_typeof(features) = 'array'),
+  constraint parts_reviews_is_array check (jsonb_typeof(reviews) = 'array')
 );
+
+alter table public.parts
+  add column if not exists image_url text,
+  add column if not exists features jsonb not null default '[]'::jsonb,
+  add column if not exists reviews jsonb not null default '[]'::jsonb;
 
 alter table public.parts enable row level security;
 
@@ -695,6 +705,10 @@ create table if not exists public.oil_products (
   volume_liters numeric(5, 1),
   price_eur numeric(10, 2),
   stock integer not null default 0,
+  image_url text,
+  marketing_description text,
+  features jsonb not null default '[]'::jsonb,
+  reviews jsonb not null default '[]'::jsonb,
   active boolean not null default true,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now(),
@@ -707,7 +721,11 @@ create table if not exists public.oil_products (
 
 alter table public.oil_products
   add column if not exists stock integer not null default 0,
-  add column if not exists updated_at timestamptz not null default now();
+  add column if not exists updated_at timestamptz not null default now(),
+  add column if not exists image_url text,
+  add column if not exists marketing_description text,
+  add column if not exists features jsonb not null default '[]'::jsonb,
+  add column if not exists reviews jsonb not null default '[]'::jsonb;
 
 alter table public.oil_products enable row level security;
 
@@ -1165,6 +1183,10 @@ create table if not exists public.brake_products (
   ean                  text,
   price_eur            numeric(10,2),
   stock                integer NOT NULL DEFAULT 0,
+  image_url            text,
+  marketing_description text,
+  features             jsonb NOT NULL DEFAULT '[]'::jsonb,
+  reviews              jsonb NOT NULL DEFAULT '[]'::jsonb,
   active               boolean DEFAULT true,
   created_at           timestamptz DEFAULT now(),
   updated_at           timestamptz NOT NULL DEFAULT now(),
@@ -1173,7 +1195,11 @@ create table if not exists public.brake_products (
 
 alter table public.brake_products
   add column if not exists stock integer not null default 0,
-  add column if not exists updated_at timestamptz not null default now();
+  add column if not exists updated_at timestamptz not null default now(),
+  add column if not exists image_url text,
+  add column if not exists marketing_description text,
+  add column if not exists features jsonb not null default '[]'::jsonb,
+  add column if not exists reviews jsonb not null default '[]'::jsonb;
 
 -- Per-model OEM brake specifications
 -- Separate rows for front and rear
