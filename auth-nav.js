@@ -203,6 +203,37 @@
     }) || LANGUAGES[0];
   }
 
+  function flagCountryCode(flag) {
+    var codePoints = Array.from(String(flag || ""));
+    if (codePoints.length < 2) return "";
+    var first = codePoints[0].codePointAt(0);
+    var second = codePoints[1].codePointAt(0);
+    var regionalIndicatorA = 0x1f1e6;
+    if (
+      first < regionalIndicatorA ||
+      first > regionalIndicatorA + 25 ||
+      second < regionalIndicatorA ||
+      second > regionalIndicatorA + 25
+    ) {
+      return "";
+    }
+    return String.fromCharCode(97 + first - regionalIndicatorA, 97 + second - regionalIndicatorA);
+  }
+
+  function languageFlagMarkup(language, className) {
+    var countryCode = flagCountryCode(language.flag);
+    if (countryCode) {
+      return (
+        '<span class="' +
+        className +
+        ' plt-language-flag--image" style="--plt-language-flag-url: url(&quot;https://flagcdn.com/w40/' +
+        escapeAttribute(countryCode) +
+        '.png&quot;)" aria-hidden="true"></span>'
+      );
+    }
+    return '<span class="' + className + '" aria-hidden="true">' + escapeHtml(language.flag) + "</span>";
+  }
+
   function readCookie(name) {
     var match = document.cookie.match(new RegExp("(^|; )" + name + "=([^;]*)"));
     return match ? decodeURIComponent(match[2]) : "";
@@ -302,13 +333,19 @@
   function renderLanguageOptions(currentCode) {
     return LANGUAGES.map(function (language) {
       return (
-        '<option value="' +
+        '<button type="button" class="plt-language-option' +
+        (language.code === currentCode ? " is-selected" : "") +
+        '" role="option" aria-selected="' +
+        (language.code === currentCode ? "true" : "false") +
+        '" aria-label="' +
+        escapeAttribute(language.name) +
+        '" title="' +
+        escapeAttribute(language.name) +
+        '" data-language-code="' +
         escapeAttribute(language.code) +
-        '"' +
-        (language.code === currentCode ? " selected" : "") +
-        ">" +
-        escapeHtml(language.flag + " " + language.name) +
-        "</option>"
+        '">' +
+        languageFlagMarkup(language, "plt-language-option-flag") +
+        "</button>"
       );
     }).join("");
   }
@@ -316,33 +353,95 @@
   function updateLanguageFlag(slot, code) {
     var language = findLanguage(code);
     var flag = slot.querySelector(".plt-language-flag");
-    var select = slot.querySelector(".plt-language-select");
-    if (flag) flag.textContent = language.flag;
-    if (select) {
-      select.value = language.code;
-      select.title = "Website language: " + language.name;
+    var trigger = slot.querySelector(".plt-language-trigger");
+    if (flag) flag.outerHTML = languageFlagMarkup(language, "plt-language-flag");
+    if (trigger) {
+      trigger.title = language.name;
+      trigger.setAttribute("aria-label", "Website language: " + language.name);
     }
+    slot.querySelectorAll(".plt-language-option").forEach(function (option) {
+      var selected = option.getAttribute("data-language-code") === language.code;
+      option.classList.toggle("is-selected", selected);
+      option.setAttribute("aria-selected", selected ? "true" : "false");
+    });
+  }
+
+  function closeLanguageMenus(except) {
+    document.querySelectorAll(".plt-language.is-open").forEach(function (slot) {
+      if (except && slot === except) return;
+      slot.classList.remove("is-open");
+      var trigger = slot.querySelector(".plt-language-trigger");
+      var menu = slot.querySelector(".plt-language-menu");
+      if (trigger) trigger.setAttribute("aria-expanded", "false");
+      if (menu) menu.hidden = true;
+    });
+  }
+
+  function openLanguageMenu(slot) {
+    closeLanguageMenus(slot);
+    slot.classList.add("is-open");
+    var trigger = slot.querySelector(".plt-language-trigger");
+    var menu = slot.querySelector(".plt-language-menu");
+    if (trigger) trigger.setAttribute("aria-expanded", "true");
+    if (menu) menu.hidden = false;
   }
 
   function createLanguageSlot() {
     var currentCode = findLanguage(storedLanguage()).code;
+    var currentLanguage = findLanguage(currentCode);
     var slot = document.createElement("div");
     slot.className = "plt-language";
     slot.setAttribute("data-spectr-language", "");
     slot.innerHTML =
-      '<label class="plt-language-label">' +
-      '<span class="plt-language-flag" aria-hidden="true">' +
-      escapeHtml(findLanguage(currentCode).flag) +
-      "</span>" +
-      '<select class="plt-language-select" aria-label="Select website language">' +
+      '<button type="button" class="plt-language-trigger" aria-haspopup="listbox" aria-expanded="false" aria-label="Website language: ' +
+      escapeAttribute(currentLanguage.name) +
+      '" title="' +
+      escapeAttribute(currentLanguage.name) +
+      '">' +
+      languageFlagMarkup(currentLanguage, "plt-language-flag") +
+      "</button>" +
+      '<div class="plt-language-menu" role="listbox" aria-label="Choose website language" hidden>' +
       renderLanguageOptions(currentCode) +
-      "</select>" +
-      "</label>";
+      "</div>";
 
-    slot.querySelector(".plt-language-select").addEventListener("change", function (event) {
-      var nextCode = findLanguage(event.target.value).code;
+    slot.querySelector(".plt-language-trigger").addEventListener("click", function (event) {
+      event.stopPropagation();
+      if (slot.classList.contains("is-open")) closeLanguageMenus();
+      else openLanguageMenu(slot);
+    });
+
+    slot.querySelector(".plt-language-trigger").addEventListener("keydown", function (event) {
+      if (event.key !== "ArrowDown" && event.key !== "Enter" && event.key !== " ") return;
+      event.preventDefault();
+      openLanguageMenu(slot);
+      var selected = slot.querySelector(".plt-language-option.is-selected") || slot.querySelector(".plt-language-option");
+      if (selected) selected.focus();
+    });
+
+    slot.querySelector(".plt-language-menu").addEventListener("click", function (event) {
+      var option = event.target.closest(".plt-language-option");
+      if (!option) return;
+      event.stopPropagation();
+      var nextCode = findLanguage(option.getAttribute("data-language-code")).code;
+      closeLanguageMenus();
       updateLanguageFlag(slot, nextCode);
       applyLanguage(nextCode);
+    });
+
+    slot.querySelector(".plt-language-menu").addEventListener("keydown", function (event) {
+      var options = Array.prototype.slice.call(slot.querySelectorAll(".plt-language-option"));
+      var currentIndex = options.indexOf(document.activeElement);
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeLanguageMenus();
+        slot.querySelector(".plt-language-trigger").focus();
+      } else if (event.key === "ArrowDown" || event.key === "ArrowRight") {
+        event.preventDefault();
+        options[(currentIndex + 1 + options.length) % options.length].focus();
+      } else if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
+        event.preventDefault();
+        options[(currentIndex - 1 + options.length) % options.length].focus();
+      }
     });
 
     return slot;
@@ -442,6 +541,7 @@
   }
 
   document.addEventListener("click", function () {
+    closeLanguageMenus();
     document.querySelectorAll(".spectr-user-menu.is-open").forEach(function (menu) {
       menu.classList.remove("is-open");
       var btn = menu.querySelector(".spectr-user-menu-btn");
@@ -453,6 +553,7 @@
 
   document.addEventListener("keydown", function (e) {
     if (e.key !== "Escape") return;
+    closeLanguageMenus();
     document.querySelectorAll(".spectr-user-menu.is-open").forEach(function (menu) {
       menu.classList.remove("is-open");
       var btn = menu.querySelector(".spectr-user-menu-btn");
