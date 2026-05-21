@@ -1080,6 +1080,30 @@ async function handleAdminProductUpdate(req, res, kind, id, body) {
   return true;
 }
 
+async function handleAdminProductDelete(req, res, kind, id) {
+  const user = await requireAdmin(req, res);
+  if (!user) return true;
+
+  const table = productTable(kind);
+  if (!table) {
+    sendJson(res, 404, { error: "Unknown product type." });
+    return true;
+  }
+
+  const { error } = await getAdminClient()
+    .from(table)
+    .delete()
+    .eq("id", productId(id));
+
+  if (error) {
+    sendJson(res, 500, { error: error.message || "Could not delete product." });
+    return true;
+  }
+
+  sendJson(res, 200, { ok: true, kind, id });
+  return true;
+}
+
 function orderRow(row) {
   return {
     id: row.id,
@@ -1557,6 +1581,9 @@ async function handleAdminApi(req, res, pathname) {
   if (productMatch && req.method === "PUT") {
     const body = await readJsonBody(req);
     return handleAdminProductUpdate(req, res, productMatch[1], decodeURIComponent(productMatch[2]), body);
+  }
+  if (productMatch && req.method === "DELETE") {
+    return handleAdminProductDelete(req, res, productMatch[1], decodeURIComponent(productMatch[2]));
   }
 
   const orderMatch = pathname.match(/^\/api\/admin\/orders\/([^/]+)$/);

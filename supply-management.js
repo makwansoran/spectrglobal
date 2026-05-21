@@ -220,11 +220,13 @@
     var countNode = $("products-selected-count");
     var selectVisible = $("products-select-visible");
     var clearButton = $("products-clear-selection");
+    var deleteButton = $("products-delete-selected");
 
     if (countNode) {
       countNode.textContent = count + " product" + (count === 1 ? "" : "s") + " selected";
     }
     if (clearButton) clearButton.disabled = count === 0;
+    if (deleteButton) deleteButton.disabled = count === 0;
 
     if (selectVisible) {
       var visibleKeys = rows.map(productKey);
@@ -598,6 +600,48 @@
     }
   }
 
+  function selectedProductEntries() {
+    return Array.from(state.selectedProducts).map(function (key) {
+      var sep = key.indexOf(":");
+      return {
+        key: key,
+        kind: key.slice(0, sep),
+        id: key.slice(sep + 1),
+      };
+    }).filter(function (entry) {
+      return entry.kind && entry.id;
+    });
+  }
+
+  async function deleteSelectedProducts() {
+    var entries = selectedProductEntries();
+    if (!entries.length) return;
+    if (!confirm("Delete " + entries.length + " selected product" + (entries.length === 1 ? "" : "s") + "? This cannot be undone.")) return;
+
+    var button = $("products-delete-selected");
+    if (button) button.disabled = true;
+    try {
+      await Promise.all(entries.map(function (entry) {
+        return api("/api/admin/products/" + encodeURIComponent(entry.kind) + "/" + encodeURIComponent(entry.id), {
+          method: "DELETE",
+        });
+      }));
+      var deletedKeys = new Set(entries.map(function (entry) { return entry.key; }));
+      state.products = state.products.filter(function (item) {
+        return !deletedKeys.has(productKey(item));
+      });
+      state.selectedProducts.clear();
+      recomputeProductsSummary();
+      renderProductsSummary();
+      renderProductsTable();
+      renderOverviewLowStock();
+      toast("Deleted selected products");
+    } catch (err) {
+      toast(err.message || "Could not delete selected products.", "error");
+      loadProducts();
+    }
+  }
+
   async function saveMakeField(id, field, value, input) {
     var body = {};
     body[field] = value;
@@ -931,6 +975,7 @@
       state.selectedProducts.clear();
       renderProductsTable();
     });
+    $("products-delete-selected").addEventListener("click", deleteSelectedProducts);
     $("products-select-visible").addEventListener("change", function (e) {
       var rows = filterProducts();
       rows.forEach(function (item) {

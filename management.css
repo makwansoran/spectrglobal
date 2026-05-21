@@ -197,6 +197,14 @@
   background: #eef2ff;
 }
 
+.link-button-danger {
+  color: #b3261e;
+}
+
+.link-button-danger:hover {
+  background: #fdecea;
+}
+
 .link-button:disabled {
   color: #9aa4b2;
   cursor: not-allowed;
