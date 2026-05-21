@@ -2496,45 +2496,42 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 2.2rem;
-  border: 1px solid rgba(10, 92, 102, 0.32);
-  border-radius: 0.35rem;
+  min-height: 2.6rem;
+  border: 1px solid #0a5c66;
+  border-radius: 999px;
   background: #ffffff;
   color: #0a5c66;
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 0.45rem 1rem rgba(10, 92, 102, 0.08);
+}
+
+.checkout-actions a:hover {
+  background: #e8f6f2;
   text-decoration: none;
 }
 
 .checkout-guest-toggle {
   width: 100%;
   min-height: 3rem;
+  margin-top: 0.25rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.45rem;
-  border: 1px solid #095fae;
+  border: 1px solid #0f8f5f;
   border-radius: 999px;
-  background: #095fae;
+  background: #0f8f5f;
   color: #ffffff;
   font-size: 0.92rem;
   font-weight: 800;
-}
-
-.checkout-guest-toggle strong {
-  font-size: 1.05rem;
-  line-height: 1;
-  transition: transform 0.16s ease;
+  box-shadow: 0 0.75rem 1.5rem rgba(15, 143, 95, 0.18);
 }
 
 .checkout-guest-toggle:hover,
 .checkout-guest-toggle[aria-expanded="true"] {
-  background: #074d8d;
-  border-color: #074d8d;
-}
-
-.checkout-guest-toggle[aria-expanded="true"] strong {
-  transform: rotate(180deg);
+  background: #0b754e;
+  border-color: #0b754e;
 }
 
 .checkout-guest-form[hidden] {
@@ -2606,15 +2603,16 @@
   width: 100%;
   min-height: 3rem;
   border-radius: 999px;
-  background: #095fae;
-  border-color: #095fae;
+  background: #0f8f5f;
+  border-color: #0f8f5f;
   text-transform: none;
   letter-spacing: 0;
+  box-shadow: 0 0.85rem 1.7rem rgba(15, 143, 95, 0.22);
 }
 
 .checkout-submit:not(:disabled):hover {
-  background: #074d8d;
-  border-color: #074d8d;
+  background: #0b754e;
+  border-color: #0b754e;
 }
 
 .checkout-protection {

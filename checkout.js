@@ -162,7 +162,7 @@
           '<a href="' + escapeHtml(createAccountHref()) + '">Create account</a>' +
         '</div>' +
       '</div>' +
-      '<button type="button" class="checkout-guest-toggle" id="checkout-guest-toggle" aria-expanded="' + openAttr + '" aria-controls="checkout-guest-form"><span>Continue as guest</span><strong aria-hidden="true">⌄</strong></button>' +
+      '<button type="button" class="checkout-guest-toggle" id="checkout-guest-toggle" aria-expanded="' + openAttr + '" aria-controls="checkout-guest-form">Continue as guest</button>' +
       '<form' + formAttrs + '>' +
         '<label>Full name<input type="text" id="guest-name" autocomplete="name" required placeholder="Your name" /></label>' +
         '<label>Email address<input type="email" id="guest-email" autocomplete="email" required placeholder="you@example.com" /></label>' +
@@ -179,7 +179,7 @@
           '<option value="United States">United States</option>' +
           '<option value="Other">Other</option>' +
         '</select></label>' +
-        '<button type="submit" class="btn btn-primary checkout-submit" id="checkout-submit">Check Out</button>' +
+        '<button type="submit" class="btn btn-primary checkout-submit" id="checkout-submit">Continue to payment</button>' +
       '</form>';
   }
 
@@ -191,7 +191,7 @@
       return;
     }
     node.innerHTML = state.customer
-      ? signedInHtml(state.customer) + '<button type="button" class="btn btn-primary checkout-submit" id="checkout-submit">Check Out</button>'
+      ? signedInHtml(state.customer) + '<button type="button" class="btn btn-primary checkout-submit" id="checkout-submit">Continue to payment</button>'
       : guestHtml();
 
     var signedInButton = state.customer && $("checkout-submit");
