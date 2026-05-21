@@ -484,6 +484,10 @@
   font-weight: 600;
   color: #1d2530;
   cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .table-action:hover {
@@ -613,5 +617,167 @@
   .management-table th,
   .management-table td {
     padding: 10px 12px;
+  }
+}
+
+.product-edit-main {
+  max-width: 1280px;
+}
+
+.product-edit-shell {
+  display: grid;
+  grid-template-columns: minmax(280px, 420px) minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.product-edit-preview,
+.product-edit-card {
+  background: #ffffff;
+  border: 1px solid #e6e8ec;
+  border-radius: 14px;
+  padding: 24px;
+}
+
+.product-edit-preview {
+  position: sticky;
+  top: 88px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.product-edit-preview h1 {
+  margin: 0;
+  font-size: 1.45rem;
+  line-height: 1.2;
+}
+
+.product-edit-card-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 22px;
+}
+
+.product-edit-card-head h1 {
+  margin: 4px 0 6px;
+  font-size: 1.45rem;
+  line-height: 1.2;
+}
+
+.product-edit-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.edit-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #3b4452;
+}
+
+.edit-field input,
+.edit-field select,
+.edit-field textarea {
+  width: 100%;
+  border: 1px solid #d8dde4;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font: inherit;
+  font-weight: 500;
+  color: #0b1726;
+  background: #ffffff;
+}
+
+.edit-field input[readonly] {
+  background: #f7f9fb;
+  color: #6c7787;
+}
+
+.edit-field textarea {
+  min-height: 120px;
+  resize: vertical;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+}
+
+.edit-field input:focus,
+.edit-field select:focus,
+.edit-field textarea:focus {
+  border-color: #2150ff;
+  outline: 2px solid #2150ff33;
+}
+
+.edit-field-wide,
+.edit-subtitle,
+.edit-check-grid,
+.product-edit-actions {
+  grid-column: 1 / -1;
+}
+
+.edit-subtitle {
+  margin: 8px 0 -4px;
+  font-size: 1rem;
+  color: #0b1726;
+}
+
+.edit-check,
+.edit-check-grid {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.edit-check-grid {
+  flex-wrap: wrap;
+}
+
+.edit-check {
+  background: #f7f9fb;
+  border: 1px solid #e6e8ec;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #3b4452;
+}
+
+.edit-check input {
+  width: 16px;
+  height: 16px;
+}
+
+.product-edit-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  padding-top: 10px;
+}
+
+@media (max-width: 920px) {
+  .product-edit-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .product-edit-preview {
+    position: static;
+  }
+}
+
+@media (max-width: 640px) {
+  .product-edit-form {
+    grid-template-columns: 1fr;
+  }
+
+  .product-edit-card-head,
+  .product-edit-actions {
+    flex-direction: column;
+    align-items: stretch;
   }
 }

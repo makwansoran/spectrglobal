@@ -529,6 +529,21 @@ function supplySku(kind, row) {
   return row.ean || `BRAKE-${String(row.id || "").slice(0, 8).toUpperCase()}`;
 }
 
+function productTable(kind) {
+  return kind === "parts" ? "parts" : kind === "oil" ? "oil_products" : kind === "brake" ? "brake_products" : "";
+}
+
+function productSelect(kind) {
+  if (kind === "parts") return "id, name, category, sku, price, stock, description, vehicles, active, created_at, updated_at";
+  if (kind === "oil") {
+    return "id, brand_id, name, viscosity, base_type, approvals, volume_liters, price_eur, stock, active, created_at, updated_at, oil_brands(name)";
+  }
+  if (kind === "brake") {
+    return "id, brand_id, name, type, position, disc_diameter_mm, disc_thickness_mm, disc_min_thickness_mm, disc_ventilated, disc_drilled, disc_slotted, disc_coated, pad_height_mm, pad_width_mm, pad_thickness_mm, pad_material, pad_with_sensor, ean, price_eur, stock, active, created_at, updated_at, brake_brands(name)";
+  }
+  return "";
+}
+
 function supplyItem(kind, row) {
   const brandValue = kind === "oil" ? row.oil_brands : row.brake_brands;
   const brand = Array.isArray(brandValue) ? brandValue[0] : brandValue;
@@ -550,6 +565,73 @@ function supplyItem(kind, row) {
       base_type: row.base_type || "",
       approvals: Array.isArray(row.approvals) ? row.approvals : [],
       description: row.description || "",
+    },
+  };
+}
+
+function editableProduct(kind, row) {
+  const item = supplyItem(kind, row);
+  const base = {
+    ...item,
+    brand_id: row.brand_id || null,
+    created_at: row.created_at || null,
+    updated_at: row.updated_at || null,
+  };
+
+  if (kind === "parts") {
+    return {
+      ...base,
+      editable: {
+        name: row.name || "",
+        category: row.category || "Other",
+        sku: row.sku || "",
+        price: Number(row.price) || 0,
+        stock: Number(row.stock) || 0,
+        description: row.description || "",
+        vehicles: Array.isArray(row.vehicles) ? row.vehicles : [],
+        active: row.active !== false,
+      },
+    };
+  }
+
+  if (kind === "oil") {
+    return {
+      ...base,
+      editable: {
+        name: row.name || "",
+        viscosity: row.viscosity || "",
+        base_type: row.base_type || "",
+        approvals: Array.isArray(row.approvals) ? row.approvals : [],
+        volume_liters: row.volume_liters == null ? null : Number(row.volume_liters),
+        price_eur: Number(row.price_eur) || 0,
+        stock: Number(row.stock) || 0,
+        active: row.active !== false,
+      },
+    };
+  }
+
+  return {
+    ...base,
+    editable: {
+      name: row.name || "",
+      type: row.type || "",
+      position: row.position || "",
+      disc_diameter_mm: row.disc_diameter_mm == null ? null : Number(row.disc_diameter_mm),
+      disc_thickness_mm: row.disc_thickness_mm == null ? null : Number(row.disc_thickness_mm),
+      disc_min_thickness_mm: row.disc_min_thickness_mm == null ? null : Number(row.disc_min_thickness_mm),
+      disc_ventilated: row.disc_ventilated === true,
+      disc_drilled: row.disc_drilled === true,
+      disc_slotted: row.disc_slotted === true,
+      disc_coated: row.disc_coated === true,
+      pad_height_mm: row.pad_height_mm == null ? null : Number(row.pad_height_mm),
+      pad_width_mm: row.pad_width_mm == null ? null : Number(row.pad_width_mm),
+      pad_thickness_mm: row.pad_thickness_mm == null ? null : Number(row.pad_thickness_mm),
+      pad_material: row.pad_material || "",
+      pad_with_sensor: row.pad_with_sensor === true,
+      ean: row.ean || "",
+      price_eur: Number(row.price_eur) || 0,
+      stock: Number(row.stock) || 0,
+      active: row.active !== false,
     },
   };
 }
@@ -620,19 +702,78 @@ function cleanProductUpdates(kind, body) {
   if (kind === "parts" && body.category != null) updates.category = String(body.category || "Other").trim() || "Other";
   if (kind === "parts" && body.sku != null) updates.sku = String(body.sku || "").trim() || null;
   if (body.price != null) updates[kind === "parts" ? "price" : "price_eur"] = Math.max(0, Number(body.price) || 0);
+  if (body.price_eur != null && kind !== "parts") updates.price_eur = Math.max(0, Number(body.price_eur) || 0);
   if (body.stock != null) updates.stock = Math.max(0, parseInt(body.stock, 10) || 0);
   if (body.active != null) updates.active = body.active === true;
   if (kind === "parts" && body.description != null) updates.description = String(body.description || "").trim() || null;
+  if (kind === "parts" && body.vehicles != null) updates.vehicles = Array.isArray(body.vehicles) ? body.vehicles : [];
+
+  if (kind === "oil") {
+    if (body.viscosity != null) updates.viscosity = String(body.viscosity || "").trim() || null;
+    if (body.base_type != null) updates.base_type = String(body.base_type || "").trim() || null;
+    if (body.approvals != null) {
+      updates.approvals = Array.isArray(body.approvals)
+        ? body.approvals.map((item) => String(item || "").trim()).filter(Boolean)
+        : String(body.approvals || "").split(",").map((item) => item.trim()).filter(Boolean);
+    }
+    if (body.volume_liters != null) updates.volume_liters = Math.max(0, Number(body.volume_liters) || 0);
+  }
+
+  if (kind === "brake") {
+    if (body.type != null) updates.type = String(body.type || "").trim() || null;
+    if (body.position != null) updates.position = String(body.position || "").trim() || null;
+    if (body.disc_diameter_mm != null) updates.disc_diameter_mm = body.disc_diameter_mm === "" ? null : Math.max(0, parseInt(body.disc_diameter_mm, 10) || 0);
+    if (body.disc_thickness_mm != null) updates.disc_thickness_mm = body.disc_thickness_mm === "" ? null : Math.max(0, Number(body.disc_thickness_mm) || 0);
+    if (body.disc_min_thickness_mm != null) updates.disc_min_thickness_mm = body.disc_min_thickness_mm === "" ? null : Math.max(0, Number(body.disc_min_thickness_mm) || 0);
+    if (body.disc_ventilated != null) updates.disc_ventilated = body.disc_ventilated === true;
+    if (body.disc_drilled != null) updates.disc_drilled = body.disc_drilled === true;
+    if (body.disc_slotted != null) updates.disc_slotted = body.disc_slotted === true;
+    if (body.disc_coated != null) updates.disc_coated = body.disc_coated === true;
+    if (body.pad_height_mm != null) updates.pad_height_mm = body.pad_height_mm === "" ? null : Math.max(0, Number(body.pad_height_mm) || 0);
+    if (body.pad_width_mm != null) updates.pad_width_mm = body.pad_width_mm === "" ? null : Math.max(0, Number(body.pad_width_mm) || 0);
+    if (body.pad_thickness_mm != null) updates.pad_thickness_mm = body.pad_thickness_mm === "" ? null : Math.max(0, Number(body.pad_thickness_mm) || 0);
+    if (body.pad_material != null) updates.pad_material = String(body.pad_material || "").trim() || null;
+    if (body.pad_with_sensor != null) updates.pad_with_sensor = body.pad_with_sensor === true;
+    if (body.ean != null) updates.ean = String(body.ean || "").trim() || null;
+  }
   updates.updated_at = new Date().toISOString();
   return updates;
+}
+
+async function handleAdminProductGet(req, res, kind, id) {
+  const table = productTable(kind);
+  const select = productSelect(kind);
+  if (!table || !select) {
+    sendJson(res, 404, { error: "Unknown product type." });
+    return true;
+  }
+
+  const { data, error } = await getAdminClient()
+    .from(table)
+    .select(select)
+    .eq("id", productId(id))
+    .maybeSingle();
+
+  if (error) {
+    sendJson(res, 500, { error: error.message || "Could not load product." });
+    return true;
+  }
+  if (!data) {
+    sendJson(res, 404, { error: "Product not found." });
+    return true;
+  }
+
+  sendJson(res, 200, { product: editableProduct(kind, data) });
+  return true;
 }
 
 async function handleAdminProductUpdate(req, res, kind, id, body) {
   const user = await requireAdmin(req, res);
   if (!user) return true;
 
-  const table = kind === "parts" ? "parts" : kind === "oil" ? "oil_products" : kind === "brake" ? "brake_products" : "";
-  if (!table) {
+  const table = productTable(kind);
+  const select = productSelect(kind);
+  if (!table || !select) {
     sendJson(res, 404, { error: "Unknown product type." });
     return true;
   }
@@ -644,12 +785,7 @@ async function handleAdminProductUpdate(req, res, kind, id, body) {
     .from(table)
     .update(updates)
     .eq("id", productId(id))
-    .select(kind === "parts"
-      ? "id, name, category, sku, price, stock, description, vehicles, active"
-      : kind === "oil"
-        ? "id, name, viscosity, base_type, approvals, volume_liters, price_eur, stock, active, oil_brands(name)"
-        : "id, name, type, position, ean, price_eur, stock, active, brake_brands(name)"
-    )
+    .select(select)
     .single();
 
   if (error) {
@@ -657,7 +793,7 @@ async function handleAdminProductUpdate(req, res, kind, id, body) {
     return true;
   }
 
-  sendJson(res, 200, { item: supplyItem(kind, data) });
+  sendJson(res, 200, { item: supplyItem(kind, data), product: editableProduct(kind, data) });
   return true;
 }
 
@@ -890,6 +1026,9 @@ async function handleAdminApi(req, res, pathname) {
   if (pathname === "/api/admin/users" && req.method === "GET") return handleAdminUsers(req, res);
 
   const productMatch = pathname.match(/^\/api\/admin\/products\/([^/]+)\/([^/]+)$/);
+  if (productMatch && req.method === "GET") {
+    return handleAdminProductGet(req, res, productMatch[1], decodeURIComponent(productMatch[2]));
+  }
   if (productMatch && req.method === "PUT") {
     const body = await readJsonBody(req);
     return handleAdminProductUpdate(req, res, productMatch[1], decodeURIComponent(productMatch[2]), body);

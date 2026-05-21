@@ -195,7 +195,7 @@
           '<td><input type="number" min="0" step="1" class="input-cell" data-field="stock" value="' + escapeHtml(item.stock) + '" /></td>' +
           '<td>' + stockPill(item.stock) + '</td>' +
           '<td><label class="toggle-switch"><input type="checkbox" data-field="active"' + (item.active ? " checked" : "") + ' /><span class="slider"></span></label></td>' +
-          '<td><button type="button" class="table-action" data-product-edit="' + escapeHtml(key) + '">Details</button></td>' +
+          '<td><a class="table-action" href="product-edit.html?kind=' + encodeURIComponent(item.kind) + '&id=' + encodeURIComponent(item.id) + '">Edit</a></td>' +
           '</tr>'
         );
       })
