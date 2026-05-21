@@ -4,6 +4,7 @@
 const { handleAuthApi } = require("./auth-api");
 const {
   getAdminClient,
+  getAuthClient,
   getReadClient,
   isSupabaseEnabled,
   hasSupabaseWrites,
@@ -43,6 +44,39 @@ function readJsonBody(req) {
     });
     req.on("error", reject);
   });
+}
+
+function bearerToken(req) {
+  const header = String(req.headers.authorization || "");
+  const match = header.match(/^Bearer\s+(.+)$/i);
+  return match ? match[1].trim() : "";
+}
+
+async function requireAdmin(req, res) {
+  if (!hasSupabaseWrites()) {
+    sendJson(res, 503, { error: "Admin access requires Supabase service role configuration." });
+    return null;
+  }
+
+  const token = bearerToken(req);
+  if (!token) {
+    sendJson(res, 401, { error: "Sign in as an admin to continue." });
+    return null;
+  }
+
+  const { data, error } = await getAuthClient().auth.getUser(token);
+  const user = data && data.user;
+  if (error || !user) {
+    sendJson(res, 401, { error: "Your admin session is invalid or expired." });
+    return null;
+  }
+
+  if (!user.app_metadata || user.app_metadata.role !== "admin") {
+    sendJson(res, 403, { error: "Admin access required." });
+    return null;
+  }
+
+  return user;
 }
 
 async function handleMakes(req, res) {
@@ -202,7 +236,7 @@ function oilProductFromRow(row, fitments) {
     category: "Oils",
     sku: `OIL-${String(row.id || "").slice(0, 8).toUpperCase()}`,
     price: Number(row.price_eur) || 0,
-    stock: 999,
+    stock: Number(row.stock) || 0,
     description: descriptionParts.join(" · "),
     vehicles: fitments,
   };
@@ -272,7 +306,7 @@ function brakeProductFromRow(row, fitments) {
     category: "Brakes",
     sku: `BRAKE-${String(row.id || "").slice(0, 8).toUpperCase()}`,
     price: Number(row.price_eur) || 0,
-    stock: 999,
+    stock: Number(row.stock) || 0,
     description: [typeLabel, position, ...discSpecs, ...padSpecs].filter(Boolean).join(" · "),
     vehicles: fitments,
   };
@@ -377,7 +411,7 @@ function oilProductMatchesFitment(product, fitment) {
 async function fetchOilProductParts(activeOnly) {
   let oilProductsQuery = getReadClient()
     .from("oil_products")
-    .select("id, name, viscosity, base_type, approvals, volume_liters, price_eur, active, oil_brands(name)")
+      .select("id, name, viscosity, base_type, approvals, volume_liters, price_eur, stock, active, oil_brands(name)")
     .order("name", { ascending: true });
 
   if (activeOnly) oilProductsQuery = oilProductsQuery.eq("active", true);
@@ -412,7 +446,7 @@ async function fetchOilProductParts(activeOnly) {
 async function fetchBrakeProductParts(activeOnly) {
   let brakeProductsQuery = getReadClient()
     .from("brake_products")
-    .select("id, name, type, position, disc_diameter_mm, disc_thickness_mm, disc_ventilated, disc_drilled, disc_slotted, disc_coated, pad_height_mm, pad_width_mm, pad_thickness_mm, pad_material, pad_with_sensor, price_eur, active, brake_brands(name)")
+      .select("id, name, type, position, disc_diameter_mm, disc_thickness_mm, disc_ventilated, disc_drilled, disc_slotted, disc_coated, pad_height_mm, pad_width_mm, pad_thickness_mm, pad_material, pad_with_sensor, price_eur, stock, active, brake_brands(name)")
     .order("name", { ascending: true });
 
   if (activeOnly) brakeProductsQuery = brakeProductsQuery.eq("active", true);
@@ -485,6 +519,164 @@ function normalizePartBody(body, fallbackId) {
   };
 }
 
+function productId(value) {
+  return String(value || "").replace(/^(oil-product-|brake-product-)/, "").trim();
+}
+
+function supplySku(kind, row) {
+  if (kind === "parts") return row.sku || "";
+  if (kind === "oil") return `OIL-${String(row.id || "").slice(0, 8).toUpperCase()}`;
+  return row.ean || `BRAKE-${String(row.id || "").slice(0, 8).toUpperCase()}`;
+}
+
+function supplyItem(kind, row) {
+  const brandValue = kind === "oil" ? row.oil_brands : row.brake_brands;
+  const brand = Array.isArray(brandValue) ? brandValue[0] : brandValue;
+  const price = kind === "parts" ? row.price : row.price_eur;
+  return {
+    kind,
+    id: row.id,
+    name: row.name || "",
+    brand: (brand && brand.name) || "",
+    category: kind === "oil" ? "Oils" : kind === "brake" ? "Brakes" : row.category || "Other",
+    sku: supplySku(kind, row),
+    price: Number(price) || 0,
+    stock: Number(row.stock) || 0,
+    active: row.active !== false,
+    details: {
+      type: row.type || "",
+      viscosity: row.viscosity || "",
+      volume_liters: row.volume_liters == null ? null : Number(row.volume_liters),
+      base_type: row.base_type || "",
+      approvals: Array.isArray(row.approvals) ? row.approvals : [],
+      description: row.description || "",
+    },
+  };
+}
+
+function supplySummary(items) {
+  const totalStock = items.reduce((sum, item) => sum + item.stock, 0);
+  const lowStock = items.filter((item) => item.stock > 0 && item.stock <= 5).length;
+  const outOfStock = items.filter((item) => item.stock <= 0).length;
+  const value = items.reduce((sum, item) => sum + item.stock * item.price, 0);
+  return {
+    products: items.length,
+    totalStock,
+    lowStock,
+    outOfStock,
+    inventoryValue: Number(value.toFixed(2)),
+  };
+}
+
+async function handleAdminMe(req, res) {
+  const user = await requireAdmin(req, res);
+  if (!user) return true;
+  sendJson(res, 200, {
+    admin: {
+      id: user.id,
+      email: user.email,
+      name: (user.user_metadata && user.user_metadata.name) || user.email,
+      role: user.app_metadata.role,
+    },
+  });
+  return true;
+}
+
+async function handleAdminSupply(req, res) {
+  const user = await requireAdmin(req, res);
+  if (!user) return true;
+
+  const [partsResult, oilsResult, brakesResult] = await Promise.all([
+    getAdminClient()
+      .from("parts")
+      .select("id, name, category, sku, price, stock, description, vehicles, active")
+      .order("name", { ascending: true }),
+    getAdminClient()
+      .from("oil_products")
+      .select("id, name, viscosity, base_type, approvals, volume_liters, price_eur, stock, active, oil_brands(name)")
+      .order("name", { ascending: true }),
+    getAdminClient()
+      .from("brake_products")
+      .select("id, name, type, position, ean, price_eur, stock, active, brake_brands(name)")
+      .order("name", { ascending: true }),
+  ]);
+
+  const firstError = partsResult.error || oilsResult.error || brakesResult.error;
+  if (firstError) {
+    sendJson(res, 500, { error: firstError.message || "Could not load supply inventory." });
+    return true;
+  }
+
+  const items = [
+    ...(partsResult.data || []).map((row) => supplyItem("parts", row)),
+    ...(oilsResult.data || []).map((row) => supplyItem("oil", row)),
+    ...(brakesResult.data || []).map((row) => supplyItem("brake", row)),
+  ];
+
+  sendJson(res, 200, { items, summary: supplySummary(items) });
+  return true;
+}
+
+function cleanProductUpdates(kind, body) {
+  const updates = {};
+  if (body.name != null) updates.name = String(body.name || "").trim();
+  if (kind === "parts" && body.category != null) updates.category = String(body.category || "Other").trim() || "Other";
+  if (kind === "parts" && body.sku != null) updates.sku = String(body.sku || "").trim() || null;
+  if (body.price != null) updates[kind === "parts" ? "price" : "price_eur"] = Math.max(0, Number(body.price) || 0);
+  if (body.stock != null) updates.stock = Math.max(0, parseInt(body.stock, 10) || 0);
+  if (body.active != null) updates.active = body.active === true;
+  if (kind === "parts" && body.description != null) updates.description = String(body.description || "").trim() || null;
+  updates.updated_at = new Date().toISOString();
+  return updates;
+}
+
+async function handleAdminProductUpdate(req, res, kind, id, body) {
+  const user = await requireAdmin(req, res);
+  if (!user) return true;
+
+  const table = kind === "parts" ? "parts" : kind === "oil" ? "oil_products" : kind === "brake" ? "brake_products" : "";
+  if (!table) {
+    sendJson(res, 404, { error: "Unknown product type." });
+    return true;
+  }
+
+  const updates = cleanProductUpdates(kind, body || {});
+  if (!updates.name) delete updates.name;
+
+  const { data, error } = await getAdminClient()
+    .from(table)
+    .update(updates)
+    .eq("id", productId(id))
+    .select(kind === "parts"
+      ? "id, name, category, sku, price, stock, description, vehicles, active"
+      : kind === "oil"
+        ? "id, name, viscosity, base_type, approvals, volume_liters, price_eur, stock, active, oil_brands(name)"
+        : "id, name, type, position, ean, price_eur, stock, active, brake_brands(name)"
+    )
+    .single();
+
+  if (error) {
+    sendJson(res, 500, { error: error.message || "Could not update product." });
+    return true;
+  }
+
+  sendJson(res, 200, { item: supplyItem(kind, data) });
+  return true;
+}
+
+async function handleAdminApi(req, res, pathname) {
+  if (pathname === "/api/admin/me" && req.method === "GET") return handleAdminMe(req, res);
+  if (pathname === "/api/admin/supply" && req.method === "GET") return handleAdminSupply(req, res);
+
+  const productMatch = pathname.match(/^\/api\/admin\/products\/([^/]+)\/([^/]+)$/);
+  if (productMatch && req.method === "PUT") {
+    const body = await readJsonBody(req);
+    return handleAdminProductUpdate(req, res, productMatch[1], decodeURIComponent(productMatch[2]), body);
+  }
+
+  return false;
+}
+
 async function handlePartsList(req, res) {
   if (!isSupabaseEnabled()) {
     sendJson(res, 503, { error: "Parts database is not configured." });
@@ -535,6 +727,9 @@ async function handlePartsList(req, res) {
 }
 
 async function handlePartsCreate(req, res, body) {
+  const user = await requireAdmin(req, res);
+  if (!user) return true;
+
   if (!hasSupabaseWrites()) {
     sendJson(res, 503, { error: "Parts database writes are not configured." });
     return true;
@@ -564,6 +759,9 @@ async function handlePartsCreate(req, res, body) {
 }
 
 async function handlePartsUpdate(req, res, partId, body) {
+  const user = await requireAdmin(req, res);
+  if (!user) return true;
+
   if (!hasSupabaseWrites()) {
     sendJson(res, 503, { error: "Parts database writes are not configured." });
     return true;
@@ -603,6 +801,9 @@ async function handlePartsUpdate(req, res, partId, body) {
 }
 
 async function handlePartsDelete(req, res, partId) {
+  const user = await requireAdmin(req, res);
+  if (!user) return true;
+
   if (!hasSupabaseWrites()) {
     sendJson(res, 503, { error: "Parts database writes are not configured." });
     return true;
@@ -647,6 +848,11 @@ async function handleApi(req, res, pathname) {
   try {
     if (pathname.startsWith("/api/auth")) {
       const handled = await handleAuthApi(req, res, pathname, { sendJson, readJsonBody });
+      if (handled) return true;
+    }
+
+    if (pathname.startsWith("/api/admin")) {
+      const handled = await handleAdminApi(req, res, pathname);
       if (handled) return true;
     }
 

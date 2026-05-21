@@ -694,13 +694,20 @@ create table if not exists public.oil_products (
   approvals text[] not null default '{}'::text[],
   volume_liters numeric(5, 1),
   price_eur numeric(10, 2),
+  stock integer not null default 0,
   active boolean not null default true,
   created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now(),
   constraint oil_products_name_len check (char_length(trim(name)) between 1 and 180),
   constraint oil_products_viscosity_len check (char_length(trim(viscosity)) between 3 and 20),
   constraint oil_products_volume_positive check (volume_liters is null or volume_liters > 0),
-  constraint oil_products_price_non_negative check (price_eur is null or price_eur >= 0)
+  constraint oil_products_price_non_negative check (price_eur is null or price_eur >= 0),
+  constraint oil_products_stock_non_negative check (stock >= 0)
 );
+
+alter table public.oil_products
+  add column if not exists stock integer not null default 0,
+  add column if not exists updated_at timestamptz not null default now();
 
 alter table public.oil_products enable row level security;
 
@@ -1157,9 +1164,16 @@ create table if not exists public.brake_products (
   -- Common
   ean                  text,
   price_eur            numeric(10,2),
+  stock                integer NOT NULL DEFAULT 0,
   active               boolean DEFAULT true,
-  created_at           timestamptz DEFAULT now()
+  created_at           timestamptz DEFAULT now(),
+  updated_at           timestamptz NOT NULL DEFAULT now(),
+  constraint brake_products_stock_non_negative check (stock >= 0)
 );
+
+alter table public.brake_products
+  add column if not exists stock integer not null default 0,
+  add column if not exists updated_at timestamptz not null default now();
 
 -- Per-model OEM brake specifications
 -- Separate rows for front and rear

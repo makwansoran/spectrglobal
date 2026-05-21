@@ -40,7 +40,7 @@
         id: data.id || null,
         email: data.email,
         name: data.name || data.email,
-        role: "customer",
+        role: data.role || "customer",
       };
     } catch {
       return null;
@@ -77,6 +77,7 @@
       '<p class="spectr-user-dropdown-label">' +
       escapeHtml(label) +
       "</p>" +
+      (user.role === "admin" ? '<a href="supply.html" role="menuitem">Supply management</a>' : "") +
       '<button type="button" role="menuitem" data-spectr-logout>Log out</button>' +
       "</div>";
 

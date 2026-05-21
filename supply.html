@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Supply Management | Spectr</title>
+    <link rel="icon" href="/assets/brand/spectr-mark.png" type="image/png" sizes="any" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="platform.css" />
+    <link rel="stylesheet" href="palantir-nav.css" />
+    <link rel="stylesheet" href="auth-nav.css" />
+    <link rel="stylesheet" href="shop.css" />
+    <link rel="stylesheet" href="admin-parts.css" />
+  </head>
+  <body class="font-body plt-site supply-page">
+    <header class="plt-header">
+      <div class="plt-header-inner">
+        <a class="plt-logo" href="index.html" aria-label="Spectr home">
+          <img class="plt-logo-mark" src="assets/brand/spectr-mark.png" width="28" height="28" alt="" decoding="async" />
+          <span class="plt-logo-text">Spectr</span>
+        </a>
+        <div class="plt-header-tools">
+          <a href="index.html" class="admin-back">Back to store</a>
+          <div class="spectr-auth-slot spectr-auth-slot--header" data-spectr-auth-slot>
+            <a class="plt-header-login" href="login.html">Sign in</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="admin-main supply-main">
+      <section class="admin-lock" id="admin-lock" hidden>
+        <p class="shop-eyebrow">Admin access</p>
+        <h1>Supply management is admin-only</h1>
+        <p id="admin-lock-message">Sign in with an admin account to manage inventory.</p>
+        <a class="btn btn-primary" href="login.html?next=%2Fsupply.html">Sign in</a>
+      </section>
+
+      <section id="supply-app" hidden>
+        <header class="admin-hero supply-hero">
+          <div>
+            <p class="shop-eyebrow">Supply Management</p>
+            <h1>Inventory overview</h1>
+            <p class="admin-summary">
+              Track stock, product status, pricing, and catalog records across parts, oils, and brake products.
+            </p>
+          </div>
+          <div class="admin-hero-actions">
+            <button type="button" class="btn btn-secondary" id="supply-refresh">Refresh</button>
+          </div>
+        </header>
+
+        <section class="supply-stats" aria-label="Supply overview">
+          <article>
+            <span>Total products</span>
+            <strong id="stat-products">0</strong>
+          </article>
+          <article>
+            <span>Units in stock</span>
+            <strong id="stat-stock">0</strong>
+          </article>
+          <article>
+            <span>Low stock</span>
+            <strong id="stat-low">0</strong>
+          </article>
+          <article>
+            <span>Out of stock</span>
+            <strong id="stat-out">0</strong>
+          </article>
+          <article>
+            <span>Inventory value</span>
+            <strong id="stat-value">€0</strong>
+          </article>
+        </section>
+
+        <section class="admin-panel supply-panel">
+          <div class="panel-head">
+            <div>
+              <h2>Product database</h2>
+              <p class="supply-note">Select a row to edit price, stock, status, and supported product fields.</p>
+            </div>
+            <div class="supply-controls">
+              <select id="supply-kind" aria-label="Filter product type">
+                <option value="">All products</option>
+                <option value="parts">Parts</option>
+                <option value="oil">Oil products</option>
+                <option value="brake">Brake products</option>
+              </select>
+              <select id="supply-stock-filter" aria-label="Filter stock status">
+                <option value="">All stock</option>
+                <option value="low">Low stock</option>
+                <option value="out">Out of stock</option>
+              </select>
+              <input type="search" id="supply-search" class="panel-search" placeholder="Search inventory" />
+            </div>
+          </div>
+
+          <div class="supply-layout">
+            <div class="table-scroll">
+              <table class="admin-table supply-table" id="supply-table">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Type</th>
+                    <th>SKU</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th>Status</th>
+                    <th aria-label="Actions"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td colspan="7"><div class="empty-state">Loading supply database...</div></td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <aside class="supply-editor" id="supply-editor" aria-live="polite">
+              <p class="shop-eyebrow">Product editor</p>
+              <h2 id="editor-title">Select a product</h2>
+              <p class="supply-note" id="editor-note">Choose a product from the table to edit it.</p>
+
+              <form id="supply-form" class="admin-form" hidden>
+                <input type="hidden" id="editor-kind" />
+                <input type="hidden" id="editor-id" />
+                <label>Name
+                  <input type="text" id="editor-name" required />
+                </label>
+                <div class="form-row">
+                  <label>Category
+                    <input type="text" id="editor-category" />
+                  </label>
+                  <label>SKU
+                    <input type="text" id="editor-sku" />
+                  </label>
+                </div>
+                <div class="form-row">
+                  <label>Price
+                    <input type="number" id="editor-price" min="0" step="0.01" />
+                  </label>
+                  <label>Stock
+                    <input type="number" id="editor-stock" min="0" step="1" />
+                  </label>
+                </div>
+                <label>Description
+                  <textarea id="editor-description" rows="4"></textarea>
+                </label>
+                <label class="admin-check">
+                  <input type="checkbox" id="editor-active" />
+                  <span>Product is active in catalog</span>
+                </label>
+                <div class="form-actions">
+                  <button type="submit" class="btn btn-primary">Save changes</button>
+                  <button type="button" class="btn btn-secondary" id="editor-cancel">Cancel</button>
+                </div>
+              </form>
+            </aside>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="auth-nav.js" defer></script>
+    <script src="supply-management.js" defer></script>
+  </body>
+</html>

@@ -35,12 +35,14 @@ function validateEmailPasswordBody(body) {
   return { email, password };
 }
 
-function customerFromAuthUser(user) {
+function customerFromAuthUser(user, session) {
   const email = normalizeEmail(user && user.email);
   return {
     id: user && user.id,
     email,
     name: profileNameFromEmail(email),
+    role: (user && user.app_metadata && user.app_metadata.role) || "customer",
+    accessToken: session && session.access_token,
     created_at: user && user.created_at,
   };
 }
@@ -114,7 +116,7 @@ async function handleCustomerSignIn(body, req) {
 
   await saveCustomerProfile(data.user, body, req, "login_page");
 
-  return { status: 200, body: { ok: true, user: customerFromAuthUser(data.user) } };
+  return { status: 200, body: { ok: true, user: customerFromAuthUser(data.user, data.session) } };
 }
 
 async function handleCreateAccount(body, req) {
@@ -153,7 +155,16 @@ async function handleCreateAccount(body, req) {
 
   await saveCustomerProfile(created.user, body, req, "create_account_page");
 
-  return { status: 201, body: { ok: true, user: customerFromAuthUser(created.user) } };
+  const { data: signedIn, error: signInError } = await getAuthClient().auth.signInWithPassword({
+    email: parsed.email,
+    password: parsed.password,
+  });
+
+  if (signInError || !signedIn || !signedIn.user) {
+    return { status: 201, body: { ok: true, user: customerFromAuthUser(created.user) } };
+  }
+
+  return { status: 201, body: { ok: true, user: customerFromAuthUser(signedIn.user, signedIn.session) } };
 }
 
 async function handleAuthApi(req, res, pathname, { sendJson, readJsonBody }) {

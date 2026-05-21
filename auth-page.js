@@ -50,6 +50,8 @@
       id: customer.id,
       name: customer.name,
       email: customer.email,
+      role: customer.role || "customer",
+      accessToken: customer.accessToken || "",
       createdAt: customer.created_at || customer.createdAt || new Date().toISOString()
     };
     localStorage.removeItem(SESSION_KEY);
