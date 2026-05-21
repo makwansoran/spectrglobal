@@ -105,6 +105,32 @@
       .join("") || "SP";
   }
 
+  function generatedResultImage(label) {
+    var text = escapeHtml(initials(label));
+    return (
+      "data:image/svg+xml;charset=UTF-8," +
+      encodeURIComponent(
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72">' +
+          '<rect width="72" height="72" rx="18" fill="#f3f4f6"/>' +
+          '<rect x="0.5" y="0.5" width="71" height="71" rx="17.5" fill="none" stroke="#d1d5db"/>' +
+          '<text x="36" y="42" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#111827">' +
+          text +
+          "</text></svg>"
+      )
+    );
+  }
+
+  function partImage(part) {
+    if (window.SpectrShop && window.SpectrShop.productImageUrl) {
+      return window.SpectrShop.productImageUrl(part);
+    }
+    return (part && part.image_url) || generatedResultImage(part && part.name);
+  }
+
+  function makeImage(make) {
+    return String((make && make.logo_url) || "").trim() || generatedResultImage(make && make.name);
+  }
+
   function normalize(value) {
     return String(value || "").trim().toLowerCase();
   }
@@ -146,9 +172,8 @@
       .map(function (part) {
         return {
           name: part.name,
-          subtitle: [part.category, part.sku].filter(Boolean).join(" · "),
+          image: partImage(part),
           url: "index.html#catalog",
-          badge: "Part",
         };
       });
   }
@@ -166,9 +191,8 @@
         var href = "car-brand.html?make=" + encodeURIComponent(make.slug || make.name);
         return {
           name: make.name,
-          subtitle: [make.country, make.region].filter(Boolean).join(" · ") || "Car make",
+          image: makeImage(make),
           url: href,
-          badge: "Make",
         };
       });
   }
@@ -214,10 +238,8 @@
     searchResults.innerHTML = results.map(function (result, i) {
       return (
         '<button type="button" class="cb-search-result plt-search-result' + (i === 0 ? " is-active" : "") + '" role="option" id="plt-result-' + i + '" data-index="' + i + '">' +
-          '<span class="cb-search-result-mark">' + escapeHtml(initials(result.name)) + '</span>' +
-          '<span class="cb-search-kind cb-search-kind-commodity">' + escapeHtml(result.badge) + '</span>' +
+          '<span class="cb-search-result-media" aria-hidden="true"><img src="' + escapeHtml(result.image || generatedResultImage(result.name)) + '" alt="" loading="lazy" decoding="async"></span>' +
           '<span class="cb-search-result-name">' + escapeHtml(result.name) + '</span>' +
-          '<span class="cb-search-result-sub"> · ' + escapeHtml(result.subtitle) + '</span>' +
         '</button>'
       );
     }).join("");
