@@ -12,6 +12,7 @@
     selectedMake: null,
     selectedYear: "",
     selectedModel: "",
+    selectedVin: "",
   };
 
   function $(id) { return document.getElementById(id); }
@@ -52,6 +53,10 @@
 
   function selectedCategory() {
     return new URLSearchParams(window.location.search).get("category") || "Oils";
+  }
+
+  function cleanVin(value) {
+    return String(value || "").replace(/[^A-Za-z0-9]/g, "").toUpperCase().slice(0, 17);
   }
 
   function isSameCategory(part) {
@@ -105,19 +110,25 @@
     $("category-title").textContent = state.category;
     $("category-eyebrow").textContent = "Car part category";
     $("category-summary").textContent = categorySummary();
-    $("category-fit-title").textContent =
-      normalize(state.category).indexOf("oil") !== -1
-        ? "Find the correct oil for your car"
-        : "Find the correct tyre size for your car";
+    if (normalize(state.category).indexOf("oil") !== -1) {
+      $("category-fit-title").textContent = "Find the correct oil by car or VIN";
+    } else if (normalize(state.category).indexOf("brake") !== -1) {
+      $("category-fit-title").textContent = "Find the correct brakes by car or VIN";
+    } else {
+      $("category-fit-title").textContent = "Find the correct tyre size by car or VIN";
+    }
   }
 
   function categorySummary() {
     var count = state.parts.filter(isSameCategory).length;
     if (normalize(state.category).indexOf("oil") !== -1) {
-      return "Choose your car brand, year, and model to show compatible engine oils.";
+      return "Choose your car brand, year, model, or VIN to show compatible engine oils.";
     }
     if (normalize(state.category).indexOf("tire") !== -1 || normalize(state.category).indexOf("tyre") !== -1) {
-      return "Choose your car brand, year, and model to show matching tyre sizes.";
+      return "Choose your car brand, year, model, or VIN to show matching tyre sizes.";
+    }
+    if (normalize(state.category).indexOf("brake") !== -1) {
+      return "Choose your car brand, year, model, or VIN to show compatible brake discs and pads.";
     }
     return "Browse " + count + " compatible product" + (count === 1 ? "" : "s") + ".";
   }
@@ -134,7 +145,10 @@
         var label = state.selectedMake.name;
         if (state.selectedModel) label += " " + state.selectedModel;
         if (state.selectedYear) label += " " + state.selectedYear;
+        if (state.selectedVin) label += " · VIN " + state.selectedVin;
         bits.push(label);
+      } else if (state.selectedVin) {
+        bits.push("VIN " + state.selectedVin);
       }
       bits.push(parts.length + " " + state.category.toLowerCase() + " result" + (parts.length === 1 ? "" : "s"));
       summary.textContent = bits.join(" · ");
@@ -274,9 +288,9 @@
   function applySelection() {
     var status = $("category-fit-status");
     var reset = $("category-fit-reset");
-    reset.hidden = !state.selectedMake && !state.selectedYear && !state.selectedModel;
-    status.textContent = state.selectedMake
-      ? [state.selectedMake.name, state.selectedModel, state.selectedYear].filter(Boolean).join(" ") + " selected."
+    reset.hidden = !state.selectedMake && !state.selectedYear && !state.selectedModel && !state.selectedVin;
+    status.textContent = state.selectedMake || state.selectedVin
+      ? [state.selectedMake && state.selectedMake.name, state.selectedModel, state.selectedYear, state.selectedVin && "VIN " + state.selectedVin].filter(Boolean).join(" ") + " selected."
       : "";
     renderProducts();
   }
@@ -285,6 +299,7 @@
     var brandSelect = $("category-brand-select");
     var yearSelect = $("category-year-select");
     var modelSelect = $("category-model-select");
+    var vinInput = $("category-vin-input");
     var reset = $("category-fit-reset");
 
     brandSelect.innerHTML = '<option value="">Choose brand</option>' +
@@ -330,8 +345,20 @@
       });
     });
 
+    if (vinInput) {
+      vinInput.addEventListener("input", function () {
+        state.selectedVin = cleanVin(vinInput.value);
+        vinInput.value = state.selectedVin;
+        applySelection();
+      });
+    }
+
     $("category-fit-form").addEventListener("submit", function (event) {
       event.preventDefault();
+      if (vinInput) {
+        state.selectedVin = cleanVin(vinInput.value);
+        vinInput.value = state.selectedVin;
+      }
       applySelection();
       $("category-products-grid").scrollIntoView({ behavior: "smooth", block: "start" });
     });
@@ -340,11 +367,13 @@
       state.selectedMake = null;
       state.selectedYear = "";
       state.selectedModel = "";
+      state.selectedVin = "";
       brandSelect.value = "";
       yearSelect.innerHTML = '<option value="">Choose year</option>';
       yearSelect.disabled = true;
       modelSelect.innerHTML = '<option value="">Choose model</option>';
       modelSelect.disabled = true;
+      if (vinInput) vinInput.value = "";
       applySelection();
     });
   }

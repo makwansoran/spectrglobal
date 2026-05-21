@@ -976,7 +976,8 @@
   text-transform: uppercase;
 }
 
-.brand-fit-field select {
+.brand-fit-field select,
+.brand-fit-field input {
   width: 100%;
   min-height: 2.75rem;
   padding: 0 0.85rem;
@@ -988,7 +989,17 @@
   outline: none;
 }
 
-.brand-fit-field select:focus {
+.brand-fit-field input {
+  text-transform: uppercase;
+}
+
+.brand-fit-field input::placeholder {
+  color: var(--shop-muted);
+  text-transform: none;
+}
+
+.brand-fit-field select:focus,
+.brand-fit-field input:focus {
   border-color: rgba(31, 111, 235, 0.55);
   box-shadow: 0 0 0 4px rgba(31, 111, 235, 0.12);
 }

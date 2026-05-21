@@ -24,6 +24,10 @@
     return new URLSearchParams(window.location.search).get("make") || "";
   }
 
+  function cleanVin(value) {
+    return String(value || "").replace(/[^A-Za-z0-9]/g, "").toUpperCase().slice(0, 17);
+  }
+
   function findMake(makes, requested) {
     var q = normalize(requested);
     return makes.find(function (make) {
@@ -144,9 +148,11 @@
     var form = $("brand-fit-form");
     var yearSelect = $("brand-year-select");
     var modelSelect = $("brand-model-select");
+    var vinInput = $("brand-vin-input");
     var resetButton = $("brand-fit-reset");
     var status = $("brand-fit-status");
     var years = supportedYears(models);
+    var selectedVin = "";
 
     if (!form || !yearSelect || !modelSelect) return;
 
@@ -171,9 +177,9 @@
       renderModelCards(make, matchedModels);
       renderPartCards(matchedParts);
       $("brand-model-count").textContent = String(matchedModels.length);
-      resetButton.hidden = !selectedYear && !selectedModel;
-      status.textContent = selectedModel
-        ? make.name + " " + selectedModel + (selectedYear ? " " + selectedYear : "") + " selected."
+      resetButton.hidden = !selectedYear && !selectedModel && !selectedVin;
+      status.textContent = selectedModel || selectedYear || selectedVin
+        ? [make.name, selectedModel, selectedYear, selectedVin && "VIN " + selectedVin].filter(Boolean).join(" ") + " selected."
         : "";
     }
 
@@ -190,8 +196,20 @@
 
     modelSelect.addEventListener("change", applySelection);
 
+    if (vinInput) {
+      vinInput.addEventListener("input", function () {
+        selectedVin = cleanVin(vinInput.value);
+        vinInput.value = selectedVin;
+        applySelection();
+      });
+    }
+
     form.addEventListener("submit", function (event) {
       event.preventDefault();
+      if (vinInput) {
+        selectedVin = cleanVin(vinInput.value);
+        vinInput.value = selectedVin;
+      }
       applySelection();
     });
 
@@ -200,6 +218,8 @@
         yearSelect.value = "";
         populateModelSelect(models, "", "");
         modelSelect.value = "";
+        selectedVin = "";
+        if (vinInput) vinInput.value = "";
         status.textContent = "";
         resetButton.hidden = true;
         $("brand-model-count").textContent = String(models.length);

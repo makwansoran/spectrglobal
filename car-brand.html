@@ -155,7 +155,7 @@
           <form class="brand-fit-form" id="brand-fit-form" autocomplete="off">
             <div class="brand-fit-head">
               <p class="shop-eyebrow">Identify your car</p>
-              <h2>Choose year and model</h2>
+              <h2>Choose year, model, or VIN</h2>
             </div>
             <label class="brand-fit-field">
               <span>Year</span>
@@ -168,6 +168,10 @@
               <select id="brand-model-select" disabled>
                 <option value="">Choose model</option>
               </select>
+            </label>
+            <label class="brand-fit-field">
+              <span>VIN number</span>
+              <input id="brand-vin-input" type="text" inputmode="latin" autocomplete="off" maxlength="17" placeholder="Enter VIN" />
             </label>
             <button type="submit" class="btn btn-primary">Show matching parts</button>
             <button type="button" class="brand-fit-reset" id="brand-fit-reset" hidden>Clear selection</button>

@@ -208,6 +208,76 @@ function oilProductFromRow(row, fitments) {
   };
 }
 
+function brakeBrandName(row) {
+  const brand = row && row.brake_brands;
+  if (Array.isArray(brand)) return (brand[0] && brand[0].name) || "";
+  return (brand && brand.name) || "";
+}
+
+function brakeFitmentVehicle(row) {
+  const modelValue = row && row.models;
+  const model = Array.isArray(modelValue) ? modelValue[0] : modelValue;
+  const makeValue = model && model.makes;
+  const make = Array.isArray(makeValue) ? makeValue[0] : makeValue;
+  return {
+    brand: (make && make.name) || "",
+    model: (model && model.name) || "",
+    engine: [row.position, row.notes].filter(Boolean).join(" · "),
+  };
+}
+
+function brakeProductMatchesFitment(product, fitment) {
+  if (!product || !fitment) return false;
+  if (product.position && fitment.position && product.position !== fitment.position) return false;
+
+  if (product.type === "disc") {
+    return fitment.brake_type === "disc" &&
+      Number(product.disc_diameter_mm) === Number(fitment.disc_diameter_mm) &&
+      Number(product.disc_thickness_mm) === Number(fitment.disc_thickness_mm);
+  }
+
+  if (product.type === "pad") {
+    return Number(product.pad_height_mm) === Number(fitment.pad_height_mm) &&
+      Number(product.pad_width_mm) === Number(fitment.pad_width_mm);
+  }
+
+  return false;
+}
+
+function brakeProductFromRow(row, fitments) {
+  const brandName = brakeBrandName(row);
+  const typeLabel = row.type === "disc" ? "Brake disc" : row.type === "pad" ? "Brake pad" : "Brake part";
+  const position = row.position ? `${row.position} axle` : "";
+  const discSpecs = row.type === "disc"
+    ? [
+        row.disc_diameter_mm ? `${row.disc_diameter_mm}mm` : "",
+        row.disc_thickness_mm ? `${Number(row.disc_thickness_mm).toFixed(1)}mm thick` : "",
+        row.disc_ventilated ? "ventilated" : "",
+        row.disc_drilled ? "drilled" : "",
+        row.disc_slotted ? "slotted" : "",
+        row.disc_coated ? "coated" : "",
+      ]
+    : [];
+  const padSpecs = row.type === "pad"
+    ? [
+        row.pad_material || "",
+        row.pad_height_mm && row.pad_width_mm ? `${Number(row.pad_height_mm).toFixed(1)}x${Number(row.pad_width_mm).toFixed(1)}mm` : "",
+        row.pad_with_sensor ? "with sensor" : "",
+      ]
+    : [];
+
+  return {
+    id: `brake-product-${row.id}`,
+    name: [brandName, row.name].filter(Boolean).join(" "),
+    category: "Brakes",
+    sku: `BRAKE-${String(row.id || "").slice(0, 8).toUpperCase()}`,
+    price: Number(row.price_eur) || 0,
+    stock: 999,
+    description: [typeLabel, position, ...discSpecs, ...padSpecs].filter(Boolean).join(" · "),
+    vehicles: fitments,
+  };
+}
+
 function tyreFitmentVehicle(row) {
   const modelValue = row && row.models;
   const model = Array.isArray(modelValue) ? modelValue[0] : modelValue;
@@ -339,6 +409,41 @@ async function fetchOilProductParts(activeOnly) {
   });
 }
 
+async function fetchBrakeProductParts(activeOnly) {
+  let brakeProductsQuery = getReadClient()
+    .from("brake_products")
+    .select("id, name, type, position, disc_diameter_mm, disc_thickness_mm, disc_ventilated, disc_drilled, disc_slotted, disc_coated, pad_height_mm, pad_width_mm, pad_thickness_mm, pad_material, pad_with_sensor, price_eur, active, brake_brands(name)")
+    .order("name", { ascending: true });
+
+  if (activeOnly) brakeProductsQuery = brakeProductsQuery.eq("active", true);
+
+  const [productsResult, fitmentsResult] = await Promise.all([
+    brakeProductsQuery,
+    getReadClient()
+      .from("car_brake_fitment")
+      .select("position, brake_type, disc_diameter_mm, disc_thickness_mm, pad_height_mm, pad_width_mm, pad_thickness_mm, notes, models(name, makes(name))"),
+  ]);
+
+  if (productsResult.error) {
+    if (productsResult.error.code === "42P01") return [];
+    throw productsResult.error;
+  }
+
+  if (fitmentsResult.error) {
+    if (fitmentsResult.error.code === "42P01") return (productsResult.data || []).map((row) => brakeProductFromRow(row, []));
+    throw fitmentsResult.error;
+  }
+
+  const fitments = fitmentsResult.data || [];
+  return (productsResult.data || []).map((product) => {
+    const vehicles = fitments
+      .filter((fitment) => brakeProductMatchesFitment(product, fitment))
+      .map(brakeFitmentVehicle)
+      .filter((vehicle) => vehicle.brand && vehicle.model);
+    return brakeProductFromRow(product, dedupeVehicleFits(vehicles));
+  });
+}
+
 function dedupeVehicleFits(vehicles) {
   const seen = new Set();
   return vehicles.filter((vehicle) => {
@@ -406,10 +511,12 @@ async function handlePartsList(req, res) {
 
   let oilParts = [];
   let tyreParts = [];
+  let brakeParts = [];
   try {
-    [oilParts, tyreParts] = await Promise.all([
+    [oilParts, tyreParts, brakeParts] = await Promise.all([
       fetchOilProductParts(activeOnly),
       fetchTyreSizeParts(),
+      fetchBrakeProductParts(activeOnly),
     ]);
   } catch (catalogError) {
     sendJson(res, 500, { error: catalogError.message || "Could not load derived catalog products." });
@@ -420,6 +527,7 @@ async function handlePartsList(req, res) {
     ...(data || []).map(partFromRow),
     ...oilParts,
     ...tyreParts,
+    ...brakeParts,
   ]).slice(0, limit);
 
   sendJson(res, 200, { parts });

@@ -1073,3 +1073,1106 @@ where not exists (
     and existing.oil_capacity_liters is not distinct from v.oil_capacity_liters
     and existing.notes is not distinct from v.notes
 );
+
+-- ============================================================
+-- BRAKE DATABASE — CREATE TABLES
+-- Run order: 1) this  2) brake_brands_seed.sql  3) car_brake_fitment_seed.sql
+-- Unlike oil, EVs ARE included — they have brakes
+-- (Regenerative braking means slower wear, but they still need brake parts)
+-- ============================================================
+
+create table if not exists public.brake_brands (
+  id         uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  name       text NOT NULL,
+  country    text,
+  website    text,
+  tier       text,   -- premium / mid / budget
+  active     boolean DEFAULT true,
+  created_at timestamptz DEFAULT now()
+);
+
+-- Covers: discs, pads, shoes, drums, calipers
+create table if not exists public.brake_products (
+  id                   uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  brand_id             uuid references public.brake_brands(id) ON DELETE CASCADE,
+  name                 text NOT NULL,
+  type                 text NOT NULL,    -- disc / pad / shoe / drum / caliper
+  position             text,             -- front / rear / universal
+  -- DISC fields (null for pads)
+  disc_diameter_mm     int,
+  disc_thickness_mm    numeric(4,1),
+  disc_min_thickness_mm numeric(4,1),
+  disc_ventilated      boolean DEFAULT false,
+  disc_drilled         boolean DEFAULT false,
+  disc_slotted         boolean DEFAULT false,
+  disc_coated          boolean DEFAULT false,
+  -- PAD fields (null for discs)
+  pad_height_mm        numeric(5,1),
+  pad_width_mm         numeric(5,1),
+  pad_thickness_mm     numeric(4,1),
+  pad_material         text,             -- ceramic / semi-metallic / organic / carbon
+  pad_with_sensor      boolean DEFAULT false,
+  -- Common
+  ean                  text,
+  price_eur            numeric(10,2),
+  active               boolean DEFAULT true,
+  created_at           timestamptz DEFAULT now()
+);
+
+-- Per-model OEM brake specifications
+-- Separate rows for front and rear
+create table if not exists public.car_brake_fitment (
+  id                    uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  model_id              uuid references public.models(id) ON DELETE CASCADE,
+  year_from             int,
+  year_to               int,
+  position              text NOT NULL,   -- front / rear
+  brake_type            text NOT NULL,   -- disc / drum
+  disc_diameter_mm      int,             -- null for drum
+  disc_thickness_mm     numeric(4,1),
+  disc_min_thickness_mm numeric(4,1),
+  disc_ventilated       boolean DEFAULT false,
+  drum_diameter_mm      int,             -- null for disc
+  pad_height_mm         numeric(5,1),
+  pad_width_mm          numeric(5,1),
+  pad_thickness_mm      numeric(4,1),
+  notes                 text,            -- e.g. 'M Sport', 'base trim'
+  created_at            timestamptz DEFAULT now()
+);
+
+-- Indexes
+create index if not exists idx_brake_products_type on public.brake_products(type);
+create index if not exists idx_brake_products_disc on public.brake_products(disc_diameter_mm, disc_thickness_mm);
+create index if not exists idx_brake_products_pad on public.brake_products(pad_height_mm, pad_width_mm);
+create index if not exists idx_brake_fitment_model on public.car_brake_fitment(model_id);
+create index if not exists idx_brake_fitment_disc on public.car_brake_fitment(disc_diameter_mm, disc_thickness_mm);
+
+alter table public.brake_brands enable row level security;
+alter table public.brake_products enable row level security;
+alter table public.car_brake_fitment enable row level security;
+
+drop policy if exists "Public read brake brands" on public.brake_brands;
+create policy "Public read brake brands"
+  on public.brake_brands
+  for select
+  to anon, authenticated
+  using (true);
+
+drop policy if exists "Public read brake products" on public.brake_products;
+create policy "Public read brake products"
+  on public.brake_products
+  for select
+  to anon, authenticated
+  using (true);
+
+drop policy if exists "Public read car brake fitment" on public.car_brake_fitment;
+create policy "Public read car brake fitment"
+  on public.car_brake_fitment
+  for select
+  to anon, authenticated
+  using (true);
+
+create unique index if not exists brake_brands_name_unique_idx
+  on public.brake_brands (lower(name));
+
+create unique index if not exists brake_products_brand_name_type_unique_idx
+  on public.brake_products (brand_id, lower(name), type, coalesce(position, ''));
+
+create unique index if not exists car_brake_fitment_model_specs_unique_idx
+  on public.car_brake_fitment (
+    model_id,
+    coalesce(year_from, -1),
+    coalesce(year_to, -1),
+    position,
+    brake_type,
+    coalesce(disc_diameter_mm, -1),
+    coalesce(disc_thickness_mm, -1),
+    coalesce(drum_diameter_mm, -1),
+    coalesce(pad_height_mm, -1),
+    coalesce(pad_width_mm, -1),
+    coalesce(pad_thickness_mm, -1),
+    coalesce(notes, '')
+  );
+
+
+-- ============================================================
+-- MAGIC QUERY 1 — find compatible DISCS for a car
+-- ============================================================
+-- SELECT
+--   bb.name AS brand, bp.name, bp.disc_diameter_mm, bp.disc_thickness_mm,
+--   bp.disc_drilled, bp.disc_slotted, bp.disc_coated, bp.price_eur
+-- FROM car_brake_fitment cbf
+-- join public.models mo ON cbf.model_id = mo.id
+-- JOIN makes  ma ON mo.make_id   = ma.id
+-- JOIN brake_products bp ON (
+--   bp.type = 'disc'
+--   AND bp.disc_diameter_mm    = cbf.disc_diameter_mm
+--   AND bp.disc_thickness_mm   = cbf.disc_thickness_mm
+--   AND bp.position            = cbf.position
+-- )
+-- JOIN brake_brands bb ON bp.brand_id = bb.id
+-- WHERE ma.name = 'BMW' AND mo.name = '3 Series' AND cbf.position = 'front'
+-- ORDER BY bb.name;
+
+-- ============================================================
+-- MAGIC QUERY 2 — find compatible PADS for a car
+-- ============================================================
+-- SELECT
+--   bb.name AS brand, bp.name, bp.pad_material, bp.price_eur
+-- FROM car_brake_fitment cbf
+-- join public.models mo ON cbf.model_id = mo.id
+-- JOIN makes  ma ON mo.make_id   = ma.id
+-- JOIN brake_products bp ON (
+--   bp.type = 'pad'
+--   AND bp.pad_height_mm   = cbf.pad_height_mm
+--   AND bp.pad_width_mm    = cbf.pad_width_mm
+--   AND bp.position        = cbf.position
+-- )
+-- JOIN brake_brands bb ON bp.brand_id = bb.id
+-- WHERE ma.name = 'BMW' AND mo.name = '3 Series' AND cbf.position = 'front'
+-- ORDER BY bb.name;
+
+-- ============================================================
+-- BRAKE BRANDS + PRODUCTS SEED DATA
+-- Run AFTER brake_schema.sql
+-- All product names are real products that exist
+-- Prices are estimates — update with your supplier prices
+-- ============================================================
+
+insert into public.brake_brands (name, country, website, tier, active)
+select v.name, v.country, v.website, v.tier, v.active
+from (values
+('Brembo',       'Italy',          'brembo.com',        'premium', true),
+('Ferodo',       'United Kingdom', 'ferodo.com',        'premium', true),
+('ATE',          'Germany',        'ate.eu',            'premium', true),
+('Bosch',        'Germany',        'bosch.com',         'premium', true),
+('TRW',          'Germany',        'trwaftermarket.com','premium', true),
+('Textar',       'Germany',        'textar.com',        'premium', true),
+('Pagid',        'Germany',        'pagid.com',         'premium', true),
+('EBC Brakes',   'United Kingdom', 'ebcbrakes.com',     'premium', true),
+('Zimmermann',   'Germany',        'zimmermann-brakes.de','mid',   true),
+('Delphi',       'United Kingdom', 'delphi.com',        'mid',    true),
+('Mintex',       'United Kingdom', 'mintex.co.uk',      'mid',    true),
+('Nisshinbo',    'Japan',          'nisshinbo.co.jp',   'mid',    true),
+('Akebono',      'Japan',          'akebono-brake.com', 'premium', true),
+('Hawk Performance','USA',          'hawkperformance.com','premium',true),
+('PowerStop',    'USA',            'powerstop.com',     'mid',    true),
+('DBA',          'Australia',      'dba.com.au',        'premium', true),
+('Remsa',        'Spain',          'remsa.es',          'mid',    true),
+('Jurid',        'Germany',        'jurid.com',         'mid',    true),
+('Meyle',        'Germany',        'meyle.com',         'mid',    true),
+('LPR',          'Italy',          'lpr.it',            'mid',    true),
+('NK',           'Denmark',        'nk.dk',             'budget', true),
+('Comline',      'United Kingdom', 'comlineauto.com',   'budget', true),
+('Blueprint',    'United Kingdom', 'blueprintauto.co.uk','budget', true)
+) as v(name, country, website, tier, active)
+where not exists (
+  select 1 from public.brake_brands existing
+  where lower(existing.name) = lower(v.name)
+);
+
+-- ============================================================
+-- BRAKE DISC PRODUCTS
+-- ============================================================
+insert into public.brake_products (id, brand_id, name, type, position,
+  disc_diameter_mm, disc_thickness_mm, disc_min_thickness_mm,
+  disc_ventilated, disc_drilled, disc_slotted, disc_coated,
+  price_eur, active)
+SELECT gen_random_uuid(), b.id, v.name, 'disc', v.position,
+  v.disc_diameter_mm, v.disc_thickness_mm, v.disc_min_thickness_mm,
+  v.disc_ventilated, v.disc_drilled, v.disc_slotted, v.disc_coated,
+  v.price_eur, true
+from public.brake_brands b
+JOIN (VALUES
+
+  -- ============================================================
+  -- BREMBO DISCS
+  -- ============================================================
+  ('Brembo', 'Brembo Disc 280mm Front Standard',          'front', 280, 22.0, 20.0, true,  false, false, false, 38.99),
+  ('Brembo', 'Brembo Disc 300mm Front Standard',          'front', 300, 28.0, 26.0, true,  false, false, false, 44.99),
+  ('Brembo', 'Brembo Disc 312mm Front Vented',            'front', 312, 25.0, 23.0, true,  false, false, false, 46.99),
+  ('Brembo', 'Brembo Disc 320mm Front Vented',            'front', 320, 28.0, 26.0, true,  false, false, false, 49.99),
+  ('Brembo', 'Brembo Disc 330mm Front Vented',            'front', 330, 30.0, 28.0, true,  false, false, false, 54.99),
+  ('Brembo', 'Brembo Disc 340mm Front Vented',            'front', 340, 30.0, 28.0, true,  false, false, false, 58.99),
+  ('Brembo', 'Brembo Disc 348mm Front Vented',            'front', 348, 30.0, 28.0, true,  false, false, false, 62.99),
+  ('Brembo', 'Brembo Disc 360mm Front Vented',            'front', 360, 30.0, 28.0, true,  false, false, false, 68.99),
+  ('Brembo', 'Brembo Disc 374mm Front Vented',            'front', 374, 36.0, 34.0, true,  false, false, false, 79.99),
+  ('Brembo', 'Brembo Disc 395mm Front Vented',            'front', 395, 36.0, 34.0, true,  false, false, false, 94.99),
+  ('Brembo', 'Brembo Disc 272mm Rear Solid',              'rear',  272, 10.0,  8.0, false, false, false, false, 29.99),
+  ('Brembo', 'Brembo Disc 286mm Rear Solid',              'rear',  286, 12.0, 10.0, false, false, false, false, 32.99),
+  ('Brembo', 'Brembo Disc 300mm Rear Vented',             'rear',  300, 22.0, 20.0, true,  false, false, false, 41.99),
+  ('Brembo', 'Brembo Disc 310mm Rear Vented',             'rear',  310, 22.0, 20.0, true,  false, false, false, 44.99),
+  ('Brembo', 'Brembo Disc 320mm Rear Vented',             'rear',  320, 22.0, 20.0, true,  false, false, false, 46.99),
+  ('Brembo', 'Brembo Disc 345mm Rear Vented',             'rear',  345, 24.0, 22.0, true,  false, false, false, 54.99),
+  -- Sport cross-drilled
+  ('Brembo', 'Brembo Sport Drilled 312mm Front',          'front', 312, 25.0, 23.0, true,  true,  false, false, 72.99),
+  ('Brembo', 'Brembo Sport Drilled 330mm Front',          'front', 330, 30.0, 28.0, true,  true,  false, false, 84.99),
+  ('Brembo', 'Brembo Sport Drilled 348mm Front',          'front', 348, 30.0, 28.0, true,  true,  false, false, 89.99),
+  ('Brembo', 'Brembo Sport Drilled 360mm Front',          'front', 360, 30.0, 28.0, true,  true,  false, false, 96.99),
+
+  -- ============================================================
+  -- ATE DISCS (OEM supplier for many European brands)
+  -- ============================================================
+  ('ATE', 'ATE PowerDisc 280mm Front',                    'front', 280, 22.0, 20.0, true,  false, true,  false, 42.99),
+  ('ATE', 'ATE PowerDisc 300mm Front',                    'front', 300, 28.0, 26.0, true,  false, true,  false, 47.99),
+  ('ATE', 'ATE PowerDisc 312mm Front',                    'front', 312, 25.0, 23.0, true,  false, true,  false, 49.99),
+  ('ATE', 'ATE PowerDisc 320mm Front',                    'front', 320, 28.0, 26.0, true,  false, true,  false, 52.99),
+  ('ATE', 'ATE PowerDisc 330mm Front',                    'front', 330, 30.0, 28.0, true,  false, true,  false, 57.99),
+  ('ATE', 'ATE PowerDisc 348mm Front',                    'front', 348, 30.0, 28.0, true,  false, true,  false, 64.99),
+  ('ATE', 'ATE PowerDisc 360mm Front',                    'front', 360, 30.0, 28.0, true,  false, true,  false, 71.99),
+  ('ATE', 'ATE Premium 272mm Rear',                       'rear',  272, 10.0,  8.0, false, false, false, false, 28.99),
+  ('ATE', 'ATE Premium 300mm Rear',                       'rear',  300, 22.0, 20.0, true,  false, false, false, 38.99),
+  ('ATE', 'ATE Premium 320mm Rear',                       'rear',  320, 22.0, 20.0, true,  false, false, false, 43.99),
+
+  -- ============================================================
+  -- ZIMMERMANN (coated discs — very popular)
+  -- ============================================================
+  ('Zimmermann', 'Zimmermann Coat Z 280mm Front',         'front', 280, 22.0, 20.0, true,  false, false, true,  44.99),
+  ('Zimmermann', 'Zimmermann Coat Z 300mm Front',         'front', 300, 28.0, 26.0, true,  false, false, true,  49.99),
+  ('Zimmermann', 'Zimmermann Coat Z 312mm Front',         'front', 312, 25.0, 23.0, true,  false, false, true,  51.99),
+  ('Zimmermann', 'Zimmermann Coat Z 320mm Front',         'front', 320, 28.0, 26.0, true,  false, false, true,  54.99),
+  ('Zimmermann', 'Zimmermann Coat Z 330mm Front',         'front', 330, 30.0, 28.0, true,  false, false, true,  59.99),
+  ('Zimmermann', 'Zimmermann Coat Z 340mm Front',         'front', 340, 30.0, 28.0, true,  false, false, true,  63.99),
+  ('Zimmermann', 'Zimmermann Coat Z 348mm Front',         'front', 348, 30.0, 28.0, true,  false, false, true,  67.99),
+  ('Zimmermann', 'Zimmermann Coat Z 360mm Front',         'front', 360, 30.0, 28.0, true,  false, false, true,  74.99),
+  ('Zimmermann', 'Zimmermann Coat Z 374mm Front',         'front', 374, 36.0, 34.0, true,  false, false, true,  86.99),
+  ('Zimmermann', 'Zimmermann Coat Z 272mm Rear',          'rear',  272, 10.0,  8.0, false, false, false, true,  31.99),
+  ('Zimmermann', 'Zimmermann Coat Z 286mm Rear',          'rear',  286, 12.0, 10.0, false, false, false, true,  34.99),
+  ('Zimmermann', 'Zimmermann Coat Z 300mm Rear',          'rear',  300, 22.0, 20.0, true,  false, false, true,  42.99),
+  ('Zimmermann', 'Zimmermann Coat Z 320mm Rear',          'rear',  320, 22.0, 20.0, true,  false, false, true,  46.99),
+  ('Zimmermann', 'Zimmermann Coat Z 345mm Rear',          'rear',  345, 24.0, 22.0, true,  false, false, true,  56.99),
+  -- Sport Z (drilled + slotted)
+  ('Zimmermann', 'Zimmermann Sport Z 330mm Front',        'front', 330, 30.0, 28.0, true,  true,  true,  true,  84.99),
+  ('Zimmermann', 'Zimmermann Sport Z 348mm Front',        'front', 348, 30.0, 28.0, true,  true,  true,  true,  91.99),
+  ('Zimmermann', 'Zimmermann Sport Z 360mm Front',        'front', 360, 30.0, 28.0, true,  true,  true,  true,  99.99),
+
+  -- ============================================================
+  -- EBC BRAKES
+  -- ============================================================
+  ('EBC Brakes', 'EBC Standard 280mm Front',              'front', 280, 22.0, 20.0, true,  false, false, false, 39.99),
+  ('EBC Brakes', 'EBC Standard 300mm Front',              'front', 300, 28.0, 26.0, true,  false, false, false, 44.99),
+  ('EBC Brakes', 'EBC Standard 312mm Front',              'front', 312, 25.0, 23.0, true,  false, false, false, 47.99),
+  ('EBC Brakes', 'EBC Standard 330mm Front',              'front', 330, 30.0, 28.0, true,  false, false, false, 54.99),
+  ('EBC Brakes', 'EBC Standard 348mm Front',              'front', 348, 30.0, 28.0, true,  false, false, false, 61.99),
+  ('EBC Brakes', 'EBC USR Slotted 312mm Front',           'front', 312, 25.0, 23.0, true,  false, true,  false, 62.99),
+  ('EBC Brakes', 'EBC USR Slotted 330mm Front',           'front', 330, 30.0, 28.0, true,  false, true,  false, 71.99),
+  ('EBC Brakes', 'EBC BSD Drilled 312mm Front',           'front', 312, 25.0, 23.0, true,  true,  false, false, 64.99),
+  ('EBC Brakes', 'EBC BSD Drilled 348mm Front',           'front', 348, 30.0, 28.0, true,  true,  false, false, 79.99),
+  ('EBC Brakes', 'EBC Standard 272mm Rear',               'rear',  272, 10.0,  8.0, false, false, false, false, 29.99),
+  ('EBC Brakes', 'EBC Standard 300mm Rear',               'rear',  300, 22.0, 20.0, true,  false, false, false, 38.99),
+  ('EBC Brakes', 'EBC Standard 320mm Rear',               'rear',  320, 22.0, 20.0, true,  false, false, false, 43.99),
+
+  -- ============================================================
+  -- BOSCH DISCS
+  -- ============================================================
+  ('Bosch', 'Bosch QuietCast 280mm Front',                'front', 280, 22.0, 20.0, true,  false, false, false, 36.99),
+  ('Bosch', 'Bosch QuietCast 300mm Front',                'front', 300, 28.0, 26.0, true,  false, false, false, 41.99),
+  ('Bosch', 'Bosch QuietCast 312mm Front',                'front', 312, 25.0, 23.0, true,  false, false, false, 43.99),
+  ('Bosch', 'Bosch QuietCast 320mm Front',                'front', 320, 28.0, 26.0, true,  false, false, false, 46.99),
+  ('Bosch', 'Bosch QuietCast 330mm Front',                'front', 330, 30.0, 28.0, true,  false, false, false, 51.99),
+  ('Bosch', 'Bosch QuietCast 348mm Front',                'front', 348, 30.0, 28.0, true,  false, false, false, 57.99),
+  ('Bosch', 'Bosch QuietCast 272mm Rear',                 'rear',  272, 10.0,  8.0, false, false, false, false, 27.99),
+  ('Bosch', 'Bosch QuietCast 300mm Rear',                 'rear',  300, 22.0, 20.0, true,  false, false, false, 37.99),
+  ('Bosch', 'Bosch QuietCast 320mm Rear',                 'rear',  320, 22.0, 20.0, true,  false, false, false, 41.99),
+
+  -- ============================================================
+  -- TRW / DBA / LPR
+  -- ============================================================
+  ('TRW', 'TRW Ultra 312mm Front',                        'front', 312, 25.0, 23.0, true,  false, false, false, 41.99),
+  ('TRW', 'TRW Ultra 330mm Front',                        'front', 330, 30.0, 28.0, true,  false, false, false, 48.99),
+  ('TRW', 'TRW Ultra 348mm Front',                        'front', 348, 30.0, 28.0, true,  false, false, false, 55.99),
+  ('TRW', 'TRW Ultra 300mm Rear',                         'rear',  300, 22.0, 20.0, true,  false, false, false, 38.99),
+  ('DBA', 'DBA 4000 Series 312mm Front',                  'front', 312, 25.0, 23.0, true,  false, true,  false, 74.99),
+  ('DBA', 'DBA 4000 Series 348mm Front',                  'front', 348, 30.0, 28.0, true,  false, true,  false, 89.99),
+  ('LPR', 'LPR Standard 280mm Front',                     'front', 280, 22.0, 20.0, true,  false, false, false, 29.99),
+  ('LPR', 'LPR Standard 312mm Front',                     'front', 312, 25.0, 23.0, true,  false, false, false, 34.99),
+  ('LPR', 'LPR Standard 272mm Rear',                      'rear',  272, 10.0,  8.0, false, false, false, false, 22.99)
+
+) AS v(brand_name, name, position, disc_diameter_mm, disc_thickness_mm, disc_min_thickness_mm,
+       disc_ventilated, disc_drilled, disc_slotted, disc_coated, price_eur)
+on lower(b.name) = lower(v.brand_name)
+where not exists (
+  select 1 from public.brake_products existing
+  where existing.brand_id = b.id
+    and lower(existing.name) = lower(v.name)
+    and existing.type = 'disc'
+    and existing.position is not distinct from v.position
+);
+
+-- ============================================================
+-- BRAKE PAD PRODUCTS
+-- ============================================================
+insert into public.brake_products (id, brand_id, name, type, position,
+  pad_height_mm, pad_width_mm, pad_thickness_mm, pad_material, pad_with_sensor,
+  price_eur, active)
+SELECT gen_random_uuid(), b.id, v.name, 'pad', v.position,
+  v.pad_height_mm, v.pad_width_mm, v.pad_thickness_mm,
+  v.pad_material, v.pad_with_sensor, v.price_eur, true
+from public.brake_brands b
+JOIN (VALUES
+
+  -- ============================================================
+  -- FERODO PADS (OEM + Performance)
+  -- ============================================================
+  -- Common pad sizes — 63mm height (VW/Audi/Skoda group)
+  ('Ferodo', 'Ferodo Premier FDB1284 Front',    'front', 63.0, 133.0, 17.5, 'semi-metallic', true,  24.99),
+  ('Ferodo', 'Ferodo Premier FDB1640 Front',    'front', 65.6, 155.0, 17.0, 'semi-metallic', true,  27.99),
+  -- BMW size
+  ('Ferodo', 'Ferodo Premier FDB4453 Front',    'front', 67.1, 135.1, 17.5, 'semi-metallic', true,  29.99),
+  ('Ferodo', 'Ferodo Premier FDB4454 Rear',     'rear',  55.0, 107.5, 17.0, 'semi-metallic', false, 22.99),
+  -- Mercedes size
+  ('Ferodo', 'Ferodo Premier FDB5040 Front',    'front', 74.1, 155.5, 19.7, 'semi-metallic', true,  31.99),
+  ('Ferodo', 'Ferodo Premier FDB5041 Rear',     'rear',  64.3, 128.9, 17.5, 'semi-metallic', false, 24.99),
+  -- DS Performance pads
+  ('Ferodo', 'Ferodo DS2500 FCP1300H Front',    'front', 63.0, 133.0, 17.5, 'carbon',        false, 69.99),
+  ('Ferodo', 'Ferodo DS2500 FCP1667H Front',    'front', 65.6, 155.0, 17.0, 'carbon',        false, 74.99),
+  ('Ferodo', 'Ferodo DS3000 FCP1640R Front',    'front', 65.6, 155.0, 17.0, 'carbon',        false, 99.99),
+
+  -- ============================================================
+  -- BREMBO PADS
+  -- ============================================================
+  ('Brembo', 'Brembo OE P85020 Front',          'front', 63.0, 133.0, 17.5, 'semi-metallic', true,  28.99),
+  ('Brembo', 'Brembo OE P23110 Front',          'front', 67.1, 135.1, 17.5, 'semi-metallic', true,  32.99),
+  ('Brembo', 'Brembo OE P50075 Front',          'front', 74.1, 155.5, 19.7, 'semi-metallic', true,  34.99),
+  ('Brembo', 'Brembo OE P85055 Rear',           'rear',  55.0, 107.5, 17.0, 'semi-metallic', false, 24.99),
+  ('Brembo', 'Brembo Sport HP P85020SP Front',  'front', 63.0, 133.0, 17.5, 'semi-metallic', false, 54.99),
+  ('Brembo', 'Brembo Sport HP P23110SP Front',  'front', 67.1, 135.1, 17.5, 'semi-metallic', false, 59.99),
+
+  -- ============================================================
+  -- EBC PADS (very popular — multiple compounds)
+  -- ============================================================
+  -- Greenstuff (street, low dust)
+  ('EBC Brakes', 'EBC Greenstuff DP21284 Front', 'front', 63.0, 133.0, 17.5, 'organic',  false, 34.99),
+  ('EBC Brakes', 'EBC Greenstuff DP21640 Front', 'front', 65.6, 155.0, 17.0, 'organic',  false, 37.99),
+  ('EBC Brakes', 'EBC Greenstuff DP24453 Front', 'front', 67.1, 135.1, 17.5, 'organic',  false, 39.99),
+  ('EBC Brakes', 'EBC Greenstuff DP25040 Front', 'front', 74.1, 155.5, 19.7, 'organic',  false, 42.99),
+  ('EBC Brakes', 'EBC Greenstuff DP24454 Rear',  'rear',  55.0, 107.5, 17.0, 'organic',  false, 28.99),
+  -- Yellowstuff (performance, track)
+  ('EBC Brakes', 'EBC Yellowstuff DP41284R Front','front', 63.0, 133.0, 17.5, 'ceramic', false, 64.99),
+  ('EBC Brakes', 'EBC Yellowstuff DP41640R Front','front', 65.6, 155.0, 17.0, 'ceramic', false, 69.99),
+  ('EBC Brakes', 'EBC Yellowstuff DP44453R Front','front', 67.1, 135.1, 17.5, 'ceramic', false, 72.99),
+  ('EBC Brakes', 'EBC Yellowstuff DP45040R Front','front', 74.1, 155.5, 19.7, 'ceramic', false, 78.99),
+  -- Redstuff (premium street ceramic)
+  ('EBC Brakes', 'EBC Redstuff DP31284C Front',  'front', 63.0, 133.0, 17.5, 'ceramic', false, 54.99),
+  ('EBC Brakes', 'EBC Redstuff DP31640C Front',  'front', 65.6, 155.0, 17.0, 'ceramic', false, 58.99),
+  ('EBC Brakes', 'EBC Ultimax DP1284 Front',     'front', 63.0, 133.0, 17.5, 'organic', true,  21.99),
+  ('EBC Brakes', 'EBC Ultimax DP1640 Front',     'front', 65.6, 155.0, 17.0, 'organic', true,  23.99),
+
+  -- ============================================================
+  -- ATE PADS
+  -- ============================================================
+  ('ATE', 'ATE Ceramic 601248 Front',            'front', 63.0, 133.0, 17.5, 'ceramic',       true,  31.99),
+  ('ATE', 'ATE Ceramic 601640 Front',            'front', 65.6, 155.0, 17.0, 'ceramic',       true,  34.99),
+  ('ATE', 'ATE Ceramic 604453 Front',            'front', 67.1, 135.1, 17.5, 'ceramic',       true,  36.99),
+  ('ATE', 'ATE Ceramic 605040 Front',            'front', 74.1, 155.5, 19.7, 'ceramic',       true,  39.99),
+  ('ATE', 'ATE Ceramic 604454 Rear',             'rear',  55.0, 107.5, 17.0, 'ceramic',       false, 26.99),
+
+  -- ============================================================
+  -- BOSCH PADS
+  -- ============================================================
+  ('Bosch', 'Bosch Blue BC1284 Front',           'front', 63.0, 133.0, 17.5, 'semi-metallic', true,  22.99),
+  ('Bosch', 'Bosch Blue BC1640 Front',           'front', 65.6, 155.0, 17.0, 'semi-metallic', true,  24.99),
+  ('Bosch', 'Bosch Blue BC4453 Front',           'front', 67.1, 135.1, 17.5, 'semi-metallic', true,  26.99),
+  ('Bosch', 'Bosch Blue BC5040 Front',           'front', 74.1, 155.5, 19.7, 'semi-metallic', true,  28.99),
+  ('Bosch', 'Bosch Blue BC4454 Rear',            'rear',  55.0, 107.5, 17.0, 'semi-metallic', false, 19.99),
+
+  -- ============================================================
+  -- HAWK PERFORMANCE PADS
+  -- ============================================================
+  ('Hawk Performance', 'Hawk HPS HB453F Front',  'front', 63.0, 133.0, 17.5, 'semi-metallic', false, 74.99),
+  ('Hawk Performance', 'Hawk HPS HB551F Front',  'front', 67.1, 135.1, 17.5, 'semi-metallic', false, 79.99),
+  ('Hawk Performance', 'Hawk HP Plus HB453N Front','front',63.0, 133.0, 17.5, 'semi-metallic', false, 94.99),
+  ('Hawk Performance', 'Hawk DTC-60 HB453G Front','front', 63.0, 133.0, 17.5, 'carbon',        false,119.99),
+
+  -- ============================================================
+  -- TEXTAR / PAGID / TRW PADS
+  -- ============================================================
+  ('Textar', 'Textar 2451101 Front',             'front', 63.0, 133.0, 17.5, 'semi-metallic', true,  23.99),
+  ('Textar', 'Textar 2462001 Front',             'front', 65.6, 155.0, 17.0, 'semi-metallic', true,  25.99),
+  ('Textar', 'Textar 2481001 Front',             'front', 67.1, 135.1, 17.5, 'semi-metallic', true,  27.99),
+  ('Textar', 'Textar 2441501 Rear',              'rear',  55.0, 107.5, 17.0, 'semi-metallic', false, 20.99),
+  ('Pagid', 'Pagid T1766 Front',                 'front', 63.0, 133.0, 17.5, 'semi-metallic', true,  22.99),
+  ('Pagid', 'Pagid T8038 Front',                 'front', 74.1, 155.5, 19.7, 'semi-metallic', true,  29.99),
+  ('TRW', 'TRW GDB1284 Front',                   'front', 63.0, 133.0, 17.5, 'semi-metallic', true,  21.99),
+  ('TRW', 'TRW GDB4453 Front',                   'front', 67.1, 135.1, 17.5, 'semi-metallic', true,  25.99),
+
+  -- ============================================================
+  -- BUDGET — NK / COMLINE
+  -- ============================================================
+  ('NK', 'NK 224401 Front',                      'front', 63.0, 133.0, 17.5, 'semi-metallic', false, 14.99),
+  ('NK', 'NK 224601 Front',                      'front', 65.6, 155.0, 17.0, 'semi-metallic', false, 15.99),
+  ('NK', 'NK 224401 Rear',                       'rear',  55.0, 107.5, 17.0, 'semi-metallic', false, 11.99),
+  ('Comline', 'Comline CB1284AF Front',           'front', 63.0, 133.0, 17.5, 'organic',       false, 12.99),
+  ('Comline', 'Comline CB4453AF Front',           'front', 67.1, 135.1, 17.5, 'organic',       false, 14.99)
+
+) AS v(brand_name, name, position, pad_height_mm, pad_width_mm, pad_thickness_mm, pad_material, pad_with_sensor, price_eur)
+on lower(b.name) = lower(v.brand_name)
+where not exists (
+  select 1 from public.brake_products existing
+  where existing.brand_id = b.id
+    and lower(existing.name) = lower(v.name)
+    and existing.type = 'pad'
+    and existing.position is not distinct from v.position
+);
+
+-- ============================================================
+-- CAR BRAKE FITMENT SEED DATA
+-- Run AFTER: brake_schema.sql, car_makes_seed.sql, car_models_seed.sql
+-- ============================================================
+-- EVs ARE included (regenerative braking = slower wear, still needs parts)
+-- Rear drum rows: disc_* = NULL, drum_diameter_mm = value, pad_* = NULL
+-- Pad dimensions for Asian brands are approximate — add matching
+-- brake_products with those exact dimensions for the magic query to work
+-- ============================================================
+
+insert into public.car_brake_fitment (
+  id, model_id, year_from, year_to, position, brake_type,
+  disc_diameter_mm, disc_thickness_mm, disc_min_thickness_mm, disc_ventilated,
+  drum_diameter_mm, pad_height_mm, pad_width_mm, pad_thickness_mm, notes
+)
+SELECT
+  gen_random_uuid(), mo.id,
+  v.year_from, v.year_to,
+  v.position, v.brake_type,
+  v.disc_diameter_mm, v.disc_thickness_mm, v.disc_min_thickness_mm, v.disc_ventilated,
+  v.drum_diameter_mm,
+  v.pad_height_mm, v.pad_width_mm, v.pad_thickness_mm,
+  v.notes
+from public.makes ma
+join public.models mo ON mo.make_id = ma.id
+JOIN (VALUES
+
+  -- ============================================================
+  -- BMW
+  -- ============================================================
+  -- 1 Series F40 (2019-)
+  ('BMW','1 Series',2019,NULL,'front','disc', 312,25.0,23.0,true, NULL,67.1,135.1,17.5,'F40 118i/120i standard'),
+  ('BMW','1 Series',2019,NULL,'rear', 'disc', 286,12.0,10.0,false,NULL,55.0,107.5,17.0,'F40 standard'),
+  ('BMW','1 Series',2019,NULL,'front','disc', 330,30.0,28.0,true, NULL,67.1,135.1,17.5,'F40 M135i xDrive'),
+  ('BMW','1 Series',2019,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'F40 M135i xDrive'),
+
+  -- 2 Series G42 Coupe (2021-)
+  ('BMW','2 Series',2021,NULL,'front','disc', 330,30.0,28.0,true, NULL,67.1,135.1,17.5,'G42 220i/230i'),
+  ('BMW','2 Series',2021,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'G42 standard'),
+  ('BMW','2 Series',2021,NULL,'front','disc', 348,30.0,28.0,true, NULL,67.1,135.1,17.5,'G42 M240i xDrive'),
+  ('BMW','2 Series',2021,NULL,'rear', 'disc', 345,24.0,22.0,true, NULL,55.0,107.5,17.0,'G42 M240i xDrive'),
+
+  -- 3 Series G20 (2019-)
+  ('BMW','3 Series',2019,NULL,'front','disc', 330,30.0,28.0,true, NULL,67.1,135.1,17.5,'G20 320i/330i standard'),
+  ('BMW','3 Series',2019,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'G20 standard'),
+  ('BMW','3 Series',2019,NULL,'front','disc', 348,30.0,28.0,true, NULL,67.1,135.1,17.5,'G20 M Sport/M340i/330e'),
+  ('BMW','3 Series',2019,NULL,'rear', 'disc', 345,24.0,22.0,true, NULL,55.0,107.5,17.0,'G20 M Sport/M340i'),
+
+  -- 4 Series G22 (2020-)
+  ('BMW','4 Series',2020,NULL,'front','disc', 330,30.0,28.0,true, NULL,67.1,135.1,17.5,'G22 420i/430i standard'),
+  ('BMW','4 Series',2020,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'G22 standard'),
+  ('BMW','4 Series',2020,NULL,'front','disc', 374,36.0,34.0,true, NULL,67.1,135.1,17.5,'G22 M4 Competition'),
+  ('BMW','4 Series',2020,NULL,'rear', 'disc', 345,24.0,22.0,true, NULL,55.0,107.5,17.0,'G22 M4 Competition'),
+
+  -- 5 Series G30 (2017-)
+  ('BMW','5 Series',2017,NULL,'front','disc', 348,30.0,28.0,true, NULL,67.1,135.1,17.5,'G30 520i/530i/520d standard'),
+  ('BMW','5 Series',2017,NULL,'rear', 'disc', 345,24.0,22.0,true, NULL,55.0,107.5,17.0,'G30 standard'),
+  ('BMW','5 Series',2017,NULL,'front','disc', 374,36.0,34.0,true, NULL,67.1,135.1,17.5,'G30 M550i/545e M Sport'),
+  ('BMW','5 Series',2017,NULL,'rear', 'disc', 345,24.0,22.0,true, NULL,55.0,107.5,17.0,'G30 M Sport'),
+
+  -- 7 Series G11/G12 (2015-)
+  ('BMW','7 Series',2015,NULL,'front','disc', 374,36.0,34.0,true, NULL,67.1,135.1,17.5,'G11/G12 730i/740i'),
+  ('BMW','7 Series',2015,NULL,'rear', 'disc', 345,24.0,22.0,true, NULL,55.0,107.5,17.0,'G11/G12 standard'),
+
+  -- X1 U11 (2022-)
+  ('BMW','X1',2022,NULL,'front','disc', 312,25.0,23.0,true, NULL,67.1,135.1,17.5,'U11 sDrive18i/xDrive23i'),
+  ('BMW','X1',2022,NULL,'rear', 'disc', 286,12.0,10.0,false,NULL,55.0,107.5,17.0,'U11 standard'),
+  ('BMW','X1',2022,NULL,'front','disc', 330,30.0,28.0,true, NULL,67.1,135.1,17.5,'U11 M35i xDrive'),
+  ('BMW','X1',2022,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'U11 M35i xDrive'),
+
+  -- X3 G01 (2017-)
+  ('BMW','X3',2017,NULL,'front','disc', 330,30.0,28.0,true, NULL,67.1,135.1,17.5,'G01 xDrive20i/30i/20d'),
+  ('BMW','X3',2017,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'G01 standard'),
+  ('BMW','X3',2017,NULL,'front','disc', 348,30.0,28.0,true, NULL,67.1,135.1,17.5,'G01 M40i/X3 M'),
+  ('BMW','X3',2017,NULL,'rear', 'disc', 345,24.0,22.0,true, NULL,55.0,107.5,17.0,'G01 M40i/X3 M'),
+
+  -- X5 G05 (2018-)
+  ('BMW','X5',2018,NULL,'front','disc', 374,36.0,34.0,true, NULL,67.1,135.1,17.5,'G05 xDrive40i/45e/M50i'),
+  ('BMW','X5',2018,NULL,'rear', 'disc', 345,24.0,22.0,true, NULL,55.0,107.5,17.0,'G05 standard/M Sport'),
+  ('BMW','X5',2018,NULL,'front','disc', 395,36.0,34.0,true, NULL,67.1,135.1,17.5,'G05 X5 M Competition'),
+  ('BMW','X5',2018,NULL,'rear', 'disc', 345,24.0,22.0,true, NULL,55.0,107.5,17.0,'G05 X5 M Competition'),
+
+  -- ============================================================
+  -- MERCEDES-BENZ
+  -- ============================================================
+  -- A-Class W177 (2018-)
+  ('Mercedes-Benz','A-Class',2018,NULL,'front','disc', 330,30.0,28.0,true, NULL,74.1,155.5,19.7,'W177 A180/A200/A250'),
+  ('Mercedes-Benz','A-Class',2018,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,64.3,128.9,17.5,'W177 standard'),
+  ('Mercedes-Benz','A-Class',2018,NULL,'front','disc', 360,30.0,28.0,true, NULL,74.1,155.5,19.7,'W177 A35 AMG'),
+  ('Mercedes-Benz','A-Class',2018,NULL,'rear', 'disc', 320,22.0,20.0,true, NULL,64.3,128.9,17.5,'W177 A35/A45 AMG'),
+
+  -- C-Class W206 (2021-)
+  ('Mercedes-Benz','C-Class',2021,NULL,'front','disc', 360,30.0,28.0,true, NULL,74.1,155.5,19.7,'W206 C200/C300/C220d'),
+  ('Mercedes-Benz','C-Class',2021,NULL,'rear', 'disc', 320,22.0,20.0,true, NULL,64.3,128.9,17.5,'W206 standard'),
+  ('Mercedes-Benz','C-Class',2021,NULL,'front','disc', 374,36.0,34.0,true, NULL,74.1,155.5,19.7,'W206 C43 AMG'),
+  ('Mercedes-Benz','C-Class',2021,NULL,'rear', 'disc', 345,24.0,22.0,true, NULL,64.3,128.9,17.5,'W206 C43/C63 AMG'),
+
+  -- E-Class W213 (2016-)
+  ('Mercedes-Benz','E-Class',2016,NULL,'front','disc', 360,30.0,28.0,true, NULL,74.1,155.5,19.7,'W213 E200/E220d/E300'),
+  ('Mercedes-Benz','E-Class',2016,NULL,'rear', 'disc', 320,22.0,20.0,true, NULL,64.3,128.9,17.5,'W213 standard'),
+  ('Mercedes-Benz','E-Class',2016,NULL,'front','disc', 374,36.0,34.0,true, NULL,74.1,155.5,19.7,'W213 E53/E63 AMG'),
+  ('Mercedes-Benz','E-Class',2016,NULL,'rear', 'disc', 345,24.0,22.0,true, NULL,64.3,128.9,17.5,'W213 E53/E63 AMG'),
+
+  -- GLC X254 (2022-)
+  ('Mercedes-Benz','GLC',2022,NULL,'front','disc', 360,30.0,28.0,true, NULL,74.1,155.5,19.7,'X254 GLC200/300'),
+  ('Mercedes-Benz','GLC',2022,NULL,'rear', 'disc', 320,22.0,20.0,true, NULL,64.3,128.9,17.5,'X254 standard'),
+
+  -- GLE W167 (2019-)
+  ('Mercedes-Benz','GLE',2019,NULL,'front','disc', 374,36.0,34.0,true, NULL,74.1,155.5,19.7,'W167 GLE350/450/53 AMG'),
+  ('Mercedes-Benz','GLE',2019,NULL,'rear', 'disc', 345,24.0,22.0,true, NULL,64.3,128.9,17.5,'W167 standard'),
+
+  -- ============================================================
+  -- AUDI
+  -- ============================================================
+  -- A1 GB (2018-)
+  ('Audi','A1',2018,NULL,'front','disc', 280,22.0,20.0,true, NULL,63.0,133.0,17.5,'GB 25/30/35 TFSI'),
+  ('Audi','A1',2018,NULL,'rear', 'disc', 272,10.0, 8.0,false,NULL,55.0,107.5,17.0,'GB standard'),
+
+  -- A3 8Y (2020-)
+  ('Audi','A3',2020,NULL,'front','disc', 312,25.0,23.0,true, NULL,63.0,133.0,17.5,'8Y 35 TFSI/30 TDI'),
+  ('Audi','A3',2020,NULL,'rear', 'disc', 272,10.0, 8.0,false,NULL,55.0,107.5,17.0,'8Y FWD standard'),
+  ('Audi','A3',2020,NULL,'front','disc', 330,30.0,28.0,true, NULL,65.6,155.0,17.0,'8Y S3/45 TFSI quattro'),
+  ('Audi','A3',2020,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'8Y S3 quattro'),
+
+  -- A4 B9 (2015-)
+  ('Audi','A4',2015,NULL,'front','disc', 312,25.0,23.0,true, NULL,63.0,133.0,17.5,'B9 FWD 30/35 TFSI/TDI'),
+  ('Audi','A4',2015,NULL,'rear', 'disc', 272,10.0, 8.0,false,NULL,55.0,107.5,17.0,'B9 FWD standard'),
+  ('Audi','A4',2015,NULL,'front','disc', 320,30.0,28.0,true, NULL,65.6,155.0,17.0,'B9 40 TDI/45 TFSI quattro'),
+  ('Audi','A4',2015,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'B9 quattro'),
+
+  -- A6 C8 (2018-)
+  ('Audi','A6',2018,NULL,'front','disc', 348,30.0,28.0,true, NULL,65.6,155.0,17.0,'C8 40/45/50 TDI'),
+  ('Audi','A6',2018,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'C8 standard'),
+  ('Audi','A6',2018,NULL,'front','disc', 360,30.0,28.0,true, NULL,65.6,155.0,17.0,'C8 S6/RS6'),
+  ('Audi','A6',2018,NULL,'rear', 'disc', 320,22.0,20.0,true, NULL,55.0,107.5,17.0,'C8 S6/RS6'),
+
+  -- Q3 F3 (2018-)
+  ('Audi','Q3',2018,NULL,'front','disc', 312,25.0,23.0,true, NULL,63.0,133.0,17.5,'F3 35 TFSI/TDI'),
+  ('Audi','Q3',2018,NULL,'rear', 'disc', 272,10.0, 8.0,false,NULL,55.0,107.5,17.0,'F3 standard'),
+
+  -- Q5 FY (2017-)
+  ('Audi','Q5',2017,NULL,'front','disc', 330,30.0,28.0,true, NULL,65.6,155.0,17.0,'FY 40/45 TDI/TFSI quattro'),
+  ('Audi','Q5',2017,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'FY standard'),
+  ('Audi','Q5',2017,NULL,'front','disc', 360,30.0,28.0,true, NULL,65.6,155.0,17.0,'FY SQ5/RS Q5'),
+  ('Audi','Q5',2017,NULL,'rear', 'disc', 320,22.0,20.0,true, NULL,55.0,107.5,17.0,'FY SQ5'),
+
+  -- Q7 4M (2015-)
+  ('Audi','Q7',2015,NULL,'front','disc', 360,30.0,28.0,true, NULL,65.6,155.0,17.0,'4M 45/55 TFSI/50 TDI'),
+  ('Audi','Q7',2015,NULL,'rear', 'disc', 320,22.0,20.0,true, NULL,55.0,107.5,17.0,'4M standard'),
+
+  -- ============================================================
+  -- VOLKSWAGEN
+  -- ============================================================
+  -- Polo AW (2017-)
+  ('Volkswagen','Polo',2017,NULL,'front','disc', 280,22.0,20.0,true, NULL,63.0,133.0,17.5,'AW 1.0 TSI/MPI standard'),
+  ('Volkswagen','Polo',2017,NULL,'rear', 'drum', NULL,NULL,NULL,false,200,NULL,NULL,NULL,'AW base drum rear'),
+  ('Volkswagen','Polo',2017,NULL,'front','disc', 312,25.0,23.0,true, NULL,63.0,133.0,17.5,'AW GTI'),
+  ('Volkswagen','Polo',2017,NULL,'rear', 'disc', 272,10.0, 8.0,false,NULL,55.0,107.5,17.0,'AW GTI disc rear'),
+
+  -- Golf 8 CD (2020-)
+  ('Volkswagen','Golf',2020,NULL,'front','disc', 312,25.0,23.0,true, NULL,63.0,133.0,17.5,'CD 1.5 eTSI/2.0 TDI standard'),
+  ('Volkswagen','Golf',2020,NULL,'rear', 'disc', 272,10.0, 8.0,false,NULL,55.0,107.5,17.0,'CD standard'),
+  ('Volkswagen','Golf',2020,NULL,'front','disc', 330,30.0,28.0,true, NULL,65.6,155.0,17.0,'CD GTI 2.0 TSI'),
+  ('Volkswagen','Golf',2020,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'CD GTI'),
+  ('Volkswagen','Golf',2020,NULL,'front','disc', 348,30.0,28.0,true, NULL,65.6,155.0,17.0,'CD R 4Motion 320hp'),
+  ('Volkswagen','Golf',2020,NULL,'rear', 'disc', 310,22.0,20.0,true, NULL,55.0,107.5,17.0,'CD R 4Motion'),
+
+  -- Passat B8 (2015-)
+  ('Volkswagen','Passat',2015,NULL,'front','disc', 330,30.0,28.0,true, NULL,65.6,155.0,17.0,'B8 2.0 TSI/TDI'),
+  ('Volkswagen','Passat',2015,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'B8 standard'),
+
+  -- Tiguan II (2016-)
+  ('Volkswagen','Tiguan',2016,NULL,'front','disc', 330,30.0,28.0,true, NULL,65.6,155.0,17.0,'AD/BW 2.0 TSI/TDI all trims'),
+  ('Volkswagen','Tiguan',2016,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'AD/BW 4Motion'),
+  ('Volkswagen','Tiguan',2016,NULL,'rear', 'drum', NULL,NULL,NULL,false,230,NULL,NULL,NULL,'AD FWD base drum rear'),
+
+  -- T-Roc (2017-)
+  ('Volkswagen','T-Roc',2017,NULL,'front','disc', 312,25.0,23.0,true, NULL,63.0,133.0,17.5,'standard 1.0/1.5 TSI'),
+  ('Volkswagen','T-Roc',2017,NULL,'rear', 'disc', 272,10.0, 8.0,false,NULL,55.0,107.5,17.0,'standard FWD'),
+  ('Volkswagen','T-Roc',2017,NULL,'front','disc', 330,30.0,28.0,true, NULL,65.6,155.0,17.0,'R 2.0 TSI 300hp'),
+  ('Volkswagen','T-Roc',2017,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'R 4Motion'),
+
+  -- ID.4 (2021-) — EV, has brakes
+  ('Volkswagen','ID.4',2021,NULL,'front','disc', 330,30.0,28.0,true, NULL,65.6,155.0,17.0,'EV all trims — regen means slower wear'),
+  ('Volkswagen','ID.4',2021,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'EV standard'),
+
+  -- ============================================================
+  -- ŠKODA
+  -- ============================================================
+  -- Fabia IV (2021-)
+  ('Škoda','Fabia',2021,NULL,'front','disc', 280,22.0,20.0,true, NULL,63.0,133.0,17.5,'NJ4 1.0 MPI/TSI'),
+  ('Škoda','Fabia',2021,NULL,'rear', 'drum', NULL,NULL,NULL,false,200,NULL,NULL,NULL,'NJ4 drum rear'),
+
+  -- Octavia IV (2020-)
+  ('Škoda','Octavia',2020,NULL,'front','disc', 312,25.0,23.0,true, NULL,63.0,133.0,17.5,'NX5 1.5 TSI/2.0 TDI standard'),
+  ('Škoda','Octavia',2020,NULL,'rear', 'disc', 272,10.0, 8.0,false,NULL,55.0,107.5,17.0,'NX5 standard'),
+  ('Škoda','Octavia',2020,NULL,'front','disc', 330,30.0,28.0,true, NULL,65.6,155.0,17.0,'NX5 RS 2.0 TSI/TDI'),
+  ('Škoda','Octavia',2020,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'NX5 RS'),
+
+  -- Superb IV (2023-)
+  ('Škoda','Superb',2023,NULL,'front','disc', 330,30.0,28.0,true, NULL,65.6,155.0,17.0,'BN standard 2.0 TSI/TDI'),
+  ('Škoda','Superb',2023,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'BN standard'),
+
+  -- Karoq (2017-)
+  ('Škoda','Karoq',2017,NULL,'front','disc', 312,25.0,23.0,true, NULL,63.0,133.0,17.5,'NU7 standard FWD'),
+  ('Škoda','Karoq',2017,NULL,'rear', 'disc', 272,10.0, 8.0,false,NULL,55.0,107.5,17.0,'NU7 FWD'),
+  ('Škoda','Karoq',2017,NULL,'front','disc', 330,30.0,28.0,true, NULL,65.6,155.0,17.0,'NU7 4x4 Sportline'),
+  ('Škoda','Karoq',2017,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'NU7 4x4'),
+
+  -- Kodiaq (2016-)
+  ('Škoda','Kodiaq',2016,NULL,'front','disc', 330,30.0,28.0,true, NULL,65.6,155.0,17.0,'NS7 standard'),
+  ('Škoda','Kodiaq',2016,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'NS7 standard'),
+
+  -- Enyaq (2021-) — EV
+  ('Škoda','Enyaq',2021,NULL,'front','disc', 330,30.0,28.0,true, NULL,65.6,155.0,17.0,'iV 60/80/RS — EV regen'),
+  ('Škoda','Enyaq',2021,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'iV standard'),
+
+  -- ============================================================
+  -- SEAT & CUPRA
+  -- ============================================================
+  -- Ibiza KJ1 (2017-)
+  ('SEAT','Ibiza',2017,NULL,'front','disc', 280,22.0,20.0,true, NULL,63.0,133.0,17.5,'KJ1 1.0 TSI standard'),
+  ('SEAT','Ibiza',2017,NULL,'rear', 'drum', NULL,NULL,NULL,false,200,NULL,NULL,NULL,'KJ1 drum rear'),
+
+  -- Leon MK4 KL1 (2020-)
+  ('SEAT','Leon',2020,NULL,'front','disc', 312,25.0,23.0,true, NULL,63.0,133.0,17.5,'KL1 1.0/1.5 eTSI standard'),
+  ('SEAT','Leon',2020,NULL,'rear', 'disc', 272,10.0, 8.0,false,NULL,55.0,107.5,17.0,'KL1 FWD standard'),
+  ('SEAT','Leon',2020,NULL,'front','disc', 330,30.0,28.0,true, NULL,65.6,155.0,17.0,'KL1 FR 2.0 TSI 190hp'),
+  ('SEAT','Leon',2020,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'KL1 FR/4Drive'),
+
+  -- Ateca KH7 (2016-)
+  ('SEAT','Ateca',2016,NULL,'front','disc', 312,25.0,23.0,true, NULL,63.0,133.0,17.5,'KH7 standard FWD'),
+  ('SEAT','Ateca',2016,NULL,'rear', 'disc', 272,10.0, 8.0,false,NULL,55.0,107.5,17.0,'KH7 FWD'),
+  ('SEAT','Ateca',2016,NULL,'front','disc', 330,30.0,28.0,true, NULL,65.6,155.0,17.0,'KH7 Xcellence 4Drive'),
+  ('SEAT','Ateca',2016,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'KH7 4Drive'),
+
+  -- Cupra Formentor (2020-)
+  ('Cupra','Formentor',2020,NULL,'front','disc', 330,30.0,28.0,true, NULL,65.6,155.0,17.0,'KM7 1.5/2.0 TSI 150-310hp'),
+  ('Cupra','Formentor',2020,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'KM7 standard'),
+  ('Cupra','Formentor',2020,NULL,'front','disc', 360,30.0,28.0,true, NULL,65.6,155.0,17.0,'KM7 VZ5 2.5 TSI 390hp'),
+  ('Cupra','Formentor',2020,NULL,'rear', 'disc', 310,22.0,20.0,true, NULL,55.0,107.5,17.0,'KM7 VZ5'),
+
+  -- Cupra Leon (2020-)
+  ('Cupra','Leon',2020,NULL,'front','disc', 330,30.0,28.0,true, NULL,65.6,155.0,17.0,'standard 300/310hp'),
+  ('Cupra','Leon',2020,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'standard'),
+
+  -- Cupra Born (EV, 2021-)
+  ('Cupra','Born',2021,NULL,'front','disc', 330,30.0,28.0,true, NULL,65.6,155.0,17.0,'EV 150/231hp — regen braking'),
+  ('Cupra','Born',2021,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'EV standard'),
+
+  -- ============================================================
+  -- RENAULT
+  -- ============================================================
+  -- Clio V (2019-)
+  ('Renault','Clio',2019,NULL,'front','disc', 280,22.0,20.0,true, NULL,63.0,133.0,17.5,'V 1.0 TCe/1.5 dCi standard'),
+  ('Renault','Clio',2019,NULL,'rear', 'drum', NULL,NULL,NULL,false,180,NULL,NULL,NULL,'V base drum rear'),
+
+  -- Megane IV (2016-)
+  ('Renault','Megane',2016,NULL,'front','disc', 300,28.0,26.0,true, NULL,63.0,133.0,17.5,'IV 1.3 TCe/1.5 dCi standard'),
+  ('Renault','Megane',2016,NULL,'rear', 'disc', 272,10.0, 8.0,false,NULL,55.0,107.5,17.0,'IV standard'),
+  ('Renault','Megane',2016,NULL,'front','disc', 330,30.0,28.0,true, NULL,65.6,155.0,17.0,'IV RS Trophy 300hp'),
+  ('Renault','Megane',2016,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'IV RS Trophy'),
+
+  -- Austral (2022-)
+  ('Renault','Austral',2022,NULL,'front','disc', 330,30.0,28.0,true, NULL,65.6,155.0,17.0,'JRB standard E-Tech/mild hybrid'),
+  ('Renault','Austral',2022,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'JRB standard'),
+
+  -- ============================================================
+  -- DACIA
+  -- ============================================================
+  -- Sandero III (2020-)
+  ('Dacia','Sandero',2020,NULL,'front','disc', 280,22.0,20.0,true, NULL,63.0,133.0,17.5,'DJF 1.0 SCe/TCe standard'),
+  ('Dacia','Sandero',2020,NULL,'rear', 'drum', NULL,NULL,NULL,false,180,NULL,NULL,NULL,'DJF drum rear'),
+
+  -- Duster II (2018-)
+  ('Dacia','Duster',2018,NULL,'front','disc', 280,22.0,20.0,true, NULL,63.0,133.0,17.5,'HM FWD standard'),
+  ('Dacia','Duster',2018,NULL,'rear', 'drum', NULL,NULL,NULL,false,200,NULL,NULL,NULL,'HM FWD drum rear'),
+  ('Dacia','Duster',2018,NULL,'front','disc', 300,28.0,26.0,true, NULL,63.0,133.0,17.5,'HM 4x4 4WD'),
+  ('Dacia','Duster',2018,NULL,'rear', 'disc', 272,10.0, 8.0,false,NULL,55.0,107.5,17.0,'HM 4x4'),
+
+  -- Logan III (2020-)
+  ('Dacia','Logan',2020,NULL,'front','disc', 280,22.0,20.0,true, NULL,63.0,133.0,17.5,'SD standard'),
+  ('Dacia','Logan',2020,NULL,'rear', 'drum', NULL,NULL,NULL,false,180,NULL,NULL,NULL,'SD drum rear'),
+
+  -- ============================================================
+  -- PEUGEOT
+  -- ============================================================
+  -- 208 II (2019-)
+  ('Peugeot','208',2019,NULL,'front','disc', 280,22.0,20.0,true, NULL,63.0,133.0,17.5,'A9 1.2 PureTech/e-208 EV'),
+  ('Peugeot','208',2019,NULL,'rear', 'drum', NULL,NULL,NULL,false,200,NULL,NULL,NULL,'A9 base drum rear'),
+
+  -- 308 III (2021-)
+  ('Peugeot','308',2021,NULL,'front','disc', 312,25.0,23.0,true, NULL,63.0,133.0,17.5,'P5 1.2/1.5/1.6 standard'),
+  ('Peugeot','308',2021,NULL,'rear', 'disc', 272,10.0, 8.0,false,NULL,55.0,107.5,17.0,'P5 standard'),
+
+  -- 3008 II (2016-)
+  ('Peugeot','3008',2016,NULL,'front','disc', 330,30.0,28.0,true, NULL,65.6,155.0,17.0,'M standard 1.6/2.0 diesel/hybrid'),
+  ('Peugeot','3008',2016,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'M standard'),
+
+  -- ============================================================
+  -- CITROËN
+  -- ============================================================
+  -- C3 III (2016-)
+  ('Citroën','C3',2016,NULL,'front','disc', 280,22.0,20.0,true, NULL,63.0,133.0,17.5,'SC standard 1.2 PureTech'),
+  ('Citroën','C3',2016,NULL,'rear', 'drum', NULL,NULL,NULL,false,180,NULL,NULL,NULL,'SC drum rear'),
+
+  -- C5 X (2021-)
+  ('Citroën','C5 X',2021,NULL,'front','disc', 330,30.0,28.0,true, NULL,65.6,155.0,17.0,'standard 1.6 Hybrid/180hp'),
+  ('Citroën','C5 X',2021,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'standard'),
+
+  -- ============================================================
+  -- FORD
+  -- ============================================================
+  -- Fiesta VII (2017-)
+  ('Ford','Fiesta',2017,NULL,'front','disc', 280,22.0,20.0,true, NULL,63.0,133.0,17.5,'JHH 1.0 EcoBoost/1.5 TDCi'),
+  ('Ford','Fiesta',2017,NULL,'rear', 'drum', NULL,NULL,NULL,false,203,NULL,NULL,NULL,'JHH drum rear'),
+  ('Ford','Fiesta',2017,NULL,'front','disc', 312,25.0,23.0,true, NULL,63.0,133.0,17.5,'JHH ST 200hp'),
+  ('Ford','Fiesta',2017,NULL,'rear', 'disc', 272,10.0, 8.0,false,NULL,55.0,107.5,17.0,'JHH ST disc rear'),
+
+  -- Focus IV (2018-)
+  ('Ford','Focus',2018,NULL,'front','disc', 300,28.0,26.0,true, NULL,63.0,133.0,17.5,'DEH 1.0/1.5 EcoBoost standard'),
+  ('Ford','Focus',2018,NULL,'rear', 'disc', 272,10.0, 8.0,false,NULL,55.0,107.5,17.0,'DEH standard'),
+  ('Ford','Focus',2018,NULL,'front','disc', 320,30.0,28.0,true, NULL,65.6,155.0,17.0,'DEH ST/ST-Line 2.3 EcoBoost'),
+  ('Ford','Focus',2018,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'DEH ST'),
+
+  -- Kuga III (2019-)
+  ('Ford','Kuga',2019,NULL,'front','disc', 320,30.0,28.0,true, NULL,65.6,155.0,17.0,'CX482 1.5/2.0 EcoBoost PHEV'),
+  ('Ford','Kuga',2019,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'CX482 standard'),
+
+  -- Mustang Mach-E (EV, 2020-)
+  ('Ford','Mustang Mach-E',2020,NULL,'front','disc', 330,30.0,28.0,true, NULL,65.6,155.0,17.0,'EV standard/GT — regen braking'),
+  ('Ford','Mustang Mach-E',2020,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'EV standard'),
+
+  -- ============================================================
+  -- VOLVO
+  -- ============================================================
+  -- XC40 (2017-)
+  ('Volvo','XC40',2017,NULL,'front','disc', 320,30.0,28.0,true, NULL,65.6,155.0,17.0,'XK T3/T4/D3 standard'),
+  ('Volvo','XC40',2017,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'XK standard'),
+  ('Volvo','XC40',2017,NULL,'front','disc', 330,30.0,28.0,true, NULL,65.6,155.0,17.0,'XK Recharge EV / T5 AWD'),
+  ('Volvo','XC40',2017,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'XK Recharge/AWD'),
+
+  -- V60/S60 III (2018-)
+  ('Volvo','V60',2018,NULL,'front','disc', 320,30.0,28.0,true, NULL,65.6,155.0,17.0,'Z1 T4/T5/D3 standard'),
+  ('Volvo','V60',2018,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'Z1 standard'),
+  ('Volvo','V60',2018,NULL,'front','disc', 348,30.0,28.0,true, NULL,65.6,155.0,17.0,'Z1 Polestar Engineered/T6'),
+  ('Volvo','V60',2018,NULL,'rear', 'disc', 320,22.0,20.0,true, NULL,55.0,107.5,17.0,'Z1 T8/Polestar'),
+
+  -- XC60 II (2017-)
+  ('Volvo','XC60',2017,NULL,'front','disc', 330,30.0,28.0,true, NULL,65.6,155.0,17.0,'SPA T5/T6/D4 standard'),
+  ('Volvo','XC60',2017,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'SPA standard'),
+  ('Volvo','XC60',2017,NULL,'front','disc', 348,30.0,28.0,true, NULL,65.6,155.0,17.0,'SPA T8 PHEV/Polestar'),
+  ('Volvo','XC60',2017,NULL,'rear', 'disc', 320,22.0,20.0,true, NULL,55.0,107.5,17.0,'SPA T8/Polestar'),
+
+  -- XC90 II (2015-)
+  ('Volvo','XC90',2015,NULL,'front','disc', 348,30.0,28.0,true, NULL,65.6,155.0,17.0,'SPA T5/T6/D5 standard'),
+  ('Volvo','XC90',2015,NULL,'rear', 'disc', 345,24.0,22.0,true, NULL,55.0,107.5,17.0,'SPA standard'),
+
+  -- ============================================================
+  -- PORSCHE
+  -- ============================================================
+  -- Macan I (2014-2022)
+  ('Porsche','Macan',2014,2022,'front','disc', 360,30.0,28.0,true, NULL,74.1,155.5,19.7,'95B base/S/GTS'),
+  ('Porsche','Macan',2014,2022,'rear', 'disc', 320,22.0,20.0,true, NULL,64.3,128.9,17.5,'95B standard'),
+  ('Porsche','Macan',2014,2022,'front','disc', 374,36.0,34.0,true, NULL,74.1,155.5,19.7,'95B Turbo'),
+  ('Porsche','Macan',2014,2022,'rear', 'disc', 345,24.0,22.0,true, NULL,64.3,128.9,17.5,'95B Turbo'),
+
+  -- Cayenne III E3 (2017-)
+  ('Porsche','Cayenne',2017,NULL,'front','disc', 374,36.0,34.0,true, NULL,74.1,155.5,19.7,'E3 base/S/E-Hybrid'),
+  ('Porsche','Cayenne',2017,NULL,'rear', 'disc', 345,24.0,22.0,true, NULL,64.3,128.9,17.5,'E3 standard'),
+  ('Porsche','Cayenne',2017,NULL,'front','disc', 395,36.0,34.0,true, NULL,74.1,155.5,19.7,'E3 Turbo/Turbo S'),
+  ('Porsche','Cayenne',2017,NULL,'rear', 'disc', 345,24.0,22.0,true, NULL,64.3,128.9,17.5,'E3 Turbo'),
+
+  -- 911 992 (2019-)
+  ('Porsche','911',2019,NULL,'front','disc', 348,30.0,28.0,true, NULL,74.1,155.5,19.7,'992 Carrera/S base'),
+  ('Porsche','911',2019,NULL,'rear', 'disc', 330,30.0,28.0,true, NULL,64.3,128.9,17.5,'992 Carrera standard'),
+  ('Porsche','911',2019,NULL,'front','disc', 374,36.0,34.0,true, NULL,74.1,155.5,19.7,'992 Turbo/GT3/RS'),
+  ('Porsche','911',2019,NULL,'rear', 'disc', 345,24.0,22.0,true, NULL,64.3,128.9,17.5,'992 Turbo/GT3'),
+
+  -- Panamera II (2016-)
+  ('Porsche','Panamera',2016,NULL,'front','disc', 360,30.0,28.0,true, NULL,74.1,155.5,19.7,'G2 base/4/4S'),
+  ('Porsche','Panamera',2016,NULL,'rear', 'disc', 345,24.0,22.0,true, NULL,64.3,128.9,17.5,'G2 standard'),
+
+  -- ============================================================
+  -- ALFA ROMEO
+  -- ============================================================
+  -- Giulia (2016-)
+  ('Alfa Romeo','Giulia',2016,NULL,'front','disc', 330,30.0,28.0,true, NULL,74.1,155.5,19.7,'952 standard 2.0 T/2.2 D'),
+  ('Alfa Romeo','Giulia',2016,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,64.3,128.9,17.5,'952 standard'),
+  ('Alfa Romeo','Giulia',2016,NULL,'front','disc', 360,30.0,28.0,true, NULL,74.1,155.5,19.7,'952 Quadrifoglio 510hp'),
+  ('Alfa Romeo','Giulia',2016,NULL,'rear', 'disc', 345,24.0,22.0,true, NULL,64.3,128.9,17.5,'952 Quadrifoglio'),
+
+  -- Stelvio (2017-)
+  ('Alfa Romeo','Stelvio',2017,NULL,'front','disc', 330,30.0,28.0,true, NULL,74.1,155.5,19.7,'949 2.0 T/2.2 D standard'),
+  ('Alfa Romeo','Stelvio',2017,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,64.3,128.9,17.5,'949 standard'),
+  ('Alfa Romeo','Stelvio',2017,NULL,'front','disc', 374,36.0,34.0,true, NULL,74.1,155.5,19.7,'949 Quadrifoglio 510hp'),
+  ('Alfa Romeo','Stelvio',2017,NULL,'rear', 'disc', 345,24.0,22.0,true, NULL,64.3,128.9,17.5,'949 Quadrifoglio'),
+
+  -- Tonale (2022-)
+  ('Alfa Romeo','Tonale',2022,NULL,'front','disc', 330,30.0,28.0,true, NULL,74.1,155.5,19.7,'965 1.5 MHEV/1.6 D/PHEV'),
+  ('Alfa Romeo','Tonale',2022,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,64.3,128.9,17.5,'965 standard'),
+
+  -- ============================================================
+  -- FIAT
+  -- ============================================================
+  -- Fiat 500 (2007- / 500e EV 2020-)
+  ('Fiat','500',2007,NULL,'front','disc', 280,22.0,20.0,true, NULL,63.0,133.0,17.5,'Type 312 all engines / 500e EV'),
+  ('Fiat','500',2007,NULL,'rear', 'drum', NULL,NULL,NULL,false,200,NULL,NULL,NULL,'standard drum rear'),
+
+  -- Fiat Panda (2012-)
+  ('Fiat','Panda',2012,NULL,'front','disc', 280,22.0,20.0,true, NULL,63.0,133.0,17.5,'319 all engines'),
+  ('Fiat','Panda',2012,NULL,'rear', 'drum', NULL,NULL,NULL,false,180,NULL,NULL,NULL,'319 drum rear'),
+
+  -- Fiat Tipo (2015-)
+  ('Fiat','Tipo',2015,NULL,'front','disc', 280,22.0,20.0,true, NULL,63.0,133.0,17.5,'356 1.4/1.6 standard'),
+  ('Fiat','Tipo',2015,NULL,'rear', 'drum', NULL,NULL,NULL,false,230,NULL,NULL,NULL,'356 sedan/estate drum rear'),
+
+  -- ============================================================
+  -- TOYOTA
+  -- ============================================================
+  -- Yaris IV (2020-)
+  ('Toyota','Yaris',2020,NULL,'front','disc', 280,22.0,20.0,true, NULL,63.0,116.0,17.5,'XP210 1.0/1.5 Hybrid'),
+  ('Toyota','Yaris',2020,NULL,'rear', 'drum', NULL,NULL,NULL,false,180,NULL,NULL,NULL,'XP210 drum rear'),
+
+  -- Corolla E210 (2018-)
+  ('Toyota','Corolla',2018,NULL,'front','disc', 300,28.0,26.0,true, NULL,63.0,123.0,17.5,'E210 1.8/2.0 Hybrid hatch/wagon'),
+  ('Toyota','Corolla',2018,NULL,'rear', 'disc', 272,10.0, 8.0,false,NULL,55.0,107.5,17.0,'E210 standard'),
+
+  -- Camry XV70 (2017-)
+  ('Toyota','Camry',2017,NULL,'front','disc', 330,30.0,28.0,true, NULL,65.6,155.0,17.0,'XV70 2.5 Hybrid standard'),
+  ('Toyota','Camry',2017,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'XV70 standard'),
+
+  -- RAV4 V (2018-)
+  ('Toyota','RAV4',2018,NULL,'front','disc', 320,30.0,28.0,true, NULL,65.6,127.0,17.5,'XA50 2.0/2.5 Hybrid AWD'),
+  ('Toyota','RAV4',2018,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'XA50 standard'),
+
+  -- Land Cruiser 300 (2021-)
+  ('Toyota','Land Cruiser',2021,NULL,'front','disc', 374,36.0,34.0,true, NULL,65.6,155.0,17.0,'J300 3.5 V6 Twin Turbo'),
+  ('Toyota','Land Cruiser',2021,NULL,'rear', 'disc', 345,24.0,22.0,true, NULL,55.0,107.5,17.0,'J300 standard'),
+
+  -- C-HR (2016-)
+  ('Toyota','C-HR',2016,NULL,'front','disc', 300,28.0,26.0,true, NULL,63.0,123.0,17.5,'AX10 1.8/2.0 Hybrid'),
+  ('Toyota','C-HR',2016,NULL,'rear', 'drum', NULL,NULL,NULL,false,200,NULL,NULL,NULL,'AX10 drum rear'),
+
+  -- Prius IV (2015-)
+  ('Toyota','Prius',2015,NULL,'front','disc', 300,28.0,26.0,true, NULL,63.0,123.0,17.5,'XW50 1.8 Hybrid — heavy regen'),
+  ('Toyota','Prius',2015,NULL,'rear', 'drum', NULL,NULL,NULL,false,200,NULL,NULL,NULL,'XW50 drum rear — minimal wear'),
+
+  -- ============================================================
+  -- HONDA
+  -- ============================================================
+  -- Civic XI (2021-)
+  ('Honda','Civic',2021,NULL,'front','disc', 320,30.0,28.0,true, NULL,64.3,123.0,17.5,'FE 1.5 VTEC Turbo/2.0 e:HEV'),
+  ('Honda','Civic',2021,NULL,'rear', 'disc', 272,10.0, 8.0,false,NULL,55.0,107.5,17.0,'FE standard'),
+
+  -- Accord X (2017-)
+  ('Honda','Accord',2017,NULL,'front','disc', 320,30.0,28.0,true, NULL,64.3,136.4,17.5,'CV 1.5/2.0 VTEC Turbo'),
+  ('Honda','Accord',2017,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'CV standard'),
+
+  -- CR-V V (2016-)
+  ('Honda','CR-V',2016,NULL,'front','disc', 320,30.0,28.0,true, NULL,64.3,136.4,17.5,'RW/RT 1.5T/2.0 e:HEV AWD'),
+  ('Honda','CR-V',2016,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'RW/RT standard'),
+
+  -- Jazz IV (2020-)
+  ('Honda','Jazz',2020,NULL,'front','disc', 280,22.0,20.0,true, NULL,63.0,116.0,17.5,'GR 1.5 e:HEV Hybrid'),
+  ('Honda','Jazz',2020,NULL,'rear', 'drum', NULL,NULL,NULL,false,180,NULL,NULL,NULL,'GR drum rear'),
+
+  -- ============================================================
+  -- NISSAN
+  -- ============================================================
+  -- Juke F16 (2019-)
+  ('Nissan','Juke',2019,NULL,'front','disc', 300,28.0,26.0,true, NULL,63.0,116.0,17.5,'F16 1.0 DIG-T standard'),
+  ('Nissan','Juke',2019,NULL,'rear', 'drum', NULL,NULL,NULL,false,203,NULL,NULL,NULL,'F16 drum rear'),
+
+  -- Qashqai J12 (2021-)
+  ('Nissan','Qashqai',2021,NULL,'front','disc', 320,30.0,28.0,true, NULL,65.6,127.0,17.5,'J12 1.3 MHEV/1.5 e-POWER'),
+  ('Nissan','Qashqai',2021,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'J12 standard'),
+
+  -- X-Trail T33 (2021-)
+  ('Nissan','X-Trail',2021,NULL,'front','disc', 320,30.0,28.0,true, NULL,65.6,127.0,17.5,'T33 1.5 VC-Turbo e-POWER AWD'),
+  ('Nissan','X-Trail',2021,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'T33 standard'),
+
+  -- Leaf ZE1 (2017-)  — EV
+  ('Nissan','Leaf',2017,NULL,'front','disc', 300,28.0,26.0,true, NULL,63.0,123.0,17.5,'ZE1 40/62kWh EV — strong regen'),
+  ('Nissan','Leaf',2017,NULL,'rear', 'drum', NULL,NULL,NULL,false,203,NULL,NULL,NULL,'ZE1 drum rear — minimal wear'),
+
+  -- ============================================================
+  -- HYUNDAI
+  -- ============================================================
+  -- i20 BC3 (2020-)
+  ('Hyundai','i20',2020,NULL,'front','disc', 280,22.0,20.0,true, NULL,63.0,116.0,17.5,'BC3 1.0 T-GDi/1.2 MPI'),
+  ('Hyundai','i20',2020,NULL,'rear', 'drum', NULL,NULL,NULL,false,203,NULL,NULL,NULL,'BC3 drum rear'),
+
+  -- i30 PD (2017-)
+  ('Hyundai','i30',2017,NULL,'front','disc', 300,28.0,26.0,true, NULL,63.0,123.0,17.5,'PD 1.0/1.4 T-GDi/1.6 CRDi'),
+  ('Hyundai','i30',2017,NULL,'rear', 'disc', 272,10.0, 8.0,false,NULL,55.0,107.5,17.0,'PD standard'),
+  ('Hyundai','i30',2017,NULL,'front','disc', 320,30.0,28.0,true, NULL,65.6,127.0,17.5,'PD N 275hp'),
+  ('Hyundai','i30',2017,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'PD N'),
+
+  -- Tucson NX4 (2020-)
+  ('Hyundai','Tucson',2020,NULL,'front','disc', 320,30.0,28.0,true, NULL,65.6,127.0,17.5,'NX4 1.6 T-GDi/PHEV AWD'),
+  ('Hyundai','Tucson',2020,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'NX4 standard'),
+
+  -- Santa Fe TM (2018-)
+  ('Hyundai','Santa Fe',2018,NULL,'front','disc', 330,30.0,28.0,true, NULL,65.6,155.0,17.0,'TM 2.0/2.2 CRDi/PHEV AWD'),
+  ('Hyundai','Santa Fe',2018,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'TM standard'),
+
+  -- Ioniq 5 NE (2021-) — EV
+  ('Hyundai','Ioniq 5',2021,NULL,'front','disc', 330,30.0,28.0,true, NULL,65.6,155.0,17.0,'NE RWD/AWD EV — heavy regen'),
+  ('Hyundai','Ioniq 5',2021,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'NE EV standard'),
+
+  -- Ioniq 6 CE (2022-) — EV
+  ('Hyundai','Ioniq 6',2022,NULL,'front','disc', 330,30.0,28.0,true, NULL,65.6,155.0,17.0,'CE EV RWD/AWD — heavy regen'),
+  ('Hyundai','Ioniq 6',2022,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'CE EV standard'),
+
+  -- ============================================================
+  -- KIA
+  -- ============================================================
+  -- Ceed CD (2018-)
+  ('Kia','Ceed',2018,NULL,'front','disc', 300,28.0,26.0,true, NULL,63.0,123.0,17.5,'CD 1.0/1.4 T-GDi/1.6 CRDi'),
+  ('Kia','Ceed',2018,NULL,'rear', 'disc', 272,10.0, 8.0,false,NULL,55.0,107.5,17.0,'CD standard'),
+
+  -- Sportage NQ5 (2021-)
+  ('Kia','Sportage',2021,NULL,'front','disc', 320,30.0,28.0,true, NULL,65.6,127.0,17.5,'NQ5 1.6 T-GDi/PHEV AWD'),
+  ('Kia','Sportage',2021,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'NQ5 standard'),
+
+  -- Sorento MQ4 (2020-)
+  ('Kia','Sorento',2020,NULL,'front','disc', 330,30.0,28.0,true, NULL,65.6,155.0,17.0,'MQ4 2.2 CRDi/1.6 PHEV AWD'),
+  ('Kia','Sorento',2020,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'MQ4 standard'),
+
+  -- EV6 CV (2021-) — EV
+  ('Kia','EV6',2021,NULL,'front','disc', 330,30.0,28.0,true, NULL,65.6,155.0,17.0,'CV RWD/AWD EV — heavy regen'),
+  ('Kia','EV6',2021,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'CV EV standard'),
+
+  -- EV9 MV (2023-) — EV
+  ('Kia','EV9',2023,NULL,'front','disc', 360,30.0,28.0,true, NULL,65.6,155.0,17.0,'MV large SUV EV'),
+  ('Kia','EV9',2023,NULL,'rear', 'disc', 320,22.0,20.0,true, NULL,55.0,107.5,17.0,'MV EV standard'),
+
+  -- ============================================================
+  -- SUBARU
+  -- ============================================================
+  -- Impreza GK (2016-)
+  ('Subaru','Impreza',2016,NULL,'front','disc', 300,28.0,26.0,true, NULL,63.0,123.0,17.5,'GK 1.6/2.0 AWD standard'),
+  ('Subaru','Impreza',2016,NULL,'rear', 'disc', 272,10.0, 8.0,false,NULL,55.0,107.5,17.0,'GK standard'),
+
+  -- Forester SK (2018-)
+  ('Subaru','Forester',2018,NULL,'front','disc', 320,30.0,28.0,true, NULL,65.6,127.0,17.5,'SK 2.0i/2.5i/e-Boxer AWD'),
+  ('Subaru','Forester',2018,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'SK standard'),
+
+  -- Outback B6 (2020-)
+  ('Subaru','Outback',2020,NULL,'front','disc', 320,30.0,28.0,true, NULL,65.6,127.0,17.5,'B6 2.5i/2.4i Turbo AWD'),
+  ('Subaru','Outback',2020,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'B6 standard'),
+
+  -- WRX VB (2021-)
+  ('Subaru','WRX',2021,NULL,'front','disc', 330,30.0,28.0,true, NULL,65.6,127.0,17.5,'VB 2.4T AWD 271hp'),
+  ('Subaru','WRX',2021,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'VB standard'),
+
+  -- ============================================================
+  -- MAZDA
+  -- ============================================================
+  -- Mazda3 BP (2019-)
+  ('Mazda','Mazda3',2019,NULL,'front','disc', 320,30.0,28.0,true, NULL,65.6,127.0,17.5,'BP 2.0 Skyactiv-G/X/D'),
+  ('Mazda','Mazda3',2019,NULL,'rear', 'disc', 286,12.0,10.0,false,NULL,55.0,107.5,17.0,'BP standard'),
+
+  -- CX-5 KF (2017-)
+  ('Mazda','CX-5',2017,NULL,'front','disc', 320,30.0,28.0,true, NULL,65.6,127.0,17.5,'KF 2.0/2.5 Skyactiv-G AWD'),
+  ('Mazda','CX-5',2017,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'KF standard'),
+
+  -- MX-5 ND (2015-)
+  ('Mazda','MX-5',2015,NULL,'front','disc', 280,22.0,20.0,true, NULL,63.0,123.0,17.5,'ND 1.5/2.0 Skyactiv-G'),
+  ('Mazda','MX-5',2015,NULL,'rear', 'disc', 280,22.0,20.0,true, NULL,63.0,123.0,17.5,'ND rear disc'),
+
+  -- ============================================================
+  -- MITSUBISHI
+  -- ============================================================
+  -- Outlander IV (2021-)
+  ('Mitsubishi','Outlander',2021,NULL,'front','disc', 320,30.0,28.0,true, NULL,65.6,127.0,17.5,'GS9W 2.5 PHEV AWD'),
+  ('Mitsubishi','Outlander',2021,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'GS9W standard'),
+
+  -- Eclipse Cross GP (2021-)
+  ('Mitsubishi','Eclipse Cross',2021,NULL,'front','disc', 320,30.0,28.0,true, NULL,65.6,127.0,17.5,'GP 1.5T/PHEV AWD'),
+  ('Mitsubishi','Eclipse Cross',2021,NULL,'rear', 'disc', 272,10.0, 8.0,false,NULL,55.0,107.5,17.0,'GP standard'),
+
+  -- ============================================================
+  -- SUZUKI
+  -- ============================================================
+  -- Swift AZ (2017-)
+  ('Suzuki','Swift',2017,NULL,'front','disc', 280,22.0,20.0,true, NULL,63.0,116.0,17.5,'AZ 1.0/1.2 BoosterJet/Hybrid'),
+  ('Suzuki','Swift',2017,NULL,'rear', 'drum', NULL,NULL,NULL,false,200,NULL,NULL,NULL,'AZ drum rear'),
+
+  -- Vitara LY (2015-)
+  ('Suzuki','Vitara',2015,NULL,'front','disc', 300,28.0,26.0,true, NULL,63.0,123.0,17.5,'LY 1.0/1.4 BoosterJet/1.5 Hybrid'),
+  ('Suzuki','Vitara',2015,NULL,'rear', 'disc', 272,10.0, 8.0,false,NULL,55.0,107.5,17.0,'LY standard'),
+
+  -- ============================================================
+  -- TESLA (all EV — strong regen, very slow brake wear)
+  -- ============================================================
+  -- Model 3 (2017-)
+  ('Tesla','Model 3',2017,NULL,'front','disc', 330,30.0,28.0,true, NULL,65.6,155.0,17.0,'RWD/AWD standard range/long range'),
+  ('Tesla','Model 3',2017,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'standard'),
+  ('Tesla','Model 3',2017,NULL,'front','disc', 360,30.0,28.0,true, NULL,65.6,155.0,17.0,'Performance AWD'),
+  ('Tesla','Model 3',2017,NULL,'rear', 'disc', 320,22.0,20.0,true, NULL,55.0,107.5,17.0,'Performance AWD'),
+
+  -- Model Y (2020-)
+  ('Tesla','Model Y',2020,NULL,'front','disc', 330,30.0,28.0,true, NULL,65.6,155.0,17.0,'RWD/AWD standard/long range'),
+  ('Tesla','Model Y',2020,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'standard'),
+  ('Tesla','Model Y',2020,NULL,'front','disc', 360,30.0,28.0,true, NULL,65.6,155.0,17.0,'Performance AWD'),
+  ('Tesla','Model Y',2020,NULL,'rear', 'disc', 320,22.0,20.0,true, NULL,55.0,107.5,17.0,'Performance AWD'),
+
+  -- Model S (2012-)
+  ('Tesla','Model S',2012,NULL,'front','disc', 374,36.0,34.0,true, NULL,65.6,155.0,17.0,'all versions/Plaid'),
+  ('Tesla','Model S',2012,NULL,'rear', 'disc', 345,24.0,22.0,true, NULL,55.0,107.5,17.0,'standard/Plaid'),
+
+  -- Model X (2015-)
+  ('Tesla','Model X',2015,NULL,'front','disc', 374,36.0,34.0,true, NULL,65.6,155.0,17.0,'AWD all trims/Plaid'),
+  ('Tesla','Model X',2015,NULL,'rear', 'disc', 345,24.0,22.0,true, NULL,55.0,107.5,17.0,'standard'),
+
+  -- ============================================================
+  -- BYD (EV — regen braking, still needs brake parts)
+  -- ============================================================
+  -- Atto 3 (2022-)
+  ('BYD','Atto 3',2022,NULL,'front','disc', 330,30.0,28.0,true, NULL,65.6,155.0,17.0,'EV AWD/RWD'),
+  ('BYD','Atto 3',2022,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'EV standard'),
+
+  -- Seal (2022-)
+  ('BYD','Seal',2022,NULL,'front','disc', 330,30.0,28.0,true, NULL,65.6,155.0,17.0,'EV RWD/Performance AWD'),
+  ('BYD','Seal',2022,NULL,'rear', 'disc', 300,22.0,20.0,true, NULL,55.0,107.5,17.0,'EV standard'),
+  ('BYD','Seal',2022,NULL,'front','disc', 360,30.0,28.0,true, NULL,65.6,155.0,17.0,'Seal Performance AWD 530hp'),
+  ('BYD','Seal',2022,NULL,'rear', 'disc', 320,22.0,20.0,true, NULL,55.0,107.5,17.0,'Performance AWD'),
+
+  -- Dolphin (2021-)
+  ('BYD','Dolphin',2021,NULL,'front','disc', 312,25.0,23.0,true, NULL,63.0,133.0,17.5,'EV standard 95/177hp'),
+  ('BYD','Dolphin',2021,NULL,'rear', 'disc', 272,10.0, 8.0,false,NULL,55.0,107.5,17.0,'EV standard'),
+
+  -- Han (2020-)
+  ('BYD','Han',2020,NULL,'front','disc', 360,30.0,28.0,true, NULL,65.6,155.0,17.0,'EV/DM RWD/AWD sedan'),
+  ('BYD','Han',2020,NULL,'rear', 'disc', 320,22.0,20.0,true, NULL,55.0,107.5,17.0,'standard'),
+
+  -- Tang (2018-)
+  ('BYD','Tang',2018,NULL,'front','disc', 374,36.0,34.0,true, NULL,65.6,155.0,17.0,'EV/DM SUV AWD 7-seat'),
+  ('BYD','Tang',2018,NULL,'rear', 'disc', 345,24.0,22.0,true, NULL,55.0,107.5,17.0,'standard')
+
+) AS v(make_name, model_name, year_from, year_to, position, brake_type,
+       disc_diameter_mm, disc_thickness_mm, disc_min_thickness_mm, disc_ventilated,
+       drum_diameter_mm, pad_height_mm, pad_width_mm, pad_thickness_mm, notes)
+on lower(ma.name) = lower(v.make_name) and lower(mo.name) = lower(v.model_name)
+where not exists (
+  select 1 from public.car_brake_fitment existing
+  where existing.model_id = mo.id
+    and existing.year_from is not distinct from v.year_from
+    and existing.year_to is not distinct from v.year_to
+    and existing.position = v.position
+    and existing.brake_type = v.brake_type
+    and existing.disc_diameter_mm is not distinct from v.disc_diameter_mm
+    and existing.disc_thickness_mm is not distinct from v.disc_thickness_mm
+    and existing.drum_diameter_mm is not distinct from v.drum_diameter_mm
+    and existing.pad_height_mm is not distinct from v.pad_height_mm
+    and existing.pad_width_mm is not distinct from v.pad_width_mm
+    and existing.pad_thickness_mm is not distinct from v.pad_thickness_mm
+    and existing.notes is not distinct from v.notes
+);
