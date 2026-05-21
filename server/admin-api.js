@@ -188,6 +188,77 @@ function validateCompanyBody(body, { slugOverride } = {}) {
   };
 }
 
+function catalogItem(row, kind, urlFallback) {
+  const slug = row.id || row.slug || "";
+  return {
+    slug,
+    name: row.name || slug,
+    meta: row.meta || row.subtitle || "",
+    url: row.url || (slug && urlFallback ? `${urlFallback}${slug}` : ""),
+    kind: kind || row.kind || "",
+  };
+}
+
+async function buildAdminCatalog() {
+  const { listCompanies } = require("./store");
+  const countriesStore = require("./supabase-countries-store");
+  const politiciansStore = require("./supabase-politicians-store");
+  const fleetStore = require("./supabase-fleet-store");
+  const waterwaysStore = require("./waterways-store");
+  const { listPeople } = require("./people-store");
+  const { commodities, banks, investmentBanks, ventureCapital } = require("./catalog-stores");
+
+  const [
+    companies,
+    countries,
+    politicians,
+    vessels,
+    people,
+    commodityRows,
+    waterwayRows,
+    bankRows,
+    ibRows,
+    vcRows,
+  ] = await Promise.all([
+    listCompanies({ limit: 2000 }),
+    countriesStore.listCountries(500),
+    politiciansStore.listPoliticians(),
+    fleetStore.listVessels(1000),
+    listPeople(),
+    commodities.list(500),
+    waterwaysStore.listWaterways(500),
+    banks.list(500),
+    investmentBanks.list(500),
+    ventureCapital.list(500),
+  ]);
+
+  const sections = [
+    { id: "companies", label: "Companies", editable: true, items: companies.map((r) => catalogItem(r, "company", "/company/")) },
+    { id: "countries", label: "Countries", items: countries.map((r) => catalogItem(r, "country", "/country/")) },
+    { id: "politicians", label: "Politicians", items: politicians.map((r) => catalogItem(r, "politician", "/politician/")) },
+    { id: "vessels", label: "Vessels", items: vessels.map((r) => catalogItem(r, "vessel", "/vessel/")) },
+    { id: "people", label: "People", items: people.map((r) => catalogItem(r, "person", "/person/")) },
+    { id: "commodities", label: "Commodities", items: commodityRows.map((r) => catalogItem(r, "commodity", "/commodity/")) },
+    { id: "waterways", label: "Waterways", items: waterwayRows.map((r) => catalogItem(r, "waterway", "/waterway/")) },
+    { id: "banks", label: "Banks", items: bankRows.map((r) => catalogItem(r, "bank", "/bank/")) },
+    {
+      id: "investment_banks",
+      label: "Investment banks",
+      items: ibRows.map((r) => catalogItem(r, "investment_bank", "/investment-bank/")),
+    },
+    {
+      id: "venture_capital",
+      label: "Venture capital",
+      items: vcRows.map((r) => catalogItem(r, "venture_capital", "/venture-capital/")),
+    },
+  ];
+
+  const counts = {};
+  for (const s of sections) counts[s.id] = s.items.length;
+
+  return { generatedAt: new Date().toISOString(), counts, sections };
+}
+
 async function handleAdminApi(req, res, pathname, { sendJson, readJsonBody }) {
   if (!pathname.startsWith("/api/admin")) return false;
 
@@ -218,6 +289,17 @@ async function handleAdminApi(req, res, pathname, { sendJson, readJsonBody }) {
           role: auth.profile?.role || "editor",
         },
       });
+      return true;
+    }
+
+    if (pathname === "/api/admin/catalog" && req.method === "GET") {
+      const auth = await resolveEditor(req);
+      if (auth.status !== 200) {
+        sendJson(res, auth.status, { error: auth.error });
+        return true;
+      }
+      const catalog = await buildAdminCatalog();
+      sendJson(res, 200, catalog);
       return true;
     }
 

@@ -1,13 +1,207 @@
 .admin-company-page .admin-shell {
-  max-width: 720px;
+  max-width: 1280px;
+}
+
+.admin-company-page .login-top {
+  max-width: 1280px;
+}
+
+.admin-main {
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.admin-main.admin-main--gate {
+  align-items: center;
+}
+
+.admin-company-page .login-page-footer {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.admin-workspace {
+  display: grid;
+  grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
+  gap: 1.25rem;
+  width: 100%;
+  max-width: 1280px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .admin-workspace {
+    grid-template-columns: 1fr;
+  }
+}
+
+.admin-catalog {
+  position: sticky;
+  top: 1rem;
+  max-height: calc(100vh - 7rem);
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1rem 0.75rem;
+  background: var(--login-card);
+  border: 1px solid var(--login-border);
+  border-radius: 10px;
+  box-shadow: 0 1px 2px rgba(27, 40, 56, 0.04);
+}
+
+@media (max-width: 900px) {
+  .admin-catalog {
+    position: static;
+    max-height: 22rem;
+  }
+}
+
+.admin-catalog-title {
+  margin: 0 0 0.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.admin-catalog-meta {
+  margin: 0 0 0.75rem;
+  font-size: 0.75rem;
+  color: var(--login-muted);
+}
+
+.admin-catalog-search input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--login-border);
+  border-radius: 8px;
+  font: inherit;
+  background: var(--login-input-bg);
+}
+
+.admin-catalog-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.75rem 0 0.5rem;
+}
+
+.admin-catalog-tab {
+  border: 1px solid var(--login-border);
+  background: transparent;
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  cursor: pointer;
+  color: var(--login-muted);
+}
+
+.admin-catalog-tab.is-active {
+  background: var(--login-text);
+  border-color: var(--login-text);
+  color: #fff;
+}
+
+.admin-catalog-list {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0.5rem;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+}
+
+.admin-catalog-item {
+  margin: 0;
+  border-bottom: 1px solid var(--login-border);
+}
+
+.admin-catalog-item:last-child {
+  border-bottom: 0;
+}
+
+.admin-catalog-link {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.55rem 0.15rem;
+  border: 0;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+
+.admin-catalog-link:hover,
+.admin-catalog-link:focus-visible {
+  color: var(--login-focus);
+}
+
+.admin-catalog-link.is-selected {
+  color: var(--login-focus);
+  font-weight: 600;
+}
+
+.admin-catalog-name {
+  display: block;
+  font-size: 0.875rem;
+  line-height: 1.3;
+}
+
+.admin-catalog-slug {
+  display: block;
+  font-size: 0.6875rem;
+  color: var(--login-muted);
+  margin-top: 0.1rem;
+}
+
+.admin-catalog-empty {
+  padding: 1rem 0;
+  font-size: 0.875rem;
+  color: var(--login-muted);
+}
+
+.admin-form-column {
+  display: flex;
+  justify-content: center;
+}
+
+.admin-form-card {
+  width: 100%;
+  max-width: 640px;
 }
 
 .admin-card {
   max-width: 100%;
 }
 
-.admin-main {
-  align-items: stretch;
+.admin-form-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.admin-form-head .login-title {
+  margin-bottom: 0.35rem;
+}
+
+.admin-form-head .login-subtitle {
+  margin-bottom: 0;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .admin-grid {
@@ -89,6 +283,7 @@
   font: inherit;
   cursor: pointer;
   padding: 0;
+  white-space: nowrap;
 }
 
 .admin-inline-code {
@@ -122,6 +317,5 @@
   display: flex;
   align-items: center;
   width: 100%;
-  max-width: 720px;
   margin: 0 auto;
 }

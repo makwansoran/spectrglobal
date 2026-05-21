@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
-    <title>Add company · Spectr</title>
+    <title>Content editor · Spectr</title>
     <link rel="icon" href="/assets/brand/spectr-mark.png" type="image/png" sizes="any" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -42,16 +42,36 @@
           <a class="login-submit admin-gate-btn" href="login.html?next=/admin-company.html">Sign in</a>
         </div>
 
-        <div class="login-card admin-card" id="admin-form-wrap" hidden>
-          <h1 class="login-title">Add company profile</h1>
-          <p class="login-subtitle">
-            Saves to Supabase and appears on the site at
-            <code class="admin-inline-code">/company/your-slug</code>
-          </p>
+        <div class="admin-workspace" id="admin-form-wrap" hidden>
+          <aside class="admin-catalog" aria-label="Site catalog">
+            <div class="admin-catalog-head">
+              <h2 class="admin-catalog-title">Catalog</h2>
+              <p class="admin-catalog-meta" id="catalog-meta">Loading…</p>
+              <label class="admin-catalog-search">
+                <span class="visually-hidden">Filter catalog</span>
+                <input type="search" id="catalog-filter" placeholder="Filter by name or slug…" autocomplete="off" />
+              </label>
+              <div class="admin-catalog-tabs" id="catalog-tabs" role="tablist"></div>
+            </div>
+            <ol class="admin-catalog-list" id="catalog-list" role="list"></ol>
+          </aside>
 
-          <p class="login-message" id="admin-message" role="alert" hidden></p>
+          <div class="admin-form-column">
+            <div class="login-card admin-card admin-form-card">
+              <div class="admin-form-head">
+                <div>
+                  <h1 class="login-title" id="form-title">Add company profile</h1>
+                  <p class="login-subtitle">
+                    Saves to Supabase and appears at
+                    <code class="admin-inline-code">/company/your-slug</code>
+                  </p>
+                </div>
+                <button type="button" class="admin-link-btn" id="new-company-btn">New company</button>
+              </div>
 
-          <form class="login-form admin-form" id="company-form" novalidate>
+              <p class="login-message" id="admin-message" role="alert" hidden></p>
+
+              <form class="login-form admin-form" id="company-form" novalidate>
             <fieldset class="admin-fieldset">
               <legend>Identity</legend>
               <div class="admin-grid">
@@ -171,6 +191,8 @@
               <a class="admin-preview-link" id="preview-link" href="#" target="_blank" rel="noopener" hidden>View profile →</a>
             </div>
           </form>
+            </div>
+          </div>
         </div>
       </main>
 

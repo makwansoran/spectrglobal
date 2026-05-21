@@ -25,6 +25,7 @@
     "db:seed-all": "node scripts/seed-all.js",
     "db:sync-people": "node scripts/sync-people-from-companies.js",
     "db:status": "node scripts/db-status.js",
+    "db:purge-oil-maritime": "node scripts/purge-database-oil-maritime.js",
     "admin:create-editor": "node scripts/create-editor.js",
     "db:build-list": "node scripts/build-oslo-listed.js",
     "db:list": "node -e \"require('./scripts/load-env').loadEnv(); require('./server/store').listCompanies().then(c=>console.log(c))\"",

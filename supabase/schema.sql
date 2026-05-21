@@ -327,5 +327,25 @@ create policy "Users update own profile"
   using (auth.uid() = id)
   with check (auth.uid() = id);
 
+-- Customer sign-ins (no Supabase Auth account required)
+create table if not exists public.customer_signins (
+  id uuid primary key default gen_random_uuid(),
+  name text not null,
+  email text not null,
+  phone text,
+  source text not null default 'login_page',
+  user_agent text,
+  metadata jsonb not null default '{}'::jsonb,
+  created_at timestamptz not null default now(),
+  constraint customer_signins_name_len check (char_length(trim(name)) between 1 and 120),
+  constraint customer_signins_email_len check (char_length(trim(email)) between 3 and 254),
+  constraint customer_signins_email_format check (email ~* '^[^@\s]+@[^@\s]+\.[^@\s]+$'),
+  constraint customer_signins_phone_len check (phone is null or char_length(trim(phone)) <= 40)
+);
+
+alter table public.customer_signins enable row level security;
+
+-- Inserts go through the server with SUPABASE_SERVICE_ROLE_KEY; no public read/write policies.
+
 -- Countries + politicians — full DDL: supabase/countries-politicians.sql
 -- Seed: npm run db:build-countries && npm run db:seed-countries && npm run db:seed-politicians
