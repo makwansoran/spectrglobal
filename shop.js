@@ -542,15 +542,28 @@
       clearBtn.hidden = !state.vehicle && !state.activeCategory;
     }
 
-    var categories = Array.from(new Set(allParts.map(function (p) { return p.category || "Other"; }))).sort();
-    categoryList.innerHTML = '' +
-      '<li><button type="button" class="' + (state.activeCategory == null ? "is-active" : "") + '" data-cat="">All categories <small>' + allParts.length + '</small></button></li>' +
-      '<li><button type="button" class="' + (state.activeCategory === DEALS_CATEGORY ? "is-active" : "") + '" data-cat="' + DEALS_CATEGORY + '">Deals <small>' + Math.min(DEALS_LIMIT, allParts.length) + '</small></button></li>' +
-      categories.map(function (cat) {
-        var count = allParts.filter(function (p) { return (p.category || "Other") === cat; }).length;
-        var active = state.activeCategory === cat ? "is-active" : "";
-        return '<li><button type="button" class="' + active + '" data-cat="' + escapeHtml(cat) + '">' + escapeHtml(cat) + ' <small>' + count + '</small></button></li>';
-      }).join("");
+    if (window.SpectrShopNav) {
+      window.SpectrShopNav.fetchCategories().then(function (categories) {
+        window.SpectrShopNav.renderSidebar(categoryList, {
+          parts: allParts,
+          categories: categories,
+          catalogMode: true,
+          activeCatalogCategory: state.activeCategory
+        });
+      }).catch(function () {
+        categoryList.innerHTML = '<li><span class="make-grid-status">Categories unavailable</span></li>';
+      });
+    } else {
+      var categories = Array.from(new Set(allParts.map(function (p) { return p.category || "Other"; }))).sort();
+      categoryList.innerHTML = '' +
+        '<li><button type="button" class="' + (state.activeCategory == null ? "is-active" : "") + '" data-cat="">All categories <small>' + allParts.length + '</small></button></li>' +
+        '<li><button type="button" class="' + (state.activeCategory === DEALS_CATEGORY ? "is-active" : "") + '" data-cat="' + DEALS_CATEGORY + '">Deals <small>' + Math.min(DEALS_LIMIT, allParts.length) + '</small></button></li>' +
+        categories.map(function (cat) {
+          var count = allParts.filter(function (p) { return (p.category || "Other") === cat; }).length;
+          var active = state.activeCategory === cat ? "is-active" : "";
+          return '<li><button type="button" class="' + active + '" data-cat="' + escapeHtml(cat) + '">' + escapeHtml(cat) + ' <small>' + count + '</small></button></li>';
+        }).join("");
+    }
 
     if (visibleParts.length === 0) {
       grid.innerHTML = '' +
@@ -609,11 +622,18 @@
     }
     if (categoryList) {
       categoryList.addEventListener("click", function (event) {
-        var btn = event.target.closest("button[data-cat]");
-        if (!btn) return;
-        var value = btn.dataset.cat || "";
-        state.activeCategory = value || null;
-        renderCatalog();
+        var filterBtn = event.target.closest("button[data-cat]");
+        if (filterBtn) {
+          var value = filterBtn.dataset.cat || "";
+          state.activeCategory = value || null;
+          renderCatalog();
+          return;
+        }
+
+        var navBtn = event.target.closest("button[data-href]");
+        if (navBtn) {
+          window.location.href = navBtn.getAttribute("data-href");
+        }
       });
     }
     if (clearBtn) {

@@ -113,7 +113,13 @@
       <div class="category-page-shell">
         <a class="brand-back-link" href="part-categories.html">All categories</a>
 
-        <div class="category-fit-products">
+        <div class="catalog-layout category-page-layout">
+          <aside class="catalog-categories" aria-label="Categories">
+            <p class="catalog-categories-label">Categories</p>
+            <ul id="shop-category-sidebar"></ul>
+          </aside>
+
+          <div class="category-fit-products">
           <form class="brand-fit-form" id="category-fit-form" autocomplete="off">
             <div class="brand-fit-head">
               <p class="shop-eyebrow">Identify your car</p>
@@ -157,6 +163,7 @@
               <div class="catalog-empty"><strong>Loading products from database...</strong></div>
             </div>
           </section>
+          </div>
         </div>
       </div>
     </main>
@@ -228,6 +235,7 @@
     <script src="script.js" defer></script>
     <script src="home.js" defer></script>
     <script src="shop-data.js" defer></script>
+    <script src="shop-categories-nav.js" defer></script>
     <script src="part-category.js" defer></script>
   </body>
 </html>

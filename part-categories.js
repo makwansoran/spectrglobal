@@ -103,6 +103,7 @@
           fallbackImage: fallbackImage(category),
           group: (group && group.name) || "",
           section: (section && section.name) || "",
+          sectionSlug: (section && section.slug) || "",
           sortKey: [
             section ? String(section.sort_order).padStart(4, "0") : "9999",
             group ? String(group.sort_order).padStart(4, "0") : "9999",
@@ -116,18 +117,24 @@
       });
   }
 
-  function filterCategories(categories, query) {
+  function selectedSection() {
+    return new URLSearchParams(window.location.search).get("section") || "";
+  }
+
+  function filterCategories(categories, query, sectionSlug) {
     var q = normalizeSearch(query);
-    if (!q) return categories;
+    var section = normalizeSearch(sectionSlug);
     return categories.filter(function (category) {
+      if (section && normalizeSearch(category.sectionSlug) !== section) return false;
+      if (!q) return true;
       return normalizeSearch(category.name).indexOf(q) !== -1 ||
         normalizeSearch(category.group).indexOf(q) !== -1 ||
         normalizeSearch(category.section).indexOf(q) !== -1;
     });
   }
 
-  function renderCategories(node, categories, query) {
-    var filtered = filterCategories(categories, query);
+  function renderCategories(node, categories, query, sectionSlug) {
+    var filtered = filterCategories(categories, query, sectionSlug);
 
     if (!filtered.length) {
       node.innerHTML = query
@@ -151,7 +158,7 @@
     }).join("");
   }
 
-  function bindSearch(node, categories) {
+  function bindSearch(node, categories, sectionSlug) {
     var input = document.getElementById("part-categories-search-input");
     var clearButton = document.getElementById("part-categories-search-clear");
     var form = input && input.form;
@@ -160,7 +167,7 @@
 
     function updateGrid() {
       var query = input.value;
-      renderCategories(node, categories, query);
+      renderCategories(node, categories, query, sectionSlug);
       if (clearButton) clearButton.hidden = !query;
     }
 
@@ -185,11 +192,22 @@
     var grid = document.getElementById("part-categories-grid");
     if (!grid) return;
 
+    var sectionSlug = selectedSection();
+    var nav = window.SpectrShopNav;
+
+    if (nav) {
+      nav.mountSidebar("shop-category-sidebar", {
+        useLinks: true,
+        activeKey: sectionSlug ? null : "all",
+        activeSection: sectionSlug
+      });
+    }
+
     fetchCategories()
       .then(function (rows) {
         var categories = buildCategories(rows);
-        renderCategories(grid, categories, "");
-        bindSearch(grid, categories);
+        renderCategories(grid, categories, "", sectionSlug);
+        bindSearch(grid, categories, sectionSlug);
       })
       .catch(function () {
         grid.innerHTML =
