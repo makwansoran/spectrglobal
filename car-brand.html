@@ -1,13 +1,13 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Spectr is an authorized red-team operations group helping organizations expose, understand, and close real attack paths."
+      content="Browse supported car models and compatible parts for a selected brand."
     />
-    <title>Spectr</title>
+    <title>Car Brand | Spectr</title>
     <link rel="icon" href="/assets/brand/spectr-mark.png" type="image/png" sizes="any" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -64,15 +64,15 @@
     </header>
 
     <nav class="shop-subnav" aria-label="Parts categories">
-      <a href="#parts-categories" data-icon="◉">Tires</a>
-      <a href="#parts-categories" data-icon="▣">Brakes</a>
-      <a href="#parts-categories" data-icon="⌁">Suspension</a>
-      <a href="#parts-categories" data-icon="▱">Chassis</a>
-      <a href="#parts-categories" data-icon="▤">Filters</a>
-      <a href="#parts-categories" data-icon="◍">Oils</a>
-      <a href="#parts-categories" data-icon="⚙">Engine</a>
-      <a href="#parts-categories" data-icon="▰">Body</a>
-      <a href="#parts-categories" data-icon="+">More</a>
+      <a href="index.html#parts-categories" data-icon="◉">Tires</a>
+      <a href="index.html#parts-categories" data-icon="▣">Brakes</a>
+      <a href="index.html#parts-categories" data-icon="⌁">Suspension</a>
+      <a href="index.html#parts-categories" data-icon="▱">Chassis</a>
+      <a href="index.html#parts-categories" data-icon="▤">Filters</a>
+      <a href="index.html#parts-categories" data-icon="◍">Oils</a>
+      <a href="index.html#parts-categories" data-icon="⚙">Engine</a>
+      <a href="index.html#parts-categories" data-icon="▰">Body</a>
+      <a href="index.html#parts-categories" data-icon="+">More</a>
     </nav>
 
     <div class="plt-nav-panel" id="plt-nav-panel" aria-hidden="true">
@@ -140,108 +140,41 @@
       ></div>
     </div>
 
-    <main class="shop-page">
-      <section class="shop-hero" aria-labelledby="shop-hero-title">
-        <div class="shop-hero-grid">
-          <div class="shop-finder" aria-labelledby="shop-hero-title">
-            <div class="shop-finder-top">
-              <p class="shop-eyebrow">Parts finder</p>
-            </div>
-            <h1 id="shop-hero-title">Find part by model</h1>
-
-            <p class="finder-sub">Select your car model to search for parts</p>
-            <form class="finder-selects" id="finder-vehicle-form">
-              <label class="select-field">
-                <span>Car brand</span>
-                <select id="finder-brand" required>
-                  <option value="">Choose brand</option>
-                </select>
-              </label>
-              <label class="select-field">
-                <span>Car model</span>
-                <select id="finder-model" required disabled>
-                  <option value="">Choose model</option>
-                </select>
-              </label>
-              <label class="select-field">
-                <span>Engine</span>
-                <select id="finder-engine" required disabled>
-                  <option value="">Choose engine</option>
-                </select>
-              </label>
-              <button type="submit" class="btn btn-primary finder-submit">Search</button>
-            </form>
-
-            <a class="finder-missing" href="admin-parts.html#vehicles">
-              Can't find your car in the catalog?
-            </a>
+    <main class="shop-page brand-page">
+      <section class="brand-hero" aria-labelledby="brand-title">
+        <a class="brand-back-link" href="car-brands.html">All car brands</a>
+        <div class="brand-hero-card">
+          <div class="brand-hero-logo" id="brand-hero-logo" aria-hidden="true">SP</div>
+          <div>
+            <p class="shop-eyebrow" id="brand-region">Car brand</p>
+            <h1 id="brand-title">Loading brand...</h1>
+            <p id="brand-summary">Loading supported models and compatible parts.</p>
           </div>
-
-          <aside class="promo-slider" aria-label="Promotions">
-            <div class="promo-track" id="promo-track" aria-live="polite"></div>
-            <div class="promo-dots" id="promo-dots" role="tablist" aria-label="Choose promotion"></div>
-            <div class="promo-controls">
-              <button type="button" class="promo-nav" id="promo-prev" aria-label="Previous promotion">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                  <path d="M15 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-              </button>
-              <button type="button" class="promo-nav" id="promo-next" aria-label="Next promotion">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                  <path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-              </button>
-            </div>
-          </aside>
         </div>
       </section>
 
-      <section class="parts-categories-showcase" id="parts-categories" aria-labelledby="parts-categories-title">
-        <header class="parts-categories-head">
-          <h2 id="parts-categories-title">Find part by model</h2>
-        </header>
-        <div class="top-brand-grid" id="top-brand-grid" data-makes-limit="8" aria-label="Car makes from database">
-          <p class="make-grid-status">Loading car makes from database...</p>
+      <section class="brand-detail-grid" aria-label="Brand catalog">
+        <div class="brand-panel">
+          <div class="brand-panel-head">
+            <h2>Supported models</h2>
+            <span id="brand-model-count">0</span>
+          </div>
+          <div class="brand-model-grid" id="brand-model-grid">
+            <p class="make-grid-status">Loading models...</p>
+          </div>
         </div>
-        <a class="brand-more-link" href="car-brands.html">More+</a>
-      </section>
 
-      <section class="catalog" id="catalog">
-        <div class="catalog-layout">
-          <aside class="catalog-categories" aria-label="Categories">
-            <p class="catalog-categories-label">Categories</p>
-            <ul id="category-list"></ul>
-          </aside>
-          <div class="catalog-grid" id="catalog-grid" aria-live="polite"></div>
+        <div class="brand-panel">
+          <div class="brand-panel-head">
+            <h2>Compatible parts</h2>
+            <span id="brand-part-count">0</span>
+          </div>
+          <div class="brand-parts-grid" id="brand-parts-grid">
+            <p class="make-grid-status">Loading parts...</p>
+          </div>
         </div>
       </section>
     </main>
-
-    <button type="button" class="cart-fab" id="cart-fab" aria-label="Open cart" aria-expanded="false">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-        <path d="M3 4h2l3 12h11l2-8H6" stroke-linecap="round" stroke-linejoin="round" />
-        <circle cx="10" cy="20" r="1.5" />
-        <circle cx="18" cy="20" r="1.5" />
-      </svg>
-      <span class="cart-fab-label">Cart</span>
-      <span class="cart-fab-count" id="cart-fab-count">0</span>
-    </button>
-
-    <aside class="cart-drawer" id="cart-drawer" aria-hidden="true" aria-label="Cart">
-      <div class="cart-drawer-head">
-        <h2>Cart</h2>
-        <button type="button" id="cart-close" class="cart-close" aria-label="Close cart">×</button>
-      </div>
-      <div class="cart-drawer-body" id="cart-body"></div>
-      <div class="cart-drawer-foot">
-        <div class="cart-total">
-          <span>Total</span>
-          <strong id="cart-total">kr 0</strong>
-        </div>
-        <button type="button" class="btn btn-primary cart-checkout" id="cart-checkout">Checkout</button>
-      </div>
-    </aside>
-    <div class="cart-backdrop" id="cart-backdrop" hidden></div>
 
     <footer class="site-footer">
       <div class="wrap site-footer-inner">
@@ -270,8 +203,7 @@
     <script src="cookies.js" defer></script>
     <script src="script.js" defer></script>
     <script src="home.js" defer></script>
-    <script src="makes.js" defer></script>
     <script src="shop-data.js" defer></script>
-    <script src="shop.js" defer></script>
+    <script src="brand-page.js" defer></script>
   </body>
 </html>

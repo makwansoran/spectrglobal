@@ -41,7 +41,7 @@
   }
 
   function makeHref(make) {
-    return "index.html?make=" + encodeURIComponent(make.slug || make.name) + "#catalog";
+    return "car-brand.html?make=" + encodeURIComponent(make.slug || make.name);
   }
 
   function normalizeSearch(value) {

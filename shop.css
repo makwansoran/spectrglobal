@@ -830,6 +830,179 @@
   transform: translateY(-1px);
 }
 
+.brand-page {
+  min-height: 60vh;
+}
+
+.brand-hero {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: clamp(3rem, 7vw, 6rem) clamp(1rem, 4vw, 4.5rem) clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.brand-back-link {
+  display: inline-flex;
+  margin-bottom: 1rem;
+  color: var(--shop-muted);
+  font-family: var(--shop-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.brand-back-link:hover {
+  color: var(--shop-ink);
+}
+
+.brand-hero-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(1rem, 3vw, 2rem);
+  align-items: center;
+  padding: clamp(1.25rem, 4vw, 2.5rem);
+  border: 1px solid var(--shop-line);
+  border-radius: var(--shop-radius-lg);
+  background: #ffffff;
+  box-shadow: 0 1.25rem 3rem rgba(15, 23, 42, 0.08);
+}
+
+.brand-hero-logo {
+  width: clamp(4.5rem, 10vw, 7rem);
+  height: clamp(4.5rem, 10vw, 7rem);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--shop-line);
+  border-radius: 999px;
+  background: var(--shop-surface);
+  color: var(--shop-ink);
+  font-family: var(--shop-mono);
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.brand-hero-logo img {
+  width: 58%;
+  height: 58%;
+  object-fit: contain;
+}
+
+.brand-hero h1 {
+  margin: 0;
+  color: var(--shop-ink);
+  font-size: clamp(2.4rem, 7vw, 5.5rem);
+  font-weight: 700;
+  letter-spacing: -0.06em;
+  line-height: 0.95;
+}
+
+.brand-hero p:not(.shop-eyebrow) {
+  max-width: 44rem;
+  margin: 1rem 0 0;
+  color: var(--shop-muted);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.brand-detail-grid {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 4vw, 4.5rem) clamp(3rem, 6vw, 6rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 0.9fr);
+  gap: clamp(1rem, 3vw, 1.5rem);
+}
+
+.brand-panel {
+  border: 1px solid var(--shop-line);
+  border-radius: var(--shop-radius-lg);
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.brand-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 1.25rem;
+  border-bottom: 1px solid var(--shop-line);
+}
+
+.brand-panel-head h2 {
+  margin: 0;
+  color: var(--shop-ink);
+  font-size: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.brand-panel-head span {
+  color: var(--shop-muted);
+  font-family: var(--shop-mono);
+  font-size: 0.75rem;
+}
+
+.brand-model-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--shop-line);
+}
+
+.brand-model-card,
+.brand-part-card {
+  min-height: 6.5rem;
+  padding: 1rem;
+  background: #ffffff;
+  color: var(--shop-ink);
+  text-decoration: none;
+}
+
+.brand-model-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.brand-model-card:hover {
+  background: var(--shop-surface);
+}
+
+.brand-model-card strong,
+.brand-part-card strong {
+  color: var(--shop-ink);
+  font-size: 1rem;
+}
+
+.brand-model-card span,
+.brand-part-card span,
+.brand-part-card small {
+  color: var(--shop-muted);
+  font-size: 0.78rem;
+}
+
+.brand-parts-grid {
+  display: grid;
+  gap: 1px;
+  background: var(--shop-line);
+}
+
+.brand-part-card {
+  display: grid;
+  gap: 0.35rem;
+  font-style: normal;
+}
+
+.brand-part-card em {
+  color: var(--shop-ink);
+  font-style: normal;
+  font-weight: 700;
+}
+
 .parts-category-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1396,6 +1569,14 @@
   .all-brands-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .brand-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-model-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 640px) {
@@ -1426,6 +1607,14 @@
 
   .top-brand-grid,
   .all-brands-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-hero-card {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-model-grid {
     grid-template-columns: 1fr;
   }
 

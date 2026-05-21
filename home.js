@@ -163,7 +163,7 @@
       })
       .slice(0, 10)
       .map(function (make) {
-        var href = "index.html?make=" + encodeURIComponent(make.slug || make.name) + "#finder-vehicle-form";
+        var href = "car-brand.html?make=" + encodeURIComponent(make.slug || make.name);
         return {
           name: make.name,
           subtitle: [make.country, make.region].filter(Boolean).join(" · ") || "Car make",
