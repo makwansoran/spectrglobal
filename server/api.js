@@ -208,6 +208,78 @@ function oilProductFromRow(row, fitments) {
   };
 }
 
+function tyreFitmentVehicle(row) {
+  const modelValue = row && row.models;
+  const model = Array.isArray(modelValue) ? modelValue[0] : modelValue;
+  const makeValue = model && model.makes;
+  const make = Array.isArray(makeValue) ? makeValue[0] : makeValue;
+  return {
+    brand: (make && make.name) || "",
+    model: (model && model.name) || "",
+    engine: "",
+  };
+}
+
+function tyreSizeKey(row) {
+  return [
+    row.width,
+    row.aspect_ratio,
+    row.rim_diameter,
+  ].join("-");
+}
+
+function tyreSizeLabel(row) {
+  return `${row.width}/${row.aspect_ratio} R${row.rim_diameter}`;
+}
+
+function tyrePartFromGroup(key, rows) {
+  const first = rows[0] || {};
+  const label = tyreSizeLabel(first);
+  const loadSpeed = Array.from(new Set(rows.map((row) => {
+    return [row.load_index, row.speed_rating].filter(Boolean).join("");
+  }).filter(Boolean))).sort();
+  const notes = Array.from(new Set(rows.map((row) => row.notes).filter(Boolean))).slice(0, 4);
+  const descriptionParts = [
+    "Tyre size matched from OEM fitment data",
+    loadSpeed.length ? `Load/speed: ${loadSpeed.join(", ")}` : "",
+    notes.length ? `Examples: ${notes.join(", ")}` : "",
+  ].filter(Boolean);
+
+  return {
+    id: `tyre-size-${key}`,
+    name: `Tyre ${label}`,
+    category: "Tires",
+    sku: `TYRE-${first.width}-${first.aspect_ratio}-R${first.rim_diameter}`,
+    price: 0,
+    stock: 999,
+    description: descriptionParts.join(" · "),
+    vehicles: dedupeVehicleFits(rows.map(tyreFitmentVehicle).filter((vehicle) => vehicle.brand && vehicle.model)),
+  };
+}
+
+async function fetchTyreSizeParts() {
+  const { data, error } = await getReadClient()
+    .from("car_tyre_fitment")
+    .select("width, aspect_ratio, rim_diameter, load_index, speed_rating, axle, notes, models(name, makes(name))")
+    .order("width", { ascending: true })
+    .order("aspect_ratio", { ascending: true })
+    .order("rim_diameter", { ascending: true });
+
+  if (error) {
+    if (error.code === "42P01") return [];
+    throw error;
+  }
+
+  const groups = new Map();
+  for (const row of data || []) {
+    const key = tyreSizeKey(row);
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(row);
+  }
+
+  return Array.from(groups.entries()).map(([key, rows]) => tyrePartFromGroup(key, rows));
+}
+
 function oilFitmentVehicle(row) {
   const modelValue = row && row.models;
   const model = Array.isArray(modelValue) ? modelValue[0] : modelValue;
@@ -333,16 +405,21 @@ async function handlePartsList(req, res) {
   }
 
   let oilParts = [];
+  let tyreParts = [];
   try {
-    oilParts = await fetchOilProductParts(activeOnly);
-  } catch (oilError) {
-    sendJson(res, 500, { error: oilError.message || "Could not load oil products." });
+    [oilParts, tyreParts] = await Promise.all([
+      fetchOilProductParts(activeOnly),
+      fetchTyreSizeParts(),
+    ]);
+  } catch (catalogError) {
+    sendJson(res, 500, { error: catalogError.message || "Could not load derived catalog products." });
     return true;
   }
 
   const parts = dedupeCatalogParts([
     ...(data || []).map(partFromRow),
     ...oilParts,
+    ...tyreParts,
   ]).slice(0, limit);
 
   sendJson(res, 200, { parts });
