@@ -921,8 +921,8 @@ img {
 
 .site-footer-logo-mark {
   flex-shrink: 0;
-  width: 1.85rem;
-  height: 1.85rem;
+  width: 2.25rem;
+  height: 2.25rem;
   object-fit: contain;
   display: block;
   /* Black mark on transparent → light mark on dark footer */
@@ -936,7 +936,7 @@ img {
 
 .site-footer-logo-text {
   font-family: var(--spectr-logo-font);
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   font-weight: 700;
   letter-spacing: -0.04em;
   line-height: 1;

@@ -41,17 +41,20 @@
 }
 
 .plt-logo-mark {
-  width: 1.75rem;
-  height: 1.75rem;
+  flex-shrink: 0;
+  width: 2.25rem;
+  height: 2.25rem;
   object-fit: contain;
+  display: block;
   filter: brightness(0) invert(1);
 }
 
 .plt-logo-text {
   font-family: var(--spectr-logo-font, "Syne", system-ui, sans-serif);
-  font-size: 1.125rem;
+  font-size: 1.35rem;
   font-weight: 700;
   letter-spacing: -0.04em;
+  line-height: 1;
 }
 
 .plt-header-tools {

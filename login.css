@@ -43,15 +43,22 @@
 .auth-logo {
   display: inline-flex;
   align-items: center;
-  gap: 0.8rem;
-  font-size: 1.25rem;
+  gap: 0.65rem;
+  font-size: 1.35rem;
   font-weight: 700;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.04em;
+  line-height: 1;
 }
 
 .auth-logo img {
-  width: 44px;
-  height: 44px;
+  width: 2.25rem;
+  height: 2.25rem;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.auth-logo span {
+  font-family: var(--spectr-logo-font);
 }
 
 .auth-back {
