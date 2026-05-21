@@ -81,7 +81,7 @@
     }
 
     node.innerHTML = filtered.map(function (category) {
-      var href = "index.html?category=" + encodeURIComponent(category.name) + "#catalog";
+      var href = "part-category.html?category=" + encodeURIComponent(category.name);
       var details = category.count + " part" + (category.count === 1 ? "" : "s");
       if (category.inStock) {
         details += " · " + category.inStock + " in stock";

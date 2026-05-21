@@ -3,11 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="Browse supported car models and compatible parts for a selected brand."
-    />
-    <title>Car Brand | Spectr</title>
+    <meta name="description" content="View Spectr product details, fitment notes, and similar products." />
+    <title>Product | Spectr</title>
     <link rel="icon" href="/assets/brand/spectr-mark.png" type="image/png" sizes="any" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -32,14 +29,7 @@
           <span class="plt-logo-text">Spectr</span>
         </a>
         <div class="plt-header-tools">
-          <button
-            type="button"
-            class="plt-tool-btn"
-            id="plt-search-header-btn"
-            data-plt-search-open
-            aria-label="Show Search"
-            aria-expanded="false"
-          >
+          <button type="button" class="plt-tool-btn" id="plt-search-header-btn" data-plt-search-open aria-label="Show Search" aria-expanded="false">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <circle cx="11" cy="11" r="7" />
               <path d="M20 20l-3-3" stroke-linecap="round" />
@@ -48,13 +38,7 @@
           <div class="spectr-auth-slot spectr-auth-slot--header" data-spectr-auth-slot>
             <a class="plt-header-login" href="login.html">Log in</a>
           </div>
-          <button
-            type="button"
-            class="plt-tool-btn plt-menu-btn"
-            id="plt-nav-btn"
-            aria-label="Show Navigation"
-            aria-expanded="false"
-          >
+          <button type="button" class="plt-tool-btn plt-menu-btn" id="plt-nav-btn" aria-label="Show Navigation" aria-expanded="false">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" />
             </svg>
@@ -95,18 +79,8 @@
         </nav>
       </div>
       <div class="plt-nav-footer">
-        <button type="button" class="plt-nav-close" id="plt-nav-close" aria-label="Close navigation">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-            <path d="M6 6l12 12M18 6L6 18" stroke-linecap="round" />
-          </svg>
-        </button>
-        <button
-          type="button"
-          class="plt-tool-btn"
-          data-plt-search-open
-          aria-label="Show Search"
-          aria-expanded="false"
-        >
+        <button type="button" class="plt-nav-close" id="plt-nav-close" aria-label="Close navigation">×</button>
+        <button type="button" class="plt-tool-btn" data-plt-search-open aria-label="Show Search" aria-expanded="false">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
             <circle cx="11" cy="11" r="7" />
             <path d="M20 20l-3-3" stroke-linecap="round" />
@@ -118,86 +92,54 @@
     <div class="plt-search-panel" id="plt-search-panel" aria-hidden="true">
       <div class="plt-search-panel-top">
         <form class="plt-search-panel-form" role="search" action="#" onsubmit="return false">
-          <input
-            type="search"
-            class="plt-search-panel-input"
-            id="plt-search-input"
-            placeholder="Search"
-            autocomplete="off"
-          />
+          <input type="search" class="plt-search-panel-input" id="plt-search-input" placeholder="Search" autocomplete="off" />
         </form>
-        <button type="button" class="plt-search-panel-close" id="plt-search-close" aria-label="Close search">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-            <path d="M6 6l12 12M18 6L6 18" stroke-linecap="round" />
-          </svg>
-        </button>
+        <button type="button" class="plt-search-panel-close" id="plt-search-close" aria-label="Close search">×</button>
       </div>
-      <div
-        id="plt-search-results"
-        class="plt-search-results"
-        role="listbox"
-        aria-label="Search results"
-      ></div>
+      <div id="plt-search-results" class="plt-search-results" role="listbox" aria-label="Search results"></div>
     </div>
 
-    <main class="shop-page brand-page">
-      <section class="brand-hero" aria-labelledby="brand-title">
-        <a class="brand-back-link" href="car-brands.html">All car brands</a>
-        <div class="brand-hero-card">
-          <div class="brand-identity">
-            <div class="brand-hero-logo" id="brand-hero-logo" aria-hidden="true">SP</div>
-            <div>
-              <p class="shop-eyebrow" id="brand-region">Car brand</p>
-              <h1 id="brand-title">Loading brand...</h1>
-              <p id="brand-summary">Loading supported models and compatible parts.</p>
-            </div>
-          </div>
-          <form class="brand-fit-form" id="brand-fit-form" autocomplete="off">
-            <div class="brand-fit-head">
-              <p class="shop-eyebrow">Identify your car</p>
-              <h2>Choose year and model</h2>
-            </div>
-            <label class="brand-fit-field">
-              <span>Year</span>
-              <select id="brand-year-select" disabled>
-                <option value="">Loading years...</option>
-              </select>
-            </label>
-            <label class="brand-fit-field">
-              <span>Model</span>
-              <select id="brand-model-select" disabled>
-                <option value="">Choose model</option>
-              </select>
-            </label>
-            <button type="submit" class="btn btn-primary">Show matching parts</button>
-            <button type="button" class="brand-fit-reset" id="brand-fit-reset" hidden>Clear selection</button>
-            <p class="brand-fit-status" id="brand-fit-status" aria-live="polite"></p>
-          </form>
-        </div>
+    <main class="shop-page product-detail-page">
+      <section class="product-detail" id="product-detail" aria-live="polite">
+        <div class="catalog-empty"><strong>Loading product...</strong></div>
       </section>
 
-      <section class="brand-detail-grid" aria-label="Brand catalog">
-        <div class="brand-panel">
-          <div class="brand-panel-head">
-            <h2>All supported models</h2>
-            <span id="brand-model-count">0</span>
-          </div>
-          <div class="brand-model-grid" id="brand-model-grid">
-            <p class="make-grid-status">Loading models...</p>
+      <section class="category-products" aria-labelledby="similar-products-title">
+        <div class="catalog-head">
+          <div>
+            <h2 id="similar-products-title">Similar products</h2>
+            <p class="catalog-summary" id="similar-products-summary">Products from the same category.</p>
           </div>
         </div>
-
-        <div class="brand-panel">
-          <div class="brand-panel-head">
-            <h2>Compatible parts</h2>
-            <span id="brand-part-count">0</span>
-          </div>
-          <div class="brand-parts-grid" id="brand-parts-grid">
-            <p class="make-grid-status">Loading parts...</p>
-          </div>
-        </div>
+        <div class="catalog-grid" id="similar-products-grid"></div>
       </section>
     </main>
+
+    <button type="button" class="cart-fab" id="cart-fab" aria-label="Open cart" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M3 4h2l3 12h11l2-8H6" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="10" cy="20" r="1.5" />
+        <circle cx="18" cy="20" r="1.5" />
+      </svg>
+      <span class="cart-fab-label">Cart</span>
+      <span class="cart-fab-count" id="cart-fab-count">0</span>
+    </button>
+
+    <aside class="cart-drawer" id="cart-drawer" aria-hidden="true" aria-label="Cart">
+      <div class="cart-drawer-head">
+        <h2>Cart</h2>
+        <button type="button" id="cart-close" class="cart-close" aria-label="Close cart">×</button>
+      </div>
+      <div class="cart-drawer-body" id="cart-body"></div>
+      <div class="cart-drawer-foot">
+        <div class="cart-total">
+          <span>Total</span>
+          <strong id="cart-total">kr 0</strong>
+        </div>
+        <button type="button" class="btn btn-primary cart-checkout" id="cart-checkout">Checkout</button>
+      </div>
+    </aside>
+    <div class="cart-backdrop" id="cart-backdrop" hidden></div>
 
     <footer class="site-footer">
       <div class="wrap site-footer-inner">
@@ -227,6 +169,6 @@
     <script src="script.js" defer></script>
     <script src="home.js" defer></script>
     <script src="shop-data.js" defer></script>
-    <script src="brand-page.js" defer></script>
+    <script src="product-detail.js" defer></script>
   </body>
 </html>

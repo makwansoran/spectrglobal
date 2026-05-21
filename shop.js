@@ -504,7 +504,7 @@
       var outOfStock = (part.stock || 0) <= 0;
       var stockLabel = outOfStock ? "Out of stock" : (part.stock || 0) + " in stock";
       return '' +
-        '<article class="product">' +
+        '<article class="product" data-product-id="' + escapeHtml(part.id) + '">' +
           '<div class="product-image"><span>' + escapeHtml(initials(part.name)) + '</span></div>' +
           '<div class="product-body">' +
             '<span class="product-category">' + escapeHtml(part.category || "Car part") + '</span>' +
@@ -530,9 +530,15 @@
     if (grid) {
       grid.addEventListener("click", function (event) {
         var btn = event.target.closest("[data-add-part]");
-        if (!btn) return;
-        Shop.addToCart(btn.dataset.addPart, 1);
-        openCart();
+        if (btn) {
+          Shop.addToCart(btn.dataset.addPart, 1);
+          openCart();
+          return;
+        }
+        var product = event.target.closest("[data-product-id]");
+        if (product) {
+          window.location.href = "product.html?id=" + encodeURIComponent(product.dataset.productId);
+        }
       });
     }
     if (categoryList) {
