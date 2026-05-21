@@ -71,7 +71,6 @@
     document.title = product.name + " | Spectr";
 
     detail.innerHTML = '' +
-      '<a class="brand-back-link" href="javascript:history.back()">Back to listings</a>' +
       '<div class="product-detail-card">' +
         '<div class="product-detail-media"><span>' + escapeHtml(initials(product.name)) + '</span></div>' +
         '<div class="product-detail-body">' +
@@ -182,7 +181,7 @@
             '<button type="button" data-qty-dec aria-label="Minus">-</button>' +
             '<span>' + escapeHtml(line.qty) + '</span>' +
             '<button type="button" data-qty-inc aria-label="Plus">+</button>' +
-            '<button type="button" class="cart-line-remove" data-remove>Remove</button>' +
+            SpectrShop.cartRemoveButtonHtml() +
           '</div>' +
         '</div>';
     }).join("");

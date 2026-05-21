@@ -606,7 +606,7 @@
               '<button type="button" data-qty-dec aria-label="Minus">−</button>' +
               '<span>' + escapeHtml(line.qty) + '</span>' +
               '<button type="button" data-qty-inc aria-label="Plus">+</button>' +
-              '<button type="button" class="cart-line-remove" data-remove>Remove</button>' +
+              SpectrShop.cartRemoveButtonHtml() +
             '</div>' +
           '</div>';
       }).join("");
