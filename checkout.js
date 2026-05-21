@@ -11,6 +11,7 @@
     total: 0,
     customer: null,
     submitting: false,
+    guestOpen: false,
   };
 
   function $(id) {
@@ -150,17 +151,19 @@
   }
 
   function guestHtml() {
+    var openAttr = state.guestOpen ? "true" : "false";
+    var formAttrs = state.guestOpen ? ' class="checkout-guest-form is-open" id="checkout-guest-form"' : ' class="checkout-guest-form" id="checkout-guest-form" hidden';
     return '' +
       '<div class="checkout-login-card">' +
         '<p>Want rewards?</p>' +
-        '<span>Log in before checkout, or continue as guest below.</span>' +
+        '<span>Log in before checkout, or continue as guest.</span>' +
         '<div class="checkout-actions">' +
           '<a href="' + escapeHtml(loginHref()) + '">Log in</a>' +
           '<a href="' + escapeHtml(createAccountHref()) + '">Create account</a>' +
         '</div>' +
       '</div>' +
-      '<form class="checkout-guest-form" id="checkout-guest-form">' +
-        '<h3>Continue as guest</h3>' +
+      '<button type="button" class="checkout-guest-toggle" id="checkout-guest-toggle" aria-expanded="' + openAttr + '" aria-controls="checkout-guest-form"><span>Continue as guest</span><strong aria-hidden="true">⌄</strong></button>' +
+      '<form' + formAttrs + '>' +
         '<label>Full name<input type="text" id="guest-name" autocomplete="name" required placeholder="Your name" /></label>' +
         '<label>Email address<input type="email" id="guest-email" autocomplete="email" required placeholder="you@example.com" /></label>' +
         '<label>Phone number<input type="tel" id="guest-phone" autocomplete="tel" required placeholder="+47 123 45 678" /></label>' +
@@ -176,6 +179,7 @@
           '<option value="United States">United States</option>' +
           '<option value="Other">Other</option>' +
         '</select></label>' +
+        '<button type="submit" class="btn btn-primary checkout-submit" id="checkout-submit">Check Out</button>' +
       '</form>';
   }
 
@@ -186,23 +190,29 @@
       node.innerHTML = "";
       return;
     }
-    node.innerHTML =
-      (state.customer ? signedInHtml(state.customer) : guestHtml()) +
-      '<button type="button" class="btn btn-primary checkout-submit" id="checkout-submit">Check Out</button>';
+    node.innerHTML = state.customer
+      ? signedInHtml(state.customer) + '<button type="button" class="btn btn-primary checkout-submit" id="checkout-submit">Check Out</button>'
+      : guestHtml();
 
     var signedInButton = state.customer && $("checkout-submit");
     if (signedInButton) signedInButton.addEventListener("click", submitCheckout);
 
+    var guestToggle = $("checkout-guest-toggle");
     var guestForm = $("checkout-guest-form");
+    if (guestToggle && guestForm) {
+      guestToggle.addEventListener("click", function () {
+        state.guestOpen = true;
+        guestToggle.setAttribute("aria-expanded", "true");
+        guestForm.hidden = false;
+        guestForm.classList.add("is-open");
+        var nameInput = $("guest-name");
+        if (nameInput) nameInput.focus();
+      });
+    }
     if (guestForm) {
       guestForm.addEventListener("submit", function (event) {
         event.preventDefault();
         submitCheckout();
-      });
-    }
-    if (!state.customer) {
-      $("checkout-submit").addEventListener("click", function () {
-        if (guestForm) guestForm.requestSubmit();
       });
     }
   }

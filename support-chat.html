@@ -54,19 +54,11 @@
               Get instant help with products, fitment, checkout, orders, returns, and customer support.
               The assistant can guide you now and prepare a clean handoff when a person is needed.
             </p>
-
-            <div class="support-chat-highlights" aria-label="Support capabilities">
-              <span>Parts matching</span>
-              <span>Order help</span>
-              <span>Returns</span>
-              <span>Checkout</span>
-            </div>
           </aside>
 
           <section class="support-chat-panel" aria-label="Spectr support chat">
             <div class="support-chat-panel-head">
               <div class="support-agent">
-                <span class="support-agent-avatar">AI</span>
                 <div>
                   <h2>Spectr Assistant</h2>
                   <p><span class="support-live-dot" aria-hidden="true"></span> Online now</p>
@@ -76,13 +68,6 @@
             </div>
 
             <div class="support-chat-messages" id="support-chat-messages" aria-live="polite"></div>
-
-            <div class="support-chat-prompts" aria-label="Quick questions">
-              <button type="button" data-support-prompt="Can you help me find the right part for my car?">Find a part</button>
-              <button type="button" data-support-prompt="I need help with checkout or payment.">Checkout help</button>
-              <button type="button" data-support-prompt="How do returns and refunds work?">Returns</button>
-              <button type="button" data-support-prompt="I want to talk to a human support specialist.">Human support</button>
-            </div>
 
             <form class="support-chat-form" id="support-chat-form">
               <label class="visually-hidden" for="support-chat-input">Message Spectr support</label>
@@ -94,7 +79,11 @@
                 autocomplete="off"
                 required
               ></textarea>
-              <button type="submit" aria-label="Send message">Send</button>
+              <button type="submit" aria-label="Send message">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 19V5M6.5 10.5 12 5l5.5 5.5" />
+                </svg>
+              </button>
             </form>
           </section>
         </div>
