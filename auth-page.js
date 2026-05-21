@@ -94,6 +94,7 @@
         referrer: document.referrer
       });
       saveLocalCustomer(data.user || { name: name, email: email }, remember);
+      if (window.SpectrAuthNav && SpectrAuthNav.refresh) SpectrAuthNav.refresh();
       showMessage("Details saved. Redirecting to the store...", "success");
       setTimeout(function () {
         window.location.href = nextUrl();
