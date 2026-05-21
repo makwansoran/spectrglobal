@@ -73,10 +73,10 @@
   width: 100%;
   height: 2.35rem;
   padding: 0 0.95rem;
-  border: 1px solid rgba(255, 255, 255, 0.24);
+  border: 1px solid rgba(255, 255, 255, 0.82);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--plt-white);
+  background: #ffffff;
+  color: var(--plt-black);
   font-family: "IBM Plex Sans", system-ui, sans-serif;
   font-size: 0.9rem;
   outline: none;
@@ -84,13 +84,13 @@
 }
 
 .plt-header-search-input::placeholder {
-  color: rgba(255, 255, 255, 0.58);
+  color: rgba(0, 0, 0, 0.52);
 }
 
 .plt-header-search-input:focus {
-  border-color: rgba(255, 255, 255, 0.72);
-  background: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+  border-color: #ffffff;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.22), 0 10px 28px rgba(0, 0, 0, 0.28);
 }
 
 .plt-header-search-results {
@@ -103,10 +103,33 @@
   max-height: min(28rem, calc(100vh - 5rem));
   padding: 0.35rem 0.65rem;
   overflow-y: auto;
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 16px;
-  background: color-mix(in srgb, var(--plt-nav-bg) 96%, var(--plt-white));
-  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.4);
+  background: #ffffff;
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.22);
+}
+
+.plt-header-search-results .plt-search-result,
+.plt-header-search-results .cb-search-result {
+  color: var(--plt-black);
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+.plt-header-search-results .plt-search-result:hover,
+.plt-header-search-results .plt-search-result.is-active,
+.plt-header-search-results .cb-search-result:hover,
+.plt-header-search-results .cb-search-result.is-active {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.plt-header-search-results .cb-search-result-mark {
+  background: rgba(0, 0, 0, 0.08);
+  color: var(--plt-black);
+}
+
+.plt-header-search-results .cb-search-result-sub,
+.plt-header-search-results .cb-search-results-empty {
+  color: rgba(0, 0, 0, 0.58);
 }
 
 .plt-header-login {

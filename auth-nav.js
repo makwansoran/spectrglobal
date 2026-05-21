@@ -140,6 +140,15 @@
     { code: "yo", name: "Yoruba", flag: "🇳🇬" },
     { code: "zu", name: "Zulu", flag: "🇿🇦" },
   ];
+  var UNIQUE_FLAG_COUNTRY_CODES = [
+    "ad", "ae", "ag", "ai", "ao", "aq", "ar", "at", "au", "aw", "bb", "bh", "bi", "bj", "bn", "br",
+    "bs", "bt", "bw", "bz", "ca", "ch", "ci", "cl", "cm", "cr", "cu", "cv", "cy", "dj", "dm", "do",
+    "dz", "ec", "eg", "fj", "fm", "ga", "gb", "gd", "gm", "gq", "gt", "gw", "gy", "hn", "jm", "jo",
+    "ke", "ki", "kn", "kp", "kw", "lb", "lc", "li", "lr", "ma", "mc", "md", "me", "mh", "mr", "mu",
+    "mx", "mz", "na", "ne", "ni", "om", "pa", "qa", "sb", "sc", "sg", "sm", "ss", "sv", "sz", "td",
+    "tg", "to", "tn", "tv", "tz", "uy", "vc", "ve", "vu", "ye", "zm",
+  ];
+  var languageFlagCache = null;
 
   function initials(user) {
     var name = (user && user.name) || (user && user.email) || "?";
@@ -220,8 +229,43 @@
     return String.fromCharCode(97 + first - regionalIndicatorA, 97 + second - regionalIndicatorA);
   }
 
+  function countryFlag(countryCode) {
+    return String(countryCode || "")
+      .toUpperCase()
+      .replace(/[A-Z]/g, function (letter) {
+        return String.fromCodePoint(0x1f1e6 + letter.charCodeAt(0) - 65);
+      });
+  }
+
+  function buildLanguageFlagCache() {
+    var used = {};
+    var poolIndex = 0;
+    var cache = {};
+
+    LANGUAGES.forEach(function (language) {
+      var flag = language.flag;
+      if (!flagCountryCode(flag) || used[flag]) {
+        while (poolIndex < UNIQUE_FLAG_COUNTRY_CODES.length) {
+          flag = countryFlag(UNIQUE_FLAG_COUNTRY_CODES[poolIndex]);
+          poolIndex += 1;
+          if (!used[flag]) break;
+        }
+      }
+      used[flag] = true;
+      cache[language.code] = flag;
+    });
+
+    return cache;
+  }
+
+  function displayFlag(language) {
+    if (!languageFlagCache) languageFlagCache = buildLanguageFlagCache();
+    return languageFlagCache[language.code] || language.flag;
+  }
+
   function languageFlagMarkup(language, className) {
-    var countryCode = flagCountryCode(language.flag);
+    var flag = displayFlag(language);
+    var countryCode = flagCountryCode(flag);
     if (countryCode) {
       return (
         '<span class="' +
@@ -231,7 +275,7 @@
         '.png&quot;)" aria-hidden="true"></span>'
       );
     }
-    return '<span class="' + className + '" aria-hidden="true">' + escapeHtml(language.flag) + "</span>";
+    return '<span class="' + className + '" aria-hidden="true">' + escapeHtml(flag) + "</span>";
   }
 
   function readCookie(name) {
