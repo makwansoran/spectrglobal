@@ -619,3 +619,457 @@ where not exists (
     and existing.axle = v.axle
     and existing.notes is not distinct from v.notes
 );
+
+-- Engine oil brands and products. Product approvals are matched to car oil fitment specs.
+create table if not exists public.oil_brands (
+  id uuid primary key default gen_random_uuid(),
+  name text not null,
+  country text,
+  website text,
+  active boolean not null default true,
+  created_at timestamptz not null default now(),
+  constraint oil_brands_name_len check (char_length(trim(name)) between 1 and 120)
+);
+
+alter table public.oil_brands enable row level security;
+
+drop policy if exists "Public read oil brands" on public.oil_brands;
+create policy "Public read oil brands"
+  on public.oil_brands
+  for select
+  to anon, authenticated
+  using (true);
+
+create unique index if not exists oil_brands_name_unique_idx
+  on public.oil_brands (lower(name));
+
+create table if not exists public.oil_products (
+  id uuid primary key default gen_random_uuid(),
+  brand_id uuid not null references public.oil_brands(id) on delete cascade,
+  name text not null,
+  viscosity text not null,
+  base_type text,
+  approvals text[] not null default '{}'::text[],
+  volume_liters numeric(5, 1),
+  price_eur numeric(10, 2),
+  active boolean not null default true,
+  created_at timestamptz not null default now(),
+  constraint oil_products_name_len check (char_length(trim(name)) between 1 and 180),
+  constraint oil_products_viscosity_len check (char_length(trim(viscosity)) between 3 and 20),
+  constraint oil_products_volume_positive check (volume_liters is null or volume_liters > 0),
+  constraint oil_products_price_non_negative check (price_eur is null or price_eur >= 0)
+);
+
+alter table public.oil_products enable row level security;
+
+drop policy if exists "Public read oil products" on public.oil_products;
+create policy "Public read oil products"
+  on public.oil_products
+  for select
+  to anon, authenticated
+  using (true);
+
+create index if not exists idx_oil_products_viscosity
+  on public.oil_products (viscosity);
+
+create index if not exists idx_oil_products_approvals
+  on public.oil_products using gin (approvals);
+
+create unique index if not exists oil_products_brand_name_size_unique_idx
+  on public.oil_products (brand_id, lower(name), viscosity, coalesce(volume_liters, -1));
+
+create table if not exists public.car_oil_fitment (
+  id uuid primary key default gen_random_uuid(),
+  model_id uuid not null references public.models(id) on delete cascade,
+  engine_type text,
+  year_from integer,
+  year_to integer,
+  viscosity text not null,
+  viscosity_alt text,
+  required_specs text[] not null default '{}'::text[],
+  oil_capacity_liters numeric(5, 2),
+  change_interval_km integer,
+  notes text,
+  created_at timestamptz not null default now(),
+  constraint car_oil_fitment_year_range check (year_to is null or year_from is null or year_to >= year_from),
+  constraint car_oil_fitment_engine_type_allowed check (engine_type is null or engine_type in ('petrol', 'diesel', 'hybrid', 'lpg')),
+  constraint car_oil_fitment_capacity_positive check (oil_capacity_liters is null or oil_capacity_liters > 0),
+  constraint car_oil_fitment_interval_positive check (change_interval_km is null or change_interval_km > 0)
+);
+
+alter table public.car_oil_fitment enable row level security;
+
+drop policy if exists "Public read car oil fitment" on public.car_oil_fitment;
+create policy "Public read car oil fitment"
+  on public.car_oil_fitment
+  for select
+  to anon, authenticated
+  using (true);
+
+create index if not exists idx_oil_fitment_model
+  on public.car_oil_fitment (model_id);
+
+create index if not exists idx_oil_fitment_viscosity
+  on public.car_oil_fitment (viscosity);
+
+create index if not exists idx_oil_fitment_required_specs
+  on public.car_oil_fitment using gin (required_specs);
+
+create unique index if not exists car_oil_fitment_model_engine_unique_idx
+  on public.car_oil_fitment (
+    model_id,
+    coalesce(year_from, -1),
+    coalesce(year_to, -1),
+    coalesce(engine_type, ''),
+    viscosity,
+    coalesce(viscosity_alt, ''),
+    coalesce(oil_capacity_liters, -1),
+    coalesce(notes, '')
+  );
+
+insert into public.oil_brands (name, country, website, active)
+select v.name, v.country, v.website, v.active
+from (
+  values
+    ('Castrol', 'United Kingdom', 'castrol.com', true),
+    ('Shell', 'Netherlands', 'shell.com', true),
+    ('Mobil 1', 'USA', 'mobil.com', true),
+    ('Motul', 'France', 'motul.com', true),
+    ('Liqui Moly', 'Germany', 'liqui-moly.com', true),
+    ('Total Energies', 'France', 'totalenergies.com', true),
+    ('Valvoline', 'USA', 'valvoline.com', true),
+    ('Repsol', 'Spain', 'repsol.com', true),
+    ('Fuchs', 'Germany', 'fuchs.com', true),
+    ('Mannol', 'Germany', 'mannol.de', true),
+    ('Havoline', 'USA', 'havoline.com', true),
+    ('Pennzoil', 'USA', 'pennzoil.com', true),
+    ('Elf', 'France', 'elf-lubricants.com', true),
+    ('Gulf', 'USA', 'gulf-oil.com', true),
+    ('Ravenol', 'Germany', 'ravenol.de', true),
+    ('Kroon-Oil', 'Netherlands', 'kroon-oil.com', true),
+    ('WD-40 Specialist', 'USA', 'wd40.com', true),
+    ('Comma', 'United Kingdom', 'commagroup.com', true),
+    ('Q8 Oils', 'Kuwait', 'q8oils.com', true),
+    ('Bardahl', 'USA', 'bardahl.com', true)
+) as v(name, country, website, active)
+where not exists (
+  select 1
+  from public.oil_brands existing
+  where lower(existing.name) = lower(v.name)
+);
+
+insert into public.oil_products (
+  brand_id,
+  name,
+  viscosity,
+  base_type,
+  approvals,
+  volume_liters,
+  price_eur,
+  active
+)
+select
+  b.id,
+  v.name,
+  v.viscosity,
+  v.base_type,
+  v.approvals::text[],
+  v.volume_liters,
+  v.price_eur,
+  true
+from public.oil_brands b
+join (
+  values
+    ('Castrol', 'Edge 5W-30 LL', '5W-30', 'Fully Synthetic', '{VW 504.00,VW 507.00,BMW LL-04,ACEA C3,API SN}', 5.0, 38.99),
+    ('Castrol', 'Edge 0W-30', '0W-30', 'Fully Synthetic', '{BMW LL-17 FE+,BMW LL-04,ACEA C2,API SP}', 5.0, 44.99),
+    ('Castrol', 'Edge 5W-40', '5W-40', 'Fully Synthetic', '{MB 229.5,VW 502.00,VW 505.00,Porsche A40,ACEA A3/B4,API SN}', 5.0, 39.99),
+    ('Castrol', 'Edge 0W-20', '0W-20', 'Fully Synthetic', '{Honda HTO-06,ILSAC GF-6A,Toyota WS,ACEA A1/B1,API SP}', 5.0, 42.99),
+    ('Castrol', 'Edge 0W-40', '0W-40', 'Fully Synthetic', '{MB 229.5,Porsche A40,BMW LL-01,ACEA A3/B4,API SN}', 5.0, 45.99),
+    ('Castrol', 'GTX Ultraclean 10W-40', '10W-40', 'Semi-Synthetic', '{ACEA A3/B4,API SL}', 5.0, 24.99),
+    ('Castrol', 'Magnatec 5W-30 C3', '5W-30', 'Fully Synthetic', '{BMW LL-04,VW 504.00,VW 507.00,ACEA C3,API SN}', 5.0, 36.99),
+    ('Castrol', 'Magnatec 5W-40 A3/B4', '5W-40', 'Fully Synthetic', '{MB 229.3,Renault RN0700,ACEA A3/B4,API SN}', 5.0, 34.99),
+    ('Castrol', 'Magnatec 0W-20 A5', '0W-20', 'Fully Synthetic', '{Ford WSS-M2C948-B,ILSAC GF-6A,ACEA A1/B1,API SP}', 5.0, 38.99),
+    ('Shell', 'Helix Ultra 5W-30', '5W-30', 'Fully Synthetic', '{MB 229.51,BMW LL-04,VW 504.00,VW 507.00,ACEA C3,API SN}', 5.0, 39.99),
+    ('Shell', 'Helix Ultra 5W-40', '5W-40', 'Fully Synthetic', '{MB 229.5,Porsche A40,Renault RN0700,ACEA A3/B4,API SN}', 5.0, 38.99),
+    ('Shell', 'Helix Ultra 0W-20', '0W-20', 'Fully Synthetic', '{Honda HTO-06,Toyota 08880,ILSAC GF-6A,ACEA A1/B1,API SP}', 5.0, 44.99),
+    ('Shell', 'Helix Ultra 0W-30', '0W-30', 'Fully Synthetic', '{BMW LL-17 FE+,BMW LL-04,ACEA C2,API SP}', 5.0, 46.99),
+    ('Shell', 'Helix Ultra ECT C3 5W-30', '5W-30', 'Fully Synthetic', '{BMW LL-04,VW 504.00,VW 507.00,MB 229.51,ACEA C3,API SN}', 5.0, 41.99),
+    ('Shell', 'Helix HX7 10W-40', '10W-40', 'Semi-Synthetic', '{ACEA A3/B4,API SL}', 5.0, 22.99),
+    ('Shell', 'Helix Ultra Racing 10W-60', '10W-60', 'Fully Synthetic', '{Porsche A60,BMW M,ACEA A3/B4,API SN}', 5.0, 64.99),
+    ('Mobil 1', 'ESP 5W-30', '5W-30', 'Fully Synthetic', '{MB 229.51,MB 229.52,BMW LL-04,VW 504.00,VW 507.00,ACEA C3,API SN}', 5.0, 42.99),
+    ('Mobil 1', 'New Life 0W-40', '0W-40', 'Fully Synthetic', '{MB 229.5,Porsche A40,BMW LL-01,ACEA A3/B4,API SN}', 5.0, 47.99),
+    ('Mobil 1', 'FS 0W-40', '0W-40', 'Fully Synthetic', '{MB 229.5,Porsche A40,ACEA A3/B4,API SN}', 5.0, 46.99),
+    ('Mobil 1', 'ESP Formula 0W-30', '0W-30', 'Fully Synthetic', '{BMW LL-04,BMW LL-17 FE+,MB 229.52,ACEA C2,API SP}', 5.0, 48.99),
+    ('Mobil 1', 'Advanced Fuel Economy 0W-20', '0W-20', 'Fully Synthetic', '{ILSAC GF-6A,API SP,Honda HTO-06,Toyota 08880}', 5.0, 44.99),
+    ('Mobil 1', 'Turbo Diesel 0W-40', '0W-40', 'Fully Synthetic', '{MB 229.5,VW 505.00,ACEA A3/B4,API CF}', 5.0, 45.99),
+    ('Motul', '8100 X-clean+ 5W-30', '5W-30', 'Fully Synthetic', '{BMW LL-04,MB 229.51,VW 504.00,VW 507.00,Porsche C30,ACEA C3,API SN}', 5.0, 43.99),
+    ('Motul', '8100 X-cess 5W-40', '5W-40', 'Fully Synthetic', '{MB 229.3,Renault RN0700,ACEA A3/B4,API SN}', 5.0, 41.99),
+    ('Motul', '8100 Eco-nergy 0W-30', '0W-30', 'Fully Synthetic', '{Ford WSS-M2C913-D,Renault RN0710,ACEA A5/B5,API SN}', 5.0, 44.99),
+    ('Motul', '8100 X-clean EFE 5W-30', '5W-30', 'Fully Synthetic', '{BMW LL-04,VW 504.00,VW 507.00,MB 229.52,ACEA C3,API SN}', 5.0, 45.99),
+    ('Motul', '300V Power 5W-40', '5W-40', 'Fully Synthetic', '{ACEA A3/B4,API SN}', 5.0, 69.99),
+    ('Motul', '8100 X-clean 0W-30', '0W-30', 'Fully Synthetic', '{BMW LL-04,BMW LL-17 FE+,MB 229.52,ACEA C2,API SP}', 5.0, 46.99),
+    ('Liqui Moly', 'Synthoil High Tech 5W-30', '5W-30', 'Fully Synthetic', '{BMW LL-04,MB 229.51,VW 504.00,VW 507.00,ACEA C3,API SN}', 5.0, 46.99),
+    ('Liqui Moly', 'Leichtlauf High Tech 5W-40', '5W-40', 'Fully Synthetic', '{MB 229.3,VW 502.00,VW 505.00,Renault RN0700,ACEA A3/B4}', 5.0, 43.99),
+    ('Liqui Moly', 'Longtime High Tech 5W-30', '5W-30', 'Fully Synthetic', '{BMW LL-01,BMW LL-04,MB 229.5,VW 503.00,ACEA A3/B4}', 5.0, 44.99),
+    ('Liqui Moly', 'Top Tec 6200 0W-20', '0W-20', 'Fully Synthetic', '{BMW LL-17 FE+,MB 229.71,VW 508.00,VW 509.00,ACEA C5}', 5.0, 52.99),
+    ('Liqui Moly', 'Top Tec 4200 5W-30', '5W-30', 'Fully Synthetic', '{MB 229.51,BMW LL-04,VW 504.00,ACEA C3}', 5.0, 47.99),
+    ('Liqui Moly', 'MoS2 Leichtlauf 10W-40', '10W-40', 'Semi-Synthetic', '{ACEA A3/B3,API SL}', 5.0, 28.99),
+    ('Total Energies', 'Quartz 9000 Future XT 5W-30', '5W-30', 'Fully Synthetic', '{PSA B71 2312,Renault RN0710,Ford WSS-M2C913-D,ACEA C2}', 5.0, 37.99),
+    ('Total Energies', 'Quartz 9000 Energy 0W-30', '0W-30', 'Fully Synthetic', '{BMW LL-04,BMW LL-17 FE+,ACEA C2,API SP}', 5.0, 41.99),
+    ('Total Energies', 'Quartz 7000 10W-40', '10W-40', 'Semi-Synthetic', '{ACEA A3/B4,API SL}', 5.0, 23.99),
+    ('Elf', 'Evolution 900 SXR 5W-30', '5W-30', 'Fully Synthetic', '{Renault RN0710,PSA B71 2312,Ford WSS-M2C913,ACEA C2}', 5.0, 36.99),
+    ('Elf', 'Evolution 900 NF 5W-40', '5W-40', 'Fully Synthetic', '{Renault RN0700,ACEA A3/B4,API SN}', 5.0, 34.99),
+    ('Fuchs', 'Titan GT1 Pro C-3 5W-30', '5W-30', 'Fully Synthetic', '{BMW LL-04,VW 504.00,VW 507.00,MB 229.52,ACEA C3}', 5.0, 44.99),
+    ('Fuchs', 'Titan GT1 Flex 5 0W-20', '0W-20', 'Fully Synthetic', '{BMW LL-17 FE+,MB 229.71,VW 508.00,VW 509.00,ACEA C5}', 5.0, 49.99),
+    ('Fuchs', 'Titan Race Pro S 5W-50', '5W-50', 'Fully Synthetic', '{BMW M,Porsche A50,ACEA A3/B4}', 5.0, 59.99),
+    ('Ravenol', 'VST SAE 5W-40', '5W-40', 'Fully Synthetic', '{MB 229.5,VW 502.00,VW 505.00,Porsche A40,ACEA A3/B4,API SN}', 5.0, 39.99),
+    ('Ravenol', 'HCS SAE 5W-40', '5W-40', 'Fully Synthetic', '{MB 229.3,ACEA A3/B4,API SN}', 5.0, 33.99),
+    ('Mannol', 'Energy Premium 5W-30', '5W-30', 'Fully Synthetic', '{VW 504.00,VW 507.00,MB 229.51,BMW LL-04,ACEA C3,API SN}', 5.0, 27.99),
+    ('Mannol', '7707 OEM 5W-30', '5W-30', 'Fully Synthetic', '{Renault RN0710,PSA B71 2312,ACEA C2,API SN}', 5.0, 26.99),
+    ('Mannol', 'Energy Formula JP 0W-20', '0W-20', 'Fully Synthetic', '{ILSAC GF-6A,Honda HTO-06,Toyota 08880,API SP}', 5.0, 29.99),
+    ('Mannol', 'Extreme 5W-40', '5W-40', 'Fully Synthetic', '{MB 229.3,VW 502.00,Renault RN0700,ACEA A3/B4,API SN}', 5.0, 24.99),
+    ('Mannol', 'Classic 10W-40', '10W-40', 'Semi-Synthetic', '{ACEA A3/B4,API SL}', 5.0, 18.99),
+    ('Valvoline', 'SynPower MST C3 5W-30', '5W-30', 'Fully Synthetic', '{BMW LL-04,MB 229.51,VW 504.00,VW 507.00,ACEA C3,API SN}', 5.0, 38.99),
+    ('Valvoline', 'SynPower XT C2/C3 5W-30', '5W-30', 'Fully Synthetic', '{Renault RN0710,PSA B71 2312,Ford WSS-M2C913-D,ACEA C2,C3}', 5.0, 37.99),
+    ('Valvoline', 'SynPower 0W-40', '0W-40', 'Fully Synthetic', '{MB 229.5,Porsche A40,ACEA A3/B4,API SN}', 5.0, 43.99),
+    ('Gulf', 'Formula G 5W-30', '5W-30', 'Fully Synthetic', '{BMW LL-04,VW 504.00,MB 229.51,ACEA C3,API SN}', 5.0, 33.99),
+    ('Gulf', 'Formula G 0W-20', '0W-20', 'Fully Synthetic', '{ILSAC GF-6A,Honda HTO-06,ACEA A1/B1,API SP}', 5.0, 35.99),
+    ('Gulf', 'Ultrasynth X 5W-40', '5W-40', 'Fully Synthetic', '{MB 229.3,ACEA A3/B4,API SN}', 5.0, 31.99)
+) as v(brand_name, name, viscosity, base_type, approvals, volume_liters, price_eur)
+  on lower(b.name) = lower(v.brand_name)
+where not exists (
+  select 1
+  from public.oil_products existing
+  where existing.brand_id = b.id
+    and lower(existing.name) = lower(v.name)
+    and existing.viscosity = v.viscosity
+    and existing.volume_liters is not distinct from v.volume_liters
+);
+
+insert into public.car_oil_fitment (
+  model_id,
+  year_from,
+  year_to,
+  engine_type,
+  viscosity,
+  viscosity_alt,
+  required_specs,
+  oil_capacity_liters,
+  change_interval_km,
+  notes
+)
+select
+  mo.id,
+  v.year_from,
+  v.year_to,
+  v.engine_type,
+  v.viscosity,
+  v.viscosity_alt,
+  v.required_specs::text[],
+  v.oil_capacity_liters,
+  v.change_interval_km,
+  v.notes
+from public.models mo
+join public.makes ma on mo.make_id = ma.id
+join (
+  values
+    ('BMW', '1 Series', 2011, null, 'petrol', '5W-30', '0W-30', '{BMW LL-04}', 5.0, 15000, 'N13/N43/B38 engine'),
+    ('BMW', '1 Series', 2011, null, 'diesel', '5W-30', '0W-30', '{BMW LL-04}', 4.5, 15000, 'N47/B37 engine'),
+    ('BMW', '2 Series', 2013, null, 'petrol', '5W-30', '0W-30', '{BMW LL-04}', 5.0, 15000, 'B48 engine'),
+    ('BMW', '2 Series', 2013, null, 'diesel', '5W-30', '0W-30', '{BMW LL-04}', 4.5, 15000, 'B47 engine'),
+    ('BMW', '3 Series', 2019, null, 'petrol', '5W-30', '0W-30', '{BMW LL-04}', 5.0, 15000, 'B48 engine (G20)'),
+    ('BMW', '3 Series', 2019, null, 'diesel', '5W-30', '0W-30', '{BMW LL-04}', 5.5, 15000, 'B57 engine (G20)'),
+    ('BMW', '3 Series', 2019, null, 'hybrid', '5W-30', '0W-30', '{BMW LL-04}', 5.0, 15000, '330e PHEV (G20)'),
+    ('BMW', '4 Series', 2020, null, 'petrol', '5W-30', '0W-30', '{BMW LL-04}', 5.0, 15000, 'B48 engine'),
+    ('BMW', '4 Series', 2020, null, 'diesel', '5W-30', '0W-30', '{BMW LL-04}', 5.5, 15000, 'B57 engine'),
+    ('BMW', '5 Series', 2017, null, 'petrol', '5W-30', '0W-30', '{BMW LL-04}', 5.0, 15000, 'B48/B58 engine (G30)'),
+    ('BMW', '5 Series', 2017, null, 'diesel', '5W-30', '0W-30', '{BMW LL-04}', 6.5, 15000, 'B57 engine (G30)'),
+    ('BMW', '5 Series', 2017, null, 'hybrid', '5W-30', '0W-30', '{BMW LL-04}', 5.0, 15000, '530e/545e PHEV'),
+    ('BMW', '7 Series', 2015, null, 'petrol', '5W-30', '0W-30', '{BMW LL-04}', 6.5, 15000, 'B58/N63 engine (G11)'),
+    ('BMW', '7 Series', 2015, null, 'diesel', '5W-30', '0W-30', '{BMW LL-04}', 7.0, 15000, 'B57 engine (G11)'),
+    ('BMW', 'X1', 2015, null, 'petrol', '5W-30', '0W-30', '{BMW LL-04}', 4.5, 15000, 'B38 engine'),
+    ('BMW', 'X1', 2015, null, 'diesel', '5W-30', '0W-30', '{BMW LL-04}', 4.5, 15000, 'B37/B47 engine'),
+    ('BMW', 'X3', 2017, null, 'petrol', '5W-30', '0W-30', '{BMW LL-04}', 5.0, 15000, 'B48 engine (G01)'),
+    ('BMW', 'X3', 2017, null, 'diesel', '5W-30', '0W-30', '{BMW LL-04}', 5.5, 15000, 'B47/B57 engine (G01)'),
+    ('BMW', 'X5', 2018, null, 'petrol', '5W-30', '0W-30', '{BMW LL-04}', 6.5, 15000, 'B58 engine (G05)'),
+    ('BMW', 'X5', 2018, null, 'diesel', '5W-30', '0W-30', '{BMW LL-04}', 7.0, 15000, 'B57 engine (G05)'),
+    ('BMW', 'X5', 2018, null, 'hybrid', '5W-30', '0W-30', '{BMW LL-04}', 6.5, 15000, 'xDrive45e PHEV'),
+    ('BMW', 'Z4', 2018, null, 'petrol', '5W-30', '0W-30', '{BMW LL-04}', 5.0, 15000, 'B48/B58 engine'),
+    ('Volkswagen', 'Golf', 2012, 2019, 'petrol', '5W-30', '0W-30', '{VW 504.00}', 4.5, 15000, 'EA888 TSI (Mk7)'),
+    ('Volkswagen', 'Golf', 2012, 2019, 'diesel', '5W-30', null, '{VW 507.00}', 4.3, 15000, 'EA288 TDI (Mk7)'),
+    ('Volkswagen', 'Golf', 2019, null, 'petrol', '5W-30', '0W-20', '{VW 504.00,VW 508.00}', 4.5, 15000, 'EA888 TSI (Mk8)'),
+    ('Volkswagen', 'Golf', 2019, null, 'diesel', '5W-30', '0W-20', '{VW 507.00,VW 509.00}', 4.3, 15000, 'EA288 TDI (Mk8)'),
+    ('Volkswagen', 'Golf', 2019, null, 'hybrid', '5W-30', '0W-20', '{VW 504.00,VW 508.00}', 4.5, 15000, 'GTE PHEV (Mk8)'),
+    ('Volkswagen', 'Polo', 2017, null, 'petrol', '5W-30', null, '{VW 504.00}', 3.6, 15000, 'EA211 TSI'),
+    ('Volkswagen', 'Passat', 2014, null, 'petrol', '5W-30', '0W-20', '{VW 504.00,VW 508.00}', 4.5, 15000, 'EA888 TSI (B8)'),
+    ('Volkswagen', 'Passat', 2014, null, 'diesel', '5W-30', '0W-20', '{VW 507.00,VW 509.00}', 4.3, 15000, 'EA288 TDI (B8)'),
+    ('Volkswagen', 'Tiguan', 2016, null, 'petrol', '5W-30', '0W-20', '{VW 504.00,VW 508.00}', 4.5, 15000, 'EA888 TSI'),
+    ('Volkswagen', 'Tiguan', 2016, null, 'diesel', '5W-30', '0W-20', '{VW 507.00,VW 509.00}', 4.3, 15000, 'EA288 TDI'),
+    ('Volkswagen', 'Amarok', 2010, null, 'diesel', '5W-30', null, '{VW 507.00}', 5.7, 15000, 'TDI V6 / 2.0 TDI'),
+    ('Volkswagen', 'Transporter', 2015, null, 'diesel', '5W-30', null, '{VW 507.00}', 5.7, 15000, 'T6 TDI'),
+    ('Audi', 'A3', 2012, null, 'petrol', '5W-30', '0W-20', '{VW 504.00,VW 508.00}', 4.5, 15000, 'EA888 TFSI'),
+    ('Audi', 'A3', 2012, null, 'diesel', '5W-30', '0W-20', '{VW 507.00,VW 509.00}', 4.3, 15000, 'EA288 TDI'),
+    ('Audi', 'A4', 2015, null, 'petrol', '5W-30', '0W-20', '{VW 504.00,VW 508.00}', 4.5, 15000, 'EA888 TFSI (B9)'),
+    ('Audi', 'A4', 2015, null, 'diesel', '5W-30', '0W-20', '{VW 507.00,VW 509.00}', 4.3, 15000, 'EA288 TDI (B9)'),
+    ('Audi', 'A6', 2018, null, 'petrol', '5W-30', '0W-20', '{VW 504.00,VW 508.00}', 5.7, 15000, 'EA839 TFSI V6 (C8)'),
+    ('Audi', 'A6', 2018, null, 'diesel', '5W-30', '0W-20', '{VW 507.00,VW 509.00}', 5.7, 15000, 'EA898 TDI V6 (C8)'),
+    ('Audi', 'Q5', 2016, null, 'petrol', '5W-30', '0W-20', '{VW 504.00,VW 508.00}', 5.7, 15000, 'EA839 TFSI (FY)'),
+    ('Audi', 'Q5', 2016, null, 'diesel', '5W-30', '0W-20', '{VW 507.00,VW 509.00}', 5.7, 15000, 'EA288 TDI (FY)'),
+    ('Audi', 'Q7', 2015, null, 'petrol', '5W-30', '0W-20', '{VW 504.00,VW 508.00}', 7.0, 15000, 'EA839 TFSI V6'),
+    ('Audi', 'Q7', 2015, null, 'diesel', '5W-30', '0W-20', '{VW 507.00,VW 509.00}', 7.0, 15000, 'EA898 TDI V6'),
+    ('Audi', 'R8', 2015, null, 'petrol', '5W-40', null, '{VW 502.00}', 9.5, 10000, 'FSI V10'),
+    ('Mercedes-Benz', 'A-Class', 2018, null, 'petrol', '5W-30', '0W-20', '{MB 229.51,MB 229.71}', 5.5, 15000, 'M282 engine (W177)'),
+    ('Mercedes-Benz', 'A-Class', 2018, null, 'diesel', '5W-30', null, '{MB 229.51,MB 229.52}', 5.5, 15000, 'OM654 engine (W177)'),
+    ('Mercedes-Benz', 'C-Class', 2014, null, 'petrol', '5W-30', '0W-20', '{MB 229.51,MB 229.71}', 6.5, 15000, 'M274/M264 engine'),
+    ('Mercedes-Benz', 'C-Class', 2014, null, 'diesel', '5W-30', null, '{MB 229.51,MB 229.52}', 6.5, 15000, 'OM651/OM654 engine'),
+    ('Mercedes-Benz', 'C-Class', 2014, null, 'hybrid', '5W-30', '0W-20', '{MB 229.51,MB 229.71}', 6.5, 15000, 'C300e PHEV'),
+    ('Mercedes-Benz', 'E-Class', 2016, null, 'petrol', '5W-30', '0W-20', '{MB 229.51,MB 229.71}', 7.5, 15000, 'M274/M264 (W213)'),
+    ('Mercedes-Benz', 'E-Class', 2016, null, 'diesel', '5W-30', null, '{MB 229.51,MB 229.52}', 7.5, 15000, 'OM654 (W213)'),
+    ('Mercedes-Benz', 'GLC', 2015, null, 'petrol', '5W-30', '0W-20', '{MB 229.51,MB 229.71}', 6.5, 15000, 'M274/M264'),
+    ('Mercedes-Benz', 'GLC', 2015, null, 'diesel', '5W-30', null, '{MB 229.51,MB 229.52}', 6.5, 15000, 'OM651/OM654'),
+    ('Mercedes-Benz', 'GLE', 2019, null, 'petrol', '5W-30', '0W-20', '{MB 229.51,MB 229.71}', 7.5, 15000, 'M256 (W167)'),
+    ('Mercedes-Benz', 'GLE', 2019, null, 'diesel', '5W-30', null, '{MB 229.51,MB 229.52}', 8.5, 15000, 'OM656 (W167)'),
+    ('Mercedes-Benz', 'G-Class', 2018, null, 'petrol', '5W-40', null, '{MB 229.5}', 9.0, 10000, 'M176 V8 AMG'),
+    ('Mercedes-Benz', 'Sprinter', 2018, null, 'diesel', '5W-30', null, '{MB 229.51}', 7.0, 20000, 'OM651/OM654'),
+    ('Mercedes-Benz', 'Vito', 2014, null, 'diesel', '5W-30', null, '{MB 229.51}', 6.0, 15000, 'OM651/OM622'),
+    ('Mercedes-Benz', 'AMG GT', 2014, null, 'petrol', '0W-40', null, '{MB 229.5}', 8.5, 10000, 'M178 V8 BiTurbo'),
+    ('Porsche', '911', 2019, null, 'petrol', '0W-40', '5W-40', '{Porsche A40}', 8.75, 10000, 'Flat-6 (992)'),
+    ('Porsche', 'Cayenne', 2017, null, 'petrol', '0W-40', '5W-40', '{Porsche A40}', 8.75, 10000, 'V6/V8 (9YA)'),
+    ('Porsche', 'Cayenne', 2017, null, 'diesel', '5W-30', null, '{VW 507.00}', 8.0, 15000, 'V6 TDI (9YA)'),
+    ('Porsche', 'Cayenne', 2017, null, 'hybrid', '0W-40', '5W-40', '{Porsche A40}', 8.75, 10000, 'E-Hybrid PHEV'),
+    ('Porsche', 'Macan', 2018, null, 'petrol', '5W-40', null, '{Porsche A40,VW 502.00}', 5.7, 10000, 'EA839/EA888'),
+    ('Porsche', 'Panamera', 2016, null, 'petrol', '0W-40', '5W-40', '{Porsche A40}', 8.75, 10000, 'V6/V8'),
+    ('Toyota', 'Corolla', 2018, null, 'petrol', '0W-20', '5W-30', '{ILSAC GF-6A}', 4.2, 15000, '2ZR/M20A engine (E210)'),
+    ('Toyota', 'Corolla', 2018, null, 'hybrid', '0W-20', '5W-30', '{ILSAC GF-6A}', 4.2, 15000, '2ZR-FXE hybrid (E210)'),
+    ('Toyota', 'Camry', 2017, null, 'petrol', '0W-20', '5W-30', '{ILSAC GF-6A}', 4.7, 15000, 'A25A/2AR engine'),
+    ('Toyota', 'Camry', 2017, null, 'hybrid', '0W-20', '5W-30', '{ILSAC GF-6A}', 4.7, 15000, 'A25A-FXS hybrid'),
+    ('Toyota', 'RAV4', 2018, null, 'petrol', '0W-20', '5W-30', '{ILSAC GF-6A}', 4.5, 15000, 'M20A engine (XA50)'),
+    ('Toyota', 'RAV4', 2018, null, 'hybrid', '0W-20', '5W-30', '{ILSAC GF-6A}', 4.5, 15000, 'A25A-FXS hybrid (XA50)'),
+    ('Toyota', 'Yaris', 2020, null, 'petrol', '0W-20', null, '{ILSAC GF-6A}', 3.6, 15000, '1KR-VE/M15A engine'),
+    ('Toyota', 'Yaris', 2020, null, 'hybrid', '0W-20', null, '{ILSAC GF-6A}', 3.6, 15000, 'M15A-FXE hybrid'),
+    ('Toyota', 'Land Cruiser', 2021, null, 'petrol', '0W-20', '5W-30', '{ILSAC GF-6A}', 9.5, 10000, 'V35A V6 Turbo (J300)'),
+    ('Toyota', 'Land Cruiser', 2021, null, 'diesel', '5W-30', null, '{ILSAC GF-6A}', 9.5, 10000, 'F33A V6 Turbo Diesel'),
+    ('Toyota', 'Hilux', 2015, null, 'diesel', '5W-30', null, '{ILSAC GF-6A}', 6.0, 10000, '2GD-FTV/1GD-FTV diesel'),
+    ('Toyota', 'Supra', 2019, null, 'petrol', '5W-30', '0W-30', '{BMW LL-04}', 5.0, 15000, 'B58 engine (shared BMW)'),
+    ('Toyota', 'GR86', 2021, null, 'petrol', '5W-30', '0W-20', '{ILSAC GF-6A}', 5.5, 10000, 'FA24D boxer'),
+    ('Honda', 'Civic', 2022, null, 'petrol', '0W-20', null, '{Honda HTO-06}', 3.7, 10000, '1.5T VTEC Turbo (FE/FL)'),
+    ('Honda', 'Accord', 2017, null, 'petrol', '0W-20', null, '{Honda HTO-06}', 3.7, 10000, '1.5T/2.0T VTEC'),
+    ('Honda', 'CR-V', 2018, null, 'petrol', '0W-20', null, '{Honda HTO-06}', 3.7, 10000, '1.5T VTEC (RW/RT)'),
+    ('Honda', 'CR-V', 2018, null, 'hybrid', '0W-20', null, '{Honda HTO-06}', 3.7, 10000, 'e:HEV hybrid'),
+    ('Honda', 'HR-V', 2021, null, 'hybrid', '0W-20', null, '{Honda HTO-06}', 3.7, 10000, 'e:HEV hybrid (RV)'),
+    ('Honda', 'Jazz', 2020, null, 'hybrid', '0W-20', null, '{Honda HTO-06}', 2.3, 10000, 'e:HEV hybrid (GR)'),
+    ('Nissan', 'Qashqai', 2021, null, 'petrol', '5W-30', '0W-20', '{Renault RN0710}', 5.0, 15000, '1.3T DiG-T (J12)'),
+    ('Nissan', 'Qashqai', 2021, null, 'hybrid', '5W-30', null, '{Renault RN0710}', 5.0, 15000, 'e-Power hybrid'),
+    ('Nissan', 'X-Trail', 2021, null, 'petrol', '5W-30', '0W-20', '{Renault RN0710}', 5.5, 15000, '1.5T (T33)'),
+    ('Nissan', 'X-Trail', 2021, null, 'hybrid', '5W-30', null, '{Renault RN0710}', 5.5, 15000, 'e-Power (T33)'),
+    ('Nissan', 'Juke', 2019, null, 'petrol', '5W-30', null, '{Renault RN0710}', 4.9, 15000, '1.0T DiG-T (F16)'),
+    ('Nissan', 'Navara', 2015, null, 'diesel', '5W-30', null, '{Renault RN0710}', 6.5, 10000, '2.3 dCi diesel'),
+    ('Nissan', 'GT-R', 2007, null, 'petrol', '5W-40', null, '{ACEA A3/B4}', 5.5, 10000, 'VR38DETT V6 Twin Turbo'),
+    ('Mazda', 'Mazda3', 2018, null, 'petrol', '0W-20', null, '{ILSAC GF-6A}', 4.0, 10000, '2.0 SkyActiv-G (BP)'),
+    ('Mazda', 'Mazda3', 2018, null, 'diesel', '5W-30', null, '{ACEA C3}', 5.0, 10000, '1.8 SkyActiv-D (BP)'),
+    ('Mazda', 'CX-5', 2017, null, 'petrol', '0W-20', null, '{ILSAC GF-6A}', 4.5, 10000, '2.0/2.5 SkyActiv-G (KF)'),
+    ('Mazda', 'CX-5', 2017, null, 'diesel', '5W-30', null, '{ACEA C3}', 5.7, 10000, '2.2 SkyActiv-D (KF)'),
+    ('Mazda', 'MX-5', 2015, null, 'petrol', '5W-30', '0W-20', '{ILSAC GF-6A}', 4.0, 10000, 'P5-VP/P5-VPS SkyActiv'),
+    ('Subaru', 'Impreza', 2017, null, 'petrol', '0W-20', '5W-30', '{ILSAC GF-6A}', 5.3, 10000, 'FB16/FB20 Boxer'),
+    ('Subaru', 'WRX', 2021, null, 'petrol', '5W-30', null, '{ILSAC GF-6A}', 5.5, 10000, 'FA24F Turbo Boxer'),
+    ('Subaru', 'Forester', 2018, null, 'petrol', '0W-20', '5W-30', '{ILSAC GF-6A}', 5.3, 10000, 'FB20B (SK)'),
+    ('Subaru', 'Forester', 2018, null, 'hybrid', '0W-20', '5W-30', '{ILSAC GF-6A}', 5.3, 10000, 'e-Boxer hybrid'),
+    ('Subaru', 'Outback', 2019, null, 'petrol', '0W-20', '5W-30', '{ILSAC GF-6A}', 5.3, 10000, 'FB25D (BT)'),
+    ('Hyundai', 'Tucson', 2020, null, 'petrol', '5W-30', '0W-20', '{Hyundai SP}', 4.2, 10000, '1.6T Smartstream (NX4)'),
+    ('Hyundai', 'Tucson', 2020, null, 'diesel', '5W-30', null, '{Hyundai SP}', 5.0, 10000, '2.0 CRDi (NX4)'),
+    ('Hyundai', 'Tucson', 2020, null, 'hybrid', '5W-30', '0W-20', '{Hyundai SP}', 4.2, 10000, '1.6T PHEV (NX4)'),
+    ('Hyundai', 'i30', 2017, null, 'petrol', '5W-30', '0W-20', '{Hyundai SP}', 3.8, 10000, '1.0T/1.4T (PD)'),
+    ('Hyundai', 'i30', 2017, null, 'diesel', '5W-30', null, '{Hyundai SP}', 4.0, 10000, '1.6 CRDi (PD)'),
+    ('Hyundai', 'i20', 2020, null, 'petrol', '5W-30', '0W-20', '{Hyundai SP}', 3.3, 10000, '1.0T Smartstream (BC3)'),
+    ('Hyundai', 'Kona', 2017, null, 'petrol', '5W-30', '0W-20', '{Hyundai SP}', 3.8, 10000, '1.0T/1.6T'),
+    ('Hyundai', 'Santa Fe', 2018, null, 'petrol', '5W-30', '0W-20', '{Hyundai SP}', 4.8, 10000, '2.5T (TM)'),
+    ('Hyundai', 'Santa Fe', 2018, null, 'diesel', '5W-30', null, '{Hyundai SP}', 5.8, 10000, '2.2 CRDi (TM)'),
+    ('Hyundai', 'Palisade', 2018, null, 'petrol', '5W-30', '0W-20', '{Hyundai SP}', 5.5, 10000, '3.8 V6'),
+    ('Hyundai', 'Palisade', 2018, null, 'diesel', '5W-30', null, '{Hyundai SP}', 6.0, 10000, '2.2 CRDi'),
+    ('Kia', 'Sportage', 2021, null, 'petrol', '5W-30', '0W-20', '{Hyundai SP}', 4.2, 10000, '1.6T Smartstream (NQ5)'),
+    ('Kia', 'Sportage', 2021, null, 'diesel', '5W-30', null, '{Hyundai SP}', 5.0, 10000, '2.0 CRDi (NQ5)'),
+    ('Kia', 'Sportage', 2021, null, 'hybrid', '5W-30', '0W-20', '{Hyundai SP}', 4.2, 10000, '1.6T PHEV (NQ5)'),
+    ('Kia', 'Ceed', 2018, null, 'petrol', '5W-30', '0W-20', '{Hyundai SP}', 3.8, 10000, '1.0T/1.4T (CD)'),
+    ('Kia', 'Ceed', 2018, null, 'diesel', '5W-30', null, '{Hyundai SP}', 4.0, 10000, '1.6 CRDi (CD)'),
+    ('Kia', 'Sorento', 2020, null, 'petrol', '5W-30', '0W-20', '{Hyundai SP}', 4.8, 10000, '2.5T (MQ4)'),
+    ('Kia', 'Sorento', 2020, null, 'diesel', '5W-30', null, '{Hyundai SP}', 5.8, 10000, '2.2 CRDi (MQ4)'),
+    ('Kia', 'Stinger', 2017, null, 'petrol', '5W-30', '0W-20', '{Hyundai SP}', 5.5, 10000, '2.5T / 3.3T V6'),
+    ('Kia', 'Niro', 2016, null, 'hybrid', '5W-30', '0W-20', '{Hyundai SP}', 3.3, 10000, '1.6 GDi Hybrid'),
+    ('Ford', 'Focus', 2018, 2022, 'petrol', '5W-30', '0W-20', '{Ford WSS-M2C913-D}', 3.8, 15000, '1.0T/1.5T EcoBoost (Mk4)'),
+    ('Ford', 'Focus', 2018, 2022, 'diesel', '5W-30', null, '{Ford WSS-M2C913-D}', 5.0, 15000, '1.5T/2.0T EcoBlue (Mk4)'),
+    ('Ford', 'Kuga', 2019, null, 'petrol', '5W-30', '0W-20', '{Ford WSS-M2C913-D}', 3.8, 15000, '1.5T/2.5T EcoBoost (Mk3)'),
+    ('Ford', 'Kuga', 2019, null, 'diesel', '5W-30', null, '{Ford WSS-M2C913-D}', 5.0, 15000, '2.0T EcoBlue (Mk3)'),
+    ('Ford', 'Kuga', 2019, null, 'hybrid', '5W-30', '0W-20', '{Ford WSS-M2C913-D}', 3.8, 15000, 'PHEV 2.5T'),
+    ('Ford', 'Mustang', 2015, null, 'petrol', '5W-50', null, '{Ford WSS-M2C937-A}', 9.0, 10000, '5.0 Coyote V8'),
+    ('Ford', 'Mustang', 2015, null, 'petrol', '5W-30', null, '{Ford WSS-M2C913-D}', 5.7, 10000, '2.3T EcoBoost'),
+    ('Ford', 'Explorer', 2019, null, 'petrol', '5W-30', null, '{Ford WSS-M2C913-D}', 5.7, 10000, '3.0T EcoBoost'),
+    ('Ford', 'Transit', 2013, null, 'diesel', '5W-30', null, '{Ford WSS-M2C913-D}', 8.5, 15000, '2.0T EcoBlue'),
+    ('Volvo', 'XC60', 2017, null, 'petrol', '0W-20', '5W-30', '{Volvo VCC-RBS0-2AE}', 6.5, 15000, 'B4/B6 petrol (246)'),
+    ('Volvo', 'XC60', 2017, null, 'diesel', '0W-20', '5W-30', '{Volvo VCC-RBS0-2AE}', 6.5, 15000, 'D4/D5 diesel (246)'),
+    ('Volvo', 'XC60', 2017, null, 'hybrid', '0W-20', '5W-30', '{Volvo VCC-RBS0-2AE}', 6.5, 15000, 'T6/T8 Recharge PHEV'),
+    ('Volvo', 'XC90', 2015, null, 'petrol', '0W-20', '5W-30', '{Volvo VCC-RBS0-2AE}', 8.5, 15000, 'B5/B6 (SPA)'),
+    ('Volvo', 'XC90', 2015, null, 'diesel', '0W-20', '5W-30', '{Volvo VCC-RBS0-2AE}', 8.5, 15000, 'D5 diesel'),
+    ('Volvo', 'XC90', 2015, null, 'hybrid', '0W-20', '5W-30', '{Volvo VCC-RBS0-2AE}', 8.5, 15000, 'T8 Recharge PHEV'),
+    ('Volvo', 'XC40', 2017, null, 'petrol', '0W-20', '5W-30', '{Volvo VCC-RBS0-2AE}', 4.2, 15000, 'B3/B4 petrol'),
+    ('Volvo', 'XC40', 2017, null, 'diesel', '0W-20', '5W-30', '{Volvo VCC-RBS0-2AE}', 4.2, 15000, 'D3/D4 diesel'),
+    ('Volvo', 'V60', 2018, null, 'petrol', '0W-20', '5W-30', '{Volvo VCC-RBS0-2AE}', 6.5, 15000, 'B4/B5 petrol'),
+    ('Volvo', 'S60', 2018, null, 'petrol', '0W-20', '5W-30', '{Volvo VCC-RBS0-2AE}', 6.5, 15000, 'B4/B5 petrol'),
+    ('Škoda', 'Octavia', 2020, null, 'petrol', '5W-30', '0W-20', '{VW 504.00,VW 508.00}', 4.5, 15000, 'EA888/EA211 (Mk4)'),
+    ('Škoda', 'Octavia', 2020, null, 'diesel', '5W-30', '0W-20', '{VW 507.00,VW 509.00}', 4.3, 15000, 'EA288 TDI (Mk4)'),
+    ('Škoda', 'Fabia', 2021, null, 'petrol', '5W-30', null, '{VW 504.00}', 3.6, 15000, 'EA211 (Mk4)'),
+    ('Škoda', 'Kodiaq', 2016, null, 'petrol', '5W-30', '0W-20', '{VW 504.00,VW 508.00}', 4.5, 15000, 'EA888 TSI'),
+    ('Škoda', 'Kodiaq', 2016, null, 'diesel', '5W-30', '0W-20', '{VW 507.00,VW 509.00}', 4.3, 15000, 'EA288 TDI'),
+    ('SEAT', 'Leon', 2020, null, 'petrol', '5W-30', '0W-20', '{VW 504.00,VW 508.00}', 4.5, 15000, 'EA888/EA211 (Mk4)'),
+    ('SEAT', 'Leon', 2020, null, 'diesel', '5W-30', '0W-20', '{VW 507.00,VW 509.00}', 4.3, 15000, 'EA288 TDI (Mk4)'),
+    ('SEAT', 'Ibiza', 2017, null, 'petrol', '5W-30', null, '{VW 504.00}', 3.6, 15000, 'EA211 TSI (KJ)'),
+    ('SEAT', 'Ateca', 2016, null, 'petrol', '5W-30', '0W-20', '{VW 504.00,VW 508.00}', 4.5, 15000, 'EA888 TSI'),
+    ('Cupra', 'Formentor', 2020, null, 'petrol', '5W-30', '0W-20', '{VW 504.00,VW 508.00}', 4.5, 15000, 'EA888 TSI 2.0T'),
+    ('Dacia', 'Sandero', 2020, null, 'petrol', '5W-30', null, '{Renault RN0710}', 4.5, 15000, '1.0T/1.0 SCe'),
+    ('Dacia', 'Duster', 2017, null, 'petrol', '5W-30', null, '{Renault RN0710}', 5.0, 15000, '1.3T/1.6 SCe (Mk2)'),
+    ('Dacia', 'Duster', 2017, null, 'diesel', '5W-30', null, '{Renault RN0710}', 5.5, 15000, '1.5 Blue dCi (Mk2)'),
+    ('Renault', 'Clio', 2019, null, 'petrol', '5W-30', null, '{Renault RN0710}', 4.4, 15000, '1.0T/1.3T (Mk5)'),
+    ('Renault', 'Clio', 2019, null, 'diesel', '5W-30', null, '{Renault RN0710}', 4.9, 15000, '1.5 Blue dCi (Mk5)'),
+    ('Renault', 'Clio', 2019, null, 'hybrid', '5W-30', null, '{Renault RN0710}', 4.4, 15000, 'E-Tech hybrid'),
+    ('Renault', 'Captur', 2019, null, 'petrol', '5W-30', null, '{Renault RN0710}', 5.0, 15000, '1.0T/1.3T (Mk2)'),
+    ('Renault', 'Captur', 2019, null, 'hybrid', '5W-30', null, '{Renault RN0710}', 5.0, 15000, 'E-Tech PHEV (Mk2)'),
+    ('Peugeot', '208', 2019, null, 'petrol', '5W-30', null, '{PSA B71 2312}', 3.5, 15000, '1.2T PureTech (Mk2)'),
+    ('Peugeot', '208', 2019, null, 'diesel', '5W-30', null, '{PSA B71 2312}', 3.8, 15000, '1.5 BlueHDi (Mk2)'),
+    ('Peugeot', '3008', 2016, null, 'petrol', '5W-30', null, '{PSA B71 2312}', 4.5, 15000, '1.2T/1.6T PureTech'),
+    ('Peugeot', '3008', 2016, null, 'diesel', '5W-30', null, '{PSA B71 2312}', 4.7, 15000, '2.0 BlueHDi'),
+    ('Peugeot', '3008', 2016, null, 'hybrid', '5W-30', null, '{PSA B71 2312}', 4.5, 15000, '225/300e Hybrid PHEV'),
+    ('Citroën', 'C3', 2016, null, 'petrol', '5W-30', null, '{PSA B71 2312}', 3.5, 15000, '1.2T PureTech (Mk3)'),
+    ('Citroën', 'C5 Aircross', 2018, null, 'petrol', '5W-30', null, '{PSA B71 2312}', 4.5, 15000, '1.2T/1.6T PureTech'),
+    ('Citroën', 'C5 Aircross', 2018, null, 'diesel', '5W-30', null, '{PSA B71 2312}', 4.7, 15000, '2.0 BlueHDi'),
+    ('Fiat', '500', 2007, null, 'petrol', '5W-40', '5W-30', '{Fiat 9.55535-GS1}', 3.5, 15000, '1.2/1.4 Fire/TwinAir'),
+    ('Fiat', 'Panda', 2012, null, 'petrol', '5W-40', '5W-30', '{Fiat 9.55535-GS1}', 3.5, 15000, '0.9 TwinAir/1.2 Fire'),
+    ('Fiat', 'Tipo', 2015, null, 'petrol', '5W-40', '5W-30', '{Fiat 9.55535-GS1}', 4.4, 15000, '1.4T/1.6'),
+    ('Fiat', 'Tipo', 2015, null, 'diesel', '5W-40', '5W-30', '{Fiat 9.55535-GS1}', 4.7, 15000, '1.3/1.6 MultiJet'),
+    ('Alfa Romeo', 'Giulia', 2016, null, 'petrol', '5W-40', null, '{Fiat 9.55535-GS1}', 5.5, 10000, '2.0T/2.9 V6 Biturbo'),
+    ('Alfa Romeo', 'Giulia', 2016, null, 'diesel', '5W-40', null, '{Fiat 9.55535-GS1}', 5.5, 10000, '2.2 MultiJet'),
+    ('Alfa Romeo', 'Stelvio', 2016, null, 'petrol', '5W-40', null, '{Fiat 9.55535-GS1}', 5.5, 10000, '2.0T/2.9 V6 Biturbo'),
+    ('Alfa Romeo', 'Stelvio', 2016, null, 'diesel', '5W-40', null, '{Fiat 9.55535-GS1}', 5.5, 10000, '2.2 MultiJet'),
+    ('Mitsubishi', 'Outlander', 2021, null, 'petrol', '0W-20', '5W-30', '{ILSAC GF-6A}', 4.5, 10000, '2.5 MIVEC (PhIII)'),
+    ('Mitsubishi', 'Outlander', 2021, null, 'hybrid', '0W-20', '5W-30', '{ILSAC GF-6A}', 4.5, 10000, 'PHEV 2.4 MIVEC'),
+    ('Mitsubishi', 'Eclipse Cross', 2017, null, 'petrol', '0W-20', '5W-30', '{ILSAC GF-6A}', 4.2, 10000, '1.5T/2.0'),
+    ('Mitsubishi', 'L200', 2015, null, 'diesel', '5W-30', null, '{ACEA A3/B4}', 7.1, 10000, '2.4D DiD'),
+    ('Mitsubishi', 'Pajero', 2006, null, 'diesel', '5W-30', null, '{ACEA A3/B4}', 9.5, 10000, '3.2 DI-D V6'),
+    ('Suzuki', 'Swift', 2017, null, 'petrol', '0W-20', '5W-30', '{ILSAC GF-6A}', 2.9, 10000, '1.0T BoosterJet / 1.2 DualJet'),
+    ('Suzuki', 'Vitara', 2015, null, 'petrol', '0W-20', '5W-30', '{ILSAC GF-6A}', 3.9, 10000, '1.4T / 1.6 BoosterJet'),
+    ('Suzuki', 'Jimny', 2018, null, 'petrol', '5W-30', null, '{ILSAC GF-6A}', 3.8, 10000, '1.5 K15B'),
+    ('Suzuki', 'S-Cross', 2021, null, 'hybrid', '0W-20', '5W-30', '{ILSAC GF-6A}', 3.9, 10000, '1.4T mild hybrid'),
+    ('Isuzu', 'D-Max', 2021, null, 'diesel', '5W-30', null, '{API CK-4}', 7.1, 10000, '1.9/3.0 DDi Turbo'),
+    ('Isuzu', 'MU-X', 2021, null, 'diesel', '5W-30', null, '{API CK-4}', 7.1, 10000, '1.9/3.0 DDi Turbo')
+) as v(make_name, model_name, year_from, year_to, engine_type, viscosity, viscosity_alt, required_specs, oil_capacity_liters, change_interval_km, notes)
+  on ma.name = v.make_name and mo.name = v.model_name
+where not exists (
+  select 1
+  from public.car_oil_fitment existing
+  where existing.model_id = mo.id
+    and existing.year_from is not distinct from v.year_from
+    and existing.year_to is not distinct from v.year_to
+    and existing.engine_type is not distinct from v.engine_type
+    and existing.viscosity = v.viscosity
+    and existing.viscosity_alt is not distinct from v.viscosity_alt
+    and existing.oil_capacity_liters is not distinct from v.oil_capacity_liters
+    and existing.notes is not distinct from v.notes
+);

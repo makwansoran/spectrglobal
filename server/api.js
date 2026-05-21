@@ -150,6 +150,137 @@ function partFromRow(row) {
   };
 }
 
+function normalizeCatalogKey(value) {
+  return String(value || "").trim().toLowerCase().replace(/\s+/g, " ");
+}
+
+function partDedupeKey(part) {
+  return [
+    normalizeCatalogKey(part.category),
+    normalizeCatalogKey(part.name),
+    normalizeCatalogKey(part.sku),
+  ].join("|");
+}
+
+function dedupeCatalogParts(parts) {
+  const seenIds = new Set();
+  const seenKeys = new Set();
+  const unique = [];
+
+  for (const part of parts) {
+    const id = String(part.id || "");
+    const key = partDedupeKey(part);
+    if ((id && seenIds.has(id)) || (key && seenKeys.has(key))) continue;
+    if (id) seenIds.add(id);
+    if (key) seenKeys.add(key);
+    unique.push(part);
+  }
+
+  return unique;
+}
+
+function oilBrandName(row) {
+  const brand = row && row.oil_brands;
+  if (Array.isArray(brand)) return (brand[0] && brand[0].name) || "";
+  return (brand && brand.name) || "";
+}
+
+function oilProductFromRow(row, fitments) {
+  const brandName = oilBrandName(row);
+  const volume = row.volume_liters == null ? "" : `${Number(row.volume_liters)}L`;
+  const approvals = Array.isArray(row.approvals) ? row.approvals.filter(Boolean) : [];
+  const descriptionParts = [
+    row.base_type,
+    row.viscosity,
+    volume,
+    approvals.length ? `Approvals: ${approvals.join(", ")}` : "",
+  ].filter(Boolean);
+
+  return {
+    id: `oil-product-${row.id}`,
+    name: [brandName, row.name, volume].filter(Boolean).join(" "),
+    category: "Oils",
+    sku: `OIL-${String(row.id || "").slice(0, 8).toUpperCase()}`,
+    price: Number(row.price_eur) || 0,
+    stock: 999,
+    description: descriptionParts.join(" · "),
+    vehicles: fitments,
+  };
+}
+
+function oilFitmentVehicle(row) {
+  const modelValue = row && row.models;
+  const model = Array.isArray(modelValue) ? modelValue[0] : modelValue;
+  const makeValue = model && model.makes;
+  const make = Array.isArray(makeValue) ? makeValue[0] : makeValue;
+  return {
+    brand: (make && make.name) || "",
+    model: (model && model.name) || "",
+    engine: row.engine_type || "",
+  };
+}
+
+function oilProductMatchesFitment(product, fitment) {
+  if (!product || !fitment) return false;
+  const viscosity = product.viscosity || "";
+  const matchesViscosity = viscosity === fitment.viscosity || viscosity === fitment.viscosity_alt;
+  if (!matchesViscosity) return false;
+
+  const approvals = Array.isArray(product.approvals) ? product.approvals : [];
+  const requiredSpecs = Array.isArray(fitment.required_specs) ? fitment.required_specs : [];
+  if (!requiredSpecs.length) return true;
+  return approvals.some((approval) => requiredSpecs.includes(approval));
+}
+
+async function fetchOilProductParts(activeOnly) {
+  let oilProductsQuery = getReadClient()
+    .from("oil_products")
+    .select("id, name, viscosity, base_type, approvals, volume_liters, price_eur, active, oil_brands(name)")
+    .order("name", { ascending: true });
+
+  if (activeOnly) oilProductsQuery = oilProductsQuery.eq("active", true);
+
+  const [productsResult, fitmentsResult] = await Promise.all([
+    oilProductsQuery,
+    getReadClient()
+      .from("car_oil_fitment")
+      .select("engine_type, viscosity, viscosity_alt, required_specs, models(name, makes(name))"),
+  ]);
+
+  if (productsResult.error) {
+    if (productsResult.error.code === "42P01") return [];
+    throw productsResult.error;
+  }
+
+  if (fitmentsResult.error) {
+    if (fitmentsResult.error.code === "42P01") return (productsResult.data || []).map((row) => oilProductFromRow(row, []));
+    throw fitmentsResult.error;
+  }
+
+  const fitments = fitmentsResult.data || [];
+  return (productsResult.data || []).map((product) => {
+    const vehicles = fitments
+      .filter((fitment) => oilProductMatchesFitment(product, fitment))
+      .map(oilFitmentVehicle)
+      .filter((vehicle) => vehicle.brand && vehicle.model);
+    return oilProductFromRow(product, dedupeVehicleFits(vehicles));
+  });
+}
+
+function dedupeVehicleFits(vehicles) {
+  const seen = new Set();
+  return vehicles.filter((vehicle) => {
+    const key = [
+      normalizeCatalogKey(vehicle.brand),
+      normalizeCatalogKey(vehicle.model),
+      normalizeCatalogKey(vehicle.engine),
+    ].join("|");
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
 function normalizePartBody(body, fallbackId) {
   const id = String((body && body.id) || fallbackId || "").trim();
   const name = String((body && body.name) || "").trim();
@@ -201,7 +332,20 @@ async function handlePartsList(req, res) {
     return true;
   }
 
-  sendJson(res, 200, { parts: (data || []).map(partFromRow) });
+  let oilParts = [];
+  try {
+    oilParts = await fetchOilProductParts(activeOnly);
+  } catch (oilError) {
+    sendJson(res, 500, { error: oilError.message || "Could not load oil products." });
+    return true;
+  }
+
+  const parts = dedupeCatalogParts([
+    ...(data || []).map(partFromRow),
+    ...oilParts,
+  ]).slice(0, limit);
+
+  sendJson(res, 200, { parts });
   return true;
 }
 
