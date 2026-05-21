@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Browse global car brands and find compatible parts by vehicle model."
+    />
+    <title>Car Brands | Spectr</title>
+    <link rel="icon" href="/assets/brand/spectr-mark.png" type="image/png" sizes="any" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Syne:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="platform.css" />
+    <link rel="stylesheet" href="palantir-nav.css" />
+    <link rel="stylesheet" href="auth-nav.css" />
+    <link rel="stylesheet" href="crunchbase-search.css" />
+    <link rel="stylesheet" href="home.css" />
+    <link rel="stylesheet" href="cookies.css" />
+    <link rel="stylesheet" href="landing.css" />
+    <link rel="stylesheet" href="shop.css" />
+  </head>
+  <body class="font-body page-home plt-site">
+    <header class="plt-header">
+      <div class="plt-header-inner">
+        <a class="plt-logo" href="index.html" aria-label="Spectr home">
+          <img class="plt-logo-mark" src="assets/brand/spectr-mark.png" width="28" height="28" alt="" decoding="async" />
+          <span class="plt-logo-text">Spectr</span>
+        </a>
+        <div class="plt-header-tools">
+          <div class="spectr-auth-slot spectr-auth-slot--header" data-spectr-auth-slot></div>
+          <button
+            type="button"
+            class="plt-tool-btn"
+            id="plt-search-header-btn"
+            data-plt-search-open
+            aria-label="Show Search"
+            aria-expanded="false"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="11" cy="11" r="7" />
+              <path d="M20 20l-3-3" stroke-linecap="round" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            class="plt-tool-btn plt-menu-btn"
+            id="plt-nav-btn"
+            aria-label="Show Navigation"
+            aria-expanded="false"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <nav class="shop-subnav" aria-label="Parts categories">
+      <a href="index.html#parts-categories" data-icon="◉">Tires</a>
+      <a href="index.html#parts-categories" data-icon="▣">Brakes</a>
+      <a href="index.html#parts-categories" data-icon="⌁">Suspension</a>
+      <a href="index.html#parts-categories" data-icon="▱">Chassis</a>
+      <a href="index.html#parts-categories" data-icon="▤">Filters</a>
+      <a href="index.html#parts-categories" data-icon="◍">Oils</a>
+      <a href="index.html#parts-categories" data-icon="⚙">Engine</a>
+      <a href="index.html#parts-categories" data-icon="▰">Body</a>
+      <a href="index.html#parts-categories" data-icon="⛓">Belts</a>
+      <a href="index.html#parts-categories" data-icon="◎">Bearings</a>
+      <a href="index.html#parts-categories" data-icon="◧">Exhaust</a>
+      <a href="index.html#parts-categories" data-icon="+">More</a>
+    </nav>
+
+    <div class="plt-nav-panel" id="plt-nav-panel" aria-hidden="true">
+      <div class="plt-nav-scroll">
+        <a class="plt-nav-logo" href="index.html" aria-label="Spectr home">
+          <img class="plt-logo-mark" src="assets/brand/spectr-mark.png" width="28" height="28" alt="" decoding="async" />
+          <span class="plt-logo-text">Spectr</span>
+        </a>
+        <div class="plt-nav-divider" aria-hidden="true"></div>
+        <p class="plt-nav-label">Navigation</p>
+        <nav aria-label="Primary">
+          <ul class="plt-nav-list">
+            <li><a href="#" class="plt-nav-primary">AIP</a></li>
+            <li><a href="#" class="plt-nav-primary">Chat Room</a></li>
+            <li><a href="#" class="plt-nav-primary">Offerings</a></li>
+            <li><a href="#" class="plt-nav-primary">Impact Studies</a></li>
+            <li><a href="#" class="plt-nav-primary">Documentation</a></li>
+            <li><a href="#" class="plt-nav-primary">Careers</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="plt-nav-footer">
+        <button type="button" class="plt-nav-close" id="plt-nav-close" aria-label="Close navigation">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <path d="M6 6l12 12M18 6L6 18" stroke-linecap="round" />
+          </svg>
+        </button>
+        <button
+          type="button"
+          class="plt-tool-btn"
+          data-plt-search-open
+          aria-label="Show Search"
+          aria-expanded="false"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" />
+            <path d="M20 20l-3-3" stroke-linecap="round" />
+          </svg>
+        </button>
+        <div class="spectr-auth-slot spectr-auth-slot--nav" data-spectr-auth-slot data-spectr-auth-variant="nav"></div>
+      </div>
+    </div>
+
+    <div class="plt-search-panel" id="plt-search-panel" aria-hidden="true">
+      <div class="plt-search-panel-top">
+        <form class="plt-search-panel-form" role="search" action="#" onsubmit="return false">
+          <input
+            type="search"
+            class="plt-search-panel-input"
+            id="plt-search-input"
+            placeholder="Search"
+            autocomplete="off"
+          />
+        </form>
+        <button type="button" class="plt-search-panel-close" id="plt-search-close" aria-label="Close search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <path d="M6 6l12 12M18 6L6 18" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+      <div
+        id="plt-search-results"
+        class="plt-search-results"
+        role="listbox"
+        aria-label="Company results"
+      ></div>
+    </div>
+
+    <main class="shop-page all-brands-page">
+      <section class="all-brands-hero" aria-labelledby="all-brands-title">
+        <p class="shop-eyebrow">All car brands</p>
+        <h1 id="all-brands-title">Find part by model</h1>
+        <p>Choose a car brand to continue browsing compatible parts and model families.</p>
+      </section>
+
+      <section class="all-brands-list" aria-label="Car brands">
+        <div class="all-brands-grid">
+          <a href="index.html#catalog">Abarth</a>
+          <a href="index.html#catalog">Acura</a>
+          <a href="index.html#catalog">Alfa Romeo</a>
+          <a href="index.html#catalog">Aston Martin</a>
+          <a href="index.html#catalog">Audi</a>
+          <a href="index.html#catalog">Bentley</a>
+          <a href="index.html#catalog">BMW</a>
+          <a href="index.html#catalog">Bugatti</a>
+          <a href="index.html#catalog">Buick</a>
+          <a href="index.html#catalog">BYD</a>
+          <a href="index.html#catalog">Cadillac</a>
+          <a href="index.html#catalog">Chery</a>
+          <a href="index.html#catalog">Chevrolet</a>
+          <a href="index.html#catalog">Chrysler</a>
+          <a href="index.html#catalog">Citroen</a>
+          <a href="index.html#catalog">Cupra</a>
+          <a href="index.html#catalog">Dacia</a>
+          <a href="index.html#catalog">Daewoo</a>
+          <a href="index.html#catalog">Daihatsu</a>
+          <a href="index.html#catalog">Dodge</a>
+          <a href="index.html#catalog">DS Automobiles</a>
+          <a href="index.html#catalog">Ferrari</a>
+          <a href="index.html#catalog">Fiat</a>
+          <a href="index.html#catalog">Ford</a>
+          <a href="index.html#catalog">Genesis</a>
+          <a href="index.html#catalog">Geely</a>
+          <a href="index.html#catalog">GMC</a>
+          <a href="index.html#catalog">Great Wall</a>
+          <a href="index.html#catalog">Honda</a>
+          <a href="index.html#catalog">Hummer</a>
+          <a href="index.html#catalog">Hyundai</a>
+          <a href="index.html#catalog">Infiniti</a>
+          <a href="index.html#catalog">Isuzu</a>
+          <a href="index.html#catalog">Jaguar</a>
+          <a href="index.html#catalog">Jeep</a>
+          <a href="index.html#catalog">Kia</a>
+          <a href="index.html#catalog">Koenigsegg</a>
+          <a href="index.html#catalog">Lamborghini</a>
+          <a href="index.html#catalog">Lancia</a>
+          <a href="index.html#catalog">Land Rover</a>
+          <a href="index.html#catalog">Lexus</a>
+          <a href="index.html#catalog">Lincoln</a>
+          <a href="index.html#catalog">Lotus</a>
+          <a href="index.html#catalog">Lucid</a>
+          <a href="index.html#catalog">Maserati</a>
+          <a href="index.html#catalog">Mazda</a>
+          <a href="index.html#catalog">McLaren</a>
+          <a href="index.html#catalog">Mercedes-Benz</a>
+          <a href="index.html#catalog">Mini</a>
+          <a href="index.html#catalog">Mitsubishi</a>
+          <a href="index.html#catalog">Nissan</a>
+          <a href="index.html#catalog">Opel</a>
+          <a href="index.html#catalog">Pagani</a>
+          <a href="index.html#catalog">Peugeot</a>
+          <a href="index.html#catalog">Polestar</a>
+          <a href="index.html#catalog">Porsche</a>
+          <a href="index.html#catalog">Ram</a>
+          <a href="index.html#catalog">Renault</a>
+          <a href="index.html#catalog">Rivian</a>
+          <a href="index.html#catalog">Rolls-Royce</a>
+          <a href="index.html#catalog">Saab</a>
+          <a href="index.html#catalog">Seat</a>
+          <a href="index.html#catalog">Skoda</a>
+          <a href="index.html#catalog">Smart</a>
+          <a href="index.html#catalog">SsangYong</a>
+          <a href="index.html#catalog">Subaru</a>
+          <a href="index.html#catalog">Suzuki</a>
+          <a href="index.html#catalog">Tesla</a>
+          <a href="index.html#catalog">Toyota</a>
+          <a href="index.html#catalog">Vauxhall</a>
+          <a href="index.html#catalog">Volkswagen</a>
+          <a href="index.html#catalog">Volvo</a>
+          <a href="index.html#catalog">XPeng</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap site-footer-inner">
+        <div class="site-footer-brand">
+          <a class="site-footer-logo" href="index.html">
+            <img class="site-footer-logo-mark" src="assets/brand/spectr-mark.png" width="36" height="36" alt="" decoding="async" />
+            <span class="site-footer-logo-text">Spectr</span>
+          </a>
+          <p class="site-footer-tagline">Operational intelligence &mdash; <strong>SPECTR AS</strong></p>
+        </div>
+        <div class="site-footer-meta">
+          <address class="site-footer-address">
+            <span class="site-footer-legal-name">SPECTR AS</span><br />
+            Org. nr. <span class="mono">926 574 892</span><br />
+            Eksempelgata 1, NO-0162 Oslo, Norway
+          </address>
+          <p class="site-footer-copy">
+            <span class="mono">&copy; <span data-current-year></span> SPECTR AS</span>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="auth-session.js" defer></script>
+    <script src="auth-nav.js" defer></script>
+    <script src="analytics-static.js" defer></script>
+    <script src="cookies.js" defer></script>
+    <script src="script.js" defer></script>
+    <script src="home.js" defer></script>
+  </body>
+</html>

@@ -552,7 +552,7 @@
   font-size: 0.85rem;
 }
 
-/* ── AUTODOC-style category showcase ─────────────────────── */
+/* ── Brand model showcase ────────────────────────────────── */
 .parts-categories-showcase {
   max-width: 1440px;
   margin: 0 auto;
@@ -561,21 +561,158 @@
 
 .parts-categories-head {
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
   gap: 1rem;
   margin-bottom: 1.3rem;
   flex-wrap: wrap;
+  text-align: center;
 }
 
 .parts-categories-head h2 {
   max-width: 58rem;
-  margin: 0;
+  margin: 0 auto;
   color: var(--shop-ink);
   font-size: clamp(1.5rem, 3vw, 2.4rem);
   font-weight: 700;
   letter-spacing: -0.035em;
   line-height: 1.08;
+}
+
+.top-brand-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  overflow: hidden;
+  border: 1px solid var(--shop-line);
+  border-radius: var(--shop-radius-lg);
+  background: var(--shop-line);
+}
+
+.top-brand-card {
+  min-height: 8.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  padding: 1.15rem;
+  background: #ffffff;
+  color: var(--shop-ink);
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.15s, transform 0.15s;
+}
+
+.top-brand-card:hover {
+  background: var(--shop-surface);
+  transform: translateY(-1px);
+}
+
+.top-brand-card span {
+  color: var(--shop-muted);
+  font-family: var(--shop-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.top-brand-card strong {
+  color: var(--shop-ink);
+  font-size: clamp(1.25rem, 2vw, 1.7rem);
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
+
+.brand-more-link {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.8rem;
+  margin: 1rem auto 0;
+  padding: 0 1.25rem;
+  border: 1px solid var(--shop-ink);
+  border-radius: 999px;
+  background: var(--shop-ink);
+  color: #ffffff;
+  font-family: var(--shop-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background 0.15s, color 0.15s;
+}
+
+.brand-more-link:hover {
+  background: #ffffff;
+  color: var(--shop-ink);
+}
+
+.all-brands-page {
+  min-height: 60vh;
+}
+
+.all-brands-hero {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: clamp(3rem, 7vw, 6rem) clamp(1rem, 4vw, 4.5rem) clamp(1.5rem, 3vw, 2.5rem);
+  text-align: center;
+}
+
+.all-brands-hero h1 {
+  margin: 0;
+  color: var(--shop-ink);
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  line-height: 0.98;
+}
+
+.all-brands-hero p:not(.shop-eyebrow) {
+  max-width: 42rem;
+  margin: 1rem auto 0;
+  color: var(--shop-muted);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.all-brands-list {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 4vw, 4.5rem) clamp(3rem, 6vw, 6rem);
+}
+
+.all-brands-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  overflow: hidden;
+  border: 1px solid var(--shop-line);
+  border-radius: var(--shop-radius-lg);
+  background: var(--shop-line);
+}
+
+.all-brands-grid a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 4.6rem;
+  padding: 1rem;
+  background: #ffffff;
+  color: var(--shop-ink);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.15s, transform 0.15s;
+}
+
+.all-brands-grid a:hover {
+  background: var(--shop-surface);
+  transform: translateY(-1px);
 }
 
 .parts-category-grid {
@@ -1139,6 +1276,11 @@
   .parts-category-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .top-brand-grid,
+  .all-brands-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 640px) {
@@ -1164,6 +1306,11 @@
   }
 
   .parts-category-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .top-brand-grid,
+  .all-brands-grid {
     grid-template-columns: 1fr;
   }
 
