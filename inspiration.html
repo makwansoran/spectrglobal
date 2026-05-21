@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Get inspired by Spectr customer builds and see which parts they use."
+    />
+    <title>Inspiration | Spectr</title>
+    <link rel="icon" href="/assets/brand/spectr-mark.png" type="image/png" sizes="any" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Syne:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="platform.css" />
+    <link rel="stylesheet" href="palantir-nav.css" />
+    <link rel="stylesheet" href="auth-nav.css" />
+    <link rel="stylesheet" href="home.css" />
+    <link rel="stylesheet" href="cookies.css" />
+    <link rel="stylesheet" href="landing.css" />
+    <link rel="stylesheet" href="shop.css" />
+  </head>
+  <body class="font-body page-home plt-site">
+    <header class="plt-header">
+      <div class="plt-header-inner">
+        <a class="plt-logo" href="index.html" aria-label="Spectr home">
+          <img class="plt-logo-mark" src="assets/brand/spectr-mark.png" width="28" height="28" alt="" decoding="async" />
+          <span class="plt-logo-text">Spectr</span>
+        </a>
+        <div class="plt-header-tools">
+          <form class="plt-header-search" role="search" action="#" onsubmit="return false">
+            <input
+              type="search"
+              class="plt-header-search-input"
+              id="plt-search-input"
+              placeholder="Search parts or brands"
+              autocomplete="off"
+              aria-label="Search parts or brands"
+              aria-controls="plt-search-results"
+              aria-expanded="false"
+            />
+            <div
+              id="plt-search-results"
+              class="plt-search-results plt-header-search-results"
+              role="listbox"
+              aria-label="Search results"
+            ></div>
+          </form>
+          <div class="spectr-auth-slot spectr-auth-slot--header" data-spectr-auth-slot>
+            <a class="plt-header-login" href="login.html">Sign in</a>
+          </div>
+          <button
+            type="button"
+            class="plt-tool-btn plt-menu-btn"
+            id="plt-nav-btn"
+            aria-label="Show Navigation"
+            aria-expanded="false"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <nav class="shop-subnav" aria-label="Parts categories"></nav>
+
+    <div class="plt-nav-panel" id="plt-nav-panel" aria-hidden="true">
+      <div class="plt-nav-scroll">
+        <a class="plt-nav-logo" href="index.html" aria-label="Spectr home">
+          <img class="plt-logo-mark" src="assets/brand/spectr-mark.png" width="28" height="28" alt="" decoding="async" />
+          <span class="plt-logo-text">Spectr</span>
+        </a>
+        <div class="plt-nav-divider" aria-hidden="true"></div>
+        <p class="plt-nav-label">Navigation</p>
+        <nav aria-label="Primary">
+          <ul class="plt-nav-list">
+            <li><a href="#" class="plt-nav-primary">AIP</a></li>
+            <li><a href="support-chat.html" class="plt-nav-primary">Chat Room</a></li>
+            <li><a href="#" class="plt-nav-primary">Offerings</a></li>
+            <li><a href="#" class="plt-nav-primary">Impact Studies</a></li>
+            <li><a href="#" class="plt-nav-primary">Documentation</a></li>
+            <li><a href="#" class="plt-nav-primary">Careers</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="plt-nav-footer">
+        <button type="button" class="plt-nav-close" id="plt-nav-close" aria-label="Close navigation">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <path d="M6 6l12 12M18 6L6 18" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <main class="shop-page inspiration-page">
+      <section class="inspiration-hero" aria-labelledby="inspiration-title">
+        <p class="shop-eyebrow">Spectr inspiration</p>
+        <h1 id="inspiration-title">Customer builds, parts used, and garage stories</h1>
+        <p>Browse Instagram-style projects from real drivers and see the exact Spectr parts used on each car.</p>
+      </section>
+
+      <section class="inspiration-gallery" aria-label="Inspired builds">
+        <article class="inspiration-build-card inspiration-build-card--blue">
+          <span>@oslo_garage</span>
+          <h2>Weekend brake refresh</h2>
+          <p>Parts used: brake pads, brake discs, and 215/45 R18 tires.</p>
+        </article>
+        <article class="inspiration-build-card inspiration-build-card--green">
+          <span>@nordicwagon</span>
+          <h2>Long-trip service prep</h2>
+          <p>Parts used: oil kit, cabin filter, air filter, and wiper blades.</p>
+        </article>
+        <article class="inspiration-build-card inspiration-build-card--purple">
+          <span>@stancefjord</span>
+          <h2>Suspension upgrade</h2>
+          <p>Parts used: shock absorbers, coil springs, and control arms.</p>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap site-footer-inner">
+        <div class="site-footer-brand">
+          <a class="site-footer-logo" href="index.html">
+            <img class="site-footer-logo-mark" src="assets/brand/spectr-mark.png" width="36" height="36" alt="" decoding="async" />
+            <span class="site-footer-logo-text">Spectr</span>
+          </a>
+          <p class="site-footer-tagline">Operational intelligence &mdash; <strong>SPECTR AS</strong></p>
+        </div>
+        <div class="site-footer-meta">
+          <address class="site-footer-address">
+            <span class="site-footer-legal-name">SPECTR AS</span><br />
+            Org. nr. <span class="mono">926 574 892</span><br />
+            Eksempelgata 1, NO-0162 Oslo, Norway
+          </address>
+          <p class="site-footer-copy">
+            <span class="mono">&copy; <span data-current-year></span> SPECTR AS</span>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="auth-nav.js" defer></script>
+    <script src="analytics-static.js" defer></script>
+    <script src="cookies.js" defer></script>
+    <script src="script.js" defer></script>
+    <script src="home.js" defer></script>
+    <script src="shop-categories-nav.js" defer></script>
+  </body>
+</html>
