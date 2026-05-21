@@ -259,8 +259,13 @@
 
         <p class="management-note">Manage the database records used by the car finder and parts category navigation. Deleting a parent can remove its linked children.</p>
 
+        <div class="catalog-view-toggle" role="group" aria-label="Choose catalog manager">
+          <button type="button" class="is-active" data-catalog-view="makes">Car brands</button>
+          <button type="button" data-catalog-view="categories">Part categories</button>
+        </div>
+
         <div class="catalog-manager-grid">
-          <section class="management-card catalog-manager-card">
+          <section class="management-card catalog-manager-card" data-catalog-panel="makes">
             <header>
               <h2>Car brands</h2>
             </header>
@@ -292,7 +297,7 @@
             </div>
           </section>
 
-          <section class="management-card catalog-manager-card">
+          <section class="management-card catalog-manager-card" data-catalog-panel="categories" hidden>
             <header>
               <h2>Part categories</h2>
             </header>

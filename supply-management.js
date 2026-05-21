@@ -19,6 +19,7 @@
       customers: { query: "", role: "" },
       catalog: { query: "" },
     },
+    catalogView: "makes",
     admin: null,
     pendingDeleteUserId: "",
     selectedProducts: new Set(),
@@ -424,6 +425,16 @@
     return state.makes.filter(function (make) {
       var haystack = [make.name, make.slug, make.country, make.region].join(" ").toLowerCase();
       return !query || haystack.indexOf(query) !== -1;
+    });
+  }
+
+  function setCatalogView(view) {
+    state.catalogView = view === "categories" ? "categories" : "makes";
+    document.querySelectorAll("[data-catalog-view]").forEach(function (button) {
+      button.classList.toggle("is-active", button.dataset.catalogView === state.catalogView);
+    });
+    document.querySelectorAll("[data-catalog-panel]").forEach(function (panel) {
+      panel.hidden = panel.dataset.catalogPanel !== state.catalogView;
     });
   }
 
@@ -1049,6 +1060,11 @@
       renderCatalogTables();
     });
     $("catalog-refresh").addEventListener("click", loadCatalogSettings);
+    document.querySelectorAll("[data-catalog-view]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        setCatalogView(button.dataset.catalogView);
+      });
+    });
     $("make-create-form").addEventListener("submit", function (e) {
       e.preventDefault();
       createMake(e.currentTarget);

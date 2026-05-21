@@ -324,9 +324,32 @@
   font-size: 13px;
 }
 
+.catalog-view-toggle {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.catalog-view-toggle button {
+  border: 1px solid #d8dde4;
+  background: #ffffff;
+  color: #1d2530;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.catalog-view-toggle button.is-active {
+  background: #0b1726;
+  border-color: #0b1726;
+  color: #ffffff;
+}
+
 .catalog-manager-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr);
   gap: 16px;
 }
 
