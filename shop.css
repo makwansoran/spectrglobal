@@ -1277,6 +1277,12 @@
   align-items: start;
 }
 
+.catalog-main-stack {
+  min-width: 0;
+  display: grid;
+  gap: clamp(1rem, 2vw, 1.4rem);
+}
+
 .catalog-categories {
   position: sticky;
   top: 90px;
