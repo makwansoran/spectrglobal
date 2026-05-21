@@ -3,6 +3,9 @@
   "buildCommand": "npm run build",
   "outputDirectory": ".",
   "functions": {
+    "api/makes.js": {
+      "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,scripts/load-env.js"
+    },
     "api/auth/[[...path]].js": {
       "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,scripts/load-env.js"
     }

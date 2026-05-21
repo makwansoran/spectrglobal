@@ -2,7 +2,7 @@
  * Minimal API router for Spectr Parts (customer sign-in only).
  */
 const { handleAuthApi } = require("./auth-api");
-const { getAdminClient, isSupabaseEnabled } = require("./supabase-client");
+const { getReadClient, isSupabaseEnabled, hasSupabaseWrites } = require("./supabase-client");
 
 function sendJson(res, status, body) {
   res.writeHead(status, {
@@ -52,10 +52,10 @@ async function handleMakes(req, res) {
   const activeOnly = url.searchParams.get("active") !== "0";
   const limit = Math.min(Math.max(parseInt(url.searchParams.get("limit") || "200", 10) || 200, 1), 300);
 
-  let query = getAdminClient()
+  let query = getReadClient()
     .from("makes")
-    .select("slug, name, country, region, active, logo_text")
-    .order("active", { ascending: false })
+    .select("slug, name, country, region, active, logo_text, popularity_rank")
+    .order("popularity_rank", { ascending: true, nullsFirst: false })
     .order("name", { ascending: true })
     .limit(limit);
 
@@ -86,6 +86,7 @@ async function handleApi(req, res, pathname) {
       sendJson(res, 200, {
         ok: true,
         supabase: isSupabaseEnabled(),
+        supabaseWrites: hasSupabaseWrites(),
       });
       return true;
     }

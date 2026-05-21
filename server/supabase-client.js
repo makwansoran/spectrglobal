@@ -4,6 +4,7 @@
 const { createClient } = require("@supabase/supabase-js");
 
 let adminClient;
+let readClient;
 
 function getSupabaseUrl() {
   const candidates = [
@@ -20,12 +21,26 @@ function getSupabaseKey() {
   return String(process.env.SUPABASE_SERVICE_ROLE_KEY || "").trim();
 }
 
-function isSupabaseEnabled() {
-  return Boolean(getSupabaseUrl() && getSupabaseKey());
+function getSupabaseAnonKey() {
+  return String(
+    process.env.SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ""
+  ).trim();
+}
+
+function getSupabaseReadKey() {
+  return getSupabaseKey() || getSupabaseAnonKey();
+}
+
+function isSupabaseReadable() {
+  return Boolean(getSupabaseUrl() && getSupabaseReadKey());
 }
 
 function hasSupabaseWrites() {
-  return isSupabaseEnabled();
+  return Boolean(getSupabaseUrl() && getSupabaseKey());
+}
+
+function isSupabaseEnabled() {
+  return isSupabaseReadable();
 }
 
 function getAdminClient() {
@@ -42,9 +57,26 @@ function getAdminClient() {
   return adminClient;
 }
 
+function getReadClient() {
+  if (!isSupabaseReadable()) {
+    throw new Error(
+      "Supabase is not configured. Set SUPABASE_URL and SUPABASE_ANON_KEY or SUPABASE_SERVICE_ROLE_KEY."
+    );
+  }
+  if (!readClient) {
+    readClient = createClient(getSupabaseUrl(), getSupabaseReadKey(), {
+      auth: { persistSession: false, autoRefreshToken: false },
+    });
+  }
+  return readClient;
+}
+
 module.exports = {
   getAdminClient,
+  getReadClient,
   getSupabaseUrl,
+  getSupabaseAnonKey,
   isSupabaseEnabled,
+  isSupabaseReadable,
   hasSupabaseWrites,
 };

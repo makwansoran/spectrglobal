@@ -28,6 +28,7 @@ create table if not exists public.makes (
   region text,
   active boolean not null default true,
   logo_text text not null,
+  popularity_rank integer,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now(),
   constraint makes_name_len check (char_length(trim(name)) between 1 and 120),
@@ -199,3 +200,22 @@ on conflict (slug) do update set
   active = excluded.active,
   logo_text = excluded.logo_text,
   updated_at = now();
+
+update public.makes
+set popularity_rank = ranked.rank
+from (
+  values
+    ('toyota', 1),
+    ('volkswagen', 2),
+    ('ford', 3),
+    ('honda', 4),
+    ('hyundai', 5),
+    ('nissan', 6),
+    ('chevrolet', 7),
+    ('kia', 8)
+) as ranked(slug, rank)
+where public.makes.slug = ranked.slug;
+
+update public.makes
+set popularity_rank = null
+where slug not in ('toyota', 'volkswagen', 'ford', 'honda', 'hyundai', 'nissan', 'chevrolet', 'kia');

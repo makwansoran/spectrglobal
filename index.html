@@ -32,8 +32,20 @@
           <span class="plt-logo-text">Spectr</span>
         </a>
         <div class="plt-header-tools">
-          <a class="plt-header-search" href="#finder-plate-form">Search</a>
           <div class="spectr-auth-slot spectr-auth-slot--header" data-spectr-auth-slot></div>
+          <button
+            type="button"
+            class="plt-tool-btn"
+            id="plt-search-header-btn"
+            data-plt-search-open
+            aria-label="Show Search"
+            aria-expanded="false"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="11" cy="11" r="7" />
+              <path d="M20 20l-3-3" stroke-linecap="round" />
+            </svg>
+          </button>
           <button
             type="button"
             class="plt-tool-btn plt-menu-btn"
@@ -86,7 +98,44 @@
             <path d="M6 6l12 12M18 6L6 18" stroke-linecap="round" />
           </svg>
         </button>
+        <button
+          type="button"
+          class="plt-tool-btn"
+          data-plt-search-open
+          aria-label="Show Search"
+          aria-expanded="false"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" />
+            <path d="M20 20l-3-3" stroke-linecap="round" />
+          </svg>
+        </button>
       </div>
+    </div>
+
+    <div class="plt-search-panel" id="plt-search-panel" aria-hidden="true">
+      <div class="plt-search-panel-top">
+        <form class="plt-search-panel-form" role="search" action="#" onsubmit="return false">
+          <input
+            type="search"
+            class="plt-search-panel-input"
+            id="plt-search-input"
+            placeholder="Search"
+            autocomplete="off"
+          />
+        </form>
+        <button type="button" class="plt-search-panel-close" id="plt-search-close" aria-label="Close search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <path d="M6 6l12 12M18 6L6 18" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+      <div
+        id="plt-search-results"
+        class="plt-search-results"
+        role="listbox"
+        aria-label="Search results"
+      ></div>
     </div>
 
     <main class="shop-page">
