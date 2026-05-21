@@ -1,4 +1,4 @@
-/* Spectr Parts admin */
+/* Spectr admin */
 (function () {
   "use strict";
 

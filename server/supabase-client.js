@@ -1,10 +1,11 @@
 /**
- * Supabase client for Spectr Parts customer sign-ins (service role writes).
+ * Supabase client for Spectr customer sign-ins (service role writes).
  */
 const { createClient } = require("@supabase/supabase-js");
 
 let adminClient;
 let readClient;
+let authClient;
 
 function getSupabaseUrl() {
   const candidates = [
@@ -71,8 +72,23 @@ function getReadClient() {
   return readClient;
 }
 
+function getAuthClient() {
+  if (!isSupabaseReadable()) {
+    throw new Error(
+      "Supabase is not configured. Set SUPABASE_URL and SUPABASE_ANON_KEY or SUPABASE_SERVICE_ROLE_KEY."
+    );
+  }
+  if (!authClient) {
+    authClient = createClient(getSupabaseUrl(), getSupabaseReadKey(), {
+      auth: { persistSession: false, autoRefreshToken: false },
+    });
+  }
+  return authClient;
+}
+
 module.exports = {
   getAdminClient,
+  getAuthClient,
   getReadClient,
   getSupabaseUrl,
   getSupabaseAnonKey,

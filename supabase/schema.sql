@@ -1,7 +1,8 @@
--- Spectr Parts — customer sign-ins (no Supabase Auth account required)
+-- Spectr — Supabase Auth-backed customer accounts and sign-in audit rows.
 
 create table if not exists public.customer_signins (
   id uuid primary key default gen_random_uuid(),
+  auth_user_id uuid references auth.users(id) on delete set null,
   name text not null,
   email text not null,
   phone text,
@@ -17,7 +18,48 @@ create table if not exists public.customer_signins (
 
 alter table public.customer_signins enable row level security;
 
+alter table public.customer_signins
+  add column if not exists auth_user_id uuid references auth.users(id) on delete set null;
+
 -- Inserts use SUPABASE_SERVICE_ROLE_KEY on the server; no public client policies.
+
+create table if not exists public.customer_profiles (
+  id uuid primary key default gen_random_uuid(),
+  auth_user_id uuid not null references auth.users(id) on delete cascade,
+  email text not null,
+  display_name text,
+  metadata jsonb not null default '{}'::jsonb,
+  last_sign_in_at timestamptz,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now(),
+  constraint customer_profiles_auth_user_unique unique (auth_user_id),
+  constraint customer_profiles_email_len check (char_length(trim(email)) between 3 and 254),
+  constraint customer_profiles_email_format check (email ~* '^[^@\s]+@[^@\s]+\.[^@\s]+$'),
+  constraint customer_profiles_display_name_len check (display_name is null or char_length(trim(display_name)) <= 120)
+);
+
+alter table public.customer_profiles enable row level security;
+
+drop policy if exists "Customers can read own profile" on public.customer_profiles;
+create policy "Customers can read own profile"
+  on public.customer_profiles
+  for select
+  to authenticated
+  using (auth.uid() = auth_user_id);
+
+drop policy if exists "Customers can update own profile" on public.customer_profiles;
+create policy "Customers can update own profile"
+  on public.customer_profiles
+  for update
+  to authenticated
+  using (auth.uid() = auth_user_id)
+  with check (auth.uid() = auth_user_id);
+
+create index if not exists customer_profiles_email_idx
+  on public.customer_profiles (lower(email));
+
+create index if not exists customer_signins_auth_user_idx
+  on public.customer_signins (auth_user_id, created_at desc);
 
 -- Car makes shown in the parts finder. Each make is a distinct database row.
 create table if not exists public.makes (

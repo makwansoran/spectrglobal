@@ -1,4 +1,4 @@
-# Spectr Parts local dev — http://127.0.0.1:3000
+# Spectr local dev — http://127.0.0.1:3000
 # Usage: .\dev.ps1
 $ErrorActionPreference = "Stop"
 $Root = $PSScriptRoot
@@ -58,6 +58,6 @@ if (Test-Path $envFile) {
   }
 }
 
-Write-Host "Starting Spectr Parts at http://127.0.0.1:$($env:PORT)/" -ForegroundColor Green
+Write-Host "Starting Spectr at http://127.0.0.1:$($env:PORT)/" -ForegroundColor Green
 & $script:Toolchain.Node (Join-Path $Root "scripts\dev-server.js")
 exit $LASTEXITCODE

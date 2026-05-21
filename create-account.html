@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Sign in to Spectr." />
-    <title>Sign in | Spectr</title>
+    <meta name="description" content="Create a Spectr account." />
+    <title>Create account | Spectr</title>
     <link rel="icon" href="/assets/brand/spectr-mark.png" type="image/png" sizes="any" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,47 +17,51 @@
   <body class="login-page">
     <div class="auth-shell">
       <main class="auth-main">
-        <section class="auth-panel" aria-labelledby="signin-title">
+        <section class="auth-panel" aria-labelledby="create-account-title">
           <a class="auth-logo" href="index.html" aria-label="Spectr home">
             <img src="assets/brand/spectr-mark.png" width="28" height="28" alt="" />
             <span>Spectr</span>
           </a>
 
-          <p class="auth-kicker">Welcome back</p>
-          <h1 id="signin-title">Sign in to your account</h1>
-          <p class="auth-copy">Use your email and password to access saved vehicles and compatible parts faster.</p>
+          <p class="auth-kicker">Create account</p>
+          <h1 id="create-account-title">Start with your account</h1>
+          <p class="auth-copy">Create a Supabase-backed account with only an email and password.</p>
 
           <p class="auth-message" id="auth-message" role="alert" hidden></p>
 
-          <form class="auth-form" id="signin-form" autocomplete="on">
+          <form class="auth-form" id="create-account-form" autocomplete="on">
             <label class="auth-field">
               <span>Email</span>
-              <input id="signin-email" type="email" autocomplete="email" placeholder="email@example.com" required />
+              <input id="create-email" type="email" autocomplete="email" placeholder="email@example.com" required />
             </label>
             <label class="auth-field">
               <span>Password</span>
-              <input id="signin-password" type="password" autocomplete="current-password" placeholder="Your password" required />
+              <input id="create-password" type="password" autocomplete="new-password" placeholder="Create a password" minlength="6" required />
             </label>
-            <button type="submit" class="auth-submit">Sign in</button>
+            <label class="auth-field">
+              <span>Confirm password</span>
+              <input id="create-password-confirm" type="password" autocomplete="new-password" placeholder="Confirm password" minlength="6" required />
+            </label>
+            <button type="submit" class="auth-submit">Create account</button>
           </form>
 
           <p class="auth-switch">
-            Don't have an account?
-            <a href="create-account.html">Create account</a>
+            Already have an account?
+            <a href="login.html">Sign in</a>
           </p>
         </section>
 
         <aside class="auth-promo" aria-label="Promotion">
           <div class="auth-promo-content">
             <p class="auth-kicker">Spectr</p>
-            <h2>One place for every part that fits.</h2>
+            <h2>Your garage, saved securely.</h2>
             <p>
-              Save vehicles, keep order context, and return to the parts that match your exact car.
+              Your account is created in Supabase Auth and connected to a customer profile in the database.
             </p>
             <ul class="auth-promo-list">
-              <li>Saved vehicle profiles</li>
-              <li>Faster repeat orders</li>
-              <li>Compatible part recommendations</li>
+              <li>Email and password sign-in</li>
+              <li>No two-factor step</li>
+              <li>Profile saved in Supabase</li>
             </ul>
           </div>
         </aside>

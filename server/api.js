@@ -1,5 +1,5 @@
 /**
- * Minimal API router for Spectr Parts (customer sign-in only).
+ * Minimal API router for Spectr.
  */
 const { handleAuthApi } = require("./auth-api");
 const {

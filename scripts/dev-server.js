@@ -1,5 +1,5 @@
 /**
- * Local static dev server for Spectr Parts.
+ * Local static dev server for Spectr.
  * Usage: node scripts/dev-server.js
  */
 require("./load-env").loadEnv();
@@ -108,7 +108,7 @@ server.on("error", (err) => {
 
 server.listen(PORT, HOST, () => {
   console.log("");
-  console.log("  Spectr Parts dev server");
+  console.log("  Spectr dev server");
   console.log(`  → http://${HOST}:${PORT}/`);
   console.log(`  → http://${HOST}:${PORT}/login.html`);
   console.log(

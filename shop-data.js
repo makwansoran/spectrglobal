@@ -1,4 +1,4 @@
-/* Spectr Parts — shared data + storage layer (LocalStorage based).
+/* Spectr — shared data + storage layer (LocalStorage based).
  * Exposes window.SpectrShop with read/write helpers used by shop.js and admin-parts.js. */
 (function () {
   "use strict";

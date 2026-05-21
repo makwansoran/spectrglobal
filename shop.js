@@ -1,4 +1,4 @@
-/* Spectr Parts — shop landing logic.
+/* Spectr — shop landing logic.
  * Wires up vehicle finder, promo slideshow, catalog grid, and cart drawer. */
 (function () {
   "use strict";
@@ -53,7 +53,7 @@
         track.innerHTML =
           '<div class="promo-slide is-active" style="background:#1f2937">' +
           '<div class="promo-slide-inner">' +
-          '<p class="promo-eyebrow">Spectr Parts</p>' +
+          '<p class="promo-eyebrow">Spectr</p>' +
           '<h3>Add promotions in admin</h3>' +
           '<p>You can publish offers and launches from the admin panel.</p>' +
           '<a href="admin-parts.html#slides">Go to admin</a>' +
