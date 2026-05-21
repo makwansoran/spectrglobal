@@ -5,6 +5,24 @@
   });
 })();
 
+(function addFooterLegalLinks() {
+  var footers = document.querySelectorAll(".site-footer-meta");
+  if (!footers.length) return;
+
+  footers.forEach(function (footer) {
+    if (footer.querySelector(".site-footer-legal-links")) return;
+
+    var nav = document.createElement("nav");
+    nav.className = "site-footer-legal-links";
+    nav.setAttribute("aria-label", "Legal links");
+    nav.innerHTML =
+      '<a href="privacy-policy.html">Privacy Policy</a>' +
+      '<a href="terms-of-use.html">Terms of Use</a>';
+
+    footer.appendChild(nav);
+  });
+})();
+
 (function () {
   var toggle = document.querySelector(".nav-toggle");
   var nav = document.querySelector(".nav");
