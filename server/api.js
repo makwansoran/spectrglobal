@@ -658,16 +658,14 @@ async function loadCatalogParts(activeOnly, limit) {
 
   if (error) throw error;
 
-  const [oilParts, tyreParts, brakeParts] = await Promise.all([
+  const [oilParts, brakeParts] = await Promise.all([
     fetchOilProductParts(activeOnly),
-    fetchTyreSizeParts(),
     fetchBrakeProductParts(activeOnly),
   ]);
 
   return dedupeCatalogParts([
     ...(data || []).map(partFromRow),
     ...oilParts,
-    ...tyreParts,
     ...brakeParts,
   ]).slice(0, limit);
 }
