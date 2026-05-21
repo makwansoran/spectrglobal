@@ -316,6 +316,42 @@
   font-size: 13px;
 }
 
+.catalog-manager-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.catalog-manager-card {
+  min-width: 0;
+}
+
+.catalog-manager-card header {
+  margin-bottom: 12px;
+}
+
+.catalog-manager-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.catalog-manager-form input,
+.catalog-manager-form select {
+  min-width: 0;
+  border: 1px solid #d8dde4;
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 9px 10px;
+  font: inherit;
+  font-size: 13px;
+}
+
+.catalog-manager-form button {
+  width: fit-content;
+}
+
 .management-table-wrap {
   overflow: auto;
   background: #ffffff;
@@ -449,6 +485,11 @@
   font-size: 14px;
   text-align: right;
   font-family: inherit;
+}
+
+.management-table .input-cell-wide {
+  width: min(180px, 100%);
+  text-align: left;
 }
 
 .management-table .input-cell:focus {
@@ -754,6 +795,11 @@
 @media (max-width: 720px) {
   .management-main {
     padding: 20px 16px 48px;
+  }
+
+  .catalog-manager-grid,
+  .catalog-manager-form {
+    grid-template-columns: 1fr;
   }
 
   .management-hero {

@@ -10,11 +10,14 @@
     ordersSummary: null,
     users: [],
     usersSummary: null,
+    makes: [],
+    categories: [],
     tab: "overview",
     filters: {
       products: { query: "", kind: "", stock: "", sort: "name" },
       orders: { query: "", status: "" },
       customers: { query: "", role: "" },
+      catalog: { query: "" },
     },
     admin: null,
     pendingDeleteUserId: "",
@@ -386,6 +389,106 @@
     }).join("");
   }
 
+  function categoryParentName(parentId) {
+    if (!parentId) return "—";
+    var parent = state.categories.find(function (category) { return category.id === parentId; });
+    return parent ? parent.name : "—";
+  }
+
+  function categoryParentOptions(level, selectedId, selfId) {
+    var parentLevel = Math.max(1, (parseInt(level, 10) || 1) - 1);
+    if ((parseInt(level, 10) || 1) <= 1) return '<option value="">No parent</option>';
+    return '<option value="">Choose parent</option>' + state.categories
+      .filter(function (category) {
+        return category.id !== selfId && Number(category.level) === parentLevel;
+      })
+      .map(function (category) {
+        return '<option value="' + escapeHtml(category.id) + '"' + (category.id === selectedId ? " selected" : "") + '>' +
+          escapeHtml(category.name) +
+          '</option>';
+      }).join("");
+  }
+
+  function updateCreateParentOptions() {
+    var levelSelect = document.querySelector('#category-create-form [name="level"]');
+    var parentSelect = $("category-parent-create");
+    if (!levelSelect || !parentSelect) return;
+    parentSelect.innerHTML = categoryParentOptions(levelSelect.value, "", "");
+    parentSelect.disabled = (parseInt(levelSelect.value, 10) || 1) <= 1;
+  }
+
+  function filterMakes() {
+    var query = state.filters.catalog.query.toLowerCase();
+    return state.makes.filter(function (make) {
+      var haystack = [make.name, make.slug, make.country, make.region].join(" ").toLowerCase();
+      return !query || haystack.indexOf(query) !== -1;
+    });
+  }
+
+  function filterCategories() {
+    var query = state.filters.catalog.query.toLowerCase();
+    return state.categories.filter(function (category) {
+      var haystack = [category.name, category.slug, categoryParentName(category.parent_id), category.level].join(" ").toLowerCase();
+      return !query || haystack.indexOf(query) !== -1;
+    });
+  }
+
+  function renderMakesTable() {
+    var tbody = document.querySelector("#makes-table tbody");
+    if (!tbody) return;
+    var rows = filterMakes();
+    if (!rows.length) {
+      tbody.innerHTML = '<tr><td colspan="7"><div class="empty-state">No car brands match this view.</div></td></tr>';
+      return;
+    }
+    tbody.innerHTML = rows.map(function (make) {
+      return (
+        '<tr data-make="' + escapeHtml(make.id) + '">' +
+          '<td><input class="input-cell input-cell-wide" data-make-field="name" value="' + escapeHtml(make.name) + '" /></td>' +
+          '<td><input class="input-cell input-cell-wide" data-make-field="slug" value="' + escapeHtml(make.slug) + '" /></td>' +
+          '<td><input class="input-cell input-cell-wide" data-make-field="country" value="' + escapeHtml(make.country || "") + '" /></td>' +
+          '<td><input class="input-cell input-cell-wide" data-make-field="region" value="' + escapeHtml(make.region || "") + '" /></td>' +
+          '<td><input class="input-cell" data-make-field="logo_text" maxlength="6" value="' + escapeHtml(make.logo_text || "") + '" /></td>' +
+          '<td><label class="toggle-switch"><input type="checkbox" data-make-field="active"' + (make.active ? " checked" : "") + ' /><span class="slider"></span></label></td>' +
+          '<td><button type="button" class="table-action table-action-danger" data-make-delete="' + escapeHtml(make.id) + '">Delete</button></td>' +
+        '</tr>'
+      );
+    }).join("");
+  }
+
+  function renderCategoriesTable() {
+    var tbody = document.querySelector("#categories-table tbody");
+    if (!tbody) return;
+    var rows = filterCategories();
+    if (!rows.length) {
+      tbody.innerHTML = '<tr><td colspan="7"><div class="empty-state">No part categories match this view.</div></td></tr>';
+      return;
+    }
+    tbody.innerHTML = rows.map(function (category) {
+      return (
+        '<tr data-category="' + escapeHtml(category.id) + '">' +
+          '<td><input class="input-cell input-cell-wide" data-category-field="name" value="' + escapeHtml(category.name) + '" /></td>' +
+          '<td><input class="input-cell input-cell-wide" data-category-field="slug" value="' + escapeHtml(category.slug) + '" /></td>' +
+          '<td><select class="status-select" data-category-field="level">' +
+            [1, 2, 3].map(function (level) {
+              return '<option value="' + level + '"' + (Number(category.level) === level ? " selected" : "") + '>' + level + '</option>';
+            }).join("") +
+          '</select></td>' +
+          '<td><select class="status-select" data-category-field="parent_id">' + categoryParentOptions(category.level, category.parent_id, category.id) + '</select></td>' +
+          '<td><input class="input-cell" data-category-field="icon" value="' + escapeHtml(category.icon || "") + '" /></td>' +
+          '<td><input type="number" class="input-cell" data-category-field="sort_order" value="' + escapeHtml(category.sort_order || 0) + '" /></td>' +
+          '<td><button type="button" class="table-action table-action-danger" data-category-delete="' + escapeHtml(category.id) + '">Delete</button></td>' +
+        '</tr>'
+      );
+    }).join("");
+  }
+
+  function renderCatalogTables() {
+    updateCreateParentOptions();
+    renderMakesTable();
+    renderCategoriesTable();
+  }
+
   async function loadProducts() {
     try {
       var data = await api("/api/admin/supply");
@@ -447,6 +550,21 @@
     }
   }
 
+  async function loadCatalogSettings() {
+    try {
+      var data = await api("/api/admin/catalog");
+      state.makes = data.makes || [];
+      state.categories = data.categories || [];
+      renderCatalogTables();
+    } catch (err) {
+      toast(err.message || "Could not load car brands and categories.", "error");
+      var makesBody = document.querySelector("#makes-table tbody");
+      var categoriesBody = document.querySelector("#categories-table tbody");
+      if (makesBody) makesBody.innerHTML = '<tr><td colspan="7"><div class="empty-state">' + escapeHtml(err.message || "Could not load car brands.") + '</div></td></tr>';
+      if (categoriesBody) categoriesBody.innerHTML = '<tr><td colspan="7"><div class="empty-state">' + escapeHtml(err.message || "Could not load categories.") + '</div></td></tr>';
+    }
+  }
+
   async function saveProductField(kind, id, field, value, input) {
     var body = {};
     body[field] = value;
@@ -477,6 +595,136 @@
         setTimeout(function () { input.classList.remove("is-error"); }, 1400);
       }
       toast(err.message || "Could not save.", "error");
+    }
+  }
+
+  async function saveMakeField(id, field, value, input) {
+    var body = {};
+    body[field] = value;
+    if (input && input.classList) input.classList.add("is-saving");
+    try {
+      var data = await api("/api/admin/catalog/makes/" + encodeURIComponent(id), {
+        method: "PATCH",
+        headers: authHeaders({ "Content-Type": "application/json" }),
+        body: JSON.stringify(body),
+      });
+      var idx = state.makes.findIndex(function (make) { return make.id === id; });
+      if (idx >= 0 && data.make) state.makes[idx] = data.make;
+      if (input && input.classList) {
+        input.classList.remove("is-saving");
+        input.classList.add("is-saved");
+        setTimeout(function () { input.classList.remove("is-saved"); }, 900);
+      }
+      renderCatalogTables();
+      toast("Brand saved");
+    } catch (err) {
+      if (input && input.classList) {
+        input.classList.remove("is-saving");
+        input.classList.add("is-error");
+        setTimeout(function () { input.classList.remove("is-error"); }, 1400);
+      }
+      toast(err.message || "Could not save brand.", "error");
+    }
+  }
+
+  async function saveCategoryField(id, field, value, input) {
+    var category = state.categories.find(function (item) { return item.id === id; }) || {};
+    var body = {};
+    body[field] = value;
+    if (field === "level") {
+      body.parent_id = parseInt(value, 10) <= 1 ? "" : category.parent_id;
+    } else if (field === "parent_id") {
+      body.level = category.level;
+    }
+    if (input && input.classList) input.classList.add("is-saving");
+    try {
+      var data = await api("/api/admin/catalog/categories/" + encodeURIComponent(id), {
+        method: "PATCH",
+        headers: authHeaders({ "Content-Type": "application/json" }),
+        body: JSON.stringify(body),
+      });
+      var idx = state.categories.findIndex(function (item) { return item.id === id; });
+      if (idx >= 0 && data.category) state.categories[idx] = data.category;
+      if (input && input.classList) {
+        input.classList.remove("is-saving");
+        input.classList.add("is-saved");
+        setTimeout(function () { input.classList.remove("is-saved"); }, 900);
+      }
+      renderCatalogTables();
+      toast("Category saved");
+    } catch (err) {
+      if (input && input.classList) {
+        input.classList.remove("is-saving");
+        input.classList.add("is-error");
+        setTimeout(function () { input.classList.remove("is-error"); }, 1400);
+      }
+      toast(err.message || "Could not save category.", "error");
+    }
+  }
+
+  function formValues(form) {
+    var data = {};
+    Array.from(new FormData(form).entries()).forEach(function (entry) {
+      data[entry[0]] = entry[1];
+    });
+    return data;
+  }
+
+  async function createMake(form) {
+    try {
+      var data = await api("/api/admin/catalog/makes", {
+        method: "POST",
+        headers: authHeaders({ "Content-Type": "application/json" }),
+        body: JSON.stringify(formValues(form)),
+      });
+      if (data.make) state.makes.push(data.make);
+      form.reset();
+      renderCatalogTables();
+      toast("Brand added");
+    } catch (err) {
+      toast(err.message || "Could not add brand.", "error");
+    }
+  }
+
+  async function createCategory(form) {
+    try {
+      var data = await api("/api/admin/catalog/categories", {
+        method: "POST",
+        headers: authHeaders({ "Content-Type": "application/json" }),
+        body: JSON.stringify(formValues(form)),
+      });
+      if (data.category) state.categories.push(data.category);
+      form.reset();
+      renderCatalogTables();
+      toast("Category added");
+    } catch (err) {
+      toast(err.message || "Could not add category.", "error");
+    }
+  }
+
+  async function deleteMake(id) {
+    if (!confirm("Delete this car brand? Linked models and fitments may also be removed.")) return;
+    try {
+      await api("/api/admin/catalog/makes/" + encodeURIComponent(id), { method: "DELETE" });
+      state.makes = state.makes.filter(function (make) { return make.id !== id; });
+      renderCatalogTables();
+      toast("Brand deleted");
+    } catch (err) {
+      toast(err.message || "Could not delete brand.", "error");
+    }
+  }
+
+  async function deleteCategory(id) {
+    if (!confirm("Delete this category? Child categories may also be removed.")) return;
+    try {
+      await api("/api/admin/catalog/categories/" + encodeURIComponent(id), { method: "DELETE" });
+      state.categories = state.categories.filter(function (category) {
+        return category.id !== id && category.parent_id !== id;
+      });
+      renderCatalogTables();
+      toast("Category deleted");
+    } catch (err) {
+      toast(err.message || "Could not delete category.", "error");
     }
   }
 
@@ -751,6 +999,21 @@
       renderUsersTable();
     });
     $("customers-refresh").addEventListener("click", loadUsers);
+    $("catalog-search").addEventListener("input", function (e) {
+      state.filters.catalog.query = e.target.value || "";
+      renderCatalogTables();
+    });
+    $("catalog-refresh").addEventListener("click", loadCatalogSettings);
+    $("make-create-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      createMake(e.currentTarget);
+    });
+    var categoryCreateForm = $("category-create-form");
+    categoryCreateForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      createCategory(e.currentTarget);
+    });
+    categoryCreateForm.querySelector('[name="level"]').addEventListener("change", updateCreateParentOptions);
 
     var usersTable = $("customers-table");
     usersTable.addEventListener("change", function (e) {
@@ -763,6 +1026,33 @@
       if (!del) return;
       var user = state.users.find(function (u) { return u.id === del.dataset.userDelete; });
       openUserDeleteConfirm(user || { id: del.dataset.userDelete });
+    });
+
+    var makesTable = $("makes-table");
+    makesTable.addEventListener("change", function (e) {
+      var input = e.target.closest("[data-make-field]");
+      if (!input) return;
+      var row = input.closest("tr[data-make]");
+      if (!row) return;
+      var value = input.type === "checkbox" ? input.checked : input.value;
+      saveMakeField(row.dataset.make, input.dataset.makeField, value, input.type === "checkbox" ? null : input);
+    });
+    makesTable.addEventListener("click", function (e) {
+      var del = e.target.closest("[data-make-delete]");
+      if (del) deleteMake(del.dataset.makeDelete);
+    });
+
+    var categoriesTable = $("categories-table");
+    categoriesTable.addEventListener("change", function (e) {
+      var input = e.target.closest("[data-category-field]");
+      if (!input) return;
+      var row = input.closest("tr[data-category]");
+      if (!row) return;
+      saveCategoryField(row.dataset.category, input.dataset.categoryField, input.value, input);
+    });
+    categoriesTable.addEventListener("click", function (e) {
+      var del = e.target.closest("[data-category-delete]");
+      if (del) deleteCategory(del.dataset.categoryDelete);
     });
 
     document.querySelectorAll("[data-drawer-close]").forEach(function (el) {
@@ -791,6 +1081,6 @@
     bindEvents();
     await loadAdminIdentity();
     await loadProducts();
-    await Promise.all([loadOrders(), loadUsers()]);
+    await Promise.all([loadOrders(), loadUsers(), loadCatalogSettings()]);
   });
 })();

@@ -41,6 +41,7 @@
         <button type="button" class="management-tab" data-tab="products" role="tab" aria-selected="false">Products</button>
         <button type="button" class="management-tab" data-tab="orders" role="tab" aria-selected="false">Orders</button>
         <button type="button" class="management-tab" data-tab="customers" role="tab" aria-selected="false">Customers</button>
+        <button type="button" class="management-tab" data-tab="categories" role="tab" aria-selected="false">Categories</button>
       </nav>
 
       <section class="management-section is-active" data-panel="overview">
@@ -242,6 +243,92 @@
               <tr><td colspan="6"><div class="empty-state">Loading customers...</div></td></tr>
             </tbody>
           </table>
+        </div>
+      </section>
+
+      <section class="management-section" data-panel="categories" hidden>
+        <header class="management-toolbar">
+          <div class="management-toolbar-search">
+            <input type="search" id="catalog-search" placeholder="Search car brands or part categories" autocomplete="off" />
+          </div>
+          <div class="management-toolbar-filters">
+            <button type="button" class="btn btn-secondary" id="catalog-refresh" title="Reload car brands and categories">Refresh</button>
+          </div>
+        </header>
+
+        <p class="management-note">Manage the database records used by the car finder and parts category navigation. Deleting a parent can remove its linked children.</p>
+
+        <div class="catalog-manager-grid">
+          <section class="management-card catalog-manager-card">
+            <header>
+              <h2>Car brands</h2>
+            </header>
+            <form class="catalog-manager-form" id="make-create-form" autocomplete="off">
+              <input type="text" name="name" placeholder="Brand name" required />
+              <input type="text" name="slug" placeholder="slug" />
+              <input type="text" name="country" placeholder="Country" />
+              <input type="text" name="region" placeholder="Region" />
+              <input type="text" name="logo_text" placeholder="Logo text" maxlength="6" />
+              <button type="submit" class="btn btn-primary">Add brand</button>
+            </form>
+            <div class="management-table-wrap">
+              <table class="management-table compact-management-table" id="makes-table">
+                <thead>
+                  <tr>
+                    <th>Brand</th>
+                    <th>Slug</th>
+                    <th>Country</th>
+                    <th>Region</th>
+                    <th>Logo</th>
+                    <th>Active</th>
+                    <th aria-label="Actions"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td colspan="7"><div class="empty-state">Loading car brands...</div></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="management-card catalog-manager-card">
+            <header>
+              <h2>Part categories</h2>
+            </header>
+            <form class="catalog-manager-form" id="category-create-form" autocomplete="off">
+              <input type="text" name="name" placeholder="Category name" required />
+              <input type="text" name="slug" placeholder="slug" />
+              <select name="level" aria-label="Category level">
+                <option value="1">Level 1 section</option>
+                <option value="2">Level 2 group</option>
+                <option value="3">Level 3 category</option>
+              </select>
+              <select name="parent_id" id="category-parent-create" aria-label="Parent category">
+                <option value="">No parent</option>
+              </select>
+              <input type="text" name="icon" placeholder="Icon" />
+              <input type="number" name="sort_order" placeholder="Sort" />
+              <button type="submit" class="btn btn-primary">Add category</button>
+            </form>
+            <div class="management-table-wrap">
+              <table class="management-table compact-management-table" id="categories-table">
+                <thead>
+                  <tr>
+                    <th>Category</th>
+                    <th>Slug</th>
+                    <th>Level</th>
+                    <th>Parent</th>
+                    <th>Icon</th>
+                    <th>Sort</th>
+                    <th aria-label="Actions"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td colspan="7"><div class="empty-state">Loading categories...</div></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
         </div>
       </section>
 

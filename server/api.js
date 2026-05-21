@@ -186,6 +186,20 @@ function categoryFromRow(row) {
   };
 }
 
+function makeFromRow(row) {
+  return {
+    id: row.id,
+    slug: row.slug,
+    name: row.name,
+    country: row.country || "",
+    region: row.region || "",
+    active: row.active !== false,
+    logo_text: row.logo_text || "",
+    logo_url: row.logo_url || "",
+    popularity_rank: row.popularity_rank == null ? null : Number(row.popularity_rank),
+  };
+}
+
 async function handleCategories(req, res) {
   if (!isSupabaseEnabled()) {
     sendJson(res, 503, { error: "Categories database is not configured." });
@@ -1314,11 +1328,227 @@ async function handleAdminUserDelete(req, res, id) {
   return true;
 }
 
+function slugify(value) {
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function cleanMakeBody(body, partial) {
+  const source = body || {};
+  const name = String(source.name || "").trim();
+  const slug = slugify(source.slug || name);
+  const record = {};
+
+  if (!partial || source.name != null) {
+    if (!name) return { error: "Brand name is required." };
+    record.name = name;
+  }
+  if (!partial || source.slug != null || source.name != null) {
+    if (!slug) return { error: "Brand slug is required." };
+    record.slug = slug;
+  }
+  if (!partial || source.country != null) record.country = String(source.country || "").trim() || null;
+  if (!partial || source.region != null) record.region = String(source.region || "").trim() || null;
+  if (!partial || source.logo_text != null || source.name != null) {
+    record.logo_text = String(source.logo_text || name.slice(0, 3) || "CAR").trim().toUpperCase().slice(0, 6);
+  }
+  if (!partial || source.logo_url != null) record.logo_url = String(source.logo_url || "").trim() || null;
+  if (!partial || source.active != null) record.active = source.active !== false;
+  if (!partial || source.popularity_rank != null) {
+    record.popularity_rank = source.popularity_rank === "" || source.popularity_rank == null
+      ? null
+      : Math.max(1, parseInt(source.popularity_rank, 10) || 1);
+  }
+  record.updated_at = new Date().toISOString();
+  return { record };
+}
+
+function cleanCategoryBody(body, partial) {
+  const source = body || {};
+  const name = String(source.name || "").trim();
+  const slug = slugify(source.slug || name);
+  const level = Math.min(Math.max(parseInt(source.level, 10) || 1, 1), 3);
+  const parentId = String(source.parent_id || "").trim() || null;
+  const record = {};
+
+  if (!partial || source.name != null) {
+    if (!name) return { error: "Category name is required." };
+    record.name = name;
+  }
+  if (!partial || source.slug != null || source.name != null) {
+    if (!slug) return { error: "Category slug is required." };
+    record.slug = slug;
+  }
+  if (!partial || source.level != null) record.level = level;
+  if (!partial || source.parent_id != null || source.level != null) {
+    record.parent_id = level === 1 ? null : parentId;
+    if (level > 1 && !record.parent_id) return { error: "Subcategories need a parent category." };
+  }
+  if (!partial || source.icon != null) record.icon = String(source.icon || "").trim() || null;
+  if (!partial || source.sort_order != null) record.sort_order = parseInt(source.sort_order, 10) || 0;
+  record.updated_at = new Date().toISOString();
+  return { record };
+}
+
+async function handleAdminCatalog(req, res) {
+  const user = await requireAdmin(req, res);
+  if (!user) return true;
+
+  const [makesResult, categoriesResult] = await Promise.all([
+    getAdminClient()
+      .from("makes")
+      .select("id, slug, name, country, region, active, logo_text, logo_url, popularity_rank")
+      .order("name", { ascending: true }),
+    getAdminClient()
+      .from("categories")
+      .select("id, parent_id, name, slug, level, icon, sort_order")
+      .order("level", { ascending: true })
+      .order("sort_order", { ascending: true })
+      .order("name", { ascending: true }),
+  ]);
+
+  const firstError = makesResult.error || categoriesResult.error;
+  if (firstError) {
+    sendJson(res, 500, { error: firstError.message || "Could not load catalog settings." });
+    return true;
+  }
+
+  sendJson(res, 200, {
+    makes: (makesResult.data || []).map(makeFromRow),
+    categories: (categoriesResult.data || []).map(categoryFromRow),
+  });
+  return true;
+}
+
+async function handleAdminMakeCreate(req, res, body) {
+  const user = await requireAdmin(req, res);
+  if (!user) return true;
+  const cleaned = cleanMakeBody(body, false);
+  if (cleaned.error) {
+    sendJson(res, 400, { error: cleaned.error });
+    return true;
+  }
+  const { data, error } = await getAdminClient()
+    .from("makes")
+    .insert({ ...cleaned.record, created_at: new Date().toISOString() })
+    .select("id, slug, name, country, region, active, logo_text, logo_url, popularity_rank")
+    .single();
+  if (error) {
+    sendJson(res, error.code === "23505" ? 409 : 500, { error: error.message || "Could not create car brand." });
+    return true;
+  }
+  sendJson(res, 201, { make: makeFromRow(data) });
+  return true;
+}
+
+async function handleAdminMakeUpdate(req, res, id, body) {
+  const user = await requireAdmin(req, res);
+  if (!user) return true;
+  const cleaned = cleanMakeBody(body, true);
+  if (cleaned.error) {
+    sendJson(res, 400, { error: cleaned.error });
+    return true;
+  }
+  const { data, error } = await getAdminClient()
+    .from("makes")
+    .update(cleaned.record)
+    .eq("id", id)
+    .select("id, slug, name, country, region, active, logo_text, logo_url, popularity_rank")
+    .single();
+  if (error) {
+    sendJson(res, 500, { error: error.message || "Could not update car brand." });
+    return true;
+  }
+  sendJson(res, 200, { make: makeFromRow(data) });
+  return true;
+}
+
+async function handleAdminMakeDelete(req, res, id) {
+  const user = await requireAdmin(req, res);
+  if (!user) return true;
+  const { error } = await getAdminClient().from("makes").delete().eq("id", id);
+  if (error) {
+    sendJson(res, 500, { error: error.message || "Could not delete car brand." });
+    return true;
+  }
+  sendJson(res, 200, { ok: true, id });
+  return true;
+}
+
+async function handleAdminCategoryCreate(req, res, body) {
+  const user = await requireAdmin(req, res);
+  if (!user) return true;
+  const cleaned = cleanCategoryBody(body, false);
+  if (cleaned.error) {
+    sendJson(res, 400, { error: cleaned.error });
+    return true;
+  }
+  const { data, error } = await getAdminClient()
+    .from("categories")
+    .insert({ ...cleaned.record, created_at: new Date().toISOString() })
+    .select("id, parent_id, name, slug, level, icon, sort_order")
+    .single();
+  if (error) {
+    sendJson(res, error.code === "23505" ? 409 : 500, { error: error.message || "Could not create category." });
+    return true;
+  }
+  sendJson(res, 201, { category: categoryFromRow(data) });
+  return true;
+}
+
+async function handleAdminCategoryUpdate(req, res, id, body) {
+  const user = await requireAdmin(req, res);
+  if (!user) return true;
+  const cleaned = cleanCategoryBody(body, true);
+  if (cleaned.error) {
+    sendJson(res, 400, { error: cleaned.error });
+    return true;
+  }
+  const { data, error } = await getAdminClient()
+    .from("categories")
+    .update(cleaned.record)
+    .eq("id", id)
+    .select("id, parent_id, name, slug, level, icon, sort_order")
+    .single();
+  if (error) {
+    sendJson(res, 500, { error: error.message || "Could not update category." });
+    return true;
+  }
+  sendJson(res, 200, { category: categoryFromRow(data) });
+  return true;
+}
+
+async function handleAdminCategoryDelete(req, res, id) {
+  const user = await requireAdmin(req, res);
+  if (!user) return true;
+  const { error } = await getAdminClient().from("categories").delete().eq("id", id);
+  if (error) {
+    sendJson(res, 500, { error: error.message || "Could not delete category." });
+    return true;
+  }
+  sendJson(res, 200, { ok: true, id });
+  return true;
+}
+
 async function handleAdminApi(req, res, pathname) {
   if (pathname === "/api/admin/me" && req.method === "GET") return handleAdminMe(req, res);
   if (pathname === "/api/admin/supply" && req.method === "GET") return handleAdminSupply(req, res);
   if (pathname === "/api/admin/orders" && req.method === "GET") return handleAdminOrders(req, res);
   if (pathname === "/api/admin/users" && req.method === "GET") return handleAdminUsers(req, res);
+  if (pathname === "/api/admin/catalog" && req.method === "GET") return handleAdminCatalog(req, res);
+  if (pathname === "/api/admin/catalog/makes" && req.method === "POST") {
+    const body = await readJsonBody(req);
+    return handleAdminMakeCreate(req, res, body);
+  }
+  if (pathname === "/api/admin/catalog/categories" && req.method === "POST") {
+    const body = await readJsonBody(req);
+    return handleAdminCategoryCreate(req, res, body);
+  }
 
   const productMatch = pathname.match(/^\/api\/admin\/products\/([^/]+)\/([^/]+)$/);
   if (productMatch && req.method === "GET") {
@@ -1345,6 +1575,24 @@ async function handleAdminApi(req, res, pathname) {
   }
   if (userMatch && req.method === "DELETE") {
     return handleAdminUserDelete(req, res, decodeURIComponent(userMatch[1]));
+  }
+
+  const makeMatch = pathname.match(/^\/api\/admin\/catalog\/makes\/([^/]+)$/);
+  if (makeMatch && req.method === "PATCH") {
+    const body = await readJsonBody(req);
+    return handleAdminMakeUpdate(req, res, decodeURIComponent(makeMatch[1]), body);
+  }
+  if (makeMatch && req.method === "DELETE") {
+    return handleAdminMakeDelete(req, res, decodeURIComponent(makeMatch[1]));
+  }
+
+  const categoryMatch = pathname.match(/^\/api\/admin\/catalog\/categories\/([^/]+)$/);
+  if (categoryMatch && req.method === "PATCH") {
+    const body = await readJsonBody(req);
+    return handleAdminCategoryUpdate(req, res, decodeURIComponent(categoryMatch[1]), body);
+  }
+  if (categoryMatch && req.method === "DELETE") {
+    return handleAdminCategoryDelete(req, res, decodeURIComponent(categoryMatch[1]));
   }
 
   return false;
