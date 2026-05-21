@@ -531,6 +531,7 @@
       grid.addEventListener("click", function (event) {
         var btn = event.target.closest("[data-add-part]");
         if (btn) {
+          Shop.celebrateAddToCart(btn);
           Shop.addToCart(btn.dataset.addPart, 1);
           openCart();
           return;

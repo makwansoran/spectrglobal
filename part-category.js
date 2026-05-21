@@ -382,6 +382,7 @@
     $("category-products-grid").addEventListener("click", function (event) {
       var button = event.target.closest("[data-add-part]");
       if (button) {
+        Shop.celebrateAddToCart(button);
         Shop.addToCart(button.dataset.addPart, 1);
         renderProducts();
         renderCart();

@@ -96,7 +96,8 @@
         '</div>' +
       '</div>';
 
-    $("product-detail-add").addEventListener("click", function () {
+    $("product-detail-add").addEventListener("click", function (event) {
+      Shop.celebrateAddToCart(event.currentTarget);
       Shop.addToCart(product.id, 1);
       renderDetail();
       renderSimilar();
@@ -206,6 +207,7 @@
     $("similar-products-grid").addEventListener("click", function (event) {
       var button = event.target.closest("[data-add-part]");
       if (button) {
+        Shop.celebrateAddToCart(button);
         Shop.addToCart(button.dataset.addPart, 1);
         renderDetail();
         renderSimilar();

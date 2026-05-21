@@ -10,6 +10,9 @@
   --shop-line-strong: rgba(10, 12, 16, 0.32);
   --shop-accent: #0a0c10;
   --shop-accent-soft: #1f6feb;
+  --shop-cart-orange: #f97316;
+  --shop-cart-orange-dark: #ea580c;
+  --shop-cart-orange-soft: #ffedd5;
   --shop-radius: 4px;
   --shop-radius-lg: 8px;
   --shop-mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
@@ -1426,8 +1429,8 @@
 }
 
 .product-add {
-  border: 1px solid var(--shop-ink);
-  background: var(--shop-ink);
+  border: 1px solid var(--shop-cart-orange);
+  background: var(--shop-cart-orange);
   color: #ffffff;
   padding: 0.6rem 0.8rem;
   border-radius: var(--shop-radius);
@@ -1435,10 +1438,15 @@
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  box-shadow: 0 0.55rem 1.15rem rgba(249, 115, 22, 0.22);
+  transition: background 0.15s, border-color 0.15s, box-shadow 0.15s, transform 0.15s;
 }
 
 .product-add:hover:not(:disabled) {
-  background: #1f2937;
+  background: var(--shop-cart-orange-dark);
+  border-color: var(--shop-cart-orange-dark);
+  box-shadow: 0 0.75rem 1.35rem rgba(234, 88, 12, 0.28);
+  transform: translateY(-1px);
 }
 
 .product-add:disabled {
@@ -1566,6 +1574,15 @@
 
 .product-detail-add {
   width: 100%;
+  background: var(--shop-cart-orange);
+  border-color: var(--shop-cart-orange);
+  box-shadow: 0 0.85rem 1.7rem rgba(249, 115, 22, 0.22);
+}
+
+.product-detail-add:not(:disabled):hover {
+  background: var(--shop-cart-orange-dark);
+  border-color: var(--shop-cart-orange-dark);
+  box-shadow: 0 1rem 1.9rem rgba(234, 88, 12, 0.28);
 }
 
 .product-detail-section {
@@ -1632,6 +1649,10 @@
   transform: translateY(-2px);
 }
 
+.cart-fab.is-celebrating {
+  animation: cartFabHappy 0.55s cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+
 .cart-fab svg {
   width: 1.1rem;
   height: 1.1rem;
@@ -1650,6 +1671,74 @@
   font-family: var(--shop-mono);
   font-size: 0.78rem;
   font-weight: 700;
+}
+
+.cart-joy-burst {
+  position: fixed;
+  z-index: 80;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.cart-joy-particle {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.45rem;
+  height: 1.45rem;
+  padding: 0 0.35rem;
+  border: 1px solid rgba(249, 115, 22, 0.28);
+  border-radius: 999px;
+  background: var(--shop-cart-orange-soft);
+  color: var(--shop-cart-orange-dark);
+  font-family: var(--shop-mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+  box-shadow: 0 0.7rem 1.5rem rgba(249, 115, 22, 0.2);
+  transform: translate(-50%, -50%) scale(0.4);
+  animation: cartJoyPop 0.72s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes cartJoyPop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.4) rotate(-12deg);
+  }
+  18% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(1) rotate(12deg);
+  }
+}
+
+@keyframes cartFabHappy {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  35% {
+    transform: translateY(-6px) scale(1.08) rotate(-2deg);
+  }
+  65% {
+    transform: translateY(-2px) scale(0.98) rotate(2deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cart-joy-burst,
+  .cart-joy-particle {
+    display: none;
+  }
+
+  .cart-fab.is-celebrating {
+    animation: none;
+  }
 }
 
 .cart-drawer {

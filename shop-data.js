@@ -220,6 +220,45 @@
     setCart([]);
   }
 
+  function celebrateAddToCart(button) {
+    var cartFab = document.getElementById("cart-fab");
+    var rect = button && button.getBoundingClientRect ? button.getBoundingClientRect() : null;
+    var originX = rect ? rect.left + rect.width / 2 : window.innerWidth - 80;
+    var originY = rect ? rect.top + rect.height / 2 : window.innerHeight - 80;
+    var burst = document.createElement("div");
+    var symbols = ["✓", "+1", "★", "♥", "✓", "+1"];
+
+    burst.className = "cart-joy-burst";
+    burst.setAttribute("aria-hidden", "true");
+    burst.style.left = originX + "px";
+    burst.style.top = originY + "px";
+
+    symbols.forEach(function (symbol, index) {
+      var particle = document.createElement("span");
+      var angle = (-70 + index * 28) * Math.PI / 180;
+      var distance = 42 + (index % 3) * 14;
+
+      particle.className = "cart-joy-particle";
+      particle.textContent = symbol;
+      particle.style.setProperty("--tx", Math.cos(angle) * distance + "px");
+      particle.style.setProperty("--ty", Math.sin(angle) * distance - 18 + "px");
+      particle.style.animationDelay = (index * 28) + "ms";
+      burst.appendChild(particle);
+    });
+
+    document.body.appendChild(burst);
+    window.setTimeout(function () { burst.remove(); }, 900);
+
+    if (cartFab) {
+      cartFab.classList.remove("is-celebrating");
+      void cartFab.offsetWidth;
+      cartFab.classList.add("is-celebrating");
+      window.setTimeout(function () {
+        cartFab.classList.remove("is-celebrating");
+      }, 650);
+    }
+  }
+
   function formatNok(value) {
     var num = parseFloat(value);
     if (!isFinite(num)) num = 0;
@@ -300,6 +339,7 @@
     updateCartQty: updateCartQty,
     removeFromCart: removeFromCart,
     clearCart: clearCart,
+    celebrateAddToCart: celebrateAddToCart,
     formatNok: formatNok,
     partsForVehicle: partsForVehicle,
     fetchCatalogParts: fetchCatalogParts,
