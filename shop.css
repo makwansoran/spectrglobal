@@ -40,9 +40,10 @@
 
 .shop-subnav {
   position: sticky;
-  top: 61px;
+  top: var(--plt-header-h, 3.5rem);
   z-index: 18;
   display: flex;
+  justify-content: center;
   gap: 0.4rem;
   overflow-x: auto;
   padding: 0.65rem clamp(1rem, 4vw, 4.5rem);
