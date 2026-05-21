@@ -144,19 +144,42 @@
       <section class="brand-hero" aria-labelledby="brand-title">
         <a class="brand-back-link" href="car-brands.html">All car brands</a>
         <div class="brand-hero-card">
-          <div class="brand-hero-logo" id="brand-hero-logo" aria-hidden="true">SP</div>
-          <div>
-            <p class="shop-eyebrow" id="brand-region">Car brand</p>
-            <h1 id="brand-title">Loading brand...</h1>
-            <p id="brand-summary">Loading supported models and compatible parts.</p>
+          <div class="brand-identity">
+            <div class="brand-hero-logo" id="brand-hero-logo" aria-hidden="true">SP</div>
+            <div>
+              <p class="shop-eyebrow" id="brand-region">Car brand</p>
+              <h1 id="brand-title">Loading brand...</h1>
+              <p id="brand-summary">Loading supported models and compatible parts.</p>
+            </div>
           </div>
+          <form class="brand-fit-form" id="brand-fit-form" autocomplete="off">
+            <div class="brand-fit-head">
+              <p class="shop-eyebrow">Identify your car</p>
+              <h2>Choose year and model</h2>
+            </div>
+            <label class="brand-fit-field">
+              <span>Year</span>
+              <select id="brand-year-select" disabled>
+                <option value="">Loading years...</option>
+              </select>
+            </label>
+            <label class="brand-fit-field">
+              <span>Model</span>
+              <select id="brand-model-select" disabled>
+                <option value="">Choose model</option>
+              </select>
+            </label>
+            <button type="submit" class="btn btn-primary">Show matching parts</button>
+            <button type="button" class="brand-fit-reset" id="brand-fit-reset" hidden>Clear selection</button>
+            <p class="brand-fit-status" id="brand-fit-status" aria-live="polite"></p>
+          </form>
         </div>
       </section>
 
       <section class="brand-detail-grid" aria-label="Brand catalog">
         <div class="brand-panel">
           <div class="brand-panel-head">
-            <h2>Supported models</h2>
+            <h2>All supported models</h2>
             <span id="brand-model-count">0</span>
           </div>
           <div class="brand-model-grid" id="brand-model-grid">

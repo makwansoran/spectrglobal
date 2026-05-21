@@ -233,6 +233,11 @@
           if (requestId !== modelRequestId) return;
           brand.models = models;
           renderModelOptions(models);
+          var requestedModel = new URLSearchParams(window.location.search).get("model");
+          if (requestedModel && models.some(function (model) { return model.name === requestedModel; })) {
+            modelSelect.value = requestedModel;
+            onModelChange();
+          }
         })
         .catch(function () {
           if (requestId !== modelRequestId) return;

@@ -858,14 +858,21 @@
 
 .brand-hero-card {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 24rem);
   gap: clamp(1rem, 3vw, 2rem);
-  align-items: center;
+  align-items: stretch;
   padding: clamp(1.25rem, 4vw, 2.5rem);
   border: 1px solid var(--shop-line);
   border-radius: var(--shop-radius-lg);
   background: #ffffff;
   box-shadow: 0 1.25rem 3rem rgba(15, 23, 42, 0.08);
+}
+
+.brand-identity {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(1rem, 3vw, 2rem);
+  align-items: center;
 }
 
 .brand-hero-logo {
@@ -905,6 +912,78 @@
   color: var(--shop-muted);
   font-size: 1rem;
   line-height: 1.6;
+}
+
+.brand-fit-form {
+  display: grid;
+  gap: 0.8rem;
+  padding: 1rem;
+  border: 1px solid var(--shop-line);
+  border-radius: calc(var(--shop-radius-lg) - 0.4rem);
+  background: var(--shop-surface);
+}
+
+.brand-fit-head h2 {
+  margin: 0.15rem 0 0;
+  color: var(--shop-ink);
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  letter-spacing: -0.035em;
+}
+
+.brand-fit-field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.brand-fit-field span {
+  color: var(--shop-muted);
+  font-family: var(--shop-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.brand-fit-field select {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0 0.85rem;
+  border: 1px solid var(--shop-line);
+  border-radius: 0.85rem;
+  background: #ffffff;
+  color: var(--shop-ink);
+  font: inherit;
+  outline: none;
+}
+
+.brand-fit-field select:focus {
+  border-color: rgba(31, 111, 235, 0.55);
+  box-shadow: 0 0 0 4px rgba(31, 111, 235, 0.12);
+}
+
+.brand-fit-reset {
+  width: fit-content;
+  border: 0;
+  background: transparent;
+  color: var(--shop-muted);
+  cursor: pointer;
+  font-family: var(--shop-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 0;
+  text-transform: uppercase;
+}
+
+.brand-fit-reset:hover {
+  color: var(--shop-ink);
+}
+
+.brand-fit-status {
+  min-height: 1.1rem;
+  margin: 0;
+  color: var(--shop-muted);
+  font-size: 0.82rem;
 }
 
 .brand-detail-grid {
@@ -1570,6 +1649,10 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .brand-hero-card {
+    grid-template-columns: 1fr;
+  }
+
   .brand-detail-grid {
     grid-template-columns: 1fr;
   }
@@ -1611,6 +1694,10 @@
   }
 
   .brand-hero-card {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-identity {
     grid-template-columns: 1fr;
   }
 
