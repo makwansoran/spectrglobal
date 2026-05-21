@@ -59,6 +59,52 @@
   gap: 0.5rem;
 }
 
+.plt-header-search {
+  position: relative;
+  width: clamp(13rem, 28vw, 26rem);
+  min-width: 12rem;
+}
+
+.plt-header-search-input {
+  width: 100%;
+  height: 2.35rem;
+  padding: 0 0.95rem;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--plt-white);
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  font-size: 0.9rem;
+  outline: none;
+  transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.plt-header-search-input::placeholder {
+  color: rgba(255, 255, 255, 0.58);
+}
+
+.plt-header-search-input:focus {
+  border-color: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+}
+
+.plt-header-search-results {
+  position: absolute;
+  top: calc(100% + 0.55rem);
+  right: 0;
+  left: 0;
+  z-index: 80;
+  flex: none;
+  max-height: min(28rem, calc(100vh - 5rem));
+  padding: 0.35rem 0.65rem;
+  overflow-y: auto;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--plt-nav-bg) 96%, var(--plt-white));
+  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.4);
+}
+
 .plt-header-login {
   display: inline-flex;
   align-items: center;
@@ -392,6 +438,49 @@ body.plt-nav-open {
   color: var(--plt-nav-muted);
   padding: 1rem 0;
   margin: 0;
+}
+
+@media (max-width: 760px) {
+  .plt-header-inner {
+    gap: 0.75rem;
+  }
+
+  .plt-header-tools {
+    flex: 1;
+    justify-content: flex-end;
+    min-width: 0;
+  }
+
+  .plt-header-search {
+    flex: 1;
+    min-width: 0;
+    width: auto;
+  }
+
+  .plt-header-search-input {
+    font-size: 0.85rem;
+    padding-inline: 0.8rem;
+  }
+
+  .plt-header-search-results {
+    position: fixed;
+    top: calc(var(--plt-header-h) + 0.5rem);
+    right: 0.75rem;
+    left: 0.75rem;
+    max-height: min(26rem, calc(100vh - 5rem));
+  }
+}
+
+@media (max-width: 520px) {
+  .plt-logo-text {
+    display: none;
+  }
+
+  .plt-header-login {
+    min-height: 2.25rem;
+    padding-inline: 0.75rem;
+    font-size: 0.8rem;
+  }
 }
 
 @media (min-width: 900px) {

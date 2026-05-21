@@ -1321,6 +1321,10 @@ function normalizeCheckoutEmail(value) {
   return String(value || "").trim().toLowerCase();
 }
 
+function normalizeCheckoutText(value, maxLength) {
+  return String(value || "").trim().replace(/\s+/g, " ").slice(0, maxLength);
+}
+
 async function userFromCheckoutRequest(req, body) {
   const token = bearerToken(req) || String((body && body.accessToken) || "").trim();
   if (!token || !isSupabaseEnabled()) return null;
@@ -1394,6 +1398,17 @@ async function handleCheckoutSession(req, res) {
     return true;
   }
 
+  const guestDetails = {
+    name: normalizeCheckoutText(body.customer && body.customer.name, 120),
+    phone: normalizeCheckoutText(body.customer && body.customer.phone, 80),
+    address: normalizeCheckoutText(body.customer && body.customer.address, 240),
+    country: normalizeCheckoutText(body.customer && body.customer.country, 80),
+  };
+  if (!authUser && (!guestDetails.name || !guestDetails.phone || !guestDetails.address || !guestDetails.country)) {
+    sendJson(res, 400, { error: "Guest checkout requires name, email, address, country, and phone number." });
+    return true;
+  }
+
   const Stripe = require("stripe");
   const stripe = new Stripe(STRIPE_KEY, { apiVersion: STRIPE_API_VERSION });
   const origin = requestOrigin(req);
@@ -1407,6 +1422,10 @@ async function handleCheckoutSession(req, res) {
       checkout_mode: authUser ? "customer" : "guest",
       customer_id: authUser ? authUser.id : "",
       cart_items: String(lineItems.length),
+      customer_name: guestDetails.name,
+      customer_phone: guestDetails.phone,
+      customer_address: guestDetails.address,
+      customer_country: guestDetails.country,
     },
   });
 

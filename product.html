@@ -29,12 +29,10 @@
           <span class="plt-logo-text">Spectr</span>
         </a>
         <div class="plt-header-tools">
-          <button type="button" class="plt-tool-btn" id="plt-search-header-btn" data-plt-search-open aria-label="Show Search" aria-expanded="false">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <circle cx="11" cy="11" r="7" />
-              <path d="M20 20l-3-3" stroke-linecap="round" />
-            </svg>
-          </button>
+          <form class="plt-header-search" role="search" action="#" onsubmit="return false">
+            <input type="search" class="plt-header-search-input" id="plt-search-input" placeholder="Search parts or brands" autocomplete="off" aria-label="Search parts or brands" aria-controls="plt-search-results" aria-expanded="false" />
+            <div id="plt-search-results" class="plt-search-results plt-header-search-results" role="listbox" aria-label="Search results"></div>
+          </form>
           <div class="spectr-auth-slot spectr-auth-slot--header" data-spectr-auth-slot>
             <a class="plt-header-login" href="login.html">Sign in</a>
           </div>
@@ -80,23 +78,7 @@
       </div>
       <div class="plt-nav-footer">
         <button type="button" class="plt-nav-close" id="plt-nav-close" aria-label="Close navigation">×</button>
-        <button type="button" class="plt-tool-btn" data-plt-search-open aria-label="Show Search" aria-expanded="false">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <circle cx="11" cy="11" r="7" />
-            <path d="M20 20l-3-3" stroke-linecap="round" />
-          </svg>
-        </button>
       </div>
-    </div>
-
-    <div class="plt-search-panel" id="plt-search-panel" aria-hidden="true">
-      <div class="plt-search-panel-top">
-        <form class="plt-search-panel-form" role="search" action="#" onsubmit="return false">
-          <input type="search" class="plt-search-panel-input" id="plt-search-input" placeholder="Search" autocomplete="off" />
-        </form>
-        <button type="button" class="plt-search-panel-close" id="plt-search-close" aria-label="Close search">×</button>
-      </div>
-      <div id="plt-search-results" class="plt-search-results" role="listbox" aria-label="Search results"></div>
     </div>
 
     <main class="shop-page product-detail-page">

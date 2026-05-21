@@ -253,6 +253,10 @@
   }
 
   if (searchInput) {
+    searchInput.addEventListener("focus", function () {
+      if (searchInput.value.trim()) runSearch(searchInput.value);
+    });
+
     searchInput.addEventListener("input", function () {
       window.clearTimeout(searchTimer);
       searchTimer = window.setTimeout(function () {
@@ -276,6 +280,12 @@
       }
     });
   }
+
+  document.addEventListener("mousedown", function (event) {
+    if (!searchResults || !searchInput) return;
+    if (searchInput.contains(event.target) || searchResults.contains(event.target)) return;
+    hideResults();
+  });
 
   if (searchInput && searchInput.form) {
     searchInput.form.addEventListener("submit", function (event) {

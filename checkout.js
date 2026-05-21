@@ -66,13 +66,16 @@
   function renderOrder() {
     var lines = $("checkout-lines");
     var total = $("checkout-total");
+    var itemsTotal = $("checkout-items-total");
     var count = $("checkout-count");
+    var title = $("checkout-title");
     var sum = 0;
     var itemCount = state.cart.reduce(function (acc, line) {
       return acc + (parseInt(line.qty, 10) || 0);
     }, 0);
 
-    if (count) count.textContent = itemCount + (itemCount === 1 ? " item" : " items");
+    if (count) count.textContent = "(" + itemCount + ")";
+    if (title) title.textContent = "Shopping Cart (" + itemCount + ")";
 
     if (!state.cart.length) {
       if (lines) {
@@ -81,6 +84,7 @@
           '<a class="btn btn-secondary" href="index.html">Back to store</a>';
       }
       if (total) total.textContent = Shop.formatNok(0);
+      if (itemsTotal) itemsTotal.textContent = Shop.formatNok(0);
       state.total = 0;
       renderCustomer();
       return;
@@ -93,49 +97,85 @@
         var qty = parseInt(line.qty, 10) || 0;
         var lineTotal = (Number(part.price) || 0) * qty;
         sum += lineTotal;
+        var stockLabel = (Number(part.stock) || 0) > 0 ? "In stock" : "Out of stock";
         return '' +
-          '<article class="checkout-line">' +
-            '<div>' +
+          '<article class="checkout-line" data-line="' + escapeHtml(part.id) + '">' +
+            '<div class="checkout-line-media"><span>' + escapeHtml(initials(part.name)) + '</span></div>' +
+            '<div class="checkout-line-main">' +
               '<h3>' + escapeHtml(part.name) + '</h3>' +
-              '<p>' + escapeHtml(part.sku || part.id) + ' · Qty ' + escapeHtml(qty) + '</p>' +
+              '<p>' + escapeHtml(part.sku || part.id) + '</p>' +
+              '<small>' + escapeHtml(stockLabel) + '</small>' +
+              '<div class="checkout-line-perks">' +
+                '<span>Free shipping</span>' +
+                '<span>Secure payment</span>' +
+              '</div>' +
+              '<div class="checkout-line-actions">' +
+                '<button type="button" data-remove>Remove</button>' +
+                '<button type="button" data-save>Save for later</button>' +
+              '</div>' +
             '</div>' +
-            '<strong>' + escapeHtml(Shop.formatNok(lineTotal)) + '</strong>' +
+            '<div class="checkout-line-side">' +
+              '<div class="checkout-qty">' +
+                '<button type="button" data-qty-dec aria-label="Decrease quantity">-</button>' +
+                '<span>' + escapeHtml(qty) + '</span>' +
+                '<button type="button" data-qty-inc aria-label="Increase quantity">+</button>' +
+              '</div>' +
+              '<strong>' + escapeHtml(Shop.formatNok(lineTotal)) + '</strong>' +
+            '</div>' +
           '</article>';
       }).join("");
     }
 
     state.total = sum;
     if (total) total.textContent = Shop.formatNok(sum);
+    if (itemsTotal) itemsTotal.textContent = Shop.formatNok(sum);
     renderCustomer();
+  }
+
+  function initials(name) {
+    return String(name || "")
+      .split(/\s+/)
+      .filter(Boolean)
+      .slice(0, 2)
+      .map(function (word) { return word.charAt(0).toUpperCase(); })
+      .join("") || "SP";
   }
 
   function signedInHtml(customer) {
     return '' +
-      '<div class="checkout-rewards-card">' +
-        '<p class="shop-eyebrow">Rewards enabled</p>' +
-        '<h2>Checkout as ' + escapeHtml(customer.name || customer.email) + '</h2>' +
-        '<p>You are signed in, so this order can count toward Spectr rewards.</p>' +
-        '<button type="button" class="btn btn-primary" id="checkout-submit">Continue to payment</button>' +
+      '<div class="checkout-login-card">' +
+        '<p>Signed in as <strong>' + escapeHtml(customer.name || customer.email) + '</strong></p>' +
+        '<span>This order will count toward your rewards.</span>' +
       '</div>';
   }
 
   function guestHtml() {
     return '' +
-      '<div class="checkout-rewards-card">' +
-        '<p class="shop-eyebrow">Earn rewards</p>' +
-        '<h2>Log in before you pay</h2>' +
-        '<p>Sign in or create an account to earn rewards on this order.</p>' +
+      '<div class="checkout-login-card">' +
+        '<p>Want rewards?</p>' +
+        '<span>Log in before checkout, or continue as guest below.</span>' +
         '<div class="checkout-actions">' +
-          '<a class="btn btn-primary" href="' + escapeHtml(loginHref()) + '">Log in for rewards</a>' +
-          '<a class="btn btn-secondary" href="' + escapeHtml(createAccountHref()) + '">Create account</a>' +
+          '<a href="' + escapeHtml(loginHref()) + '">Log in</a>' +
+          '<a href="' + escapeHtml(createAccountHref()) + '">Create account</a>' +
         '</div>' +
       '</div>' +
       '<form class="checkout-guest-form" id="checkout-guest-form">' +
-        '<p class="shop-eyebrow">Guest checkout</p>' +
-        '<h2>Continue as guest</h2>' +
-        '<label>Email for receipt<input type="email" id="guest-email" autocomplete="email" required placeholder="you@example.com" /></label>' +
-        '<label>Name, optional<input type="text" id="guest-name" autocomplete="name" placeholder="Your name" /></label>' +
-        '<button type="submit" class="btn btn-primary" id="checkout-submit">Continue to payment</button>' +
+        '<h3>Continue as guest</h3>' +
+        '<label>Full name<input type="text" id="guest-name" autocomplete="name" required placeholder="Your name" /></label>' +
+        '<label>Email address<input type="email" id="guest-email" autocomplete="email" required placeholder="you@example.com" /></label>' +
+        '<label>Phone number<input type="tel" id="guest-phone" autocomplete="tel" required placeholder="+47 123 45 678" /></label>' +
+        '<label>Address<input type="text" id="guest-address" autocomplete="street-address" required placeholder="Street and house number" /></label>' +
+        '<label>Country<select id="guest-country" autocomplete="country-name" required>' +
+          '<option value="">Choose country</option>' +
+          '<option value="Norway">Norway</option>' +
+          '<option value="Sweden">Sweden</option>' +
+          '<option value="Denmark">Denmark</option>' +
+          '<option value="Finland">Finland</option>' +
+          '<option value="Germany">Germany</option>' +
+          '<option value="United Kingdom">United Kingdom</option>' +
+          '<option value="United States">United States</option>' +
+          '<option value="Other">Other</option>' +
+        '</select></label>' +
       '</form>';
   }
 
@@ -146,7 +186,9 @@
       node.innerHTML = "";
       return;
     }
-    node.innerHTML = state.customer ? signedInHtml(state.customer) : guestHtml();
+    node.innerHTML =
+      (state.customer ? signedInHtml(state.customer) : guestHtml()) +
+      '<button type="button" class="btn btn-primary checkout-submit" id="checkout-submit">Check Out</button>';
 
     var signedInButton = state.customer && $("checkout-submit");
     if (signedInButton) signedInButton.addEventListener("click", submitCheckout);
@@ -156,6 +198,11 @@
       guestForm.addEventListener("submit", function (event) {
         event.preventDefault();
         submitCheckout();
+      });
+    }
+    if (!state.customer) {
+      $("checkout-submit").addEventListener("click", function () {
+        if (guestForm) guestForm.requestSubmit();
       });
     }
   }
@@ -170,6 +217,9 @@
     return {
       email: ($("guest-email") && $("guest-email").value || "").trim(),
       name: ($("guest-name") && $("guest-name").value || "").trim(),
+      phone: ($("guest-phone") && $("guest-phone").value || "").trim(),
+      address: ($("guest-address") && $("guest-address").value || "").trim(),
+      country: ($("guest-country") && $("guest-country").value || "").trim(),
     };
   }
 
@@ -184,6 +234,10 @@
   async function submitCheckout() {
     if (state.submitting || !state.cart.length) return;
     var customer = checkoutCustomerPayload();
+    if (!state.customer && (!customer.name || !customer.email || !customer.phone || !customer.address || !customer.country)) {
+      showMessage("Fill in name, email, address, country, and phone number to continue as guest.", "error");
+      return;
+    }
     if (!customer.email) {
       showMessage("Enter your email to continue as guest, or log in for rewards.", "error");
       return;
@@ -232,5 +286,23 @@
         showMessage("Could not load the product catalog. Please try again.", "error");
         renderOrder();
       });
+
+    $("checkout-lines").addEventListener("click", function (event) {
+      var row = event.target.closest("[data-line]");
+      if (!row) return;
+      var current = Shop.getCart().find(function (line) { return line.partId === row.dataset.line; });
+      if (!current) return;
+      if (event.target.closest("[data-qty-inc]")) {
+        Shop.updateCartQty(row.dataset.line, current.qty + 1);
+      } else if (event.target.closest("[data-qty-dec]")) {
+        Shop.updateCartQty(row.dataset.line, current.qty - 1);
+      } else if (event.target.closest("[data-remove]")) {
+        Shop.removeFromCart(row.dataset.line);
+      } else {
+        return;
+      }
+      state.cart = Shop.getCart();
+      renderOrder();
+    });
   });
 })();

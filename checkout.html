@@ -34,32 +34,55 @@
     </header>
 
     <main class="shop-page checkout-page">
-      <section class="checkout-hero">
-        <a class="brand-back-link" href="index.html">Back to store</a>
-        <p class="shop-eyebrow">Secure checkout</p>
-        <h1>Review your cart</h1>
-        <p>Pay with Stripe-hosted checkout. Sign in first to earn rewards, or continue as a guest.</p>
-      </section>
-
-      <section class="checkout-layout" aria-live="polite">
-        <div class="checkout-panel">
-          <div class="checkout-panel-head">
-            <h2>Your order</h2>
-            <span id="checkout-count">0 items</span>
+      <section class="checkout-shell" aria-live="polite">
+        <div class="checkout-cart-area">
+          <a class="checkout-continue" href="index.html">Continue shopping</a>
+          <div class="checkout-cart-head">
+            <h1 id="checkout-title">Shopping Cart (0)</h1>
           </div>
           <div class="checkout-lines" id="checkout-lines">
             <p class="cart-empty">Loading cart...</p>
           </div>
-          <div class="checkout-total">
-            <span>Total</span>
-            <strong id="checkout-total">kr 0</strong>
-          </div>
         </div>
 
-        <div class="checkout-panel checkout-customer-panel">
+        <aside class="checkout-summary-card" aria-label="Order summary">
+          <h2>Order Summary</h2>
           <p class="checkout-message" id="checkout-message" role="alert" hidden></p>
+
+          <div class="checkout-coupon">
+            <input type="text" placeholder="Enter coupon code" aria-label="Coupon code" />
+            <button type="button">Apply</button>
+          </div>
+
+          <button type="button" class="checkout-offer-row">
+            <span>View available offers</span>
+            <strong>›</strong>
+          </button>
+
+          <dl class="checkout-summary-list">
+            <div>
+              <dt>Items <span id="checkout-count">(0)</span></dt>
+              <dd id="checkout-items-total">kr 0</dd>
+            </div>
+            <div>
+              <dt>Shipping</dt>
+              <dd>Free</dd>
+            </div>
+            <div>
+              <dt>Estimated sales tax</dt>
+              <dd>Calculated by Stripe</dd>
+            </div>
+          </dl>
+
+          <div class="checkout-summary-total">
+            <span>Sub Total:</span>
+            <strong id="checkout-total">kr 0</strong>
+          </div>
+
           <div id="checkout-customer"></div>
-        </div>
+
+          <p class="checkout-protection">Purchase protected by Stripe secure checkout.</p>
+        </aside>
       </section>
     </main>
 
