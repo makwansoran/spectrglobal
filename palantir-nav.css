@@ -130,6 +130,60 @@
   background: rgba(255, 255, 255, 0.12);
 }
 
+.plt-language {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.plt-language-label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.35rem;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.plt-language-label:hover,
+.plt-language-label:focus-within {
+  border-color: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+}
+
+.plt-language-flag {
+  font-size: 1.15rem;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.plt-language-select {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.goog-te-banner-frame,
+#goog-gt-tt,
+#spectr-google-translate {
+  display: none !important;
+}
+
+body {
+  top: 0 !important;
+}
+
 .plt-tool-btn {
   display: inline-flex;
   align-items: center;
@@ -488,6 +542,11 @@ body.plt-nav-open {
     min-height: 2.25rem;
     padding-inline: 0.75rem;
     font-size: 0.8rem;
+  }
+
+  .plt-language-label {
+    width: 2.45rem;
+    height: 2.25rem;
   }
 }
 
