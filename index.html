@@ -144,12 +144,8 @@
       <section class="shop-hero" aria-labelledby="shop-hero-title">
         <div class="shop-hero-grid">
           <div class="shop-finder" aria-labelledby="shop-hero-title">
-            <div class="shop-finder-top">
-              <p class="shop-eyebrow">Parts finder</p>
-            </div>
             <h1 id="shop-hero-title">Find part by model</h1>
 
-            <p class="finder-sub">Select your car model to search for parts</p>
             <form class="finder-selects" id="finder-vehicle-form">
               <label class="select-field">
                 <span>Car brand</span>
@@ -164,10 +160,14 @@
                 </select>
               </label>
               <label class="select-field">
-                <span>Engine</span>
-                <select id="finder-engine" required disabled>
-                  <option value="">Choose engine</option>
+                <span>Year</span>
+                <select id="finder-year" required disabled>
+                  <option value="">Choose year</option>
                 </select>
+              </label>
+              <label class="select-field">
+                <span>VIN number</span>
+                <input id="finder-vin" type="text" inputmode="latin" autocomplete="off" maxlength="17" placeholder="Enter VIN" />
               </label>
               <button type="submit" class="btn btn-primary finder-submit">Search</button>
             </form>

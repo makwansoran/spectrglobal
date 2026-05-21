@@ -307,9 +307,9 @@
 
 .finder-selects {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
+  grid-template-columns: 1fr;
   gap: 0.6rem;
-  align-items: end;
+  align-items: stretch;
 }
 
 .select-field {
@@ -326,7 +326,8 @@
   text-transform: uppercase;
 }
 
-.select-field select {
+.select-field select,
+.select-field input {
   appearance: none;
   -webkit-appearance: none;
   height: 3rem;
@@ -342,13 +343,25 @@
   color: var(--shop-ink);
 }
 
+.select-field input {
+  padding-right: 0.9rem;
+  background: #ffffff;
+  text-transform: uppercase;
+}
+
+.select-field input::placeholder {
+  color: var(--shop-muted);
+  text-transform: none;
+}
+
 .select-field select:disabled {
   background-color: var(--shop-surface);
   color: var(--shop-muted);
   cursor: not-allowed;
 }
 
-.select-field select:focus {
+.select-field select:focus,
+.select-field input:focus {
   outline: 2px solid var(--shop-accent-soft);
   outline-offset: 1px;
 }

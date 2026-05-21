@@ -133,7 +133,8 @@
   function initFinder() {
     var brandSelect = $("finder-brand");
     var modelSelect = $("finder-model");
-    var engineSelect = $("finder-engine");
+    var yearSelect = $("finder-year");
+    var vinInput = $("finder-vin");
     var plateForm = $("finder-plate-form");
     var plateInput = $("finder-plate");
     var vehicleForm = $("finder-vehicle-form");
@@ -141,7 +142,7 @@
     var modelsByMakeId = {};
     var modelRequestId = 0;
 
-    if (!brandSelect || !modelSelect || !engineSelect) return;
+    if (!brandSelect || !modelSelect || !yearSelect) return;
 
     function populateBrands() {
       var brands = brandsFromDatabase;
@@ -172,8 +173,37 @@
       };
     }
 
-    function renderModelOptions(models) {
-      if (!models.length) {
+    function currentBrandModels() {
+      var brand = findBrand(brandSelect.value);
+      return brand && Array.isArray(brand.models) ? brand.models : [];
+    }
+
+    function modelSupportsYear(model, year) {
+      var selectedYear = parseInt(year, 10);
+      if (!selectedYear || !model.year_from) return true;
+      if (selectedYear < model.year_from) return false;
+      if (model.year_to && selectedYear > model.year_to) return false;
+      return true;
+    }
+
+    function supportedYears(models) {
+      var currentYear = new Date().getFullYear();
+      var years = new Set();
+      models.forEach(function (model) {
+        if (!model.year_from) return;
+        var from = parseInt(model.year_from, 10);
+        var to = parseInt(model.year_to || currentYear, 10);
+        for (var year = to; year >= from; year -= 1) years.add(year);
+      });
+      return Array.from(years).sort(function (a, b) { return b - a; });
+    }
+
+    function renderModelOptions(models, selectedYear, selectedModel) {
+      var compatibleModels = models.filter(function (model) {
+        return modelSupportsYear(model, selectedYear);
+      });
+
+      if (!compatibleModels.length) {
         modelSelect.innerHTML = '<option value="">No supported models</option>';
         modelSelect.disabled = true;
         return;
@@ -181,9 +211,34 @@
 
       modelSelect.disabled = false;
       modelSelect.innerHTML = '<option value="">Choose model</option>' +
-        models.map(function (m) {
+        compatibleModels.map(function (m) {
           var years = m.year_from ? " (" + m.year_from + (m.year_to ? "-" + m.year_to : "-") + ")" : "";
-          return '<option value="' + escapeHtml(m.name) + '">' + escapeHtml(m.name + years) + '</option>';
+          return '<option value="' + escapeHtml(m.name) + '"' +
+            (selectedModel === m.name ? " selected" : "") + '>' +
+            escapeHtml(m.name + years) +
+            '</option>';
+        }).join("");
+    }
+
+    function renderYearOptions(models, selectedModel, selectedYear) {
+      var sourceModels = selectedModel
+        ? models.filter(function (model) { return model.name === selectedModel; })
+        : models;
+      var years = supportedYears(sourceModels);
+
+      if (!years.length) {
+        yearSelect.innerHTML = '<option value="">No supported years</option>';
+        yearSelect.disabled = true;
+        return;
+      }
+
+      yearSelect.disabled = false;
+      yearSelect.innerHTML = '<option value="">Choose year</option>' +
+        years.map(function (year) {
+          return '<option value="' + year + '"' +
+            (String(selectedYear) === String(year) ? " selected" : "") + '>' +
+            year +
+            '</option>';
         }).join("");
     }
 
@@ -220,8 +275,8 @@
 
       modelSelect.innerHTML = '<option value="">Choose model</option>';
       modelSelect.disabled = true;
-      engineSelect.innerHTML = '<option value="">All engines</option>';
-      engineSelect.disabled = true;
+      yearSelect.innerHTML = '<option value="">Choose year</option>';
+      yearSelect.disabled = true;
 
       if (!brand) {
         return;
@@ -232,7 +287,8 @@
         .then(function (models) {
           if (requestId !== modelRequestId) return;
           brand.models = models;
-          renderModelOptions(models);
+          renderModelOptions(models, "", "");
+          renderYearOptions(models, "", "");
           var requestedModel = new URLSearchParams(window.location.search).get("model");
           if (requestedModel && models.some(function (model) { return model.name === requestedModel; })) {
             modelSelect.value = requestedModel;
@@ -243,16 +299,33 @@
           if (requestId !== modelRequestId) return;
           modelSelect.innerHTML = '<option value="">Models unavailable</option>';
           modelSelect.disabled = true;
+          yearSelect.innerHTML = '<option value="">Choose year</option>';
+          yearSelect.disabled = true;
         });
     }
 
     function onModelChange() {
-      engineSelect.innerHTML = '<option value="">All engines</option>';
-      engineSelect.disabled = true;
+      var models = currentBrandModels();
+      renderYearOptions(models, modelSelect.value, yearSelect.value);
+    }
+
+    function onYearChange() {
+      var models = currentBrandModels();
+      var selectedModel = modelSelect.value;
+      renderModelOptions(models, yearSelect.value, selectedModel);
+      if (selectedModel && !modelSelect.value) {
+        renderYearOptions(models, "", yearSelect.value);
+      }
     }
 
     brandSelect.addEventListener("change", onBrandChange);
     modelSelect.addEventListener("change", onModelChange);
+    yearSelect.addEventListener("change", onYearChange);
+    if (vinInput) {
+      vinInput.addEventListener("input", function () {
+        vinInput.value = vinInput.value.replace(/[^A-Za-z0-9]/g, "").toUpperCase().slice(0, 17);
+      });
+    }
 
     vehicleForm.addEventListener("submit", function (event) {
       event.preventDefault();
@@ -263,7 +336,8 @@
       state.vehicle = {
         brand: brandSelect.value,
         model: modelSelect.value,
-        engine: engineSelect.value
+        year: yearSelect.value,
+        vin: vinInput ? vinInput.value.trim().toUpperCase() : ""
       };
       state.activeCategory = null;
       renderCatalog();
@@ -325,8 +399,8 @@
         brandSelect.disabled = true;
         modelSelect.innerHTML = '<option value="">Choose model</option>';
         modelSelect.disabled = true;
-        engineSelect.innerHTML = '<option value="">All engines</option>';
-        engineSelect.disabled = true;
+        yearSelect.innerHTML = '<option value="">Choose year</option>';
+        yearSelect.disabled = true;
       });
   }
 
@@ -370,8 +444,7 @@
       } else if (state.vehicle.brand) {
         visibleParts = Shop.partsForVehicle(allParts, {
           brand: state.vehicle.brand,
-          model: state.vehicle.model,
-          engine: state.vehicle.engine
+          model: state.vehicle.model
         });
       }
     }
@@ -387,7 +460,8 @@
       } else if (state.vehicle && state.vehicle.brand) {
         var label = state.vehicle.brand;
         if (state.vehicle.model) label += " " + state.vehicle.model;
-        if (state.vehicle.engine) label += " · " + state.vehicle.engine;
+        if (state.vehicle.year) label += " " + state.vehicle.year;
+        if (state.vehicle.vin) label += " · VIN " + state.vehicle.vin;
         parts.push("Showing parts for " + label);
       }
       if (state.activeCategory) parts.push("Category: " + state.activeCategory);
@@ -471,11 +545,13 @@
         state.activeCategory = null;
         var brand = $("finder-brand");
         var model = $("finder-model");
-        var engine = $("finder-engine");
+        var year = $("finder-year");
+        var vin = $("finder-vin");
         var plate = $("finder-plate");
         if (brand) brand.value = "";
         if (model) { model.innerHTML = '<option value="">Choose model</option>'; model.disabled = true; }
-        if (engine) { engine.innerHTML = '<option value="">Choose engine</option>'; engine.disabled = true; }
+        if (year) { year.innerHTML = '<option value="">Choose year</option>'; year.disabled = true; }
+        if (vin) vin.value = "";
         if (plate) plate.value = "";
         renderCatalog();
       });
