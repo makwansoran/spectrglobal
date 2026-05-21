@@ -38,6 +38,44 @@
   cursor: pointer;
 }
 
+.shop-subnav {
+  position: sticky;
+  top: 61px;
+  z-index: 18;
+  display: flex;
+  gap: 0.4rem;
+  overflow-x: auto;
+  padding: 0.65rem clamp(1rem, 4vw, 4.5rem);
+  border-bottom: 1px solid var(--shop-line);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(18px);
+  scrollbar-width: thin;
+}
+
+.shop-subnav a {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.15rem;
+  padding: 0 0.85rem;
+  border: 1px solid var(--shop-line);
+  border-radius: 999px;
+  color: var(--shop-ink);
+  font-family: var(--shop-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.shop-subnav a:hover {
+  background: var(--shop-ink);
+  border-color: var(--shop-ink);
+  color: #ffffff;
+}
+
 .shop-eyebrow {
   margin: 0 0 0.9rem;
   color: var(--shop-muted);
@@ -71,6 +109,45 @@
   border-radius: var(--shop-radius-lg);
   padding: clamp(1.5rem, 3vw, 2.5rem);
   box-shadow: 0 24px 60px rgba(10, 12, 16, 0.04);
+}
+
+.shop-finder-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.9rem;
+}
+
+.shop-finder-top .shop-eyebrow {
+  margin-bottom: 0;
+}
+
+.shop-account-links {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.shop-account-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0 0.65rem;
+  border: 1px solid var(--shop-line);
+  border-radius: 999px;
+  color: var(--shop-ink);
+  font-family: var(--shop-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.shop-account-links a:hover {
+  background: var(--shop-surface);
 }
 
 .shop-finder h1 {
@@ -455,6 +532,98 @@
 .trust-strip span {
   color: var(--shop-muted);
   font-size: 0.85rem;
+}
+
+/* ── AUTODOC-style category showcase ─────────────────────── */
+.parts-categories-showcase {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: clamp(2.4rem, 5vw, 4.5rem) clamp(1rem, 4vw, 4.5rem) clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.parts-categories-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.3rem;
+  flex-wrap: wrap;
+}
+
+.parts-categories-head h2 {
+  max-width: 58rem;
+  margin: 0;
+  color: var(--shop-ink);
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+}
+
+.parts-category-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border: 1px solid var(--shop-line);
+  border-radius: var(--shop-radius-lg);
+  overflow: hidden;
+  background: var(--shop-line);
+  gap: 1px;
+}
+
+.parts-category-card {
+  position: relative;
+  min-height: 9.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.1rem;
+  padding: 1.15rem;
+  background:
+    radial-gradient(circle at 80% 10%, rgba(10, 12, 16, 0.05), transparent 38%),
+    #ffffff;
+  color: var(--shop-ink);
+  text-decoration: none;
+  transition: background 0.15s, transform 0.15s;
+}
+
+.parts-category-card:hover {
+  background: var(--shop-surface);
+  transform: translateY(-1px);
+}
+
+.parts-category-card span {
+  max-width: 15rem;
+  color: var(--shop-muted);
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+
+.parts-category-card strong {
+  color: var(--shop-ink);
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.parts-more {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin: 1rem 0 0;
+  padding: 1rem 1.15rem;
+  border: 1px solid var(--shop-line);
+  border-radius: var(--shop-radius-lg);
+  background: #ffffff;
+}
+
+.parts-more strong {
+  flex: 0 0 auto;
+  color: var(--shop-ink);
+}
+
+.parts-more span {
+  color: var(--shop-muted);
+  line-height: 1.45;
 }
 
 /* ── Catalog ─────────────────────────────────────────────── */
@@ -948,6 +1117,10 @@
   .catalog-categories {
     position: static;
   }
+
+  .parts-category-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 640px) {
@@ -970,5 +1143,15 @@
 
   .cart-fab-label {
     display: none;
+  }
+
+  .parts-category-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .parts-more {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.35rem;
   }
 }

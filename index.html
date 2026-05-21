@@ -62,6 +62,21 @@
       </div>
     </header>
 
+    <nav class="shop-subnav" aria-label="Parts categories">
+      <a href="#parts-categories">Dekk og felger</a>
+      <a href="#parts-categories">Bremser</a>
+      <a href="#parts-categories">Fjæring / demping</a>
+      <a href="#parts-categories">Understell og bærearmer</a>
+      <a href="#parts-categories">Filter</a>
+      <a href="#parts-categories">Oljer og væsker</a>
+      <a href="#parts-categories">Motor</a>
+      <a href="#parts-categories">Karosseri</a>
+      <a href="#parts-categories">Belter, kjeder, ruller</a>
+      <a href="#parts-categories">Lagre</a>
+      <a href="#parts-categories">Eksosanlegg</a>
+      <a href="#parts-categories">Andre kategorier</a>
+    </nav>
+
     <div class="plt-nav-panel" id="plt-nav-panel" aria-hidden="true">
       <div class="plt-nav-scroll">
         <a class="plt-nav-logo" href="index.html" aria-label="Spectr home">
@@ -132,8 +147,14 @@
       <section class="shop-hero" aria-labelledby="shop-hero-title">
         <div class="shop-hero-grid">
           <div class="shop-finder" aria-labelledby="shop-hero-title">
-            <p class="shop-eyebrow">Bildelsfinner</p>
-            <h1 id="shop-hero-title">Søk etter deler med skiltnummer</h1>
+            <div class="shop-finder-top">
+              <p class="shop-eyebrow">Parts finder</p>
+              <div class="shop-account-links" aria-label="Account">
+                <a href="login.html">Sign in</a>
+                <a href="create-account.html">Create account</a>
+              </div>
+            </div>
+            <h1 id="shop-hero-title">Search for parts by license plate</h1>
 
             <form class="finder-plate" id="finder-plate-form" autocomplete="off">
               <div class="plate-field">
@@ -143,53 +164,53 @@
                   id="finder-plate"
                   name="plate"
                   placeholder="AB 12345"
-                  aria-label="Skiltnummer"
+                  aria-label="License plate"
                   maxlength="10"
                 />
               </div>
-              <button type="submit" class="btn btn-primary">Søk</button>
+              <button type="submit" class="btn btn-primary">Search</button>
             </form>
 
-            <p class="finder-divider"><span>eller</span></p>
+            <p class="finder-divider"><span>or</span></p>
 
-            <p class="finder-sub">Velg bilmodell for å søke etter bildeler</p>
+            <p class="finder-sub">Select your car model to search for parts</p>
             <form class="finder-selects" id="finder-vehicle-form">
               <label class="select-field">
-                <span>Bilmerke</span>
+                <span>Car brand</span>
                 <select id="finder-brand" required>
-                  <option value="">Velg bilmerke</option>
+                  <option value="">Choose brand</option>
                 </select>
               </label>
               <label class="select-field">
-                <span>Bilmodell</span>
+                <span>Car model</span>
                 <select id="finder-model" required disabled>
-                  <option value="">Velg bilmodell</option>
+                  <option value="">Choose model</option>
                 </select>
               </label>
               <label class="select-field">
                 <span>Motor</span>
                 <select id="finder-engine" required disabled>
-                  <option value="">Velg motor</option>
+                  <option value="">Choose engine</option>
                 </select>
               </label>
-              <button type="submit" class="btn btn-primary finder-submit">Søk</button>
+              <button type="submit" class="btn btn-primary finder-submit">Search</button>
             </form>
 
             <a class="finder-missing" href="admin-parts.html#vehicles">
-              Finner du ikke bilen din i katalogen?
+              Can't find your car in the catalog?
             </a>
           </div>
 
-          <aside class="promo-slider" aria-label="Kampanjer">
+          <aside class="promo-slider" aria-label="Promotions">
             <div class="promo-track" id="promo-track" aria-live="polite"></div>
-            <div class="promo-dots" id="promo-dots" role="tablist" aria-label="Velg kampanje"></div>
+            <div class="promo-dots" id="promo-dots" role="tablist" aria-label="Choose promotion"></div>
             <div class="promo-controls">
-              <button type="button" class="promo-nav" id="promo-prev" aria-label="Forrige kampanje">
+              <button type="button" class="promo-nav" id="promo-prev" aria-label="Previous promotion">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                   <path d="M15 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
               </button>
-              <button type="button" class="promo-nav" id="promo-next" aria-label="Neste kampanje">
+              <button type="button" class="promo-nav" id="promo-next" aria-label="Next promotion">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                   <path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
@@ -199,10 +220,71 @@
         </div>
       </section>
 
+      <section class="parts-categories-showcase" id="parts-categories" aria-labelledby="parts-categories-title">
+        <header class="parts-categories-head">
+          <p class="shop-eyebrow">Reservedeler</p>
+          <h2 id="parts-categories-title">Finn reservedeler til biler i sortimentet til AUTODOC</h2>
+        </header>
+        <div class="parts-category-grid">
+          <a class="parts-category-card" href="#catalog">
+            <span>Dekk og felger</span>
+            <strong>Dekk og felger</strong>
+          </a>
+          <a class="parts-category-card" href="#catalog">
+            <span>Bremser bildeler på nett</span>
+            <strong>Bremser</strong>
+          </a>
+          <a class="parts-category-card" href="#catalog">
+            <span>Fjæring / demping bildeler på nett</span>
+            <strong>Fjæring / demping</strong>
+          </a>
+          <a class="parts-category-card" href="#catalog">
+            <span>Understell og bærearmer billige bildeler</span>
+            <strong>Understell og bærearmer</strong>
+          </a>
+          <a class="parts-category-card" href="#catalog">
+            <span>Filter billige bildeler</span>
+            <strong>Filter</strong>
+          </a>
+          <a class="parts-category-card" href="#catalog">
+            <span>Oljer og væsker billigste bildeler på nett</span>
+            <strong>Oljer og væsker</strong>
+          </a>
+          <a class="parts-category-card" href="#catalog">
+            <span>Motor billigste bildeler på nett</span>
+            <strong>Motor</strong>
+          </a>
+          <a class="parts-category-card" href="#catalog">
+            <span>Karosseri bildeler på nett norge</span>
+            <strong>Karosseri</strong>
+          </a>
+          <a class="parts-category-card" href="#catalog">
+            <span>Belter, kjeder, ruller bildeler på nett norge</span>
+            <strong>Belter, kjeder, ruller</strong>
+          </a>
+          <a class="parts-category-card" href="#catalog">
+            <span>Lagre billige bildeler på nett</span>
+            <strong>Lagre</strong>
+          </a>
+          <a class="parts-category-card" href="#catalog">
+            <span>Eksosanlegg billige bildeler på nett</span>
+            <strong>Eksosanlegg</strong>
+          </a>
+          <a class="parts-category-card" href="#catalog">
+            <span>Andre kategorier</span>
+            <strong>Andre kategorier</strong>
+          </a>
+        </div>
+        <p class="parts-more">
+          <strong>Mer bildeler</strong>
+          <span>Det viktigste til bilen: bilrekvisita, bilpleieprodukter og justeringstilbehør samlet på ett sted.</span>
+        </p>
+      </section>
+
       <section class="catalog" id="catalog">
         <div class="catalog-layout">
-          <aside class="catalog-categories" aria-label="Kategorier">
-            <p class="catalog-categories-label">Kategorier</p>
+          <aside class="catalog-categories" aria-label="Categories">
+            <p class="catalog-categories-label">Categories</p>
             <ul id="category-list"></ul>
           </aside>
           <div class="catalog-grid" id="catalog-grid" aria-live="polite"></div>
@@ -210,20 +292,20 @@
       </section>
     </main>
 
-    <button type="button" class="cart-fab" id="cart-fab" aria-label="Åpne handlekurv" aria-expanded="false">
+    <button type="button" class="cart-fab" id="cart-fab" aria-label="Open cart" aria-expanded="false">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
         <path d="M3 4h2l3 12h11l2-8H6" stroke-linecap="round" stroke-linejoin="round" />
         <circle cx="10" cy="20" r="1.5" />
         <circle cx="18" cy="20" r="1.5" />
       </svg>
-      <span class="cart-fab-label">Handlekurv</span>
+      <span class="cart-fab-label">Cart</span>
       <span class="cart-fab-count" id="cart-fab-count">0</span>
     </button>
 
-    <aside class="cart-drawer" id="cart-drawer" aria-hidden="true" aria-label="Handlekurv">
+    <aside class="cart-drawer" id="cart-drawer" aria-hidden="true" aria-label="Cart">
       <div class="cart-drawer-head">
-        <h2>Handlekurv</h2>
-        <button type="button" id="cart-close" class="cart-close" aria-label="Lukk handlekurv">×</button>
+        <h2>Cart</h2>
+        <button type="button" id="cart-close" class="cart-close" aria-label="Close cart">×</button>
       </div>
       <div class="cart-drawer-body" id="cart-body"></div>
       <div class="cart-drawer-foot">
@@ -231,7 +313,7 @@
           <span>Total</span>
           <strong id="cart-total">kr 0</strong>
         </div>
-        <button type="button" class="btn btn-primary cart-checkout" id="cart-checkout">Til kassen</button>
+        <button type="button" class="btn btn-primary cart-checkout" id="cart-checkout">Checkout</button>
       </div>
     </aside>
     <div class="cart-backdrop" id="cart-backdrop" hidden></div>

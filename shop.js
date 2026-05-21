@@ -52,9 +52,9 @@
           '<div class="promo-slide is-active" style="background:#1f2937">' +
           '<div class="promo-slide-inner">' +
           '<p class="promo-eyebrow">Spectr Parts</p>' +
-          '<h3>Legg til kampanjer fra admin</h3>' +
-          '<p>Du kan publisere tilbud og lanseringer fra admin-panelet.</p>' +
-          '<a href="admin-parts.html#slides">Til admin</a>' +
+          '<h3>Add promotions in admin</h3>' +
+          '<p>You can publish offers and launches from the admin panel.</p>' +
+          '<a href="admin-parts.html#slides">Go to admin</a>' +
           '</div></div>';
         dots.innerHTML = "";
         return;
@@ -65,7 +65,7 @@
         return '' +
           '<div class="promo-slide ' + (i === index ? "is-active" : "") + '" style="' + style + '">' +
             '<div class="promo-slide-inner">' +
-              '<p class="promo-eyebrow">' + escapeHtml(slide.eyebrow || "Tilbud") + '</p>' +
+              '<p class="promo-eyebrow">' + escapeHtml(slide.eyebrow || "Offer") + '</p>' +
               '<h3>' + escapeHtml(slide.title || "") + '</h3>' +
               (slide.body ? '<p>' + escapeHtml(slide.body) + '</p>' : '') +
               (slide.cta ? '<a href="' + escapeHtml(slide.ctaHref || "#catalog") + '">' + escapeHtml(slide.cta) + '</a>' : '') +
@@ -73,7 +73,7 @@
           '</div>';
       }).join("");
       dots.innerHTML = slides.map(function (_, i) {
-        return '<button type="button" class="' + (i === index ? "is-active" : "") + '" data-slide-index="' + i + '" aria-label="Kampanje ' + (i + 1) + '"></button>';
+        return '<button type="button" class="' + (i === index ? "is-active" : "") + '" data-slide-index="' + i + '" aria-label="Promotion ' + (i + 1) + '"></button>';
       }).join("");
     }
 
@@ -141,7 +141,7 @@
     function populateBrands() {
       var brands = Shop.getBrands();
       var current = brandSelect.value;
-      brandSelect.innerHTML = '<option value="">Velg bilmerke</option>' +
+      brandSelect.innerHTML = '<option value="">Choose brand</option>' +
         brands.map(function (b) {
           return '<option value="' + escapeHtml(b.name) + '">' + escapeHtml(b.name) + '</option>';
         }).join("");
@@ -156,18 +156,18 @@
     function onBrandChange() {
       var brand = findBrand(brandSelect.value);
       if (!brand) {
-        modelSelect.innerHTML = '<option value="">Velg bilmodell</option>';
+        modelSelect.innerHTML = '<option value="">Choose model</option>';
         modelSelect.disabled = true;
-        engineSelect.innerHTML = '<option value="">Velg motor</option>';
+        engineSelect.innerHTML = '<option value="">Choose engine</option>';
         engineSelect.disabled = true;
         return;
       }
       modelSelect.disabled = false;
-      modelSelect.innerHTML = '<option value="">Velg bilmodell</option>' +
+      modelSelect.innerHTML = '<option value="">Choose model</option>' +
         brand.models.map(function (m) {
           return '<option value="' + escapeHtml(m.name) + '">' + escapeHtml(m.name) + '</option>';
         }).join("");
-      engineSelect.innerHTML = '<option value="">Velg motor</option>';
+      engineSelect.innerHTML = '<option value="">Choose engine</option>';
       engineSelect.disabled = true;
     }
 
@@ -175,12 +175,12 @@
       var brand = findBrand(brandSelect.value);
       var model = brand && brand.models.find(function (m) { return m.name === modelSelect.value; });
       if (!model) {
-        engineSelect.innerHTML = '<option value="">Velg motor</option>';
+        engineSelect.innerHTML = '<option value="">Choose engine</option>';
         engineSelect.disabled = true;
         return;
       }
       engineSelect.disabled = false;
-      engineSelect.innerHTML = '<option value="">Alle motorer</option>' +
+      engineSelect.innerHTML = '<option value="">All engines</option>' +
         (model.engines || []).map(function (e) {
           return '<option value="' + escapeHtml(e) + '">' + escapeHtml(e) + '</option>';
         }).join("");
@@ -227,7 +227,7 @@
         var pattern = /^[A-Z]{2}\s?\d{4,5}$/;
         if (!pattern.test(value.toUpperCase())) {
           plateInput.focus();
-          plateInput.setCustomValidity("Bruk formatet AB 12345");
+          plateInput.setCustomValidity("Use the format AB 12345");
           plateInput.reportValidity();
           setTimeout(function () { plateInput.setCustomValidity(""); }, 1500);
           return;
@@ -281,15 +281,15 @@
     if (summary) {
       var parts = [];
       if (state.vehicle && state.vehicle.plate) {
-        parts.push("Søker etter deler for skilt " + state.vehicle.plate);
+        parts.push("Searching parts for plate " + state.vehicle.plate);
       } else if (state.vehicle && state.vehicle.brand) {
         var label = state.vehicle.brand;
         if (state.vehicle.model) label += " " + state.vehicle.model;
         if (state.vehicle.engine) label += " · " + state.vehicle.engine;
-        parts.push("Viser deler tilpasset " + label);
+        parts.push("Showing parts for " + label);
       }
-      if (state.activeCategory) parts.push("Kategori: " + state.activeCategory);
-      parts.push(visibleParts.length + " resultat" + (visibleParts.length === 1 ? "" : "er"));
+      if (state.activeCategory) parts.push("Category: " + state.activeCategory);
+      parts.push(visibleParts.length + " result" + (visibleParts.length === 1 ? "" : "s"));
       summary.textContent = parts.join(" · ");
     }
 
@@ -297,11 +297,11 @@
       clearBtn.hidden = !state.vehicle && !state.activeCategory;
     }
 
-    var categories = Array.from(new Set(allParts.map(function (p) { return p.category || "Annet"; }))).sort();
+    var categories = Array.from(new Set(allParts.map(function (p) { return p.category || "Other"; }))).sort();
     categoryList.innerHTML = '' +
-      '<li><button type="button" class="' + (state.activeCategory == null ? "is-active" : "") + '" data-cat="">Alle kategorier <small>' + allParts.length + '</small></button></li>' +
+      '<li><button type="button" class="' + (state.activeCategory == null ? "is-active" : "") + '" data-cat="">All categories <small>' + allParts.length + '</small></button></li>' +
       categories.map(function (cat) {
-        var count = allParts.filter(function (p) { return (p.category || "Annet") === cat; }).length;
+        var count = allParts.filter(function (p) { return (p.category || "Other") === cat; }).length;
         var active = state.activeCategory === cat ? "is-active" : "";
         return '<li><button type="button" class="' + active + '" data-cat="' + escapeHtml(cat) + '">' + escapeHtml(cat) + ' <small>' + count + '</small></button></li>';
       }).join("");
@@ -309,8 +309,8 @@
     if (visibleParts.length === 0) {
       grid.innerHTML = '' +
         '<div class="catalog-empty">' +
-          '<strong>Ingen deler matcher valget</strong>' +
-          '<span>Prøv en annen kategori eller juster søket.</span>' +
+          '<strong>No parts match your selection</strong>' +
+          '<span>Try another category or adjust the search.</span>' +
         '</div>';
       return;
     }
@@ -319,19 +319,19 @@
     grid.innerHTML = visibleParts.map(function (part) {
       var inCart = cart.find(function (l) { return l.partId === part.id; });
       var outOfStock = (part.stock || 0) <= 0;
-      var stockLabel = outOfStock ? "Utsolgt" : (part.stock || 0) + " på lager";
+      var stockLabel = outOfStock ? "Out of stock" : (part.stock || 0) + " in stock";
       return '' +
         '<article class="product">' +
           '<div class="product-image"><span>' + escapeHtml(initials(part.name)) + '</span></div>' +
           '<div class="product-body">' +
-            '<span class="product-category">' + escapeHtml(part.category || "Bildel") + '</span>' +
+            '<span class="product-category">' + escapeHtml(part.category || "Car part") + '</span>' +
             '<h3 class="product-name">' + escapeHtml(part.name) + '</h3>' +
             '<span class="product-sku">' + escapeHtml(part.sku || part.id) + '</span>' +
             '<span class="product-stock ' + (outOfStock ? "is-out" : "") + '">' + stockLabel + '</span>' +
             '<div class="product-foot">' +
               '<span class="product-price">' + escapeHtml(Shop.formatNok(part.price || 0)) + '</span>' +
               '<button type="button" class="product-add" data-add-part="' + escapeHtml(part.id) + '"' + (outOfStock ? " disabled" : "") + '>' +
-                (inCart ? "I kurv · " + inCart.qty : "Legg i kurv") +
+                (inCart ? "In cart · " + inCart.qty : "Add to cart") +
               '</button>' +
             '</div>' +
           '</div>' +
@@ -370,8 +370,8 @@
         var engine = $("finder-engine");
         var plate = $("finder-plate");
         if (brand) brand.value = "";
-        if (model) { model.innerHTML = '<option value="">Velg bilmodell</option>'; model.disabled = true; }
-        if (engine) { engine.innerHTML = '<option value="">Velg motor</option>'; engine.disabled = true; }
+        if (model) { model.innerHTML = '<option value="">Choose model</option>'; model.disabled = true; }
+        if (engine) { engine.innerHTML = '<option value="">Choose engine</option>'; engine.disabled = true; }
         if (plate) plate.value = "";
         renderCatalog();
       });
@@ -392,7 +392,7 @@
     if (count) count.textContent = cart.reduce(function (sum, line) { return sum + (parseInt(line.qty, 10) || 0); }, 0);
 
     if (cart.length === 0) {
-      if (body) body.innerHTML = '<p class="cart-empty">Handlekurven er tom. Søk etter bilen din eller bla i katalogen for å legge til deler.</p>';
+      if (body) body.innerHTML = '<p class="cart-empty">Your cart is empty. Search for your car or browse the catalog to add parts.</p>';
       if (total) total.textContent = Shop.formatNok(0);
       return;
     }
@@ -408,14 +408,14 @@
           '<div class="cart-line" data-line="' + escapeHtml(part.id) + '">' +
             '<div>' +
               '<h4>' + escapeHtml(part.name) + '</h4>' +
-              '<small>' + escapeHtml(part.sku || part.id) + ' · ' + escapeHtml(part.category || "Bildel") + '</small>' +
+              '<small>' + escapeHtml(part.sku || part.id) + ' · ' + escapeHtml(part.category || "Car part") + '</small>' +
             '</div>' +
             '<span class="cart-line-price">' + escapeHtml(Shop.formatNok(lineTotal)) + '</span>' +
             '<div class="cart-line-controls">' +
               '<button type="button" data-qty-dec aria-label="Minus">−</button>' +
               '<span>' + escapeHtml(line.qty) + '</span>' +
-              '<button type="button" data-qty-inc aria-label="Pluss">+</button>' +
-              '<button type="button" class="cart-line-remove" data-remove>Fjern</button>' +
+              '<button type="button" data-qty-inc aria-label="Plus">+</button>' +
+              '<button type="button" class="cart-line-remove" data-remove>Remove</button>' +
             '</div>' +
           '</div>';
       }).join("");
@@ -479,7 +479,7 @@
     if (checkout) {
       checkout.addEventListener("click", function () {
         if (Shop.getCart().length === 0) return;
-        alert("Takk for bestillingen! En kassefunksjon kobles til betalingsleverandør i neste steg.");
+        alert("Thanks for your order! A checkout integration can be connected in the next step.");
         Shop.clearCart();
         closeCart();
       });

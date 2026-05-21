@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="nb">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -25,7 +25,7 @@
           <span class="plt-logo-text">Spectr</span>
         </a>
         <div class="plt-header-tools">
-          <a href="index.html" class="admin-back">← Til butikken</a>
+          <a href="index.html" class="admin-back">← Back to store</a>
         </div>
       </div>
     </header>
@@ -34,32 +34,32 @@
       <header class="admin-hero">
         <div>
           <p class="shop-eyebrow">Admin</p>
-          <h1>Bildeler — administrasjon</h1>
-          <p class="admin-summary">Legg til, rediger eller fjern deler, bilmodeller og kampanjer. Endringene vises umiddelbart i butikken.</p>
+          <h1>Car parts administration</h1>
+          <p class="admin-summary">Add, edit or remove parts, vehicle models and promotions. Changes appear immediately in the store.</p>
         </div>
         <div class="admin-hero-actions">
-          <button type="button" class="btn btn-secondary" id="export-data">Eksporter JSON</button>
-          <button type="button" class="btn btn-secondary" id="reset-data">Tilbakestill data</button>
+          <button type="button" class="btn btn-secondary" id="export-data">Export JSON</button>
+          <button type="button" class="btn btn-secondary" id="reset-data">Reset data</button>
         </div>
       </header>
 
-      <nav class="admin-tabs" aria-label="Admin-faner">
-        <button type="button" class="is-active" data-tab="parts">Deler</button>
-        <button type="button" data-tab="vehicles">Biler</button>
-        <button type="button" data-tab="slides">Kampanjer</button>
+      <nav class="admin-tabs" aria-label="Admin tabs">
+        <button type="button" class="is-active" data-tab="parts">Parts</button>
+        <button type="button" data-tab="vehicles">Vehicles</button>
+        <button type="button" data-tab="slides">Promotions</button>
       </nav>
 
       <!-- Parts -->
       <section class="admin-tab is-active" id="tab-parts" data-tab-panel="parts">
         <div class="admin-panel">
-          <h2 id="parts-form-title">Ny del</h2>
+          <h2 id="parts-form-title">New part</h2>
           <form id="part-form" class="admin-form" autocomplete="off">
             <input type="hidden" id="part-id" />
             <div class="form-row">
-              <label>Navn
+              <label>Name
                 <input type="text" id="part-name" required />
               </label>
-              <label>Kategori
+              <label>Category
                 <input type="text" id="part-category" list="category-options" required />
                 <datalist id="category-options"></datalist>
               </label>
@@ -68,43 +68,43 @@
               <label>SKU
                 <input type="text" id="part-sku" required />
               </label>
-              <label>Pris (NOK)
+              <label>Price (NOK)
                 <input type="number" id="part-price" min="0" step="1" required />
               </label>
-              <label>Lager
+              <label>Stock
                 <input type="number" id="part-stock" min="0" step="1" required />
               </label>
             </div>
-            <label>Beskrivelse
+            <label>Description
               <textarea id="part-description" rows="3"></textarea>
             </label>
             <fieldset class="vehicle-fits">
-              <legend>Passer til biler</legend>
+              <legend>Vehicle compatibility</legend>
               <div id="part-fits" class="fits-list"></div>
-              <button type="button" class="btn btn-secondary" id="add-fit">Legg til biltilpasning</button>
+              <button type="button" class="btn btn-secondary" id="add-fit">Add vehicle fit</button>
             </fieldset>
             <div class="form-actions">
-              <button type="submit" class="btn btn-primary" id="part-save">Lagre del</button>
-              <button type="button" class="btn btn-secondary" id="part-reset">Avbryt</button>
+              <button type="submit" class="btn btn-primary" id="part-save">Save part</button>
+              <button type="button" class="btn btn-secondary" id="part-reset">Cancel</button>
             </div>
           </form>
         </div>
         <div class="admin-panel">
           <div class="panel-head">
-            <h2>Alle deler</h2>
-            <input type="search" id="part-search" placeholder="Søk i deler" class="panel-search" />
+            <h2>All parts</h2>
+            <input type="search" id="part-search" placeholder="Search parts" class="panel-search" />
           </div>
           <div class="table-scroll">
             <table class="admin-table" id="parts-table">
               <thead>
                 <tr>
-                  <th>Navn</th>
-                  <th>Kategori</th>
+                  <th>Name</th>
+                  <th>Category</th>
                   <th>SKU</th>
-                  <th>Pris</th>
-                  <th>Lager</th>
-                  <th>Biler</th>
-                  <th aria-label="Handlinger"></th>
+                  <th>Price</th>
+                  <th>Stock</th>
+                  <th>Vehicles</th>
+                  <th aria-label="Actions"></th>
                 </tr>
               </thead>
               <tbody></tbody>
@@ -116,33 +116,33 @@
       <!-- Vehicles -->
       <section class="admin-tab" id="tab-vehicles" data-tab-panel="vehicles">
         <div class="admin-panel">
-          <h2>Bilmerker</h2>
+          <h2>Car brands</h2>
           <form id="brand-form" class="admin-form admin-form--row" autocomplete="off">
             <input type="hidden" id="brand-id" />
-            <label>Bilmerke
+            <label>Car brand
               <input type="text" id="brand-name" required placeholder="Volkswagen" />
             </label>
             <div class="form-actions">
-              <button type="submit" class="btn btn-primary">Lagre merke</button>
-              <button type="button" class="btn btn-secondary" id="brand-reset">Avbryt</button>
+              <button type="submit" class="btn btn-primary">Save brand</button>
+              <button type="button" class="btn btn-secondary" id="brand-reset">Cancel</button>
             </div>
           </form>
           <ul class="brand-list" id="brand-list"></ul>
         </div>
 
         <div class="admin-panel" id="model-panel" hidden>
-          <h2 id="model-panel-title">Modeller</h2>
+          <h2 id="model-panel-title">Models</h2>
           <form id="model-form" class="admin-form admin-form--row" autocomplete="off">
             <input type="hidden" id="model-original-name" />
-            <label>Modellnavn
+            <label>Model name
               <input type="text" id="model-name" required placeholder="Golf VII" />
             </label>
-            <label>Motorer (kommaseparert)
+            <label>Engines (comma-separated)
               <input type="text" id="model-engines" placeholder="1.4 TSI, 2.0 TDI" />
             </label>
             <div class="form-actions">
-              <button type="submit" class="btn btn-primary">Lagre modell</button>
-              <button type="button" class="btn btn-secondary" id="model-reset">Avbryt</button>
+              <button type="submit" class="btn btn-primary">Save model</button>
+              <button type="button" class="btn btn-secondary" id="model-reset">Cancel</button>
             </div>
           </form>
           <ul class="model-list" id="model-list"></ul>
@@ -152,25 +152,25 @@
       <!-- Slides -->
       <section class="admin-tab" id="tab-slides" data-tab-panel="slides">
         <div class="admin-panel">
-          <h2 id="slide-form-title">Ny kampanje</h2>
+          <h2 id="slide-form-title">New promotion</h2>
           <form id="slide-form" class="admin-form" autocomplete="off">
             <input type="hidden" id="slide-id" />
             <div class="form-row">
-              <label>Etikett
-                <input type="text" id="slide-eyebrow" placeholder="Vinterkampanje" />
+              <label>Label
+                <input type="text" id="slide-eyebrow" placeholder="Winter campaign" />
               </label>
-              <label>Tittel
+              <label>Title
                 <input type="text" id="slide-title" required />
               </label>
             </div>
-            <label>Beskrivelse
+            <label>Description
               <textarea id="slide-body" rows="3"></textarea>
             </label>
             <div class="form-row">
-              <label>CTA-tekst
-                <input type="text" id="slide-cta" placeholder="Se kampanjen" />
+              <label>CTA text
+                <input type="text" id="slide-cta" placeholder="View promotion" />
               </label>
-              <label>CTA-lenke
+              <label>CTA link
                 <input type="text" id="slide-href" placeholder="#catalog" />
               </label>
               <label>Gradient
@@ -178,14 +178,14 @@
               </label>
             </div>
             <div class="form-actions">
-              <button type="submit" class="btn btn-primary">Lagre kampanje</button>
-              <button type="button" class="btn btn-secondary" id="slide-reset">Avbryt</button>
+              <button type="submit" class="btn btn-primary">Save promotion</button>
+              <button type="button" class="btn btn-secondary" id="slide-reset">Cancel</button>
             </div>
           </form>
         </div>
 
         <div class="admin-panel">
-          <h2>Kampanjer</h2>
+          <h2>Promotions</h2>
           <ul class="slide-list" id="slide-list"></ul>
         </div>
       </section>

@@ -68,19 +68,19 @@
 
   function buildFitRow(fit) {
     var brands = Shop.getBrands();
-    var brandOptions = '<option value="">— Bilmerke —</option>' + brands.map(function (b) {
+    var brandOptions = '<option value="">— Brand —</option>' + brands.map(function (b) {
       return '<option value="' + escapeHtml(b.name) + '"' + (fit && fit.brand === b.name ? " selected" : "") + '>' + escapeHtml(b.name) + '</option>';
     }).join("");
 
     var brand = brands.find(function (b) { return fit && b.name === fit.brand; });
     var models = brand ? brand.models : [];
-    var modelOptions = '<option value="">— Modell —</option>' + models.map(function (m) {
+    var modelOptions = '<option value="">— Model —</option>' + models.map(function (m) {
       return '<option value="' + escapeHtml(m.name) + '"' + (fit && fit.model === m.name ? " selected" : "") + '>' + escapeHtml(m.name) + '</option>';
     }).join("");
 
     var model = models.find(function (m) { return fit && m.name === fit.model; });
     var engines = model ? (model.engines || []) : [];
-    var engineOptions = '<option value="">— Alle motorer —</option>' + engines.map(function (e) {
+    var engineOptions = '<option value="">— All engines —</option>' + engines.map(function (e) {
       return '<option value="' + escapeHtml(e) + '"' + (fit && fit.engine === e ? " selected" : "") + '>' + escapeHtml(e) + '</option>';
     }).join("");
 
@@ -90,7 +90,7 @@
       '<select data-fit-brand>' + brandOptions + '</select>' +
       '<select data-fit-model>' + modelOptions + '</select>' +
       '<select data-fit-engine>' + engineOptions + '</select>' +
-      '<button type="button" class="fit-remove" data-fit-remove>Fjern</button>';
+      '<button type="button" class="fit-remove" data-fit-remove>Remove</button>';
     return div;
   }
 
@@ -100,10 +100,10 @@
     var engineSel = row.querySelector("[data-fit-engine]");
     var brand = Shop.getBrands().find(function (b) { return b.name === brandSel.value; });
     var models = brand ? brand.models : [];
-    modelSel.innerHTML = '<option value="">— Modell —</option>' + models.map(function (m) {
+    modelSel.innerHTML = '<option value="">— Model —</option>' + models.map(function (m) {
       return '<option value="' + escapeHtml(m.name) + '">' + escapeHtml(m.name) + '</option>';
     }).join("");
-    engineSel.innerHTML = '<option value="">— Alle motorer —</option>';
+    engineSel.innerHTML = '<option value="">— All engines —</option>';
   }
 
   function initPartFitsEvents() {
@@ -129,7 +129,7 @@
           var brand = Shop.getBrands().find(function (b) { return b.name === row.querySelector("[data-fit-brand]").value; });
           var model = brand && brand.models.find(function (m) { return m.name === row.querySelector("[data-fit-model]").value; });
           var engines = model ? (model.engines || []) : [];
-          row.querySelector("[data-fit-engine]").innerHTML = '<option value="">— Alle motorer —</option>' + engines.map(function (e) {
+          row.querySelector("[data-fit-engine]").innerHTML = '<option value="">— All engines —</option>' + engines.map(function (e) {
             return '<option value="' + escapeHtml(e) + '">' + escapeHtml(e) + '</option>';
           }).join("");
         }
@@ -146,7 +146,7 @@
     $("part-stock").value = "";
     $("part-description").value = "";
     $("part-fits").innerHTML = "";
-    $("parts-form-title").textContent = "Ny del";
+    $("parts-form-title").textContent = "New part";
   }
 
   function loadPartIntoForm(part) {
@@ -162,7 +162,7 @@
     (part.vehicles || []).forEach(function (fit) {
       fits.appendChild(buildFitRow(fit));
     });
-    $("parts-form-title").textContent = "Rediger del";
+    $("parts-form-title").textContent = "Edit part";
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
@@ -185,21 +185,21 @@
     var record = {
       id: id,
       name: $("part-name").value.trim(),
-      category: $("part-category").value.trim() || "Annet",
+      category: $("part-category").value.trim() || "Other",
       sku: $("part-sku").value.trim(),
       price: parseFloat($("part-price").value) || 0,
       stock: parseInt($("part-stock").value, 10) || 0,
       description: $("part-description").value.trim(),
       vehicles: collectFits()
     };
-    if (!record.name) { toast("Navn mangler"); return; }
+    if (!record.name) { toast("Name is missing"); return; }
 
     if (existingIndex >= 0) {
       parts[existingIndex] = record;
-      toast("Del oppdatert");
+      toast("Part updated");
     } else {
       parts.push(record);
-      toast("Del lagt til");
+      toast("Part added");
     }
     Shop.setParts(parts);
     resetPartForm();
@@ -221,7 +221,7 @@
       : parts;
 
     if (filtered.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="7"><div class="empty-state">Ingen deler registrert ennå.</div></td></tr>';
+      tbody.innerHTML = '<tr><td colspan="7"><div class="empty-state">No parts have been added yet.</div></td></tr>';
       return;
     }
 
@@ -235,14 +235,14 @@
       return '' +
         '<tr data-part-id="' + escapeHtml(part.id) + '">' +
           '<td><strong>' + escapeHtml(part.name) + '</strong><br><small>' + escapeHtml(part.description || "") + '</small></td>' +
-          '<td>' + escapeHtml(part.category || "Annet") + '</td>' +
+          '<td>' + escapeHtml(part.category || "Other") + '</td>' +
           '<td>' + escapeHtml(part.sku || "") + '</td>' +
           '<td>' + escapeHtml(Shop.formatNok(part.price || 0)) + '</td>' +
           '<td>' + escapeHtml(String(part.stock || 0)) + '</td>' +
           '<td>' + (fits || '<span style="color:var(--shop-muted)">Universal</span>') + '</td>' +
           '<td><div class="row-actions">' +
-            '<button type="button" data-edit-part>Rediger</button>' +
-            '<button type="button" class="danger" data-delete-part>Slett</button>' +
+            '<button type="button" data-edit-part>Edit</button>' +
+            '<button type="button" class="danger" data-delete-part>Delete</button>' +
           '</div></td>' +
         '</tr>';
     }).join("");
@@ -260,9 +260,9 @@
           var part = Shop.getParts().find(function (p) { return p.id === partId; });
           if (part) loadPartIntoForm(part);
         } else if (event.target.closest("[data-delete-part]")) {
-          if (!confirm("Slette denne delen?")) return;
+          if (!confirm("Delete this part?")) return;
           Shop.setParts(Shop.getParts().filter(function (p) { return p.id !== partId; }));
-          toast("Del slettet");
+          toast("Part deleted");
           renderPartsTable();
           renderCategoryOptions();
         }
@@ -282,7 +282,7 @@
     if (!list) return;
     var brands = Shop.getBrands();
     if (brands.length === 0) {
-      list.innerHTML = '<li class="empty-state">Legg til ditt første bilmerke for å komme i gang.</li>';
+      list.innerHTML = '<li class="empty-state">Add your first car brand to get started.</li>';
       hideModelPanel();
       return;
     }
@@ -292,12 +292,12 @@
         '<li class="' + active.trim() + '" data-brand-id="' + escapeHtml(b.id) + '">' +
           '<div class="brand-meta">' +
             '<strong>' + escapeHtml(b.name) + '</strong>' +
-            '<small>' + b.models.length + ' modeller</small>' +
+            '<small>' + b.models.length + ' models</small>' +
           '</div>' +
           '<div class="row-actions">' +
-            '<button type="button" data-edit-brand>Modeller</button>' +
-            '<button type="button" data-rename-brand>Rediger</button>' +
-            '<button type="button" class="danger" data-delete-brand>Slett</button>' +
+            '<button type="button" data-edit-brand>Models</button>' +
+            '<button type="button" data-rename-brand>Edit</button>' +
+            '<button type="button" class="danger" data-delete-brand>Delete</button>' +
           '</div>' +
         '</li>';
     }).join("");
@@ -317,7 +317,7 @@
     var panel = $("model-panel");
     if (!panel) return;
     panel.hidden = false;
-    $("model-panel-title").textContent = "Modeller for " + brand.name;
+    $("model-panel-title").textContent = "Models for " + brand.name;
     renderModels();
     renderBrands();
   }
@@ -328,7 +328,7 @@
     var brand = Shop.getBrands().find(function (b) { return b.id === state.selectedBrandId; });
     if (!brand) { list.innerHTML = ""; return; }
     if (!brand.models.length) {
-      list.innerHTML = '<li class="empty-state">Ingen modeller registrert ennå.</li>';
+      list.innerHTML = '<li class="empty-state">No models have been added yet.</li>';
       return;
     }
     list.innerHTML = brand.models.map(function (model) {
@@ -337,11 +337,11 @@
         '<li data-model-name="' + escapeHtml(model.name) + '">' +
           '<div class="brand-meta">' +
             '<strong>' + escapeHtml(model.name) + '</strong>' +
-            '<small>' + (engines ? escapeHtml(engines) : "Ingen motorer registrert") + '</small>' +
+            '<small>' + (engines ? escapeHtml(engines) : "No engines added") + '</small>' +
           '</div>' +
           '<div class="row-actions">' +
-            '<button type="button" data-edit-model>Rediger</button>' +
-            '<button type="button" class="danger" data-delete-model>Slett</button>' +
+            '<button type="button" data-edit-model>Edit</button>' +
+            '<button type="button" class="danger" data-delete-model>Delete</button>' +
           '</div>' +
         '</li>';
     }).join("");
@@ -371,14 +371,14 @@
           var existing = brands.find(function (b) { return b.id === id; });
           if (!existing) return;
           existing.name = name;
-          toast("Merke oppdatert");
+          toast("Brand updated");
         } else {
           if (brands.some(function (b) { return b.name.toLowerCase() === name.toLowerCase(); })) {
-            toast("Merket finnes allerede");
+            toast("Brand already exists");
             return;
           }
           brands.push({ id: Shop.nextId("brand"), name: name, models: [] });
-          toast("Merke lagt til");
+          toast("Brand added");
         }
         Shop.setBrands(brands);
         resetBrandForm();
@@ -403,10 +403,10 @@
           $("brand-name").value = brand.name;
           $("brand-name").focus();
         } else if (event.target.closest("[data-delete-brand]")) {
-          if (!confirm("Slette dette merket og alle modeller?")) return;
+          if (!confirm("Delete this brand and all models?")) return;
           Shop.setBrands(Shop.getBrands().filter(function (b) { return b.id !== brandId; }));
           if (state.selectedBrandId === brandId) hideModelPanel();
-          toast("Merke slettet");
+          toast("Brand deleted");
           renderBrands();
         }
       });
@@ -431,14 +431,14 @@
           if (!model) return;
           model.name = name;
           model.engines = engines;
-          toast("Modell oppdatert");
+          toast("Model updated");
         } else {
           if (brand.models.some(function (m) { return m.name.toLowerCase() === name.toLowerCase(); })) {
-            toast("Modellen finnes allerede");
+            toast("Model already exists");
             return;
           }
           brand.models.push({ name: name, engines: engines });
-          toast("Modell lagt til");
+          toast("Model added");
         }
         Shop.setBrands(brands);
         resetModelForm();
@@ -466,10 +466,10 @@
           $("model-engines").value = (model.engines || []).join(", ");
           $("model-name").focus();
         } else if (event.target.closest("[data-delete-model]")) {
-          if (!confirm("Slette denne modellen?")) return;
+          if (!confirm("Delete this model?")) return;
           brand.models = brand.models.filter(function (m) { return m.name !== modelName; });
           Shop.setBrands(brands);
-          toast("Modell slettet");
+          toast("Model deleted");
           renderModels();
           renderBrands();
         }
@@ -486,7 +486,7 @@
     $("slide-cta").value = "";
     $("slide-href").value = "";
     $("slide-gradient").value = "";
-    $("slide-form-title").textContent = "Ny kampanje";
+    $("slide-form-title").textContent = "New promotion";
   }
 
   function renderSlides() {
@@ -494,19 +494,19 @@
     if (!list) return;
     var slides = Shop.getSlides();
     if (slides.length === 0) {
-      list.innerHTML = '<li class="empty-state">Ingen kampanjer publisert. Legg til den første over.</li>';
+      list.innerHTML = '<li class="empty-state">No promotions published. Add the first one above.</li>';
       return;
     }
     list.innerHTML = slides.map(function (slide) {
       return '' +
         '<li data-slide-id="' + escapeHtml(slide.id) + '">' +
           '<div class="slide-meta">' +
-            '<strong>' + escapeHtml(slide.title || "Uten tittel") + '</strong>' +
+            '<strong>' + escapeHtml(slide.title || "Untitled") + '</strong>' +
             '<small>' + escapeHtml(slide.eyebrow || "") + (slide.cta ? " · " + escapeHtml(slide.cta) : "") + '</small>' +
           '</div>' +
           '<div class="row-actions">' +
-            '<button type="button" data-edit-slide>Rediger</button>' +
-            '<button type="button" class="danger" data-delete-slide>Slett</button>' +
+            '<button type="button" data-edit-slide>Edit</button>' +
+            '<button type="button" class="danger" data-delete-slide>Delete</button>' +
           '</div>' +
         '</li>';
     }).join("");
@@ -528,14 +528,14 @@
           ctaHref: $("slide-href").value.trim() || "#catalog",
           gradient: $("slide-gradient").value.trim() || ""
         };
-        if (!record.title) { toast("Tittel mangler"); return; }
+        if (!record.title) { toast("Title is missing"); return; }
         var idx = slides.findIndex(function (s) { return s.id === id; });
         if (idx >= 0) {
           slides[idx] = record;
-          toast("Kampanje oppdatert");
+          toast("Promotion updated");
         } else {
           slides.push(record);
-          toast("Kampanje lagt til");
+          toast("Promotion added");
         }
         Shop.setSlides(slides);
         resetSlideForm();
@@ -560,12 +560,12 @@
           $("slide-cta").value = slide.cta || "";
           $("slide-href").value = slide.ctaHref || "";
           $("slide-gradient").value = slide.gradient || "";
-          $("slide-form-title").textContent = "Rediger kampanje";
+          $("slide-form-title").textContent = "Edit promotion";
           window.scrollTo({ top: 0, behavior: "smooth" });
         } else if (event.target.closest("[data-delete-slide]")) {
-          if (!confirm("Slette denne kampanjen?")) return;
+          if (!confirm("Delete this promotion?")) return;
           Shop.setSlides(Shop.getSlides().filter(function (s) { return s.id !== slide.id; }));
-          toast("Kampanje slettet");
+          toast("Promotion deleted");
           renderSlides();
         }
       });
@@ -586,21 +586,21 @@
         var url = URL.createObjectURL(blob);
         var anchor = document.createElement("a");
         anchor.href = url;
-        anchor.download = "spectr-parts-katalog.json";
+        anchor.download = "spectr-parts-catalog.json";
         document.body.appendChild(anchor);
         anchor.click();
         document.body.removeChild(anchor);
         URL.revokeObjectURL(url);
-        toast("Eksport lastet ned");
+        toast("Export downloaded");
       });
     }
     var resetBtn = $("reset-data");
     if (resetBtn) {
       resetBtn.addEventListener("click", function () {
-        if (!confirm("Tilbakestille deler, biler og kampanjer til standardinnholdet?")) return;
+        if (!confirm("Reset parts, vehicles and promotions to the default content?")) return;
         Shop.resetToDefaults();
         renderEverything();
-        toast("Dataene er tilbakestilt");
+        toast("Data reset");
       });
     }
   }

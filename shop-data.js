@@ -4,11 +4,11 @@
   "use strict";
 
   var KEYS = {
-    brands: "spectr_shop_brands_v1",
-    parts: "spectr_shop_parts_v1",
-    slides: "spectr_shop_slides_v1",
-    cart: "spectr_shop_cart_v1",
-    seeded: "spectr_shop_seeded_v1",
+    brands: "spectr_shop_brands_v2",
+    parts: "spectr_shop_parts_v2",
+    slides: "spectr_shop_slides_v2",
+    cart: "spectr_shop_cart_v2",
+    seeded: "spectr_shop_seeded_v2",
   };
 
   function id(prefix) {
@@ -109,12 +109,12 @@
     return [
       {
         id: "part-brake-pads-front",
-        name: "Bremseklosser foran (sett)",
-        category: "Bremser",
+        name: "Front brake pads (set)",
+        category: "Brakes",
         sku: "SP-BR-001",
         price: 749,
         stock: 32,
-        description: "Keramiske bremseklosser for personbiler, lavt støvavtrykk og lang levetid.",
+        description: "Ceramic brake pads for passenger cars, low dust and long service life.",
         vehicles: [
           { brand: "Volkswagen", model: "Golf VII", engine: "" },
           { brand: "Audi", model: "A4 B9", engine: "" }
@@ -122,12 +122,12 @@
       },
       {
         id: "part-brake-disc-front",
-        name: "Bremseskive foran (par)",
-        category: "Bremser",
+        name: "Front brake discs (pair)",
+        category: "Brakes",
         sku: "SP-BR-014",
         price: 1290,
         stock: 18,
-        description: "Ventilerte bremseskiver med korrosjonsbeskyttelse, leveres parvis.",
+        description: "Vented brake discs with corrosion protection, supplied in pairs.",
         vehicles: [
           { brand: "BMW", model: "3-serie F30", engine: "320d" },
           { brand: "Volkswagen", model: "Passat B8", engine: "" }
@@ -135,12 +135,12 @@
       },
       {
         id: "part-oil-filter",
-        name: "Oljefilter",
+        name: "Oil filter",
         category: "Filter",
         sku: "SP-FL-202",
         price: 119,
         stock: 124,
-        description: "Originaltilpasset oljefilter for forbrennings- og hybridmotorer.",
+        description: "OEM-fit oil filter for combustion and hybrid engines.",
         vehicles: [
           { brand: "Toyota", model: "RAV4 V", engine: "2.5 Hybrid" },
           { brand: "Volvo", model: "XC60 II", engine: "B4 mild hybrid" }
@@ -148,12 +148,12 @@
       },
       {
         id: "part-air-filter",
-        name: "Luftfilter",
+        name: "Air filter",
         category: "Filter",
         sku: "SP-FL-204",
         price: 199,
         stock: 86,
-        description: "Høyytelses luftfilter for optimal innsugsluftkvalitet.",
+        description: "High-flow air filter for clean intake air and reliable performance.",
         vehicles: [
           { brand: "Audi", model: "A4 B9", engine: "" },
           { brand: "BMW", model: "X3 G01", engine: "" }
@@ -161,12 +161,12 @@
       },
       {
         id: "part-spark-plug-set",
-        name: "Tennpluggsett (4 stk)",
-        category: "Tenning",
+        name: "Spark plug set (4 pcs)",
+        category: "Ignition",
         sku: "SP-TN-088",
         price: 349,
         stock: 58,
-        description: "Iridium tennplugger for stabil tenning og redusert forbruk.",
+        description: "Iridium spark plugs for stable ignition and reduced consumption.",
         vehicles: [
           { brand: "Ford", model: "Focus IV", engine: "1.0 EcoBoost" },
           { brand: "Volkswagen", model: "Golf VII", engine: "1.4 TSI" }
@@ -174,54 +174,54 @@
       },
       {
         id: "part-engine-oil-5w30",
-        name: "Motorolje 5W-30 (5L)",
-        category: "Olje og væsker",
+        name: "Engine oil 5W-30 (5L)",
+        category: "Oil and fluids",
         sku: "SP-OL-501",
         price: 549,
         stock: 73,
-        description: "Fullsyntetisk motorolje for moderne diesel- og bensinmotorer.",
+        description: "Fully synthetic engine oil for modern diesel and petrol engines.",
         vehicles: []
       },
       {
         id: "part-wiper-blades",
-        name: "Vindusviskerblader (par)",
-        category: "Eksteriør",
+        name: "Wiper blades (pair)",
+        category: "Exterior",
         sku: "SP-EK-310",
         price: 289,
         stock: 41,
-        description: "Aerodynamiske flatbladsviskere med jevn renspyling.",
+        description: "Aerodynamic flat wiper blades for smooth wiping.",
         vehicles: []
       },
       {
         id: "part-battery-12v-72ah",
-        name: "Startbatteri 12V 72Ah",
-        category: "Elektro",
+        name: "Starter battery 12V 72Ah",
+        category: "Electrical",
         sku: "SP-EL-720",
         price: 1990,
         stock: 9,
-        description: "AGM-batteri klar for start-stopp-system og elektronisk last.",
+        description: "AGM battery ready for start-stop systems and electronic loads.",
         vehicles: []
       },
       {
         id: "part-cabin-filter",
-        name: "Kupéfilter med kullag",
+        name: "Cabin filter with carbon layer",
         category: "Filter",
         sku: "SP-FL-330",
         price: 279,
         stock: 64,
-        description: "Aktivt kullfilter mot pollen, sot og lukt i kupéen.",
+        description: "Activated carbon filter for pollen, soot and cabin odor.",
         vehicles: [
           { brand: "Mercedes-Benz", model: "C-klasse W205", engine: "" }
         ]
       },
       {
         id: "part-shock-absorber",
-        name: "Støtdemper bak",
-        category: "Understell",
+        name: "Rear shock absorber",
+        category: "Suspension",
         sku: "SP-US-450",
         price: 1490,
         stock: 14,
-        description: "Gass-trykk støtdemper, leveres enkeltvis.",
+        description: "Gas-pressure shock absorber, supplied individually.",
         vehicles: [
           { brand: "Volkswagen", model: "Tiguan II", engine: "" },
           { brand: "Volvo", model: "V60 II", engine: "" }
@@ -229,24 +229,24 @@
       },
       {
         id: "part-timing-belt-kit",
-        name: "Registerreimsett",
-        category: "Motor",
+        name: "Timing belt kit",
+        category: "Engine",
         sku: "SP-MO-820",
         price: 2790,
         stock: 6,
-        description: "Komplett registerreimsett med remskiver og vannpumpe.",
+        description: "Complete timing belt kit with pulleys and water pump.",
         vehicles: [
           { brand: "Audi", model: "A4 B9", engine: "2.0 TDI quattro" }
         ]
       },
       {
         id: "part-tesla-cabin-filter",
-        name: "Kupéfilter EV",
+        name: "EV cabin filter",
         category: "Filter",
         sku: "SP-FL-901",
         price: 459,
         stock: 22,
-        description: "HEPA-filter for elbiler, fanger små partikler og pollen.",
+        description: "HEPA filter for electric vehicles, capturing fine particles and pollen.",
         vehicles: [
           { brand: "Tesla", model: "Model 3", engine: "" },
           { brand: "Tesla", model: "Model Y", engine: "" }
@@ -259,30 +259,30 @@
     return [
       {
         id: "slide-winter",
-        eyebrow: "Vinterkampanje",
-        title: "Spar opptil 30 % på bremseutstyr",
-        body: "Skift bremseklosser og skiver før vinteren. Originale og likeverdige deler på lager.",
-        cta: "Se bremsedeler",
+        eyebrow: "Winter campaign",
+        title: "Save up to 30% on brake parts",
+        body: "Replace brake pads and discs before winter. OEM and equivalent parts in stock.",
+        cta: "Shop brake parts",
         ctaHref: "#catalog",
         accent: "#0a0c10",
         gradient: "linear-gradient(135deg, #1f2937 0%, #0a0c10 70%)"
       },
       {
         id: "slide-ev",
-        eyebrow: "Nyhet — Elbiler",
-        title: "Bildeler for Tesla og Volvo Recharge",
-        body: "Vi har utvidet sortimentet med kupéfiltre, vindusviskere og bremser for elbiler.",
-        cta: "Se elbildeler",
+        eyebrow: "New — EV parts",
+        title: "Car parts for Tesla and Volvo Recharge",
+        body: "We have expanded the range with cabin filters, wipers and brakes for electric vehicles.",
+        cta: "Shop EV parts",
         ctaHref: "#catalog",
         accent: "#1f6feb",
         gradient: "linear-gradient(135deg, #1f6feb 0%, #102a4a 70%)"
       },
       {
         id: "slide-service",
-        eyebrow: "Servicepakke",
-        title: "Servicepakke fra kr 899",
-        body: "Olje, oljefilter, luftfilter og kupéfilter i én leveranse — tilpasset bilen din.",
-        cta: "Bygg servicepakke",
+        eyebrow: "Service kit",
+        title: "Service kits from kr 899",
+        body: "Oil, oil filter, air filter and cabin filter in one delivery — matched to your car.",
+        cta: "Build service kit",
         ctaHref: "#catalog",
         accent: "#c2410c",
         gradient: "linear-gradient(135deg, #c2410c 0%, #6b1b07 70%)"
