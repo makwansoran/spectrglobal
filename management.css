@@ -197,6 +197,15 @@
   background: #eef2ff;
 }
 
+.link-button:disabled {
+  color: #9aa4b2;
+  cursor: not-allowed;
+}
+
+.link-button:disabled:hover {
+  background: transparent;
+}
+
 .management-list {
   list-style: none;
   margin: 0;
@@ -297,6 +306,16 @@
   font-size: 13px;
 }
 
+.bulk-select-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 0 0 -4px;
+  color: #4b5565;
+  font-size: 13px;
+}
+
 .management-table-wrap {
   overflow: auto;
   background: #ffffff;
@@ -336,6 +355,71 @@
 
 .management-table tbody tr:hover {
   background: #fbfcfd;
+}
+
+.management-table .selection-cell {
+  width: 42px;
+  padding-right: 6px;
+}
+
+.selection-checkbox {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+}
+
+.selection-checkbox input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.selection-checkbox span {
+  width: 18px;
+  height: 18px;
+  border: 1px solid #b8c0cc;
+  border-radius: 5px;
+  background: #ffffff;
+  box-shadow: inset 0 0 0 2px #ffffff;
+}
+
+.selection-checkbox input:checked + span {
+  border-color: #2150ff;
+  background: #2150ff;
+}
+
+.selection-checkbox input:checked + span::after {
+  content: "";
+  display: block;
+  width: 8px;
+  height: 5px;
+  margin: 4px 0 0 4px;
+  border-left: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+  transform: rotate(-45deg);
+}
+
+.selection-checkbox input:indeterminate + span {
+  border-color: #2150ff;
+  background: #2150ff;
+}
+
+.selection-checkbox input:indeterminate + span::after {
+  content: "";
+  display: block;
+  width: 8px;
+  height: 2px;
+  margin: 7px auto 0;
+  background: #ffffff;
+  border-radius: 2px;
+}
+
+.selection-checkbox input:focus-visible + span {
+  outline: 2px solid #2150ff33;
+  outline-offset: 2px;
 }
 
 .management-table .empty-state {

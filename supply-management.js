@@ -18,6 +18,7 @@
     },
     admin: null,
     pendingDeleteUserId: "",
+    selectedProducts: new Set(),
   };
 
   function $(id) {
@@ -150,6 +151,10 @@
     return [item.brand, item.name].filter(Boolean).join(" ") || "Untitled product";
   }
 
+  function productKey(item) {
+    return item.kind + ":" + item.id;
+  }
+
   function filterProducts() {
     var f = state.filters.products;
     var query = f.query.toLowerCase();
@@ -180,15 +185,17 @@
     var rows = filterProducts();
 
     if (!rows.length) {
-      tbody.innerHTML = '<tr><td colspan="8"><div class="empty-state">No products match this view.</div></td></tr>';
+      tbody.innerHTML = '<tr><td colspan="9"><div class="empty-state">No products match this view.</div></td></tr>';
+      updateProductSelectionUi(rows);
       return;
     }
 
     tbody.innerHTML = rows
       .map(function (item) {
-        var key = item.kind + ":" + item.id;
+        var key = productKey(item);
         return (
           '<tr data-product="' + escapeHtml(key) + '">' +
+          '<td class="selection-cell"><label class="selection-checkbox"><input type="checkbox" data-select-product="' + escapeHtml(key) + '"' + (state.selectedProducts.has(key) ? " checked" : "") + ' aria-label="Mark ' + escapeHtml(productDisplayName(item)) + '" /><span></span></label></td>' +
           '<td><div class="col-name"><strong>' + escapeHtml(productDisplayName(item)) + '</strong><small>' + escapeHtml(item.category || "") + '</small></div></td>' +
           '<td><span class="kind-pill kind-' + escapeHtml(item.kind) + '">' + escapeHtml(item.kind) + '</span></td>' +
           '<td><code>' + escapeHtml(item.sku || "—") + '</code></td>' +
@@ -201,6 +208,28 @@
         );
       })
       .join("");
+    updateProductSelectionUi(rows);
+  }
+
+  function updateProductSelectionUi(visibleRows) {
+    var rows = visibleRows || filterProducts();
+    var count = state.selectedProducts.size;
+    var countNode = $("products-selected-count");
+    var selectVisible = $("products-select-visible");
+    var clearButton = $("products-clear-selection");
+
+    if (countNode) {
+      countNode.textContent = count + " product" + (count === 1 ? "" : "s") + " selected";
+    }
+    if (clearButton) clearButton.disabled = count === 0;
+
+    if (selectVisible) {
+      var visibleKeys = rows.map(productKey);
+      var selectedVisible = visibleKeys.filter(function (key) { return state.selectedProducts.has(key); }).length;
+      selectVisible.checked = visibleKeys.length > 0 && selectedVisible === visibleKeys.length;
+      selectVisible.indeterminate = selectedVisible > 0 && selectedVisible < visibleKeys.length;
+      selectVisible.disabled = visibleKeys.length === 0;
+    }
   }
 
   function renderProductsSummary() {
@@ -365,6 +394,10 @@
         item.stock = Number(item.stock) || 0;
         return item;
       });
+      var validKeys = new Set(state.products.map(productKey));
+      state.selectedProducts = new Set(Array.from(state.selectedProducts).filter(function (key) {
+        return validKeys.has(key);
+      }));
       state.productsSummary = data.summary || null;
       renderProductsSummary();
       renderProductsTable();
@@ -640,9 +673,35 @@
       renderProductsTable();
     });
     $("products-refresh").addEventListener("click", loadProducts);
+    $("products-select-all").addEventListener("click", function () {
+      state.products.forEach(function (item) {
+        state.selectedProducts.add(productKey(item));
+      });
+      renderProductsTable();
+    });
+    $("products-clear-selection").addEventListener("click", function () {
+      state.selectedProducts.clear();
+      renderProductsTable();
+    });
+    $("products-select-visible").addEventListener("change", function (e) {
+      var rows = filterProducts();
+      rows.forEach(function (item) {
+        var key = productKey(item);
+        if (e.target.checked) state.selectedProducts.add(key);
+        else state.selectedProducts.delete(key);
+      });
+      renderProductsTable();
+    });
 
     var productsTable = $("products-table");
     productsTable.addEventListener("change", function (e) {
+      var selector = e.target.closest("input[data-select-product]");
+      if (selector) {
+        if (selector.checked) state.selectedProducts.add(selector.dataset.selectProduct);
+        else state.selectedProducts.delete(selector.dataset.selectProduct);
+        updateProductSelectionUi();
+        return;
+      }
       var input = e.target.closest("input[data-field]");
       if (!input) return;
       var row = input.closest("tr");

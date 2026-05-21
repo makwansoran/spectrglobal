@@ -139,11 +139,22 @@
         </header>
 
         <p class="management-note" id="products-note">Tip: change price, stock, or active state directly in the table — it saves instantly.</p>
+        <div class="bulk-select-bar" aria-label="Bulk product selection">
+          <span id="products-selected-count">0 products selected</span>
+          <button type="button" class="link-button" id="products-select-all">Mark all products</button>
+          <button type="button" class="link-button" id="products-clear-selection">Clear selection</button>
+        </div>
 
         <div class="management-table-wrap">
           <table class="management-table" id="products-table">
             <thead>
               <tr>
+                <th class="selection-cell">
+                  <label class="selection-checkbox">
+                    <input type="checkbox" id="products-select-visible" aria-label="Mark all visible products" />
+                    <span></span>
+                  </label>
+                </th>
                 <th>Product</th>
                 <th>Kind</th>
                 <th>SKU</th>
@@ -155,7 +166,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr><td colspan="8"><div class="empty-state">Loading products from database...</div></td></tr>
+              <tr><td colspan="9"><div class="empty-state">Loading products from database...</div></td></tr>
             </tbody>
           </table>
         </div>
