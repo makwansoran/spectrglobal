@@ -404,21 +404,46 @@
 }
 
 .auth-submit {
+  position: relative;
+  overflow: hidden;
   min-height: 2.85rem;
   margin-top: 0.35rem;
-  border: 0;
+  border: 1px solid #000000;
   border-radius: 6px;
-  background: #635bff;
-  box-shadow: 0 2px 5px rgba(80, 67, 232, 0.24);
+  background: #000000;
+  box-shadow: 0 2px 5px rgba(10, 37, 64, 0.16);
   font-size: 0.93rem;
   font-weight: 700;
   letter-spacing: 0;
   text-transform: none;
+  transition:
+    background 0.18s ease,
+    box-shadow 0.18s ease,
+    transform 0.18s ease;
+}
+
+.auth-submit::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 0%, rgba(255, 255, 255, 0.22) 45%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 0.45s ease;
 }
 
 .auth-submit:hover {
-  background: #5145cd;
-  border-color: #5145cd;
+  background: #111111;
+  border-color: #111111;
+  box-shadow: 0 10px 24px rgba(10, 37, 64, 0.24);
+  transform: translateY(-2px);
+}
+
+.auth-submit:hover::before {
+  transform: translateX(120%);
+}
+
+.auth-submit:active {
+  transform: translateY(0);
 }
 
 .auth-switch {
