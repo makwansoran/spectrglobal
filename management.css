@@ -357,6 +357,10 @@
   min-width: 0;
 }
 
+[data-catalog-panel][hidden] {
+  display: none !important;
+}
+
 .catalog-manager-card header {
   margin-bottom: 12px;
 }

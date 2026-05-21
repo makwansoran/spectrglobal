@@ -438,10 +438,14 @@
   function setCatalogView(view) {
     state.catalogView = view === "categories" ? "categories" : "makes";
     document.querySelectorAll("[data-catalog-view]").forEach(function (button) {
-      button.classList.toggle("is-active", button.dataset.catalogView === state.catalogView);
+      var active = button.dataset.catalogView === state.catalogView;
+      button.classList.toggle("is-active", active);
+      button.setAttribute("aria-pressed", active ? "true" : "false");
     });
     document.querySelectorAll("[data-catalog-panel]").forEach(function (panel) {
-      panel.hidden = panel.dataset.catalogPanel !== state.catalogView;
+      var active = panel.dataset.catalogPanel === state.catalogView;
+      panel.hidden = !active;
+      panel.style.display = active ? "" : "none";
     });
   }
 
