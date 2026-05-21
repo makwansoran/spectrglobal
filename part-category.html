@@ -110,17 +110,10 @@
     </div>
 
     <main class="shop-page category-page">
-      <section class="category-hero" aria-labelledby="category-title">
+      <div class="category-page-shell">
         <a class="brand-back-link" href="part-categories.html">All categories</a>
-        <div class="brand-hero-card category-hero-card">
-          <div class="brand-identity">
-            <div class="brand-hero-logo" id="category-icon" aria-hidden="true">+</div>
-            <div>
-              <p class="shop-eyebrow" id="category-eyebrow">Car part category</p>
-              <h1 id="category-title">Loading category...</h1>
-              <p id="category-summary">Choose your car to find compatible products.</p>
-            </div>
-          </div>
+
+        <div class="category-fit-products">
           <form class="brand-fit-form" id="category-fit-form" autocomplete="off">
             <div class="brand-fit-head">
               <p class="shop-eyebrow">Identify your car</p>
@@ -152,20 +145,20 @@
             <button type="button" class="brand-fit-reset" id="category-fit-reset" hidden>Clear selection</button>
             <p class="brand-fit-status" id="category-fit-status" aria-live="polite"></p>
           </form>
-        </div>
-      </section>
 
-      <section class="category-products" aria-labelledby="category-products-title">
-        <div class="catalog-head">
-          <div>
-            <h2 id="category-products-title">Compatible products</h2>
-            <p class="catalog-summary" id="category-products-summary">Loading products...</p>
-          </div>
+          <section class="category-products" aria-labelledby="category-products-title">
+            <div class="catalog-head">
+              <div>
+                <h2 id="category-products-title">Matching products</h2>
+                <p class="catalog-summary" id="category-products-summary">Loading products...</p>
+              </div>
+            </div>
+            <div class="catalog-grid" id="category-products-grid" aria-live="polite">
+              <div class="catalog-empty"><strong>Loading products from database...</strong></div>
+            </div>
+          </section>
         </div>
-        <div class="catalog-grid" id="category-products-grid" aria-live="polite">
-          <div class="catalog-empty"><strong>Loading products from database...</strong></div>
-        </div>
-      </section>
+      </div>
     </main>
 
     <button type="button" class="cart-fab" id="cart-fab" aria-label="Open cart" aria-expanded="false">

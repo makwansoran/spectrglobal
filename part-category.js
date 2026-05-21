@@ -34,28 +34,6 @@
     return String(value || "").trim().toLowerCase();
   }
 
-  function initials(name) {
-    return (name || "")
-      .split(/\s+/)
-      .filter(Boolean)
-      .slice(0, 2)
-      .map(function (word) { return word.charAt(0).toUpperCase(); })
-      .join("") || "SP";
-  }
-
-  function categoryIcon(category) {
-    var value = normalize(category);
-    if (value.indexOf("tyre") !== -1 || value.indexOf("tire") !== -1) return "◉";
-    if (value.indexOf("oil") !== -1) return "◍";
-    if (value.indexOf("brake") !== -1) return "▣";
-    if (value.indexOf("deal") !== -1) return "%";
-    if (value.indexOf("filter") !== -1) return "▤";
-    if (value.indexOf("suspension") !== -1) return "⌁";
-    if (value.indexOf("engine") !== -1) return "⚙";
-    if (value.indexOf("body") !== -1) return "▰";
-    return "+";
-  }
-
   function selectedCategory() {
     return new URLSearchParams(window.location.search).get("category") || "Oils";
   }
@@ -162,10 +140,6 @@
 
   function renderHero() {
     document.title = state.category + " | Spectr";
-    $("category-icon").textContent = categoryIcon(state.category);
-    $("category-title").textContent = state.category;
-    $("category-eyebrow").textContent = "Car part category";
-    $("category-summary").textContent = categorySummary();
     if (normalize(state.category).indexOf("oil") !== -1) {
       $("category-fit-title").textContent = "Find the correct oil by car or VIN";
     } else if (normalize(state.category).indexOf("brake") !== -1) {
@@ -175,23 +149,6 @@
     } else {
       $("category-fit-title").textContent = "Find the correct tyre size by car or VIN";
     }
-  }
-
-  function categorySummary() {
-    var count = state.parts.filter(isSameCategory).length;
-    if (normalize(state.category).indexOf("oil") !== -1) {
-      return "Choose your car brand, year, model, or VIN to show compatible engine oils.";
-    }
-    if (normalize(state.category).indexOf("tire") !== -1 || normalize(state.category).indexOf("tyre") !== -1) {
-      return "Choose your car brand, year, model, or VIN to show matching tyre sizes.";
-    }
-    if (normalize(state.category).indexOf("brake") !== -1) {
-      return "Choose your car brand, year, model, or VIN to show compatible brake discs and pads.";
-    }
-    if (normalize(state.category).indexOf("deal") !== -1) {
-      return "Our 12 best deals of the week, selected from the live catalog.";
-    }
-    return "Browse " + count + " compatible product" + (count === 1 ? "" : "s") + ".";
   }
 
   function renderProducts() {
