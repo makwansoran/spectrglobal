@@ -25,7 +25,7 @@
     if (!button) return;
     if (!button.dataset.defaultText) button.dataset.defaultText = button.textContent;
     button.disabled = submitting;
-    button.textContent = submitting ? "Saving..." : button.dataset.defaultText;
+    button.textContent = submitting ? "Signing in..." : button.dataset.defaultText;
   }
 
   function nextUrl() {
@@ -95,7 +95,7 @@
       });
       saveLocalCustomer(data.user || { name: name, email: email }, remember);
       if (window.SpectrAuthNav && SpectrAuthNav.refresh) SpectrAuthNav.refresh();
-      showMessage("Details saved. Redirecting to the store...", "success");
+      showMessage("Signed in. Redirecting to the store...", "success");
       setTimeout(function () {
         window.location.href = nextUrl();
       }, 650);

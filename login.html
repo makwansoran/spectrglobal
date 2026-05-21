@@ -16,30 +16,27 @@
   </head>
   <body class="login-page">
     <div class="auth-shell">
-      <header class="auth-top">
-        <a class="auth-logo" href="index.html" aria-label="Spectr Parts home">
-          <img src="assets/brand/spectr-mark.png" width="28" height="28" alt="" />
-          <span>Spectr Parts</span>
-        </a>
-        <a class="auth-back" href="index.html">Back to store</a>
-      </header>
-
       <main class="auth-main">
         <section class="auth-panel" aria-labelledby="signin-title">
-          <p class="auth-kicker">Account</p>
-          <h1 id="signin-title">Sign in</h1>
-          <p class="auth-copy">Enter your details to continue. No password or authentication is required.</p>
+          <a class="auth-logo" href="index.html" aria-label="Spectr Parts home">
+            <img src="assets/brand/spectr-mark.png" width="28" height="28" alt="" />
+            <span>Spectr Parts</span>
+          </a>
+
+          <p class="auth-kicker">Welcome back</p>
+          <h1 id="signin-title">Sign in to your account</h1>
+          <p class="auth-copy">Access your garage, saved vehicles, and compatible parts faster.</p>
 
           <p class="auth-message" id="auth-message" role="alert" hidden></p>
 
           <form class="auth-form" id="signin-form" autocomplete="on">
             <label class="auth-field">
-              <span>Name</span>
-              <input id="signin-name" type="text" autocomplete="name" placeholder="Your name" required />
+              <span>Email</span>
+              <input id="signin-email" type="email" autocomplete="email" placeholder="email@example.com" required />
             </label>
             <label class="auth-field">
-              <span>Email</span>
-              <input id="signin-email" type="email" autocomplete="email" placeholder="you@example.com" required />
+              <span>Name</span>
+              <input id="signin-name" type="text" autocomplete="name" placeholder="Your name" required />
             </label>
             <label class="auth-field">
               <span>Phone <small>(optional)</small></span>
@@ -51,25 +48,25 @@
                 <span>Remember me</span>
               </label>
             </div>
-            <button type="submit" class="auth-submit">Continue</button>
+            <button type="submit" class="auth-submit">Sign in</button>
           </form>
 
           <p class="auth-switch">
-            Your information is saved securely in Supabase so we can personalize the parts experience.
+            Your sign-in details are used to personalize the Spectr Parts experience.
           </p>
         </section>
 
         <aside class="auth-promo" aria-label="Promotion">
           <div class="auth-promo-content">
-            <p class="auth-kicker">Member benefits</p>
-            <h2>Parts matched to your garage.</h2>
+            <p class="auth-kicker">Spectr Parts</p>
+            <h2>One place for every part that fits.</h2>
             <p>
-              Save vehicles, reorder service kits, and keep promotions ready for the exact car you drive.
+              Save vehicles, keep order context, and return to the parts that match your exact car.
             </p>
             <ul class="auth-promo-list">
-              <li>Saved license plates and vehicle profiles</li>
-              <li>Faster checkout for repeat orders</li>
-              <li>Promotion alerts for compatible parts</li>
+              <li>Saved vehicle profiles</li>
+              <li>Faster repeat orders</li>
+              <li>Compatible part recommendations</li>
             </ul>
           </div>
         </aside>
