@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="nb">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Spectr Parts — Admin</title>
+    <link rel="icon" href="/assets/brand/spectr-mark.png" type="image/png" sizes="any" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="palantir-nav.css" />
+    <link rel="stylesheet" href="landing.css" />
+    <link rel="stylesheet" href="shop.css" />
+    <link rel="stylesheet" href="admin-parts.css" />
+  </head>
+  <body class="font-body plt-site">
+    <header class="plt-header">
+      <div class="plt-header-inner">
+        <a class="plt-logo" href="index.html" aria-label="Spectr home">
+          <img class="plt-logo-mark" src="assets/brand/spectr-mark.png" width="28" height="28" alt="" decoding="async" />
+          <span class="plt-logo-text">Spectr</span>
+        </a>
+        <div class="plt-header-tools">
+          <a href="index.html" class="admin-back">← Til butikken</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="admin-main">
+      <header class="admin-hero">
+        <div>
+          <p class="shop-eyebrow">Admin</p>
+          <h1>Bildeler — administrasjon</h1>
+          <p class="admin-summary">Legg til, rediger eller fjern deler, bilmodeller og kampanjer. Endringene vises umiddelbart i butikken.</p>
+        </div>
+        <div class="admin-hero-actions">
+          <button type="button" class="btn btn-secondary" id="export-data">Eksporter JSON</button>
+          <button type="button" class="btn btn-secondary" id="reset-data">Tilbakestill data</button>
+        </div>
+      </header>
+
+      <nav class="admin-tabs" aria-label="Admin-faner">
+        <button type="button" class="is-active" data-tab="parts">Deler</button>
+        <button type="button" data-tab="vehicles">Biler</button>
+        <button type="button" data-tab="slides">Kampanjer</button>
+      </nav>
+
+      <!-- Parts -->
+      <section class="admin-tab is-active" id="tab-parts" data-tab-panel="parts">
+        <div class="admin-panel">
+          <h2 id="parts-form-title">Ny del</h2>
+          <form id="part-form" class="admin-form" autocomplete="off">
+            <input type="hidden" id="part-id" />
+            <div class="form-row">
+              <label>Navn
+                <input type="text" id="part-name" required />
+              </label>
+              <label>Kategori
+                <input type="text" id="part-category" list="category-options" required />
+                <datalist id="category-options"></datalist>
+              </label>
+            </div>
+            <div class="form-row">
+              <label>SKU
+                <input type="text" id="part-sku" required />
+              </label>
+              <label>Pris (NOK)
+                <input type="number" id="part-price" min="0" step="1" required />
+              </label>
+              <label>Lager
+                <input type="number" id="part-stock" min="0" step="1" required />
+              </label>
+            </div>
+            <label>Beskrivelse
+              <textarea id="part-description" rows="3"></textarea>
+            </label>
+            <fieldset class="vehicle-fits">
+              <legend>Passer til biler</legend>
+              <div id="part-fits" class="fits-list"></div>
+              <button type="button" class="btn btn-secondary" id="add-fit">Legg til biltilpasning</button>
+            </fieldset>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary" id="part-save">Lagre del</button>
+              <button type="button" class="btn btn-secondary" id="part-reset">Avbryt</button>
+            </div>
+          </form>
+        </div>
+        <div class="admin-panel">
+          <div class="panel-head">
+            <h2>Alle deler</h2>
+            <input type="search" id="part-search" placeholder="Søk i deler" class="panel-search" />
+          </div>
+          <div class="table-scroll">
+            <table class="admin-table" id="parts-table">
+              <thead>
+                <tr>
+                  <th>Navn</th>
+                  <th>Kategori</th>
+                  <th>SKU</th>
+                  <th>Pris</th>
+                  <th>Lager</th>
+                  <th>Biler</th>
+                  <th aria-label="Handlinger"></th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Vehicles -->
+      <section class="admin-tab" id="tab-vehicles" data-tab-panel="vehicles">
+        <div class="admin-panel">
+          <h2>Bilmerker</h2>
+          <form id="brand-form" class="admin-form admin-form--row" autocomplete="off">
+            <input type="hidden" id="brand-id" />
+            <label>Bilmerke
+              <input type="text" id="brand-name" required placeholder="Volkswagen" />
+            </label>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">Lagre merke</button>
+              <button type="button" class="btn btn-secondary" id="brand-reset">Avbryt</button>
+            </div>
+          </form>
+          <ul class="brand-list" id="brand-list"></ul>
+        </div>
+
+        <div class="admin-panel" id="model-panel" hidden>
+          <h2 id="model-panel-title">Modeller</h2>
+          <form id="model-form" class="admin-form admin-form--row" autocomplete="off">
+            <input type="hidden" id="model-original-name" />
+            <label>Modellnavn
+              <input type="text" id="model-name" required placeholder="Golf VII" />
+            </label>
+            <label>Motorer (kommaseparert)
+              <input type="text" id="model-engines" placeholder="1.4 TSI, 2.0 TDI" />
+            </label>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">Lagre modell</button>
+              <button type="button" class="btn btn-secondary" id="model-reset">Avbryt</button>
+            </div>
+          </form>
+          <ul class="model-list" id="model-list"></ul>
+        </div>
+      </section>
+
+      <!-- Slides -->
+      <section class="admin-tab" id="tab-slides" data-tab-panel="slides">
+        <div class="admin-panel">
+          <h2 id="slide-form-title">Ny kampanje</h2>
+          <form id="slide-form" class="admin-form" autocomplete="off">
+            <input type="hidden" id="slide-id" />
+            <div class="form-row">
+              <label>Etikett
+                <input type="text" id="slide-eyebrow" placeholder="Vinterkampanje" />
+              </label>
+              <label>Tittel
+                <input type="text" id="slide-title" required />
+              </label>
+            </div>
+            <label>Beskrivelse
+              <textarea id="slide-body" rows="3"></textarea>
+            </label>
+            <div class="form-row">
+              <label>CTA-tekst
+                <input type="text" id="slide-cta" placeholder="Se kampanjen" />
+              </label>
+              <label>CTA-lenke
+                <input type="text" id="slide-href" placeholder="#catalog" />
+              </label>
+              <label>Gradient
+                <input type="text" id="slide-gradient" placeholder="linear-gradient(135deg,#1f2937,#0a0c10)" />
+              </label>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">Lagre kampanje</button>
+              <button type="button" class="btn btn-secondary" id="slide-reset">Avbryt</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="admin-panel">
+          <h2>Kampanjer</h2>
+          <ul class="slide-list" id="slide-list"></ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap site-footer-inner">
+        <div class="site-footer-brand">
+          <a class="site-footer-logo" href="index.html">
+            <img class="site-footer-logo-mark" src="assets/brand/spectr-mark.png" width="36" height="36" alt="" decoding="async" />
+            <span class="site-footer-logo-text">Spectr</span>
+          </a>
+          <p class="site-footer-tagline">Operational intelligence &mdash; <strong>SPECTR AS</strong></p>
+        </div>
+        <div class="site-footer-meta">
+          <address class="site-footer-address">
+            <span class="site-footer-legal-name">SPECTR AS</span><br />
+            Org. nr. <span class="mono">926 574 892</span><br />
+            Eksempelgata 1, NO-0162 Oslo, Norway
+          </address>
+          <p class="site-footer-copy">
+            <span class="mono">&copy; <span data-current-year></span> SPECTR AS</span>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="shop-data.js" defer></script>
+    <script src="admin-parts.js" defer></script>
+  </body>
+</html>
