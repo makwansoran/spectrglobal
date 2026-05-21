@@ -16,10 +16,6 @@
     return String(value || "").trim().toLowerCase();
   }
 
-  function logoText(make) {
-    return make.logo_text || String(make.name || "?").replace(/[^A-Za-z0-9]/g, "").slice(0, 3).toUpperCase();
-  }
-
   function selectedMakeParam() {
     return new URLSearchParams(window.location.search).get("make") || "";
   }
@@ -74,19 +70,6 @@
     return (part.vehicles || []).some(function (fit) {
       return normalize(fit.brand) === makeName && (!fit.model || normalize(fit.model) === model);
     });
-  }
-
-  function renderLogo(make) {
-    var node = $("brand-hero-logo");
-    if (!node) return;
-    var logoUrl = String(make.logo_url || "").trim();
-    if (!logoUrl) {
-      node.textContent = logoText(make);
-      return;
-    }
-    node.innerHTML =
-      '<img src="' + escapeHtml(logoUrl) + '" alt="" loading="eager" decoding="async" ' +
-      'onerror="this.remove();this.parentElement.textContent=\'' + escapeHtml(logoText(make)) + '\'">';
   }
 
   function renderModelCards(make, models) {
@@ -231,23 +214,20 @@
 
   function renderBrand(make, models, parts) {
     document.title = make.name + " Parts | Spectr";
-    $("brand-title").textContent = make.name;
-    $("brand-region").textContent = [make.country, make.region].filter(Boolean).join(" · ") || "Car brand";
-    $("brand-summary").textContent =
-      "Browse " + models.length + " supported " + make.name + " model" + (models.length === 1 ? "" : "s") +
-      " and compatible parts.";
+    $("brand-name-input").value = make.name;
     $("brand-model-count").textContent = String(models.length);
-    renderLogo(make);
     renderModelCards(make, models);
     renderPartCards(parts);
     bindFitForm(make, models, parts);
   }
 
   function renderError(message) {
-    $("brand-title").textContent = "Brand not found";
-    $("brand-summary").textContent = message;
+    var brandInput = $("brand-name-input");
+    if (brandInput) brandInput.value = "Brand not found";
+    $("brand-model-count").textContent = "0";
+    $("brand-part-count").textContent = "0";
     $("brand-model-grid").innerHTML =
-      '<p class="make-grid-status"><a href="car-brands.html">Back to all car brands</a></p>';
+      '<p class="make-grid-status">' + escapeHtml(message) + ' <a href="car-brands.html">Back to all car brands</a></p>';
     $("brand-parts-grid").innerHTML = '<p class="make-grid-status">No parts to show.</p>';
   }
 

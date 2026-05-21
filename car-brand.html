@@ -109,22 +109,19 @@
     </div>
 
     <main class="shop-page brand-page">
-      <section class="brand-hero" aria-labelledby="brand-title">
+      <div class="brand-page-shell">
         <a class="brand-back-link" href="car-brands.html">All car brands</a>
-        <div class="brand-hero-card">
-          <div class="brand-identity">
-            <div class="brand-hero-logo" id="brand-hero-logo" aria-hidden="true">SP</div>
-            <div>
-              <p class="shop-eyebrow" id="brand-region">Car brand</p>
-              <h1 id="brand-title">Loading brand...</h1>
-              <p id="brand-summary">Loading supported models and compatible parts.</p>
-            </div>
-          </div>
+
+        <div class="brand-fit-catalog">
           <form class="brand-fit-form" id="brand-fit-form" autocomplete="off">
             <div class="brand-fit-head">
               <p class="shop-eyebrow">Identify your car</p>
-              <h2>Choose year, model, or VIN</h2>
+              <h2>Find compatible products by car or VIN</h2>
             </div>
+            <label class="brand-fit-field">
+              <span>Car brand</span>
+              <input id="brand-name-input" type="text" value="Loading brand" disabled />
+            </label>
             <label class="brand-fit-field">
               <span>Year</span>
               <select id="brand-year-select" disabled>
@@ -141,34 +138,34 @@
               <span>VIN number</span>
               <input id="brand-vin-input" type="text" inputmode="latin" autocomplete="off" maxlength="17" placeholder="Enter VIN" />
             </label>
-            <button type="submit" class="btn btn-primary">Show matching parts</button>
+            <button type="submit" class="btn btn-primary">Show matching products</button>
             <button type="button" class="brand-fit-reset" id="brand-fit-reset" hidden>Clear selection</button>
             <p class="brand-fit-status" id="brand-fit-status" aria-live="polite"></p>
           </form>
-        </div>
-      </section>
 
-      <section class="brand-detail-grid" aria-label="Brand catalog">
-        <div class="brand-panel">
-          <div class="brand-panel-head">
-            <h2>All supported models</h2>
-            <span id="brand-model-count">0</span>
-          </div>
-          <div class="brand-model-grid" id="brand-model-grid">
-            <p class="make-grid-status">Loading models...</p>
-          </div>
-        </div>
+          <section class="brand-detail-grid" aria-label="Brand catalog">
+            <div class="brand-panel">
+              <div class="brand-panel-head">
+                <h2>All supported models</h2>
+                <span id="brand-model-count">0</span>
+              </div>
+              <div class="brand-model-grid" id="brand-model-grid">
+                <p class="make-grid-status">Loading models...</p>
+              </div>
+            </div>
 
-        <div class="brand-panel">
-          <div class="brand-panel-head">
-            <h2>Compatible parts</h2>
-            <span id="brand-part-count">0</span>
-          </div>
-          <div class="brand-parts-grid" id="brand-parts-grid">
-            <p class="make-grid-status">Loading parts...</p>
-          </div>
+            <div class="brand-panel">
+              <div class="brand-panel-head">
+                <h2>Compatible parts</h2>
+                <span id="brand-part-count">0</span>
+              </div>
+              <div class="brand-parts-grid" id="brand-parts-grid">
+                <p class="make-grid-status">Loading parts...</p>
+              </div>
+            </div>
+          </section>
         </div>
-      </section>
+      </div>
     </main>
 
     <footer class="site-footer">

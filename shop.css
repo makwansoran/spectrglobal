@@ -892,6 +892,24 @@
   min-height: 60vh;
 }
 
+.brand-page-shell {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 4.5rem) clamp(3rem, 6vw, 6rem);
+}
+
+.brand-fit-catalog {
+  display: grid;
+  grid-template-columns: minmax(18rem, 24rem) minmax(0, 1fr);
+  gap: clamp(1rem, 3vw, 2rem);
+  align-items: start;
+}
+
+.brand-page .brand-fit-form {
+  position: sticky;
+  top: calc(var(--plt-header-h, 3.5rem) + 4.5rem);
+}
+
 .brand-hero {
   max-width: 1180px;
   margin: 0 auto;
@@ -1062,6 +1080,12 @@
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 0.9fr);
   gap: clamp(1rem, 3vw, 1.5rem);
+}
+
+.brand-page .brand-detail-grid {
+  max-width: none;
+  margin: 0;
+  padding: 0;
 }
 
 .brand-panel {
@@ -2844,6 +2868,14 @@
 
   .brand-hero-card {
     grid-template-columns: 1fr;
+  }
+
+  .brand-fit-catalog {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-page .brand-fit-form {
+    position: static;
   }
 
   .category-fit-products {
