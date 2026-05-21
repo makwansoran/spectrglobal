@@ -1,4 +1,5 @@
 :root {
+  --spectr-logo-font: "Syne", system-ui, sans-serif;
   --bg: #eceae5;
   --bg-paper: #f4f2ec;
   --fg: #12151a;
@@ -10,7 +11,7 @@
   --accent: #243b53;
   --space: clamp(1rem, 3vw, 2rem);
   --max: 1180px;
-  --mono: "JetBrains Mono", ui-monospace, monospace;
+  --mono: var(--spectr-logo-font);
 }
 
 *,
@@ -25,7 +26,7 @@ html {
 
 body {
   margin: 0;
-  font-family: "Syne", system-ui, sans-serif;
+  font-family: var(--spectr-logo-font);
   background-color: var(--bg);
   background-image: radial-gradient(
       circle at 1px 1px,
@@ -41,8 +42,18 @@ body {
 }
 
 body.font-body {
-  font-family: "Instrument Sans", system-ui, sans-serif;
+  font-family: var(--spectr-logo-font);
   font-weight: 400;
+}
+
+body,
+body *,
+button,
+input,
+textarea,
+select,
+option {
+  font-family: var(--spectr-logo-font) !important;
 }
 
 .mono {
