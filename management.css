@@ -383,6 +383,30 @@
   width: fit-content;
 }
 
+.product-create-form {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  padding: 12px;
+  background: #ffffff;
+  border: 1px solid #e6e8ec;
+  border-radius: 12px;
+}
+
+.product-create-form input {
+  min-width: 0;
+  border: 1px solid #d8dde4;
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 9px 10px;
+  font: inherit;
+  font-size: 13px;
+}
+
+.product-create-form button {
+  width: fit-content;
+}
+
 .management-table-wrap {
   overflow: auto;
   background: #ffffff;
@@ -829,7 +853,8 @@
   }
 
   .catalog-manager-grid,
-  .catalog-manager-form {
+  .catalog-manager-form,
+  .product-create-form {
     grid-template-columns: 1fr;
   }
 

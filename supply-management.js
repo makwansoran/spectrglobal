@@ -159,6 +159,13 @@
     return item.kind + ":" + item.id;
   }
 
+  function nextProductId() {
+    if (window.crypto && typeof window.crypto.randomUUID === "function") {
+      return "part-" + window.crypto.randomUUID();
+    }
+    return "part-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 8);
+  }
+
   function filterProducts() {
     var f = state.filters.products;
     var query = f.query.toLowerCase();
@@ -611,6 +618,51 @@
     }
   }
 
+  async function createProduct(form) {
+    var values = formValues(form);
+    var record = {
+      id: nextProductId(),
+      name: String(values.name || "").trim(),
+      category: String(values.category || "Other").trim() || "Other",
+      sku: String(values.sku || "").trim(),
+      price: Math.max(0, Number(values.price) || 0),
+      stock: Math.max(0, parseInt(values.stock, 10) || 0),
+      description: String(values.description || "").trim(),
+      vehicles: [],
+      active: true,
+    };
+
+    if (!record.name) {
+      toast("Product name is required.", "error");
+      return;
+    }
+
+    var submit = form.querySelector('button[type="submit"]');
+    if (submit) {
+      submit.disabled = true;
+      submit.textContent = "Saving...";
+    }
+
+    try {
+      await api("/api/parts", {
+        method: "POST",
+        headers: authHeaders({ "Content-Type": "application/json" }),
+        body: JSON.stringify(record),
+      });
+      form.reset();
+      form.hidden = true;
+      await loadProducts();
+      toast("Product added");
+    } catch (err) {
+      toast(err.message || "Could not add product.", "error");
+    } finally {
+      if (submit) {
+        submit.disabled = false;
+        submit.textContent = "Save product";
+      }
+    }
+  }
+
   function selectedProductEntries() {
     return Array.from(state.selectedProducts).map(function (key) {
       var sep = key.indexOf(":");
@@ -976,6 +1028,23 @@
       renderProductsTable();
     });
     $("products-refresh").addEventListener("click", loadProducts);
+    $("products-add").addEventListener("click", function () {
+      var form = $("product-create-form");
+      form.hidden = !form.hidden;
+      if (!form.hidden) {
+        var name = form.querySelector('[name="name"]');
+        if (name) name.focus();
+      }
+    });
+    $("product-create-cancel").addEventListener("click", function () {
+      var form = $("product-create-form");
+      form.reset();
+      form.hidden = true;
+    });
+    $("product-create-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      createProduct(e.currentTarget);
+    });
     $("products-select-all").addEventListener("click", function () {
       state.products.forEach(function (item) {
         state.selectedProducts.add(productKey(item));
