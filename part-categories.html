@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Browse global car brands and find compatible parts by vehicle model."
+      content="Browse available Spectr car part categories from the active parts database."
     />
-    <title>Car Brands | Spectr</title>
+    <title>Part Categories | Spectr</title>
     <link rel="icon" href="/assets/brand/spectr-mark.png" type="image/png" sizes="any" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -141,28 +141,28 @@
     </div>
 
     <main class="shop-page all-brands-page">
-      <section class="all-brands-hero" aria-labelledby="all-brands-title">
-        <p class="shop-eyebrow">All car brands</p>
-        <h1 id="all-brands-title">Find part by model</h1>
-        <form class="all-brands-search" role="search" aria-label="Search car brands">
-          <label class="visually-hidden" for="all-brands-search-input">Search car brands</label>
+      <section class="all-brands-hero" aria-labelledby="part-categories-title">
+        <p class="shop-eyebrow">All car part categories</p>
+        <h1 id="part-categories-title">Find parts by category</h1>
+        <form class="all-brands-search" role="search" aria-label="Search part categories">
+          <label class="visually-hidden" for="part-categories-search-input">Search part categories</label>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
             <circle cx="11" cy="11" r="7" />
             <path d="M20 20l-3-3" stroke-linecap="round" />
           </svg>
           <input
             type="search"
-            id="all-brands-search-input"
-            placeholder="Search car brand"
+            id="part-categories-search-input"
+            placeholder="Search part category"
             autocomplete="off"
           />
-          <button type="button" id="all-brands-search-clear" aria-label="Clear brand search" hidden>Clear</button>
+          <button type="button" id="part-categories-search-clear" aria-label="Clear category search" hidden>Clear</button>
         </form>
       </section>
 
-      <section class="all-brands-list" aria-label="Car brands">
-        <div class="all-brands-grid" id="all-brands-grid" data-makes-limit="250">
-          <p class="make-grid-status">Loading car makes from database...</p>
+      <section class="all-brands-list" aria-label="Car part categories">
+        <div class="all-brands-grid all-categories-grid" id="part-categories-grid">
+          <p class="make-grid-status">Loading part categories from database...</p>
         </div>
       </section>
     </main>
@@ -194,6 +194,7 @@
     <script src="cookies.js" defer></script>
     <script src="script.js" defer></script>
     <script src="home.js" defer></script>
-    <script src="makes.js" defer></script>
+    <script src="shop-data.js" defer></script>
+    <script src="part-categories.js" defer></script>
   </body>
 </html>

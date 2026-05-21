@@ -409,6 +409,11 @@
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
+  function applyCategoryFromUrl() {
+    var requested = new URLSearchParams(window.location.search).get("category");
+    if (requested) state.activeCategory = requested;
+  }
+
   function loadCatalogParts() {
     state.catalogStatus = "loading";
     renderCatalog();
@@ -679,6 +684,7 @@
   document.addEventListener("DOMContentLoaded", function () {
     initSlider();
     initFinder();
+    applyCategoryFromUrl();
     initCatalogInteractions();
     initCart();
     loadCatalogParts();

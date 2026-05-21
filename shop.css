@@ -838,6 +838,25 @@
   letter-spacing: 0;
 }
 
+.all-categories-grid .part-category-list-card {
+  gap: 0.55rem;
+}
+
+.part-category-icon {
+  width: 3rem;
+  height: 3rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--shop-line);
+  border-radius: 999px;
+  background: var(--shop-surface);
+  color: var(--shop-ink);
+  font-family: var(--shop-mono);
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
 .all-brands-grid a:hover {
   background: var(--shop-surface);
   transform: translateY(-1px);
