@@ -16,6 +16,10 @@
     catalogStatus: "loading"
   };
 
+  var DEALS_CATEGORY = "__deals";
+  var FEATURED_LIMIT = 8;
+  var DEALS_LIMIT = 12;
+
   function $(id) { return document.getElementById(id); }
 
   function escapeHtml(text) {
@@ -426,6 +430,38 @@
   }
 
   /* ── Catalog grid ────────────────────────────────────────── */
+  function productRank(part) {
+    var stock = parseInt(part.stock, 10) || 0;
+    return {
+      inStock: stock > 0 ? 1 : 0,
+      stock: stock,
+      price: Number(part.price) || 0,
+      name: String(part.name || "")
+    };
+  }
+
+  function featuredProducts(parts, limit) {
+    return parts.slice().sort(function (a, b) {
+      var ar = productRank(a);
+      var br = productRank(b);
+      if (br.inStock !== ar.inStock) return br.inStock - ar.inStock;
+      if (br.stock !== ar.stock) return br.stock - ar.stock;
+      if (ar.price !== br.price) return ar.price - br.price;
+      return ar.name.localeCompare(br.name);
+    }).slice(0, limit);
+  }
+
+  function dealProducts(parts, limit) {
+    return parts.slice().sort(function (a, b) {
+      var ar = productRank(a);
+      var br = productRank(b);
+      if (br.inStock !== ar.inStock) return br.inStock - ar.inStock;
+      if (ar.price !== br.price) return ar.price - br.price;
+      if (br.stock !== ar.stock) return br.stock - ar.stock;
+      return ar.name.localeCompare(br.name);
+    }).slice(0, limit);
+  }
+
   function renderCatalog() {
     var grid = $("catalog-grid");
     var summary = $("catalog-summary");
@@ -442,6 +478,7 @@
 
     var allParts = state.catalogParts;
     var visibleParts = allParts;
+    var availableCount = 0;
 
     if (state.vehicle) {
       if (state.vehicle.plate) {
@@ -454,9 +491,14 @@
       }
     }
 
-    if (state.activeCategory) {
+    if (state.activeCategory && state.activeCategory !== DEALS_CATEGORY) {
       visibleParts = visibleParts.filter(function (p) { return p.category === state.activeCategory; });
     }
+
+    availableCount = visibleParts.length;
+    visibleParts = state.activeCategory === DEALS_CATEGORY
+      ? dealProducts(visibleParts, DEALS_LIMIT)
+      : featuredProducts(visibleParts, FEATURED_LIMIT);
 
     if (summary) {
       var parts = [];
@@ -469,8 +511,12 @@
         if (state.vehicle.vin) label += " · VIN " + state.vehicle.vin;
         parts.push("Showing parts for " + label);
       }
-      if (state.activeCategory) parts.push("Category: " + state.activeCategory);
-      parts.push(visibleParts.length + " result" + (visibleParts.length === 1 ? "" : "s"));
+      if (state.activeCategory === DEALS_CATEGORY) {
+        parts.push("Deals: " + DEALS_LIMIT + " best weekly picks");
+      } else if (state.activeCategory) {
+        parts.push("Category: " + state.activeCategory);
+      }
+      parts.push(visibleParts.length + " shown from " + availableCount);
       summary.textContent = parts.join(" · ");
     }
 
@@ -481,6 +527,7 @@
     var categories = Array.from(new Set(allParts.map(function (p) { return p.category || "Other"; }))).sort();
     categoryList.innerHTML = '' +
       '<li><button type="button" class="' + (state.activeCategory == null ? "is-active" : "") + '" data-cat="">All categories <small>' + allParts.length + '</small></button></li>' +
+      '<li><button type="button" class="' + (state.activeCategory === DEALS_CATEGORY ? "is-active" : "") + '" data-cat="' + DEALS_CATEGORY + '">Deals <small>' + Math.min(DEALS_LIMIT, allParts.length) + '</small></button></li>' +
       categories.map(function (cat) {
         var count = allParts.filter(function (p) { return (p.category || "Other") === cat; }).length;
         var active = state.activeCategory === cat ? "is-active" : "";

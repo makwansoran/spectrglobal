@@ -15,6 +15,10 @@
     selectedVin: "",
   };
 
+  var DEALS_CATEGORY = "Deals";
+  var FEATURED_LIMIT = 8;
+  var DEALS_LIMIT = 12;
+
   function $(id) { return document.getElementById(id); }
 
   function escapeHtml(value) {
@@ -44,6 +48,7 @@
     if (value.indexOf("tyre") !== -1 || value.indexOf("tire") !== -1) return "◉";
     if (value.indexOf("oil") !== -1) return "◍";
     if (value.indexOf("brake") !== -1) return "▣";
+    if (value.indexOf("deal") !== -1) return "%";
     if (value.indexOf("filter") !== -1) return "▤";
     if (value.indexOf("suspension") !== -1) return "⌁";
     if (value.indexOf("engine") !== -1) return "⚙";
@@ -60,7 +65,40 @@
   }
 
   function isSameCategory(part) {
+    if (normalize(state.category) === normalize(DEALS_CATEGORY)) return true;
     return normalize(part.category) === normalize(state.category);
+  }
+
+  function productRank(part) {
+    var stock = parseInt(part.stock, 10) || 0;
+    return {
+      inStock: stock > 0 ? 1 : 0,
+      stock: stock,
+      price: Number(part.price) || 0,
+      name: String(part.name || "")
+    };
+  }
+
+  function featuredProducts(parts, limit) {
+    return parts.slice().sort(function (a, b) {
+      var ar = productRank(a);
+      var br = productRank(b);
+      if (br.inStock !== ar.inStock) return br.inStock - ar.inStock;
+      if (br.stock !== ar.stock) return br.stock - ar.stock;
+      if (ar.price !== br.price) return ar.price - br.price;
+      return ar.name.localeCompare(br.name);
+    }).slice(0, limit);
+  }
+
+  function dealProducts(parts, limit) {
+    return parts.slice().sort(function (a, b) {
+      var ar = productRank(a);
+      var br = productRank(b);
+      if (br.inStock !== ar.inStock) return br.inStock - ar.inStock;
+      if (ar.price !== br.price) return ar.price - br.price;
+      if (br.stock !== ar.stock) return br.stock - ar.stock;
+      return ar.name.localeCompare(br.name);
+    }).slice(0, limit);
   }
 
   function modelSupportsYear(model, year) {
@@ -114,6 +152,8 @@
       $("category-fit-title").textContent = "Find the correct oil by car or VIN";
     } else if (normalize(state.category).indexOf("brake") !== -1) {
       $("category-fit-title").textContent = "Find the correct brakes by car or VIN";
+    } else if (normalize(state.category).indexOf("deal") !== -1) {
+      $("category-fit-title").textContent = "Find weekly deals for your car";
     } else {
       $("category-fit-title").textContent = "Find the correct tyre size by car or VIN";
     }
@@ -130,13 +170,19 @@
     if (normalize(state.category).indexOf("brake") !== -1) {
       return "Choose your car brand, year, model, or VIN to show compatible brake discs and pads.";
     }
+    if (normalize(state.category).indexOf("deal") !== -1) {
+      return "Our 12 best deals of the week, selected from the live catalog.";
+    }
     return "Browse " + count + " compatible product" + (count === 1 ? "" : "s") + ".";
   }
 
   function renderProducts() {
     var grid = $("category-products-grid");
     var summary = $("category-products-summary");
-    var parts = visibleParts();
+    var availableParts = visibleParts();
+    var parts = normalize(state.category) === normalize(DEALS_CATEGORY)
+      ? dealProducts(availableParts, DEALS_LIMIT)
+      : featuredProducts(availableParts, FEATURED_LIMIT);
     var cart = Shop.getCart();
 
     if (summary) {
@@ -150,7 +196,7 @@
       } else if (state.selectedVin) {
         bits.push("VIN " + state.selectedVin);
       }
-      bits.push(parts.length + " " + state.category.toLowerCase() + " result" + (parts.length === 1 ? "" : "s"));
+      bits.push(parts.length + " shown from " + availableParts.length);
       summary.textContent = bits.join(" · ");
     }
 

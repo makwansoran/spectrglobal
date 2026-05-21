@@ -1,0 +1,74 @@
+/* Smaller product cards for catalog/category product grids. */
+
+#catalog .catalog-grid,
+.category-page .catalog-grid {
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.85rem;
+}
+
+#catalog .product,
+.category-page .product {
+  min-height: 0;
+}
+
+#catalog .product-image,
+.category-page .product-image {
+  min-height: 92px;
+  padding: 0.8rem;
+}
+
+#catalog .product-image span,
+.category-page .product-image span {
+  width: 3.1rem;
+  height: 3.1rem;
+  font-size: 1rem;
+}
+
+#catalog .product-body,
+.category-page .product-body {
+  padding: 0.8rem;
+  gap: 0.45rem;
+}
+
+#catalog .product-name,
+.category-page .product-name {
+  font-size: 0.95rem;
+  line-height: 1.25;
+  min-height: 2.35em;
+}
+
+#catalog .product-sku,
+#catalog .product-stock,
+.category-page .product-sku,
+.category-page .product-stock {
+  font-size: 0.68rem;
+}
+
+#catalog .product-description,
+.category-page .product-description {
+  display: none;
+}
+
+#catalog .product-foot,
+.category-page .product-foot {
+  gap: 0.55rem;
+  align-items: stretch;
+}
+
+#catalog .product-price,
+.category-page .product-price {
+  font-size: 0.95rem;
+}
+
+#catalog .product-add,
+.category-page .product-add {
+  padding: 0.5rem 0.6rem;
+  font-size: 0.68rem;
+}
+
+@media (max-width: 640px) {
+  #catalog .catalog-grid,
+  .category-page .catalog-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

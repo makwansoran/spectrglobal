@@ -27,6 +27,7 @@
   function categoryIcon(category) {
     var value = normalizeSearch(category);
     if (value.indexOf("rim") !== -1 || value.indexOf("wheel") !== -1) return "◌";
+    if (value.indexOf("deal") !== -1) return "%";
     if (value.indexOf("tyre") !== -1 || value.indexOf("tire") !== -1) return "◉";
     if (value.indexOf("oil") !== -1) return "◍";
     if (value.indexOf("brake") !== -1) return "▣";
@@ -56,9 +57,18 @@
       byName.set(key, current);
     });
 
-    return Array.from(byName.values()).sort(function (a, b) {
+    var categories = Array.from(byName.values()).sort(function (a, b) {
       return a.name.localeCompare(b.name);
     });
+
+    categories.unshift({
+      name: "Deals",
+      count: Math.min(12, parts.length),
+      inStock: parts.filter(function (part) { return (parseInt(part.stock, 10) || 0) > 0; }).slice(0, 12).length,
+      examples: ["Best deals of the week"]
+    });
+
+    return categories;
   }
 
   function filterCategories(categories, query) {
