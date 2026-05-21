@@ -6,149 +6,15 @@
   var LANGUAGE_STORAGE_KEY = "spectr_language_v1";
   var PAGE_LANGUAGE = "en";
   var LANGUAGES = [
-    { code: "en", name: "English", flag: "🇺🇸" },
-    { code: "af", name: "Afrikaans", flag: "🇿🇦" },
-    { code: "sq", name: "Albanian", flag: "🇦🇱" },
-    { code: "am", name: "Amharic", flag: "🇪🇹" },
-    { code: "ar", name: "Arabic", flag: "🇸🇦" },
-    { code: "hy", name: "Armenian", flag: "🇦🇲" },
-    { code: "as", name: "Assamese", flag: "🇮🇳" },
-    { code: "ay", name: "Aymara", flag: "🇧🇴" },
-    { code: "az", name: "Azerbaijani", flag: "🇦🇿" },
-    { code: "bm", name: "Bambara", flag: "🇲🇱" },
-    { code: "eu", name: "Basque", flag: "🇪🇸" },
-    { code: "be", name: "Belarusian", flag: "🇧🇾" },
-    { code: "bn", name: "Bengali", flag: "🇧🇩" },
-    { code: "bho", name: "Bhojpuri", flag: "🇮🇳" },
-    { code: "bs", name: "Bosnian", flag: "🇧🇦" },
-    { code: "bg", name: "Bulgarian", flag: "🇧🇬" },
-    { code: "ca", name: "Catalan", flag: "🇪🇸" },
-    { code: "ceb", name: "Cebuano", flag: "🇵🇭" },
-    { code: "zh-CN", name: "Chinese (Simplified)", flag: "🇨🇳" },
-    { code: "zh-TW", name: "Chinese (Traditional)", flag: "🇹🇼" },
-    { code: "co", name: "Corsican", flag: "🇫🇷" },
-    { code: "hr", name: "Croatian", flag: "🇭🇷" },
-    { code: "cs", name: "Czech", flag: "🇨🇿" },
-    { code: "da", name: "Danish", flag: "🇩🇰" },
-    { code: "dv", name: "Dhivehi", flag: "🇲🇻" },
-    { code: "doi", name: "Dogri", flag: "🇮🇳" },
-    { code: "nl", name: "Dutch", flag: "🇳🇱" },
-    { code: "eo", name: "Esperanto", flag: "🌐" },
-    { code: "et", name: "Estonian", flag: "🇪🇪" },
-    { code: "ee", name: "Ewe", flag: "🇬🇭" },
-    { code: "fil", name: "Filipino", flag: "🇵🇭" },
-    { code: "fi", name: "Finnish", flag: "🇫🇮" },
-    { code: "fr", name: "French", flag: "🇫🇷" },
-    { code: "fy", name: "Frisian", flag: "🇳🇱" },
-    { code: "gl", name: "Galician", flag: "🇪🇸" },
-    { code: "ka", name: "Georgian", flag: "🇬🇪" },
-    { code: "de", name: "German", flag: "🇩🇪" },
-    { code: "el", name: "Greek", flag: "🇬🇷" },
-    { code: "gn", name: "Guarani", flag: "🇵🇾" },
-    { code: "gu", name: "Gujarati", flag: "🇮🇳" },
-    { code: "ht", name: "Haitian Creole", flag: "🇭🇹" },
-    { code: "ha", name: "Hausa", flag: "🇳🇬" },
-    { code: "haw", name: "Hawaiian", flag: "🇺🇸" },
-    { code: "iw", name: "Hebrew", flag: "🇮🇱" },
-    { code: "hi", name: "Hindi", flag: "🇮🇳" },
-    { code: "hmn", name: "Hmong", flag: "🌐" },
-    { code: "hu", name: "Hungarian", flag: "🇭🇺" },
-    { code: "is", name: "Icelandic", flag: "🇮🇸" },
-    { code: "ig", name: "Igbo", flag: "🇳🇬" },
-    { code: "ilo", name: "Ilocano", flag: "🇵🇭" },
-    { code: "id", name: "Indonesian", flag: "🇮🇩" },
-    { code: "ga", name: "Irish", flag: "🇮🇪" },
-    { code: "it", name: "Italian", flag: "🇮🇹" },
-    { code: "ja", name: "Japanese", flag: "🇯🇵" },
-    { code: "jw", name: "Javanese", flag: "🇮🇩" },
-    { code: "kn", name: "Kannada", flag: "🇮🇳" },
-    { code: "kk", name: "Kazakh", flag: "🇰🇿" },
-    { code: "km", name: "Khmer", flag: "🇰🇭" },
-    { code: "rw", name: "Kinyarwanda", flag: "🇷🇼" },
-    { code: "gom", name: "Konkani", flag: "🇮🇳" },
-    { code: "ko", name: "Korean", flag: "🇰🇷" },
-    { code: "kri", name: "Krio", flag: "🇸🇱" },
-    { code: "ku", name: "Kurdish", flag: "🌐" },
-    { code: "ckb", name: "Kurdish (Sorani)", flag: "🌐" },
-    { code: "ky", name: "Kyrgyz", flag: "🇰🇬" },
-    { code: "lo", name: "Lao", flag: "🇱🇦" },
-    { code: "la", name: "Latin", flag: "🇻🇦" },
-    { code: "lv", name: "Latvian", flag: "🇱🇻" },
-    { code: "ln", name: "Lingala", flag: "🇨🇩" },
-    { code: "lt", name: "Lithuanian", flag: "🇱🇹" },
-    { code: "lg", name: "Luganda", flag: "🇺🇬" },
-    { code: "lb", name: "Luxembourgish", flag: "🇱🇺" },
-    { code: "mk", name: "Macedonian", flag: "🇲🇰" },
-    { code: "mai", name: "Maithili", flag: "🇮🇳" },
-    { code: "mg", name: "Malagasy", flag: "🇲🇬" },
-    { code: "ms", name: "Malay", flag: "🇲🇾" },
-    { code: "ml", name: "Malayalam", flag: "🇮🇳" },
-    { code: "mt", name: "Maltese", flag: "🇲🇹" },
-    { code: "mi", name: "Maori", flag: "🇳🇿" },
-    { code: "mr", name: "Marathi", flag: "🇮🇳" },
-    { code: "mni-Mtei", name: "Meiteilon", flag: "🇮🇳" },
-    { code: "lus", name: "Mizo", flag: "🇮🇳" },
-    { code: "mn", name: "Mongolian", flag: "🇲🇳" },
-    { code: "my", name: "Myanmar", flag: "🇲🇲" },
-    { code: "ne", name: "Nepali", flag: "🇳🇵" },
-    { code: "no", name: "Norwegian", flag: "🇳🇴" },
-    { code: "ny", name: "Nyanja", flag: "🇲🇼" },
-    { code: "or", name: "Odia", flag: "🇮🇳" },
-    { code: "om", name: "Oromo", flag: "🇪🇹" },
-    { code: "ps", name: "Pashto", flag: "🇦🇫" },
-    { code: "fa", name: "Persian", flag: "🇮🇷" },
-    { code: "pl", name: "Polish", flag: "🇵🇱" },
     { code: "pt", name: "Portuguese", flag: "🇵🇹" },
-    { code: "pa", name: "Punjabi", flag: "🇮🇳" },
-    { code: "qu", name: "Quechua", flag: "🇵🇪" },
-    { code: "ro", name: "Romanian", flag: "🇷🇴" },
-    { code: "ru", name: "Russian", flag: "🇷🇺" },
-    { code: "sm", name: "Samoan", flag: "🇼🇸" },
-    { code: "sa", name: "Sanskrit", flag: "🇮🇳" },
-    { code: "gd", name: "Scots Gaelic", flag: "🏴" },
-    { code: "nso", name: "Sepedi", flag: "🇿🇦" },
-    { code: "sr", name: "Serbian", flag: "🇷🇸" },
-    { code: "st", name: "Sesotho", flag: "🇱🇸" },
-    { code: "sn", name: "Shona", flag: "🇿🇼" },
-    { code: "sd", name: "Sindhi", flag: "🇵🇰" },
-    { code: "si", name: "Sinhala", flag: "🇱🇰" },
-    { code: "sk", name: "Slovak", flag: "🇸🇰" },
-    { code: "sl", name: "Slovenian", flag: "🇸🇮" },
-    { code: "so", name: "Somali", flag: "🇸🇴" },
+    { code: "en-GB", name: "British English", flag: "🇬🇧", translateCode: "en" },
+    { code: "no", name: "Norwegian", flag: "🇳🇴" },
+    { code: "en-US", name: "American English", flag: "🇺🇸", translateCode: "en" },
     { code: "es", name: "Spanish", flag: "🇪🇸" },
-    { code: "su", name: "Sundanese", flag: "🇮🇩" },
-    { code: "sw", name: "Swahili", flag: "🇰🇪" },
-    { code: "sv", name: "Swedish", flag: "🇸🇪" },
-    { code: "tg", name: "Tajik", flag: "🇹🇯" },
-    { code: "ta", name: "Tamil", flag: "🇮🇳" },
-    { code: "tt", name: "Tatar", flag: "🇷🇺" },
-    { code: "te", name: "Telugu", flag: "🇮🇳" },
-    { code: "th", name: "Thai", flag: "🇹🇭" },
-    { code: "ti", name: "Tigrinya", flag: "🇪🇷" },
-    { code: "ts", name: "Tsonga", flag: "🇿🇦" },
-    { code: "tr", name: "Turkish", flag: "🇹🇷" },
-    { code: "tk", name: "Turkmen", flag: "🇹🇲" },
-    { code: "ak", name: "Twi", flag: "🇬🇭" },
-    { code: "uk", name: "Ukrainian", flag: "🇺🇦" },
-    { code: "ur", name: "Urdu", flag: "🇵🇰" },
-    { code: "ug", name: "Uyghur", flag: "🌐" },
-    { code: "uz", name: "Uzbek", flag: "🇺🇿" },
-    { code: "vi", name: "Vietnamese", flag: "🇻🇳" },
-    { code: "cy", name: "Welsh", flag: "🏴" },
-    { code: "xh", name: "Xhosa", flag: "🇿🇦" },
-    { code: "yi", name: "Yiddish", flag: "🌐" },
-    { code: "yo", name: "Yoruba", flag: "🇳🇬" },
-    { code: "zu", name: "Zulu", flag: "🇿🇦" },
+    { code: "ru", name: "Russian", flag: "🇷🇺" },
+    { code: "hi", name: "Hindi", flag: "🇮🇳" },
+    { code: "zh-CN", name: "Mandarin", flag: "🇨🇳" },
   ];
-  var UNIQUE_FLAG_COUNTRY_CODES = [
-    "ad", "ae", "ag", "ai", "ao", "aq", "ar", "at", "au", "aw", "bb", "bh", "bi", "bj", "bn", "br",
-    "bs", "bt", "bw", "bz", "ca", "ch", "ci", "cl", "cm", "cr", "cu", "cv", "cy", "dj", "dm", "do",
-    "dz", "ec", "eg", "fj", "fm", "ga", "gb", "gd", "gm", "gq", "gt", "gw", "gy", "hn", "jm", "jo",
-    "ke", "ki", "kn", "kp", "kw", "lb", "lc", "li", "lr", "ma", "mc", "md", "me", "mh", "mr", "mu",
-    "mx", "mz", "na", "ne", "ni", "om", "pa", "qa", "sb", "sc", "sg", "sm", "ss", "sv", "sz", "td",
-    "tg", "to", "tn", "tv", "tz", "uy", "vc", "ve", "vu", "ye", "zm",
-  ];
-  var languageFlagCache = null;
 
   function initials(user) {
     var name = (user && user.name) || (user && user.email) || "?";
@@ -212,6 +78,16 @@
     }) || LANGUAGES[0];
   }
 
+  function hasLanguage(code) {
+    return LANGUAGES.some(function (language) {
+      return language.code === code;
+    });
+  }
+
+  function translateCode(language) {
+    return (language && language.translateCode) || (language && language.code) || PAGE_LANGUAGE;
+  }
+
   function flagCountryCode(flag) {
     var codePoints = Array.from(String(flag || ""));
     if (codePoints.length < 2) return "";
@@ -229,42 +105,8 @@
     return String.fromCharCode(97 + first - regionalIndicatorA, 97 + second - regionalIndicatorA);
   }
 
-  function countryFlag(countryCode) {
-    return String(countryCode || "")
-      .toUpperCase()
-      .replace(/[A-Z]/g, function (letter) {
-        return String.fromCodePoint(0x1f1e6 + letter.charCodeAt(0) - 65);
-      });
-  }
-
-  function buildLanguageFlagCache() {
-    var used = {};
-    var poolIndex = 0;
-    var cache = {};
-
-    LANGUAGES.forEach(function (language) {
-      var flag = language.flag;
-      if (!flagCountryCode(flag) || used[flag]) {
-        while (poolIndex < UNIQUE_FLAG_COUNTRY_CODES.length) {
-          flag = countryFlag(UNIQUE_FLAG_COUNTRY_CODES[poolIndex]);
-          poolIndex += 1;
-          if (!used[flag]) break;
-        }
-      }
-      used[flag] = true;
-      cache[language.code] = flag;
-    });
-
-    return cache;
-  }
-
-  function displayFlag(language) {
-    if (!languageFlagCache) languageFlagCache = buildLanguageFlagCache();
-    return languageFlagCache[language.code] || language.flag;
-  }
-
   function languageFlagMarkup(language, className) {
-    var flag = displayFlag(language);
+    var flag = language.flag;
     var countryCode = flagCountryCode(flag);
     if (countryCode) {
       return (
@@ -318,11 +160,12 @@
 
   function storedLanguage() {
     var translated = readCookie("googtrans").match(/\/[^/]+\/([^/]+)/);
-    if (translated && translated[1]) return translated[1];
+    if (translated && translated[1] && hasLanguage(translated[1])) return translated[1];
     try {
-      return localStorage.getItem(LANGUAGE_STORAGE_KEY) || PAGE_LANGUAGE;
+      var saved = localStorage.getItem(LANGUAGE_STORAGE_KEY);
+      return hasLanguage(saved) ? saved : LANGUAGES[0].code;
     } catch {
-      return PAGE_LANGUAGE;
+      return LANGUAGES[0].code;
     }
   }
 
@@ -360,13 +203,15 @@
   }
 
   function applyLanguage(code) {
-    saveLanguage(code);
-    setTranslateCookie(code);
-    document.documentElement.lang = code === "iw" ? "he" : code;
+    var language = findLanguage(code);
+    var targetCode = translateCode(language);
+    saveLanguage(language.code);
+    setTranslateCookie(targetCode);
+    document.documentElement.lang = language.code;
 
     var combo = document.querySelector(".goog-te-combo");
-    if (combo && code !== PAGE_LANGUAGE) {
-      combo.value = code;
+    if (combo && targetCode !== PAGE_LANGUAGE) {
+      combo.value = targetCode;
       combo.dispatchEvent(new Event("change"));
       return;
     }

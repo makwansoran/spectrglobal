@@ -250,11 +250,11 @@
   right: 0;
   z-index: 95;
   display: grid;
-  grid-template-columns: repeat(6, 2.25rem);
-  gap: 0.4rem;
+  grid-template-columns: 1fr;
+  gap: 0.45rem;
   max-height: min(24rem, calc(100vh - 5rem));
-  width: max-content;
-  max-width: min(20rem, calc(100vw - 1.5rem));
+  width: 3.75rem;
+  max-width: calc(100vw - 1.5rem);
   padding: 0.75rem;
   overflow-y: auto;
   border: 1px solid rgba(255, 255, 255, 0.16);
@@ -279,6 +279,7 @@
   justify-content: center;
   width: 2.25rem;
   height: 2.25rem;
+  margin-inline: auto;
   padding: 0;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 999px;
@@ -704,8 +705,8 @@ body.plt-nav-open {
   }
 
   .plt-language-menu {
-    right: -3.25rem;
-    grid-template-columns: repeat(5, 2.2rem);
+    right: -0.65rem;
+    grid-template-columns: 1fr;
     max-width: calc(100vw - 1rem);
   }
 }
