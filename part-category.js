@@ -101,6 +101,30 @@
     }).slice(0, limit);
   }
 
+  function stockLabel(stock) {
+    var count = Number(stock) || 0;
+    if (count <= 0) return "Out of stock";
+    return count > 99 ? "99+ in stock" : count + " in stock";
+  }
+
+  function productCardMedia(part) {
+    if (part.image_url) {
+      return (
+        '<div class="product-image product-image--has-image">' +
+          '<img src="' + escapeHtml(part.image_url) + '" alt="' + escapeHtml(part.name) + '" loading="lazy" />' +
+        '</div>'
+      );
+    }
+    return '<div class="product-image"><span>' + escapeHtml(initials(part.name)) + '</span></div>';
+  }
+
+  function cartLineMedia(part) {
+    if (part.image_url) {
+      return '<div class="cart-line-media cart-line-media--has-image"><img src="' + escapeHtml(part.image_url) + '" alt="' + escapeHtml(part.name) + '" loading="lazy" /></div>';
+    }
+    return '<div class="cart-line-media"><span>' + escapeHtml(initials(part.name)) + '</span></div>';
+  }
+
   function modelSupportsYear(model, year) {
     var selectedYear = parseInt(year, 10);
     if (!selectedYear || !model.year_from) return true;
@@ -212,16 +236,16 @@
     grid.innerHTML = parts.map(function (part) {
       var inCart = cart.find(function (line) { return line.partId === part.id; });
       var outOfStock = (part.stock || 0) <= 0;
-      var stockLabel = outOfStock ? "Out of stock" : (part.stock || 0) + " in stock";
       return '' +
         '<article class="product" data-product-id="' + escapeHtml(part.id) + '">' +
-          '<div class="product-image"><span>' + escapeHtml(initials(part.name)) + '</span></div>' +
+          productCardMedia(part) +
           '<div class="product-body">' +
             '<span class="product-category">' + escapeHtml(part.category || "Car part") + '</span>' +
             '<h3 class="product-name">' + escapeHtml(part.name) + '</h3>' +
-            '<span class="product-sku">' + escapeHtml(part.sku || part.id) + '</span>' +
+            '<span class="product-sku">' + escapeHtml(part.article_number || part.sku || part.id) + '</span>' +
             (part.description ? '<p class="product-description">' + escapeHtml(part.description) + '</p>' : '') +
-            '<span class="product-stock ' + (outOfStock ? "is-out" : "") + '">' + stockLabel + '</span>' +
+            '<span class="product-stock ' + (outOfStock ? "is-out" : "is-in") + '">' + escapeHtml(stockLabel(part.stock)) + '</span>' +
+            '<span class="product-delivery">' + escapeHtml(part.delivery_time || "2-5 days") + ' delivery</span>' +
             '<div class="product-foot">' +
               '<span class="product-price">' + escapeHtml(Shop.formatNok(part.price || 0)) + '</span>' +
               '<button type="button" class="product-add" data-add-part="' + escapeHtml(part.id) + '"' + (outOfStock ? " disabled" : "") + '>' +
@@ -255,7 +279,8 @@
       sum += lineTotal;
       return '' +
         '<div class="cart-line" data-line="' + escapeHtml(part.id) + '">' +
-          '<div>' +
+          cartLineMedia(part) +
+          '<div class="cart-line-main">' +
             '<h4>' + escapeHtml(part.name) + '</h4>' +
             '<small>' + escapeHtml(part.sku || part.id) + ' · ' + escapeHtml(part.category || "Car part") + '</small>' +
           '</div>' +

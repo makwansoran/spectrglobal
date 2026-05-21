@@ -379,8 +379,12 @@ create table if not exists public.parts (
   stock integer not null default 0 check (stock >= 0),
   description text,
   image_url text,
+  article_number text,
+  ean_code text,
+  delivery_time text not null default '2-5 days',
   features jsonb not null default '[]'::jsonb,
   reviews jsonb not null default '[]'::jsonb,
+  specifications jsonb not null default '[]'::jsonb,
   vehicles jsonb not null default '[]'::jsonb,
   active boolean not null default true,
   created_at timestamptz not null default now(),
@@ -388,15 +392,23 @@ create table if not exists public.parts (
   constraint parts_name_len check (char_length(trim(name)) between 1 and 200),
   constraint parts_category_len check (char_length(trim(category)) between 1 and 80),
   constraint parts_sku_len check (sku is null or char_length(trim(sku)) <= 64),
+  constraint parts_article_number_len check (article_number is null or char_length(trim(article_number)) <= 80),
+  constraint parts_ean_code_len check (ean_code is null or char_length(trim(ean_code)) <= 80),
+  constraint parts_delivery_time_len check (char_length(trim(delivery_time)) between 1 and 80),
   constraint parts_vehicles_is_array check (jsonb_typeof(vehicles) = 'array'),
   constraint parts_features_is_array check (jsonb_typeof(features) = 'array'),
-  constraint parts_reviews_is_array check (jsonb_typeof(reviews) = 'array')
+  constraint parts_reviews_is_array check (jsonb_typeof(reviews) = 'array'),
+  constraint parts_specifications_is_array check (jsonb_typeof(specifications) = 'array')
 );
 
 alter table public.parts
   add column if not exists image_url text,
   add column if not exists features jsonb not null default '[]'::jsonb,
-  add column if not exists reviews jsonb not null default '[]'::jsonb;
+  add column if not exists reviews jsonb not null default '[]'::jsonb,
+  add column if not exists article_number text,
+  add column if not exists ean_code text,
+  add column if not exists delivery_time text not null default '2-5 days',
+  add column if not exists specifications jsonb not null default '[]'::jsonb;
 
 alter table public.parts enable row level security;
 
@@ -707,8 +719,12 @@ create table if not exists public.oil_products (
   stock integer not null default 0,
   image_url text,
   marketing_description text,
+  article_number text,
+  ean_code text,
+  delivery_time text not null default '2-5 days',
   features jsonb not null default '[]'::jsonb,
   reviews jsonb not null default '[]'::jsonb,
+  specifications jsonb not null default '[]'::jsonb,
   active boolean not null default true,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now(),
@@ -725,7 +741,11 @@ alter table public.oil_products
   add column if not exists image_url text,
   add column if not exists marketing_description text,
   add column if not exists features jsonb not null default '[]'::jsonb,
-  add column if not exists reviews jsonb not null default '[]'::jsonb;
+  add column if not exists reviews jsonb not null default '[]'::jsonb,
+  add column if not exists article_number text,
+  add column if not exists ean_code text,
+  add column if not exists delivery_time text not null default '2-5 days',
+  add column if not exists specifications jsonb not null default '[]'::jsonb;
 
 alter table public.oil_products enable row level security;
 
@@ -1185,8 +1205,12 @@ create table if not exists public.brake_products (
   stock                integer NOT NULL DEFAULT 0,
   image_url            text,
   marketing_description text,
+  article_number       text,
+  ean_code             text,
+  delivery_time        text NOT NULL DEFAULT '2-5 days',
   features             jsonb NOT NULL DEFAULT '[]'::jsonb,
   reviews              jsonb NOT NULL DEFAULT '[]'::jsonb,
+  specifications       jsonb NOT NULL DEFAULT '[]'::jsonb,
   active               boolean DEFAULT true,
   created_at           timestamptz DEFAULT now(),
   updated_at           timestamptz NOT NULL DEFAULT now(),
@@ -1199,7 +1223,11 @@ alter table public.brake_products
   add column if not exists image_url text,
   add column if not exists marketing_description text,
   add column if not exists features jsonb not null default '[]'::jsonb,
-  add column if not exists reviews jsonb not null default '[]'::jsonb;
+  add column if not exists reviews jsonb not null default '[]'::jsonb,
+  add column if not exists article_number text,
+  add column if not exists ean_code text,
+  add column if not exists delivery_time text not null default '2-5 days',
+  add column if not exists specifications jsonb not null default '[]'::jsonb;
 
 -- Per-model OEM brake specifications
 -- Separate rows for front and rear

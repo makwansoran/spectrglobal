@@ -62,6 +62,12 @@
     return "€" + (Number(value) || 0).toFixed(2);
   }
 
+  function stockLabel(stock) {
+    var count = Number(stock) || 0;
+    if (count <= 0) return "Out of stock";
+    return count > 99 ? "99+ in stock" : count + " in stock";
+  }
+
   function initials(name) {
     return String(name || "SP")
       .split(/\s+/)
@@ -125,6 +131,31 @@
     );
   }
 
+  function stringifySpecifications(specs) {
+    return (Array.isArray(specs) ? specs : []).map(function (spec) {
+      if (spec && typeof spec === "object") {
+        return [spec.label || spec.name || "", spec.value || ""].filter(Boolean).join(": ");
+      }
+      return String(spec || "");
+    }).filter(Boolean).join("\n");
+  }
+
+  function parseSpecifications(value) {
+    return String(value || "")
+      .split("\n")
+      .map(function (line) { return line.trim(); })
+      .filter(Boolean)
+      .map(function (line) {
+        var sep = line.indexOf(":");
+        if (sep === -1) return { label: "Detail", value: line };
+        return {
+          label: line.slice(0, sep).trim(),
+          value: line.slice(sep + 1).trim(),
+        };
+      })
+      .filter(function (spec) { return spec.label && spec.value; });
+  }
+
   function productDescription(product) {
     var e = product.editable || {};
     if (product.kind === "brake") {
@@ -157,14 +188,14 @@
       '</div>' +
       '<p class="shop-eyebrow">' + escapeHtml(product.category || product.kind) + '</p>' +
       '<h1>' + escapeHtml([product.brand, product.name].filter(Boolean).join(" ")) + '</h1>' +
-      '<p class="product-detail-sku">' + escapeHtml(product.sku || product.id) + '</p>' +
+      '<p class="product-detail-sku">' + escapeHtml(e.article_number || product.article_number || product.sku || product.id) + '</p>' +
       '<p class="product-detail-description">' + escapeHtml(productDescription(product)) + '</p>' +
       (features.length
         ? '<ul class="product-edit-preview-features">' + features.slice(0, 5).map(function (feature) { return '<li>' + escapeHtml(feature) + '</li>'; }).join("") + '</ul>'
         : '') +
       '<div class="product-detail-buy">' +
       '<strong>' + escapeHtml(formatMoney(product.price)) + '</strong>' +
-      '<span class="' + (product.stock <= 0 ? "is-out" : "") + '">' + (product.stock <= 0 ? "Out of stock" : product.stock + " in stock") + '</span>' +
+      '<span class="' + (product.stock <= 0 ? "is-out" : "") + '">' + escapeHtml(stockLabel(product.stock)) + '</span>' +
       "</div>" +
       '<div class="product-edit-preview-reviews">' +
         '<strong>' + escapeHtml(reviews.length || 0) + ' review' + (reviews.length === 1 ? '' : 's') + '</strong>' +
@@ -181,9 +212,13 @@
       field("name", "Product name", e.name),
       field(product.kind === "parts" ? "price" : "price_eur", "Price (€)", product.kind === "parts" ? e.price : e.price_eur, "number", 'min="0" step="0.01"'),
       field("stock", "Inventory stock", e.stock, "number", 'min="0" step="1"'),
+      field("article_number", "Article number", e.article_number || product.article_number || "", "text", 'placeholder="15F928"'),
+      field("ean_code", "EAN code", e.ean_code || product.ean_code || "", "text", 'placeholder="400817715..."'),
+      field("delivery_time", "Delivery time", e.delivery_time || product.delivery_time || "2-5 days", "text", 'placeholder="2-5 days"'),
       field("image_url", "Product image URL", e.image_url || "", "url", 'placeholder="https://..."'),
       textarea("description", "Product description", e.description || productDescription(product), 'rows="5"'),
       textarea("features", "Key features (one per line)", (e.features || []).join("\n"), 'rows="5"'),
+      textarea("specifications", "Specifications (Label: value, one per line)", stringifySpecifications(e.specifications || product.specifications), 'rows="6" placeholder="SAE viscosity: 5W-30\nCapacity: 5L\nManufacturer approval: VW 504 00"'),
       textarea("reviews", "Reviews JSON", JSON.stringify(e.reviews || [], null, 2), 'rows="8" spellcheck="false"'),
       checkbox("active", "Visible on website", e.active !== false),
     ].join("");
@@ -272,8 +307,12 @@
       name: String(data.get("name") || "").trim(),
       stock: Math.max(0, parseInt(data.get("stock"), 10) || 0),
       image_url: String(data.get("image_url") || "").trim(),
+      article_number: String(data.get("article_number") || "").trim(),
+      ean_code: String(data.get("ean_code") || "").trim(),
+      delivery_time: String(data.get("delivery_time") || "2-5 days").trim() || "2-5 days",
       description: String(data.get("description") || "").trim(),
       features: String(data.get("features") || "").split("\n").map(function (item) { return item.trim(); }).filter(Boolean),
+      specifications: parseSpecifications(data.get("specifications")),
       active: data.get("active") === "on",
     };
 

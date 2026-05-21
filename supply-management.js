@@ -17,6 +17,7 @@
       customers: { query: "", role: "" },
     },
     admin: null,
+    pendingDeleteUserId: "",
   };
 
   function $(id) {
@@ -555,8 +556,30 @@
     }
   }
 
+  function openUserDeleteConfirm(user) {
+    var modal = $("user-delete-confirm");
+    var copy = $("user-delete-confirm-copy");
+    if (!modal) return false;
+    state.pendingDeleteUserId = user && user.id ? user.id : "";
+    if (copy) {
+      copy.textContent = "This permanently removes " + ((user && user.email) || "this user") + " from Supabase Auth and customer records.";
+    }
+    modal.hidden = false;
+    modal.setAttribute("aria-hidden", "false");
+    var confirmButton = modal.querySelector("[data-user-delete-confirm]");
+    if (confirmButton) confirmButton.focus();
+    return true;
+  }
+
+  function closeUserDeleteConfirm() {
+    var modal = $("user-delete-confirm");
+    state.pendingDeleteUserId = "";
+    if (!modal) return;
+    modal.hidden = true;
+    modal.setAttribute("aria-hidden", "true");
+  }
+
   async function deleteUser(id) {
-    if (!confirm("Delete this user permanently?")) return;
     try {
       await api("/api/admin/users/" + encodeURIComponent(id), { method: "DELETE" });
       state.users = state.users.filter(function (u) { return u.id !== id; });
@@ -678,14 +701,30 @@
     });
     usersTable.addEventListener("click", function (e) {
       var del = e.target.closest("[data-user-delete]");
-      if (del) deleteUser(del.dataset.userDelete);
+      if (!del) return;
+      var user = state.users.find(function (u) { return u.id === del.dataset.userDelete; });
+      openUserDeleteConfirm(user || { id: del.dataset.userDelete });
     });
 
     document.querySelectorAll("[data-drawer-close]").forEach(function (el) {
       el.addEventListener("click", closeOrderDrawer);
     });
+    document.querySelectorAll("[data-user-delete-cancel]").forEach(function (el) {
+      el.addEventListener("click", closeUserDeleteConfirm);
+    });
+    var confirmDelete = document.querySelector("[data-user-delete-confirm]");
+    if (confirmDelete) {
+      confirmDelete.addEventListener("click", function () {
+        var id = state.pendingDeleteUserId;
+        closeUserDeleteConfirm();
+        if (id) deleteUser(id);
+      });
+    }
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") closeOrderDrawer();
+      if (e.key === "Escape") {
+        closeOrderDrawer();
+        closeUserDeleteConfirm();
+      }
     });
   }
 

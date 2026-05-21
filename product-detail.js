@@ -41,6 +41,41 @@
     return "product.html?id=" + encodeURIComponent(part.id);
   }
 
+  function stockLabel(stock) {
+    var count = Number(stock) || 0;
+    if (count <= 0) return "Out of stock";
+    return count > 99 ? "99+ in stock" : count + " in stock";
+  }
+
+  function renderProductFacts(product) {
+    var facts = [
+      ["Article number", product.article_number || product.sku || product.id],
+      ["EAN", product.ean_code],
+      ["Delivery", product.delivery_time || "2-5 days"],
+    ].filter(function (fact) { return fact[1]; });
+    if (!facts.length) return "";
+    return '<dl class="product-detail-facts">' + facts.map(function (fact) {
+      return '<div><dt>' + escapeHtml(fact[0]) + '</dt><dd>' + escapeHtml(fact[1]) + '</dd></div>';
+    }).join("") + '</dl>';
+  }
+
+  function renderSpecifications(product) {
+    var specs = Array.isArray(product.specifications) ? product.specifications : [];
+    if (!specs.length) return "";
+    return (
+      '<section class="product-detail-section">' +
+        '<h2>Product details</h2>' +
+        '<dl class="product-spec-list">' +
+          specs.map(function (spec) {
+            var label = spec && typeof spec === "object" ? (spec.label || spec.name || "Detail") : "Detail";
+            var value = spec && typeof spec === "object" ? spec.value : spec;
+            return '<div><dt>' + escapeHtml(label) + '</dt><dd>' + escapeHtml(value || "") + '</dd></div>';
+          }).join("") +
+        '</dl>' +
+      '</section>'
+    );
+  }
+
   function renderFitment(product) {
     var vehicles = Array.isArray(product.vehicles) ? product.vehicles : [];
     if (!vehicles.length) {
@@ -62,6 +97,24 @@
       return '<div class="product-detail-media product-detail-media--image"><img src="' + escapeHtml(product.image_url) + '" alt="' + escapeHtml(product.name) + '" /></div>';
     }
     return '<div class="product-detail-media"><span>' + escapeHtml(initials(product.name)) + '</span></div>';
+  }
+
+  function productCardMedia(part) {
+    if (part.image_url) {
+      return (
+        '<div class="product-image product-image--has-image">' +
+          '<img src="' + escapeHtml(part.image_url) + '" alt="' + escapeHtml(part.name) + '" loading="lazy" />' +
+        '</div>'
+      );
+    }
+    return '<div class="product-image"><span>' + escapeHtml(initials(part.name)) + '</span></div>';
+  }
+
+  function cartLineMedia(part) {
+    if (part.image_url) {
+      return '<div class="cart-line-media cart-line-media--has-image"><img src="' + escapeHtml(part.image_url) + '" alt="' + escapeHtml(part.name) + '" loading="lazy" /></div>';
+    }
+    return '<div class="cart-line-media"><span>' + escapeHtml(initials(part.name)) + '</span></div>';
   }
 
   function renderFeatures(product) {
@@ -122,11 +175,12 @@
         '<div class="product-detail-body">' +
           '<p class="shop-eyebrow">' + escapeHtml(product.category || "Car part") + '</p>' +
           '<h1>' + escapeHtml(product.name) + '</h1>' +
-          '<p class="product-detail-sku">' + escapeHtml(product.sku || product.id) + '</p>' +
+          '<p class="product-detail-sku">' + escapeHtml(product.article_number || product.sku || product.id) + '</p>' +
           '<p class="product-detail-description">' + escapeHtml(product.description || "No product description has been added yet.") + '</p>' +
+          renderProductFacts(product) +
           '<div class="product-detail-buy">' +
             '<strong>' + escapeHtml(Shop.formatNok(product.price || 0)) + '</strong>' +
-            '<span class="' + (outOfStock ? "is-out" : "") + '">' + (outOfStock ? "Out of stock" : (product.stock || 0) + " in stock") + '</span>' +
+            '<span class="' + (outOfStock ? "is-out" : "is-in") + '">' + escapeHtml(stockLabel(product.stock)) + '</span>' +
           '</div>' +
           '<button type="button" class="btn btn-primary product-detail-add" id="product-detail-add" ' + (outOfStock ? "disabled" : "") + '>' +
             (line ? "In cart · " + line.qty : "Add to cart") +
@@ -135,6 +189,7 @@
             '<h2>Product description</h2>' +
             '<p>' + escapeHtml(product.description || "This product is available in the Spectr catalog. Add detailed specifications in the admin panel.") + '</p>' +
           '</section>' +
+          renderSpecifications(product) +
           renderFeatures(product) +
           '<section class="product-detail-section">' +
             '<h2>Compatible vehicles</h2>' +
@@ -159,13 +214,14 @@
     var outOfStock = (part.stock || 0) <= 0;
     return '' +
       '<article class="product" data-product-id="' + escapeHtml(part.id) + '">' +
-        '<div class="product-image"><span>' + escapeHtml(initials(part.name)) + '</span></div>' +
+        productCardMedia(part) +
         '<div class="product-body">' +
           '<span class="product-category">' + escapeHtml(part.category || "Car part") + '</span>' +
           '<h3 class="product-name">' + escapeHtml(part.name) + '</h3>' +
-          '<span class="product-sku">' + escapeHtml(part.sku || part.id) + '</span>' +
+          '<span class="product-sku">' + escapeHtml(part.article_number || part.sku || part.id) + '</span>' +
           (part.description ? '<p class="product-description">' + escapeHtml(part.description) + '</p>' : '') +
-          '<span class="product-stock ' + (outOfStock ? "is-out" : "") + '">' + (outOfStock ? "Out of stock" : (part.stock || 0) + " in stock") + '</span>' +
+          '<span class="product-stock ' + (outOfStock ? "is-out" : "is-in") + '">' + escapeHtml(stockLabel(part.stock)) + '</span>' +
+          '<span class="product-delivery">' + escapeHtml(part.delivery_time || "2-5 days") + ' delivery</span>' +
           '<div class="product-foot">' +
             '<span class="product-price">' + escapeHtml(Shop.formatNok(part.price || 0)) + '</span>' +
             '<button type="button" class="product-add" data-add-part="' + escapeHtml(part.id) + '"' + (outOfStock ? " disabled" : "") + '>' +
@@ -221,7 +277,8 @@
       sum += lineTotal;
       return '' +
         '<div class="cart-line" data-line="' + escapeHtml(part.id) + '">' +
-          '<div>' +
+          cartLineMedia(part) +
+          '<div class="cart-line-main">' +
             '<h4>' + escapeHtml(part.name) + '</h4>' +
             '<small>' + escapeHtml(part.sku || part.id) + ' · ' + escapeHtml(part.category || "Car part") + '</small>' +
           '</div>' +

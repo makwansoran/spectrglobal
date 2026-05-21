@@ -1353,6 +1353,21 @@
     repeating-linear-gradient(45deg, rgba(10, 12, 16, 0.04) 0 1px, transparent 1px 14px);
 }
 
+.product-image--has-image {
+  background: #ffffff;
+}
+
+.product-image--has-image::after {
+  display: none;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 0.9rem;
+}
+
 .product-image span {
   position: relative;
   z-index: 1;
@@ -1424,8 +1439,22 @@
   letter-spacing: 0.04em;
 }
 
+.product-stock.is-in {
+  color: #15803d;
+  font-weight: 700;
+}
+
 .product-stock.is-out {
   color: #b42318;
+}
+
+.product-delivery {
+  display: block;
+  color: #15803d;
+  font-family: var(--shop-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
 }
 
 .product-add {
@@ -1491,7 +1520,7 @@
 
 .product-detail-card {
   display: grid;
-  grid-template-columns: minmax(18rem, 0.85fr) minmax(0, 1.15fr);
+  grid-template-columns: minmax(16rem, 0.78fr) minmax(0, 1.22fr);
   gap: clamp(1.25rem, 4vw, 3rem);
   padding: clamp(1.25rem, 4vw, 2.5rem);
   border: 1px solid var(--shop-line);
@@ -1501,7 +1530,8 @@
 }
 
 .product-detail-media {
-  min-height: clamp(18rem, 35vw, 28rem);
+  min-height: clamp(14rem, 26vw, 21rem);
+  max-height: clamp(16rem, 30vw, 24rem);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1533,7 +1563,7 @@
 .product-detail-media--image img {
   width: 100%;
   height: 100%;
-  max-height: clamp(18rem, 35vw, 28rem);
+  max-height: clamp(14rem, 26vw, 21rem);
   object-fit: contain;
   padding: 1.25rem;
 }
@@ -1581,8 +1611,51 @@
   font-size: 0.78rem;
 }
 
+.product-detail-buy span.is-in {
+  color: #15803d;
+  font-weight: 700;
+}
+
 .product-detail-buy span.is-out {
   color: #b42318;
+}
+
+.product-detail-facts,
+.product-spec-list {
+  display: grid;
+  gap: 1px;
+  margin: 1rem 0 0;
+  overflow: hidden;
+  border: 1px solid var(--shop-line);
+  border-radius: var(--shop-radius);
+  background: var(--shop-line);
+}
+
+.product-detail-facts div,
+.product-spec-list div {
+  display: grid;
+  grid-template-columns: minmax(8rem, 0.45fr) minmax(0, 1fr);
+  gap: 0.8rem;
+  padding: 0.75rem 0.85rem;
+  background: #ffffff;
+}
+
+.product-detail-facts dt,
+.product-spec-list dt {
+  color: var(--shop-muted);
+  font-family: var(--shop-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.product-detail-facts dd,
+.product-spec-list dd {
+  margin: 0;
+  color: var(--shop-ink);
+  font-size: 0.9rem;
+  font-weight: 600;
 }
 
 .product-detail-add {
@@ -1868,10 +1941,47 @@
 
 .cart-line {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: 3.6rem minmax(0, 1fr) auto;
   gap: 0.4rem 0.8rem;
+  align-items: center;
   padding: 0.85rem 0;
   border-bottom: 1px solid var(--shop-line);
+}
+
+.cart-line-media {
+  width: 3.6rem;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid var(--shop-line);
+  border-radius: 0.45rem;
+  background:
+    radial-gradient(circle at 70% 20%, rgba(31, 111, 235, 0.12), transparent 52%),
+    var(--shop-surface);
+}
+
+.cart-line-media--has-image {
+  background: #ffffff;
+}
+
+.cart-line-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 0.35rem;
+}
+
+.cart-line-media span {
+  padding: 0.25rem 0.35rem;
+  border: 1px solid var(--shop-line-strong);
+  border-radius: 0.25rem;
+  background: #ffffff;
+  color: var(--shop-ink);
+  font-family: var(--shop-mono);
+  font-size: 0.78rem;
+  font-weight: 800;
 }
 
 .cart-line h4 {
@@ -1894,7 +2004,7 @@
 }
 
 .cart-line-controls {
-  grid-column: 1 / -1;
+  grid-column: 2 / -1;
   display: flex;
   align-items: center;
   gap: 0.4rem;
@@ -2256,6 +2366,18 @@
   background:
     radial-gradient(circle at 70% 20%, rgba(31, 111, 235, 0.12), transparent 52%),
     #f4f6f8;
+  overflow: hidden;
+}
+
+.checkout-line-media--has-image {
+  background: #ffffff;
+}
+
+.checkout-line-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 0.55rem;
 }
 
 .checkout-line-media span {

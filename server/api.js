@@ -180,12 +180,16 @@ function partFromRow(row) {
     name: row.name,
     category: row.category || "Other",
     sku: row.sku || "",
+    article_number: row.article_number || row.sku || "",
+    ean_code: row.ean_code || "",
     price: Number(row.price) || 0,
     stock: Number(row.stock) || 0,
+    delivery_time: row.delivery_time || "2-5 days",
     description: row.description || "",
     image_url: row.image_url || "",
     features: Array.isArray(row.features) ? row.features : [],
     reviews: Array.isArray(row.reviews) ? row.reviews : [],
+    specifications: Array.isArray(row.specifications) ? row.specifications : [],
     vehicles: Array.isArray(row.vehicles) ? row.vehicles : [],
   };
 }
@@ -241,12 +245,16 @@ function oilProductFromRow(row, fitments) {
     name: [brandName, row.name, volume].filter(Boolean).join(" "),
     category: "Oils",
     sku: `OIL-${String(row.id || "").slice(0, 8).toUpperCase()}`,
+    article_number: row.article_number || "",
+    ean_code: row.ean_code || "",
     price: Number(row.price_eur) || 0,
     stock: Number(row.stock) || 0,
+    delivery_time: row.delivery_time || "2-5 days",
     description: row.marketing_description || descriptionParts.join(" · "),
     image_url: row.image_url || "",
     features: Array.isArray(row.features) ? row.features : [],
     reviews: Array.isArray(row.reviews) ? row.reviews : [],
+    specifications: Array.isArray(row.specifications) ? row.specifications : [],
     vehicles: fitments,
   };
 }
@@ -314,12 +322,16 @@ function brakeProductFromRow(row, fitments) {
     name: [brandName, row.name].filter(Boolean).join(" "),
     category: "Brakes",
     sku: `BRAKE-${String(row.id || "").slice(0, 8).toUpperCase()}`,
+    article_number: row.article_number || "",
+    ean_code: row.ean_code || row.ean || "",
     price: Number(row.price_eur) || 0,
     stock: Number(row.stock) || 0,
+    delivery_time: row.delivery_time || "2-5 days",
     description: row.marketing_description || [typeLabel, position, ...discSpecs, ...padSpecs].filter(Boolean).join(" · "),
     image_url: row.image_url || "",
     features: Array.isArray(row.features) ? row.features : [],
     reviews: Array.isArray(row.reviews) ? row.reviews : [],
+    specifications: Array.isArray(row.specifications) ? row.specifications : [],
     vehicles: fitments,
   };
 }
@@ -373,9 +385,16 @@ function tyrePartFromGroup(key, rows) {
     name: `${brand} ${label}`,
     category: "Tires",
     sku: `TYRE-${first.width}-${first.aspect_ratio}-R${first.rim_diameter}`,
+    article_number: `TYRE-${key}`,
+    ean_code: "",
     price: 0,
     stock: 999,
+    delivery_time: "2-5 days",
     description: descriptionParts.join(" · "),
+    specifications: [
+      { label: "Tyre size", value: label },
+      { label: "Load/speed", value: loadSpeed.join(", ") },
+    ].filter((spec) => spec.value),
     vehicles: dedupeVehicleFits(rows.map(tyreFitmentVehicle).filter((vehicle) => vehicle.brand && vehicle.model)),
   };
 }
@@ -430,7 +449,7 @@ function oilProductMatchesFitment(product, fitment) {
 async function fetchOilProductParts(activeOnly) {
   let oilProductsQuery = getReadClient()
     .from("oil_products")
-      .select("id, name, viscosity, base_type, approvals, volume_liters, price_eur, stock, active, image_url, marketing_description, features, reviews, oil_brands(name)")
+      .select("id, name, viscosity, base_type, approvals, volume_liters, price_eur, stock, active, image_url, marketing_description, features, reviews, article_number, ean_code, delivery_time, specifications, oil_brands(name)")
     .order("name", { ascending: true });
 
   if (activeOnly) oilProductsQuery = oilProductsQuery.eq("active", true);
@@ -465,7 +484,7 @@ async function fetchOilProductParts(activeOnly) {
 async function fetchBrakeProductParts(activeOnly) {
   let brakeProductsQuery = getReadClient()
     .from("brake_products")
-      .select("id, name, type, position, disc_diameter_mm, disc_thickness_mm, disc_ventilated, disc_drilled, disc_slotted, disc_coated, pad_height_mm, pad_width_mm, pad_thickness_mm, pad_material, pad_with_sensor, price_eur, stock, active, image_url, marketing_description, features, reviews, brake_brands(name)")
+      .select("id, name, type, position, disc_diameter_mm, disc_thickness_mm, disc_ventilated, disc_drilled, disc_slotted, disc_coated, pad_height_mm, pad_width_mm, pad_thickness_mm, pad_material, pad_with_sensor, ean, price_eur, stock, active, image_url, marketing_description, features, reviews, article_number, ean_code, delivery_time, specifications, brake_brands(name)")
     .order("name", { ascending: true });
 
   if (activeOnly) brakeProductsQuery = brakeProductsQuery.eq("active", true);
@@ -500,7 +519,7 @@ async function fetchBrakeProductParts(activeOnly) {
 async function loadCatalogParts(activeOnly, limit) {
   let query = getReadClient()
     .from("parts")
-    .select("id, name, category, sku, price, stock, description, image_url, features, reviews, vehicles, active")
+    .select("id, name, category, sku, price, stock, description, image_url, features, reviews, article_number, ean_code, delivery_time, specifications, vehicles, active")
     .order("name", { ascending: true })
     .limit(limit);
 
@@ -554,6 +573,10 @@ function normalizePartBody(body, fallbackId) {
       price: Math.max(0, Number(body && body.price) || 0),
       stock: Math.max(0, parseInt(body && body.stock, 10) || 0),
       description: String((body && body.description) || "").trim() || null,
+      article_number: String((body && body.article_number) || "").trim() || null,
+      ean_code: String((body && body.ean_code) || "").trim() || null,
+      delivery_time: String((body && body.delivery_time) || "2-5 days").trim() || "2-5 days",
+      specifications: Array.isArray(body && body.specifications) ? body.specifications : [],
       vehicles: vehicles.map((fit) => ({
         brand: String((fit && fit.brand) || "").trim(),
         model: String((fit && fit.model) || "").trim(),
@@ -618,12 +641,12 @@ function productTable(kind) {
 }
 
 function productSelect(kind) {
-  if (kind === "parts") return "id, name, category, sku, price, stock, description, image_url, features, reviews, vehicles, active, created_at, updated_at";
+  if (kind === "parts") return "id, name, category, sku, price, stock, description, image_url, features, reviews, article_number, ean_code, delivery_time, specifications, vehicles, active, created_at, updated_at";
   if (kind === "oil") {
-    return "id, brand_id, name, viscosity, base_type, approvals, volume_liters, price_eur, stock, active, image_url, marketing_description, features, reviews, created_at, updated_at, oil_brands(name)";
+    return "id, brand_id, name, viscosity, base_type, approvals, volume_liters, price_eur, stock, active, image_url, marketing_description, features, reviews, article_number, ean_code, delivery_time, specifications, created_at, updated_at, oil_brands(name)";
   }
   if (kind === "brake") {
-    return "id, brand_id, name, type, position, disc_diameter_mm, disc_thickness_mm, disc_min_thickness_mm, disc_ventilated, disc_drilled, disc_slotted, disc_coated, pad_height_mm, pad_width_mm, pad_thickness_mm, pad_material, pad_with_sensor, ean, price_eur, stock, active, image_url, marketing_description, features, reviews, created_at, updated_at, brake_brands(name)";
+    return "id, brand_id, name, type, position, disc_diameter_mm, disc_thickness_mm, disc_min_thickness_mm, disc_ventilated, disc_drilled, disc_slotted, disc_coated, pad_height_mm, pad_width_mm, pad_thickness_mm, pad_material, pad_with_sensor, ean, price_eur, stock, active, image_url, marketing_description, features, reviews, article_number, ean_code, delivery_time, specifications, created_at, updated_at, brake_brands(name)";
   }
   return "";
 }
@@ -639,8 +662,11 @@ function supplyItem(kind, row) {
     brand: (brand && brand.name) || "",
     category: kind === "oil" ? "Oils" : kind === "brake" ? "Brakes" : row.category || "Other",
     sku: supplySku(kind, row),
+    article_number: row.article_number || "",
+    ean_code: row.ean_code || row.ean || "",
     price: Number(price) || 0,
     stock: Number(row.stock) || 0,
+    delivery_time: row.delivery_time || "2-5 days",
     active: row.active !== false,
     details: {
       type: row.type || "",
@@ -653,6 +679,7 @@ function supplyItem(kind, row) {
     image_url: row.image_url || "",
     features: Array.isArray(row.features) ? row.features : [],
     reviews: Array.isArray(row.reviews) ? row.reviews : [],
+    specifications: Array.isArray(row.specifications) ? row.specifications : [],
   };
 }
 
@@ -678,6 +705,10 @@ function editableProduct(kind, row) {
         image_url: row.image_url || "",
         features: Array.isArray(row.features) ? row.features : [],
         reviews: Array.isArray(row.reviews) ? row.reviews : [],
+        article_number: row.article_number || "",
+        ean_code: row.ean_code || "",
+        delivery_time: row.delivery_time || "2-5 days",
+        specifications: Array.isArray(row.specifications) ? row.specifications : [],
         vehicles: Array.isArray(row.vehicles) ? row.vehicles : [],
         active: row.active !== false,
       },
@@ -699,6 +730,10 @@ function editableProduct(kind, row) {
         description: row.marketing_description || generatedProductDescription(kind, row),
         features: Array.isArray(row.features) ? row.features : [],
         reviews: Array.isArray(row.reviews) ? row.reviews : [],
+        article_number: row.article_number || "",
+        ean_code: row.ean_code || "",
+        delivery_time: row.delivery_time || "2-5 days",
+        specifications: Array.isArray(row.specifications) ? row.specifications : [],
         active: row.active !== false,
       },
     };
@@ -729,6 +764,10 @@ function editableProduct(kind, row) {
       description: row.marketing_description || generatedProductDescription(kind, row),
       features: Array.isArray(row.features) ? row.features : [],
       reviews: Array.isArray(row.reviews) ? row.reviews : [],
+      article_number: row.article_number || "",
+      ean_code: row.ean_code || row.ean || "",
+      delivery_time: row.delivery_time || "2-5 days",
+      specifications: Array.isArray(row.specifications) ? row.specifications : [],
       active: row.active !== false,
     },
   };
@@ -766,15 +805,15 @@ async function handleAdminSupply(req, res) {
   const [partsResult, oilsResult, brakesResult] = await Promise.all([
     getAdminClient()
       .from("parts")
-      .select("id, name, category, sku, price, stock, description, image_url, features, reviews, vehicles, active")
+      .select("id, name, category, sku, price, stock, description, image_url, features, reviews, article_number, ean_code, delivery_time, specifications, vehicles, active")
       .order("name", { ascending: true }),
     getAdminClient()
       .from("oil_products")
-      .select("id, name, viscosity, base_type, approvals, volume_liters, price_eur, stock, active, image_url, marketing_description, features, reviews, oil_brands(name)")
+      .select("id, name, viscosity, base_type, approvals, volume_liters, price_eur, stock, active, image_url, marketing_description, features, reviews, article_number, ean_code, delivery_time, specifications, oil_brands(name)")
       .order("name", { ascending: true }),
     getAdminClient()
       .from("brake_products")
-      .select("id, name, type, position, ean, price_eur, stock, active, image_url, marketing_description, features, reviews, brake_brands(name)")
+      .select("id, name, type, position, ean, price_eur, stock, active, image_url, marketing_description, features, reviews, article_number, ean_code, delivery_time, specifications, brake_brands(name)")
       .order("name", { ascending: true }),
   ]);
 
@@ -805,6 +844,9 @@ function cleanProductUpdates(kind, body) {
   if (body.active != null) updates.active = body.active === true;
   if (kind === "parts" && body.description != null) updates.description = String(body.description || "").trim() || null;
   if (body.image_url != null) updates.image_url = String(body.image_url || "").trim() || null;
+  if (body.article_number != null) updates.article_number = String(body.article_number || "").trim() || null;
+  if (body.ean_code != null) updates.ean_code = String(body.ean_code || "").trim() || null;
+  if (body.delivery_time != null) updates.delivery_time = String(body.delivery_time || "2-5 days").trim() || "2-5 days";
   if (body.features != null) {
     updates.features = Array.isArray(body.features)
       ? body.features.map((item) => String(item || "").trim()).filter(Boolean)
@@ -812,6 +854,9 @@ function cleanProductUpdates(kind, body) {
   }
   if (body.reviews != null) {
     updates.reviews = Array.isArray(body.reviews) ? body.reviews : [];
+  }
+  if (body.specifications != null) {
+    updates.specifications = Array.isArray(body.specifications) ? body.specifications : [];
   }
   if (kind === "parts" && body.vehicles != null) updates.vehicles = Array.isArray(body.vehicles) ? body.vehicles : [];
 
@@ -1119,12 +1164,38 @@ async function handleAdminUserDelete(req, res, id) {
     return true;
   }
 
-  const { error } = await getAdminClient().auth.admin.deleteUser(id);
+  const adminClient = getAdminClient();
+  const { data: targetData, error: getUserError } = await adminClient.auth.admin.getUserById(id);
+  if (getUserError || !targetData || !targetData.user) {
+    sendJson(res, 404, { error: "User not found." });
+    return true;
+  }
+
+  const signinsDelete = await adminClient.from("customer_signins").delete().eq("auth_user_id", id);
+  if (signinsDelete.error) {
+    sendJson(res, 500, { error: signinsDelete.error.message || "Could not delete user sign-in records." });
+    return true;
+  }
+
+  const profileDelete = await adminClient.from("customer_profiles").delete().eq("auth_user_id", id);
+  if (profileDelete.error) {
+    sendJson(res, 500, { error: profileDelete.error.message || "Could not delete customer profile." });
+    return true;
+  }
+
+  const { error } = await adminClient.auth.admin.deleteUser(id, false);
   if (error) {
     sendJson(res, 500, { error: error.message || "Could not delete user." });
     return true;
   }
-  sendJson(res, 200, { ok: true });
+
+  const verifyDelete = await adminClient.auth.admin.getUserById(id);
+  if (!verifyDelete.error && verifyDelete.data && verifyDelete.data.user) {
+    sendJson(res, 500, { error: "User deletion could not be verified." });
+    return true;
+  }
+
+  sendJson(res, 200, { ok: true, deleted: true, id });
   return true;
 }
 
@@ -1202,7 +1273,7 @@ async function handlePartsCreate(req, res, body) {
   const { data, error } = await getAdminClient()
     .from("parts")
     .insert({ ...record, created_at: new Date().toISOString() })
-    .select("id, name, category, sku, price, stock, description, image_url, features, reviews, vehicles, active")
+    .select("id, name, category, sku, price, stock, description, image_url, features, reviews, article_number, ean_code, delivery_time, specifications, vehicles, active")
     .single();
 
   if (error) {
@@ -1240,7 +1311,7 @@ async function handlePartsUpdate(req, res, partId, body) {
     .from("parts")
     .update(updates)
     .eq("id", partId)
-    .select("id, name, category, sku, price, stock, description, image_url, features, reviews, vehicles, active")
+    .select("id, name, category, sku, price, stock, description, image_url, features, reviews, article_number, ean_code, delivery_time, specifications, vehicles, active")
     .single();
 
   if (error) {
