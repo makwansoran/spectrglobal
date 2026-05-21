@@ -59,7 +59,7 @@
   function renderLogin(slot) {
     var a = document.createElement("a");
     a.href = loginHref();
-    a.textContent = "Sign in";
+    a.textContent = "Log in";
     a.className = LOGIN_CLASS;
     slot.replaceChildren(a);
   }
