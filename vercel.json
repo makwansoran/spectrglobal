@@ -17,6 +17,9 @@
     },
     "api/auth/[[...path]].js": {
       "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,scripts/load-env.js"
+    },
+    "api/admin/[[...path]].js": {
+      "includeFiles": "server/**,api/_*.js,node_modules/@supabase/**,scripts/load-env.js"
     }
   },
   "rewrites": [
