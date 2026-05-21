@@ -1977,7 +1977,7 @@
   padding: 0 0.4rem;
 }
 
-.category-sidebar-more-link {
+.catalog-categories .category-sidebar-more-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1995,7 +1995,7 @@
   text-transform: uppercase;
 }
 
-.category-sidebar-more-link:hover {
+.catalog-categories .category-sidebar-more-link:hover {
   background: #1f6feb;
   border-color: #1f6feb;
   color: #ffffff;
