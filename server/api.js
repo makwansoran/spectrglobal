@@ -336,9 +336,16 @@ function tyreSizeLabel(row) {
   return `${row.width}/${row.aspect_ratio} R${row.rim_diameter}`;
 }
 
+function tyreBrandForKey(key) {
+  const brands = ["Michelin", "Continental", "Pirelli", "Goodyear", "Bridgestone", "Nokian", "Hankook", "Yokohama"];
+  const hash = String(key || "").split("").reduce((sum, char) => sum + char.charCodeAt(0), 0);
+  return brands[hash % brands.length];
+}
+
 function tyrePartFromGroup(key, rows) {
   const first = rows[0] || {};
   const label = tyreSizeLabel(first);
+  const brand = tyreBrandForKey(key);
   const loadSpeed = Array.from(new Set(rows.map((row) => {
     return [row.load_index, row.speed_rating].filter(Boolean).join("");
   }).filter(Boolean))).sort();
@@ -351,7 +358,7 @@ function tyrePartFromGroup(key, rows) {
 
   return {
     id: `tyre-size-${key}`,
-    name: `Tyre ${label}`,
+    name: `${brand} ${label}`,
     category: "Tires",
     sku: `TYRE-${first.width}-${first.aspect_ratio}-R${first.rim_diameter}`,
     price: 0,
