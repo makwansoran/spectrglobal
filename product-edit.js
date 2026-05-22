@@ -182,6 +182,19 @@
     return kind === "parts" || kind === "continental-tyre";
   }
 
+  function continentalBrand(product) {
+    return product.brand || "Continental";
+  }
+
+  function continentalProductName(product) {
+    var brand = continentalBrand(product);
+    var name = String((product.editable && product.editable.name) || product.name || "").trim();
+    if (name.toLowerCase().indexOf(brand.toLowerCase() + " ") === 0) {
+      return name.slice(brand.length).trim();
+    }
+    return name === brand ? "" : name;
+  }
+
   function renderPreview(product) {
     var e = product.editable || {};
     var image = e.image_url || product.image_url || "";
@@ -220,7 +233,7 @@
   function commonFields(product) {
     var e = product.editable || {};
     return [
-      field("name", "Product name", e.name),
+      product.kind === "continental-tyre" ? "" : field("name", "Product name", e.name),
       field(usesGenericPrice(product.kind) ? "price" : "price_eur", "Price (€)", usesGenericPrice(product.kind) ? e.price : e.price_eur, "number", 'min="0" step="0.01"'),
       field("stock", "Inventory stock", e.stock, "number", 'min="0" step="1"'),
       field("article_number", "Article number", e.article_number || product.article_number || "", "text", 'placeholder="15F928"'),
@@ -237,9 +250,18 @@
 
   function partsFields(product) {
     var e = product.editable || {};
+    if (product.kind === "continental-tyre") {
+      return (
+        select("brand", "Brand name", continentalBrand(product), ["Continental"]) +
+        field("product_name", "Product name", continentalProductName(product), "text", 'placeholder="PremiumContact 7"') +
+        commonFields(product) +
+        field("sku", "SKU", e.sku) +
+        textarea("vehicles", "Compatible vehicles JSON", JSON.stringify(e.vehicles || [], null, 2), 'rows="8" spellcheck="false"')
+      );
+    }
     return (
       commonFields(product) +
-      (product.kind === "continental-tyre" ? field("brand", "Brand", product.brand || "Continental", "text", "readonly") : field("category", "Category", e.category)) +
+      field("category", "Category", e.category) +
       field("sku", "SKU", e.sku) +
       textarea("vehicles", "Compatible vehicles JSON", JSON.stringify(e.vehicles || [], null, 2), 'rows="8" spellcheck="false"')
     );
@@ -336,7 +358,14 @@
 
     if (usesGenericPrice(kind)) {
       payload.price = Math.max(0, Number(data.get("price")) || 0);
-      if (kind === "parts") payload.category = String(data.get("category") || "").trim();
+      if (kind === "continental-tyre") {
+        var brand = String(data.get("brand") || "Continental").trim() || "Continental";
+        var productName = String(data.get("product_name") || "").trim();
+        if (!productName) throw new Error("Product name is required.");
+        payload.name = [brand, productName].filter(Boolean).join(" ");
+      } else {
+        payload.category = String(data.get("category") || "").trim();
+      }
       payload.sku = String(data.get("sku") || "").trim();
       try {
         payload.vehicles = JSON.parse(String(data.get("vehicles") || "[]"));
