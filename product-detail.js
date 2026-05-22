@@ -190,10 +190,10 @@
           renderProductFacts(product) +
           '<div class="product-detail-buy">' +
             '<strong>' + escapeHtml(Shop.formatNok(product.price || 0)) + '</strong>' +
-            '<span class="' + (outOfStock ? "is-out" : "is-in") + '">' + escapeHtml(stockLabel(product.stock)) + '</span>' +
+            (outOfStock ? '' : '<span class="is-in">' + escapeHtml(stockLabel(product.stock)) + '</span>') +
           '</div>' +
           '<button type="button" class="btn btn-primary product-detail-add" id="product-detail-add" ' + (outOfStock ? "disabled" : "") + '>' +
-            (line ? "In cart · " + line.qty : "Add to cart") +
+            (outOfStock ? "Out of stock" : (line ? "In cart · " + line.qty : "Add to cart")) +
           '</button>' +
           '<div class="product-detail-service">' +
             '<span>' + escapeHtml(product.delivery_time || "2-5 days") + ' delivery</span>' +
@@ -233,12 +233,12 @@
           '<h3 class="product-name">' + escapeHtml(part.name) + '</h3>' +
           '<span class="product-sku">' + escapeHtml(part.article_number || part.sku || part.id) + '</span>' +
           (part.description ? '<p class="product-description">' + escapeHtml(part.description) + '</p>' : '') +
-          '<span class="product-stock ' + (outOfStock ? "is-out" : "is-in") + '">' + escapeHtml(stockLabel(part.stock)) + '</span>' +
+          (outOfStock ? '' : '<span class="product-stock is-in">' + escapeHtml(stockLabel(part.stock)) + '</span>') +
           '<span class="product-delivery">' + escapeHtml(part.delivery_time || "2-5 days") + ' delivery</span>' +
           '<div class="product-foot">' +
             '<span class="product-price">' + escapeHtml(Shop.formatNok(part.price || 0)) + '</span>' +
             '<button type="button" class="product-add" data-add-part="' + escapeHtml(part.id) + '"' + (outOfStock ? " disabled" : "") + '>' +
-              (line ? "In cart · " + line.qty : "Add to cart") +
+              (outOfStock ? "Out of stock" : (line ? "In cart · " + line.qty : "Add to cart")) +
             '</button>' +
           '</div>' +
         '</div>' +
