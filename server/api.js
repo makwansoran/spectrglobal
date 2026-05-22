@@ -755,7 +755,7 @@ function productId(value) {
 }
 
 function supplySku(kind, row) {
-  if (kind === "parts") return row.sku || "";
+  if (kind === "parts" || kind === "continental-tyre") return row.sku || "";
   if (kind === "oil") return `OIL-${String(row.id || "").slice(0, 8).toUpperCase()}`;
   return row.ean || `BRAKE-${String(row.id || "").slice(0, 8).toUpperCase()}`;
 }
@@ -799,11 +799,19 @@ function generatedProductDescription(kind, row) {
 }
 
 function productTable(kind) {
-  return kind === "parts" ? "parts" : kind === "oil" ? "oil_products" : kind === "brake" ? "brake_products" : "";
+  return kind === "parts"
+    ? "parts"
+    : kind === "continental-tyre"
+      ? "continental_tyres"
+      : kind === "oil"
+        ? "oil_products"
+        : kind === "brake"
+          ? "brake_products"
+          : "";
 }
 
 function productSelect(kind) {
-  if (kind === "parts") return "id, name, category, sku, price, stock, description, image_url, features, reviews, article_number, ean_code, delivery_time, specifications, vehicles, active, created_at, updated_at";
+  if (kind === "parts" || kind === "continental-tyre") return "id, name, sku, price, stock, description, image_url, features, reviews, article_number, ean_code, delivery_time, specifications, vehicles, active, created_at, updated_at" + (kind === "parts" ? ", category" : "");
   if (kind === "oil") {
     return "id, brand_id, name, viscosity, base_type, approvals, volume_liters, price_eur, stock, active, image_url, marketing_description, features, reviews, article_number, ean_code, delivery_time, specifications, created_at, updated_at, oil_brands(name)";
   }
@@ -816,13 +824,13 @@ function productSelect(kind) {
 function supplyItem(kind, row) {
   const brandValue = kind === "oil" ? row.oil_brands : row.brake_brands;
   const brand = Array.isArray(brandValue) ? brandValue[0] : brandValue;
-  const price = kind === "parts" ? row.price : row.price_eur;
+  const price = (kind === "parts" || kind === "continental-tyre") ? row.price : row.price_eur;
   return {
     kind,
     id: row.id,
     name: row.name || "",
-    brand: (brand && brand.name) || "",
-    category: kind === "oil" ? "Oils" : kind === "brake" ? "Brakes" : row.category || "Other",
+    brand: kind === "continental-tyre" ? "Continental" : (brand && brand.name) || "",
+    category: kind === "continental-tyre" ? "Tyres" : kind === "oil" ? "Oils" : kind === "brake" ? "Brakes" : row.category || "Other",
     sku: supplySku(kind, row),
     article_number: row.article_number || "",
     ean_code: row.ean_code || row.ean || "",
@@ -854,12 +862,12 @@ function editableProduct(kind, row) {
     updated_at: row.updated_at || null,
   };
 
-  if (kind === "parts") {
+  if (kind === "parts" || kind === "continental-tyre") {
     return {
       ...base,
       editable: {
         name: row.name || "",
-        category: row.category || "Other",
+        category: kind === "continental-tyre" ? "Tyres" : row.category || "Other",
         sku: row.sku || "",
         price: Number(row.price) || 0,
         stock: Number(row.stock) || 0,
@@ -964,10 +972,14 @@ async function handleAdminMe(req, res) {
 }
 
 async function handleAdminSupply(req, res) {
-  const [partsResult, oilsResult, brakesResult] = await Promise.all([
+  const [partsResult, continentalTyresResult, oilsResult, brakesResult] = await Promise.all([
     getAdminClient()
       .from("parts")
       .select("id, name, category, sku, price, stock, description, image_url, features, reviews, article_number, ean_code, delivery_time, specifications, vehicles, active")
+      .order("name", { ascending: true }),
+    getAdminClient()
+      .from("continental_tyres")
+      .select("id, name, sku, price, stock, description, image_url, features, reviews, article_number, ean_code, delivery_time, specifications, vehicles, active, created_at, updated_at")
       .order("name", { ascending: true }),
     getAdminClient()
       .from("oil_products")
@@ -979,7 +991,7 @@ async function handleAdminSupply(req, res) {
       .order("name", { ascending: true }),
   ]);
 
-  const firstError = partsResult.error || oilsResult.error || brakesResult.error;
+  const firstError = partsResult.error || continentalTyresResult.error || oilsResult.error || brakesResult.error;
   if (firstError) {
     sendJson(res, 500, { error: firstError.message || "Could not load supply inventory." });
     return true;
@@ -987,6 +999,7 @@ async function handleAdminSupply(req, res) {
 
   const items = [
     ...(partsResult.data || []).map((row) => supplyItem("parts", row)),
+    ...(continentalTyresResult.data || []).map((row) => supplyItem("continental-tyre", row)),
     ...(oilsResult.data || []).map((row) => supplyItem("oil", row)),
     ...(brakesResult.data || []).map((row) => supplyItem("brake", row)),
   ];
@@ -999,12 +1012,12 @@ function cleanProductUpdates(kind, body) {
   const updates = {};
   if (body.name != null) updates.name = String(body.name || "").trim();
   if (kind === "parts" && body.category != null) updates.category = String(body.category || "Other").trim() || "Other";
-  if (kind === "parts" && body.sku != null) updates.sku = String(body.sku || "").trim() || null;
-  if (body.price != null) updates[kind === "parts" ? "price" : "price_eur"] = Math.max(0, Number(body.price) || 0);
-  if (body.price_eur != null && kind !== "parts") updates.price_eur = Math.max(0, Number(body.price_eur) || 0);
+  if ((kind === "parts" || kind === "continental-tyre") && body.sku != null) updates.sku = String(body.sku || "").trim() || null;
+  if (body.price != null) updates[(kind === "parts" || kind === "continental-tyre") ? "price" : "price_eur"] = Math.max(0, Number(body.price) || 0);
+  if (body.price_eur != null && kind !== "parts" && kind !== "continental-tyre") updates.price_eur = Math.max(0, Number(body.price_eur) || 0);
   if (body.stock != null) updates.stock = Math.max(0, parseInt(body.stock, 10) || 0);
   if (body.active != null) updates.active = body.active === true;
-  if (kind === "parts" && body.description != null) updates.description = String(body.description || "").trim() || null;
+  if ((kind === "parts" || kind === "continental-tyre") && body.description != null) updates.description = String(body.description || "").trim() || null;
   if (body.image_url != null) updates.image_url = String(body.image_url || "").trim() || null;
   if (body.article_number != null) updates.article_number = String(body.article_number || "").trim() || null;
   if (body.ean_code != null) updates.ean_code = String(body.ean_code || "").trim() || null;
@@ -1020,7 +1033,7 @@ function cleanProductUpdates(kind, body) {
   if (body.specifications != null) {
     updates.specifications = Array.isArray(body.specifications) ? body.specifications : [];
   }
-  if (kind === "parts" && body.vehicles != null) updates.vehicles = Array.isArray(body.vehicles) ? body.vehicles : [];
+  if ((kind === "parts" || kind === "continental-tyre") && body.vehicles != null) updates.vehicles = Array.isArray(body.vehicles) ? body.vehicles : [];
 
   if (kind === "oil") {
     if (body.description != null) updates.marketing_description = String(body.description || "").trim() || null;

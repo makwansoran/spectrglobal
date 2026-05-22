@@ -174,11 +174,22 @@
     return e.description || product.details.description || "No description yet.";
   }
 
+  function usesGenericPrice(kind) {
+    return kind === "parts" || kind === "continental-tyre";
+  }
+
+  function usesPartsFields(kind) {
+    return kind === "parts" || kind === "continental-tyre";
+  }
+
   function renderPreview(product) {
     var e = product.editable || {};
     var image = e.image_url || product.image_url || "";
     var features = Array.isArray(e.features) ? e.features : [];
     var reviews = Array.isArray(e.reviews) ? e.reviews : [];
+    var title = product.brand && String(product.name || "").toLowerCase().indexOf(String(product.brand).toLowerCase()) !== 0
+      ? [product.brand, product.name].filter(Boolean).join(" ")
+      : product.name;
     return (
       '<aside class="product-edit-preview">' +
       '<div class="product-edit-preview-media">' +
@@ -187,7 +198,7 @@
           : '<span>' + escapeHtml(initials(product.name)) + '</span>') +
       '</div>' +
       '<p class="shop-eyebrow">' + escapeHtml(product.category || product.kind) + '</p>' +
-      '<h1>' + escapeHtml([product.brand, product.name].filter(Boolean).join(" ")) + '</h1>' +
+      '<h1>' + escapeHtml(title) + '</h1>' +
       '<p class="product-detail-sku">' + escapeHtml(e.article_number || product.article_number || product.sku || product.id) + '</p>' +
       '<p class="product-detail-description">' + escapeHtml(productDescription(product)) + '</p>' +
       (features.length
@@ -210,7 +221,7 @@
     var e = product.editable || {};
     return [
       field("name", "Product name", e.name),
-      field(product.kind === "parts" ? "price" : "price_eur", "Price (€)", product.kind === "parts" ? e.price : e.price_eur, "number", 'min="0" step="0.01"'),
+      field(usesGenericPrice(product.kind) ? "price" : "price_eur", "Price (€)", usesGenericPrice(product.kind) ? e.price : e.price_eur, "number", 'min="0" step="0.01"'),
       field("stock", "Inventory stock", e.stock, "number", 'min="0" step="1"'),
       field("article_number", "Article number", e.article_number || product.article_number || "", "text", 'placeholder="15F928"'),
       field("ean_code", "EAN code", e.ean_code || product.ean_code || "", "text", 'placeholder="400817715..."'),
@@ -228,7 +239,7 @@
     var e = product.editable || {};
     return (
       commonFields(product) +
-      field("category", "Category", e.category) +
+      (product.kind === "continental-tyre" ? field("brand", "Brand", product.brand || "Continental", "text", "readonly") : field("category", "Category", e.category)) +
       field("sku", "SKU", e.sku) +
       textarea("vehicles", "Compatible vehicles JSON", JSON.stringify(e.vehicles || [], null, 2), 'rows="8" spellcheck="false"')
     );
@@ -274,7 +285,7 @@
   }
 
   function renderForm(product) {
-    var fields = product.kind === "parts" ? partsFields(product) : product.kind === "oil" ? oilFields(product) : brakeFields(product);
+    var fields = usesPartsFields(product.kind) ? partsFields(product) : product.kind === "oil" ? oilFields(product) : brakeFields(product);
     return (
       '<section class="product-edit-card">' +
       '<div class="product-edit-card-head">' +
@@ -323,9 +334,9 @@
       throw new Error('Reviews must be valid JSON, for example [{"name":"Customer","rating":5,"text":"Great quality"}].');
     }
 
-    if (kind === "parts") {
+    if (usesGenericPrice(kind)) {
       payload.price = Math.max(0, Number(data.get("price")) || 0);
-      payload.category = String(data.get("category") || "").trim();
+      if (kind === "parts") payload.category = String(data.get("category") || "").trim();
       payload.sku = String(data.get("sku") || "").trim();
       try {
         payload.vehicles = JSON.parse(String(data.get("vehicles") || "[]"));

@@ -154,7 +154,17 @@
   }
 
   function productDisplayName(item) {
-    return [item.brand, item.name].filter(Boolean).join(" ") || "Untitled product";
+    var name = item.name || "";
+    var brand = item.brand || "";
+    if (brand && name.toLowerCase().indexOf(brand.toLowerCase()) === 0) return name;
+    return [brand, name].filter(Boolean).join(" ") || "Untitled product";
+  }
+
+  function productKindLabel(kind) {
+    if (kind === "continental-tyre") return "Continental tyre";
+    if (kind === "oil") return "Oil";
+    if (kind === "brake") return "Brake";
+    return "Parts";
   }
 
   function productKey(item) {
@@ -273,7 +283,7 @@
           '<tr data-product="' + escapeHtml(key) + '">' +
           '<td class="selection-cell"><label class="selection-checkbox"><input type="checkbox" data-select-product="' + escapeHtml(key) + '"' + (state.selectedProducts.has(key) ? " checked" : "") + ' aria-label="Mark ' + escapeHtml(productDisplayName(item)) + '" /><span></span></label></td>' +
           '<td><div class="col-name"><strong>' + escapeHtml(productDisplayName(item)) + '</strong><small>' + escapeHtml(item.category || "") + '</small></div></td>' +
-          '<td><span class="kind-pill kind-' + escapeHtml(item.kind) + '">' + escapeHtml(item.kind) + '</span></td>' +
+          '<td><span class="kind-pill kind-' + escapeHtml(item.kind) + '">' + escapeHtml(productKindLabel(item.kind)) + '</span></td>' +
           '<td><code>' + escapeHtml(item.sku || "—") + '</code></td>' +
           '<td><input type="number" min="0" step="0.01" class="input-cell" data-field="price" value="' + escapeHtml(Number(item.price).toFixed(2)) + '" /></td>' +
           '<td><input type="number" min="0" step="1" class="input-cell" data-field="stock" value="' + escapeHtml(item.stock) + '" /></td>' +
