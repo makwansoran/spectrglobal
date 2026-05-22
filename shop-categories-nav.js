@@ -6,14 +6,14 @@
   var DEALS_LABEL = "Deals";
 
   var NAV_ITEMS = [
-    { key: "tires", label: "Tires", icon: "◉", href: "part-category.html?category=Tires", partCategory: "Tires", sectionSlug: "tyres-wheels" },
-    { key: "brakes", label: "Brakes", icon: "▣", href: "part-category.html?category=Brakes", partCategory: "Brakes", sectionSlug: "brakes" },
+    { key: "wheels", label: "Wheels & Tyres", icon: "◉", href: "part-categories.html?section=wheels-tyres", sectionSlug: "wheels-tyres" },
+    { key: "brakes", label: "Braking", icon: "▣", href: "part-categories.html?section=braking-system", sectionSlug: "braking-system" },
     { key: "suspension", label: "Suspension", icon: "⌁", href: "part-categories.html?section=suspension-steering", sectionSlug: "suspension-steering" },
-    { key: "chassis", label: "Chassis", icon: "▱", href: "part-categories.html?section=drivetrain-transmission", sectionSlug: "drivetrain-transmission" },
-    { key: "filters", label: "Filters", icon: "▤", href: "part-categories.html?section=filters", sectionSlug: "filters" },
-    { key: "oils", label: "Oils", icon: "◍", href: "part-category.html?category=Oils", partCategory: "Oils", sectionSlug: "engine" },
-    { key: "engine", label: "Engine", icon: "⚙", href: "part-categories.html?section=engine", sectionSlug: "engine" },
-    { key: "body", label: "Body", icon: "▰", href: "part-categories.html?section=body-exterior", sectionSlug: "body-exterior" }
+    { key: "transmission", label: "Transmission", icon: "▱", href: "part-categories.html?section=transmission-drive", sectionSlug: "transmission-drive" },
+    { key: "engine", label: "Engine", icon: "⚙", href: "part-categories.html?section=engine-performance", sectionSlug: "engine-performance" },
+    { key: "cooling", label: "Cooling", icon: "▤", href: "part-categories.html?section=cooling-system", sectionSlug: "cooling-system" },
+    { key: "fuel-exhaust", label: "Fuel & Exhaust", icon: "◍", href: "part-categories.html?section=fuel-exhaust", sectionSlug: "fuel-exhaust" },
+    { key: "body", label: "Body & Interior", icon: "▰", href: "part-categories.html?section=body-interior-accessories", sectionSlug: "body-interior-accessories" }
   ];
 
   function escapeHtml(value) {
@@ -165,15 +165,14 @@
 
     return rows
       .filter(function (category) {
-        return Number(category.level) === 3;
+        return Number(category.level) === 2;
       })
       .map(function (category) {
-        var group = byId.get(category.parent_id);
-        var section = group && byId.get(group.parent_id);
+        var section = byId.get(category.parent_id);
         return {
           name: category.name,
           slug: category.slug,
-          group: (group && group.name) || "",
+          group: "",
           section: (section && section.name) || "",
           sectionSlug: (section && section.slug) || ""
         };

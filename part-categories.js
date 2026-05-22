@@ -87,26 +87,24 @@
 
     return rows
       .filter(function (category) {
-        return Number(category.level) === 3;
+        return Number(category.level) === 2;
       })
       .map(function (category) {
-        var group = byId.get(category.parent_id);
-        var section = group && byId.get(group.parent_id);
+        var section = byId.get(category.parent_id);
         return {
           name: category.name,
           slug: category.slug,
           image: categoryImageUrl({
             name: category.name,
-            group: (group && group.name) || "",
+            group: "",
             section: (section && section.name) || ""
           }),
           fallbackImage: fallbackImage(category),
-          group: (group && group.name) || "",
+          group: "",
           section: (section && section.name) || "",
           sectionSlug: (section && section.slug) || "",
           sortKey: [
             section ? String(section.sort_order).padStart(4, "0") : "9999",
-            group ? String(group.sort_order).padStart(4, "0") : "9999",
             String(category.sort_order || 0).padStart(4, "0"),
             category.name
           ].join("|")
