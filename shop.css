@@ -1566,31 +1566,29 @@
   display: inline-flex;
   align-items: center;
   width: fit-content;
-  max-width: 9.5rem;
-  min-height: 2rem;
-  padding: 0.18rem 0.4rem;
-  border: 1px solid rgba(255, 152, 0, 0.34);
-  border-radius: var(--shop-radius);
-  background: #ffffff;
+  max-width: 6.8rem;
+  min-height: 1.45rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
 }
 
 .product-brand-badge img {
   display: block;
-  width: 8rem;
+  width: 6.4rem;
   max-width: 100%;
   height: auto;
   object-fit: contain;
 }
 
 .product-brand-badge--detail {
-  max-width: 14rem;
-  min-height: 2.7rem;
-  margin: 0.45rem 0 0.75rem;
-  padding: 0.25rem 0.55rem;
+  max-width: 9.5rem;
+  min-height: 1.9rem;
+  margin: 0.35rem 0 0.6rem;
 }
 
 .product-brand-badge--detail img {
-  width: 12rem;
+  width: 9rem;
 }
 
 .product-name {
