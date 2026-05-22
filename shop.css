@@ -1092,6 +1092,11 @@
   padding: 5rem 1rem 1rem;
 }
 
+.part-category-image-copy .make-name {
+  font-family: "Share Tech", monospace;
+  letter-spacing: 0.02em;
+}
+
 .all-categories-grid .part-category-list-card:hover .part-category-image {
   transform: scale(1.04);
 }
