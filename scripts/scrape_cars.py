@@ -61,6 +61,111 @@ DEFAULT_CSV = REPO_ROOT / "scripts" / "scraped_data.csv"
 HTTP_TIMEOUT = 30
 USER_AGENT = "spectrglobal-car-scraper/1.0 (+https://spectr.no)"
 
+# Spectr is currently European-only. Brands outside this allow-list are dropped
+# during scrape and skipped during upsert. Expand if/when the catalog grows.
+EUROPEAN_BRAND_SLUGS = {
+    "abarth", "alfa-romeo", "alpina", "alpine", "aston-martin", "audi", "bentley",
+    "bmw", "bugatti", "citroen", "cupra", "dacia", "donkervoort", "ds-automobiles",
+    "ferrari", "fiat", "jaguar", "koenigsegg", "lada", "lamborghini", "lancia",
+    "land-rover", "lotus", "maserati", "maybach", "mclaren", "mercedes-benz",
+    "mg", "mini", "morgan", "opel", "pagani", "peugeot", "polestar", "porsche",
+    "renault", "rimac", "rolls-royce", "rover", "saab", "seat", "skoda", "smart",
+    "spyker", "togg", "uaz", "vauxhall", "volkswagen", "volvo",
+}
+
+DEMO_PARTS = [
+    {
+        "id": "demo-bosch-front-brake-pads",
+        "name": "Bosch QuietCast Front Brake Pads",
+        "category": "Brakes",
+        "sku": "BOSCH-BP-F-001",
+        "price": 69.00,
+        "stock": 25,
+        "description": "Ceramic front brake pads with low-dust formula. Demo catalog entry — replace with real product copy when ready.",
+    },
+    {
+        "id": "demo-bosch-rear-brake-pads",
+        "name": "Bosch QuietCast Rear Brake Pads",
+        "category": "Brakes",
+        "sku": "BOSCH-BP-R-001",
+        "price": 59.00,
+        "stock": 25,
+        "description": "Ceramic rear brake pads. Demo catalog entry.",
+    },
+    {
+        "id": "demo-philips-h7-headlight",
+        "name": "Philips X-tremeVision Pro150 H7",
+        "category": "Lighting",
+        "sku": "PHILIPS-H7-PRO150",
+        "price": 39.00,
+        "stock": 40,
+        "description": "High-output halogen H7 bulb with 150% more brightness vs standard. Demo catalog entry.",
+    },
+    {
+        "id": "demo-philips-tail-bulb",
+        "name": "Philips LongLife P21W Tail Bulb",
+        "category": "Lighting",
+        "sku": "PHILIPS-P21W-LL",
+        "price": 8.00,
+        "stock": 80,
+        "description": "Long-life rear / brake bulb. Demo catalog entry.",
+    },
+    {
+        "id": "demo-castrol-edge-5w30-5l",
+        "name": "Castrol EDGE 5W-30 Fully Synthetic 5L",
+        "category": "Oils",
+        "sku": "CASTROL-EDGE-5W30-5L",
+        "price": 59.00,
+        "stock": 35,
+        "description": "Fully synthetic engine oil. Suitable for most modern petrol and diesel engines requiring 5W-30. Demo catalog entry.",
+    },
+    {
+        "id": "demo-kyb-front-shock",
+        "name": "KYB Excel-G Front Shock Absorber",
+        "category": "Suspension",
+        "sku": "KYB-EXG-F-001",
+        "price": 119.00,
+        "stock": 18,
+        "description": "Gas-charged front shock absorber with OE-matched valving. Demo catalog entry.",
+    },
+    {
+        "id": "demo-luk-clutch-kit",
+        "name": "LuK RepSet 3-Piece Clutch Kit",
+        "category": "Transmission",
+        "sku": "LUK-REPSET-3PC",
+        "price": 249.00,
+        "stock": 8,
+        "description": "Complete clutch kit including cover, disc and release bearing. Demo catalog entry.",
+    },
+    {
+        "id": "demo-mann-air-filter",
+        "name": "Mann-Filter Air Filter Element",
+        "category": "Filters",
+        "sku": "MANN-AF-001",
+        "price": 24.00,
+        "stock": 50,
+        "description": "Premium engine air filter element. Demo catalog entry.",
+    },
+    {
+        "id": "demo-ngk-iridium-spark-plug",
+        "name": "NGK Iridium IX Spark Plug",
+        "category": "Engine",
+        "sku": "NGK-IRIDIUM-IX",
+        "price": 14.00,
+        "stock": 100,
+        "description": "Long-life iridium spark plug for petrol engines. Demo catalog entry.",
+    },
+    {
+        "id": "demo-bosch-aerotwin-wipers",
+        "name": "Bosch Aerotwin Wiper Blade Pair",
+        "category": "Body",
+        "sku": "BOSCH-AT-PAIR",
+        "price": 39.00,
+        "stock": 45,
+        "description": "Aerodynamic flat wiper blade pair. Demo catalog entry.",
+    },
+]
+
 logger = logging.getLogger("spectr.scrape_cars")
 
 
@@ -264,17 +369,27 @@ def collect_records(brand_limit: Optional[int]) -> List[CarRecord]:
 
     brand_pool: List[str] = []
     seen_slugs: set[str] = set()
+    skipped_non_european: List[str] = []
     for source_list in (carquery_makes, nhtsa_makes, wiki_brands):
         for brand in source_list:
             slug = slugify(brand)
             if not slug or slug in seen_slugs:
                 continue
             seen_slugs.add(slug)
+            if slug not in EUROPEAN_BRAND_SLUGS:
+                skipped_non_european.append(brand)
+                continue
             brand_pool.append(brand)
+
+    if skipped_non_european:
+        logger.info(
+            "Skipping %s non-European brands (catalog is European-only).",
+            len(skipped_non_european),
+        )
 
     if brand_limit:
         brand_pool = brand_pool[:brand_limit]
-    logger.info("Resolving models for %s unique brands …", len(brand_pool))
+    logger.info("Resolving models for %s European brands …", len(brand_pool))
 
     for index, brand in enumerate(brand_pool, 1):
         records: List[CarRecord] = []
@@ -423,56 +538,46 @@ def upsert_models(client: "Client", records: List[CarRecord], make_ids: Dict[str
 
 
 def seed_example_parts(client: "Client", make_ids: Dict[str, str]) -> Tuple[int, int]:
-    if not make_ids:
-        return (0, 0)
-
-    makes = client.table("makes").select("id, slug, name").in_("slug", list(make_ids.keys())).execute().data or []
+    """Seed a small realistic demo catalog and link each part to every European model."""
     parts_payload = []
-    for make in makes:
-        slug = make.get("slug")
-        name = make.get("name")
-        if not slug or not name:
-            continue
-        sku = re.sub(r"[^A-Z0-9]", "", name.upper()) + "-STARTER-001"
+    for part in DEMO_PARTS:
         parts_payload.append({
-            "id": f"example-{slug}-starter-kit",
-            "name": f"Starter Service Kit — {name}",
-            "category": "Service Kits",
-            "sku": sku,
-            "price": 49.00,
-            "stock": 10,
-            "description": (
-                f"Example part used to test the parts-by-vehicle search for {name} "
-                "vehicles. Replace with real catalog entries when ready."
-            ),
+            "id": part["id"],
+            "name": part["name"],
+            "category": part["category"],
+            "sku": part["sku"],
+            "price": part["price"],
+            "stock": part["stock"],
+            "description": part["description"],
             "delivery_time": "2-5 days",
-            "vehicles": [{"brand": name, "model": "All models"}],
+            "vehicles": [],
             "active": True,
         })
 
     if parts_payload:
         client.table("parts").upsert(parts_payload, on_conflict="id").execute()
 
+    european_make_ids = list(make_ids.values()) if make_ids else []
+    if not european_make_ids:
+        return (len(parts_payload), 0)
+
     models = (
         client.table("models")
-        .select("id, make_id")
-        .in_("make_id", [make["id"] for make in makes])
+        .select("id")
+        .in_("make_id", european_make_ids)
         .execute()
         .data
         or []
     )
-    make_slug_by_id = {make["id"]: make.get("slug") for make in makes}
 
     join_payload = []
     for model in models:
-        slug = make_slug_by_id.get(model.get("make_id"))
-        if not slug:
-            continue
-        join_payload.append({
-            "model_id": model["id"],
-            "part_id": f"example-{slug}-starter-kit",
-            "notes": "Auto-seeded example linking",
-        })
+        for part in DEMO_PARTS:
+            join_payload.append({
+                "model_id": model["id"],
+                "part_id": part["id"],
+                "notes": "Demo catalog link",
+            })
 
     inserted = 0
     for start in range(0, len(join_payload), 500):

@@ -1,8 +1,10 @@
 # Car brands & models scraper
 
-Populate `public.makes`, `public.models`, and (optionally) seed one example part per make plus the `vehicle_parts_compatibility` join table.
+Populate `public.makes`, `public.models`, and (optionally) seed a small realistic demo catalog plus the `vehicle_parts_compatibility` join table.
 
 The script is **idempotent** — it matches existing rows by slug (`makes`) and by `(make_id, name)` (`models`), so re-runs only add new data.
+
+> **European-only catalog.** The scraper filters every scraped brand against `EUROPEAN_BRAND_SLUGS` in `scrape_cars.py` and skips anything else (American / Asian brands are dropped). Edit that set if you ever want to expand the catalog.
 
 ## Workflow
 
@@ -63,7 +65,7 @@ Full run — write CSV **and** upsert into Supabase:
 python scripts/scrape_cars.py
 ```
 
-Also seed one example part per make and link it to every model (so you can immediately test "search car → see parts" on the site):
+Also seed the realistic demo catalog (Bosch brake pads, Philips bulbs, Castrol EDGE 5W-30, KYB shock, LuK clutch kit, Mann air filter, NGK spark plug, Bosch Aerotwin wipers) and link every demo part to every European model so you can immediately test "search car → see parts" on the site:
 
 ```powershell
 python scripts/scrape_cars.py --seed-examples
