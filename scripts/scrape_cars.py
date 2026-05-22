@@ -91,6 +91,16 @@ BRAND_LOGO_URLS = {
     "uaz": "https://raw.githubusercontent.com/vehiclespecs/brand-logos/v1.0.0/uaz-logo.png",
 }
 
+MODEL_IMAGE_URLS = {
+    ("volkswagen", "amarok"): "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Volkswagen_Amarok_2.0_TDi_Power_2012_%2816629262580%29.jpg/330px-Volkswagen_Amarok_2.0_TDi_Power_2012_%2816629262580%29.jpg",
+    ("volkswagen", "arteon"): "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/VW_Volkswagen_Arteon.jpg/330px-VW_Volkswagen_Arteon.jpg",
+    ("volkswagen", "caddy"): "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Volkswagen_Caddy_Kombi_1.6_TDi_Trendline_2017_%2837351248052%29.jpg/330px-Volkswagen_Caddy_Kombi_1.6_TDi_Trendline_2017_%2837351248052%29.jpg",
+    ("volkswagen", "golf"): "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/VW_Golf_VI_1.4_TSI_160PS_Comfortline_Reflexsilber.JPG/330px-VW_Golf_VI_1.4_TSI_160PS_Comfortline_Reflexsilber.JPG",
+    ("volkswagen", "id-3"): "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/2020_Volkswagen_ID.3_1st_Side.jpg/330px-2020_Volkswagen_ID.3_1st_Side.jpg",
+    ("volkswagen", "id-4"): "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Volkswagen_ID.4_-_black.jpg/330px-Volkswagen_ID.4_-_black.jpg",
+    ("volkswagen", "id-5"): "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Grey_VW_ID.5_%28side%29.jpg/330px-Grey_VW_ID.5_%28side%29.jpg",
+}
+
 DEMO_PARTS = [
     {
         "id": "demo-bosch-front-brake-pads",
@@ -548,6 +558,7 @@ def upsert_models(client: "Client", records: List[CarRecord], make_ids: Dict[str
                 "year_from": record.start_year,
                 "year_to": record.end_year,
                 "body_type": record.body_type,
+                "image_url": MODEL_IMAGE_URLS.get((record.brand_slug, slugify(record.model_name))),
             })
 
         for batch_start in range(0, len(to_insert), 500):

@@ -61,11 +61,9 @@
           return (
             '<a class="brand-model-card" href="index.html?make=' + encodeURIComponent(make.slug || make.name) +
               '&model=' + encodeURIComponent(model.name) + '#finder-vehicle-form">' +
-              '<span class="brand-model-photo">' +
-                (imageUrl
-                  ? '<img src="' + escapeHtml(imageUrl) + '" alt="" loading="lazy" decoding="async">'
-                  : '<span class="brand-model-photo-empty" aria-hidden="true"></span>') +
-              '</span>' +
+              (imageUrl
+                ? '<span class="brand-model-photo"><img src="' + escapeHtml(imageUrl) + '" alt="" loading="lazy" decoding="async"></span>'
+                : "") +
               '<span class="brand-model-copy">' +
                 '<strong>' + escapeHtml(model.name) + '</strong>' +
               '</span>' +
