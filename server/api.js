@@ -258,6 +258,7 @@ function partFromRow(row) {
     id: row.id,
     name: row.name,
     category: row.category || "Other",
+    brand: row.brand || "",
     sku: row.sku || "",
     article_number: row.article_number || row.sku || "",
     ean_code: row.ean_code || "",
@@ -271,6 +272,14 @@ function partFromRow(row) {
     specifications: Array.isArray(row.specifications) ? row.specifications : [],
     vehicles: Array.isArray(row.vehicles) ? row.vehicles : [],
   };
+}
+
+function continentalTyreFromRow(row) {
+  return partFromRow({
+    ...row,
+    brand: "Continental",
+    category: "Tyres",
+  });
 }
 
 function normalizeCatalogKey(value) {
@@ -553,6 +562,24 @@ async function fetchTyreSizeParts() {
   return Array.from(groups.entries()).map(([key, rows]) => tyrePartFromGroup(key, rows));
 }
 
+async function fetchContinentalTyreParts(activeOnly) {
+  let query = getReadClient()
+    .from("continental_tyres")
+    .select("id, name, sku, price, stock, description, image_url, features, reviews, article_number, ean_code, delivery_time, specifications, vehicles, active")
+    .order("name", { ascending: true });
+
+  if (activeOnly) query = query.eq("active", true);
+
+  const { data, error } = await query;
+
+  if (error) {
+    if (error.code === "42P01") return [];
+    throw error;
+  }
+
+  return (data || []).map(continentalTyreFromRow);
+}
+
 function oilFitmentVehicle(row) {
   const modelValue = row && row.models;
   const model = Array.isArray(modelValue) ? modelValue[0] : modelValue;
@@ -660,13 +687,15 @@ async function loadCatalogParts(activeOnly, limit) {
 
   if (error) throw error;
 
-  const [oilParts, brakeParts] = await Promise.all([
+  const [continentalTyreParts, oilParts, brakeParts] = await Promise.all([
+    fetchContinentalTyreParts(activeOnly),
     fetchOilProductParts(activeOnly),
     fetchBrakeProductParts(activeOnly),
   ]);
 
   return dedupeCatalogParts([
     ...(data || []).map(partFromRow),
+    ...continentalTyreParts,
     ...oilParts,
     ...brakeParts,
   ]).slice(0, limit);

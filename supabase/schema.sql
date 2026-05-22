@@ -437,6 +437,44 @@ create index if not exists parts_active_category_idx
   on public.parts (active, category)
   where active = true;
 
+-- Dedicated Continental tyre catalog (kept separate from the generic parts table).
+create table if not exists public.continental_tyres (
+  id text primary key,
+  name text not null,
+  sku text,
+  price numeric(12, 2) not null default 0 check (price >= 0),
+  stock integer not null default 0 check (stock >= 0),
+  description text,
+  image_url text,
+  article_number text,
+  ean_code text,
+  delivery_time text not null default '2-5 days',
+  features jsonb not null default '[]'::jsonb,
+  reviews jsonb not null default '[]'::jsonb,
+  specifications jsonb not null default '[]'::jsonb,
+  vehicles jsonb not null default '[]'::jsonb,
+  active boolean not null default true,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now(),
+  constraint continental_tyres_name_len check (char_length(trim(name)) between 1 and 200),
+  constraint continental_tyres_features_is_array check (jsonb_typeof(features) = 'array'),
+  constraint continental_tyres_reviews_is_array check (jsonb_typeof(reviews) = 'array'),
+  constraint continental_tyres_specifications_is_array check (jsonb_typeof(specifications) = 'array'),
+  constraint continental_tyres_vehicles_is_array check (jsonb_typeof(vehicles) = 'array')
+);
+
+alter table public.continental_tyres enable row level security;
+
+drop policy if exists "Public can read active continental tyres" on public.continental_tyres;
+create policy "Public can read active continental tyres"
+  on public.continental_tyres
+  for select
+  to anon, authenticated
+  using (active = true);
+
+create index if not exists idx_continental_tyres_active_name
+  on public.continental_tyres(active, name);
+
 -- OEM tyre fitment seed data. Multiple rows per model represent multiple OEM size options.
 insert into public.car_tyre_fitment (
   model_id,
