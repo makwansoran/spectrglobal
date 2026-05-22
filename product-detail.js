@@ -50,6 +50,10 @@
     return new URLSearchParams(window.location.search).get("id") || "";
   }
 
+  function hideProductEyebrow(product) {
+    return product && product.id === "continental-contiprocontact";
+  }
+
   function cartLine(partId) {
     return Shop.getCart().find(function (line) { return line.partId === partId; });
   }
@@ -178,7 +182,7 @@
       '<div class="product-detail-card">' +
         renderProductMedia(product) +
         '<div class="product-detail-body">' +
-          '<p class="shop-eyebrow">' + categoryLabelHtml(product.category || "Car part") + '</p>' +
+          (hideProductEyebrow(product) ? '' : '<p class="shop-eyebrow">' + categoryLabelHtml(product.category || "Car part") + '</p>') +
           continentalBadgeHtml(product, "product-brand-badge--detail") +
           '<h1>' + escapeHtml(product.name) + '</h1>' +
           '<p class="product-detail-sku">' + escapeHtml(product.article_number || product.sku || product.id) + '</p>' +

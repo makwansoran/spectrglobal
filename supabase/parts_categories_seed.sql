@@ -57,8 +57,8 @@ join (values
   ('braking-system', 'Parking Brake', 'parking-brake', 30),
   ('braking-system', 'ABS & Brake Sensors', 'abs-brake-sensors', 40),
   ('wheels-tyres', 'Tyres', 'tyres', 10),
-  ('wheels-tyres', 'Wheels', 'wheels', 20),
-  ('wheels-tyres', 'Wheel Accessories & TPMS', 'wheel-accessories-tpms', 30),
+  ('wheels-tyres', 'Rims', 'rims', 20),
+  ('wheels-tyres', 'Other', 'wheels-tyres-other', 30),
   ('electrical-ignition', 'Ignition System', 'ignition-system', 10),
   ('electrical-ignition', 'Sensors', 'sensors', 20),
   ('electrical-ignition', 'Charging & Starting', 'charging-starting', 30),
@@ -79,5 +79,14 @@ join (values
   ('service-maintenance', 'Tools & Diagnostics', 'tools-diagnostics', 40)
 ) as v(parent_slug, name, slug, sort_order)
 on p.slug = v.parent_slug;
+
+update public.categories
+set image_url = case slug
+  when 'tyres' then 'assets/categories/tyres.png'
+  when 'rims' then 'assets/categories/rims.png'
+  when 'wheels-tyres-other' then 'assets/categories/wheels-other.png'
+  else image_url
+end
+where slug in ('tyres', 'rims', 'wheels-tyres-other');
 
 commit;

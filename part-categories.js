@@ -22,9 +22,37 @@
       .replace(/^-+|-+$/g, "") || "other";
   }
 
-  function hasTyresLabel(label) {
-    return /\b(?:tyres|tires)\b/i.test(String(label || ""));
-  }
+  var WHEELS_TYRES_SECTION = {
+    name: "Wheels & Tyres",
+    slug: "wheels-tyres"
+  };
+
+  var WHEELS_TYRES_OPTIONS = [
+    {
+      name: "Tyres",
+      slug: "tyres",
+      aliases: ["tyres", "tires"],
+      hrefCategory: "Tires",
+      image: "assets/categories/tyres.png",
+      sortOrder: 10
+    },
+    {
+      name: "Rims",
+      slug: "rims",
+      aliases: ["rims", "wheels"],
+      hrefCategory: "Rims",
+      image: "assets/categories/rims.png",
+      sortOrder: 20
+    },
+    {
+      name: "Other",
+      slug: "wheels-tyres-other",
+      aliases: ["wheels-tyres-other", "wheel-accessories-tpms", "other"],
+      hrefCategory: "Other",
+      image: "assets/categories/wheels-other.png",
+      sortOrder: 30
+    }
+  ];
 
   function categoryNameHtml(label) {
     return '<span class="make-name">' + escapeHtml(label) + "</span>";
@@ -77,6 +105,51 @@
     return (category && category.image_url) || fallbackImage(category);
   }
 
+  function wheelsTyresOption(category) {
+    var key = categorySlug((category && category.slug) || (category && category.name));
+    return WHEELS_TYRES_OPTIONS.find(function (option) {
+      return option.aliases.indexOf(key) !== -1;
+    }) || null;
+  }
+
+  function wheelsTyresCategory(option) {
+    return {
+      name: option.name,
+      slug: option.slug,
+      hrefCategory: option.hrefCategory,
+      image: option.image,
+      fallbackImage: fallbackImage({
+        name: option.name,
+        section: WHEELS_TYRES_SECTION.name
+      }),
+      group: "",
+      section: WHEELS_TYRES_SECTION.name,
+      sectionSlug: WHEELS_TYRES_SECTION.slug,
+      sortKey: [
+        "0070",
+        String(option.sortOrder).padStart(4, "0"),
+        option.name
+      ].join("|")
+    };
+  }
+
+  function ensureWheelsTyresOptions(categories) {
+    var existing = new Set();
+    var normalized = categories.map(function (category) {
+      if (normalizeSearch(category.sectionSlug) !== WHEELS_TYRES_SECTION.slug) return category;
+      var option = wheelsTyresOption(category);
+      if (!option) return category;
+      existing.add(option.slug);
+      return wheelsTyresCategory(option);
+    });
+
+    WHEELS_TYRES_OPTIONS.forEach(function (option) {
+      if (!existing.has(option.slug)) normalized.push(wheelsTyresCategory(option));
+    });
+
+    return normalized;
+  }
+
   function fetchCategories() {
     return fetch("/api/categories?limit=600", { headers: { Accept: "application/json" } })
       .then(function (res) {
@@ -93,12 +166,9 @@
       byId.set(category.id, category);
     });
 
-    return rows
+    return ensureWheelsTyresOptions(rows
       .filter(function (category) {
         return Number(category.level) === 2;
-      })
-      .filter(function (category) {
-        return !hasTyresLabel(category.name);
       })
       .map(function (category) {
         var section = byId.get(category.parent_id);
@@ -121,7 +191,7 @@
             category.name
           ].join("|")
         };
-      })
+      }))
       .sort(function (a, b) {
         return a.sortKey.localeCompare(b.sortKey);
       });
@@ -154,7 +224,7 @@
     }
 
     node.innerHTML = filtered.map(function (category) {
-      var href = "part-category.html?category=" + encodeURIComponent(category.name);
+      var href = "part-category.html?category=" + encodeURIComponent(category.hrefCategory || category.name);
       var details = [category.section, category.group].filter(Boolean).join(" · ") || "Parts category";
       var detailsHtml = '<small>' + escapeHtml(details) + "</small>";
       return (
