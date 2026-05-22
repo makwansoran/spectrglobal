@@ -43,11 +43,20 @@
     return String(model.image_url || model.profile_image_url || model.photo_url || "").trim();
   }
 
-  function renderModelCards(make, models) {
+  function filterModels(models, query) {
+    var q = normalize(query);
+    if (!q) return models;
+    return models.filter(function (model) {
+      return normalize(model.name).indexOf(q) !== -1;
+    });
+  }
+
+  function renderModelCards(make, models, query) {
     var modelGrid = $("brand-model-grid");
+    var filteredModels = filterModels(models, query);
     if (!modelGrid) return;
-    modelGrid.innerHTML = models.length
-      ? models.map(function (model) {
+    modelGrid.innerHTML = filteredModels.length
+      ? filteredModels.map(function (model) {
           var imageUrl = modelImageUrl(model);
           return (
             '<a class="brand-model-card" href="index.html?make=' + encodeURIComponent(make.slug || make.name) +
@@ -63,7 +72,7 @@
             '</a>'
           );
         }).join("")
-      : '<p class="make-grid-status">No supported models are listed for this brand yet.</p>';
+      : '<p class="make-grid-status">' + (query ? "No models match your search." : "No supported models are listed for this brand yet.") + '</p>';
   }
 
   function updateModelScrollButtons() {
@@ -97,6 +106,26 @@
     updateModelScrollButtons();
   }
 
+  function bindModelSearch(make, models) {
+    var form = document.querySelector(".brand-model-search");
+    var input = $("brand-model-search-input");
+    var modelGrid = $("brand-model-grid");
+    if (!input || !modelGrid) return;
+
+    if (form) {
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+      });
+    }
+
+    input.addEventListener("input", function () {
+      renderModelCards(make, models, input.value);
+      $("brand-model-count").textContent = String(filterModels(models, input.value).length);
+      modelGrid.scrollLeft = 0;
+      updateModelScrollButtons();
+    });
+  }
+
   function renderPartCards(parts) {
     var partsGrid = $("brand-parts-grid");
     if (!partsGrid) return;
@@ -124,6 +153,7 @@
     document.title = make.name + " Parts | Spectr";
     $("brand-model-count").textContent = String(models.length);
     renderModelCards(make, models);
+    bindModelSearch(make, models);
     updateModelScrollButtons();
     renderPartCards(parts);
   }
