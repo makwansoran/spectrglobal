@@ -103,21 +103,17 @@
     return count > 99 ? "99+ in stock" : count + " in stock";
   }
 
-  function renderProductFacts(product) {
-    var facts = [
-      product.article_number ? ["Article number", product.article_number] : null,
-      product.sku ? ["SKU", product.sku] : null,
-      ["EAN", product.ean_code],
-      ["Delivery", product.delivery_time || "2-5 days"],
-    ].filter(function (fact) { return fact && fact[1]; });
-    if (!facts.length) return "";
-    return '<dl class="product-detail-facts">' + facts.map(function (fact) {
-      return '<div><dt>' + escapeHtml(fact[0]) + '</dt><dd>' + escapeHtml(fact[1]) + '</dd></div>';
-    }).join("") + '</dl>';
+  function productFactSpecs(product) {
+    return [
+      product.article_number ? { label: "Article number", value: product.article_number } : null,
+      product.sku ? { label: "SKU", value: product.sku } : null,
+      product.ean_code ? { label: "EAN", value: product.ean_code } : null,
+      { label: "Delivery", value: product.delivery_time || "2-5 days" },
+    ].filter(function (fact) { return fact && fact.value; });
   }
 
   function renderSpecifications(product) {
-    var specs = Array.isArray(product.specifications) ? product.specifications : [];
+    var specs = (Array.isArray(product.specifications) ? product.specifications : []).concat(productFactSpecs(product));
     if (!specs.length) return "";
     return (
       '<section class="product-detail-section product-detail-section--overview">' +
@@ -242,9 +238,7 @@
           (hideProductEyebrow(product) ? '' : '<p class="shop-eyebrow">' + categoryLabelHtml(product.category || "Car part") + '</p>') +
           brandBadgeHtml(product, "product-brand-badge--detail", true) +
           '<h1>' + escapeHtml(product.name) + '</h1>' +
-          '<p class="product-detail-sku">' + escapeHtml(product.article_number || product.sku || product.id) + '</p>' +
           '<p class="product-detail-description">' + escapeHtml(product.description || "Product details are generated from the Spectr compatibility catalog.") + '</p>' +
-          renderProductFacts(product) +
           '<div class="product-detail-buy">' +
             '<strong>' + escapeHtml(Shop.formatNok(product.price || 0)) + '</strong>' +
             (outOfStock ? '' : '<span class="is-in">' + escapeHtml(stockLabel(product.stock)) + '</span>') +
