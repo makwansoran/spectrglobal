@@ -126,7 +126,7 @@
 
 /* ── Hero ───────────────────────────────────────────────── */
 .shop-hero {
-  padding: clamp(2rem, 5vw, 4.5rem) clamp(1rem, 4vw, 4.5rem) clamp(1.5rem, 3vw, 3rem);
+  padding: clamp(0.6rem, 1.5vw, 1.25rem) clamp(1rem, 4vw, 4.5rem) clamp(1.5rem, 3vw, 3rem);
   background: #ffffff;
   border-bottom: 1px solid var(--shop-line);
 }
@@ -466,7 +466,7 @@
   border-radius: var(--shop-radius-lg);
   background: #0a0c10;
   color: #ffffff;
-  min-height: clamp(20rem, 30vw, 28rem);
+  min-height: clamp(28rem, 44vw, 42rem);
   box-shadow: 0 24px 60px rgba(10, 12, 16, 0.12);
 }
 
@@ -786,7 +786,7 @@
 .all-brands-hero {
   max-width: 920px;
   margin: 0 auto;
-  padding: clamp(3rem, 7vw, 6rem) clamp(1rem, 4vw, 4.5rem) clamp(1.5rem, 3vw, 2.5rem);
+  padding: clamp(0.9rem, 2vw, 1.5rem) clamp(1rem, 4vw, 4.5rem) clamp(1.5rem, 3vw, 2.5rem);
   text-align: center;
 }
 
@@ -966,7 +966,7 @@
 .brand-page-shell {
   max-width: 1440px;
   margin: 0 auto;
-  padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 4.5rem) clamp(3rem, 6vw, 6rem);
+  padding: clamp(0.9rem, 2vw, 1.5rem) clamp(1rem, 4vw, 4.5rem) clamp(3rem, 6vw, 6rem);
 }
 
 .brand-fit-catalog {
@@ -984,7 +984,7 @@
 .brand-hero {
   max-width: 1180px;
   margin: 0 auto;
-  padding: clamp(3rem, 7vw, 6rem) clamp(1rem, 4vw, 4.5rem) clamp(1.5rem, 3vw, 2.5rem);
+  padding: clamp(0.9rem, 2vw, 1.5rem) clamp(1rem, 4vw, 4.5rem) clamp(1.5rem, 3vw, 2.5rem);
 }
 
 .brand-back-link {
@@ -1667,7 +1667,7 @@
 .category-page-shell {
   max-width: 1440px;
   margin: 0 auto;
-  padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 4.5rem) clamp(3rem, 6vw, 6rem);
+  padding: clamp(0.9rem, 2vw, 1.5rem) clamp(1rem, 4vw, 4.5rem) clamp(3rem, 6vw, 6rem);
 }
 
 .category-fit-products {
@@ -1969,7 +1969,7 @@
 .inspiration-hero {
   max-width: 960px;
   margin: 0 auto;
-  padding: clamp(3rem, 7vw, 6rem) clamp(1rem, 4vw, 4.5rem) clamp(1.5rem, 3vw, 2.5rem);
+  padding: clamp(0.9rem, 2vw, 1.5rem) clamp(1rem, 4vw, 4.5rem) clamp(1.5rem, 3vw, 2.5rem);
   text-align: center;
 }
 
@@ -2127,7 +2127,7 @@
 .product-detail {
   max-width: 1280px;
   margin: 0 auto;
-  padding: clamp(3rem, 7vw, 6rem) clamp(1rem, 4vw, 4.5rem) clamp(1.5rem, 3vw, 2.5rem);
+  padding: clamp(0.9rem, 2vw, 1.5rem) clamp(1rem, 4vw, 4.5rem) clamp(1.5rem, 3vw, 2.5rem);
 }
 
 .product-detail-card {
@@ -2494,7 +2494,7 @@
   display: grid;
   place-items: center;
   min-height: clamp(26rem, 62vh, 42rem);
-  padding: clamp(4rem, 10vw, 7rem) clamp(1rem, 4vw, 4.5rem);
+  padding: clamp(1rem, 2.5vw, 1.75rem) clamp(1rem, 4vw, 4.5rem) clamp(4rem, 10vw, 7rem);
   background:
     radial-gradient(circle at 20% 10%, rgba(249, 115, 22, 0.1), transparent 30%),
     linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
@@ -2817,7 +2817,7 @@
 .checkout-hero {
   max-width: 1180px;
   margin: 0 auto;
-  padding: clamp(3rem, 7vw, 6rem) clamp(1rem, 4vw, 4.5rem) clamp(1.5rem, 3vw, 2.5rem);
+  padding: clamp(0.9rem, 2vw, 1.5rem) clamp(1rem, 4vw, 4.5rem) clamp(1.5rem, 3vw, 2.5rem);
 }
 
 .checkout-hero h1 {
@@ -3006,7 +3006,7 @@
 
 .checkout-page {
   background: #f3f6fa;
-  padding: clamp(1.25rem, 3vw, 2.75rem) 0 clamp(3rem, 6vw, 5rem);
+  padding: clamp(0.6rem, 1.5vw, 1.25rem) 0 clamp(3rem, 6vw, 5rem);
 }
 
 .checkout-shell {
