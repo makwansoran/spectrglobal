@@ -192,15 +192,6 @@
     if (!grid) return;
 
     var sectionSlug = selectedSection();
-    var nav = window.SpectrShopNav;
-
-    if (nav) {
-      nav.mountSidebar("shop-category-sidebar", {
-        useLinks: true,
-        activeKey: sectionSlug ? null : "all",
-        activeSection: sectionSlug
-      });
-    }
 
     fetchCategories()
       .then(function (rows) {

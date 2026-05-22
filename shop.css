@@ -2,8 +2,8 @@
 
 :root {
   --shop-bg: #ffffff;
-  --shop-surface: #f6f7f8;
-  --shop-surface-2: #fafafa;
+  --shop-surface: #ffffff;
+  --shop-surface-2: #ffffff;
   --shop-ink: #0a0c10;
   --shop-muted: rgba(10, 12, 16, 0.62);
   --shop-line: rgba(10, 12, 16, 0.12);
@@ -20,9 +20,23 @@
 }
 
 .shop-page {
-  background: var(--shop-bg);
+  background: #ffffff;
   color: var(--shop-ink);
   font-family: var(--shop-sans);
+}
+
+.shop-page main,
+.shop-page .category-page-shell,
+.shop-page .catalog-editorial,
+.shop-page .shop-hero,
+.shop-page .parts-categories,
+.shop-page .all-brands-page,
+.shop-page .brand-fit-form,
+.shop-page .catalog-empty,
+.shop-page .product-image,
+.shop-page .cart-drawer,
+.shop-page .cart-drawer-foot {
+  background: #ffffff;
 }
 
 .shop-page *,
@@ -113,8 +127,7 @@
 /* ── Hero ───────────────────────────────────────────────── */
 .shop-hero {
   padding: clamp(2rem, 5vw, 4.5rem) clamp(1rem, 4vw, 4.5rem) clamp(1.5rem, 3vw, 3rem);
-  background:
-    linear-gradient(180deg, #ffffff 0%, #f3f5f8 100%);
+  background: #ffffff;
   border-bottom: 1px solid var(--shop-line);
 }
 
@@ -235,7 +248,7 @@
 
 #finder-plate:focus {
   outline: none;
-  background: #fafbfc;
+  background: #ffffff;
 }
 
 .btn {
@@ -476,7 +489,7 @@
 }
 
 .promo-slide a:hover {
-  background: #f0f2f5;
+  background: #ffffff;
 }
 
 .promo-dots {
@@ -655,9 +668,7 @@
   justify-content: center;
   border: 1px solid var(--shop-line);
   border-radius: 999px;
-  background:
-    radial-gradient(circle at 30% 20%, rgba(31, 111, 235, 0.16), transparent 1.2rem),
-    #f8fafc;
+  background: #ffffff;
   color: var(--shop-ink);
   font-family: var(--shop-mono);
   font-size: 0.75rem;
@@ -1002,7 +1013,7 @@
   padding: 1rem;
   border: 1px solid var(--shop-line);
   border-radius: calc(var(--shop-radius-lg) - 0.4rem);
-  background: var(--shop-surface);
+  background: #ffffff;
 }
 
 .brand-fit-head h2 {
@@ -1199,9 +1210,7 @@
   justify-content: space-between;
   gap: 1.1rem;
   padding: 1.15rem;
-  background:
-    radial-gradient(circle at 80% 10%, rgba(10, 12, 16, 0.05), transparent 38%),
-    #ffffff;
+  background: #ffffff;
   color: var(--shop-ink);
   text-decoration: none;
   transition: background 0.15s, transform 0.15s;
@@ -1295,7 +1304,7 @@
   padding: clamp(3rem, 6vw, 6rem) clamp(1rem, 4vw, 4.5rem);
   display: grid;
   gap: clamp(2rem, 4vw, 4rem);
-  background: var(--shop-surface, #f3f5f8);
+  background: #ffffff;
   border-top: 1px solid var(--shop-line);
   border-bottom: 1px solid var(--shop-line);
 }
@@ -1409,7 +1418,7 @@
 .product-image {
   position: relative;
   aspect-ratio: 4 / 3;
-  background: var(--shop-surface);
+  background: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1422,12 +1431,7 @@
 }
 
 .product-image::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 70% 25%, rgba(31, 111, 235, 0.08), transparent 55%),
-    repeating-linear-gradient(45deg, rgba(10, 12, 16, 0.04) 0 1px, transparent 1px 14px);
+  content: none;
 }
 
 .product-image--has-image {
@@ -1556,9 +1560,9 @@
 }
 
 .product-add:disabled {
-  background: #d0d4d9;
-  border-color: #d0d4d9;
-  color: #ffffff;
+  background: #ffffff;
+  border-color: var(--shop-line-strong);
+  color: var(--shop-muted);
   cursor: not-allowed;
 }
 
@@ -1754,8 +1758,8 @@
 }
 
 .category-inspiration-copy .btn:hover {
-  border-color: #f3f4f6;
-  background: #f3f4f6;
+  border-color: #ffffff;
+  background: #ffffff;
   color: #0a0c10;
 }
 
@@ -2650,7 +2654,7 @@
 /* ── Checkout ─────────────────────────────────────────────── */
 .checkout-page {
   min-height: 100vh;
-  background: #f6f7f8;
+  background: #ffffff;
   padding-bottom: clamp(3rem, 6vw, 6rem);
 }
 

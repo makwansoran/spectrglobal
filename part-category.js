@@ -447,13 +447,6 @@
     state.category = selectedCategory();
     renderHero();
 
-    if (window.SpectrShopNav) {
-      window.SpectrShopNav.mountSidebar("shop-category-sidebar", {
-        useLinks: true,
-        activeCategory: state.category
-      });
-    }
-
     Promise.all([
       fetch("/api/makes?active=1&with_models=1&limit=300", { headers: { Accept: "application/json" } })
         .then(function (res) {

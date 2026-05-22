@@ -6,14 +6,14 @@
   var DEALS_LABEL = "Deals";
 
   var NAV_ITEMS = [
-    { key: "wheels", label: "Wheels & Tyres", icon: "◉", href: "part-categories.html?section=wheels-tyres", sectionSlug: "wheels-tyres" },
-    { key: "brakes", label: "Braking", icon: "▣", href: "part-categories.html?section=braking-system", sectionSlug: "braking-system" },
-    { key: "suspension", label: "Suspension", icon: "⌁", href: "part-categories.html?section=suspension-steering", sectionSlug: "suspension-steering" },
-    { key: "transmission", label: "Transmission", icon: "▱", href: "part-categories.html?section=transmission-drive", sectionSlug: "transmission-drive" },
-    { key: "engine", label: "Engine", icon: "⚙", href: "part-categories.html?section=engine-performance", sectionSlug: "engine-performance" },
-    { key: "cooling", label: "Cooling", icon: "▤", href: "part-categories.html?section=cooling-system", sectionSlug: "cooling-system" },
-    { key: "fuel-exhaust", label: "Fuel & Exhaust", icon: "◍", href: "part-categories.html?section=fuel-exhaust", sectionSlug: "fuel-exhaust" },
-    { key: "body", label: "Body & Interior", icon: "▰", href: "part-categories.html?section=body-interior-accessories", sectionSlug: "body-interior-accessories" }
+    { key: "wheels", label: "Wheels & Tyres", href: "part-categories.html?section=wheels-tyres", sectionSlug: "wheels-tyres" },
+    { key: "brakes", label: "Braking", href: "part-categories.html?section=braking-system", sectionSlug: "braking-system" },
+    { key: "suspension", label: "Suspension", href: "part-categories.html?section=suspension-steering", sectionSlug: "suspension-steering" },
+    { key: "transmission", label: "Transmission", href: "part-categories.html?section=transmission-drive", sectionSlug: "transmission-drive" },
+    { key: "engine", label: "Engine", href: "part-categories.html?section=engine-performance", sectionSlug: "engine-performance" },
+    { key: "cooling", label: "Cooling", href: "part-categories.html?section=cooling-system", sectionSlug: "cooling-system" },
+    { key: "fuel-exhaust", label: "Fuel & Exhaust", href: "part-categories.html?section=fuel-exhaust", sectionSlug: "fuel-exhaust" },
+    { key: "body", label: "Body & Interior", href: "part-categories.html?section=body-interior-accessories", sectionSlug: "body-interior-accessories" }
   ];
 
   function escapeHtml(value) {
@@ -145,8 +145,7 @@
       }
 
       return '<li><button type="button" class="' + active + '" data-sidebar-key="' + escapeHtml(entry.key) + '" data-href="' + escapeHtml(entry.href) + '">' + label + "</button></li>";
-    }).join("") +
-      '<li class="category-sidebar-more"><a class="category-sidebar-more-link" href="part-categories.html">More+</a></li>';
+    }).join("");
 
     if (!useLinks && !catalogMode) {
       container.addEventListener("click", function (event) {
