@@ -114,12 +114,38 @@
 
         <div class="category-page-layout">
           <div class="category-fit-products">
-            <aside class="brand-text-sidebar" aria-label="Car brands">
-              <p class="shop-eyebrow">Car brands</p>
-              <h2>Browse by brand</h2>
-              <div class="brand-sidebar-list" data-brand-sidebar-list data-makes-limit="300">
-                <p class="make-grid-status">Loading car brands...</p>
+            <aside class="cat-filter-sidebar" id="cat-filter-sidebar" aria-label="Filter products">
+
+              <div class="cat-filter-group" data-filter="brand">
+                <button type="button" class="cat-filter-toggle" aria-expanded="false">
+                  Tyre brand
+                  <svg class="cat-filter-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                    <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+                <div class="cat-filter-body" id="filter-body-brand"></div>
               </div>
+
+              <div class="cat-filter-group" data-filter="model">
+                <button type="button" class="cat-filter-toggle" aria-expanded="false">
+                  Car Model
+                  <svg class="cat-filter-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                    <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+                <div class="cat-filter-body" id="filter-body-model"></div>
+              </div>
+
+              <div class="cat-filter-group" data-filter="dimension">
+                <button type="button" class="cat-filter-toggle" aria-expanded="false">
+                  Dimension
+                  <svg class="cat-filter-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                    <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+                <div class="cat-filter-body" id="filter-body-dimension"></div>
+              </div>
+
             </aside>
 
             <div class="category-product-stack">
