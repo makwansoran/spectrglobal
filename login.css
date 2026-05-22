@@ -602,7 +602,7 @@
   margin-top: 1rem;
 }
 
-.create-account-page .auth-promo {
+.login-page .auth-promo {
   width: 520px;
   height: 560px;
   align-self: center;
@@ -610,11 +610,11 @@
   margin: 0;
 }
 
-.create-account-page .auth-promo-content {
+.login-page .auth-promo-content {
   max-width: 26rem;
 }
 
-.create-account-page .auth-promo h2 {
+.login-page .auth-promo h2 {
   font-size: 2.65rem;
 }
 
@@ -655,9 +655,13 @@
     margin-bottom: 1.5rem;
   }
 
+  .login-page .auth-promo,
   .create-account-page .auth-promo {
     width: auto;
     height: auto;
+  }
+
+  .create-account-page .auth-promo {
     min-height: 18rem;
   }
 
