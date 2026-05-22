@@ -89,7 +89,9 @@
           style += "background-position:" + escapeHtml(slide.imagePosition || "center") + ";";
         }
         if (slide.accent) style += "color:#ffffff;";
-        var copyHtml = slide.hideCopy ? "" : (
+        var copyHtml = slide.hideCopy ? (
+          slide.cta ? '<a class="promo-slide-image-cta" href="' + escapeHtml(slide.ctaHref || "#catalog") + '">' + escapeHtml(slide.cta) + '</a>' : ''
+        ) : (
           '<div class="promo-slide-inner">' +
             '<p class="promo-eyebrow">' + escapeHtml(slide.eyebrow || "Offer") + '</p>' +
             '<h3>' + escapeHtml(slide.title || "") + '</h3>' +

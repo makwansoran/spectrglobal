@@ -112,7 +112,7 @@
         eyebrow: "Continental tyres",
         title: "Engineered in Germany. Driven everywhere.",
         body: "",
-        cta: "",
+        cta: "See Collection",
         ctaHref: "part-category.html?category=Tires",
         image: "assets/hero/continental-engineered-germany.png",
         imagePosition: "center 38%",
@@ -186,6 +186,8 @@
       return [continentalSlide].concat(slides);
     }
     slides[idx] = Object.assign({}, slides[idx], {
+      cta: continentalSlide.cta,
+      ctaHref: continentalSlide.ctaHref,
       image: continentalSlide.image,
       imagePosition: continentalSlide.imagePosition,
       hideCopy: continentalSlide.hideCopy

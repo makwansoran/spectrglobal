@@ -660,6 +660,14 @@
   background: #ffffff;
 }
 
+.promo-slide .promo-slide-image-cta {
+  position: absolute;
+  left: clamp(1.7rem, 3vw, 3rem);
+  top: 55%;
+  z-index: 2;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
+}
+
 .promo-dots {
   position: absolute;
   bottom: 1rem;
