@@ -182,6 +182,7 @@ function categoryFromRow(row) {
     slug: row.slug,
     level: Number(row.level) || 0,
     icon: row.icon || "",
+    image_url: row.image_url || "",
     sort_order: Number(row.sort_order) || 0,
   };
 }
@@ -213,7 +214,7 @@ async function handleCategories(req, res) {
 
   let query = getReadClient()
     .from("categories")
-    .select("id, parent_id, name, slug, level, icon, sort_order")
+    .select("id, parent_id, name, slug, level, icon, image_url, sort_order")
     .order("level", { ascending: true })
     .order("sort_order", { ascending: true })
     .order("name", { ascending: true })
@@ -1412,6 +1413,7 @@ function cleanCategoryBody(body, partial) {
     if (level > 1 && !record.parent_id) return { error: "Subcategories need a parent category." };
   }
   if (!partial || source.icon != null) record.icon = String(source.icon || "").trim() || null;
+  if (!partial || source.image_url != null) record.image_url = String(source.image_url || "").trim() || null;
   if (!partial || source.sort_order != null) record.sort_order = parseInt(source.sort_order, 10) || 0;
   record.updated_at = new Date().toISOString();
   return { record };
@@ -1428,7 +1430,7 @@ async function handleAdminCatalog(req, res) {
       .order("name", { ascending: true }),
     getAdminClient()
       .from("categories")
-      .select("id, parent_id, name, slug, level, icon, sort_order")
+      .select("id, parent_id, name, slug, level, icon, image_url, sort_order")
       .order("level", { ascending: true })
       .order("sort_order", { ascending: true })
       .order("name", { ascending: true }),
@@ -1513,7 +1515,7 @@ async function handleAdminCategoryCreate(req, res, body) {
   const { data, error } = await getAdminClient()
     .from("categories")
     .insert({ ...cleaned.record, created_at: new Date().toISOString() })
-    .select("id, parent_id, name, slug, level, icon, sort_order")
+    .select("id, parent_id, name, slug, level, icon, image_url, sort_order")
     .single();
   if (error) {
     sendJson(res, error.code === "23505" ? 409 : 500, { error: error.message || "Could not create category." });
@@ -1535,7 +1537,7 @@ async function handleAdminCategoryUpdate(req, res, id, body) {
     .from("categories")
     .update(cleaned.record)
     .eq("id", id)
-    .select("id, parent_id, name, slug, level, icon, sort_order")
+    .select("id, parent_id, name, slug, level, icon, image_url, sort_order")
     .single();
   if (error) {
     sendJson(res, 500, { error: error.message || "Could not update category." });

@@ -8,6 +8,7 @@ create table if not exists public.categories (
   slug text not null unique,
   level integer not null,
   icon text,
+  image_url text,
   sort_order integer not null default 0,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now(),

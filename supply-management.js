@@ -452,7 +452,7 @@
   function filterCategories() {
     var query = state.filters.catalog.query.toLowerCase();
     return state.categories.filter(function (category) {
-      var haystack = [category.name, category.slug, categoryParentName(category.parent_id), category.level].join(" ").toLowerCase();
+      var haystack = [category.name, category.slug, categoryParentName(category.parent_id), category.level, category.image_url].join(" ").toLowerCase();
       return !query || haystack.indexOf(query) !== -1;
     });
   }
@@ -499,7 +499,7 @@
             }).join("") +
           '</select></td>' +
           '<td><select class="status-select" data-category-field="parent_id">' + categoryParentOptions(category.level, category.parent_id, category.id) + '</select></td>' +
-          '<td><input class="input-cell" data-category-field="icon" value="' + escapeHtml(category.icon || "") + '" /></td>' +
+          '<td><input type="url" class="input-cell input-cell-wide" data-category-field="image_url" value="' + escapeHtml(category.image_url || "") + '" placeholder="https://..." /></td>' +
           '<td><input type="number" class="input-cell" data-category-field="sort_order" value="' + escapeHtml(category.sort_order || 0) + '" /></td>' +
           '<td><button type="button" class="table-action table-action-danger" data-category-delete="' + escapeHtml(category.id) + '">Delete</button></td>' +
         '</tr>'

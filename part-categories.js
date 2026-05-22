@@ -66,7 +66,7 @@
   }
 
   function categoryImageUrl(category) {
-    return fallbackImage(category);
+    return (category && category.image_url) || fallbackImage(category);
   }
 
   function fetchCategories() {
@@ -97,7 +97,8 @@
           image: categoryImageUrl({
             name: category.name,
             group: "",
-            section: (section && section.name) || ""
+            section: (section && section.name) || "",
+            image_url: category.image_url
           }),
           fallbackImage: fallbackImage(category),
           group: "",
