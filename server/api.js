@@ -1625,6 +1625,90 @@ async function handleAdminApi(req, res, pathname) {
   return false;
 }
 
+async function handleVehicleParts(req, res) {
+  if (!isSupabaseEnabled()) {
+    sendJson(res, 503, { error: "Parts database is not configured." });
+    return true;
+  }
+
+  const url = new URL(req.url, `http://${req.headers.host || "localhost"}`);
+  const modelId = String(url.searchParams.get("model_id") || "").trim();
+  const makeId = String(url.searchParams.get("make_id") || "").trim();
+  const activeOnly = url.searchParams.get("active") !== "0";
+  const limit = Math.min(Math.max(parseInt(url.searchParams.get("limit") || "200", 10) || 200, 1), 500);
+
+  if (!modelId && !makeId) {
+    sendJson(res, 400, { error: "Provide model_id or make_id." });
+    return true;
+  }
+
+  let modelIds = [];
+
+  if (modelId) {
+    modelIds = [modelId];
+  } else {
+    const { data: modelRows, error: modelsError } = await getReadClient()
+      .from("models")
+      .select("id")
+      .eq("make_id", makeId)
+      .limit(1000);
+    if (modelsError) {
+      sendJson(res, 500, { error: modelsError.message || "Could not load models for make." });
+      return true;
+    }
+    modelIds = (modelRows || []).map((row) => row.id);
+  }
+
+  if (!modelIds.length) {
+    sendJson(res, 200, { parts: [], model_ids: [] });
+    return true;
+  }
+
+  const { data: joinRows, error: joinError } = await getReadClient()
+    .from("vehicle_parts_compatibility")
+    .select("model_id, part_id, notes, sort_order")
+    .in("model_id", modelIds)
+    .order("sort_order", { ascending: true })
+    .limit(limit);
+
+  if (joinError) {
+    sendJson(res, 500, { error: joinError.message || "Could not load vehicle parts." });
+    return true;
+  }
+
+  const partIds = Array.from(new Set((joinRows || []).map((row) => row.part_id))).filter(Boolean);
+  if (!partIds.length) {
+    sendJson(res, 200, { parts: [], model_ids: modelIds });
+    return true;
+  }
+
+  let partsQuery = getReadClient()
+    .from("parts")
+    .select("id, name, category, sku, price, stock, description, image_url, features, reviews, article_number, ean_code, delivery_time, specifications, vehicles, active")
+    .in("id", partIds)
+    .limit(limit);
+
+  if (activeOnly) partsQuery = partsQuery.eq("active", true);
+
+  const { data: parts, error: partsError } = await partsQuery;
+  if (partsError) {
+    sendJson(res, 500, { error: partsError.message || "Could not load parts." });
+    return true;
+  }
+
+  const partsById = new Map((parts || []).map((row) => [row.id, partFromRow(row)]));
+  const ordered = (joinRows || [])
+    .map((row) => {
+      const part = partsById.get(row.part_id);
+      if (!part) return null;
+      return { ...part, model_id: row.model_id, notes: row.notes || "" };
+    })
+    .filter(Boolean);
+
+  sendJson(res, 200, { parts: ordered, model_ids: modelIds });
+  return true;
+}
+
 async function handlePartsList(req, res) {
   if (!isSupabaseEnabled()) {
     sendJson(res, 503, { error: "Parts database is not configured." });
@@ -1916,6 +2000,10 @@ async function handleApi(req, res, pathname) {
 
     if (pathname === "/api/categories" && req.method === "GET") {
       return await handleCategories(req, res);
+    }
+
+    if (pathname === "/api/vehicle-parts" && req.method === "GET") {
+      return await handleVehicleParts(req, res);
     }
 
     if (pathname === "/api/checkout/session") {
