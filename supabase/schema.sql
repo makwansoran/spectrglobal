@@ -215,7 +215,6 @@ with seed(name, country, region, active) as (
     ('Jaguar', 'United Kingdom', 'Europe', true),
     ('Land Rover', 'United Kingdom', 'Europe', true),
     ('Aston Martin', 'United Kingdom', 'Europe', true),
-    ('McLaren', 'United Kingdom', 'Europe', true),
     ('Lotus', 'United Kingdom', 'Europe', true),
     ('MINI', 'United Kingdom', 'Europe', true),
     ('Vauxhall', 'United Kingdom', 'Europe', true),
