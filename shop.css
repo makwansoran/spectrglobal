@@ -896,22 +896,24 @@
   margin: 0;
   color: var(--shop-ink);
   font-family: "Syne", system-ui, -apple-system, sans-serif;
-  font-size: clamp(2.8rem, 9vw, 8rem);
+  font-size: clamp(1.9rem, 4vw, 3.2rem);
   font-weight: 800;
-  letter-spacing: -0.04em;
-  line-height: 0.95;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
 }
 
 /* ── Palantir-style word reveal ──────────────────────────── */
+.pln-text-reveal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.22em;
+}
+
 .pln-text-reveal-word {
   display: inline-block;
   overflow: hidden;
   vertical-align: bottom;
-  margin-right: 0.22em;
-}
-
-.pln-text-reveal-word:last-child {
-  margin-right: 0;
 }
 
 .pln-text-reveal-inner {
