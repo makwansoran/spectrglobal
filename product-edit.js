@@ -184,11 +184,11 @@
   }
 
   function usesGenericPrice(kind) {
-    return kind === "parts" || kind === "continental-tyre" || kind === "gmp-wheel";
+    return kind === "parts" || kind === "continental-tyre" || kind === "gmp-wheel" || kind === "ferodo-product";
   }
 
   function usesPartsFields(kind) {
-    return kind === "parts" || kind === "continental-tyre" || kind === "gmp-wheel";
+    return kind === "parts" || kind === "continental-tyre" || kind === "gmp-wheel" || kind === "ferodo-product";
   }
 
   function continentalBrand(product) {

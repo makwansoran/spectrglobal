@@ -516,6 +516,50 @@ create policy "Public can read active GMP Italia wheels"
 create index if not exists idx_gmp_italia_wheels_active_name
   on public.gmp_italia_wheels(active, name);
 
+-- Dedicated Ferodo brake catalog (kept separate from the generic parts table).
+create table if not exists public.ferodo_products (
+  id text primary key,
+  name text not null,
+  product_name text not null,
+  product_type text,
+  product_family text,
+  application text,
+  sku text,
+  article_number text,
+  ean_code text,
+  price numeric(12, 2) not null default 0 check (price >= 0),
+  stock integer not null default 0 check (stock >= 0),
+  delivery_time text not null default '2-5 days',
+  description text,
+  image_url text,
+  source_image_url text,
+  product_page_url text,
+  features jsonb not null default '[]'::jsonb,
+  reviews jsonb not null default '[]'::jsonb,
+  specifications jsonb not null default '[]'::jsonb,
+  vehicles jsonb not null default '[]'::jsonb,
+  active boolean not null default true,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now(),
+  constraint ferodo_products_name_len check (char_length(trim(name)) between 1 and 200),
+  constraint ferodo_products_features_is_array check (jsonb_typeof(features) = 'array'),
+  constraint ferodo_products_reviews_is_array check (jsonb_typeof(reviews) = 'array'),
+  constraint ferodo_products_specifications_is_array check (jsonb_typeof(specifications) = 'array'),
+  constraint ferodo_products_vehicles_is_array check (jsonb_typeof(vehicles) = 'array')
+);
+
+alter table public.ferodo_products enable row level security;
+
+drop policy if exists "Public can read active Ferodo products" on public.ferodo_products;
+create policy "Public can read active Ferodo products"
+  on public.ferodo_products
+  for select
+  to anon, authenticated
+  using (active = true);
+
+create index if not exists idx_ferodo_products_active_name
+  on public.ferodo_products(active, name);
+
 -- OEM tyre fitment seed data. Multiple rows per model represent multiple OEM size options.
 insert into public.car_tyre_fitment (
   model_id,

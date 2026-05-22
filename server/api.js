@@ -293,6 +293,17 @@ function gmpItaliaWheelFromRow(row) {
   });
 }
 
+function ferodoProductFromRow(row) {
+  return partFromRow({
+    ...row,
+    brand: "Ferodo",
+    category: "Brakes",
+    article_number: row.article_number || row.sku || row.product_name || "",
+    ean_code: row.ean_code || "",
+    delivery_time: row.delivery_time || "2-5 days",
+  });
+}
+
 function normalizeCatalogKey(value) {
   return String(value || "").trim().toLowerCase().replace(/\s+/g, " ");
 }
@@ -609,6 +620,24 @@ async function fetchGmpItaliaWheelParts(activeOnly) {
   return (data || []).map(gmpItaliaWheelFromRow);
 }
 
+async function fetchFerodoProductParts(activeOnly) {
+  let query = getReadClient()
+    .from("ferodo_products")
+    .select("id, name, product_name, product_type, product_family, application, sku, article_number, ean_code, price, stock, delivery_time, description, image_url, features, reviews, specifications, vehicles, active, product_page_url")
+    .order("name", { ascending: true });
+
+  if (activeOnly) query = query.eq("active", true);
+
+  const { data, error } = await query;
+
+  if (error) {
+    if (error.code === "42P01") return [];
+    throw error;
+  }
+
+  return (data || []).map(ferodoProductFromRow);
+}
+
 function oilFitmentVehicle(row) {
   const modelValue = row && row.models;
   const model = Array.isArray(modelValue) ? modelValue[0] : modelValue;
@@ -716,9 +745,10 @@ async function loadCatalogParts(activeOnly, limit) {
 
   if (error) throw error;
 
-  const [continentalTyreParts, gmpItaliaWheelParts, oilParts, brakeParts] = await Promise.all([
+  const [continentalTyreParts, gmpItaliaWheelParts, ferodoProductParts, oilParts, brakeParts] = await Promise.all([
     fetchContinentalTyreParts(activeOnly),
     fetchGmpItaliaWheelParts(activeOnly),
+    fetchFerodoProductParts(activeOnly),
     fetchOilProductParts(activeOnly),
     fetchBrakeProductParts(activeOnly),
   ]);
@@ -727,6 +757,7 @@ async function loadCatalogParts(activeOnly, limit) {
     ...(data || []).map(partFromRow),
     ...continentalTyreParts,
     ...gmpItaliaWheelParts,
+    ...ferodoProductParts,
     ...oilParts,
     ...brakeParts,
   ]).slice(0, limit);
@@ -786,7 +817,7 @@ function productId(value) {
 }
 
 function isGenericPartProduct(kind) {
-  return kind === "parts" || kind === "continental-tyre" || kind === "gmp-wheel";
+  return kind === "parts" || kind === "continental-tyre" || kind === "gmp-wheel" || kind === "ferodo-product";
 }
 
 function supplySku(kind, row) {
@@ -840,16 +871,19 @@ function productTable(kind) {
       ? "continental_tyres"
       : kind === "gmp-wheel"
         ? "gmp_italia_wheels"
-        : kind === "oil"
-          ? "oil_products"
-          : kind === "brake"
-            ? "brake_products"
-            : "";
+        : kind === "ferodo-product"
+          ? "ferodo_products"
+          : kind === "oil"
+            ? "oil_products"
+            : kind === "brake"
+              ? "brake_products"
+              : "";
 }
 
 function productSelect(kind) {
   if (isGenericPartProduct(kind)) {
     if (kind === "gmp-wheel") return "id, name, model, sku, price, stock, description, image_url, source_image_url, product_page_url, article_number, ean_code, delivery_time, features, reviews, specifications, vehicles, active, created_at, updated_at";
+    if (kind === "ferodo-product") return "id, name, product_name, product_type, product_family, application, sku, article_number, ean_code, price, stock, delivery_time, description, image_url, source_image_url, product_page_url, features, reviews, specifications, vehicles, active, created_at, updated_at";
     return "id, name, sku, price, stock, description, image_url, features, reviews, article_number, ean_code, delivery_time, specifications, vehicles, active, created_at, updated_at" + (kind === "parts" ? ", category" : "");
   }
   if (kind === "oil") {
@@ -869,8 +903,8 @@ function supplyItem(kind, row) {
     kind,
     id: row.id,
     name: row.name || "",
-    brand: kind === "continental-tyre" ? "Continental" : kind === "gmp-wheel" ? "GMP Italia" : (brand && brand.name) || "",
-    category: kind === "continental-tyre" ? "Tyres" : kind === "gmp-wheel" ? "Rims" : kind === "oil" ? "Oils" : kind === "brake" ? "Brakes" : row.category || "Other",
+    brand: kind === "continental-tyre" ? "Continental" : kind === "gmp-wheel" ? "GMP Italia" : kind === "ferodo-product" ? "Ferodo" : (brand && brand.name) || "",
+    category: kind === "continental-tyre" ? "Tyres" : kind === "gmp-wheel" ? "Rims" : kind === "ferodo-product" ? "Brakes" : kind === "oil" ? "Oils" : kind === "brake" ? "Brakes" : row.category || "Other",
     sku: supplySku(kind, row),
     article_number: row.article_number || "",
     ean_code: row.ean_code || row.ean || "",
@@ -886,6 +920,10 @@ function supplyItem(kind, row) {
       approvals: Array.isArray(row.approvals) ? row.approvals : [],
       description: row.description || row.marketing_description || generatedProductDescription(kind, row),
       model: row.model || "",
+      product_name: row.product_name || "",
+      product_type: row.product_type || row.type || "",
+      product_family: row.product_family || "",
+      application: row.application || "",
       product_page_url: row.product_page_url || "",
     },
     image_url: row.image_url || "",
@@ -909,7 +947,7 @@ function editableProduct(kind, row) {
       ...base,
       editable: {
         name: row.name || "",
-        category: kind === "continental-tyre" ? "Tyres" : kind === "gmp-wheel" ? "Rims" : row.category || "Other",
+        category: kind === "continental-tyre" ? "Tyres" : kind === "gmp-wheel" ? "Rims" : kind === "ferodo-product" ? "Brakes" : row.category || "Other",
         sku: row.sku || "",
         price: Number(row.price) || 0,
         stock: Number(row.stock) || 0,
@@ -1014,7 +1052,7 @@ async function handleAdminMe(req, res) {
 }
 
 async function handleAdminSupply(req, res) {
-  const [partsResult, continentalTyresResult, gmpWheelsResult, oilsResult, brakesResult] = await Promise.all([
+  const [partsResult, continentalTyresResult, gmpWheelsResult, ferodoProductsResult, oilsResult, brakesResult] = await Promise.all([
     getAdminClient()
       .from("parts")
       .select("id, name, category, sku, price, stock, description, image_url, features, reviews, article_number, ean_code, delivery_time, specifications, vehicles, active")
@@ -1028,6 +1066,10 @@ async function handleAdminSupply(req, res) {
       .select("id, name, model, sku, price, stock, description, image_url, source_image_url, product_page_url, article_number, ean_code, delivery_time, features, reviews, specifications, vehicles, active, created_at, updated_at")
       .order("name", { ascending: true }),
     getAdminClient()
+      .from("ferodo_products")
+      .select("id, name, product_name, product_type, product_family, application, sku, article_number, ean_code, price, stock, delivery_time, description, image_url, source_image_url, product_page_url, features, reviews, specifications, vehicles, active, created_at, updated_at")
+      .order("name", { ascending: true }),
+    getAdminClient()
       .from("oil_products")
       .select("id, name, viscosity, base_type, approvals, volume_liters, price_eur, stock, active, image_url, marketing_description, features, reviews, article_number, ean_code, delivery_time, specifications, oil_brands(name)")
       .order("name", { ascending: true }),
@@ -1037,7 +1079,7 @@ async function handleAdminSupply(req, res) {
       .order("name", { ascending: true }),
   ]);
 
-  const firstError = partsResult.error || continentalTyresResult.error || gmpWheelsResult.error || oilsResult.error || brakesResult.error;
+  const firstError = partsResult.error || continentalTyresResult.error || gmpWheelsResult.error || ferodoProductsResult.error || oilsResult.error || brakesResult.error;
   if (firstError) {
     sendJson(res, 500, { error: firstError.message || "Could not load supply inventory." });
     return true;
@@ -1047,6 +1089,7 @@ async function handleAdminSupply(req, res) {
     ...(partsResult.data || []).map((row) => supplyItem("parts", row)),
     ...(continentalTyresResult.data || []).map((row) => supplyItem("continental-tyre", row)),
     ...(gmpWheelsResult.data || []).map((row) => supplyItem("gmp-wheel", row)),
+    ...(ferodoProductsResult.data || []).map((row) => supplyItem("ferodo-product", row)),
     ...(oilsResult.data || []).map((row) => supplyItem("oil", row)),
     ...(brakesResult.data || []).map((row) => supplyItem("brake", row)),
   ];
