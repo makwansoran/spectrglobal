@@ -569,12 +569,13 @@
 .promo-slider {
   position: relative;
   overflow: hidden;
-  width: min(100%, 1360px);
+  width: 1024px;
+  max-width: 100%;
+  aspect-ratio: 2 / 1;
   margin: 0 auto;
   border-radius: var(--shop-radius-lg);
   background: #0a0c10;
   color: #ffffff;
-  min-height: clamp(24rem, 42vw, 38rem);
   box-shadow: 0 24px 60px rgba(10, 12, 16, 0.12);
 }
 
@@ -608,7 +609,7 @@
 }
 
 .promo-slide--image-only {
-  background-position: center 38%;
+  background-position: center;
 }
 
 .promo-slide--image-only::before {

@@ -115,7 +115,7 @@
         cta: "See Collection",
         ctaHref: "part-category.html?category=Tires",
         image: "assets/hero/continental-engineered-germany.png",
-        imagePosition: "center 38%",
+        imagePosition: "center",
         hideCopy: true
       },
       {
