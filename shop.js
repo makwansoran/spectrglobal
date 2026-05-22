@@ -85,7 +85,7 @@
       track.innerHTML = slides.map(function (slide, i) {
         var style = "background:" + (slide.gradient || "linear-gradient(135deg,#1f2937,#0a0c10)") + ";";
         if (slide.image) {
-          style += 'background-image:url("' + escapeHtml(slide.image) + '");';
+          style += "background-image:url(" + escapeHtml(slide.image) + ");";
           style += "background-position:" + escapeHtml(slide.imagePosition || "center") + ";";
         }
         if (slide.accent) style += "color:#ffffff;";
