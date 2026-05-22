@@ -2308,10 +2308,10 @@
 .product-detail-body h1 {
   margin: 0;
   color: var(--shop-ink);
-  font-size: clamp(1.8rem, 4.2vw, 3.45rem);
+  font-size: clamp(1.3rem, 2.8vw, 2.1rem);
   font-weight: 700;
-  letter-spacing: -0.055em;
-  line-height: 0.98;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
 }
 
 .product-detail-sku,
