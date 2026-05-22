@@ -23,6 +23,7 @@
     admin: null,
     pendingDeleteUserId: "",
     selectedProducts: new Set(),
+    productCreateModels: [],
   };
 
   function $(id) {
@@ -164,6 +165,67 @@
       return "part-" + window.crypto.randomUUID();
     }
     return "part-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 8);
+  }
+
+  function renderProductCreateOptions() {
+    var categoryList = $("product-category-options");
+    if (categoryList) {
+      var categories = Array.from(new Set(state.categories.map(function (category) {
+        return category.name || "";
+      }).filter(Boolean))).sort();
+      categoryList.innerHTML = categories.map(function (name) {
+        return '<option value="' + escapeHtml(name) + '"></option>';
+      }).join("");
+    }
+
+    var brandSelect = $("product-vehicle-brand");
+    if (brandSelect) {
+      var selected = brandSelect.value;
+      brandSelect.innerHTML = '<option value="">Choose brand</option>' + state.makes.map(function (make) {
+        return '<option value="' + escapeHtml(make.id) + '"' + (make.id === selected ? " selected" : "") + '>' + escapeHtml(make.name) + '</option>';
+      }).join("");
+    }
+  }
+
+  function renderProductCreateModels(models, placeholder) {
+    var modelSelect = $("product-vehicle-model");
+    if (!modelSelect) return;
+    var rows = Array.isArray(models) ? models : [];
+    modelSelect.disabled = rows.length === 0;
+    modelSelect.innerHTML = '<option value="">' + escapeHtml(placeholder || (rows.length ? "Choose model" : "Choose brand first")) + '</option>' +
+      rows.map(function (model) {
+        return '<option value="' + escapeHtml(model.id) + '">' + escapeHtml(model.name) + '</option>';
+      }).join("");
+  }
+
+  async function loadProductCreateModels(makeId) {
+    state.productCreateModels = [];
+    if (!makeId) {
+      renderProductCreateModels([], "Choose brand first");
+      return;
+    }
+    renderProductCreateModels([], "Loading models...");
+    try {
+      var data = await api("/api/models?make_id=" + encodeURIComponent(makeId) + "&limit=500");
+      state.productCreateModels = data.models || [];
+      renderProductCreateModels(state.productCreateModels, state.productCreateModels.length ? "Choose model" : "No models found");
+    } catch (err) {
+      renderProductCreateModels([], "Could not load models");
+      toast(err.message || "Could not load car models.", "error");
+    }
+  }
+
+  function selectedOptionText(select) {
+    if (!select || !select.value) return "";
+    var option = select.options[select.selectedIndex];
+    return option ? option.textContent.trim() : "";
+  }
+
+  function resetProductCreateForm() {
+    var form = $("product-create-form");
+    if (form) form.reset();
+    state.productCreateModels = [];
+    renderProductCreateModels([], "Choose brand first");
   }
 
   function filterProducts() {
@@ -580,6 +642,7 @@
       state.makes = data.makes || [];
       state.categories = data.categories || [];
       renderCatalogTables();
+      renderProductCreateOptions();
     } catch (err) {
       toast(err.message || "Could not load car brands and categories.", "error");
       var makesBody = document.querySelector("#makes-table tbody");
@@ -624,6 +687,11 @@
 
   async function createProduct(form) {
     var values = formValues(form);
+    var brandSelect = $("product-vehicle-brand");
+    var modelSelect = $("product-vehicle-model");
+    var brandName = selectedOptionText(brandSelect);
+    var modelName = selectedOptionText(modelSelect);
+    var whatItIs = String(values.what_it_is || "").trim();
     var record = {
       id: nextProductId(),
       name: String(values.name || "").trim(),
@@ -631,13 +699,40 @@
       sku: String(values.sku || "").trim(),
       price: Math.max(0, Number(values.price) || 0),
       stock: Math.max(0, parseInt(values.stock, 10) || 0),
+      image_url: String(values.image_url || "").trim(),
       description: String(values.description || "").trim(),
-      vehicles: [],
+      vehicles: [{
+        brand: brandName,
+        model: modelName,
+        engine: String(values.vehicle_engine || "").trim(),
+      }],
+      features: whatItIs ? [whatItIs] : [],
+      specifications: whatItIs ? [{ label: "What it is", value: whatItIs }] : [],
       active: true,
     };
 
     if (!record.name) {
       toast("Product name is required.", "error");
+      return;
+    }
+    if (!record.category) {
+      toast("Category is required.", "error");
+      return;
+    }
+    if (!record.sku) {
+      toast("SKU is required.", "error");
+      return;
+    }
+    if (!brandName || !modelName) {
+      toast("Choose the car brand and model this product fits.", "error");
+      return;
+    }
+    if (!whatItIs) {
+      toast("Tell us what the product is.", "error");
+      return;
+    }
+    if (!record.description) {
+      toast("Description is required.", "error");
       return;
     }
 
@@ -653,9 +748,9 @@
         headers: authHeaders({ "Content-Type": "application/json" }),
         body: JSON.stringify(record),
       });
-      form.reset();
-      form.hidden = true;
+      resetProductCreateForm();
       await loadProducts();
+      switchTab("products");
       toast("Product added");
     } catch (err) {
       toast(err.message || "Could not add product.", "error");
@@ -1032,18 +1127,12 @@
       renderProductsTable();
     });
     $("products-refresh").addEventListener("click", loadProducts);
-    $("products-add").addEventListener("click", function () {
-      var form = $("product-create-form");
-      form.hidden = !form.hidden;
-      if (!form.hidden) {
-        var name = form.querySelector('[name="name"]');
-        if (name) name.focus();
-      }
+    $("product-vehicle-brand").addEventListener("change", function (e) {
+      loadProductCreateModels(e.target.value || "");
     });
     $("product-create-cancel").addEventListener("click", function () {
-      var form = $("product-create-form");
-      form.reset();
-      form.hidden = true;
+      resetProductCreateForm();
+      switchTab("products");
     });
     $("product-create-form").addEventListener("submit", function (e) {
       e.preventDefault();

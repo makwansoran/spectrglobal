@@ -39,6 +39,7 @@
       <nav class="management-tabs" role="tablist" aria-label="Management sections">
         <button type="button" class="management-tab is-active" data-tab="overview" role="tab" aria-selected="true">Overview</button>
         <button type="button" class="management-tab" data-tab="products" role="tab" aria-selected="false">Products</button>
+        <button type="button" class="management-tab" data-tab="add-product" role="tab" aria-selected="false">+ Add product</button>
         <button type="button" class="management-tab" data-tab="orders" role="tab" aria-selected="false">Orders</button>
         <button type="button" class="management-tab" data-tab="customers" role="tab" aria-selected="false">Customers</button>
         <button type="button" class="management-tab" data-tab="categories" role="tab" aria-selected="false">Categories</button>
@@ -135,22 +136,11 @@
               <option value="price-asc">Price (low → high)</option>
               <option value="price-desc">Price (high → low)</option>
             </select>
-            <button type="button" class="btn btn-primary" id="products-add">+ Add product</button>
             <button type="button" class="btn btn-secondary" id="products-refresh" title="Reload from database">Refresh</button>
           </div>
         </header>
 
         <p class="management-note" id="products-note">Tip: change price, stock, or active state directly in the table — it saves instantly.</p>
-        <form class="product-create-form" id="product-create-form" autocomplete="off" hidden>
-          <input type="text" name="name" placeholder="Product name" required />
-          <input type="text" name="category" placeholder="Category" required />
-          <input type="text" name="sku" placeholder="SKU" />
-          <input type="number" name="price" min="0" step="0.01" placeholder="Price" />
-          <input type="number" name="stock" min="0" step="1" placeholder="Stock" />
-          <input type="text" name="description" placeholder="Description" />
-          <button type="submit" class="btn btn-primary">Save product</button>
-          <button type="button" class="btn btn-secondary" id="product-create-cancel">Cancel</button>
-        </form>
         <div class="bulk-select-bar" aria-label="Bulk product selection">
           <span id="products-selected-count">0 products selected</span>
           <button type="button" class="link-button" id="products-select-all">Mark all products</button>
@@ -183,6 +173,73 @@
             </tbody>
           </table>
         </div>
+      </section>
+
+      <section class="management-section" data-panel="add-product" hidden>
+        <section class="management-card product-create-card">
+          <header>
+            <div>
+              <p class="shop-eyebrow">New product</p>
+              <h2>Create a product</h2>
+              <p class="management-note">Add every product detail here before it appears in the store catalog.</p>
+            </div>
+          </header>
+          <form class="product-create-form" id="product-create-form" autocomplete="off">
+            <label>
+              <span>Product name</span>
+              <input type="text" name="name" placeholder="Front brake disc set" required />
+            </label>
+            <label>
+              <span>Category</span>
+              <input type="text" name="category" list="product-category-options" placeholder="Brake discs" required />
+              <datalist id="product-category-options"></datalist>
+            </label>
+            <label>
+              <span>SKU</span>
+              <input type="text" name="sku" placeholder="BRK-A4-F-001" required />
+            </label>
+            <label>
+              <span>Price</span>
+              <input type="number" name="price" min="0" step="0.01" placeholder="129.00" required />
+            </label>
+            <label>
+              <span>Stock</span>
+              <input type="number" name="stock" min="0" step="1" placeholder="12" required />
+            </label>
+            <label>
+              <span>Image</span>
+              <input type="url" name="image_url" placeholder="https://..." />
+            </label>
+            <label>
+              <span>Car brand</span>
+              <select name="vehicle_brand" id="product-vehicle-brand" required>
+                <option value="">Choose brand</option>
+              </select>
+            </label>
+            <label>
+              <span>Car model</span>
+              <select name="vehicle_model" id="product-vehicle-model" required disabled>
+                <option value="">Choose brand first</option>
+              </select>
+            </label>
+            <label>
+              <span>Engine / trim</span>
+              <input type="text" name="vehicle_engine" placeholder="2.0 TDI, all engines, front axle..." />
+            </label>
+            <label>
+              <span>What it is</span>
+              <input type="text" name="what_it_is" placeholder="Brake disc, air filter, suspension arm..." required />
+            </label>
+            <label class="product-create-wide">
+              <span>Description</span>
+              <textarea name="description" rows="5" placeholder="Describe the product, fitment notes, material, quality, and anything the customer needs to know." required></textarea>
+            </label>
+            <div class="product-create-actions">
+              <button type="submit" class="btn btn-primary">Save product</button>
+              <button type="button" class="btn btn-secondary" id="product-create-cancel">Cancel</button>
+            </div>
+          </form>
+        </section>
       </section>
 
       <section class="management-section" data-panel="orders" hidden>

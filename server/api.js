@@ -701,9 +701,13 @@ function normalizePartBody(body, fallbackId) {
       price: Math.max(0, Number(body && body.price) || 0),
       stock: Math.max(0, parseInt(body && body.stock, 10) || 0),
       description: String((body && body.description) || "").trim() || null,
+      image_url: String((body && body.image_url) || "").trim() || null,
       article_number: String((body && body.article_number) || "").trim() || null,
       ean_code: String((body && body.ean_code) || "").trim() || null,
       delivery_time: String((body && body.delivery_time) || "2-5 days").trim() || "2-5 days",
+      features: Array.isArray(body && body.features)
+        ? body.features.map((item) => String(item || "").trim()).filter(Boolean)
+        : [],
       specifications: Array.isArray(body && body.specifications) ? body.specifications : [],
       vehicles: vehicles.map((fit) => ({
         brand: String((fit && fit.brand) || "").trim(),
