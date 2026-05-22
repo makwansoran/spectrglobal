@@ -12,6 +12,7 @@
   var DEALS_CATEGORY = "Deals";
   var FEATURED_LIMIT = 8;
   var DEALS_LIMIT = 12;
+  var CONTINENTAL_LOGO_SRC = "assets/brand/continental-logo.png";
 
   function $(id) { return document.getElementById(id); }
 
@@ -26,6 +27,15 @@
 
   function normalize(value) {
     return String(value || "").trim().toLowerCase();
+  }
+
+  function isContinentalPart(part) {
+    return /continental/i.test([part && part.brand, part && part.name].filter(Boolean).join(" "));
+  }
+
+  function continentalBadgeHtml(part) {
+    if (!isContinentalPart(part)) return "";
+    return '<span class="product-brand-badge" aria-label="Continental product"><img src="' + CONTINENTAL_LOGO_SRC + '" alt="Continental" loading="lazy" decoding="async"></span>';
   }
 
   function selectedCategory() {
@@ -125,6 +135,7 @@
           productCardMedia(part) +
           '<div class="product-body">' +
             '<span class="product-category">' + escapeHtml(part.category || "Car part") + '</span>' +
+            continentalBadgeHtml(part) +
             '<h3 class="product-name">' + escapeHtml(part.name) + '</h3>' +
             '<span class="product-sku">' + escapeHtml(part.article_number || part.sku || part.id) + '</span>' +
             (part.description ? '<p class="product-description">' + escapeHtml(part.description) + '</p>' : '') +

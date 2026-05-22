@@ -19,6 +19,7 @@
   var DEALS_CATEGORY = "__deals";
   var FEATURED_LIMIT = 8;
   var DEALS_LIMIT = 12;
+  var CONTINENTAL_LOGO_SRC = "assets/brand/continental-logo.png";
 
   function $(id) { return document.getElementById(id); }
 
@@ -36,6 +37,15 @@
       return window.SpectrShopNav.categoryLabelHtml(label);
     }
     return '<span class="category-label-text">' + escapeHtml(label || "Car part") + "</span>";
+  }
+
+  function isContinentalPart(part) {
+    return /continental/i.test([part && part.brand, part && part.name].filter(Boolean).join(" "));
+  }
+
+  function continentalBadgeHtml(part) {
+    if (!isContinentalPart(part)) return "";
+    return '<span class="product-brand-badge" aria-label="Continental product"><img src="' + CONTINENTAL_LOGO_SRC + '" alt="Continental" loading="lazy" decoding="async"></span>';
   }
 
   function initials(name) {
@@ -567,6 +577,7 @@
           productCardMedia(part) +
           '<div class="product-body">' +
             '<span class="product-category">' + categoryLabelHtml(part.category || "Car part") + '</span>' +
+            continentalBadgeHtml(part) +
             '<h3 class="product-name">' + escapeHtml(part.name) + '</h3>' +
             '<span class="product-sku">' + escapeHtml(part.article_number || part.sku || part.id) + '</span>' +
             '<span class="product-stock ' + (outOfStock ? "is-out" : "is-in") + '">' + escapeHtml(stockLabel(part.stock)) + '</span>' +

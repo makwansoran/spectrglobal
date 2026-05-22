@@ -27,16 +27,7 @@
   }
 
   function categoryNameHtml(label) {
-    var text = escapeHtml(label);
-    if (!hasTyresLabel(label)) {
-      return '<span class="make-name">' + text + "</span>";
-    }
-
-    return '' +
-      '<span class="make-name category-card-title category-card-title--tyres">' +
-        '<img class="category-card-title-image" src="assets/categories/tyres-subheader.svg" alt="" loading="lazy" decoding="async">' +
-        '<span>' + text + "</span>" +
-      "</span>";
+    return '<span class="make-name">' + escapeHtml(label) + "</span>";
   }
 
   function fallbackImage(category) {
@@ -106,6 +97,9 @@
       .filter(function (category) {
         return Number(category.level) === 2;
       })
+      .filter(function (category) {
+        return !hasTyresLabel(category.name);
+      })
       .map(function (category) {
         var section = byId.get(category.parent_id);
         return {
@@ -162,12 +156,13 @@
     node.innerHTML = filtered.map(function (category) {
       var href = "part-category.html?category=" + encodeURIComponent(category.name);
       var details = [category.section, category.group].filter(Boolean).join(" · ") || "Parts category";
+      var detailsHtml = '<small>' + escapeHtml(details) + "</small>";
       return (
         '<a class="part-category-list-card" href="' + href + '" data-category="' + escapeHtml(category.slug || categorySlug(category.name)) + '">' +
           '<img class="part-category-image" src="' + escapeHtml(category.image) + '" alt="" loading="lazy" decoding="async" onerror="this.onerror=null;this.src=\'' + escapeHtml(category.fallbackImage) + '\'">' +
           '<span class="part-category-image-copy">' +
             categoryNameHtml(category.name) +
-            '<small>' + escapeHtml(details) + "</small>" +
+            detailsHtml +
           "</span>" +
         "</a>"
       );

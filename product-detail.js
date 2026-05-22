@@ -8,6 +8,7 @@
     parts: [],
     product: null,
   };
+  var CONTINENTAL_LOGO_SRC = "assets/brand/continental-logo.png";
 
   function $(id) { return document.getElementById(id); }
 
@@ -25,6 +26,15 @@
       return window.SpectrShopNav.categoryLabelHtml(label);
     }
     return '<span class="category-label-text">' + escapeHtml(label || "Car part") + "</span>";
+  }
+
+  function isContinentalPart(part) {
+    return /continental/i.test([part && part.brand, part && part.name].filter(Boolean).join(" "));
+  }
+
+  function continentalBadgeHtml(part, modifier) {
+    if (!isContinentalPart(part)) return "";
+    return '<span class="product-brand-badge ' + escapeHtml(modifier || "") + '" aria-label="Continental product"><img src="' + CONTINENTAL_LOGO_SRC + '" alt="Continental" loading="lazy" decoding="async"></span>';
   }
 
   function initials(name) {
@@ -56,12 +66,10 @@
 
   function renderProductFacts(product) {
     var facts = [
-      product.brand ? ["Manufacturer", product.brand] : null,
       product.article_number ? ["Article number", product.article_number] : null,
       product.sku ? ["SKU", product.sku] : null,
       ["EAN", product.ean_code],
       ["Delivery", product.delivery_time || "2-5 days"],
-      ["Availability", stockLabel(product.stock)],
     ].filter(function (fact) { return fact && fact[1]; });
     if (!facts.length) return "";
     return '<dl class="product-detail-facts">' + facts.map(function (fact) {
@@ -73,7 +81,7 @@
     var specs = Array.isArray(product.specifications) ? product.specifications : [];
     if (!specs.length) return "";
     return (
-      '<section class="product-detail-section">' +
+      '<section class="product-detail-section product-detail-section--overview">' +
         '<h2>Product details</h2>' +
         '<dl class="product-spec-list">' +
           specs.map(function (spec) {
@@ -89,7 +97,7 @@
   function renderFitment(product) {
     var vehicles = Array.isArray(product.vehicles) ? product.vehicles : [];
     if (!vehicles.length) {
-      return '<p class="product-detail-muted">Universal listing or fitment data is not connected yet.</p>';
+      return '<p class="product-detail-muted">Universal listing.</p>';
     }
 
     return (
@@ -122,8 +130,8 @@
     var features = Array.isArray(product.features) ? product.features : [];
     if (!features.length) return "";
     return (
-      '<section class="product-detail-section">' +
-        '<h2>Key features</h2>' +
+      '<section class="product-detail-section product-detail-section--overview">' +
+        '<h2>Highlights</h2>' +
         '<ul class="product-feature-list">' +
           features.map(function (feature) { return '<li>' + escapeHtml(feature) + '</li>'; }).join("") +
         '</ul>' +
@@ -133,16 +141,9 @@
 
   function renderReviews(product) {
     var reviews = Array.isArray(product.reviews) ? product.reviews : [];
-    if (!reviews.length) {
-      return (
-        '<section class="product-detail-section">' +
-          '<h2>Reviews</h2>' +
-          '<p class="product-detail-muted">No verified reviews yet.</p>' +
-        '</section>'
-      );
-    }
+    if (!reviews.length) return "";
     return (
-      '<section class="product-detail-section">' +
+      '<section class="product-detail-section product-detail-section--overview">' +
         '<h2>Reviews</h2>' +
         '<div class="product-review-list">' +
           reviews.slice(0, 6).map(function (review) {
@@ -178,6 +179,7 @@
         renderProductMedia(product) +
         '<div class="product-detail-body">' +
           '<p class="shop-eyebrow">' + categoryLabelHtml(product.category || "Car part") + '</p>' +
+          continentalBadgeHtml(product, "product-brand-badge--detail") +
           '<h1>' + escapeHtml(product.name) + '</h1>' +
           '<p class="product-detail-sku">' + escapeHtml(product.article_number || product.sku || product.id) + '</p>' +
           '<p class="product-detail-description">' + escapeHtml(product.description || "Product details are generated from the Spectr compatibility catalog.") + '</p>' +
@@ -190,21 +192,18 @@
             (line ? "In cart · " + line.qty : "Add to cart") +
           '</button>' +
           '<div class="product-detail-service">' +
-            '<span>White-background product view</span>' +
             '<span>' + escapeHtml(product.delivery_time || "2-5 days") + ' delivery</span>' +
             '<span>Secure checkout</span>' +
           '</div>' +
-          '<section class="product-detail-section">' +
-            '<h2>Product description</h2>' +
-            '<p>' + escapeHtml(product.description || "This product is available in the Spectr catalog. Add detailed specifications in the admin panel.") + '</p>' +
-          '</section>' +
-          renderSpecifications(product) +
-          renderFeatures(product) +
-          '<section class="product-detail-section">' +
-            '<h2>Compatible vehicles</h2>' +
-            renderFitment(product) +
-          '</section>' +
-          renderReviews(product) +
+          '<div class="product-overview-grid">' +
+            renderSpecifications(product) +
+            renderFeatures(product) +
+            '<section class="product-detail-section product-detail-section--overview">' +
+              '<h2>Fitment</h2>' +
+              renderFitment(product) +
+            '</section>' +
+            renderReviews(product) +
+          '</div>' +
         '</div>' +
       '</div>';
 
@@ -226,6 +225,7 @@
         productCardMedia(part) +
         '<div class="product-body">' +
           '<span class="product-category">' + categoryLabelHtml(part.category || "Car part") + '</span>' +
+          continentalBadgeHtml(part, "") +
           '<h3 class="product-name">' + escapeHtml(part.name) + '</h3>' +
           '<span class="product-sku">' + escapeHtml(part.article_number || part.sku || part.id) + '</span>' +
           (part.description ? '<p class="product-description">' + escapeHtml(part.description) + '</p>' : '') +

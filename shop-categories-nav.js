@@ -4,8 +4,6 @@
 
   var DEALS_LIMIT = 12;
   var DEALS_LABEL = "Deals";
-  var TYRES_IMAGE_SRC = "assets/categories/tyres-subheader.svg";
-
   var NAV_ITEMS = [
     { key: "wheels", label: "Wheels & Tyres", href: "part-categories.html?section=wheels-tyres", sectionSlug: "wheels-tyres" },
     { key: "brakes", label: "Braking", href: "part-categories.html?section=braking-system", sectionSlug: "braking-system" },
@@ -30,21 +28,9 @@
     return String(value || "").trim().toLowerCase();
   }
 
-  function hasTyresLabel(label) {
-    return /\b(?:tyres|tires)\b/i.test(String(label || ""));
-  }
-
   function categoryLabelHtml(label) {
     var text = escapeHtml(label);
-    if (!hasTyresLabel(label)) {
-      return '<span class="category-label-text">' + text + "</span>";
-    }
-
-    return '' +
-      '<span class="category-label-stack category-label-stack--tyres">' +
-        '<img class="category-label-image" src="' + escapeHtml(TYRES_IMAGE_SRC) + '" alt="" loading="lazy" decoding="async">' +
-        '<span>' + text + "</span>" +
-      "</span>";
+    return '<span class="category-label-text">' + text + "</span>";
   }
 
   function syncSubnav() {
@@ -233,7 +219,6 @@
   window.SpectrShopNav = {
     DEALS_LIMIT: DEALS_LIMIT,
     DEALS_LABEL: DEALS_LABEL,
-    TYRES_IMAGE_SRC: TYRES_IMAGE_SRC,
     NAV_ITEMS: NAV_ITEMS,
     categoryLabelHtml: categoryLabelHtml,
     syncSubnav: syncSubnav,
