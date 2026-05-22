@@ -1216,6 +1216,10 @@
   background: var(--shop-line);
 }
 
+.brand-model-grid.brand-model-free-list {
+  background: #ffffff;
+}
+
 .brand-model-strip {
   display: flex;
   gap: clamp(0.85rem, 2vw, 1.35rem);
