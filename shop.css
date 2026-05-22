@@ -140,6 +140,10 @@
   margin: 0 auto;
 }
 
+.shop-hero--promo-only .shop-hero-grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .shop-finder {
   background: #ffffff;
   border: 1px solid var(--shop-line);
