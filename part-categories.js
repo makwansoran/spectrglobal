@@ -226,8 +226,9 @@
 
     node.innerHTML = filtered.map(function (category) {
       var href = "part-category.html?category=" + encodeURIComponent(category.hrefCategory || category.name);
+      var isWheelsTyres = normalizeSearch(category.sectionSlug) === "wheels-tyres";
       var details = [category.section, category.group].filter(Boolean).join(" · ") || "Parts category";
-      var detailsHtml = '<small>' + escapeHtml(details) + "</small>";
+      var detailsHtml = isWheelsTyres ? "" : '<small>' + escapeHtml(details) + "</small>";
       return (
         '<a class="part-category-list-card" href="' + href + '" data-category="' + escapeHtml(category.slug || categorySlug(category.name)) + '">' +
           '<img class="part-category-image" src="' + escapeHtml(category.image) + '" alt="" loading="lazy" decoding="async" onerror="this.onerror=null;this.src=\'' + escapeHtml(category.fallbackImage) + '\'">' +

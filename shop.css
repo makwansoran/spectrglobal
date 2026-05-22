@@ -964,6 +964,11 @@
   transform: scale(1.04);
 }
 
+.all-categories-grid .part-category-list-card[data-category="wheels-tyres-other"] .part-category-image {
+  object-fit: cover;
+  padding: 0;
+}
+
 .all-brands-grid a:hover {
   background: var(--shop-surface);
   transform: translateY(-1px);
