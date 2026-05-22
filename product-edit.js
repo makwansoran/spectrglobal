@@ -100,6 +100,15 @@
     );
   }
 
+  function fileField(name, label, attrs) {
+    return (
+      '<label class="edit-field">' +
+      '<span>' + escapeHtml(label) + '</span>' +
+      '<input name="' + escapeHtml(name) + '" type="file" ' + (attrs || "") + " />" +
+      "</label>"
+    );
+  }
+
   function textarea(name, label, value, attrs) {
     return (
       '<label class="edit-field edit-field-wide">' +
@@ -240,6 +249,7 @@
       field("ean_code", "EAN code", e.ean_code || product.ean_code || "", "text", 'placeholder="400817715..."'),
       field("delivery_time", "Delivery time", e.delivery_time || product.delivery_time || "2-5 days", "text", 'placeholder="2-5 days"'),
       field("image_url", "Product image URL", e.image_url || "", "url", 'placeholder="https://..."'),
+      fileField("image_file", "Upload image file", 'accept="image/*"'),
       textarea("description", "Product description", e.description || productDescription(product), 'rows="5"'),
       textarea("features", "Key features (one per line)", (e.features || []).join("\n"), 'rows="5"'),
       textarea("specifications", "Specifications (Label: value, one per line)", stringifySpecifications(e.specifications || product.specifications), 'rows="6" placeholder="SAE viscosity: 5W-30\nCapacity: 5L\nManufacturer approval: VW 504 00"'),
@@ -334,8 +344,26 @@
     $("product-edit-form").addEventListener("submit", save);
   }
 
-  function formPayload(form, kind) {
+  function imageFileDataUrl(file) {
+    return new Promise(function (resolve, reject) {
+      if (!file) {
+        resolve("");
+        return;
+      }
+      if (!/^image\//i.test(file.type || "")) {
+        reject(new Error("Image upload must be an image file."));
+        return;
+      }
+      var reader = new FileReader();
+      reader.onload = function () { resolve(String(reader.result || "")); };
+      reader.onerror = function () { reject(new Error("Could not read image file.")); };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  async function formPayload(form, kind) {
     var data = new FormData(form);
+    var imageFile = data.get("image_file");
     var payload = {
       name: String(data.get("name") || "").trim(),
       stock: Math.max(0, parseInt(data.get("stock"), 10) || 0),
@@ -348,6 +376,10 @@
       specifications: parseSpecifications(data.get("specifications")),
       active: data.get("active") === "on",
     };
+
+    if (imageFile && imageFile.size > 0) {
+      payload.image_url = await imageFileDataUrl(imageFile);
+    }
 
     try {
       payload.reviews = JSON.parse(String(data.get("reviews") || "[]"));
@@ -413,7 +445,7 @@
     submit.disabled = true;
     submit.textContent = "Saving...";
     try {
-      var payload = formPayload(event.currentTarget, product.kind);
+      var payload = await formPayload(event.currentTarget, product.kind);
       var data = await api("/api/admin/products/" + encodeURIComponent(product.kind) + "/" + encodeURIComponent(product.id), {
         method: "PUT",
         headers: authHeaders({ "Content-Type": "application/json" }),
