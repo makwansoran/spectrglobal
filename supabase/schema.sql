@@ -229,7 +229,6 @@ with seed(name, country, region, active) as (
     ('Dacia', 'Romania', 'Europe', true),
     ('Spyker', 'Netherlands', 'Europe', true),
     ('Donkervoort', 'Netherlands', 'Europe', true),
-    ('Rimac', 'Croatia', 'Europe', true),
     ('Togg', 'Turkey', 'Europe', true),
     ('UAZ', 'Russia', 'Europe', true),
     ('BYD', 'China', 'Asia', true),
