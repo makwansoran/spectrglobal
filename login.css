@@ -531,7 +531,7 @@
   pointer-events: none;
 }
 
-.auth-promo-video iframe {
+.auth-promo-video-el {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -542,6 +542,7 @@
   border: 0;
   pointer-events: none;
   transform: translate(-50%, -50%);
+  object-fit: cover;
 }
 
 .auth-promo::before {

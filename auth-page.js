@@ -182,6 +182,19 @@
     });
   }
 
+  function initPromoVideo() {
+    var video = document.querySelector(".auth-promo-video-el");
+    if (!video) return;
+    function seekToStart() {
+      video.currentTime = 2;
+    }
+    video.addEventListener("loadedmetadata", seekToStart);
+    video.addEventListener("canplay", function () {
+      if (video.currentTime < 2) video.currentTime = 2;
+      video.play().catch(function () {});
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll("[data-current-year]").forEach(function (node) {
       node.textContent = String(new Date().getFullYear());
@@ -189,5 +202,6 @@
     preserveNextOnAuthLinks();
     initSignIn();
     initCreateAccount();
+    initPromoVideo();
   });
 })();
