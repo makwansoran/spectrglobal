@@ -1742,6 +1742,18 @@
   padding: 0;
   border: 0;
   background: transparent;
+  color: inherit;
+  text-decoration: none;
+}
+
+a.product-brand-badge {
+  cursor: pointer;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+a.product-brand-badge:hover {
+  opacity: 0.82;
+  transform: translateY(-1px);
 }
 
 .product-brand-badge img {

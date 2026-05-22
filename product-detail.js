@@ -8,7 +8,6 @@
     parts: [],
     product: null,
   };
-  var CONTINENTAL_LOGO_SRC = "assets/brand/continental-logo.png";
 
   function $(id) { return document.getElementById(id); }
 
@@ -28,13 +27,48 @@
     return '<span class="category-label-text">' + escapeHtml(label || "Car part") + "</span>";
   }
 
-  function isContinentalPart(part) {
-    return /continental/i.test([part && part.brand, part && part.name].filter(Boolean).join(" "));
+  function normalize(value) {
+    return String(value || "").trim().toLowerCase();
   }
 
-  function continentalBadgeHtml(part, modifier) {
-    if (!isContinentalPart(part)) return "";
-    return '<span class="product-brand-badge ' + escapeHtml(modifier || "") + '" aria-label="Continental product"><img src="' + CONTINENTAL_LOGO_SRC + '" alt="Continental" loading="lazy" decoding="async"></span>';
+  function brandSlug(brand) {
+    return normalize(brand)
+      .replace(/&/g, "and")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+  }
+
+  function extractBrand(part) {
+    var direct = String((part && part.brand) || "").trim();
+    if (direct) return direct;
+
+    var specs = Array.isArray(part && part.specifications) ? part.specifications : [];
+    var brandSpec = specs.find(function (spec) {
+      return normalize(spec && (spec.label || spec.name)) === "brand";
+    });
+    if (brandSpec && String(brandSpec.value || "").trim()) {
+      return String(brandSpec.value || "").trim();
+    }
+
+    var name = String((part && part.name) || "").trim();
+    if (/^continental\b/i.test(name)) return "Continental";
+    return "";
+  }
+
+  function brandProductsHref(brand) {
+    return "part-category.html?brand=" + encodeURIComponent(brand);
+  }
+
+  function brandBadgeHtml(part, modifier, linked) {
+    var brand = extractBrand(part);
+    var slug = brandSlug(brand);
+    if (!brand || !slug) return "";
+    var image = '<img src="assets/brand/' + escapeHtml(slug) + '-logo.png" alt="' + escapeHtml(brand) + '" loading="lazy" decoding="async" onerror="this.closest(\'.product-brand-badge\').hidden=true">';
+    var classes = "product-brand-badge " + (modifier || "");
+    if (linked) {
+      return '<a class="' + escapeHtml(classes) + '" href="' + escapeHtml(brandProductsHref(brand)) + '" aria-label="View ' + escapeHtml(brand) + ' products">' + image + '</a>';
+    }
+    return '<span class="' + escapeHtml(classes) + '" aria-label="' + escapeHtml(brand) + ' product">' + image + '</span>';
   }
 
   function initials(name) {
@@ -205,7 +239,7 @@
         '</div>' +
         '<div class="product-detail-body">' +
           (hideProductEyebrow(product) ? '' : '<p class="shop-eyebrow">' + categoryLabelHtml(product.category || "Car part") + '</p>') +
-          continentalBadgeHtml(product, "product-brand-badge--detail") +
+          brandBadgeHtml(product, "product-brand-badge--detail", true) +
           '<h1>' + escapeHtml(product.name) + '</h1>' +
           '<p class="product-detail-sku">' + escapeHtml(product.article_number || product.sku || product.id) + '</p>' +
           '<p class="product-detail-description">' + escapeHtml(product.description || "Product details are generated from the Spectr compatibility catalog.") + '</p>' +
@@ -250,7 +284,7 @@
         productCardMedia(part) +
         '<div class="product-body">' +
           '<span class="product-category">' + categoryLabelHtml(part.category || "Car part") + '</span>' +
-          continentalBadgeHtml(part, "") +
+          brandBadgeHtml(part, "", false) +
           '<h3 class="product-name">' + escapeHtml(part.name) + '</h3>' +
           (description ? '<p class="product-description">' + escapeHtml(description) + '</p>' : '') +
           '<span class="product-reviews">(' + escapeHtml(reviews || 0) + ' anmeldelser)</span>' +

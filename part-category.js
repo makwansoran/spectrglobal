@@ -42,7 +42,11 @@
   }
 
   function selectedCategory() {
-    return new URLSearchParams(window.location.search).get("category") || "Oils";
+    return new URLSearchParams(window.location.search).get("category") || "";
+  }
+
+  function selectedBrand() {
+    return new URLSearchParams(window.location.search).get("brand") || "";
   }
 
   function categoryKey(value) {
@@ -52,6 +56,7 @@
   }
 
   function isSameCategory(part) {
+    if (!state.category) return true;
     if (categoryKey(state.category) === categoryKey(DEALS_CATEGORY)) return true;
     return categoryKey(part.category) === categoryKey(state.category);
   }
@@ -283,7 +288,8 @@
   }
 
   function renderHero() {
-    document.title = state.category + " | Spectr";
+    var brand = selectedBrand();
+    document.title = (brand ? brand + " products" : state.category || "Products") + " | Spectr";
   }
 
   function renderProducts() {
@@ -294,9 +300,11 @@
 
     if (summary) {
       var total = state.parts.filter(isSameCategory).length;
+      var brand = selectedBrand();
+      var label = brand ? brand + " products" : "products";
       summary.textContent = parts.length === total
-        ? parts.length + " products"
-        : parts.length + " of " + total + " products";
+        ? parts.length + " " + label
+        : parts.length + " of " + total + " " + label;
     }
 
     if (!parts.length) {
@@ -428,6 +436,8 @@
 
   document.addEventListener("DOMContentLoaded", function () {
     state.category = selectedCategory();
+    var brand = selectedBrand();
+    if (brand) state.filters.brand.add(brand);
     renderHero();
 
     Shop.fetchCatalogParts().then(function (parts) {
