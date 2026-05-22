@@ -184,11 +184,11 @@
   }
 
   function usesGenericPrice(kind) {
-    return kind === "parts" || kind === "continental-tyre";
+    return kind === "parts" || kind === "continental-tyre" || kind === "gmp-wheel";
   }
 
   function usesPartsFields(kind) {
-    return kind === "parts" || kind === "continental-tyre";
+    return kind === "parts" || kind === "continental-tyre" || kind === "gmp-wheel";
   }
 
   function continentalBrand(product) {

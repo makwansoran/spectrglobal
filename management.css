@@ -633,6 +633,7 @@
 .kind-pill.kind-brake { background: #fde2e2; color: #b3261e; }
 .kind-pill.kind-parts { background: #e7f0ff; color: #2150ff; }
 .kind-pill.kind-continental-tyre { background: #eef2ff; color: #3730a3; }
+.kind-pill.kind-gmp-wheel { background: #ecfdf3; color: #047857; }
 
 .status-pill.status-pending { background: #fff8db; color: #8a6d1f; }
 .status-pill.status-confirmed { background: #e0ecff; color: #1b4dbf; }

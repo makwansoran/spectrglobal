@@ -475,6 +475,47 @@ create policy "Public can read active continental tyres"
 create index if not exists idx_continental_tyres_active_name
   on public.continental_tyres(active, name);
 
+-- Dedicated GMP Italia wheel catalog (kept separate from the generic parts table).
+create table if not exists public.gmp_italia_wheels (
+  id text primary key,
+  name text not null,
+  model text not null,
+  sku text,
+  price numeric(12, 2) not null default 0 check (price >= 0),
+  stock integer not null default 0 check (stock >= 0),
+  description text,
+  image_url text,
+  source_image_url text,
+  product_page_url text,
+  article_number text,
+  ean_code text,
+  delivery_time text not null default '2-5 days',
+  features jsonb not null default '[]'::jsonb,
+  reviews jsonb not null default '[]'::jsonb,
+  specifications jsonb not null default '[]'::jsonb,
+  vehicles jsonb not null default '[]'::jsonb,
+  active boolean not null default true,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now(),
+  constraint gmp_italia_wheels_name_len check (char_length(trim(name)) between 1 and 200),
+  constraint gmp_italia_wheels_features_is_array check (jsonb_typeof(features) = 'array'),
+  constraint gmp_italia_wheels_reviews_is_array check (jsonb_typeof(reviews) = 'array'),
+  constraint gmp_italia_wheels_specifications_is_array check (jsonb_typeof(specifications) = 'array'),
+  constraint gmp_italia_wheels_vehicles_is_array check (jsonb_typeof(vehicles) = 'array')
+);
+
+alter table public.gmp_italia_wheels enable row level security;
+
+drop policy if exists "Public can read active GMP Italia wheels" on public.gmp_italia_wheels;
+create policy "Public can read active GMP Italia wheels"
+  on public.gmp_italia_wheels
+  for select
+  to anon, authenticated
+  using (active = true);
+
+create index if not exists idx_gmp_italia_wheels_active_name
+  on public.gmp_italia_wheels(active, name);
+
 -- OEM tyre fitment seed data. Multiple rows per model represent multiple OEM size options.
 insert into public.car_tyre_fitment (
   model_id,
