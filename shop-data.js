@@ -175,12 +175,44 @@
     writeJSON(KEYS.slides, list || []);
   }
 
+  function normalizeCart(list) {
+    if (!Array.isArray(list)) return [];
+    return list.reduce(function (lines, line) {
+      var partId = String(line && line.partId || "").trim();
+      var qty = Math.max(0, parseInt(line && line.qty, 10) || 0);
+      if (!partId || qty < 1) return lines;
+      lines.push({ partId: partId, qty: qty });
+      return lines;
+    }, []);
+  }
+
+  function cartItemCount(list) {
+    return normalizeCart(list).reduce(function (sum, line) {
+      return sum + line.qty;
+    }, 0);
+  }
+
   function getCart() {
-    return readJSON(KEYS.cart, []);
+    var raw = readJSON(KEYS.cart, []);
+    var cart = normalizeCart(raw);
+    if (JSON.stringify(raw) !== JSON.stringify(cart)) writeJSON(KEYS.cart, cart);
+    return cart;
   }
 
   function setCart(list) {
-    writeJSON(KEYS.cart, list || []);
+    writeJSON(KEYS.cart, normalizeCart(list));
+  }
+
+  function cartForParts(parts) {
+    var cart = getCart();
+    if (!Array.isArray(parts) || parts.length === 0) return cart;
+    var knownParts = parts.reduce(function (set, part) {
+      if (part && part.id) set[String(part.id)] = true;
+      return set;
+    }, {});
+    var visibleCart = cart.filter(function (line) { return knownParts[line.partId]; });
+    if (visibleCart.length !== cart.length) setCart(visibleCart);
+    return visibleCart;
   }
 
   function addToCart(partId, qty) {
@@ -421,6 +453,8 @@
     setSlides: setSlides,
     getCart: getCart,
     setCart: setCart,
+    cartForParts: cartForParts,
+    cartItemCount: cartItemCount,
     addToCart: addToCart,
     updateCartQty: updateCartQty,
     removeFromCart: removeFromCart,

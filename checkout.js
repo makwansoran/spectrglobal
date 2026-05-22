@@ -71,9 +71,8 @@
     var count = $("checkout-count");
     var title = $("checkout-title");
     var sum = 0;
-    var itemCount = state.cart.reduce(function (acc, line) {
-      return acc + (parseInt(line.qty, 10) || 0);
-    }, 0);
+    state.cart = Shop.cartForParts(state.parts);
+    var itemCount = Shop.cartItemCount(state.cart);
 
     if (count) count.textContent = "(" + itemCount + ")";
     if (title) title.textContent = "Shopping Cart (" + itemCount + ")";
@@ -282,7 +281,7 @@
 
   document.addEventListener("DOMContentLoaded", function () {
     state.customer = readCustomerSession();
-    state.cart = Shop.getCart();
+    state.cart = Shop.cartForParts(state.parts);
 
     if (new URLSearchParams(window.location.search).get("checkout") === "cancelled") {
       showMessage("Checkout was cancelled. Your cart is still here.", "error");

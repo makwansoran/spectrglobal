@@ -158,7 +158,7 @@
     var parts = normalize(state.category) === normalize(DEALS_CATEGORY)
       ? dealProducts(availableParts, DEALS_LIMIT)
       : featuredProducts(availableParts, FEATURED_LIMIT);
-    var cart = Shop.getCart();
+    var cart = Shop.cartForParts(state.parts);
 
     if (summary) {
       var bits = [];
@@ -212,9 +212,9 @@
     var body = $("cart-body");
     var total = $("cart-total");
     var count = $("cart-fab-count");
-    var cart = Shop.getCart();
+    var cart = Shop.cartForParts(state.parts);
 
-    if (count) count.textContent = cart.reduce(function (sum, line) { return sum + (parseInt(line.qty, 10) || 0); }, 0);
+    if (count) count.textContent = Shop.cartItemCount(cart);
 
     if (!cart.length) {
       if (body) body.innerHTML = '<p class="cart-empty">Your cart is empty. Choose your car and add compatible products.</p>';

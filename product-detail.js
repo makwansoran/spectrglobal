@@ -261,9 +261,9 @@
     var body = $("cart-body");
     var total = $("cart-total");
     var count = $("cart-fab-count");
-    var cart = Shop.getCart();
+    var cart = Shop.cartForParts(state.parts);
 
-    if (count) count.textContent = cart.reduce(function (sum, line) { return sum + (parseInt(line.qty, 10) || 0); }, 0);
+    if (count) count.textContent = Shop.cartItemCount(cart);
 
     if (!cart.length) {
       body.innerHTML = '<p class="cart-empty">Your cart is empty. Browse listings to add products.</p>';

@@ -576,7 +576,7 @@
       return;
     }
 
-    var cart = Shop.getCart();
+    var cart = Shop.cartForParts(allParts);
     grid.innerHTML = visibleParts.map(function (part) {
       var inCart = cart.find(function (l) { return l.partId === part.id; });
       var outOfStock = (part.stock || 0) <= 0;
@@ -664,9 +664,9 @@
     var body = $("cart-body");
     var total = $("cart-total");
     var count = $("cart-fab-count");
-    var cart = Shop.getCart();
+    var cart = Shop.cartForParts(state.catalogParts);
 
-    if (count) count.textContent = cart.reduce(function (sum, line) { return sum + (parseInt(line.qty, 10) || 0); }, 0);
+    if (count) count.textContent = Shop.cartItemCount(cart);
 
     if (cart.length === 0) {
       if (body) body.innerHTML = '<p class="cart-empty">Your cart is empty. Search for your car or browse the catalog to add parts.</p>';
