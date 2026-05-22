@@ -788,19 +788,47 @@
 }
 
 .all-brands-hero {
-  max-width: 920px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: clamp(0.9rem, 2vw, 1.5rem) clamp(1rem, 4vw, 4.5rem) clamp(1.5rem, 3vw, 2.5rem);
+  padding: clamp(1.8rem, 4vw, 3.5rem) clamp(1rem, 4vw, 4.5rem) clamp(1.5rem, 3vw, 2.5rem);
   text-align: center;
 }
 
 .all-brands-hero h1 {
   margin: 0;
   color: var(--shop-ink);
-  font-size: clamp(2rem, 5vw, 4rem);
-  font-weight: 700;
-  letter-spacing: -0.055em;
-  line-height: 0.98;
+  font-family: "Syne", system-ui, -apple-system, sans-serif;
+  font-size: clamp(2.8rem, 9vw, 8rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+}
+
+/* ── Palantir-style word reveal ──────────────────────────── */
+.pln-text-reveal-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  margin-right: 0.22em;
+}
+
+.pln-text-reveal-word:last-child {
+  margin-right: 0;
+}
+
+.pln-text-reveal-inner {
+  display: inline-block;
+  transform: translateY(110%);
+  opacity: 0;
+  will-change: transform, opacity;
+  transition:
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.5s ease;
+}
+
+.pln-text-revealed .pln-text-reveal-inner {
+  transform: translateY(0);
+  opacity: 1;
 }
 
 .all-brands-hero p:not(.shop-eyebrow) {
