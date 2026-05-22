@@ -89,11 +89,6 @@
   font-size: 0.66rem;
 }
 
-#catalog .product-flex,
-.category-page .product-flex {
-  font-size: 0.66rem;
-}
-
 @media (max-width: 640px) {
   #catalog .catalog-grid,
   .category-page .catalog-grid {

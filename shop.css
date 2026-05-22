@@ -1786,20 +1786,6 @@
   line-height: 1.2;
 }
 
-.product-flex {
-  display: block;
-  color: var(--shop-muted);
-  font-size: 0.72rem;
-  line-height: 1.25;
-}
-
-.product-flex strong {
-  color: var(--shop-ink);
-  font-family: var(--shop-price);
-  font-weight: 800;
-  letter-spacing: 0.04em;
-}
-
 .product-stock {
   display: block;
   color: var(--shop-muted);

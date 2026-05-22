@@ -146,9 +146,7 @@
   function previewPriceHtml(part) {
     var price = Number(part.price) || 0;
     if (!price) return '<span class="product-price">Contact us</span>';
-    return '' +
-      '<span class="product-price">' + escapeHtml(Shop.formatNok(price)) + '</span>' +
-      '<span class="product-flex"><strong>FLEX</strong> ' + escapeHtml(Shop.formatNok(Math.max(1, Math.ceil(price / 24)))) + ' /md.</span>';
+    return '<span class="product-price">' + escapeHtml(Shop.formatNok(price)) + '</span>';
   }
 
   function renderFeatures(product) {
