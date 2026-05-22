@@ -66,6 +66,37 @@
       : '<p class="make-grid-status">No supported models are listed for this brand yet.</p>';
   }
 
+  function updateModelScrollButtons() {
+    var modelGrid = $("brand-model-grid");
+    var prev = document.querySelector('[data-model-scroll="prev"]');
+    var next = document.querySelector('[data-model-scroll="next"]');
+    if (!modelGrid || !prev || !next) return;
+
+    var maxScroll = Math.max(0, modelGrid.scrollWidth - modelGrid.clientWidth);
+    prev.disabled = modelGrid.scrollLeft <= 1;
+    next.disabled = modelGrid.scrollLeft >= maxScroll - 1;
+  }
+
+  function bindModelScroller() {
+    var modelGrid = $("brand-model-grid");
+    var buttons = document.querySelectorAll("[data-model-scroll]");
+    if (!modelGrid || !buttons.length) return;
+
+    buttons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        var direction = button.getAttribute("data-model-scroll") === "prev" ? -1 : 1;
+        modelGrid.scrollBy({
+          left: direction * Math.max(modelGrid.clientWidth * 0.8, 220),
+          behavior: "smooth",
+        });
+      });
+    });
+
+    modelGrid.addEventListener("scroll", updateModelScrollButtons);
+    window.addEventListener("resize", updateModelScrollButtons);
+    updateModelScrollButtons();
+  }
+
   function renderPartCards(parts) {
     var partsGrid = $("brand-parts-grid");
     if (!partsGrid) return;
@@ -93,6 +124,7 @@
     document.title = make.name + " Parts | Spectr";
     $("brand-model-count").textContent = String(models.length);
     renderModelCards(make, models);
+    updateModelScrollButtons();
     renderPartCards(parts);
   }
 
@@ -105,6 +137,8 @@
   }
 
   document.addEventListener("DOMContentLoaded", function () {
+    bindModelScroller();
+
     var requested = selectedMakeParam();
     if (!requested) {
       renderError("Choose a car brand to continue.");
