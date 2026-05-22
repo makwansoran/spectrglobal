@@ -262,6 +262,7 @@
 }
 
 .management-list .list-value {
+  font-family: var(--shop-price);
   font-weight: 600;
   color: #1d2530;
   white-space: nowrap;
@@ -582,6 +583,11 @@
   font-size: 14px;
   text-align: right;
   font-family: inherit;
+}
+
+.management-table .input-cell[data-field="price"] {
+  font-family: var(--shop-price);
+  font-weight: 650;
 }
 
 .management-table .input-cell-wide {

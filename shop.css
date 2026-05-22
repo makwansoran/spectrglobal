@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Share+Tech&display=swap");
+
 /* Spectr — white ecommerce theme */
 
 :root {
@@ -15,6 +17,7 @@
   --shop-cart-orange-soft: #ffedd5;
   --shop-radius: 4px;
   --shop-radius-lg: 8px;
+  --shop-price: "Google Sans Flex", "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --shop-mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
   --shop-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
@@ -1771,9 +1774,9 @@
 }
 
 .product-price {
-  font-family: var(--shop-mono);
+  font-family: var(--shop-price);
   font-size: 1.05rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.02em;
 }
 
@@ -2494,8 +2497,9 @@
 
 .product-detail-buy strong {
   color: var(--shop-ink);
-  font-family: var(--shop-mono);
+  font-family: var(--shop-price);
   font-size: 1.5rem;
+  font-weight: 750;
 }
 
 .product-detail-buy span {
@@ -3057,8 +3061,8 @@
 }
 
 .cart-line-price {
-  font-family: var(--shop-mono);
-  font-weight: 600;
+  font-family: var(--shop-price);
+  font-weight: 700;
   white-space: nowrap;
 }
 
@@ -3261,7 +3265,8 @@
 .checkout-line strong,
 .checkout-total strong {
   color: var(--shop-ink);
-  font-family: var(--shop-mono);
+  font-family: var(--shop-price);
+  font-weight: 750;
 }
 
 .checkout-total {
@@ -3629,7 +3634,7 @@
 
 .checkout-summary-list dd {
   color: #0a0c10;
-  font-family: var(--shop-mono);
+  font-family: var(--shop-price);
   font-weight: 700;
   text-align: right;
 }
@@ -3641,8 +3646,9 @@
 }
 
 .checkout-summary-total strong {
-  font-family: var(--shop-mono);
+  font-family: var(--shop-price);
   font-size: 1.1rem;
+  font-weight: 800;
 }
 
 .checkout-login-card,
