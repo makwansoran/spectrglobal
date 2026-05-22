@@ -45,9 +45,15 @@
     return new URLSearchParams(window.location.search).get("category") || "Oils";
   }
 
+  function categoryKey(value) {
+    var key = normalize(value);
+    if (key === "tyres") return "tires";
+    return key;
+  }
+
   function isSameCategory(part) {
-    if (normalize(state.category) === normalize(DEALS_CATEGORY)) return true;
-    return normalize(part.category) === normalize(state.category);
+    if (categoryKey(state.category) === categoryKey(DEALS_CATEGORY)) return true;
+    return categoryKey(part.category) === categoryKey(state.category);
   }
 
   function productRank(part) {
@@ -84,10 +90,24 @@
   }
 
   function extractDimensions(part) {
-    var haystack = [part.name, part.description, part.sku, part.article_number]
+    var specText = (Array.isArray(part.specifications) ? part.specifications : [])
+      .map(function (spec) {
+        return [
+          spec && (spec.label || spec.name),
+          spec && spec.value
+        ].filter(Boolean).join(" ");
+      })
+      .join(" ");
+    var haystack = [part.name, part.description, part.sku, part.article_number, specText]
       .filter(Boolean).join(" ");
     var matches = haystack.match(/\d{3}\/\d{2,3}\s*[Rr]\s*\d{2}/g) || [];
-    return matches.map(function (m) { return m.replace(/\s+/g, "").toUpperCase(); });
+    var seen = {};
+    return matches.map(function (m) { return m.replace(/\s+/g, "").toUpperCase(); })
+      .filter(function (m) {
+        if (seen[m]) return false;
+        seen[m] = true;
+        return true;
+      });
   }
 
   function extractModels(part) {
