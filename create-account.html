@@ -25,11 +25,20 @@
 
           <p class="auth-kicker">Create account</p>
           <h1 id="create-account-title">Start with your account</h1>
-          <p class="auth-copy">Create a Supabase-backed account with only an email and password.</p>
 
           <p class="auth-message" id="auth-message" role="alert" hidden></p>
 
           <form class="auth-form" id="create-account-form" autocomplete="on">
+            <fieldset class="auth-account-type" aria-label="Account type">
+              <label class="auth-account-option">
+                <input type="radio" name="accountType" value="business" required />
+                <span>Business</span>
+              </label>
+              <label class="auth-account-option">
+                <input type="radio" name="accountType" value="private" checked required />
+                <span>Private</span>
+              </label>
+            </fieldset>
             <label class="auth-field">
               <span>Email</span>
               <input id="create-email" type="email" autocomplete="email" placeholder="email@example.com" required />

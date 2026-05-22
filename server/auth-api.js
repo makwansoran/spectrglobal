@@ -19,6 +19,10 @@ function normalizeEmail(value) {
     .toLowerCase();
 }
 
+function normalizeAccountType(value) {
+  return String(value || "").toLowerCase() === "business" ? "business" : "private";
+}
+
 function profileNameFromEmail(email) {
   return String(email || "").split("@")[0] || "Customer";
 }
@@ -53,6 +57,7 @@ async function saveCustomerProfile(user, body, req, source) {
 
   const now = new Date().toISOString();
   const metadata = {
+    account_type: normalizeAccountType(body.accountType || body.account_type),
     page: normalizeText(body.page || body.path, 200),
     referrer: normalizeText(body.referrer, 500),
     source,
@@ -138,6 +143,7 @@ async function handleCreateAccount(body, req) {
     password: parsed.password,
     email_confirm: true,
     user_metadata: {
+      account_type: normalizeAccountType(body.accountType || body.account_type),
       source: "create_account_page",
     },
   });

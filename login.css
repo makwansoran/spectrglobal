@@ -141,6 +141,57 @@
   gap: 1rem;
 }
 
+.auth-account-type {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 0 0 0.25rem;
+  padding: 0;
+  border: 0;
+}
+
+.auth-account-option {
+  cursor: pointer;
+}
+
+.auth-account-option input {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.auth-account-option span {
+  display: flex;
+  min-height: 2.85rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--auth-line-strong);
+  border-radius: 6px;
+  background: #ffffff;
+  color: #3c4257;
+  font-weight: 700;
+  box-shadow: 0 1px 1px rgba(10, 37, 64, 0.06);
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    color 0.15s ease;
+}
+
+.auth-account-option input:checked + span {
+  border-color: #000000;
+  color: #000000;
+  box-shadow: 0 0 0 3px rgba(10, 37, 64, 0.1);
+}
+
+.auth-account-option input:focus-visible + span {
+  outline: 2px solid var(--auth-focus);
+  outline-offset: 2px;
+}
+
 .auth-field {
   display: grid;
   gap: 0.38rem;

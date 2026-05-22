@@ -20,6 +20,11 @@
     return node ? String(node.value || "").trim() : "";
   }
 
+  function readCheckedValue(form, name) {
+    var node = form.querySelector("input[name='" + name + "']:checked");
+    return node ? String(node.value || "").trim() : "";
+  }
+
   function setSubmitting(form, submitting) {
     var button = form.querySelector("button[type='submit']");
     if (!button) return;
@@ -115,6 +120,7 @@
     var email = normalizeEmail(readValue("create-email"));
     var password = readValue("create-password");
     var passwordConfirm = readValue("create-password-confirm");
+    var accountType = readCheckedValue(form, "accountType") || "private";
 
     if (!email) {
       showMessage("Enter your email to continue.", "error");
@@ -139,6 +145,7 @@
       var data = await postAuth("/api/auth/create-account", {
         email: email,
         password: password,
+        accountType: accountType,
         page: window.location.pathname,
         referrer: document.referrer
       });
