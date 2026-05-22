@@ -2252,9 +2252,19 @@
   box-shadow: 0 1.5rem 4rem rgba(15, 23, 42, 0.09);
 }
 
+.product-detail-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: stretch;
+  min-width: 0;
+}
+
+.product-detail-left .product-detail-section--overview {
+  margin-top: 0;
+}
+
 .product-detail-media {
-  position: sticky;
-  top: calc(var(--plt-header-h, 3.5rem) + 1rem);
   min-height: clamp(18rem, 34vw, 30rem);
   max-height: clamp(20rem, 38vw, 34rem);
   display: flex;
@@ -3725,11 +3735,6 @@
 
   .product-detail-card {
     grid-template-columns: 1fr;
-  }
-
-  .product-detail-media {
-    position: relative;
-    top: auto;
   }
 
   .checkout-layout,

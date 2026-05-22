@@ -180,7 +180,10 @@
 
     detail.innerHTML = '' +
       '<div class="product-detail-card">' +
-        renderProductMedia(product) +
+        '<div class="product-detail-left">' +
+          renderProductMedia(product) +
+          renderSpecifications(product) +
+        '</div>' +
         '<div class="product-detail-body">' +
           (hideProductEyebrow(product) ? '' : '<p class="shop-eyebrow">' + categoryLabelHtml(product.category || "Car part") + '</p>') +
           continentalBadgeHtml(product, "product-brand-badge--detail") +
@@ -200,7 +203,6 @@
             '<span>Secure checkout</span>' +
           '</div>' +
           '<div class="product-overview-grid">' +
-            renderSpecifications(product) +
             renderFeatures(product) +
             '<section class="product-detail-section product-detail-section--overview">' +
               '<h2>Fitment</h2>' +
