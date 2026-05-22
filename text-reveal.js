@@ -1,38 +1,31 @@
 (function () {
   "use strict";
 
-  function revealElement(el) {
-    var words = el.textContent.trim().split(/\s+/).filter(Boolean);
+  var CHAR_DELAY = 0.032; // seconds between each letter
 
-    el.innerHTML = words.map(function (word, i) {
-      var delay = (i * 0.1).toFixed(2) + "s";
+  function revealElement(el) {
+    var text = el.textContent;
+    var charIndex = 0;
+
+    el.innerHTML = text.split("").map(function (char) {
+      if (char === " ") {
+        return '<span class="pln-char pln-char--space"> </span>';
+      }
+      var delay = (charIndex * CHAR_DELAY).toFixed(3) + "s";
+      charIndex++;
       return (
-        '<span class="pln-text-reveal-word">' +
-          '<span class="pln-text-reveal-inner" style="transition-delay:' + delay + '">' +
-            word +
-          "</span>" +
+        '<span class="pln-char" style="transition-delay:' + delay + '">' +
+          char +
         "</span>"
       );
     }).join("");
 
-    if (!("IntersectionObserver" in window)) {
-      el.classList.add("pln-text-revealed");
-      return;
-    }
-
-    var observer = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            el.classList.add("pln-text-revealed");
-            observer.unobserve(el);
-          }
-        });
-      },
-      { threshold: 0.25 }
-    );
-
-    observer.observe(el);
+    // Double rAF ensures styles are applied before class triggers transition
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        el.classList.add("pln-text-revealed");
+      });
+    });
   }
 
   document.addEventListener("DOMContentLoaded", function () {
