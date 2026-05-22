@@ -115,7 +115,7 @@
         cta: "",
         ctaHref: "part-category.html?category=Tires",
         image: "assets/hero/continental-engineered-germany.png",
-        imagePosition: "center",
+        imagePosition: "center 38%",
         hideCopy: true
       },
       {
@@ -181,9 +181,15 @@
   function getSlides() {
     var slides = readJSON(KEYS.slides, []);
     var continentalSlide = defaultSlides()[0];
-    if (!slides.some(function (slide) { return slide && slide.id === continentalSlide.id; })) {
+    var idx = slides.findIndex(function (slide) { return slide && slide.id === continentalSlide.id; });
+    if (idx === -1) {
       return [continentalSlide].concat(slides);
     }
+    slides[idx] = Object.assign({}, slides[idx], {
+      image: continentalSlide.image,
+      imagePosition: continentalSlide.imagePosition,
+      hideCopy: continentalSlide.hideCopy
+    });
     return slides;
   }
 
