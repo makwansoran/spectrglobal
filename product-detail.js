@@ -85,7 +85,8 @@
   }
 
   function hideProductEyebrow(product) {
-    return product && product.id === "continental-contiprocontact";
+    var category = normalize(product && product.category);
+    return category === "tyres" || category === "tires";
   }
 
   function cartLine(partId) {
