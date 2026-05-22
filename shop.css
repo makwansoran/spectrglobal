@@ -568,7 +568,7 @@
 /* ── Promo slideshow ─────────────────────────────────────── */
 .promo-slider {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   width: 1024px;
   max-width: 100%;
   aspect-ratio: 2 / 1;
@@ -582,6 +582,9 @@
 .promo-track {
   position: absolute;
   inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  background: #0a0c10;
 }
 
 .promo-slide {
@@ -697,10 +700,11 @@
 .promo-controls {
   position: absolute;
   top: 50%;
-  width: 100%;
+  left: -3.25rem;
+  right: -3.25rem;
   display: flex;
   justify-content: space-between;
-  padding: 0 0.7rem;
+  padding: 0;
   transform: translateY(-50%);
   z-index: 2;
   pointer-events: none;
@@ -714,19 +718,30 @@
   align-items: center;
   justify-content: center;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  color: #ffffff;
-  transition: background 0.15s;
+  background: #ffffff;
+  border: 1px solid var(--shop-line);
+  color: var(--shop-ink);
+  box-shadow: 0 14px 34px rgba(10, 12, 16, 0.18);
+  transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
 }
 
 .promo-nav:hover {
-  background: rgba(255, 255, 255, 0.22);
+  background: var(--shop-ink);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 18px 40px rgba(10, 12, 16, 0.24);
 }
 
 .promo-nav svg {
   width: 1rem;
   height: 1rem;
+}
+
+@media (max-width: 1120px) {
+  .promo-controls {
+    left: 0.7rem;
+    right: 0.7rem;
+  }
 }
 
 /* ── Trust strip ─────────────────────────────────────────── */
