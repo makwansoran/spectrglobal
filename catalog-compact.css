@@ -44,6 +44,11 @@
   font-size: 0.68rem;
 }
 
+#catalog .product-category,
+.category-page .product-category {
+  display: none;
+}
+
 #catalog .product-description,
 .category-page .product-description {
   display: none;
