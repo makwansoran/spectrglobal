@@ -1112,62 +1112,49 @@
 }
 
 .brand-page .brand-detail-grid {
-  grid-template-columns: minmax(0, 1fr);
+  grid-template-columns: minmax(11rem, 14rem) minmax(0, 1fr);
+  align-items: start;
 }
 
-.brand-model-panel {
-  min-width: 0;
-}
-
-.brand-model-free-list {
-  background: transparent;
-  gap: clamp(0.85rem, 2vw, 1.35rem);
-  padding: 0;
-}
-
-.brand-model-carousel {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  align-items: center;
-  gap: clamp(0.55rem, 2vw, 1rem);
-  background: #ffffff;
-}
-
-.brand-model-scroll-btn {
-  width: 2.35rem;
-  height: 2.35rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+.brand-model-sidebar {
+  position: sticky;
+  top: 5.5rem;
   border: 1px solid var(--shop-line);
-  border-radius: 999px;
+  border-radius: 1rem;
   background: #ffffff;
   color: var(--shop-ink);
-  box-shadow: 0 0.6rem 1.4rem rgba(15, 23, 42, 0.08);
-  cursor: pointer;
-  transition: border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+  overflow: hidden;
 }
 
-.brand-model-scroll-btn svg {
-  width: 1.15rem;
-  height: 1.15rem;
-  display: block;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2.4;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.brand-model-scroll-btn:hover:not(:disabled) {
-  border-color: rgba(17, 24, 39, 0.35);
+.brand-model-sidebar h2 {
+  margin: 0;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--shop-line);
   color: var(--shop-ink);
-  transform: translateY(-1px);
+  font-size: 0.9rem;
+  letter-spacing: -0.01em;
 }
 
-.brand-model-scroll-btn:disabled {
-  cursor: default;
-  opacity: 0.22;
+.brand-model-list {
+  display: grid;
+  max-height: min(65vh, 32rem);
+  overflow: auto;
+  padding: 0.35rem;
+}
+
+.brand-model-link {
+  display: block;
+  padding: 0.5rem 0.65rem;
+  border-radius: 0.65rem;
+  color: var(--shop-muted);
+  font-size: 0.85rem;
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+.brand-model-link:hover {
+  background: var(--shop-surface);
+  color: var(--shop-ink);
 }
 
 .brand-panel {
@@ -1199,32 +1186,6 @@
   font-size: 0.75rem;
 }
 
-.brand-model-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1px;
-  background: var(--shop-line);
-}
-
-.brand-model-grid.brand-model-free-list {
-  background: #ffffff;
-}
-
-.brand-model-strip {
-  display: flex;
-  gap: clamp(0.85rem, 2vw, 1.35rem);
-  overflow-x: hidden;
-  overflow-y: hidden;
-  padding-bottom: 0;
-  scroll-snap-type: x proximity;
-  scrollbar-width: none;
-}
-
-.brand-model-strip::-webkit-scrollbar {
-  display: none;
-}
-
-.brand-model-card,
 .brand-part-card {
   min-height: 6.5rem;
   padding: 1rem;
@@ -1233,65 +1194,11 @@
   text-decoration: none;
 }
 
-.brand-model-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 0.45rem;
-  min-height: 0;
-  padding: 0;
-  background: transparent;
-  text-align: center;
-}
-
-.brand-model-strip .brand-model-card {
-  flex: 0 0 clamp(5.6rem, 10vw, 7.5rem);
-  min-height: clamp(5.7rem, 12vw, 8rem);
-  scroll-snap-align: start;
-}
-
-.brand-model-card:hover {
-  background: transparent;
-}
-
-.brand-model-card:hover strong {
-  text-decoration: underline;
-  text-underline-offset: 0.18em;
-}
-
-.brand-model-photo {
-  width: clamp(3.8rem, 8vw, 5.7rem);
-  aspect-ratio: 1;
-  display: block;
-  overflow: hidden;
-  border-radius: 999px;
-}
-
-.brand-model-photo img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-}
-
-.brand-model-copy {
-  display: block;
-  min-width: 0;
-  width: 100%;
-}
-
-.brand-model-card strong {
-  color: var(--shop-ink);
-  font-size: 0.88rem;
-}
-
 .brand-part-card strong {
   color: var(--shop-ink);
   font-size: 1rem;
 }
 
-.brand-model-card span,
 .brand-part-card span,
 .brand-part-card small {
   color: var(--shop-muted);
@@ -3492,8 +3399,12 @@
     grid-template-columns: 1fr;
   }
 
-  .brand-model-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .brand-page .brand-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-model-sidebar {
+    position: static;
   }
 
   .product-detail-card {
@@ -3555,10 +3466,6 @@
   }
 
   .brand-identity {
-    grid-template-columns: 1fr;
-  }
-
-  .brand-model-grid {
     grid-template-columns: 1fr;
   }
 

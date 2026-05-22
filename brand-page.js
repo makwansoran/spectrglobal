@@ -27,11 +27,6 @@
     });
   }
 
-  function yearsLabel(model) {
-    if (!model.year_from) return "";
-    return model.year_from + "-" + (model.year_to || "present");
-  }
-
   function partFitsBrand(part, make) {
     var makeName = normalize(make.name);
     return (part.vehicles || []).some(function (fit) {
@@ -39,60 +34,19 @@
     });
   }
 
-  function modelImageUrl(model) {
-    return String(model.image_url || model.profile_image_url || model.photo_url || "").trim();
-  }
-
-  function renderModelCards(make, models) {
-    var modelGrid = $("brand-model-grid");
-    if (!modelGrid) return;
-    modelGrid.innerHTML = models.length
+  function renderModelList(make, models) {
+    var modelList = $("brand-model-list");
+    if (!modelList) return;
+    modelList.innerHTML = models.length
       ? models.map(function (model) {
-          var imageUrl = modelImageUrl(model);
           return (
-            '<a class="brand-model-card" href="index.html?make=' + encodeURIComponent(make.slug || make.name) +
+            '<a class="brand-model-link" href="index.html?make=' + encodeURIComponent(make.slug || make.name) +
               '&model=' + encodeURIComponent(model.name) + '#finder-vehicle-form">' +
-              (imageUrl
-                ? '<span class="brand-model-photo"><img src="' + escapeHtml(imageUrl) + '" alt="" loading="lazy" decoding="async"></span>'
-                : "") +
-              '<span class="brand-model-copy">' +
-                '<strong>' + escapeHtml(model.name) + '</strong>' +
-              '</span>' +
+              escapeHtml(model.name) +
             '</a>'
           );
         }).join("")
-      : '<p class="make-grid-status">No supported models are listed for this brand yet.</p>';
-  }
-
-  function updateModelScrollButtons() {
-    var modelGrid = $("brand-model-grid");
-    var prev = document.querySelector('[data-model-scroll="prev"]');
-    var next = document.querySelector('[data-model-scroll="next"]');
-    if (!modelGrid || !prev || !next) return;
-
-    var maxScroll = Math.max(0, modelGrid.scrollWidth - modelGrid.clientWidth);
-    prev.disabled = modelGrid.scrollLeft <= 1;
-    next.disabled = modelGrid.scrollLeft >= maxScroll - 1;
-  }
-
-  function bindModelScroller() {
-    var modelGrid = $("brand-model-grid");
-    var buttons = document.querySelectorAll("[data-model-scroll]");
-    if (!modelGrid || !buttons.length) return;
-
-    buttons.forEach(function (button) {
-      button.addEventListener("click", function () {
-        var direction = button.getAttribute("data-model-scroll") === "prev" ? -1 : 1;
-        modelGrid.scrollBy({
-          left: direction * Math.max(modelGrid.clientWidth * 0.8, 220),
-          behavior: "smooth",
-        });
-      });
-    });
-
-    modelGrid.addEventListener("scroll", updateModelScrollButtons);
-    window.addEventListener("resize", updateModelScrollButtons);
-    updateModelScrollButtons();
+      : '<p class="make-grid-status">coming soon</p>';
   }
 
   function renderPartCards(parts) {
@@ -121,22 +75,19 @@
   function renderBrand(make, models, parts) {
     document.title = make.name + " Parts | Spectr";
     $("brand-model-count").textContent = String(models.length);
-    renderModelCards(make, models);
-    updateModelScrollButtons();
+    renderModelList(make, models);
     renderPartCards(parts);
   }
 
   function renderError(message) {
     $("brand-model-count").textContent = "0";
     $("brand-part-count").textContent = "0";
-    $("brand-model-grid").innerHTML =
+    $("brand-model-list").innerHTML =
       '<p class="make-grid-status">' + escapeHtml(message) + ' <a href="car-brands.html">Back to all car brands</a></p>';
     $("brand-parts-grid").innerHTML = '<p class="make-grid-status">No parts to show.</p>';
   }
 
   document.addEventListener("DOMContentLoaded", function () {
-    bindModelScroller();
-
     var requested = selectedMakeParam();
     if (!requested) {
       renderError("Choose a car brand to continue.");
