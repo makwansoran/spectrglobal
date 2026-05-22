@@ -1105,6 +1105,18 @@
   padding: 0;
 }
 
+.brand-page .brand-fit-catalog {
+  display: block;
+}
+
+.brand-page .brand-detail-grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.brand-model-panel {
+  min-width: 0;
+}
+
 .brand-panel {
   border: 1px solid var(--shop-line);
   border-radius: var(--shop-radius-lg);
@@ -1141,6 +1153,16 @@
   background: var(--shop-line);
 }
 
+.brand-model-strip {
+  display: flex;
+  gap: 1px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 0.35rem;
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
+}
+
 .brand-model-card,
 .brand-part-card {
   min-height: 6.5rem;
@@ -1155,6 +1177,12 @@
   flex-direction: column;
   justify-content: center;
   gap: 0.35rem;
+}
+
+.brand-model-strip .brand-model-card {
+  flex: 0 0 clamp(12rem, 22vw, 17rem);
+  min-height: 5.6rem;
+  scroll-snap-align: start;
 }
 
 .brand-model-card:hover {

@@ -112,43 +112,13 @@
         <a class="brand-back-link" href="car-brands.html">All car brands</a>
 
         <div class="brand-fit-catalog">
-          <form class="brand-fit-form" id="brand-fit-form" autocomplete="off">
-            <div class="brand-fit-head">
-              <p class="shop-eyebrow">Identify your car</p>
-              <h2>Find compatible products by car or VIN</h2>
-            </div>
-            <label class="brand-fit-field">
-              <span>Car brand</span>
-              <input id="brand-name-input" type="text" value="Loading brand" disabled />
-            </label>
-            <label class="brand-fit-field">
-              <span>Year</span>
-              <select id="brand-year-select" disabled>
-                <option value="">Loading years...</option>
-              </select>
-            </label>
-            <label class="brand-fit-field">
-              <span>Model</span>
-              <select id="brand-model-select" disabled>
-                <option value="">Choose model</option>
-              </select>
-            </label>
-            <label class="brand-fit-field">
-              <span>VIN number</span>
-              <input id="brand-vin-input" type="text" inputmode="latin" autocomplete="off" maxlength="17" placeholder="Enter VIN" />
-            </label>
-            <button type="submit" class="btn btn-primary">Show matching products</button>
-            <button type="button" class="brand-fit-reset" id="brand-fit-reset" hidden>Clear selection</button>
-            <p class="brand-fit-status" id="brand-fit-status" aria-live="polite"></p>
-          </form>
-
           <section class="brand-detail-grid" aria-label="Brand catalog">
-            <div class="brand-panel">
+            <div class="brand-panel brand-model-panel">
               <div class="brand-panel-head">
                 <h2>All supported models</h2>
                 <span id="brand-model-count">0</span>
               </div>
-              <div class="brand-model-grid" id="brand-model-grid">
+              <div class="brand-model-grid brand-model-strip" id="brand-model-grid">
                 <p class="make-grid-status">Loading models...</p>
               </div>
             </div>

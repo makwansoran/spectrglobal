@@ -20,10 +20,6 @@
     return new URLSearchParams(window.location.search).get("make") || "";
   }
 
-  function cleanVin(value) {
-    return String(value || "").replace(/[^A-Za-z0-9]/g, "").toUpperCase().slice(0, 17);
-  }
-
   function findMake(makes, requested) {
     var q = normalize(requested);
     return makes.find(function (make) {
@@ -36,39 +32,10 @@
     return model.year_from + "-" + (model.year_to || "present");
   }
 
-  function modelSupportsYear(model, year) {
-    var selectedYear = parseInt(year, 10);
-    if (!selectedYear || !model.year_from) return true;
-    if (selectedYear < model.year_from) return false;
-    if (model.year_to && selectedYear > model.year_to) return false;
-    return true;
-  }
-
-  function supportedYears(models) {
-    var currentYear = new Date().getFullYear();
-    var years = new Set();
-    models.forEach(function (model) {
-      if (!model.year_from) return;
-      var from = parseInt(model.year_from, 10);
-      var to = parseInt(model.year_to || currentYear, 10);
-      for (var year = to; year >= from; year -= 1) years.add(year);
-    });
-    return Array.from(years).sort(function (a, b) { return b - a; });
-  }
-
   function partFitsBrand(part, make) {
     var makeName = normalize(make.name);
     return (part.vehicles || []).some(function (fit) {
       return normalize(fit.brand) === makeName;
-    });
-  }
-
-  function partFitsModel(part, make, modelName) {
-    if (!modelName) return partFitsBrand(part, make);
-    var makeName = normalize(make.name);
-    var model = normalize(modelName);
-    return (part.vehicles || []).some(function (fit) {
-      return normalize(fit.brand) === makeName && (!fit.model || normalize(fit.model) === model);
     });
   }
 
@@ -111,119 +78,14 @@
     }).join("");
   }
 
-  function populateModelSelect(models, selectedYear, selectedModel) {
-    var modelSelect = $("brand-model-select");
-    var compatibleModels = models.filter(function (model) {
-      return modelSupportsYear(model, selectedYear);
-    });
-
-    modelSelect.disabled = !compatibleModels.length;
-    modelSelect.innerHTML = '<option value="">Choose model</option>' +
-      compatibleModels.map(function (model) {
-        return '<option value="' + escapeHtml(model.name) + '"' +
-          (selectedModel === model.name ? " selected" : "") + '>' +
-          escapeHtml(model.name) +
-          '</option>';
-      }).join("");
-  }
-
-  function bindFitForm(make, models, parts) {
-    var form = $("brand-fit-form");
-    var yearSelect = $("brand-year-select");
-    var modelSelect = $("brand-model-select");
-    var vinInput = $("brand-vin-input");
-    var resetButton = $("brand-fit-reset");
-    var status = $("brand-fit-status");
-    var years = supportedYears(models);
-    var selectedVin = "";
-
-    if (!form || !yearSelect || !modelSelect) return;
-
-    yearSelect.disabled = !years.length;
-    yearSelect.innerHTML = '<option value="">Choose year</option>' +
-      years.map(function (year) {
-        return '<option value="' + year + '">' + year + '</option>';
-      }).join("");
-    populateModelSelect(models, "", "");
-
-    function applySelection() {
-      var selectedYear = yearSelect.value;
-      var selectedModel = modelSelect.value;
-      var matchedModels = models.filter(function (model) {
-        if (selectedModel && model.name !== selectedModel) return false;
-        return modelSupportsYear(model, selectedYear);
-      });
-      var matchedParts = parts.filter(function (part) {
-        return partFitsModel(part, make, selectedModel);
-      });
-
-      renderModelCards(make, matchedModels);
-      renderPartCards(matchedParts);
-      $("brand-model-count").textContent = String(matchedModels.length);
-      resetButton.hidden = !selectedYear && !selectedModel && !selectedVin;
-      status.textContent = selectedModel || selectedYear || selectedVin
-        ? [make.name, selectedModel, selectedYear, selectedVin && "VIN " + selectedVin].filter(Boolean).join(" ") + " selected."
-        : "";
-    }
-
-    yearSelect.addEventListener("change", function () {
-      populateModelSelect(models, yearSelect.value, modelSelect.value);
-      if (modelSelect.value && !modelSupportsYear(
-        models.find(function (model) { return model.name === modelSelect.value; }) || {},
-        yearSelect.value
-      )) {
-        modelSelect.value = "";
-      }
-      applySelection();
-    });
-
-    modelSelect.addEventListener("change", applySelection);
-
-    if (vinInput) {
-      vinInput.addEventListener("input", function () {
-        selectedVin = cleanVin(vinInput.value);
-        vinInput.value = selectedVin;
-        applySelection();
-      });
-    }
-
-    form.addEventListener("submit", function (event) {
-      event.preventDefault();
-      if (vinInput) {
-        selectedVin = cleanVin(vinInput.value);
-        vinInput.value = selectedVin;
-      }
-      applySelection();
-    });
-
-    if (resetButton) {
-      resetButton.addEventListener("click", function () {
-        yearSelect.value = "";
-        populateModelSelect(models, "", "");
-        modelSelect.value = "";
-        selectedVin = "";
-        if (vinInput) vinInput.value = "";
-        status.textContent = "";
-        resetButton.hidden = true;
-        $("brand-model-count").textContent = String(models.length);
-        renderModelCards(make, models);
-        renderPartCards(parts);
-      });
-    }
-  }
-
   function renderBrand(make, models, parts) {
     document.title = make.name + " Parts | Spectr";
-    $("brand-name-input").value = make.name;
     $("brand-model-count").textContent = String(models.length);
     renderModelCards(make, models);
     renderPartCards(parts);
-    bindFitForm(make, models, parts);
   }
 
   function renderError(message) {
-    var brandInput = $("brand-name-input");
-    if (brandInput) brandInput.value = "Brand not found";
     $("brand-model-count").textContent = "0";
     $("brand-part-count").textContent = "0";
     $("brand-model-grid").innerHTML =
