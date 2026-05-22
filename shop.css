@@ -1764,7 +1764,7 @@
 }
 
 .product-similar-products .product-category {
-  font-size: 0.62rem;
+  display: none;
 }
 
 .product-similar-products .product-name {
