@@ -112,16 +112,20 @@
         <div class="brand-fit-catalog">
           <section class="brand-detail-grid" aria-label="Brand catalog">
             <span id="brand-model-count" class="visually-hidden">0</span>
-            <form class="brand-model-search" role="search" aria-label="Search models">
-              <label class="visually-hidden" for="brand-model-search-input">Search models</label>
-              <input id="brand-model-search-input" type="search" placeholder="Search model" autocomplete="off" />
-            </form>
             <div class="brand-model-carousel" aria-label="Supported models">
-              <button class="brand-model-scroll-btn brand-model-scroll-btn-prev" type="button" aria-label="Previous models" data-model-scroll="prev">&lt;</button>
+              <button class="brand-model-scroll-btn brand-model-scroll-btn-prev" type="button" aria-label="Previous models" data-model-scroll="prev">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M15 6l-6 6 6 6" />
+                </svg>
+              </button>
               <div class="brand-model-grid brand-model-strip brand-model-free-list" id="brand-model-grid">
                 <p class="make-grid-status">Loading models...</p>
               </div>
-              <button class="brand-model-scroll-btn brand-model-scroll-btn-next" type="button" aria-label="Next models" data-model-scroll="next">&gt;</button>
+              <button class="brand-model-scroll-btn brand-model-scroll-btn-next" type="button" aria-label="Next models" data-model-scroll="next">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9 6l6 6-6 6" />
+                </svg>
+              </button>
             </div>
 
             <div class="brand-panel">
