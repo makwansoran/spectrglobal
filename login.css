@@ -602,6 +602,22 @@
   margin-top: 1rem;
 }
 
+.create-account-page .auth-promo {
+  width: 520px;
+  height: 560px;
+  align-self: center;
+  justify-self: center;
+  margin: 0;
+}
+
+.create-account-page .auth-promo-content {
+  max-width: 26rem;
+}
+
+.create-account-page .auth-promo h2 {
+  font-size: 2.65rem;
+}
+
 @media (max-width: 900px) {
   .auth-shell {
     align-items: stretch;
@@ -640,6 +656,8 @@
   }
 
   .create-account-page .auth-promo {
+    width: auto;
+    height: auto;
     min-height: 18rem;
   }
 
