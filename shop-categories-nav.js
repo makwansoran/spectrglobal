@@ -34,7 +34,7 @@
     if (!nav) return;
 
     nav.innerHTML = NAV_ITEMS.map(function (item) {
-      return '<a href="' + escapeHtml(item.href) + '" data-icon="' + escapeHtml(item.icon) + '">' + escapeHtml(item.label) + "</a>";
+      return '<a href="' + escapeHtml(item.href) + '">' + escapeHtml(item.label) + "</a>";
     }).join("");
   }
 
