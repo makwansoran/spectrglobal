@@ -265,6 +265,7 @@
     var grid = $("similar-products-grid");
     if (!state.product) {
       grid.innerHTML = "";
+      updateSimilarControls();
       return;
     }
 
@@ -275,6 +276,32 @@
     grid.innerHTML = similar.length
       ? similar.map(renderProductCard).join("")
       : '<div class="catalog-empty"><strong>No similar products yet</strong></div>';
+    grid.scrollLeft = 0;
+    updateSimilarControls();
+  }
+
+  function updateSimilarControls() {
+    var grid = $("similar-products-grid");
+    var prev = $("similar-products-prev");
+    var next = $("similar-products-next");
+    if (!grid || !prev || !next) return;
+
+    var canSlide = grid.scrollWidth > grid.clientWidth + 2;
+    var atStart = grid.scrollLeft <= 2;
+    var atEnd = grid.scrollLeft + grid.clientWidth >= grid.scrollWidth - 2;
+
+    prev.disabled = !canSlide || atStart;
+    next.disabled = !canSlide || atEnd;
+  }
+
+  function slideSimilar(direction) {
+    var grid = $("similar-products-grid");
+    if (!grid) return;
+    grid.scrollBy({
+      left: direction * Math.max(1, grid.clientWidth - 32),
+      behavior: "smooth"
+    });
+    window.setTimeout(updateSimilarControls, 260);
   }
 
   function renderCart() {
@@ -345,6 +372,23 @@
       var product = event.target.closest("[data-product-id]");
       if (product) window.location.href = productHref({ id: product.dataset.productId });
     });
+
+    $("similar-products-grid").addEventListener("scroll", updateSimilarControls);
+
+    var similarPrev = $("similar-products-prev");
+    var similarNext = $("similar-products-next");
+    if (similarPrev) {
+      similarPrev.addEventListener("click", function () {
+        slideSimilar(-1);
+      });
+    }
+    if (similarNext) {
+      similarNext.addEventListener("click", function () {
+        slideSimilar(1);
+      });
+    }
+
+    window.addEventListener("resize", updateSimilarControls);
 
     $("cart-fab").addEventListener("click", openCart);
     $("cart-close").addEventListener("click", closeCart);
