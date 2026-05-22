@@ -90,6 +90,47 @@
   transition: color 160ms ease;
 }
 
+.category-label-text {
+  min-width: 0;
+}
+
+.category-label-stack {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.category-label-stack--tyres {
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.18rem;
+  line-height: 1.05;
+}
+
+.category-label-image {
+  width: 2rem;
+  height: 1.35rem;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+
+.catalog-categories a .category-label-stack--tyres,
+.catalog-categories button .category-label-stack--tyres,
+.product-category .category-label-stack--tyres,
+.shop-eyebrow .category-label-stack--tyres,
+.cart-line-main small .category-label-stack--tyres {
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.product-category .category-label-image,
+.shop-eyebrow .category-label-image,
+.cart-line-main small .category-label-image {
+  width: 1.55rem;
+  height: 1.05rem;
+}
+
 .shop-subnav a::after {
   content: "";
   position: absolute;
@@ -948,6 +989,19 @@
   width: 100%;
   margin-top: auto;
   padding: 5rem 1rem 1rem;
+}
+
+.category-card-title--tyres {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.category-card-title-image {
+  width: 2.45rem;
+  height: 1.65rem;
+  object-fit: contain;
+  flex: 0 0 auto;
 }
 
 .all-categories-grid .part-category-list-card:hover .part-category-image {

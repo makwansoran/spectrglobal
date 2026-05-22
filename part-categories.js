@@ -22,6 +22,23 @@
       .replace(/^-+|-+$/g, "") || "other";
   }
 
+  function hasTyresLabel(label) {
+    return /\b(?:tyres|tires)\b/i.test(String(label || ""));
+  }
+
+  function categoryNameHtml(label) {
+    var text = escapeHtml(label);
+    if (!hasTyresLabel(label)) {
+      return '<span class="make-name">' + text + "</span>";
+    }
+
+    return '' +
+      '<span class="make-name category-card-title category-card-title--tyres">' +
+        '<img class="category-card-title-image" src="assets/categories/tyres-subheader.svg" alt="" loading="lazy" decoding="async">' +
+        '<span>' + text + "</span>" +
+      "</span>";
+  }
+
   function fallbackImage(category) {
     var value = normalizeSearch([
       category && category.name,
@@ -149,7 +166,7 @@
         '<a class="part-category-list-card" href="' + href + '" data-category="' + escapeHtml(category.slug || categorySlug(category.name)) + '">' +
           '<img class="part-category-image" src="' + escapeHtml(category.image) + '" alt="" loading="lazy" decoding="async" onerror="this.onerror=null;this.src=\'' + escapeHtml(category.fallbackImage) + '\'">' +
           '<span class="part-category-image-copy">' +
-            '<span class="make-name">' + escapeHtml(category.name) + "</span>" +
+            categoryNameHtml(category.name) +
             '<small>' + escapeHtml(details) + "</small>" +
           "</span>" +
         "</a>"

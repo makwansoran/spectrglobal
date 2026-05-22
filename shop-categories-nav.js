@@ -4,6 +4,7 @@
 
   var DEALS_LIMIT = 12;
   var DEALS_LABEL = "Deals";
+  var TYRES_IMAGE_SRC = "assets/categories/tyres-subheader.svg";
 
   var NAV_ITEMS = [
     { key: "wheels", label: "Wheels & Tyres", href: "part-categories.html?section=wheels-tyres", sectionSlug: "wheels-tyres" },
@@ -29,12 +30,29 @@
     return String(value || "").trim().toLowerCase();
   }
 
+  function hasTyresLabel(label) {
+    return /\b(?:tyres|tires)\b/i.test(String(label || ""));
+  }
+
+  function categoryLabelHtml(label) {
+    var text = escapeHtml(label);
+    if (!hasTyresLabel(label)) {
+      return '<span class="category-label-text">' + text + "</span>";
+    }
+
+    return '' +
+      '<span class="category-label-stack category-label-stack--tyres">' +
+        '<img class="category-label-image" src="' + escapeHtml(TYRES_IMAGE_SRC) + '" alt="" loading="lazy" decoding="async">' +
+        '<span>' + text + "</span>" +
+      "</span>";
+  }
+
   function syncSubnav() {
     var nav = document.querySelector(".shop-subnav");
     if (!nav) return;
 
     nav.innerHTML = NAV_ITEMS.map(function (item) {
-      return '<a href="' + escapeHtml(item.href) + '">' + escapeHtml(item.label) + "</a>";
+      return '<a href="' + escapeHtml(item.href) + '">' + categoryLabelHtml(item.label) + "</a>";
     }).join("");
   }
 
@@ -127,7 +145,7 @@
 
     container.innerHTML = entries.map(function (entry) {
       var active = isActiveEntry(entry, activeKey, activeCategory, activeSection) ? " is-active" : "";
-      var label = escapeHtml(entry.label) + " <small>" + escapeHtml(entry.count) + "</small>";
+      var label = categoryLabelHtml(entry.label) + " <small>" + escapeHtml(entry.count) + "</small>";
       var filterValue = catalogMode ? catalogFilterValue(entry) : null;
 
       if (catalogMode) {
@@ -215,7 +233,9 @@
   window.SpectrShopNav = {
     DEALS_LIMIT: DEALS_LIMIT,
     DEALS_LABEL: DEALS_LABEL,
+    TYRES_IMAGE_SRC: TYRES_IMAGE_SRC,
     NAV_ITEMS: NAV_ITEMS,
+    categoryLabelHtml: categoryLabelHtml,
     syncSubnav: syncSubnav,
     renderSidebar: renderSidebar,
     buildSidebarEntries: buildSidebarEntries,

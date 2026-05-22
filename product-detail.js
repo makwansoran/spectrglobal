@@ -20,6 +20,13 @@
       .replace(/'/g, "&#39;");
   }
 
+  function categoryLabelHtml(label) {
+    if (window.SpectrShopNav && typeof window.SpectrShopNav.categoryLabelHtml === "function") {
+      return window.SpectrShopNav.categoryLabelHtml(label);
+    }
+    return '<span class="category-label-text">' + escapeHtml(label || "Car part") + "</span>";
+  }
+
   function initials(name) {
     return (name || "")
       .split(/\s+/)
@@ -170,7 +177,7 @@
       '<div class="product-detail-card">' +
         renderProductMedia(product) +
         '<div class="product-detail-body">' +
-          '<p class="shop-eyebrow">' + escapeHtml(product.category || "Car part") + '</p>' +
+          '<p class="shop-eyebrow">' + categoryLabelHtml(product.category || "Car part") + '</p>' +
           '<h1>' + escapeHtml(product.name) + '</h1>' +
           '<p class="product-detail-sku">' + escapeHtml(product.article_number || product.sku || product.id) + '</p>' +
           '<p class="product-detail-description">' + escapeHtml(product.description || "Product details are generated from the Spectr compatibility catalog.") + '</p>' +
@@ -218,7 +225,7 @@
       '<article class="product" data-product-id="' + escapeHtml(part.id) + '">' +
         productCardMedia(part) +
         '<div class="product-body">' +
-          '<span class="product-category">' + escapeHtml(part.category || "Car part") + '</span>' +
+          '<span class="product-category">' + categoryLabelHtml(part.category || "Car part") + '</span>' +
           '<h3 class="product-name">' + escapeHtml(part.name) + '</h3>' +
           '<span class="product-sku">' + escapeHtml(part.article_number || part.sku || part.id) + '</span>' +
           (part.description ? '<p class="product-description">' + escapeHtml(part.description) + '</p>' : '') +
@@ -282,7 +289,7 @@
           cartLineMedia(part) +
           '<div class="cart-line-main">' +
             '<h4>' + escapeHtml(part.name) + '</h4>' +
-            '<small>' + escapeHtml(part.sku || part.id) + ' · ' + escapeHtml(part.category || "Car part") + '</small>' +
+            '<small>' + escapeHtml(part.sku || part.id) + ' · ' + categoryLabelHtml(part.category || "Car part") + '</small>' +
           '</div>' +
           '<span class="cart-line-price">' + escapeHtml(Shop.formatNok(lineTotal)) + '</span>' +
           '<div class="cart-line-controls">' +
