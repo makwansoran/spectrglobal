@@ -108,6 +108,17 @@
   function defaultSlides() {
     return [
       {
+        id: "slide-continental",
+        eyebrow: "Continental tyres",
+        title: "Engineered in Germany. Driven everywhere.",
+        body: "",
+        cta: "",
+        ctaHref: "part-category.html?category=Tires",
+        image: "assets/hero/continental-engineered-germany.png",
+        imagePosition: "center",
+        hideCopy: true
+      },
+      {
         id: "slide-winter",
         eyebrow: "Winter campaign",
         title: "Save up to 30% on brake parts",
@@ -168,7 +179,12 @@
   }
 
   function getSlides() {
-    return readJSON(KEYS.slides, []);
+    var slides = readJSON(KEYS.slides, []);
+    var continentalSlide = defaultSlides()[0];
+    if (!slides.some(function (slide) { return slide && slide.id === continentalSlide.id; })) {
+      return [continentalSlide].concat(slides);
+    }
+    return slides;
   }
 
   function setSlides(list) {

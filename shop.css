@@ -605,6 +605,10 @@
   background: linear-gradient(180deg, transparent 35%, rgba(10, 12, 16, 0.75) 100%);
 }
 
+.promo-slide--image-only::before {
+  background: none;
+}
+
 .promo-slide-inner {
   position: relative;
   max-width: 30rem;

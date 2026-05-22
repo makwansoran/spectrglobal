@@ -84,15 +84,22 @@
       }
       track.innerHTML = slides.map(function (slide, i) {
         var style = "background:" + (slide.gradient || "linear-gradient(135deg,#1f2937,#0a0c10)") + ";";
+        if (slide.image) {
+          style += 'background-image:url("' + escapeHtml(slide.image) + '");';
+          style += "background-position:" + escapeHtml(slide.imagePosition || "center") + ";";
+        }
         if (slide.accent) style += "color:#ffffff;";
+        var copyHtml = slide.hideCopy ? "" : (
+          '<div class="promo-slide-inner">' +
+            '<p class="promo-eyebrow">' + escapeHtml(slide.eyebrow || "Offer") + '</p>' +
+            '<h3>' + escapeHtml(slide.title || "") + '</h3>' +
+            (slide.body ? '<p>' + escapeHtml(slide.body) + '</p>' : '') +
+            (slide.cta ? '<a href="' + escapeHtml(slide.ctaHref || "#catalog") + '">' + escapeHtml(slide.cta) + '</a>' : '') +
+          '</div>'
+        );
         return '' +
-          '<div class="promo-slide ' + (i === index ? "is-active" : "") + '" style="' + style + '">' +
-            '<div class="promo-slide-inner">' +
-              '<p class="promo-eyebrow">' + escapeHtml(slide.eyebrow || "Offer") + '</p>' +
-              '<h3>' + escapeHtml(slide.title || "") + '</h3>' +
-              (slide.body ? '<p>' + escapeHtml(slide.body) + '</p>' : '') +
-              (slide.cta ? '<a href="' + escapeHtml(slide.ctaHref || "#catalog") + '">' + escapeHtml(slide.cta) + '</a>' : '') +
-            '</div>' +
+          '<div class="promo-slide ' + (slide.hideCopy ? "promo-slide--image-only " : "") + (i === index ? "is-active" : "") + '" style="' + style + '" aria-label="' + escapeHtml(slide.title || slide.eyebrow || "Promotion") + '">' +
+            copyHtml +
           '</div>';
       }).join("");
       dots.innerHTML = slides.map(function (_, i) {
