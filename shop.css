@@ -917,10 +917,10 @@
 .pln-char {
   display: inline-block;
   opacity: 0;
-  transform: translateY(0.25em);
+  transform: translateY(0.2em);
   transition:
-    opacity 0.18s ease,
-    transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 0.1s ease,
+    transform 0.12s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .pln-char--space {

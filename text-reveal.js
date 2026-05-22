@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  var CHAR_DELAY = 0.032; // seconds between each letter
+  var CHAR_DELAY = 0.015; // seconds between each letter
 
   function revealElement(el) {
     var text = el.textContent;
