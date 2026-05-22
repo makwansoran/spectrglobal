@@ -86,7 +86,20 @@
   /* ── Filter data extraction ───────────────────────────── */
 
   function extractBrand(part) {
-    return (part.brand || "").trim() || null;
+    var direct = (part.brand || "").trim();
+    if (direct) return direct;
+
+    var specs = Array.isArray(part.specifications) ? part.specifications : [];
+    var brandSpec = specs.find(function (spec) {
+      return normalize(spec && (spec.label || spec.name)) === "brand";
+    });
+    if (brandSpec && String(brandSpec.value || "").trim()) {
+      return String(brandSpec.value || "").trim();
+    }
+
+    var name = String(part.name || "").trim();
+    if (/^continental\b/i.test(name)) return "Continental";
+    return null;
   }
 
   function extractDimensions(part) {
