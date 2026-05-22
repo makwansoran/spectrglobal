@@ -130,6 +130,27 @@
     return '<div class="cart-line-media cart-line-media--has-image"><img src="' + escapeHtml(Shop.productImageUrl(part)) + '" alt="' + escapeHtml(part.name) + '" loading="lazy" /></div>';
   }
 
+  function previewDescription(part) {
+    if (part.description) return part.description;
+    return (Array.isArray(part.specifications) ? part.specifications : [])
+      .map(function (spec) { return spec && spec.value; })
+      .filter(Boolean)
+      .slice(0, 4)
+      .join(", ");
+  }
+
+  function reviewCount(part) {
+    return Array.isArray(part.reviews) ? part.reviews.length : 0;
+  }
+
+  function previewPriceHtml(part) {
+    var price = Number(part.price) || 0;
+    if (!price) return '<span class="product-price">Contact us</span>';
+    return '' +
+      '<span class="product-price">' + escapeHtml(Shop.formatNok(price)) + '</span>' +
+      '<span class="product-flex"><strong>FLEX</strong> ' + escapeHtml(Shop.formatNok(Math.max(1, Math.ceil(price / 24)))) + ' /md.</span>';
+  }
+
   function renderFeatures(product) {
     var features = Array.isArray(product.features) ? product.features : [];
     if (!features.length) return "";
@@ -224,8 +245,8 @@
   }
 
   function renderProductCard(part) {
-    var line = cartLine(part.id);
-    var outOfStock = (part.stock || 0) <= 0;
+    var description = previewDescription(part);
+    var reviews = reviewCount(part);
     return '' +
       '<article class="product" data-product-id="' + escapeHtml(part.id) + '">' +
         productCardMedia(part) +
@@ -233,15 +254,10 @@
           '<span class="product-category">' + categoryLabelHtml(part.category || "Car part") + '</span>' +
           continentalBadgeHtml(part, "") +
           '<h3 class="product-name">' + escapeHtml(part.name) + '</h3>' +
-          '<span class="product-sku">' + escapeHtml(part.article_number || part.sku || part.id) + '</span>' +
-          (part.description ? '<p class="product-description">' + escapeHtml(part.description) + '</p>' : '') +
-          (outOfStock ? '' : '<span class="product-stock is-in">' + escapeHtml(stockLabel(part.stock)) + '</span>') +
-          '<span class="product-delivery">' + escapeHtml(part.delivery_time || "2-5 days") + ' delivery</span>' +
+          (description ? '<p class="product-description">' + escapeHtml(description) + '</p>' : '') +
+          '<span class="product-reviews">(' + escapeHtml(reviews || 0) + ' anmeldelser)</span>' +
           '<div class="product-foot">' +
-            '<span class="product-price">' + escapeHtml(Shop.formatNok(part.price || 0)) + '</span>' +
-            '<button type="button" class="product-add" data-add-part="' + escapeHtml(part.id) + '"' + (outOfStock ? " disabled" : "") + '>' +
-              (outOfStock ? "Out of stock" : (line ? "In cart · " + line.qty : "Add to cart")) +
-            '</button>' +
+            previewPriceHtml(part) +
           '</div>' +
         '</div>' +
       '</article>';
