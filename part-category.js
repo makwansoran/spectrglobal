@@ -7,12 +7,6 @@
   var state = {
     category: "",
     parts: [],
-    makes: [],
-    modelsByMakeId: {},
-    selectedMake: null,
-    selectedYear: "",
-    selectedModel: "",
-    selectedVin: "",
   };
 
   var DEALS_CATEGORY = "Deals";
@@ -36,10 +30,6 @@
 
   function selectedCategory() {
     return new URLSearchParams(window.location.search).get("category") || "Oils";
-  }
-
-  function cleanVin(value) {
-    return String(value || "").replace(/[^A-Za-z0-9]/g, "").toUpperCase().slice(0, 17);
   }
 
   function isSameCategory(part) {
@@ -97,58 +87,12 @@
     return '<div class="cart-line-media cart-line-media--has-image"><img src="' + escapeHtml(Shop.productImageUrl(part)) + '" alt="' + escapeHtml(part.name) + '" loading="lazy" /></div>';
   }
 
-  function modelSupportsYear(model, year) {
-    var selectedYear = parseInt(year, 10);
-    if (!selectedYear || !model.year_from) return true;
-    if (selectedYear < model.year_from) return false;
-    if (model.year_to && selectedYear > model.year_to) return false;
-    return true;
-  }
-
-  function supportedYears(models) {
-    var currentYear = new Date().getFullYear();
-    var years = new Set();
-    models.forEach(function (model) {
-      if (!model.year_from) return;
-      var from = parseInt(model.year_from, 10);
-      var to = parseInt(model.year_to || currentYear, 10);
-      for (var year = to; year >= from; year -= 1) years.add(year);
-    });
-    return Array.from(years).sort(function (a, b) { return b - a; });
-  }
-
-  function vehicleFitsSelection(part) {
-    if (!state.selectedMake) return true;
-
-    var brandName = state.selectedMake.name;
-    var modelName = state.selectedModel;
-    var vehicles = Array.isArray(part.vehicles) ? part.vehicles : [];
-    if (!vehicles.length) return false;
-
-    return vehicles.some(function (vehicle) {
-      if (normalize(vehicle.brand) !== normalize(brandName)) return false;
-      if (modelName && normalize(vehicle.model) !== normalize(modelName)) return false;
-      return true;
-    });
-  }
-
   function visibleParts() {
-    return state.parts.filter(function (part) {
-      return isSameCategory(part) && vehicleFitsSelection(part);
-    });
+    return state.parts.filter(isSameCategory);
   }
 
   function renderHero() {
     document.title = state.category + " | Spectr";
-    if (normalize(state.category).indexOf("oil") !== -1) {
-      $("category-fit-title").textContent = "Find the correct oil by car or VIN";
-    } else if (normalize(state.category).indexOf("brake") !== -1) {
-      $("category-fit-title").textContent = "Find the correct brakes by car or VIN";
-    } else if (normalize(state.category).indexOf("deal") !== -1) {
-      $("category-fit-title").textContent = "Find weekly deals for your car";
-    } else {
-      $("category-fit-title").textContent = "Find the correct tyre size by car or VIN";
-    }
   }
 
   function renderProducts() {
@@ -161,25 +105,14 @@
     var cart = Shop.cartForParts(state.parts);
 
     if (summary) {
-      var bits = [];
-      if (state.selectedMake) {
-        var label = state.selectedMake.name;
-        if (state.selectedModel) label += " " + state.selectedModel;
-        if (state.selectedYear) label += " " + state.selectedYear;
-        if (state.selectedVin) label += " · VIN " + state.selectedVin;
-        bits.push(label);
-      } else if (state.selectedVin) {
-        bits.push("VIN " + state.selectedVin);
-      }
-      bits.push(parts.length + " shown from " + availableParts.length);
-      summary.textContent = bits.join(" · ");
+      summary.textContent = parts.length + " shown from " + availableParts.length;
     }
 
     if (!parts.length) {
       grid.innerHTML =
         '<div class="catalog-empty">' +
           '<strong>No compatible products found</strong>' +
-          '<span>Try another model, year, or category.</span>' +
+          '<span>Try another category or check back soon.</span>' +
         '</div>';
       return;
     }
@@ -217,7 +150,7 @@
     if (count) count.textContent = Shop.cartItemCount(cart);
 
     if (!cart.length) {
-      if (body) body.innerHTML = '<p class="cart-empty">Your cart is empty. Choose your car and add compatible products.</p>';
+      if (body) body.innerHTML = '<p class="cart-empty">Your cart is empty. Browse products to add parts.</p>';
       if (total) total.textContent = Shop.formatNok(0);
       return;
     }
@@ -259,145 +192,6 @@
     $("cart-drawer").setAttribute("aria-hidden", "true");
     $("cart-backdrop").hidden = true;
     $("cart-fab").setAttribute("aria-expanded", "false");
-  }
-
-  function renderModelOptions(models) {
-    var modelSelect = $("category-model-select");
-    var compatibleModels = models.filter(function (model) {
-      return modelSupportsYear(model, state.selectedYear);
-    });
-
-    modelSelect.disabled = !compatibleModels.length;
-    modelSelect.innerHTML = '<option value="">Choose model</option>' +
-      compatibleModels.map(function (model) {
-        return '<option value="' + escapeHtml(model.name) + '"' +
-          (state.selectedModel === model.name ? " selected" : "") + '>' +
-          escapeHtml(model.name) +
-          '</option>';
-      }).join("");
-  }
-
-  function renderYearOptions(models) {
-    var yearSelect = $("category-year-select");
-    var sourceModels = state.selectedModel
-      ? models.filter(function (model) { return model.name === state.selectedModel; })
-      : models;
-    var years = supportedYears(sourceModels);
-
-    yearSelect.disabled = !years.length;
-    yearSelect.innerHTML = '<option value="">Choose year</option>' +
-      years.map(function (year) {
-        return '<option value="' + year + '"' +
-          (String(state.selectedYear) === String(year) ? " selected" : "") + '>' +
-          year +
-          '</option>';
-      }).join("");
-  }
-
-  function loadModels(make) {
-    if (!make || !make.id) return Promise.resolve([]);
-    if (state.modelsByMakeId[make.id]) return Promise.resolve(state.modelsByMakeId[make.id]);
-    return fetch("/api/models?make_id=" + encodeURIComponent(make.id), { headers: { Accept: "application/json" } })
-      .then(function (res) {
-        return res.json().then(function (data) {
-          if (!res.ok) throw new Error(data.error || "Car models are unavailable.");
-          state.modelsByMakeId[make.id] = Array.isArray(data.models) ? data.models : [];
-          return state.modelsByMakeId[make.id];
-        });
-      });
-  }
-
-  function applySelection() {
-    var status = $("category-fit-status");
-    var reset = $("category-fit-reset");
-    reset.hidden = !state.selectedMake && !state.selectedYear && !state.selectedModel && !state.selectedVin;
-    status.textContent = state.selectedMake || state.selectedVin
-      ? [state.selectedMake && state.selectedMake.name, state.selectedModel, state.selectedYear, state.selectedVin && "VIN " + state.selectedVin].filter(Boolean).join(" ") + " selected."
-      : "";
-    renderProducts();
-  }
-
-  function bindFitForm() {
-    var brandSelect = $("category-brand-select");
-    var yearSelect = $("category-year-select");
-    var modelSelect = $("category-model-select");
-    var vinInput = $("category-vin-input");
-    var reset = $("category-fit-reset");
-
-    brandSelect.innerHTML = '<option value="">Choose brand</option>' +
-      state.makes.map(function (make) {
-        return '<option value="' + escapeHtml(make.id) + '">' + escapeHtml(make.name) + '</option>';
-      }).join("");
-
-    brandSelect.addEventListener("change", function () {
-      state.selectedMake = state.makes.find(function (make) { return make.id === brandSelect.value; }) || null;
-      state.selectedYear = "";
-      state.selectedModel = "";
-      yearSelect.innerHTML = '<option value="">Choose year</option>';
-      yearSelect.disabled = true;
-      modelSelect.innerHTML = '<option value="">Choose model</option>';
-      modelSelect.disabled = true;
-      if (!state.selectedMake) {
-        applySelection();
-        return;
-      }
-      loadModels(state.selectedMake).then(function (models) {
-        renderYearOptions(models);
-        renderModelOptions(models);
-        applySelection();
-      }).catch(function () {
-        modelSelect.innerHTML = '<option value="">Models unavailable</option>';
-      });
-    });
-
-    yearSelect.addEventListener("change", function () {
-      state.selectedYear = yearSelect.value;
-      loadModels(state.selectedMake).then(function (models) {
-        renderModelOptions(models);
-        if (state.selectedModel && !modelSelect.value) state.selectedModel = "";
-        applySelection();
-      });
-    });
-
-    modelSelect.addEventListener("change", function () {
-      state.selectedModel = modelSelect.value;
-      loadModels(state.selectedMake).then(function (models) {
-        renderYearOptions(models);
-        applySelection();
-      });
-    });
-
-    if (vinInput) {
-      vinInput.addEventListener("input", function () {
-        state.selectedVin = cleanVin(vinInput.value);
-        vinInput.value = state.selectedVin;
-        applySelection();
-      });
-    }
-
-    $("category-fit-form").addEventListener("submit", function (event) {
-      event.preventDefault();
-      if (vinInput) {
-        state.selectedVin = cleanVin(vinInput.value);
-        vinInput.value = state.selectedVin;
-      }
-      applySelection();
-      $("category-products-grid").scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-
-    reset.addEventListener("click", function () {
-      state.selectedMake = null;
-      state.selectedYear = "";
-      state.selectedModel = "";
-      state.selectedVin = "";
-      brandSelect.value = "";
-      yearSelect.innerHTML = '<option value="">Choose year</option>';
-      yearSelect.disabled = true;
-      modelSelect.innerHTML = '<option value="">Choose model</option>';
-      modelSelect.disabled = true;
-      if (vinInput) vinInput.value = "";
-      applySelection();
-    });
   }
 
   function bindCart() {
@@ -447,19 +241,8 @@
     state.category = selectedCategory();
     renderHero();
 
-    Promise.all([
-      fetch("/api/makes?active=1&with_models=1&limit=300", { headers: { Accept: "application/json" } })
-        .then(function (res) {
-          return res.json().then(function (data) {
-            if (!res.ok) throw new Error(data.error || "Car brands are unavailable.");
-            return Array.isArray(data.makes) ? data.makes : [];
-          });
-        }),
-      Shop.fetchCatalogParts(),
-    ]).then(function (results) {
-      state.makes = results[0];
-      state.parts = Array.isArray(results[1]) ? results[1] : [];
-      bindFitForm();
+    Shop.fetchCatalogParts().then(function (parts) {
+      state.parts = Array.isArray(parts) ? parts : [];
       bindCart();
       renderHero();
       renderProducts();

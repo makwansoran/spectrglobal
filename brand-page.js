@@ -41,7 +41,7 @@
       ? models.map(function (model) {
           return (
             '<a class="brand-model-link" href="index.html?make=' + encodeURIComponent(make.slug || make.name) +
-              '&model=' + encodeURIComponent(model.name) + '#finder-vehicle-form">' +
+              '&model=' + encodeURIComponent(model.name) + '">' +
               escapeHtml(model.name) +
             '</a>'
           );

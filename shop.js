@@ -1,5 +1,5 @@
 /* Spectr — shop landing logic.
- * Wires up vehicle finder, promo slideshow, catalog grid, and cart drawer. */
+ * Wires up promo slideshow, catalog grid, and cart drawer. */
 (function () {
   "use strict";
 
@@ -627,7 +627,7 @@
     if (count) count.textContent = Shop.cartItemCount(cart);
 
     if (cart.length === 0) {
-      if (body) body.innerHTML = '<p class="cart-empty">Your cart is empty. Search for your car or browse the catalog to add parts.</p>';
+      if (body) body.innerHTML = '<p class="cart-empty">Your cart is empty. Browse the catalog to add parts.</p>';
       if (total) total.textContent = Shop.formatNok(0);
       return;
     }

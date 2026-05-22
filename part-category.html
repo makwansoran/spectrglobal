@@ -114,37 +114,13 @@
 
         <div class="category-page-layout">
           <div class="category-fit-products">
-            <form class="brand-fit-form" id="category-fit-form" autocomplete="off">
-              <div class="brand-fit-head">
-                <p class="shop-eyebrow">Identify your car</p>
-                <h2 id="category-fit-title">Choose year, model, or VIN</h2>
+            <aside class="brand-text-sidebar" aria-label="Car brands">
+              <p class="shop-eyebrow">Car brands</p>
+              <h2>Browse by brand</h2>
+              <div class="brand-sidebar-list" data-brand-sidebar-list data-makes-limit="300">
+                <p class="make-grid-status">Loading car brands...</p>
               </div>
-              <label class="brand-fit-field">
-                <span>Car brand</span>
-                <select id="category-brand-select">
-                  <option value="">Loading brands...</option>
-                </select>
-              </label>
-              <label class="brand-fit-field">
-                <span>Year</span>
-                <select id="category-year-select" disabled>
-                  <option value="">Choose year</option>
-                </select>
-              </label>
-              <label class="brand-fit-field">
-                <span>Model</span>
-                <select id="category-model-select" disabled>
-                  <option value="">Choose model</option>
-                </select>
-              </label>
-              <label class="brand-fit-field">
-                <span>VIN number</span>
-                <input id="category-vin-input" type="text" inputmode="latin" autocomplete="off" maxlength="17" placeholder="Enter VIN" />
-              </label>
-              <button type="submit" class="btn btn-primary">Show matching products</button>
-              <button type="button" class="brand-fit-reset" id="category-fit-reset" hidden>Clear selection</button>
-              <p class="brand-fit-status" id="category-fit-status" aria-live="polite"></p>
-            </form>
+            </aside>
 
             <div class="category-product-stack">
               <section class="category-products" aria-labelledby="category-products-title">
@@ -172,7 +148,7 @@
                   <small>Oslo, Norway</small>
                 </div>
               </div>
-              <p>The selector found the right fit for my car quickly, and the parts arrived before the weekend service.</p>
+              <p>The brand list made it easy to browse the catalog, and the parts arrived before the weekend service.</p>
               <div class="category-review-stars" aria-label="5 out of 5 stars">★★★★★</div>
             </article>
             <article class="category-review-card">
@@ -183,7 +159,7 @@
                   <small>Bergen, Norway</small>
                 </div>
               </div>
-              <p>I compared matching products by VIN and avoided ordering the wrong size. The product list was clear and simple.</p>
+              <p>I compared matching products in the catalog and avoided ordering the wrong size. The product list was clear and simple.</p>
               <div class="category-review-stars" aria-label="5 out of 5 stars">★★★★★</div>
             </article>
             <article class="category-review-card">
@@ -232,7 +208,7 @@
       </div>
     </main>
 
-    <button type="button" class="cart-fab" id="cart-fab" aria-label="Open cart" aria-expanded="false">
+    <button type="button" class="cart-fab cart-fab--stacked" id="cart-fab" aria-label="Open cart" aria-expanded="false">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
         <path d="M3 4h2l3 12h11l2-8H6" stroke-linecap="round" stroke-linejoin="round" />
         <circle cx="10" cy="20" r="1.5" />
@@ -241,6 +217,10 @@
       <span class="cart-fab-label">Cart</span>
       <span class="cart-fab-count" id="cart-fab-count">0</span>
     </button>
+    <a class="custom-order-fab" href="custom-orders.html" aria-label="Open custom orders">
+      <span>Custom Orders</span>
+      <span aria-hidden="true">-&gt;</span>
+    </a>
 
     <aside class="cart-drawer" id="cart-drawer" aria-hidden="true" aria-label="Cart">
       <div class="cart-drawer-head">
@@ -302,6 +282,7 @@
     <script src="cookies.js" defer></script>
     <script src="script.js" defer></script>
     <script src="home.js" defer></script>
+    <script src="makes.js" defer></script>
     <script src="shop-data.js" defer></script>
     <script src="shop-categories-nav.js" defer></script>
     <script src="part-category.js" defer></script>

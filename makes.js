@@ -101,6 +101,19 @@
       .join("");
   }
 
+  function renderSidebarList(node, makes) {
+    if (!makes.length) {
+      node.innerHTML = '<p class="make-grid-status">No car brands found in the database.</p>';
+      return;
+    }
+
+    node.innerHTML = makes
+      .map(function (make) {
+        return '<a class="brand-sidebar-link" href="' + makeHref(make) + '">' + escapeHtml(make.name) + "</a>";
+      })
+      .join("");
+  }
+
   function bindAllBrandSearch(node, makes) {
     var input = document.getElementById("all-brands-search-input");
     var clearButton = document.getElementById("all-brands-search-clear");
@@ -143,13 +156,24 @@
     }
   }
 
+  function hydrateBrandSidebar(node) {
+    if (!node) return;
+    hydrateGrid(node, renderSidebarList);
+  }
+
+  window.SpectrMakes = Object.assign({}, window.SpectrMakes, {
+    hydrateBrandSidebar: hydrateBrandSidebar
+  });
+
   document.addEventListener("DOMContentLoaded", function () {
     var topGrid = document.getElementById("top-brand-grid");
     var allGrid = document.getElementById("all-brands-grid");
+    var brandSidebars = document.querySelectorAll("[data-brand-sidebar-list]");
 
     if (topGrid) hydrateGrid(topGrid, renderTopGrid);
     if (allGrid) hydrateGrid(allGrid, renderAllGrid, function (makes) {
       bindAllBrandSearch(allGrid, makes);
     });
+    brandSidebars.forEach(hydrateBrandSidebar);
   });
 })();

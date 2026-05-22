@@ -111,39 +111,13 @@
     <main class="shop-page">
       <section class="shop-hero" aria-labelledby="shop-hero-title">
         <div class="shop-hero-grid">
-          <div class="shop-finder" aria-labelledby="shop-hero-title">
-            <h1 id="shop-hero-title">Find part by model</h1>
-
-            <form class="finder-selects" id="finder-vehicle-form">
-              <label class="select-field">
-                <span>Car brand</span>
-                <select id="finder-brand" required>
-                  <option value="">Choose brand</option>
-                </select>
-              </label>
-              <label class="select-field">
-                <span>Car model</span>
-                <select id="finder-model" required disabled>
-                  <option value="">Choose model</option>
-                </select>
-              </label>
-              <label class="select-field">
-                <span>Year</span>
-                <select id="finder-year" required disabled>
-                  <option value="">Choose year</option>
-                </select>
-              </label>
-              <label class="select-field">
-                <span>VIN number</span>
-                <input id="finder-vin" type="text" inputmode="latin" autocomplete="off" maxlength="17" placeholder="Enter VIN" />
-              </label>
-              <button type="submit" class="btn btn-primary finder-submit">Search</button>
-            </form>
-
-            <a class="finder-missing" href="admin-parts.html#vehicles">
-              Can't find your car in the catalog?
-            </a>
-          </div>
+          <aside class="brand-text-sidebar" aria-labelledby="shop-hero-title">
+            <p class="shop-eyebrow">Car brands</p>
+            <h1 id="shop-hero-title">Browse by brand</h1>
+            <div class="brand-sidebar-list" data-brand-sidebar-list data-makes-limit="300">
+              <p class="make-grid-status">Loading car brands...</p>
+            </div>
+          </aside>
 
           <aside class="promo-slider" aria-label="Promotions">
             <div class="promo-track" id="promo-track" aria-live="polite"></div>
@@ -201,7 +175,7 @@
                 <small>Bergen, Norway</small>
               </div>
             </div>
-            <p>I compared matching products by VIN and avoided ordering the wrong size. The product list was clear and simple.</p>
+            <p>I compared matching products in the catalog and avoided ordering the wrong size. The product list was clear and simple.</p>
             <div class="category-review-stars" aria-label="5 out of 5 stars">�??�??�??�??�??</div>
           </article>
           <article class="category-review-card">
@@ -249,7 +223,7 @@
       </section>
     </main>
 
-    <button type="button" class="cart-fab" id="cart-fab" aria-label="Open cart" aria-expanded="false">
+    <button type="button" class="cart-fab cart-fab--stacked" id="cart-fab" aria-label="Open cart" aria-expanded="false">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
         <path d="M3 4h2l3 12h11l2-8H6" stroke-linecap="round" stroke-linejoin="round" />
         <circle cx="10" cy="20" r="1.5" />
@@ -258,6 +232,10 @@
       <span class="cart-fab-label">Cart</span>
       <span class="cart-fab-count" id="cart-fab-count">0</span>
     </button>
+    <a class="custom-order-fab" href="custom-orders.html" aria-label="Open custom orders">
+      <span>Custom Orders</span>
+      <span aria-hidden="true">-&gt;</span>
+    </a>
 
     <aside class="cart-drawer" id="cart-drawer" aria-hidden="true" aria-label="Cart">
       <div class="cart-drawer-head">
