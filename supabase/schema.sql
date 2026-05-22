@@ -94,6 +94,7 @@ create table if not exists public.models (
   make_id uuid not null references public.makes(id) on delete cascade,
   name text not null,
   body_type text,
+  image_url text,
   year_from integer,
   year_to integer,
   created_at timestamptz not null default now(),
@@ -302,31 +303,53 @@ normalized as (
     region,
     active,
     upper(left(regexp_replace(translate(name, 'ŠšëéÉöø', 'sseeeoo'), '[^A-Za-z0-9]', '', 'g'), 3)) as logo_text,
-    'https://cdn.simpleicons.org/' ||
-      case trim(both '-' from regexp_replace(
-        lower(translate(replace(name, '&', ' and '), 'ŠšëéÉöø', 'sseeeoo')),
-        '[^a-z0-9]+',
-        '-',
-        'g'
-      ))
-        when 'mercedes-benz' then 'mercedes'
-        when 'alfa-romeo' then 'alfaromeo'
-        when 'ds-automobiles' then 'dsautomobiles'
-        when 'rolls-royce' then 'rollsroyce'
-        when 'land-rover' then 'landrover'
-        when 'aston-martin' then 'astonmartin'
-        when 'mini' then 'mini'
-        when 'great-wall' then 'greatwall'
-        when 'li-auto' then 'liauto'
-        when 'lynk-and-co' then 'lynkco'
-        when 'kg-mobility' then 'kgmobility'
-        else replace(trim(both '-' from regexp_replace(
+    case trim(both '-' from regexp_replace(
+      lower(translate(replace(name, '&', ' and '), 'ŠšëéÉöø', 'sseeeoo')),
+      '[^a-z0-9]+',
+      '-',
+      'g'
+    ))
+      when 'abarth' then 'https://raw.githubusercontent.com/vehiclespecs/brand-logos/v1.0.0/abarth-logo.svg'
+      when 'alfa-romeo' then 'https://raw.githubusercontent.com/vehiclespecs/brand-logos/v1.0.0/alfa-romeo-logo.svg'
+      when 'alpina' then 'https://raw.githubusercontent.com/vehiclespecs/brand-logos/v1.0.0/alpina-logo.svg'
+      when 'alpine' then 'https://raw.githubusercontent.com/vehiclespecs/brand-logos/v1.0.0/alpine-logo.svg'
+      when 'cupra' then 'https://raw.githubusercontent.com/vehiclespecs/brand-logos/v1.0.0/cupra-logo.svg'
+      when 'donkervoort' then 'https://www.carlogos.org/logo/Donkervoort-logo-2560x1440.png'
+      when 'jaguar' then 'https://raw.githubusercontent.com/vehiclespecs/brand-logos/v1.0.0/jaguar-logo.svg'
+      when 'lancia' then 'https://raw.githubusercontent.com/vehiclespecs/brand-logos/v1.0.0/lancia-logo.png'
+      when 'land-rover' then 'https://raw.githubusercontent.com/vehiclespecs/brand-logos/v1.0.0/land-rover-logo.svg'
+      when 'lotus' then 'https://raw.githubusercontent.com/vehiclespecs/brand-logos/v1.0.0/lotus-logo.svg'
+      when 'maybach' then 'https://raw.githubusercontent.com/vehiclespecs/brand-logos/v1.0.0/maybach-logo.png'
+      when 'mercedes-benz' then 'https://raw.githubusercontent.com/vehiclespecs/brand-logos/v1.0.0/mercedes-benz-logo.svg'
+      when 'spyker' then 'https://www.carlogos.org/logo/Spyker-logo-black-1920x1080.png'
+      when 'togg' then 'https://raw.githubusercontent.com/vehiclespecs/brand-logos/v1.0.0/togg-logo.svg'
+      when 'uaz' then 'https://raw.githubusercontent.com/vehiclespecs/brand-logos/v1.0.0/uaz-logo.png'
+      else 'https://cdn.simpleicons.org/' ||
+        case trim(both '-' from regexp_replace(
           lower(translate(replace(name, '&', ' and '), 'ŠšëéÉöø', 'sseeeoo')),
           '[^a-z0-9]+',
           '-',
           'g'
-        )), '-', '')
-      end || '/111827' as logo_url
+        ))
+          when 'mercedes-benz' then 'mercedes'
+          when 'alfa-romeo' then 'alfaromeo'
+          when 'ds-automobiles' then 'dsautomobiles'
+          when 'rolls-royce' then 'rollsroyce'
+          when 'land-rover' then 'landrover'
+          when 'aston-martin' then 'astonmartin'
+          when 'mini' then 'mini'
+          when 'great-wall' then 'greatwall'
+          when 'li-auto' then 'liauto'
+          when 'lynk-and-co' then 'lynkco'
+          when 'kg-mobility' then 'kgmobility'
+          else replace(trim(both '-' from regexp_replace(
+            lower(translate(replace(name, '&', ' and '), 'ŠšëéÉöø', 'sseeeoo')),
+            '[^a-z0-9]+',
+            '-',
+            'g'
+          )), '-', '')
+        end || '/111827'
+    end as logo_url
   from seed
 )
 insert into public.makes (slug, name, country, region, active, logo_text, logo_url)

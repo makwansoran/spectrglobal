@@ -2,6 +2,7 @@
   "use strict";
 
   var SESSION_KEY = "spectr_shop_customer_v1";
+  var CATEGORY_LEVELS = [1, 2];
 
   var state = {
     products: [],
@@ -170,7 +171,9 @@
   function renderProductCreateOptions() {
     var categoryList = $("product-category-options");
     if (categoryList) {
-      var categories = Array.from(new Set(state.categories.map(function (category) {
+      var categories = Array.from(new Set(state.categories.filter(function (category) {
+        return Number(category.level) === 2;
+      }).map(function (category) {
         return category.name || "";
       }).filter(Boolean))).sort();
       categoryList.innerHTML = categories.map(function (name) {
@@ -514,6 +517,7 @@
   function filterCategories() {
     var query = state.filters.catalog.query.toLowerCase();
     return state.categories.filter(function (category) {
+      if (CATEGORY_LEVELS.indexOf(Number(category.level)) === -1) return false;
       var haystack = [category.name, category.slug, categoryParentName(category.parent_id), category.level, category.image_url].join(" ").toLowerCase();
       return !query || haystack.indexOf(query) !== -1;
     });
@@ -556,7 +560,7 @@
           '<td><input class="input-cell input-cell-wide" data-category-field="name" value="' + escapeHtml(category.name) + '" /></td>' +
           '<td><input class="input-cell input-cell-wide" data-category-field="slug" value="' + escapeHtml(category.slug) + '" /></td>' +
           '<td><select class="status-select" data-category-field="level">' +
-            [1, 2, 3].map(function (level) {
+            CATEGORY_LEVELS.map(function (level) {
               return '<option value="' + level + '"' + (Number(category.level) === level ? " selected" : "") + '>' + level + '</option>';
             }).join("") +
           '</select></td>' +

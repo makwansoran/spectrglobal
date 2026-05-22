@@ -138,6 +138,7 @@ function modelFromRow(row) {
     make_id: row.make_id,
     name: row.name,
     body_type: row.body_type || "",
+    image_url: row.image_url || "",
     year_from: row.year_from == null ? null : Number(row.year_from),
     year_to: row.year_to == null ? null : Number(row.year_to),
   };
@@ -160,7 +161,7 @@ async function handleModels(req, res) {
 
   const { data, error } = await getReadClient()
     .from("models")
-    .select("id, make_id, name, body_type, year_from, year_to")
+    .select("id, make_id, name, body_type, image_url, year_from, year_to")
     .eq("make_id", makeId)
     .order("name", { ascending: true })
     .limit(limit);
@@ -220,7 +221,7 @@ async function handleCategories(req, res) {
     .order("name", { ascending: true })
     .limit(limit);
 
-  if (level >= 1 && level <= 3) query = query.eq("level", level);
+  if (level >= 1 && level <= 2) query = query.eq("level", level);
 
   if (parentSlug) {
     const { data: parent, error: parentError } = await getReadClient()
@@ -1399,7 +1400,7 @@ function cleanCategoryBody(body, partial) {
   const source = body || {};
   const name = String(source.name || "").trim();
   const slug = slugify(source.slug || name);
-  const level = Math.min(Math.max(parseInt(source.level, 10) || 1, 1), 3);
+  const level = Math.min(Math.max(parseInt(source.level, 10) || 1, 1), 2);
   const parentId = String(source.parent_id || "").trim() || null;
   const record = {};
 

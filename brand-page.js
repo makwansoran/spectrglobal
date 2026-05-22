@@ -39,16 +39,28 @@
     });
   }
 
+  function modelImageUrl(model) {
+    return String(model.image_url || model.profile_image_url || model.photo_url || "").trim();
+  }
+
   function renderModelCards(make, models) {
     var modelGrid = $("brand-model-grid");
     if (!modelGrid) return;
     modelGrid.innerHTML = models.length
       ? models.map(function (model) {
+          var imageUrl = modelImageUrl(model);
           return (
             '<a class="brand-model-card" href="index.html?make=' + encodeURIComponent(make.slug || make.name) +
               '&model=' + encodeURIComponent(model.name) + '#finder-vehicle-form">' +
-              '<strong>' + escapeHtml(model.name) + '</strong>' +
-              '<span>' + escapeHtml([model.body_type, yearsLabel(model)].filter(Boolean).join(" · ")) + '</span>' +
+              '<span class="brand-model-photo">' +
+                (imageUrl
+                  ? '<img src="' + escapeHtml(imageUrl) + '" alt="" loading="lazy" decoding="async">'
+                  : '<span class="brand-model-photo-empty" aria-hidden="true"></span>') +
+              '</span>' +
+              '<span class="brand-model-copy">' +
+                '<strong>' + escapeHtml(model.name) + '</strong>' +
+                '<span>' + escapeHtml([model.body_type, yearsLabel(model)].filter(Boolean).join(" · ")) + '</span>' +
+              '</span>' +
             '</a>'
           );
         }).join("")

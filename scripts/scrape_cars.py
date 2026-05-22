@@ -73,6 +73,24 @@ EUROPEAN_BRAND_SLUGS = {
     "spyker", "togg", "uaz", "vauxhall", "volkswagen", "volvo",
 }
 
+BRAND_LOGO_URLS = {
+    "abarth": "https://raw.githubusercontent.com/vehiclespecs/brand-logos/v1.0.0/abarth-logo.svg",
+    "alfa-romeo": "https://raw.githubusercontent.com/vehiclespecs/brand-logos/v1.0.0/alfa-romeo-logo.svg",
+    "alpina": "https://raw.githubusercontent.com/vehiclespecs/brand-logos/v1.0.0/alpina-logo.svg",
+    "alpine": "https://raw.githubusercontent.com/vehiclespecs/brand-logos/v1.0.0/alpine-logo.svg",
+    "cupra": "https://raw.githubusercontent.com/vehiclespecs/brand-logos/v1.0.0/cupra-logo.svg",
+    "donkervoort": "https://www.carlogos.org/logo/Donkervoort-logo-2560x1440.png",
+    "jaguar": "https://raw.githubusercontent.com/vehiclespecs/brand-logos/v1.0.0/jaguar-logo.svg",
+    "lancia": "https://raw.githubusercontent.com/vehiclespecs/brand-logos/v1.0.0/lancia-logo.png",
+    "land-rover": "https://raw.githubusercontent.com/vehiclespecs/brand-logos/v1.0.0/land-rover-logo.svg",
+    "lotus": "https://raw.githubusercontent.com/vehiclespecs/brand-logos/v1.0.0/lotus-logo.svg",
+    "maybach": "https://raw.githubusercontent.com/vehiclespecs/brand-logos/v1.0.0/maybach-logo.png",
+    "mercedes-benz": "https://raw.githubusercontent.com/vehiclespecs/brand-logos/v1.0.0/mercedes-benz-logo.svg",
+    "spyker": "https://www.carlogos.org/logo/Spyker-logo-black-1920x1080.png",
+    "togg": "https://raw.githubusercontent.com/vehiclespecs/brand-logos/v1.0.0/togg-logo.svg",
+    "uaz": "https://raw.githubusercontent.com/vehiclespecs/brand-logos/v1.0.0/uaz-logo.png",
+}
+
 DEMO_PARTS = [
     {
         "id": "demo-bosch-front-brake-pads",
@@ -489,12 +507,16 @@ def upsert_makes(client: "Client", records: List[CarRecord]) -> Dict[str, str]:
     payload = []
     for record in unique.values():
         logo_text = re.sub(r"[^A-Z0-9]", "", record.brand_name.upper())[:6] or "CAR"
-        payload.append({
+        make_payload = {
             "slug": record.brand_slug,
             "name": record.brand_name,
             "logo_text": logo_text,
             "active": True,
-        })
+        }
+        logo_url = BRAND_LOGO_URLS.get(record.brand_slug)
+        if logo_url:
+            make_payload["logo_url"] = logo_url
+        payload.append(make_payload)
 
     logger.info("Upserting %s makes …", len(payload))
     client.table("makes").upsert(payload, on_conflict="slug").execute()

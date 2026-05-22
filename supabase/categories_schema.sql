@@ -14,7 +14,7 @@ create table if not exists public.categories (
   updated_at timestamptz not null default now(),
   constraint categories_name_len check (char_length(trim(name)) between 1 and 160),
   constraint categories_slug_format check (slug ~ '^[a-z0-9]+(?:-[a-z0-9]+)*$'),
-  constraint categories_level_allowed check (level between 1 and 3),
+  constraint categories_level_allowed check (level between 1 and 2),
   constraint categories_parent_level check (
     (level = 1 and parent_id is null) or
     (level > 1 and parent_id is not null)
