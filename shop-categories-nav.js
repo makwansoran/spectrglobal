@@ -35,7 +35,7 @@
 
     nav.innerHTML = NAV_ITEMS.map(function (item) {
       return '<a href="' + escapeHtml(item.href) + '" data-icon="' + escapeHtml(item.icon) + '">' + escapeHtml(item.label) + "</a>";
-    }).join("") + '<a href="part-categories.html" data-icon="+">More</a>';
+    }).join("");
   }
 
   function countPartsByCategory(parts, categoryName) {
