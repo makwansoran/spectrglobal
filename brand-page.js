@@ -59,7 +59,6 @@
               '</span>' +
               '<span class="brand-model-copy">' +
                 '<strong>' + escapeHtml(model.name) + '</strong>' +
-                '<span>' + escapeHtml([model.body_type, yearsLabel(model)].filter(Boolean).join(" · ")) + '</span>' +
               '</span>' +
             '</a>'
           );
