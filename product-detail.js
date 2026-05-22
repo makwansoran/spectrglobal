@@ -247,7 +247,6 @@
 
   function renderSimilar() {
     var grid = $("similar-products-grid");
-    var summary = $("similar-products-summary");
     if (!state.product) {
       grid.innerHTML = "";
       return;
@@ -256,12 +255,6 @@
     var similar = state.parts.filter(function (part) {
       return part.id !== state.product.id && part.category === state.product.category;
     }).slice(0, 8);
-
-    if (summary) {
-      summary.textContent = similar.length
-        ? "More " + String(state.product.category || "products").toLowerCase() + " from the catalog."
-        : "No similar products found yet.";
-    }
 
     grid.innerHTML = similar.length
       ? similar.map(renderProductCard).join("")

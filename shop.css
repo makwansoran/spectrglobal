@@ -887,6 +887,12 @@
   background: #ffffff;
 }
 
+.all-categories-grid[data-section="wheels-tyres"] {
+  max-width: 980px;
+  margin-inline: auto;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .all-brands-grid a {
   display: flex;
   flex-direction: column;
@@ -1721,6 +1727,75 @@
 
 .category-products .catalog-head {
   margin-bottom: 1rem;
+}
+
+.product-similar-products {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 4vw, 4.5rem) clamp(2rem, 4vw, 3rem);
+}
+
+.product-similar-products .catalog-head {
+  margin-bottom: 0.65rem;
+}
+
+.product-similar-products .catalog-head h2 {
+  margin-bottom: 0;
+  font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+}
+
+.product-similar-products .similar-products-row {
+  --similar-products-gap: clamp(0.55rem, 1.4vw, 0.9rem);
+  grid-auto-columns: calc((100% - (var(--similar-products-gap) * 4)) / 5);
+  padding-bottom: 0.35rem;
+}
+
+.product-similar-products .product-image {
+  aspect-ratio: 16 / 9;
+}
+
+.product-similar-products .product-image img {
+  padding: 0.55rem;
+}
+
+.product-similar-products .product-body {
+  gap: 0.28rem;
+  padding: 0.68rem 0.72rem 0.78rem;
+}
+
+.product-similar-products .product-category {
+  font-size: 0.62rem;
+}
+
+.product-similar-products .product-name {
+  font-size: 0.88rem;
+  line-height: 1.22;
+}
+
+.product-similar-products .product-sku,
+.product-similar-products .product-description,
+.product-similar-products .product-stock,
+.product-similar-products .product-delivery {
+  font-size: 0.66rem;
+}
+
+.product-similar-products .product-description {
+  line-height: 1.32;
+}
+
+.product-similar-products .product-foot {
+  gap: 0.45rem;
+  padding-top: 0.35rem;
+}
+
+.product-similar-products .product-price {
+  font-size: 0.9rem;
+}
+
+.product-similar-products .product-add {
+  padding: 0.45rem 0.56rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.04em;
 }
 
 .part-categories-layout,
@@ -3588,6 +3663,10 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .all-categories-grid[data-section="wheels-tyres"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .brand-hero-card {
     grid-template-columns: 1fr;
   }
@@ -3649,6 +3728,10 @@
   .similar-products-row {
     grid-auto-columns: calc((100% - var(--similar-products-gap)) / 2);
   }
+
+  .product-similar-products .similar-products-row {
+    grid-auto-columns: calc((100% - var(--similar-products-gap)) / 2);
+  }
 }
 
 @media (max-width: 640px) {
@@ -3699,6 +3782,10 @@
     grid-template-columns: 1fr;
   }
 
+  .all-categories-grid[data-section="wheels-tyres"] {
+    grid-template-columns: 1fr;
+  }
+
   .brand-hero-card {
     grid-template-columns: 1fr;
   }
@@ -3715,6 +3802,10 @@
 
   .similar-products-row {
     grid-auto-columns: min(82vw, 20rem);
+  }
+
+  .product-similar-products .similar-products-row {
+    grid-auto-columns: min(78vw, 16rem);
   }
 
   .category-review-strip {

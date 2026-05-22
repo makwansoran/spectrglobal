@@ -214,6 +214,7 @@
   }
 
   function renderCategories(node, categories, query, sectionSlug) {
+    node.dataset.section = sectionSlug || "";
     var filtered = filterCategories(categories, query, sectionSlug);
 
     if (!filtered.length) {
