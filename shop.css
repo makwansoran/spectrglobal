@@ -569,12 +569,12 @@
 .promo-slider {
   position: relative;
   overflow: hidden;
-  width: min(100%, 1180px);
+  width: min(100%, 1024px);
+  aspect-ratio: 2 / 1;
   margin: 0 auto;
   border-radius: var(--shop-radius-lg);
   background: #0a0c10;
   color: #ffffff;
-  min-height: clamp(14rem, 24vw, 21rem);
   box-shadow: 0 24px 60px rgba(10, 12, 16, 0.12);
 }
 
