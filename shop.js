@@ -49,8 +49,7 @@
   }
 
   function continentalBadgeHtml(part) {
-    if (!isContinentalPart(part)) return "";
-    return '<span class="product-brand-badge" aria-label="Continental product"><img src="' + CONTINENTAL_LOGO_SRC + '" alt="Continental" loading="lazy" decoding="async"></span>';
+    return "";
   }
 
   function initials(name) {
