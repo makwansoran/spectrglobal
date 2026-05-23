@@ -293,11 +293,18 @@ function gmpItaliaWheelFromRow(row) {
   });
 }
 
+function ferodoCategory(row) {
+  const type = String(row.product_type || "").toLowerCase();
+  if (/fluid/.test(type)) return "Brake Hydraulics";
+  if (/sensor|indicator|abs/.test(type)) return "ABS & Brake Sensors";
+  return "Brake Discs, Drums & Pads";
+}
+
 function ferodoProductFromRow(row) {
   return partFromRow({
     ...row,
     brand: "Ferodo",
-    category: "Brakes",
+    category: ferodoCategory(row),
     article_number: row.article_number || row.sku || row.product_name || "",
     ean_code: row.ean_code || "",
     delivery_time: row.delivery_time || "2-5 days",
@@ -480,7 +487,7 @@ function brakeProductFromRow(row, fitments) {
   return {
     id: `brake-product-${row.id}`,
     name: [brandName, row.name].filter(Boolean).join(" "),
-    category: "Brakes",
+    category: "Brake Discs, Drums & Pads",
     brand: brandName,
     sku: `BRAKE-${String(row.id || "").slice(0, 8).toUpperCase()}`,
     article_number: row.article_number || "",
@@ -904,7 +911,7 @@ function supplyItem(kind, row) {
     id: row.id,
     name: row.name || "",
     brand: kind === "continental-tyre" ? "Continental" : kind === "gmp-wheel" ? "GMP Italia" : kind === "ferodo-product" ? "Ferodo" : (brand && brand.name) || "",
-    category: kind === "continental-tyre" ? "Tyres" : kind === "gmp-wheel" ? "Rims" : kind === "ferodo-product" ? "Brakes" : kind === "oil" ? "Oils" : kind === "brake" ? "Brakes" : row.category || "Other",
+    category: kind === "continental-tyre" ? "Tyres" : kind === "gmp-wheel" ? "Rims" : kind === "ferodo-product" ? ferodoCategory(row) : kind === "oil" ? "Oils" : kind === "brake" ? "Brake Discs, Drums & Pads" : row.category || "Other",
     sku: supplySku(kind, row),
     article_number: row.article_number || "",
     ean_code: row.ean_code || row.ean || "",
@@ -947,7 +954,7 @@ function editableProduct(kind, row) {
       ...base,
       editable: {
         name: row.name || "",
-        category: kind === "continental-tyre" ? "Tyres" : kind === "gmp-wheel" ? "Rims" : kind === "ferodo-product" ? "Brakes" : row.category || "Other",
+        category: kind === "continental-tyre" ? "Tyres" : kind === "gmp-wheel" ? "Rims" : kind === "ferodo-product" ? ferodoCategory(row) : row.category || "Other",
         sku: row.sku || "",
         price: Number(row.price) || 0,
         stock: Number(row.stock) || 0,

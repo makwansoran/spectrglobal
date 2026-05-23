@@ -55,6 +55,31 @@
     return key;
   }
 
+  function isBrakeCategory() {
+    return /brake/i.test(state.category);
+  }
+
+  function extractBrakeType(part) {
+    var specs = Array.isArray(part.specifications) ? part.specifications : [];
+    for (var i = 0; i < specs.length; i++) {
+      var spec = specs[i];
+      var label = normalize(spec && (spec.label || spec.name));
+      if (label === "product type" || label === "product family") {
+        var val = String(spec.value || "").trim();
+        if (val) return val;
+      }
+    }
+    return null;
+  }
+
+  function extractFilterThird(part) {
+    if (isBrakeCategory()) {
+      var bt = extractBrakeType(part);
+      return bt ? [bt] : [];
+    }
+    return extractDimensions(part);
+  }
+
   function isSameCategory(part) {
     if (!state.category) return true;
     if (categoryKey(state.category) === categoryKey(DEALS_CATEGORY)) return true;
@@ -143,12 +168,12 @@
   }
 
   function buildFilterOptions(parts) {
-    var brands = {}, models = {}, dimensions = {};
+    var brands = {}, models = {}, thirds = {};
     parts.forEach(function (part) {
       var b = extractBrand(part);
       if (b) brands[b] = (brands[b] || 0) + 1;
-      extractDimensions(part).forEach(function (d) {
-        dimensions[d] = (dimensions[d] || 0) + 1;
+      extractFilterThird(part).forEach(function (d) {
+        thirds[d] = (thirds[d] || 0) + 1;
       });
       extractModels(part).forEach(function (m) {
         models[m] = (models[m] || 0) + 1;
@@ -157,7 +182,7 @@
     return {
       brands: Object.keys(brands).sort(),
       models: Object.keys(models).sort(),
-      dimensions: Object.keys(dimensions).sort(function (a, b) {
+      dimensions: Object.keys(thirds).sort(function (a, b) {
         return a.localeCompare(b, undefined, { numeric: true });
       })
     };
@@ -174,7 +199,7 @@
     }
 
     if (f.dimension.size > 0) {
-      var dims = extractDimensions(part);
+      var dims = extractFilterThird(part);
       var hit = dims.some(function (d) { return f.dimension.has(d); });
       if (!hit) return false;
     }
@@ -216,9 +241,18 @@
     }).join("");
   }
 
+  function updateSidebarLabels() {
+    var isBrake = isBrakeCategory();
+    var brandLabel = document.querySelector('[data-filter="brand"] .filter-label');
+    var thirdLabel = document.querySelector('[data-filter="dimension"] .filter-label');
+    if (brandLabel) brandLabel.textContent = isBrake ? "Brand" : "Tyre brand";
+    if (thirdLabel) thirdLabel.textContent = isBrake ? "Brake type" : "Dimension";
+  }
+
   function renderSidebar() {
     var categoryParts = state.parts.filter(isSameCategory);
     var opts = buildFilterOptions(categoryParts);
+    updateSidebarLabels();
     renderCheckboxList("filter-body-brand",     opts.brands,     state.filters.brand,     "brand");
     renderCheckboxList("filter-body-model",     opts.models,     state.filters.model,     "model");
     renderCheckboxList("filter-body-dimension", opts.dimensions, state.filters.dimension, "dimension");
