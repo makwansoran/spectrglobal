@@ -173,14 +173,16 @@
 
     banner.innerHTML =
       '<div class="cookie-banner-body">' +
+        '<p class="cookie-banner-eyebrow">Privacy</p>' +
+        '<h2 class="cookie-banner-heading">We value your privacy</h2>' +
         '<p class="cookie-banner-text">' +
-          'We use cookies to improve your experience, analyse traffic, and show relevant products. ' +
-          'Read our <a href="privacy-policy.html">Privacy Policy</a>.' +
+          'We use cookies to personalise content, measure traffic, and improve our service. ' +
+          'You can choose which cookies you allow. <a href="privacy-policy.html">Privacy policy</a>.' +
         '</p>' +
         '<div class="cookie-banner-actions">' +
-          '<button type="button" class="cookie-banner-btn cookie-banner-btn--ghost" id="cookie-manage">Manage</button>' +
-          '<button type="button" class="cookie-banner-btn cookie-banner-btn--secondary" id="cookie-reject">Reject non-essential</button>' +
-          '<button type="button" class="cookie-banner-btn cookie-banner-btn--accept" id="cookie-accept-all">Accept all</button>' +
+          '<button type="button" class="cookie-banner-btn cookie-banner-btn--accept" id="cookie-accept-all">Accept all cookies</button>' +
+          '<button type="button" class="cookie-banner-btn cookie-banner-btn--secondary" id="cookie-reject">Decline non-essential</button>' +
+          '<button type="button" class="cookie-banner-btn cookie-banner-btn--ghost" id="cookie-manage">Manage preferences</button>' +
         '</div>' +
       '</div>';
 
