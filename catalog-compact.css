@@ -1,8 +1,8 @@
-/* ── Compact product grid — always exactly 5 columns ────────────────────── */
+/* ── Compact product grid — desktop defaults to 4 columns ───────────────── */
 
 #catalog .catalog-grid,
 .category-page .catalog-grid {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0.85rem;
 }
 
