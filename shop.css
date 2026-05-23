@@ -1657,6 +1657,55 @@
   gap: clamp(0.8rem, 2vw, 1.4rem);
 }
 
+/* Brand-grouped view (5 products per brand) */
+.catalog-grid--brand-view {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 4vw, 3rem);
+}
+
+.catalog-brand-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.catalog-brand-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1.5px solid var(--shop-line);
+}
+
+.catalog-brand-logo {
+  height: 1.25rem;
+  width: auto;
+  max-width: 7rem;
+  object-fit: contain;
+}
+
+.catalog-brand-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--shop-ink);
+  font-family: var(--shop-sans);
+}
+
+.catalog-brand-count {
+  font-size: 0.76rem;
+  color: var(--shop-muted);
+  font-family: var(--shop-mono);
+  letter-spacing: 0.04em;
+  margin-left: auto;
+}
+
+.catalog-brand-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  gap: clamp(0.8rem, 2vw, 1.4rem);
+}
+
 .similar-products-row {
   --similar-products-gap: clamp(0.8rem, 2vw, 1.4rem);
   grid-template-columns: none;

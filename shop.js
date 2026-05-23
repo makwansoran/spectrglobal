@@ -19,7 +19,12 @@
   var DEALS_CATEGORY = "__deals";
   var FEATURED_LIMIT = 8;
   var DEALS_LIMIT = 12;
+  var BRAND_LIMIT = 5;
   var CONTINENTAL_LOGO_SRC = "assets/brand/continental-logo.png";
+  var BRAND_LOGOS = {
+    "Continental": "assets/brand/continental-logo.png",
+    "GMP Italia": "assets/brand/gmp-italia-logo.png"
+  };
 
   function $(id) { return document.getElementById(id); }
 
@@ -525,6 +530,77 @@
     }).slice(0, limit);
   }
 
+  function productCardHtml(part) {
+    var description = previewDescription(part);
+    var reviews = reviewCount(part);
+    return (
+      '<article class="product" data-product-id="' + escapeHtml(part.id) + '">' +
+        productCardMedia(part) +
+        '<div class="product-body">' +
+          '<span class="product-category">' + categoryLabelHtml(part.category || "Car part") + '</span>' +
+          continentalBadgeHtml(part) +
+          '<h3 class="product-name">' + escapeHtml(part.name) + '</h3>' +
+          (description ? '<p class="product-description">' + escapeHtml(description) + '</p>' : '') +
+          '<span class="product-reviews">(' + escapeHtml(reviews || 0) + ' anmeldelser)</span>' +
+          '<div class="product-foot">' +
+            previewPriceHtml(part) +
+          '</div>' +
+        '</div>' +
+      '</article>'
+    );
+  }
+
+  function groupByBrand(parts) {
+    var order = [];
+    var map = {};
+    parts.forEach(function (part) {
+      var brand = String((part && part.brand) || "Other").trim();
+      if (!map[brand]) {
+        map[brand] = [];
+        order.push(brand);
+      }
+      map[brand].push(part);
+    });
+    return order.map(function (brand) {
+      return { brand: brand, parts: map[brand] };
+    });
+  }
+
+  function brandLogoHtml(brand) {
+    var src = BRAND_LOGOS[brand];
+    if (!src) return "";
+    return '<img class="catalog-brand-logo" src="' + escapeHtml(src) + '" alt="' + escapeHtml(brand) + '" loading="lazy" decoding="async">';
+  }
+
+  function renderBrandSections(grid, allParts) {
+    var groups = groupByBrand(allParts);
+    if (groups.length === 0) {
+      grid.className = "catalog-grid";
+      grid.innerHTML =
+        '<div class="catalog-empty">' +
+          '<strong>No parts in the catalog yet</strong>' +
+          '<span>Add parts in the admin panel to publish listings.</span>' +
+        '</div>';
+      return;
+    }
+    grid.className = "catalog-grid catalog-grid--brand-view";
+    grid.innerHTML = groups.map(function (group) {
+      var limited = featuredProducts(group.parts, BRAND_LIMIT);
+      return (
+        '<section class="catalog-brand-section">' +
+          '<div class="catalog-brand-header">' +
+            brandLogoHtml(group.brand) +
+            '<span class="catalog-brand-name">' + escapeHtml(group.brand) + '</span>' +
+            '<span class="catalog-brand-count">' + escapeHtml(String(group.parts.length)) + ' products</span>' +
+          '</div>' +
+          '<div class="catalog-brand-grid">' +
+            limited.map(productCardHtml).join("") +
+          '</div>' +
+        '</section>'
+      );
+    }).join("");
+  }
+
   function renderCatalog() {
     var grid = $("catalog-grid");
     var summary = $("catalog-summary");
@@ -540,6 +616,14 @@
     var allParts = state.catalogParts;
     var visibleParts = allParts;
     var availableCount = 0;
+
+    // No filter → brand-grouped view (5 per brand)
+    if (!state.vehicle && !state.activeCategory) {
+      if (clearBtn) clearBtn.hidden = true;
+      if (summary) summary.textContent = "";
+      renderBrandSections(grid, allParts);
+      return;
+    }
 
     if (state.vehicle) {
       if (state.vehicle.plate) {
@@ -585,8 +669,10 @@
       clearBtn.hidden = !state.vehicle && !state.activeCategory;
     }
 
+    grid.className = "catalog-grid";
+
     if (visibleParts.length === 0) {
-      grid.innerHTML = '' +
+      grid.innerHTML =
         '<div class="catalog-empty">' +
           '<strong>' + (allParts.length === 0 ? "No parts in the catalog yet" : "No parts match your selection") + '</strong>' +
           '<span>' + (allParts.length === 0
@@ -596,24 +682,7 @@
       return;
     }
 
-    grid.innerHTML = visibleParts.map(function (part) {
-      var description = previewDescription(part);
-      var reviews = reviewCount(part);
-      return '' +
-        '<article class="product" data-product-id="' + escapeHtml(part.id) + '">' +
-          productCardMedia(part) +
-          '<div class="product-body">' +
-            '<span class="product-category">' + categoryLabelHtml(part.category || "Car part") + '</span>' +
-            continentalBadgeHtml(part) +
-            '<h3 class="product-name">' + escapeHtml(part.name) + '</h3>' +
-            (description ? '<p class="product-description">' + escapeHtml(description) + '</p>' : '') +
-            '<span class="product-reviews">(' + escapeHtml(reviews || 0) + ' anmeldelser)</span>' +
-            '<div class="product-foot">' +
-              previewPriceHtml(part) +
-            '</div>' +
-          '</div>' +
-        '</article>';
-    }).join("");
+    grid.innerHTML = visibleParts.map(productCardHtml).join("");
   }
 
   function initCatalogInteractions() {
