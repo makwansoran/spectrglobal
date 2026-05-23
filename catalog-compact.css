@@ -311,7 +311,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  min-height: 18rem;
   padding: 4rem 1rem;
+  box-sizing: border-box;
+  grid-column: 1 / -1; /* spans all columns if accidentally inside the grid */
+  text-align: center;
 }
 
 .catalog-loading-wrap[hidden] {
@@ -320,12 +325,13 @@
 
 .catalog-spinner {
   display: block;
-  width: 2.25rem;
-  height: 2.25rem;
-  border: 3px solid rgba(10, 12, 16, 0.12);
-  border-top-color: #0a0c10;
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 3px solid rgba(10, 12, 16, 0.1);
+  border-top-color: #18181b;
   border-radius: 50%;
   animation: catalog-spin 0.65s linear infinite;
+  flex-shrink: 0;
 }
 
 .catalog-spinner--inline {
@@ -333,6 +339,7 @@
   height: 1.5rem;
   border-width: 2px;
   margin: 1.5rem auto;
+  display: block;
 }
 
 @keyframes catalog-spin {

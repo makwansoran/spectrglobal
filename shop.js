@@ -616,10 +616,22 @@
     if (!grid) return;
 
     if (state.catalogStatus === "loading") {
-      grid.innerHTML = '<div class="catalog-loading-wrap"><span class="catalog-spinner" aria-hidden="true"></span></div>';
+      grid.innerHTML = "";
+      var existingWrap = grid.parentNode.querySelector(".catalog-loading-wrap");
+      if (!existingWrap) {
+        var loadWrap = document.createElement("div");
+        loadWrap.className = "catalog-loading-wrap";
+        loadWrap.id = "catalog-loading-wrap";
+        loadWrap.innerHTML = '<span class="catalog-spinner" aria-hidden="true"></span>';
+        grid.parentNode.insertBefore(loadWrap, grid);
+      } else {
+        existingWrap.removeAttribute("hidden");
+      }
       if (summary) summary.textContent = "";
       return;
     }
+    var lw = grid.parentNode.querySelector(".catalog-loading-wrap");
+    if (lw) lw.hidden = true;
 
     var allParts = state.catalogParts;
     var visibleParts = allParts;
