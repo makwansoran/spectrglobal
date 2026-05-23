@@ -172,8 +172,9 @@
       .map(function (part) {
         return {
           name: part.name,
+          subtitle: part.category || "Car part",
           image: partImage(part),
-          url: "index.html#catalog",
+          url: "part-category.html?category=" + encodeURIComponent(part.category || "Other"),
         };
       });
   }
@@ -239,7 +240,10 @@
       return (
         '<button type="button" class="cb-search-result plt-search-result' + (i === 0 ? " is-active" : "") + '" role="option" id="plt-result-' + i + '" data-index="' + i + '">' +
           '<span class="cb-search-result-media" aria-hidden="true"><img src="' + escapeHtml(result.image || generatedResultImage(result.name)) + '" alt="" loading="lazy" decoding="async"></span>' +
-          '<span class="cb-search-result-name">' + escapeHtml(result.name) + '</span>' +
+          '<span class="cb-search-result-text">' +
+            '<span class="cb-search-result-name">' + escapeHtml(result.name) + '</span>' +
+            (result.subtitle ? '<span class="cb-search-result-sub">' + escapeHtml(result.subtitle) + '</span>' : '') +
+          '</span>' +
         '</button>'
       );
     }).join("");

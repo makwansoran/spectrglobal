@@ -27,6 +27,36 @@
     slug: "wheels-tyres"
   };
 
+  /*
+   * Maps DB level-2 category slugs to the actual `category` string stored on
+   * products in public.parts.  When a browse-card is clicked the user lands on
+   * part-category.html?category=<hrefCategory>, so this must match exactly.
+   */
+  var SLUG_TO_PRODUCT_CATEGORY = {
+    /* Engine & Performance section */
+    "lubrication-filters":        "Lubrication & Filters",
+    "internal-engine":            "Engine Parts",
+    "timing-belts":               "Engine Parts",
+    "turbo-intake-egr":           "Engine Parts",
+    "engine-mounts":              "Engine Parts",
+    /* Suspension & Steering section */
+    "front-suspension":           "Suspension",
+    "rear-suspension":            "Suspension",
+    "steering":                   "Suspension",
+    "linkage-joints":             "Suspension",
+    /* Body, Interior & Accessories section */
+    "exterior-trim-panels":       "Body Parts",
+    "glass-seals":                "Body Parts",
+    "interior-trim":              "Body Parts",
+    "comfort-accessories":        "Body Parts",
+    "air-conditioning":           "Body Parts",
+    /* Service & Maintenance section */
+    "oils-fluids":                "Lubrication & Filters",
+    "service-kits":               "Lubrication & Filters",
+    "greases-additives-treatments": "Car Care & Cleaning",
+    "tools-diagnostics":          "Small Parts & Accessories",
+  };
+
   var WHEELS_TYRES_OPTIONS = [
     {
       name: "Tyres",
@@ -172,9 +202,11 @@
       })
       .map(function (category) {
         var section = byId.get(category.parent_id);
+        var productCategory = SLUG_TO_PRODUCT_CATEGORY[category.slug];
         return {
           name: category.name,
           slug: category.slug,
+          hrefCategory: productCategory || undefined,
           image: categoryImageUrl({
             name: category.name,
             group: "",

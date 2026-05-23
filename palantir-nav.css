@@ -666,6 +666,14 @@ body.plt-nav-open {
   object-fit: contain;
 }
 
+.plt-search-results .cb-search-result-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
 .plt-search-results .cb-search-result-name {
   min-width: 0;
   overflow: hidden;
@@ -675,6 +683,10 @@ body.plt-nav-open {
 
 .plt-search-results .cb-search-result-sub {
   color: var(--plt-nav-muted);
+  font-size: 0.78em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .plt-search-results .cb-search-results-empty {
