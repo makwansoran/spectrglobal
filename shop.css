@@ -2849,7 +2849,7 @@ a.product-brand-badge:hover {
 .cart-fab {
   position: fixed;
   right: clamp(1rem, 3vw, 2rem);
-  bottom: clamp(1rem, 3vw, 2rem);
+  bottom: clamp(0.25rem, 1.5vw, 0.75rem);
   z-index: 30;
   display: inline-flex;
   align-items: center;
@@ -2875,7 +2875,7 @@ a.product-brand-badge:hover {
 }
 
 .cart-fab--stacked {
-  bottom: calc(clamp(1rem, 3vw, 2rem) + 3.95rem);
+  bottom: calc(clamp(0.25rem, 1.5vw, 0.75rem) + 3.95rem);
 }
 
 .cart-fab.is-celebrating {
