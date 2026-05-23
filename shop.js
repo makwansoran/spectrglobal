@@ -538,21 +538,37 @@
     }).slice(0, limit);
   }
 
+  var CART_ICON = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>';
+
+  function stockMeta(part) {
+    var stock = parseInt(part.stock, 10) || 0;
+    if (stock > 0) {
+      return '<div class="product-meta"><span class="product-stock-label is-in">In stock</span></div>';
+    }
+    return '<div class="product-meta"><span class="product-stock-label is-out">Out of stock</span></div>';
+  }
+
   function productCardHtml(part) {
     var description = previewDescription(part);
-    var reviews = reviewCount(part);
+    var stock = parseInt(part.stock, 10) || 0;
+    var price = Number(part.price) || 0;
+    var addBtn = price
+      ? '<button type="button" class="product-add" data-add-part="' + escapeHtml(part.id) + '"' +
+          (stock <= 0 ? ' disabled' : '') +
+          ' aria-label="Add to cart">' + CART_ICON + '</button>'
+      : '';
     return (
       '<article class="product" data-product-id="' + escapeHtml(part.id) + '">' +
         productCardMedia(part) +
         '<div class="product-body">' +
           '<span class="product-category">' + categoryLabelHtml(part.category || "Car part") + '</span>' +
-          continentalBadgeHtml(part) +
           '<h3 class="product-name">' + escapeHtml(part.name) + '</h3>' +
           (description ? '<p class="product-description">' + escapeHtml(description) + '</p>' : '') +
-          '<span class="product-reviews">(' + escapeHtml(reviews || 0) + ' anmeldelser)</span>' +
           '<div class="product-foot">' +
-            previewPriceHtml(part) +
+            '<div class="product-price-block">' + previewPriceHtml(part) + '</div>' +
+            addBtn +
           '</div>' +
+          stockMeta(part) +
         '</div>' +
       '</article>'
     );
