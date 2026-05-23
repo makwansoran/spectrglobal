@@ -1,0 +1,1022 @@
+[
+  {
+    "id": "kyb-excel-g-shock-absorber-front",
+    "name": "KYB Excel-G Shock Absorber Front",
+    "category": "Suspension",
+    "sku": "SUS-001",
+    "price": 562.5,
+    "stock": 10,
+    "description": "Shock Absorber - KYB - Universal",
+    "image_url": "",
+    "article_number": "SUS-001",
+    "ean_code": "",
+    "delivery_time": "2-5 days",
+    "features": [
+      "OE Design, Comfort Focused",
+      "Application: Sedan",
+      "Spring rate: 15-20 N/mm",
+      "Damping force: 3500 N"
+    ],
+    "reviews": [],
+    "specifications": [
+      {
+        "label": "Brand",
+        "value": "KYB"
+      },
+      {
+        "label": "Category",
+        "value": "Suspension"
+      },
+      {
+        "label": "Product type",
+        "value": "Shock Absorber"
+      },
+      {
+        "label": "Compatibility",
+        "value": "Universal"
+      },
+      {
+        "label": "Condition",
+        "value": "New"
+      },
+      {
+        "label": "Specifications",
+        "value": "OE Design, Comfort Focused"
+      },
+      {
+        "label": "Application",
+        "value": "Sedan"
+      },
+      {
+        "label": "Spring rate (N/mm)",
+        "value": "15-20"
+      },
+      {
+        "label": "Damping force (N)",
+        "value": "3500"
+      },
+      {
+        "label": "Supplier",
+        "value": "AutoDoc"
+      },
+      {
+        "label": "Supplier link",
+        "value": "https://www.autodoc.no/suspension"
+      }
+    ],
+    "vehicles": [],
+    "active": true
+  },
+  {
+    "id": "monroe-oespectrum-strut-assembly",
+    "name": "Monroe OESpectrum Strut Assembly",
+    "category": "Suspension",
+    "sku": "SUS-002",
+    "price": 1062.5,
+    "stock": 10,
+    "description": "Strut - Monroe - VW Golf/Jetta",
+    "image_url": "",
+    "article_number": "SUS-002",
+    "ean_code": "",
+    "delivery_time": "2-5 days",
+    "features": [
+      "Full Assembly, Front Wheel Drive",
+      "Application: Hatchback",
+      "Spring rate: 18-22 N/mm",
+      "Damping force: 3800 N"
+    ],
+    "reviews": [],
+    "specifications": [
+      {
+        "label": "Brand",
+        "value": "Monroe"
+      },
+      {
+        "label": "Category",
+        "value": "Suspension"
+      },
+      {
+        "label": "Product type",
+        "value": "Strut"
+      },
+      {
+        "label": "Compatibility",
+        "value": "VW Golf/Jetta"
+      },
+      {
+        "label": "Condition",
+        "value": "New"
+      },
+      {
+        "label": "Specifications",
+        "value": "Full Assembly, Front Wheel Drive"
+      },
+      {
+        "label": "Application",
+        "value": "Hatchback"
+      },
+      {
+        "label": "Spring rate (N/mm)",
+        "value": "18-22"
+      },
+      {
+        "label": "Damping force (N)",
+        "value": "3800"
+      },
+      {
+        "label": "Supplier",
+        "value": "AutoDoc"
+      },
+      {
+        "label": "Supplier link",
+        "value": "https://www.autodoc.no/suspension"
+      }
+    ],
+    "vehicles": [],
+    "active": true
+  },
+  {
+    "id": "bilstein-b4-shock-rear",
+    "name": "Bilstein B4 Shock - Rear",
+    "category": "Suspension",
+    "sku": "SUS-003",
+    "price": 850,
+    "stock": 10,
+    "description": "Shock Absorber - Bilstein - BMW 3-Series",
+    "image_url": "",
+    "article_number": "SUS-003",
+    "ean_code": "",
+    "delivery_time": "2-5 days",
+    "features": [
+      "Premium, Performance Tuned",
+      "Application: Executive Sedan",
+      "Spring rate: 20-25 N/mm",
+      "Damping force: 4200 N"
+    ],
+    "reviews": [],
+    "specifications": [
+      {
+        "label": "Brand",
+        "value": "Bilstein"
+      },
+      {
+        "label": "Category",
+        "value": "Suspension"
+      },
+      {
+        "label": "Product type",
+        "value": "Shock Absorber"
+      },
+      {
+        "label": "Compatibility",
+        "value": "BMW 3-Series"
+      },
+      {
+        "label": "Condition",
+        "value": "New"
+      },
+      {
+        "label": "Specifications",
+        "value": "Premium, Performance Tuned"
+      },
+      {
+        "label": "Application",
+        "value": "Executive Sedan"
+      },
+      {
+        "label": "Spring rate (N/mm)",
+        "value": "20-25"
+      },
+      {
+        "label": "Damping force (N)",
+        "value": "4200"
+      },
+      {
+        "label": "Supplier",
+        "value": "RockAuto"
+      },
+      {
+        "label": "Supplier link",
+        "value": "https://www.autodoc.no/suspension"
+      }
+    ],
+    "vehicles": [],
+    "active": true
+  },
+  {
+    "id": "lesj-fors-coil-spring-front",
+    "name": "Lesjöfors Coil Spring Front",
+    "category": "Suspension",
+    "sku": "SUS-004",
+    "price": 400,
+    "stock": 10,
+    "description": "Coil Spring - Lesjöfors - Ford Focus",
+    "image_url": "",
+    "article_number": "SUS-004",
+    "ean_code": "",
+    "delivery_time": "2-5 days",
+    "features": [
+      "Linear Rate Spring",
+      "Application: Compact Car",
+      "Spring rate: 16-18 N/mm",
+      "Damping force: 2500 N"
+    ],
+    "reviews": [],
+    "specifications": [
+      {
+        "label": "Brand",
+        "value": "Lesjöfors"
+      },
+      {
+        "label": "Category",
+        "value": "Suspension"
+      },
+      {
+        "label": "Product type",
+        "value": "Coil Spring"
+      },
+      {
+        "label": "Compatibility",
+        "value": "Ford Focus"
+      },
+      {
+        "label": "Condition",
+        "value": "New"
+      },
+      {
+        "label": "Specifications",
+        "value": "Linear Rate Spring"
+      },
+      {
+        "label": "Application",
+        "value": "Compact Car"
+      },
+      {
+        "label": "Spring rate (N/mm)",
+        "value": "16-18"
+      },
+      {
+        "label": "Damping force (N)",
+        "value": "2500"
+      },
+      {
+        "label": "Supplier",
+        "value": "AutoDoc"
+      },
+      {
+        "label": "Supplier link",
+        "value": "https://www.autodoc.no/suspension"
+      }
+    ],
+    "vehicles": [],
+    "active": true
+  },
+  {
+    "id": "trw-ball-joint-assembly",
+    "name": "TRW Ball Joint Assembly",
+    "category": "Suspension",
+    "sku": "SUS-005",
+    "price": 225,
+    "stock": 10,
+    "description": "Ball Joint - TRW - Universal",
+    "image_url": "",
+    "article_number": "SUS-005",
+    "ean_code": "",
+    "delivery_time": "2-5 days",
+    "features": [
+      "Tapered Design",
+      "Application: Universal",
+      "Spring rate: 12-15 N/mm",
+      "Damping force: 2000 N"
+    ],
+    "reviews": [],
+    "specifications": [
+      {
+        "label": "Brand",
+        "value": "TRW"
+      },
+      {
+        "label": "Category",
+        "value": "Suspension"
+      },
+      {
+        "label": "Product type",
+        "value": "Ball Joint"
+      },
+      {
+        "label": "Compatibility",
+        "value": "Universal"
+      },
+      {
+        "label": "Condition",
+        "value": "New"
+      },
+      {
+        "label": "Specifications",
+        "value": "Tapered Design"
+      },
+      {
+        "label": "Application",
+        "value": "Universal"
+      },
+      {
+        "label": "Spring rate (N/mm)",
+        "value": "12-15"
+      },
+      {
+        "label": "Damping force (N)",
+        "value": "2000"
+      },
+      {
+        "label": "Supplier",
+        "value": "RockAuto"
+      },
+      {
+        "label": "Supplier link",
+        "value": "https://www.autodoc.no/suspension"
+      }
+    ],
+    "vehicles": [],
+    "active": true
+  },
+  {
+    "id": "lemf-rder-control-arm",
+    "name": "Lemförder Control Arm",
+    "category": "Suspension",
+    "sku": "SUS-006",
+    "price": 650,
+    "stock": 10,
+    "description": "Control Arm - Lemförder - Mercedes C-Class",
+    "image_url": "",
+    "article_number": "SUS-006",
+    "ean_code": "",
+    "delivery_time": "2-5 days",
+    "features": [
+      "Reinforced Steel",
+      "Application: SUV",
+      "Spring rate: 22-28 N/mm",
+      "Damping force: 4500 N"
+    ],
+    "reviews": [],
+    "specifications": [
+      {
+        "label": "Brand",
+        "value": "Lemförder"
+      },
+      {
+        "label": "Category",
+        "value": "Suspension"
+      },
+      {
+        "label": "Product type",
+        "value": "Control Arm"
+      },
+      {
+        "label": "Compatibility",
+        "value": "Mercedes C-Class"
+      },
+      {
+        "label": "Condition",
+        "value": "New"
+      },
+      {
+        "label": "Specifications",
+        "value": "Reinforced Steel"
+      },
+      {
+        "label": "Application",
+        "value": "SUV"
+      },
+      {
+        "label": "Spring rate (N/mm)",
+        "value": "22-28"
+      },
+      {
+        "label": "Damping force (N)",
+        "value": "4500"
+      },
+      {
+        "label": "Supplier",
+        "value": "AutoDoc"
+      },
+      {
+        "label": "Supplier link",
+        "value": "https://www.autodoc.no/suspension"
+      }
+    ],
+    "vehicles": [],
+    "active": true
+  },
+  {
+    "id": "hutchinson-suspension-bush-kit",
+    "name": "Hutchinson Suspension Bush Kit",
+    "category": "Suspension",
+    "sku": "SUS-007",
+    "price": 350,
+    "stock": 10,
+    "description": "Suspension Bushings - Hutchinson - Peugeot",
+    "image_url": "",
+    "article_number": "SUS-007",
+    "ean_code": "",
+    "delivery_time": "2-5 days",
+    "features": [
+      "Rubber-Metal, Vibration Damping",
+      "Application: All Models",
+      "Spring rate: 8-12 N/mm",
+      "Damping force: 1500 N"
+    ],
+    "reviews": [],
+    "specifications": [
+      {
+        "label": "Brand",
+        "value": "Hutchinson"
+      },
+      {
+        "label": "Category",
+        "value": "Suspension"
+      },
+      {
+        "label": "Product type",
+        "value": "Suspension Bushings"
+      },
+      {
+        "label": "Compatibility",
+        "value": "Peugeot"
+      },
+      {
+        "label": "Condition",
+        "value": "New"
+      },
+      {
+        "label": "Specifications",
+        "value": "Rubber-Metal, Vibration Damping"
+      },
+      {
+        "label": "Application",
+        "value": "All Models"
+      },
+      {
+        "label": "Spring rate (N/mm)",
+        "value": "8-12"
+      },
+      {
+        "label": "Damping force (N)",
+        "value": "1500"
+      },
+      {
+        "label": "Supplier",
+        "value": "AutoDoc"
+      },
+      {
+        "label": "Supplier link",
+        "value": "https://www.autodoc.no/suspension"
+      }
+    ],
+    "vehicles": [],
+    "active": true
+  },
+  {
+    "id": "sachs-strut-top-mount",
+    "name": "Sachs Strut Top Mount",
+    "category": "Suspension",
+    "sku": "SUS-008",
+    "price": 187.5,
+    "stock": 10,
+    "description": "Strut Mount - Sachs - Opel",
+    "image_url": "",
+    "article_number": "SUS-008",
+    "ean_code": "",
+    "delivery_time": "2-5 days",
+    "features": [
+      "Reinforced, OE Equivalent",
+      "Application: MPV",
+      "Spring rate: 15-18 N/mm",
+      "Damping force: 3000 N"
+    ],
+    "reviews": [],
+    "specifications": [
+      {
+        "label": "Brand",
+        "value": "Sachs"
+      },
+      {
+        "label": "Category",
+        "value": "Suspension"
+      },
+      {
+        "label": "Product type",
+        "value": "Strut Mount"
+      },
+      {
+        "label": "Compatibility",
+        "value": "Opel"
+      },
+      {
+        "label": "Condition",
+        "value": "New"
+      },
+      {
+        "label": "Specifications",
+        "value": "Reinforced, OE Equivalent"
+      },
+      {
+        "label": "Application",
+        "value": "MPV"
+      },
+      {
+        "label": "Spring rate (N/mm)",
+        "value": "15-18"
+      },
+      {
+        "label": "Damping force (N)",
+        "value": "3000"
+      },
+      {
+        "label": "Supplier",
+        "value": "RockAuto"
+      },
+      {
+        "label": "Supplier link",
+        "value": "https://www.autodoc.no/suspension"
+      }
+    ],
+    "vehicles": [],
+    "active": true
+  },
+  {
+    "id": "meyle-drag-link",
+    "name": "Meyle Drag Link",
+    "category": "Suspension",
+    "sku": "SUS-009",
+    "price": 525,
+    "stock": 10,
+    "description": "Drag Link - Meyle - Ford Transit",
+    "image_url": "",
+    "article_number": "SUS-009",
+    "ean_code": "",
+    "delivery_time": "2-5 days",
+    "features": [
+      "Heavy Duty Steel",
+      "Application: Commercial Vehicle",
+      "Spring rate: 25-30 N/mm",
+      "Damping force: 5000 N"
+    ],
+    "reviews": [],
+    "specifications": [
+      {
+        "label": "Brand",
+        "value": "Meyle"
+      },
+      {
+        "label": "Category",
+        "value": "Suspension"
+      },
+      {
+        "label": "Product type",
+        "value": "Drag Link"
+      },
+      {
+        "label": "Compatibility",
+        "value": "Ford Transit"
+      },
+      {
+        "label": "Condition",
+        "value": "New"
+      },
+      {
+        "label": "Specifications",
+        "value": "Heavy Duty Steel"
+      },
+      {
+        "label": "Application",
+        "value": "Commercial Vehicle"
+      },
+      {
+        "label": "Spring rate (N/mm)",
+        "value": "25-30"
+      },
+      {
+        "label": "Damping force (N)",
+        "value": "5000"
+      },
+      {
+        "label": "Supplier",
+        "value": "AutoDoc"
+      },
+      {
+        "label": "Supplier link",
+        "value": "https://www.autodoc.no/suspension"
+      }
+    ],
+    "vehicles": [],
+    "active": true
+  },
+  {
+    "id": "moog-wheel-hub-assembly",
+    "name": "Moog Wheel Hub Assembly",
+    "category": "Suspension",
+    "sku": "SUS-010",
+    "price": 937.5,
+    "stock": 10,
+    "description": "Hub Assembly - Moog - Audi A4",
+    "image_url": "",
+    "article_number": "SUS-010",
+    "ean_code": "",
+    "delivery_time": "2-5 days",
+    "features": [
+      "Sealed, Pre-Greased",
+      "Application: Mid-Size Sedan",
+      "Spring rate: 16-20 N/mm",
+      "Damping force: 3200 N"
+    ],
+    "reviews": [],
+    "specifications": [
+      {
+        "label": "Brand",
+        "value": "Moog"
+      },
+      {
+        "label": "Category",
+        "value": "Suspension"
+      },
+      {
+        "label": "Product type",
+        "value": "Hub Assembly"
+      },
+      {
+        "label": "Compatibility",
+        "value": "Audi A4"
+      },
+      {
+        "label": "Condition",
+        "value": "New"
+      },
+      {
+        "label": "Specifications",
+        "value": "Sealed, Pre-Greased"
+      },
+      {
+        "label": "Application",
+        "value": "Mid-Size Sedan"
+      },
+      {
+        "label": "Spring rate (N/mm)",
+        "value": "16-20"
+      },
+      {
+        "label": "Damping force (N)",
+        "value": "3200"
+      },
+      {
+        "label": "Supplier",
+        "value": "RockAuto"
+      },
+      {
+        "label": "Supplier link",
+        "value": "https://www.autodoc.no/suspension"
+      }
+    ],
+    "vehicles": [],
+    "active": true
+  },
+  {
+    "id": "vibracoustic-engine-mount",
+    "name": "Vibracoustic Engine Mount",
+    "category": "Suspension",
+    "sku": "SUS-011",
+    "price": 475,
+    "stock": 10,
+    "description": "Engine Mount - Vibracoustic - VW Passat",
+    "image_url": "",
+    "article_number": "SUS-011",
+    "ean_code": "",
+    "delivery_time": "2-5 days",
+    "features": [
+      "Hydraulic, Sound Insulation",
+      "Application: Transverse Engine",
+      "Spring rate: 10-15 N/mm",
+      "Damping force: 2800 N"
+    ],
+    "reviews": [],
+    "specifications": [
+      {
+        "label": "Brand",
+        "value": "Vibracoustic"
+      },
+      {
+        "label": "Category",
+        "value": "Suspension"
+      },
+      {
+        "label": "Product type",
+        "value": "Engine Mount"
+      },
+      {
+        "label": "Compatibility",
+        "value": "VW Passat"
+      },
+      {
+        "label": "Condition",
+        "value": "New"
+      },
+      {
+        "label": "Specifications",
+        "value": "Hydraulic, Sound Insulation"
+      },
+      {
+        "label": "Application",
+        "value": "Transverse Engine"
+      },
+      {
+        "label": "Spring rate (N/mm)",
+        "value": "10-15"
+      },
+      {
+        "label": "Damping force (N)",
+        "value": "2800"
+      },
+      {
+        "label": "Supplier",
+        "value": "AutoDoc"
+      },
+      {
+        "label": "Supplier link",
+        "value": "https://www.autodoc.no/suspension"
+      }
+    ],
+    "vehicles": [],
+    "active": true
+  },
+  {
+    "id": "boge-shock-absorber-rear-pair",
+    "name": "Boge Shock Absorber Rear - Pair",
+    "category": "Suspension",
+    "sku": "SUS-012",
+    "price": 650,
+    "stock": 10,
+    "description": "Shock Absorber - Boge - Hyundai i30",
+    "image_url": "",
+    "article_number": "SUS-012",
+    "ean_code": "",
+    "delivery_time": "2-5 days",
+    "features": [
+      "Twin Tube, OE Quality",
+      "Application: Compact SUV",
+      "Spring rate: 18-22 N/mm",
+      "Damping force: 3600 N"
+    ],
+    "reviews": [],
+    "specifications": [
+      {
+        "label": "Brand",
+        "value": "Boge"
+      },
+      {
+        "label": "Category",
+        "value": "Suspension"
+      },
+      {
+        "label": "Product type",
+        "value": "Shock Absorber"
+      },
+      {
+        "label": "Compatibility",
+        "value": "Hyundai i30"
+      },
+      {
+        "label": "Condition",
+        "value": "New"
+      },
+      {
+        "label": "Specifications",
+        "value": "Twin Tube, OE Quality"
+      },
+      {
+        "label": "Application",
+        "value": "Compact SUV"
+      },
+      {
+        "label": "Spring rate (N/mm)",
+        "value": "18-22"
+      },
+      {
+        "label": "Damping force (N)",
+        "value": "3600"
+      },
+      {
+        "label": "Supplier",
+        "value": "AutoDoc"
+      },
+      {
+        "label": "Supplier link",
+        "value": "https://www.autodoc.no/suspension"
+      }
+    ],
+    "vehicles": [],
+    "active": true
+  },
+  {
+    "id": "skf-wheel-bearing-kit",
+    "name": "SKF Wheel Bearing Kit",
+    "category": "Suspension",
+    "sku": "SUS-013",
+    "price": 350,
+    "stock": 10,
+    "description": "Wheel Bearing - SKF - Universal",
+    "image_url": "",
+    "article_number": "SUS-013",
+    "ean_code": "",
+    "delivery_time": "2-5 days",
+    "features": [
+      "Angular Contact, 40mm ID",
+      "Application: Universal",
+      "Spring rate: 20-25 N/mm",
+      "Damping force: 3000 N"
+    ],
+    "reviews": [],
+    "specifications": [
+      {
+        "label": "Brand",
+        "value": "SKF"
+      },
+      {
+        "label": "Category",
+        "value": "Suspension"
+      },
+      {
+        "label": "Product type",
+        "value": "Wheel Bearing"
+      },
+      {
+        "label": "Compatibility",
+        "value": "Universal"
+      },
+      {
+        "label": "Condition",
+        "value": "New"
+      },
+      {
+        "label": "Specifications",
+        "value": "Angular Contact, 40mm ID"
+      },
+      {
+        "label": "Application",
+        "value": "Universal"
+      },
+      {
+        "label": "Spring rate (N/mm)",
+        "value": "20-25"
+      },
+      {
+        "label": "Damping force (N)",
+        "value": "3000"
+      },
+      {
+        "label": "Supplier",
+        "value": "RockAuto"
+      },
+      {
+        "label": "Supplier link",
+        "value": "https://www.autodoc.no/suspension"
+      }
+    ],
+    "vehicles": [],
+    "active": true
+  },
+  {
+    "id": "koni-sport-adjustable-damper",
+    "name": "Koni Sport Adjustable Damper",
+    "category": "Suspension",
+    "sku": "SUS-014",
+    "price": 1500,
+    "stock": 10,
+    "description": "Damper - Koni - Audi S4",
+    "image_url": "",
+    "article_number": "SUS-014",
+    "ean_code": "",
+    "delivery_time": "2-5 days",
+    "features": [
+      "Adjustable Damping (16 clicks)",
+      "Application: Performance Car",
+      "Spring rate: 30-35 N/mm",
+      "Damping force: 6000 N"
+    ],
+    "reviews": [],
+    "specifications": [
+      {
+        "label": "Brand",
+        "value": "Koni"
+      },
+      {
+        "label": "Category",
+        "value": "Suspension"
+      },
+      {
+        "label": "Product type",
+        "value": "Damper"
+      },
+      {
+        "label": "Compatibility",
+        "value": "Audi S4"
+      },
+      {
+        "label": "Condition",
+        "value": "New"
+      },
+      {
+        "label": "Specifications",
+        "value": "Adjustable Damping (16 clicks)"
+      },
+      {
+        "label": "Application",
+        "value": "Performance Car"
+      },
+      {
+        "label": "Spring rate (N/mm)",
+        "value": "30-35"
+      },
+      {
+        "label": "Damping force (N)",
+        "value": "6000"
+      },
+      {
+        "label": "Supplier",
+        "value": "SpecialistSupply"
+      },
+      {
+        "label": "Supplier link",
+        "value": "https://www.autodoc.no/suspension"
+      }
+    ],
+    "vehicles": [],
+    "active": true
+  },
+  {
+    "id": "zf-lenksto-d-mpfer-steering-damper",
+    "name": "ZF Lenkstoßdämpfer Steering Damper",
+    "category": "Suspension",
+    "sku": "SUS-015",
+    "price": 1112.5,
+    "stock": 10,
+    "description": "Steering Damper - ZF - BMW 5-Series",
+    "image_url": "",
+    "article_number": "SUS-015",
+    "ean_code": "",
+    "delivery_time": "2-5 days",
+    "features": [
+      "Rotary Type, OE Spec",
+      "Application: Luxury Sedan",
+      "Spring rate: 12-16 N/mm",
+      "Damping force: 3500 N"
+    ],
+    "reviews": [],
+    "specifications": [
+      {
+        "label": "Brand",
+        "value": "ZF"
+      },
+      {
+        "label": "Category",
+        "value": "Suspension"
+      },
+      {
+        "label": "Product type",
+        "value": "Steering Damper"
+      },
+      {
+        "label": "Compatibility",
+        "value": "BMW 5-Series"
+      },
+      {
+        "label": "Condition",
+        "value": "New"
+      },
+      {
+        "label": "Specifications",
+        "value": "Rotary Type, OE Spec"
+      },
+      {
+        "label": "Application",
+        "value": "Luxury Sedan"
+      },
+      {
+        "label": "Spring rate (N/mm)",
+        "value": "12-16"
+      },
+      {
+        "label": "Damping force (N)",
+        "value": "3500"
+      },
+      {
+        "label": "Supplier",
+        "value": "AutoDoc"
+      },
+      {
+        "label": "Supplier link",
+        "value": "https://www.autodoc.no/suspension"
+      }
+    ],
+    "vehicles": [],
+    "active": true
+  }
+]
