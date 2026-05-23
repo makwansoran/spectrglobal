@@ -4,9 +4,12 @@
   if (!window.SpectrShop) return;
 
   var Shop = window.SpectrShop;
+  var PAGE_SIZE = 10; // 2 rows of 5
+
   var state = {
     category: "",
     parts: [],
+    page: 0,
     filters: {
       brand: new Set(),
       model: new Set(),
@@ -284,8 +287,16 @@
       } else {
         state.filters[key].delete(value);
       }
+      state.page = 0; // reset to first page on filter change
       renderProducts();
     });
+  }
+
+  function bindPageNav() {
+    var prevBtn = $("catalog-prev");
+    var nextBtn = $("catalog-next");
+    if (prevBtn) prevBtn.addEventListener("click", function () { goToPage(state.page - 1); });
+    if (nextBtn) nextBtn.addEventListener("click", function () { goToPage(state.page + 1); });
   }
 
   /* ── Product grid rendering ───────────────────────────── */
@@ -335,48 +346,80 @@
     document.title = (brand ? brand + " products" : state.category || "Products") + " | Spectr";
   }
 
+  function productCardHtml(part) {
+    var description = previewDescription(part);
+    return '' +
+      '<article class="product" data-product-id="' + escapeHtml(part.id) + '">' +
+        productCardMedia(part) +
+        '<div class="product-body">' +
+          '<span class="product-category">' + escapeHtml(part.category || "Car part") + '</span>' +
+          continentalBadgeHtml(part) +
+          '<h3 class="product-name">' + escapeHtml(part.name) + '</h3>' +
+          (description ? '<p class="product-description">' + escapeHtml(description) + '</p>' : '') +
+          '<div class="product-foot">' +
+            previewPriceHtml(part) +
+          '</div>' +
+        '</div>' +
+      '</article>';
+  }
+
   function renderProducts() {
-    var grid = $("category-products-grid");
+    var grid    = $("category-products-grid");
     var summary = $("category-products-summary");
-    var availableParts = visibleParts();
-    var parts = sortedProducts(availableParts);
+    var nav     = $("catalog-page-nav");
+    var prevBtn = $("catalog-prev");
+    var nextBtn = $("catalog-next");
+    var info    = $("catalog-page-info");
+
+    var allParts = sortedProducts(visibleParts());
+    var total    = allParts.length;
+    var pages    = Math.ceil(total / PAGE_SIZE) || 1;
+
+    // Clamp page
+    if (state.page >= pages) state.page = pages - 1;
+    if (state.page < 0) state.page = 0;
+
+    var start     = state.page * PAGE_SIZE;
+    var pageParts = allParts.slice(start, start + PAGE_SIZE);
 
     if (summary) {
-      var total = state.parts.filter(isSameCategory).length;
-      var brand = selectedBrand();
-      var label = brand ? brand + " products" : "products";
-      summary.textContent = parts.length === total
-        ? parts.length + " " + label
-        : parts.length + " of " + total + " " + label;
+      var grandTotal = state.parts.filter(isSameCategory).length;
+      var brand      = selectedBrand();
+      var label      = brand ? brand + " products" : "products";
+      summary.textContent = total === grandTotal
+        ? total + " " + label
+        : total + " of " + grandTotal + " " + label;
     }
 
-    if (!parts.length) {
+    if (!total) {
       grid.innerHTML =
         '<div class="catalog-empty">' +
           '<strong>No products match your filters</strong>' +
           '<span>Try removing a filter to see more results.</span>' +
         '</div>';
+      if (nav) nav.hidden = true;
       return;
     }
 
-    grid.innerHTML = parts.map(function (part) {
-      var description = previewDescription(part);
-      var reviews = reviewCount(part);
-      return '' +
-        '<article class="product" data-product-id="' + escapeHtml(part.id) + '">' +
-          productCardMedia(part) +
-          '<div class="product-body">' +
-            '<span class="product-category">' + escapeHtml(part.category || "Car part") + '</span>' +
-            continentalBadgeHtml(part) +
-            '<h3 class="product-name">' + escapeHtml(part.name) + '</h3>' +
-            (description ? '<p class="product-description">' + escapeHtml(description) + '</p>' : '') +
-            '<span class="product-reviews">(' + escapeHtml(reviews || 0) + ' anmeldelser)</span>' +
-            '<div class="product-foot">' +
-              previewPriceHtml(part) +
-            '</div>' +
-          '</div>' +
-        '</article>';
-    }).join("");
+    grid.innerHTML = pageParts.map(productCardHtml).join("");
+
+    // Pagination nav
+    if (nav) {
+      nav.hidden = pages <= 1;
+      if (prevBtn) prevBtn.disabled = state.page === 0;
+      if (nextBtn) nextBtn.disabled = state.page >= pages - 1;
+      if (info)    info.textContent = (state.page + 1) + " / " + pages;
+    }
+  }
+
+  function goToPage(n) {
+    var allParts = sortedProducts(visibleParts());
+    var pages    = Math.ceil(allParts.length / PAGE_SIZE) || 1;
+    state.page   = Math.max(0, Math.min(n, pages - 1));
+    renderProducts();
+    // Scroll grid into view smoothly
+    var grid = $("category-products-grid");
+    if (grid) grid.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }
 
   /* ── Cart ─────────────────────────────────────────────── */
@@ -500,6 +543,7 @@
       renderSidebar();
       bindSidebar();
       bindCart();
+      bindPageNav();
       renderHero();
       renderProducts();
       renderCart();
