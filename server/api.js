@@ -13,12 +13,26 @@ const {
 const STRIPE_API_VERSION = "2026-04-22.dahlia";
 const STRIPE_KEY = process.env.STRIPE_SECRET_KEY || process.env.STRIPE_API_KEY || "";
 
-function sendJson(res, status, body) {
+function sendJson(res, status, body, extraHeaders) {
   res.writeHead(status, {
     "Content-Type": "application/json; charset=utf-8",
     "Cache-Control": "no-store",
+    ...extraHeaders,
   });
   res.end(JSON.stringify(body));
+}
+
+/* Short-lived in-memory catalog cache so repeated page loads skip Supabase. */
+const _catalogCache = { data: null, at: 0, ttlMs: 30_000 };
+async function getCachedCatalogParts(activeOnly, limit) {
+  const now = Date.now();
+  if (_catalogCache.data && (now - _catalogCache.at) < _catalogCache.ttlMs) {
+    return _catalogCache.data;
+  }
+  const fresh = await loadCatalogParts(activeOnly, limit);
+  _catalogCache.data = fresh;
+  _catalogCache.at = now;
+  return fresh;
 }
 
 function readJsonBody(req) {
@@ -1864,8 +1878,8 @@ async function handlePartsList(req, res) {
   const limit = Math.min(Math.max(parseInt(url.searchParams.get("limit") || "500", 10) || 500, 1), 500);
 
   try {
-    const parts = await loadCatalogParts(activeOnly, limit);
-    sendJson(res, 200, { parts });
+    const parts = await getCachedCatalogParts(activeOnly, limit);
+    sendJson(res, 200, { parts }, { "Cache-Control": "public, max-age=30, stale-while-revalidate=60" });
   } catch (catalogError) {
     sendJson(res, 500, { error: catalogError.message || "Could not load derived catalog products." });
   }

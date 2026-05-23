@@ -150,12 +150,13 @@
               <section class="category-products" aria-label="Category products">
                 <div class="catalog-head">
                   <div>
-                    <p class="catalog-summary" id="category-products-summary">Loading products...</p>
+                    <p class="catalog-summary" id="category-products-summary"></p>
                   </div>
                 </div>
-                <div class="catalog-grid" id="category-products-grid" aria-live="polite">
-                  <div class="catalog-empty"><strong>Loading products from database...</strong></div>
+                <div class="catalog-loading-wrap" id="catalog-loading-wrap" aria-hidden="true">
+                  <span class="catalog-spinner" aria-hidden="true"></span>
                 </div>
+                <div class="catalog-grid" id="category-products-grid" aria-live="polite"></div>
               </section>
             </div>
           </div>

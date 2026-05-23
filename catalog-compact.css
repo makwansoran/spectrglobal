@@ -95,3 +95,37 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+/* ── Catalog loading spinner ─────────────────────────────────────────────── */
+
+.catalog-loading-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1rem;
+}
+
+.catalog-loading-wrap[hidden] {
+  display: none;
+}
+
+.catalog-spinner {
+  display: block;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 3px solid rgba(10, 12, 16, 0.12);
+  border-top-color: #0a0c10;
+  border-radius: 50%;
+  animation: catalog-spin 0.65s linear infinite;
+}
+
+.catalog-spinner--inline {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-width: 2px;
+  margin: 1.5rem auto;
+}
+
+@keyframes catalog-spin {
+  to { transform: rotate(360deg); }
+}

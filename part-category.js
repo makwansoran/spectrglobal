@@ -468,14 +468,26 @@
     });
   }
 
+  function showSpinner() {
+    var wrap = $("catalog-loading-wrap");
+    if (wrap) { wrap.removeAttribute("hidden"); wrap.removeAttribute("aria-hidden"); }
+  }
+
+  function hideSpinner() {
+    var wrap = $("catalog-loading-wrap");
+    if (wrap) { wrap.hidden = true; wrap.setAttribute("aria-hidden", "true"); }
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     state.category = selectedCategory();
     var brand = selectedBrand();
     if (brand) state.filters.brand.add(brand);
     renderHero();
+    showSpinner();
 
     Shop.fetchCatalogParts().then(function (parts) {
       state.parts = Array.isArray(parts) ? parts : [];
+      hideSpinner();
       renderSidebar();
       bindSidebar();
       bindCart();
@@ -483,6 +495,7 @@
       renderProducts();
       renderCart();
     }).catch(function (err) {
+      hideSpinner();
       $("category-products-grid").innerHTML =
         '<div class="catalog-empty"><strong>Could not load this category</strong><span>' +
         escapeHtml(err.message || "Database unavailable.") +
