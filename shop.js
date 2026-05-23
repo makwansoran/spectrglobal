@@ -478,9 +478,12 @@
   }
 
   function productCardMedia(part) {
+    var imgUrl = escapeHtml(Shop.productImageUrl(part));
+    var fallback = escapeHtml(Shop.productImageUrl({}));
     return (
       '<div class="product-image product-image--has-image">' +
-        '<img src="' + escapeHtml(Shop.productImageUrl(part)) + '" alt="' + escapeHtml(part.name) + '" loading="lazy" />' +
+        '<img src="' + imgUrl + '" alt="' + escapeHtml(part.name) + '" loading="lazy" decoding="async" ' +
+          'onerror="this.onerror=null;this.src=\'' + fallback + '\'" />' +
       '</div>'
     );
   }
@@ -505,7 +508,13 @@
   function previewPriceHtml(part) {
     var price = Number(part.price) || 0;
     if (!price) return '<span class="product-price">Contact us</span>';
-    return '<span class="product-price">' + escapeHtml(Shop.formatNok(price)) + '</span>';
+    var vatNote = (window.SpectrCurrency && window.SpectrCurrency.ready)
+      ? window.SpectrCurrency.vatHtml(price)
+      : "inkl.\u00a025\u00a0% MVA";
+    return (
+      '<span class="product-price">' + escapeHtml(Shop.formatNok(price)) + '</span>' +
+      (vatNote ? '<span class="product-vat">' + escapeHtml(vatNote) + '</span>' : '')
+    );
   }
 
   function featuredProducts(parts, limit) {
@@ -608,7 +617,7 @@
     if (!grid) return;
 
     if (state.catalogStatus === "loading") {
-      grid.innerHTML = '<div class="catalog-empty"><strong>Loading parts from database...</strong></div>';
+      grid.innerHTML = '<div class="catalog-loading-wrap"><span class="catalog-spinner" aria-hidden="true"></span></div>';
       if (summary) summary.textContent = "";
       return;
     }
@@ -851,6 +860,11 @@
     window.addEventListener("spectr-shop-change", onStorageChange);
     window.addEventListener("storage", function (event) {
       if (!event.key || event.key.indexOf("spectr_shop_") !== 0) return;
+      renderCart();
+    });
+    // Re-render prices when currency/country changes
+    window.addEventListener("spectr:currency", function () {
+      renderCatalog();
       renderCart();
     });
   });

@@ -314,5 +314,7 @@
       state.cart = Shop.getCart();
       renderOrder();
     });
+
+    window.addEventListener("spectr:currency", function () { renderOrder(); });
   });
 })();

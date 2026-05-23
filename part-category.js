@@ -291,9 +291,12 @@
   /* ── Product grid rendering ───────────────────────────── */
 
   function productCardMedia(part) {
+    var imgUrl = escapeHtml(Shop.productImageUrl(part));
+    var fallback = escapeHtml(Shop.productImageUrl({}));
     return (
       '<div class="product-image product-image--has-image">' +
-        '<img src="' + escapeHtml(Shop.productImageUrl(part)) + '" alt="' + escapeHtml(part.name) + '" loading="lazy" />' +
+        '<img src="' + imgUrl + '" alt="' + escapeHtml(part.name) + '" loading="lazy" decoding="async" ' +
+          'onerror="this.onerror=null;this.src=\'' + fallback + '\'" />' +
       '</div>'
     );
   }
@@ -318,7 +321,13 @@
   function previewPriceHtml(part) {
     var price = Number(part.price) || 0;
     if (!price) return '<span class="product-price">Contact us</span>';
-    return '<span class="product-price">' + escapeHtml(Shop.formatNok(price)) + '</span>';
+    var vatNote = (window.SpectrCurrency && window.SpectrCurrency.ready)
+      ? window.SpectrCurrency.vatHtml(price)
+      : "inkl.\u00a025\u00a0% MVA";
+    return (
+      '<span class="product-price">' + escapeHtml(Shop.formatNok(price)) + '</span>' +
+      (vatNote ? '<span class="product-vat">' + escapeHtml(vatNote) + '</span>' : '')
+    );
   }
 
   function renderHero() {
@@ -500,6 +509,12 @@
         '<div class="catalog-empty"><strong>Could not load this category</strong><span>' +
         escapeHtml(err.message || "Database unavailable.") +
         '</span></div>';
+    });
+
+    // Re-render prices when currency changes
+    window.addEventListener("spectr:currency", function () {
+      if (state.parts.length) renderProducts();
+      renderCart();
     });
   });
 })();

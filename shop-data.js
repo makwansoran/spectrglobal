@@ -318,6 +318,9 @@
   function formatNok(value) {
     var num = parseFloat(value);
     if (!isFinite(num)) num = 0;
+    if (window.SpectrCurrency && window.SpectrCurrency.ready) {
+      return window.SpectrCurrency.format(num);
+    }
     try {
       return new Intl.NumberFormat("nb-NO", {
         style: "currency",

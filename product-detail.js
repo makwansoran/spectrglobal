@@ -146,13 +146,20 @@
   }
 
   function renderProductMedia(product) {
-    return '<div class="product-detail-media product-detail-media--image"><img src="' + escapeHtml(Shop.productImageUrl(product)) + '" alt="' + escapeHtml(product.name) + '" /></div>';
+    var imgUrl = escapeHtml(Shop.productImageUrl(product));
+    var fallback = escapeHtml(Shop.productImageUrl({}));
+    return '<div class="product-detail-media product-detail-media--image">' +
+      '<img src="' + imgUrl + '" alt="' + escapeHtml(product.name) + '" ' +
+        'onerror="this.onerror=null;this.src=\'' + fallback + '\'" /></div>';
   }
 
   function productCardMedia(part) {
+    var imgUrl = escapeHtml(Shop.productImageUrl(part));
+    var fallback = escapeHtml(Shop.productImageUrl({}));
     return (
       '<div class="product-image product-image--has-image">' +
-        '<img src="' + escapeHtml(Shop.productImageUrl(part)) + '" alt="' + escapeHtml(part.name) + '" loading="lazy" />' +
+        '<img src="' + imgUrl + '" alt="' + escapeHtml(part.name) + '" loading="lazy" decoding="async" ' +
+          'onerror="this.onerror=null;this.src=\'' + fallback + '\'" />' +
       '</div>'
     );
   }
@@ -177,7 +184,13 @@
   function previewPriceHtml(part) {
     var price = Number(part.price) || 0;
     if (!price) return '<span class="product-price">Contact us</span>';
-    return '<span class="product-price">' + escapeHtml(Shop.formatNok(price)) + '</span>';
+    var vatNote = (window.SpectrCurrency && window.SpectrCurrency.ready)
+      ? window.SpectrCurrency.vatHtml(price)
+      : "inkl.\u00a025\u00a0% MVA";
+    return (
+      '<span class="product-price">' + escapeHtml(Shop.formatNok(price)) + '</span>' +
+      (vatNote ? '<span class="product-vat">' + escapeHtml(vatNote) + '</span>' : '')
+    );
   }
 
   function renderFeatures(product) {
@@ -243,6 +256,13 @@
             '<strong>' + escapeHtml(Shop.formatNok(product.price || 0)) + '</strong>' +
             (outOfStock ? '' : '<span class="is-in">' + escapeHtml(stockLabel(product.stock)) + '</span>') +
           '</div>' +
+          (product.price
+            ? '<p class="product-detail-vat">' + escapeHtml(
+                (window.SpectrCurrency && window.SpectrCurrency.ready)
+                  ? window.SpectrCurrency.vatHtml(product.price)
+                  : "inkl.\u00a025\u00a0% MVA"
+              ) + '</p>'
+            : '') +
           '<button type="button" class="btn btn-primary product-detail-add" id="product-detail-add" ' + (outOfStock ? "disabled" : "") + '>' +
             (outOfStock ? "Out of stock" : (line ? "In cart · " + line.qty : "Add to cart")) +
           '</button>' +
