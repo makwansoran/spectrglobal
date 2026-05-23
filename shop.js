@@ -704,6 +704,8 @@
         if (btn) {
           Shop.celebrateAddToCart(btn);
           Shop.addToCart(btn.dataset.addPart, 1);
+          var tracked = (state.catalogParts || []).find(function (p) { return p.id === btn.dataset.addPart; });
+          if (tracked && window.SpectrTrack) window.SpectrTrack.addToCart(tracked, 1);
           openCart();
           return;
         }
@@ -834,6 +836,10 @@
     if (checkout) {
       checkout.addEventListener("click", function () {
         if (Shop.getCart().length === 0) return;
+        if (window.SpectrTrack) {
+          var cartTotal = Shop.cartForParts(state.catalogParts).reduce(function (s, l) { return s + (l.part ? Number(l.part.price) * l.qty : 0); }, 0);
+          window.SpectrTrack.beginCheckout(cartTotal);
+        }
         window.location.href = "checkout.html";
       });
     }

@@ -286,7 +286,9 @@
     searchInput.addEventListener("input", function () {
       window.clearTimeout(searchTimer);
       searchTimer = window.setTimeout(function () {
-        runSearch(searchInput.value);
+        var q = searchInput.value.trim();
+        runSearch(q);
+        if (q.length > 2 && window.SpectrTrack) window.SpectrTrack.search(q);
       }, 160);
     });
 

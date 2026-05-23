@@ -1187,6 +1187,26 @@ img {
   text-underline-offset: 3px;
 }
 
+.site-footer-cookie-btn {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: color-mix(in srgb, var(--bg-paper) 78%, transparent);
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.site-footer-cookie-btn:hover {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 /* Legal pages (privacy, terms) */
 .legal-page .site-header {
   border-bottom-color: var(--fg);
