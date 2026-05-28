@@ -14,7 +14,7 @@ export default function Home() {
           <div className="relative mx-auto flex max-w-7xl items-start px-5 pb-20 pt-32 sm:px-8 lg:pb-28 lg:pt-36">
             <div>
               <h1 className="max-w-5xl text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-fg sm:text-7xl lg:text-8xl">
-                Spectr Attack for real-world aerial operations.
+                Attack for real-world aerial operations.
               </h1>
               <div className="mt-10 flex flex-wrap gap-4">
               <Link
@@ -36,7 +36,7 @@ export default function Home() {
 
         <section className="mx-auto grid max-w-7xl gap-10 px-5 py-20 sm:px-8 lg:grid-cols-3 lg:py-28">
           {[
-            ["01", "Single platform", "Spectr Attack is the only drone in the lineup, focused on serious field deployment."],
+            ["01", "Single platform", "Attack is the only drone in the lineup, focused on serious field deployment."],
             ["02", "Mission fit", "We configure the aircraft around environment, payload, operator workflow, and support needs."],
             ["03", "Deployment support", "Procurement, setup guidance, and training for operators who need to move fast."],
           ].map(([num, title, body]) => (

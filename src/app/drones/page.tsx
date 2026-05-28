@@ -33,7 +33,7 @@ export default function DronesPage() {
                     {[
                       ["Use", drone.use],
                       ["Flight", drone.flightTime],
-                      ["Range", drone.range],
+                      ["Cruise", drone.range],
                       ["Status", drone.availability],
                     ].map(([label, value]) => (
                       <div key={label} className="bg-surface p-4">
@@ -50,6 +50,11 @@ export default function DronesPage() {
                       </span>
                     ))}
                   </div>
+
+                  <div className="mt-10 grid gap-8 lg:grid-cols-2">
+                    <SpecList title="Specifications" items={drone.specifications} />
+                    <SpecList title="Recommended Equipment" items={drone.equipment} />
+                  </div>
                 </div>
               </div>
             </article>
@@ -59,7 +64,7 @@ export default function DronesPage() {
         <section className="border-t border-border px-5 py-16 sm:px-8">
           <div className="mx-auto flex max-w-7xl flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
             <h2 className="max-w-2xl text-3xl font-semibold tracking-[-0.05em]">
-              Request Spectr Attack.
+              Request Attack.
             </h2>
             <Link href="/contact" className="w-fit bg-fg px-6 py-3 text-sm font-medium text-bg hover:opacity-80">
               Contact Spectr
@@ -68,5 +73,21 @@ export default function DronesPage() {
         </section>
       </main>
     </>
+  );
+}
+
+function SpecList({ title, items }: { title: string; items: { label: string; value: string }[] }) {
+  return (
+    <section>
+      <h3 className="label">{title}</h3>
+      <dl className="mt-4 divide-y divide-border border-y border-border">
+        {items.map((item) => (
+          <div key={item.label} className="grid gap-2 py-3 text-sm sm:grid-cols-[150px_1fr]">
+            <dt className="text-muted">{item.label}</dt>
+            <dd className="text-fg">{item.value}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
   );
 }
