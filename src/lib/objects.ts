@@ -1,10 +1,8 @@
-export type DroneUse = "Creator" | "Enterprise" | "Mapping" | "Inspection" | "Training";
+export type DroneUse = "UAV" | "Counter-UAS" | "Inspection";
 export type DroneCategory =
-  | "Camera Drone"
-  | "FPV Drone"
   | "Industrial Drone"
-  | "Survey Drone"
-  | "Training Drone";
+  | "UAV"
+  | "Jammer";
 
 export type DroneProduct = {
   slug: string;
@@ -70,6 +68,64 @@ export const objects: DroneProduct[] = [
     ],
     visual: "orbit",
   },
+  {
+    slug: "spectr-uav",
+    name: "Spectr UAV",
+    tagline: "Configurable unmanned aerial vehicle for observation and field operations.",
+    description:
+      "Spectr UAV is a mission-configurable unmanned aircraft platform for teams that need persistent aerial visibility, adaptable payload options, and dependable field handling.",
+    category: "UAV",
+    use: "UAV",
+    year: 2026,
+    flightTime: "Configured per mission",
+    location: "Built to order",
+    price: "Contact for pricing",
+    availability: "Available by request",
+    stock: 100,
+    range: "Configured per mission",
+    highlights: ["Mission payload ready", "Field-serviceable setup", "Operator support", "Built to order"],
+    specifications: [
+      { label: "Platform", value: "Unmanned aerial vehicle" },
+      { label: "Configuration", value: "Mission-specific airframe and payload setup" },
+      { label: "Use case", value: "Observation, inspection, and field support" },
+      { label: "Availability", value: "Built to order" },
+    ],
+    equipment: [
+      { label: "Payload", value: "Configured for mission requirements" },
+      { label: "Control link", value: "Specified during procurement" },
+      { label: "Support", value: "Setup guidance and operator support available" },
+    ],
+    visual: "field",
+  },
+  {
+    slug: "jammer",
+    name: "JAMMER",
+    tagline: "Counter-UAS support product for controlled operational environments.",
+    description:
+      "JAMMER is a counter-UAS support product offered for qualified operational use cases where signal control, planning, and compliance are handled by the customer.",
+    category: "Jammer",
+    use: "Counter-UAS",
+    year: 2026,
+    flightTime: "N/A",
+    location: "Available by request",
+    price: "Contact for pricing",
+    availability: "Qualified enquiries only",
+    stock: 100,
+    range: "Configured per requirement",
+    highlights: ["Counter-UAS support", "Qualified enquiries", "Operational planning", "Compliance-led use"],
+    specifications: [
+      { label: "Product type", value: "Counter-UAS jammer" },
+      { label: "Configuration", value: "Specified per operational requirement" },
+      { label: "Use case", value: "Controlled and compliant environments only" },
+      { label: "Availability", value: "Qualified enquiries only" },
+    ],
+    equipment: [
+      { label: "Deployment", value: "Defined after operational review" },
+      { label: "Support", value: "Consultation and configuration guidance" },
+      { label: "Compliance", value: "Customer is responsible for legal authorization and use" },
+    ],
+    visual: "pulse",
+  },
 ];
 
 export function getObject(slug: string) {
@@ -77,4 +133,4 @@ export function getObject(slug: string) {
 }
 
 export const sectors = [...new Set(objects.map((o) => o.category))].sort() as DroneCategory[];
-export const stages: DroneUse[] = ["Creator", "Enterprise", "Mapping", "Inspection", "Training"];
+export const stages: DroneUse[] = ["UAV", "Counter-UAS", "Inspection"];
