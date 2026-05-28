@@ -27,10 +27,10 @@ export type DroneProduct = {
 export const objects: DroneProduct[] = [
   {
     slug: "spectr-attack",
-    name: "Attack",
+    name: "ATTACK",
     tagline: "Long-endurance fixed-wing platform for demanding aerial operations.",
     description:
-      "Attack is a modular twin-motor fixed-wing aircraft with a detachable nose for payload adaptation, V-tail configuration, and efficient cruise performance.",
+      "ATTACK is a modular twin-motor fixed-wing aircraft with a detachable nose for payload adaptation, V-tail configuration, and efficient cruise performance.",
     category: "Industrial Drone",
     use: "Inspection",
     year: 2026,
@@ -70,10 +70,10 @@ export const objects: DroneProduct[] = [
   },
   {
     slug: "spectr-uav",
-    name: "Spectr UAV",
+    name: "UAV",
     tagline: "Configurable unmanned aerial vehicle for observation and field operations.",
     description:
-      "Spectr UAV is a mission-configurable unmanned aircraft platform for teams that need persistent aerial visibility, adaptable payload options, and dependable field handling.",
+      "UAV is a mission-configurable unmanned aircraft platform for teams that need persistent aerial visibility, adaptable payload options, and dependable field handling.",
     category: "UAV",
     use: "UAV",
     year: 2026,

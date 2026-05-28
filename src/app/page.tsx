@@ -36,7 +36,7 @@ export default function Home() {
 
         <section className="mx-auto grid max-w-7xl gap-10 px-5 py-20 sm:px-8 lg:grid-cols-3 lg:py-28">
           {[
-            ["01", "Three products", "Attack, Spectr UAV, and JAMMER cover aerial operations and counter-UAS support."],
+            ["01", "Three products", "ATTACK, UAV, and JAMMER cover aerial operations and counter-UAS support."],
             ["02", "Mission fit", "We configure each product around environment, payload, operator workflow, and support needs."],
             ["03", "Deployment support", "Procurement, setup guidance, and training for operators who need to move fast."],
           ].map(([num, title, body]) => (
