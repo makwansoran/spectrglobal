@@ -48,15 +48,6 @@ export default function Home() {
           ))}
         </section>
 
-        <section className="border-y border-border bg-surface">
-          <div className="mx-auto grid max-w-7xl gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[0.8fr_1.2fr]">
-            <p className="label">Why Spectr</p>
-            <h2 className="text-3xl font-semibold leading-tight tracking-[-0.05em] sm:text-5xl">
-              A focused supplier for operators who need capable systems,
-              clear support, and a clean path to deployment.
-            </h2>
-          </div>
-        </section>
       </main>
     </>
   );
