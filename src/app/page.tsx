@@ -13,7 +13,6 @@ export default function Home() {
 
           <div className="relative mx-auto flex max-w-7xl items-start px-5 pb-20 pt-32 sm:px-8 lg:pb-28 lg:pt-36">
             <div>
-              <p className="label mb-8">Autonomous aerial systems</p>
               <h1 className="max-w-5xl text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-fg sm:text-7xl lg:text-8xl">
                 Spectr Attack for real-world aerial operations.
               </h1>
