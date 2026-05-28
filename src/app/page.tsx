@@ -6,12 +6,12 @@ export default function Home() {
     <>
       <Nav />
 
-      <main className="flex-1 pt-24">
-        <section className="relative min-h-[calc(100vh-96px)] overflow-hidden border-b border-border">
+      <main className="flex-1">
+        <section className="relative min-h-screen overflow-hidden border-b border-border">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,rgba(0,0,0,0.08),transparent_30%),linear-gradient(135deg,rgba(0,0,0,0.06)_0,transparent_28%)]" />
           <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-bg to-transparent" />
 
-          <div className="relative mx-auto flex min-h-[calc(100vh-96px)] max-w-7xl items-end px-5 pb-12 pt-24 sm:px-8 lg:pb-20">
+          <div className="relative mx-auto flex min-h-screen max-w-7xl items-end px-5 pb-12 pt-28 sm:px-8 lg:pb-20">
             <div>
               <p className="label mb-8">Autonomous aerial systems</p>
               <h1 className="max-w-5xl text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-fg sm:text-7xl lg:text-8xl">

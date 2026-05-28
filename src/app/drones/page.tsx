@@ -10,8 +10,8 @@ export default function DronesPage() {
   return (
     <>
       <Nav />
-      <main className="flex-1 pt-24">
-        <section className="mx-auto grid max-w-7xl gap-px px-5 py-20 sm:px-8 lg:py-28">
+      <main className="flex-1">
+        <section className="mx-auto grid max-w-7xl gap-px px-5 pb-20 pt-32 sm:px-8 lg:pb-28 lg:pt-36">
           {objects.map((drone) => (
             <article key={drone.slug} className="group border border-border bg-surface">
               <div className="grid min-h-full lg:grid-cols-[0.9fr_1.1fr]">

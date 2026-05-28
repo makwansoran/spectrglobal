@@ -7,8 +7,8 @@ export default function ContactPage() {
   return (
     <>
       <Nav />
-      <main className="flex-1 pt-20">
-        <section className="border-b border-border px-5 py-20 sm:px-8 lg:py-28">
+      <main className="flex-1">
+        <section className="border-b border-border px-5 pb-20 pt-32 sm:px-8 lg:pb-28 lg:pt-36">
           <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1fr_0.8fr]">
             <div>
               <p className="label">Contact</p>
