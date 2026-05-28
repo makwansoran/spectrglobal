@@ -14,7 +14,7 @@ export default function Home() {
           <div className="relative mx-auto flex max-w-7xl items-start px-5 pb-20 pt-32 sm:px-8 lg:pb-28 lg:pt-36">
             <div>
               <h1 className="max-w-5xl text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-fg sm:text-7xl lg:text-8xl">
-                Products for real-world aerial operations.
+                For real-world aerial operations.
               </h1>
               <div className="mt-10 flex flex-wrap gap-4">
               <Link
@@ -32,20 +32,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </section>
-
-        <section className="mx-auto grid max-w-7xl gap-10 px-5 py-20 sm:px-8 lg:grid-cols-3 lg:py-28">
-          {[
-            ["01", "Three products", "ATTACK, UAV, and JAMMER cover aerial operations and counter-UAS support."],
-            ["02", "Mission fit", "We configure each product around environment, payload, operator workflow, and support needs."],
-            ["03", "Deployment support", "Procurement, setup guidance, and training for operators who need to move fast."],
-          ].map(([num, title, body]) => (
-            <div key={num} className="border-t border-border pt-6">
-              <span className="label">{num}</span>
-              <h2 className="mt-8 text-2xl font-semibold tracking-[-0.04em]">{title}</h2>
-              <p className="mt-4 text-sm leading-7 text-muted">{body}</p>
-            </div>
-          ))}
         </section>
 
       </main>
