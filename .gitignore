@@ -1,31 +1,41 @@
-node_modules/
-profile/node_modules/
-# company/ is built output — commit for deploy, or run npm run build:profile locally
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
 .DS_Store
-Thumbs.db
-*.log
-__pycache__/
-*.py[cod]
-.venv/
-venv/
-.env
-.env.local
-.env.*.local
-!.env.example
+*.pem
 
-data/spectr.db
-data/spectr.db-wal
-data/spectr.db-shm
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
 
-# Local JSON exports from Supabase / Finnhub import (data lives in Supabase)
-data/chat/
+# env files (can opt-in for committing if needed)
+.env*
 
-data/companies/
-data/seed/finnhub-us-symbols.json
-data/seed/import-us-log.txt
+# vercel
+.vercel
 
-.cursor/
-
-# Local portable Git (used for CI / agent only)
-.tools/
+# typescript
+*.tsbuildinfo
+next-env.d.ts
