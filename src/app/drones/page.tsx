@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Nav } from "@/components/nav";
 import { ObjectVisual } from "@/components/object-visual";
 import { objects } from "@/lib/objects";
@@ -61,16 +60,6 @@ export default function DronesPage() {
           ))}
         </section>
 
-        <section className="border-t border-border px-5 py-16 sm:px-8">
-          <div className="mx-auto flex max-w-7xl flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-            <h2 className="max-w-2xl text-3xl font-semibold tracking-[-0.05em]">
-              Request Attack.
-            </h2>
-            <Link href="/contact" className="w-fit bg-fg px-6 py-3 text-sm font-medium text-bg hover:opacity-80">
-              Contact Spectr
-            </Link>
-          </div>
-        </section>
       </main>
     </>
   );
