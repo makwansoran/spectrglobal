@@ -10,21 +10,8 @@ export default function DronesPage() {
   return (
     <>
       <Nav />
-      <main className="flex-1 pt-20">
-        <section className="border-b border-border px-5 py-20 sm:px-8 lg:py-28">
-          <div className="mx-auto max-w-7xl">
-            <p className="label">Drones</p>
-            <h1 className="mt-8 max-w-5xl text-5xl font-semibold leading-[0.98] tracking-[-0.06em] sm:text-7xl">
-              Spectr Attack.
-            </h1>
-            <p className="mt-8 max-w-2xl text-lg leading-8 text-muted">
-              One drone platform for demanding aerial operations, built around
-              range, stability, and field reliability.
-            </p>
-          </div>
-        </section>
-
-        <section className="mx-auto grid max-w-7xl gap-px px-5 py-16 sm:px-8">
+      <main className="flex-1 pt-24">
+        <section className="mx-auto grid max-w-7xl gap-px px-5 py-20 sm:px-8 lg:py-28">
           {objects.map((drone) => (
             <article key={drone.slug} className="group border border-border bg-surface">
               <div className="grid min-h-full lg:grid-cols-[0.9fr_1.1fr]">

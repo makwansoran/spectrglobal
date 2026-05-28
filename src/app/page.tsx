@@ -6,21 +6,17 @@ export default function Home() {
     <>
       <Nav />
 
-      <main className="flex-1 pt-20">
-        <section className="relative min-h-[calc(100vh-80px)] overflow-hidden border-b border-border">
+      <main className="flex-1 pt-24">
+        <section className="relative min-h-[calc(100vh-96px)] overflow-hidden border-b border-border">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,rgba(0,0,0,0.08),transparent_30%),linear-gradient(135deg,rgba(0,0,0,0.06)_0,transparent_28%)]" />
           <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-bg to-transparent" />
 
-          <div className="relative mx-auto grid min-h-[calc(100vh-80px)] max-w-7xl items-end gap-16 px-5 pb-12 pt-24 sm:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:pb-20">
+          <div className="relative mx-auto flex min-h-[calc(100vh-96px)] max-w-7xl items-end px-5 pb-12 pt-24 sm:px-8 lg:pb-20">
             <div>
               <p className="label mb-8">Autonomous aerial systems</p>
               <h1 className="max-w-5xl text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-fg sm:text-7xl lg:text-8xl">
                 Spectr Attack for real-world aerial operations.
               </h1>
-              <p className="mt-8 max-w-2xl text-lg leading-8 text-muted sm:text-xl">
-                One drone platform built around range, control, and deployment
-                reliability for teams that need aerial capability without noise.
-              </p>
               <div className="mt-10 flex flex-wrap gap-4">
               <Link
                 href="/drones"
@@ -34,29 +30,6 @@ export default function Home() {
               >
                 Contact
               </Link>
-              </div>
-            </div>
-
-            <div className="hidden border border-border bg-surface/70 p-4 shadow-2xl shadow-black/10 lg:block">
-              <div className="aspect-[4/5] border border-border bg-[linear-gradient(135deg,rgba(0,0,0,0.08),transparent_40%),radial-gradient(circle_at_55%_35%,rgba(0,0,0,0.14),transparent_18%)] p-6">
-                <div className="flex h-full flex-col justify-between">
-                  <div className="grid grid-cols-3 gap-3">
-                    {["FLT", "MAP", "ISR"].map((item) => (
-                      <span key={item} className="border border-border px-3 py-2 font-mono text-xs text-muted">
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                  <div>
-                    <div className="mb-8 h-px w-full bg-border" />
-                    <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
-                      Operational coverage
-                    </p>
-                    <p className="mt-4 text-3xl font-semibold tracking-[-0.04em]">
-                      Airframes, payloads, and support for field deployment.
-                    </p>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
