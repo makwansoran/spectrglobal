@@ -17,7 +17,7 @@ const syne = Syne({
 
 export const metadata: Metadata = {
   title: { default: "Spectr", template: "%s — Spectr" },
-  description: "Professional drones for creators, survey teams, and commercial operators.",
+  description: "Mission-ready drones for creators, survey teams, and field operators.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

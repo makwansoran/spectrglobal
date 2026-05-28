@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #ffffff;
-  --fg: #111111;
-  --muted: #888888;
-  --border: #dedede;
-  --surface: #f6f6f6;
+  --bg: #050607;
+  --fg: #f4f1ea;
+  --muted: #9b9b92;
+  --border: rgba(244, 241, 234, 0.14);
+  --surface: #101214;
 }
 
 @theme inline {
@@ -36,11 +36,12 @@ body {
   font-size: 15px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
 }
 
 a,
 button {
-  transition: opacity 150ms ease, color 150ms ease;
+  transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease, opacity 150ms ease;
 }
 
 button,
@@ -51,9 +52,9 @@ textarea {
 }
 
 .display {
-  font-family: var(--font-display);
-  font-weight: 400;
-  letter-spacing: -0.02em;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: -0.06em;
 }
 
 .label {
