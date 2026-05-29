@@ -23,9 +23,9 @@ const productShowcase = [
 ];
 
 const capabilityBoxes = [
-  { name: "Operations", image: "/operations.png" },
-  { name: "Intelligence", image: "/intelligence.png" },
-  { name: "Aerospace", image: "/aerospace.png" },
+  { name: "Operations", image: "/operations-hq.jpg" },
+  { name: "Intelligence", image: "/intelligence-hq.jpg" },
+  { name: "Aerospace", image: "/aerospace-hq.jpg" },
 ];
 
 export default function Home() {
