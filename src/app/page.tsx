@@ -25,7 +25,7 @@ const productShowcase = [
 const capabilityBoxes = [
   { name: "Operations", image: "/operations.png" },
   { name: "Intelligence" },
-  { name: "Aerospace" },
+  { name: "Aerospace", image: "/aerospace.png" },
 ];
 
 export default function Home() {
@@ -88,11 +88,11 @@ export default function Home() {
               ))}
             </div>
 
-            <div className="mt-12 grid gap-px bg-border sm:grid-cols-3">
+            <div className="mt-20 grid gap-px bg-border sm:grid-cols-3">
               {capabilityBoxes.map((capability) => (
                 <article
                   key={capability.name}
-                  className={`relative h-64 overflow-hidden p-6 transition-[box-shadow,transform] duration-300 hover:z-10 hover:scale-[1.025] hover:shadow-2xl hover:shadow-black/10 ${
+                  className={`group relative h-80 overflow-hidden p-6 transition-[background-color,box-shadow,transform] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:z-10 hover:-translate-y-2 hover:scale-[1.045] hover:shadow-[0_28px_70px_rgba(0,0,0,0.18)] ${
                     capability.image ? "bg-black" : "bg-bg hover:bg-surface"
                   }`}
                 >
@@ -103,13 +103,13 @@ export default function Home() {
                         alt=""
                         fill
                         sizes="(max-width: 640px) 100vw, 33vw"
-                        className="object-cover"
+                        className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110"
                       />
-                      <div className="absolute inset-0 bg-black/40" aria-hidden="true" />
+                      <div className="absolute inset-0 bg-black/40 transition-colors duration-500 group-hover:bg-black/25" aria-hidden="true" />
                     </>
                   ) : null}
                   <h3
-                    className={`relative z-10 text-2xl font-semibold tracking-[-0.045em] sm:text-3xl ${
+                    className={`relative z-10 text-2xl font-semibold tracking-[-0.045em] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-2 sm:text-3xl ${
                       capability.image ? "text-white" : "text-fg"
                     }`}
                   >
