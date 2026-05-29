@@ -24,7 +24,7 @@ const productShowcase = [
 
 const capabilityBoxes = [
   { name: "Operations", image: "/operations.png" },
-  { name: "Intelligence" },
+  { name: "Intelligence", image: "/intelligence.png" },
   { name: "Aerospace", image: "/aerospace.png" },
 ];
 
