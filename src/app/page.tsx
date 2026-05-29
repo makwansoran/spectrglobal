@@ -33,8 +33,8 @@ export default function Home() {
     <>
       <Nav />
 
-      <main className="flex-1">
-        <section className="relative flex min-h-screen items-center overflow-hidden">
+      <main className="h-screen flex-1 snap-y snap-proximity overflow-y-auto scroll-smooth">
+        <section className="relative flex min-h-screen snap-start items-center overflow-hidden">
           <video
             className="absolute inset-0 h-full w-full object-cover"
             autoPlay
@@ -57,8 +57,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="brand-font border-b border-border bg-bg">
-          <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:py-28">
+        <section className="brand-font flex min-h-screen snap-start items-center border-b border-border bg-bg">
+          <div className="mx-auto w-full max-w-7xl px-5 py-28 sm:px-8 lg:py-32">
             <div>
               <h2 className="text-reveal text-4xl font-semibold leading-none tracking-[-0.055em] text-fg sm:text-6xl">
                 Development
@@ -93,8 +93,12 @@ export default function Home() {
                 </article>
               ))}
             </div>
+          </div>
+        </section>
 
-            <div className="mt-20">
+        <section className="brand-font flex min-h-screen snap-start items-center border-b border-border bg-bg">
+          <div className="mx-auto w-full max-w-7xl px-5 py-28 sm:px-8 lg:py-32">
+            <div>
               <h2 className="text-reveal text-4xl font-semibold leading-none tracking-[-0.055em] text-fg sm:text-6xl">
                 Use Cases
               </h2>
