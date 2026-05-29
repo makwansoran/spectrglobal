@@ -15,9 +15,9 @@ export function Nav() {
         <nav className="flex items-center gap-3 text-xs uppercase tracking-[0.16em] text-white/70 sm:gap-8">
           <Link
             href="/contact"
-            className="rounded-full border border-white/40 px-4 py-2 text-white hover:bg-white hover:text-black"
+            className="bg-white px-5 py-2.5 text-black hover:bg-white/85"
           >
-            Contact
+            Get Started
           </Link>
         </nav>
       </div>

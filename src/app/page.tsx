@@ -21,6 +21,8 @@ const productShowcase = [
   },
 ];
 
+const capabilityBoxes = ["Operations", "Intelligence", "Offensive Aerospace"];
+
 export default function Home() {
   return (
     <>
@@ -77,6 +79,16 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
+                </article>
+              ))}
+            </div>
+
+            <div className="mt-12 grid gap-px bg-border sm:grid-cols-3">
+              {capabilityBoxes.map((capability) => (
+                <article key={capability} className="min-h-44 bg-bg p-6 transition-colors hover:bg-surface">
+                  <h3 className="text-2xl font-semibold tracking-[-0.045em] text-fg sm:text-3xl">
+                    {capability}
+                  </h3>
                 </article>
               ))}
             </div>
