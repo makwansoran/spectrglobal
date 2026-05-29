@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Nav } from "@/components/nav";
 
 const productShowcase = [
@@ -47,33 +46,12 @@ export default function Home() {
               <h1 className="mx-auto max-w-4xl text-4xl font-semibold leading-[0.98] tracking-[-0.055em] text-fg sm:text-6xl lg:text-7xl">
                 For real-world aerial operations.
               </h1>
-              <div className="mt-10 flex flex-wrap justify-center gap-4">
-                <Link
-                  href="/products"
-                  className="bg-fg px-6 py-3 text-sm font-medium text-bg hover:opacity-80"
-                >
-                  View products
-                </Link>
-                <Link
-                  href="/contact"
-                  className="border border-border px-6 py-3 text-sm text-fg hover:border-fg"
-                >
-                  Contact
-                </Link>
-              </div>
             </div>
           </div>
         </section>
 
         <section className="brand-font border-b border-border bg-bg">
-          <div className="mx-auto grid max-w-7xl gap-16 px-5 py-20 sm:px-8 lg:grid-cols-[0.75fr_1.25fr] lg:py-28">
-            <div>
-              <p className="text-sm font-medium text-fg">Our Products</p>
-              <h2 className="mt-6 max-w-xl text-3xl font-semibold leading-tight tracking-[-0.045em] text-fg sm:text-5xl">
-                Equip operations, from field teams to front-line environments
-              </h2>
-            </div>
-
+          <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:py-28">
             <div className="divide-y divide-border border-y border-border">
               {productShowcase.map((product) => (
                 <article
