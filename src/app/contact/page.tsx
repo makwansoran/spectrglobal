@@ -11,8 +11,7 @@ export default function ContactPage() {
       <main className="flex-1">
         <section className="px-5 pb-20 pt-32 sm:px-8 lg:pb-28 lg:pt-36">
           <div className="mx-auto max-w-3xl">
-            <p className="label">Contact</p>
-            <h1 className="mt-8 text-5xl font-semibold leading-[0.98] tracking-[-0.06em] sm:text-7xl">
+            <h1 className="text-5xl font-semibold leading-[0.98] tracking-[-0.06em] sm:text-7xl">
               Send a request.
             </h1>
 

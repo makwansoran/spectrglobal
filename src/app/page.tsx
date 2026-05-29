@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Nav } from "@/components/nav";
 
 const productShowcase = [
@@ -21,7 +22,11 @@ const productShowcase = [
   },
 ];
 
-const capabilityBoxes = ["Operations", "Intelligence", "Offensive Aerospace"];
+const capabilityBoxes = [
+  { name: "Operations", image: "/operations.png" },
+  { name: "Intelligence" },
+  { name: "Aerospace" },
+];
 
 export default function Home() {
   return (
@@ -29,7 +34,7 @@ export default function Home() {
       <Nav />
 
       <main className="flex-1">
-        <section className="relative flex min-h-screen items-center overflow-hidden border-b border-border">
+        <section className="relative flex min-h-screen items-center overflow-hidden">
           <video
             className="absolute inset-0 h-full w-full object-cover"
             autoPlay
@@ -85,9 +90,30 @@ export default function Home() {
 
             <div className="mt-12 grid gap-px bg-border sm:grid-cols-3">
               {capabilityBoxes.map((capability) => (
-                <article key={capability} className="min-h-44 bg-bg p-6 transition-colors hover:bg-surface">
-                  <h3 className="text-2xl font-semibold tracking-[-0.045em] text-fg sm:text-3xl">
-                    {capability}
+                <article
+                  key={capability.name}
+                  className={`relative h-64 overflow-hidden p-6 transition-[box-shadow,transform] duration-300 hover:z-10 hover:scale-[1.025] hover:shadow-2xl hover:shadow-black/10 ${
+                    capability.image ? "bg-black" : "bg-bg hover:bg-surface"
+                  }`}
+                >
+                  {capability.image ? (
+                    <>
+                      <Image
+                        src={capability.image}
+                        alt=""
+                        fill
+                        sizes="(max-width: 640px) 100vw, 33vw"
+                        className="object-cover"
+                      />
+                      <div className="absolute inset-0 bg-black/40" aria-hidden="true" />
+                    </>
+                  ) : null}
+                  <h3
+                    className={`relative z-10 text-2xl font-semibold tracking-[-0.045em] sm:text-3xl ${
+                      capability.image ? "text-white" : "text-fg"
+                    }`}
+                  >
+                    {capability.name}
                   </h3>
                 </article>
               ))}
