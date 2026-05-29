@@ -88,7 +88,13 @@ export default function Home() {
               ))}
             </div>
 
-            <div className="mt-20 grid gap-px bg-border sm:grid-cols-3">
+            <div className="mt-20">
+              <h2 className="text-reveal text-4xl font-semibold leading-none tracking-[-0.055em] text-fg sm:text-6xl">
+                Use Cases
+              </h2>
+            </div>
+
+            <div className="mt-10 grid gap-px bg-border sm:grid-cols-3">
               {capabilityBoxes.map((capability) => (
                 <article
                   key={capability.name}
