@@ -5,17 +5,20 @@ const productShowcase = [
   {
     name: "ATTACK",
     index: "/0.1",
-    description: "Deliver long-endurance aerial capability for demanding field operations.",
+    summary: "Long-endurance aerial capability for demanding field operations",
+    explanation: "A fixed-wing platform for teams that need range, payload flexibility, and reliable deployment in the field.",
   },
   {
     name: "UAV",
     index: "/0.2",
-    description: "Configure unmanned aerial systems around payload, range, and operator workflow.",
+    summary: "Mission-configurable unmanned aerial systems",
+    explanation: "Built around payload, range, and operator workflow so each system fits the environment it serves.",
   },
   {
     name: "JAMMER",
     index: "/0.3",
-    description: "Support counter-UAS operations in controlled and compliant environments.",
+    summary: "Counter-UAS support for controlled environments",
+    explanation: "Configured for qualified operational use cases where planning, authorization, and compliance come first.",
   },
 ];
 
@@ -62,7 +65,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="border-b border-border bg-bg">
+        <section className="brand-font border-b border-border bg-bg">
           <div className="mx-auto grid max-w-7xl gap-16 px-5 py-20 sm:px-8 lg:grid-cols-[0.75fr_1.25fr] lg:py-28">
             <div>
               <p className="text-sm font-medium text-fg">Our Products</p>
@@ -75,15 +78,27 @@ export default function Home() {
               {productShowcase.map((product) => (
                 <article
                   key={product.name}
-                  className="grid gap-6 py-8 sm:grid-cols-[160px_80px_1fr] sm:items-start"
+                  tabIndex={0}
+                  className="product-row group grid cursor-default gap-5 px-5 py-7 outline-none sm:grid-cols-[150px_72px_1fr] sm:items-start sm:px-6"
                 >
-                  <h3 className="text-2xl font-semibold tracking-[-0.04em] text-fg sm:text-3xl">
+                  <h3 className="text-2xl font-semibold tracking-[-0.045em] text-fg transition-transform duration-300 group-hover:translate-x-2 group-focus:translate-x-2 sm:text-3xl">
                     {product.name}
                   </h3>
-                  <p className="font-mono text-sm text-muted">{product.index}</p>
-                  <p className="max-w-2xl text-lg leading-8 tracking-[-0.02em] text-fg sm:text-2xl sm:leading-9">
-                    {product.description}
+                  <p className="font-mono text-sm text-muted transition-colors group-hover:text-fg group-focus:text-fg">
+                    {product.index}
                   </p>
+                  <div>
+                    <p className="max-w-2xl text-lg leading-7 tracking-[-0.025em] text-fg sm:text-2xl sm:leading-9">
+                      {product.summary}
+                    </p>
+                    <div className="product-row-detail mt-0">
+                      <div className="overflow-hidden">
+                        <p className="max-w-xl pt-4 text-sm leading-7 tracking-[-0.01em] text-muted sm:text-base">
+                          {product.explanation}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </article>
               ))}
             </div>
