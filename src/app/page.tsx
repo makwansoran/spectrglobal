@@ -59,7 +59,13 @@ export default function Home() {
 
         <section className="brand-font border-b border-border bg-bg">
           <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:py-28">
-            <div className="divide-y divide-border border-y border-border">
+            <div>
+              <h2 className="text-reveal text-4xl font-semibold leading-none tracking-[-0.055em] text-fg sm:text-6xl">
+                Development
+              </h2>
+            </div>
+
+            <div className="mt-10 divide-y divide-border border-y border-border">
               {productShowcase.map((product) => (
                 <article
                   key={product.name}
