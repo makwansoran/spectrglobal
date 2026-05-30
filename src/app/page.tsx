@@ -28,34 +28,6 @@ const productShowcase = [
   },
 ];
 
-const partnerQuotes = [
-  {
-    name: "Wendy's Quality Supply Chain Co-op",
-    quote:
-      "Now, we've not only fixed our inventory problem, we've now taken a problem that would go on for weeks and days and fixed it in five minutes, making our people incredibly efficient.",
-  },
-  {
-    name: "Walgreens",
-    quote:
-      "We started with the goal of piloting 10 stores within about six months. However, leveraging Foundry and AIP, we began to see real promise quickly in composing AI-powered, end-to-end workflows that allowed us to get to about 4000 stores within eight months.",
-  },
-  {
-    name: "AT&T",
-    quote:
-      "[S.C.O.U.T] began as a joint effort between AT&T and Palantir, and now has over 100 AT&T dedicated engineers and a dedicated support team for this application. It's just one of the 660 applications we have on Foundry today.",
-  },
-  {
-    name: "Parexel",
-    quote:
-      "We estimate that this solution reduces our time to submission materials by over 50% from the current 10 to 12 week average to around 3 to 4 weeks. We can create this process, manage the process, standardize it, and cut in half the time that is required to get there.",
-  },
-  {
-    name: "Heineken",
-    quote:
-      "We had a great chassis of the car. But our engine was underpowered. So we went to Palantir because we want to have the best engine out there. In three months, the teams built what took us three years before.",
-  },
-];
-
 export default function Home() {
   return (
     <>
@@ -64,15 +36,15 @@ export default function Home() {
       <main className="h-screen flex-1 snap-y snap-proximity overflow-y-auto scroll-smooth">
         <section className="relative flex min-h-screen snap-start items-center overflow-hidden">
           <LinesGradientShader />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_48%,rgba(3,4,10,0.08),rgba(3,4,10,0.32)_54%,rgba(3,4,10,0.72)_100%)]" />
-          <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-bg via-bg/35 to-transparent" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.78),rgba(255,255,255,0.35)_42%,rgba(255,255,255,0)_70%)]" />
+          <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-bg via-bg/40 to-transparent" />
 
           <div className="relative mx-auto flex w-full max-w-7xl items-center justify-center px-5 py-32 text-center sm:px-8 lg:py-36">
             <div className="mx-auto">
               <ScrollRevealHeading
                 as="h1"
                 revealOnMount
-                className="mx-auto max-w-4xl text-4xl font-semibold leading-[0.98] text-white sm:text-6xl lg:text-7xl"
+                className="mx-auto max-w-4xl text-4xl font-semibold leading-[0.98] text-fg sm:text-6xl lg:text-7xl"
               >
                 For real-world aerial operations.
               </ScrollRevealHeading>
@@ -138,36 +110,6 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="brand-font snap-start border-b border-border bg-surface">
-          <div className="mx-auto w-full max-w-7xl px-5 py-24 sm:px-8 lg:py-32">
-            <div className="max-w-3xl">
-              <p className="label">Partners</p>
-              <ScrollRevealHeading
-                as="h2"
-                className="mt-5 text-4xl font-semibold leading-none text-fg sm:text-6xl"
-              >
-                What our partners say about us
-              </ScrollRevealHeading>
-            </div>
-
-            <div className="mt-12 divide-y divide-border border-y border-border">
-              {partnerQuotes.map((partner) => (
-                <article
-                  key={partner.name}
-                  className="grid gap-6 py-8 lg:grid-cols-[280px_1fr] lg:gap-12"
-                >
-                  <h3 className="font-mono text-xs uppercase tracking-[0.18em] text-muted">
-                    {partner.name}
-                  </h3>
-                  <blockquote className="max-w-4xl text-xl font-medium leading-8 tracking-[-0.03em] text-fg sm:text-2xl sm:leading-10">
-                    &ldquo;{partner.quote}&rdquo;
-                  </blockquote>
                 </article>
               ))}
             </div>

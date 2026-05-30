@@ -6,18 +6,22 @@ const fragmentShaderSource = `
 precision highp float;
 
 uniform vec2 resolution;
-uniform float u_shadow_power;
-uniform float u_darken_top;
 
 varying vec3 v_color;
 
 void main() {
-  vec3 color = v_color;
-  if (u_darken_top == 1.0) {
-    vec2 st = gl_FragCoord.xy / resolution.xy;
-    color.g -= pow(st.y + sin(-12.0) * st.x, u_shadow_power) * 0.4;
-  }
-  gl_FragColor = vec4(color, 1.0);
+  vec2 st = gl_FragCoord.xy / resolution.xy;
+
+  // Curved diagonal band (the swoosh) sweeping top-left to bottom-right.
+  float center = 0.62 - 0.42 * st.x + 0.10 * sin(st.x * 3.14159 + 0.6);
+  float dist = abs(st.y - center);
+  float halfWidth = 0.32;
+
+  float alpha = smoothstep(halfWidth, halfWidth * 0.2, dist);
+  // Soften the band where it runs off the left/right edges.
+  alpha *= smoothstep(0.0, 0.16, st.x) * smoothstep(0.0, 0.16, 1.0 - st.x);
+
+  gl_FragColor = vec4(v_color, alpha);
 }
 `;
 
@@ -251,6 +255,8 @@ export function LinesGradientShader() {
     }
 
     gl.useProgram(program);
+    gl.enable(gl.BLEND);
+    gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
 
     const positionLocation = gl.getAttribLocation(program, "position");
     const uvLocation = gl.getAttribLocation(program, "uv");
@@ -394,7 +400,7 @@ export function LinesGradientShader() {
 
     // Stripe Gradient.js defaults.
     gl.uniform1f(uniforms.shadowPower, 5);
-    gl.uniform1f(uniforms.darkenTop, 1);
+    gl.uniform1f(uniforms.darkenTop, 0);
     gl.uniform4f(uniforms.activeColors, 1, 1, 1, 1);
     gl.uniform2f(uniforms.globalNoiseFreq, 0.00014, 0.00029);
     gl.uniform1f(uniforms.globalNoiseSpeed, 0.000005);
@@ -428,7 +434,7 @@ export function LinesGradientShader() {
       lastTime = now;
 
       gl.uniform1f(uniforms.time, elapsed);
-      gl.clearColor(0.06, 0.07, 0.16, 1);
+      gl.clearColor(1, 1, 1, 1);
       gl.clear(gl.COLOR_BUFFER_BIT);
       gl.drawArrays(gl.TRIANGLES, 0, vertexCount);
 
