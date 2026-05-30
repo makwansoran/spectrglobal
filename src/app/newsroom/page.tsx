@@ -64,26 +64,25 @@ export default function NewsroomPage() {
       <main className="flex-1">
         <section className="border-b border-border px-5 pb-20 pt-32 sm:px-8 lg:pb-28 lg:pt-36">
           <div className="mx-auto max-w-7xl">
-            <p className="label">Resources</p>
+            <p className="label">Partners</p>
             <h1 className="mt-5 max-w-4xl text-5xl font-semibold leading-[0.98] tracking-[-0.06em] sm:text-7xl">
-              Newsroom.
+              What our partners say about us
             </h1>
             <p className="mt-8 max-w-2xl text-base leading-8 text-muted sm:text-lg">
-              Announcements, product notes, and field perspectives from the Spectr team.
+              Partner stories, operational outcomes, and field perspectives from teams building with mission-ready technology.
             </p>
+            <PartnerSlideshow quotes={partnerQuotes} />
           </div>
         </section>
 
         <section className="px-5 py-20 sm:px-8 lg:py-28">
           <div className="mx-auto max-w-7xl">
-            <div className="mb-20">
-              <p className="label">Partners</p>
-              <h2 className="mt-5 max-w-4xl text-4xl font-semibold leading-none tracking-[-0.06em] text-fg sm:text-6xl">
-                What our partners say about us
+            <div className="mb-10">
+              <p className="label">Newsroom</p>
+              <h2 className="mt-4 text-4xl font-semibold leading-none tracking-[-0.06em] text-fg sm:text-5xl">
+                Latest updates.
               </h2>
-              <PartnerSlideshow quotes={partnerQuotes} />
             </div>
-
             <div className="divide-y divide-border border-y border-border">
               {stories.map((story) => (
                 <article key={story.title} className="grid gap-6 py-8 lg:grid-cols-[220px_1fr] lg:gap-12">
