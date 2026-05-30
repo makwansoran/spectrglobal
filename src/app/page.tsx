@@ -2,9 +2,8 @@ import Link from "next/link";
 import { Footer } from "@/components/footer";
 import { BackgroundPaths } from "@/components/background-paths";
 import { Nav } from "@/components/nav";
-import { PartnerSlideshow } from "@/components/partner-slideshow";
+import { NewsSlideshow } from "@/components/news-slideshow";
 import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
-import { partnerQuotes } from "@/lib/partner-quotes";
 
 const productShowcase = [
   {
@@ -54,7 +53,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="brand-font flex snap-start items-center border-b border-border bg-bg py-24 sm:py-32">
+        <section className="brand-font flex snap-start items-center bg-bg py-24 sm:py-32">
           <div className="mx-auto w-full max-w-4xl px-5 text-center sm:px-8">
             <ScrollRevealHeading
               as="h2"
@@ -68,7 +67,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="brand-font flex snap-start items-center border-b border-border bg-bg">
+        <section className="brand-font flex snap-start items-center bg-bg">
           <div className="mx-auto w-full max-w-7xl px-5 py-28 sm:px-8 lg:py-32">
             <div>
               <ScrollRevealHeading
@@ -79,7 +78,7 @@ export default function Home() {
               </ScrollRevealHeading>
             </div>
 
-            <div className="mt-10 divide-y divide-border border-y border-border">
+            <div className="mt-10 space-y-2">
               {productShowcase.map((product) => (
                 <article
                   key={product.name}
@@ -118,18 +117,18 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="brand-font snap-start border-b border-border bg-surface">
+        <section className="brand-font snap-start bg-bg">
           <div className="mx-auto w-full max-w-7xl px-5 py-24 sm:px-8 lg:py-32">
             <div className="max-w-4xl">
-              <p className="label">Partners</p>
+              <p className="label">Newsroom</p>
               <ScrollRevealHeading
                 as="h2"
                 className="mt-5 text-4xl font-semibold leading-none text-fg sm:text-6xl"
               >
-                What our partners say about us
+                Latest news from Spectr
               </ScrollRevealHeading>
             </div>
-            <PartnerSlideshow quotes={partnerQuotes} />
+            <NewsSlideshow />
           </div>
         </section>
 

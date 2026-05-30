@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  Children,
   cloneElement,
   isValidElement,
   useEffect,
@@ -31,7 +30,6 @@ export function ScrollRevealHeading({
   const ref = useRef<HTMLElement>(null);
   const [visible, setVisible] = useState(false);
   const visibleRef = useRef(false);
-  const charIndexRef = useRef(0);
 
   useEffect(() => {
     const element = ref.current;
@@ -104,7 +102,7 @@ export function ScrollRevealHeading({
   }, [delay, revealOnMount]);
 
   const Component = Tag as ElementType;
-  charIndexRef.current = 0;
+  const charIndex = { current: 0 };
 
   return (
     <Component
@@ -113,7 +111,7 @@ export function ScrollRevealHeading({
         Tag === "h3" ? "block" : "inline-block"
       } ${className}`}
     >
-      {renderLetterReveal(children, charIndexRef)}
+      {renderLetterReveal(children, charIndex)}
     </Component>
   );
 }

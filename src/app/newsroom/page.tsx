@@ -1,32 +1,23 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
-import { PartnerSlideshow } from "@/components/partner-slideshow";
-import { partnerQuotes } from "@/lib/partner-quotes";
+import { newsStories } from "@/lib/news-stories";
 
 export const metadata: Metadata = { title: "Newsroom" };
 
-const stories = [
+const briefs = [
   {
-    category: "Company",
-    title: "Spectr expands field-ready aerial systems roadmap",
-    summary:
-      "A look at the development priorities behind ATTACK, RECON, and JAMMER as mission requirements evolve.",
-    date: "May 2026",
+    label: "Field Notes",
+    value: "RECON trials continue across mixed-weather test windows.",
   },
   {
-    category: "Operations",
-    title: "Designing UAV platforms around operator workflow",
-    summary:
-      "How range, payload flexibility, launch time, and recovery planning shape Spectr product decisions.",
-    date: "April 2026",
+    label: "Development",
+    value: "ATTACK endurance profile validation enters the next build cycle.",
   },
   {
-    category: "Product",
-    title: "Inside the next phase of counter-UAS support",
-    summary:
-      "Updates on controlled-environment jammer capabilities, compliance planning, and qualified deployment support.",
-    date: "March 2026",
+    label: "Operations",
+    value: "Spectr publishes updated qualification requirements for deployment inquiries.",
   },
 ];
 
@@ -35,41 +26,97 @@ export default function NewsroomPage() {
     <>
       <Nav />
       <main className="flex-1">
-        <section className="border-b border-border px-5 pb-20 pt-32 sm:px-8 lg:pb-28 lg:pt-36">
+        <section className="brand-font bg-black px-5 pb-20 pt-36 text-white sm:px-8 lg:pb-28 lg:pt-44">
           <div className="mx-auto max-w-7xl">
-            <p className="label">Partners</p>
-            <h1 className="mt-5 max-w-4xl text-5xl font-semibold leading-[0.98] tracking-[-0.06em] sm:text-7xl">
-              What our partners say about us
-            </h1>
-            <p className="mt-8 max-w-2xl text-base leading-8 text-muted sm:text-lg">
-              Partner stories, operational outcomes, and field perspectives from teams building with mission-ready technology.
-            </p>
-            <PartnerSlideshow quotes={partnerQuotes} />
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-white/45">Newsroom</p>
+            <div className="mt-10 grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
+              <h1 className="max-w-5xl text-6xl font-semibold leading-[0.9] tracking-[-0.075em] sm:text-8xl lg:text-[9.5rem]">
+                Newsroom
+              </h1>
+              <p className="max-w-lg text-base leading-8 text-white/62 sm:text-lg">
+                Updates from Spectr on field-ready aerial systems, operational hardware, and the development work behind ATTACK, RECON, and JAMMER.
+              </p>
+            </div>
           </div>
         </section>
 
-        <section className="px-5 py-20 sm:px-8 lg:py-28">
+        <section className="brand-font border-b border-border bg-bg px-5 py-16 sm:px-8 lg:py-24">
+          <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-stretch">
+            <Link
+              href="/products"
+              className="group flex min-h-[420px] flex-col justify-between bg-black p-8 text-white transition-opacity hover:opacity-95 sm:p-10"
+            >
+              <div>
+                <p className="font-mono text-xs uppercase tracking-[0.2em] text-white/45">Featured</p>
+                <h2 className="mt-8 max-w-2xl text-4xl font-semibold leading-[0.98] tracking-[-0.06em] sm:text-6xl">
+                  Read the latest field systems update from Spectr.
+                </h2>
+              </div>
+              <div className="mt-12 flex items-end justify-between gap-8 border-t border-white/15 pt-8">
+                <p className="max-w-md text-sm leading-7 text-white/58">
+                  A development note on operational readiness, qualified use cases, and what comes next for Spectr&apos;s aerial hardware roadmap.
+                </p>
+                <span className="font-mono text-2xl leading-none transition-transform duration-300 group-hover:translate-x-2">→</span>
+              </div>
+            </Link>
+
+            <div className="grid gap-px bg-border">
+              {briefs.map((brief) => (
+                <article key={brief.label} className="bg-surface p-7 sm:p-8">
+                  <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">{brief.label}</p>
+                  <p className="mt-5 max-w-2xl text-2xl font-medium leading-tight tracking-[-0.04em] text-fg sm:text-3xl">
+                    {brief.value}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="brand-font px-5 py-20 sm:px-8 lg:py-28">
           <div className="mx-auto max-w-7xl">
-            <div className="mb-10">
-              <p className="label">Newsroom</p>
-              <h2 className="mt-4 text-4xl font-semibold leading-none tracking-[-0.06em] text-fg sm:text-5xl">
-                Latest updates.
+            <div className="grid gap-8 border-b border-border pb-10 lg:grid-cols-[0.8fr_1.2fr]">
+              <p className="label">Latest</p>
+              <h2 className="max-w-4xl text-4xl font-semibold leading-none tracking-[-0.06em] text-fg sm:text-6xl">
+                Company news and operational updates.
               </h2>
             </div>
-            <div className="divide-y divide-border border-y border-border">
-              {stories.map((story) => (
-                <article key={story.title} className="grid gap-6 py-8 lg:grid-cols-[220px_1fr] lg:gap-12">
+
+            <div className="divide-y divide-border">
+              {newsStories.map((story) => (
+                <article
+                  key={story.title}
+                  className="group grid gap-8 py-10 lg:grid-cols-[240px_1fr_80px] lg:items-start"
+                >
                   <div>
-                    <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">{story.category}</p>
-                    <p className="mt-3 font-mono text-xs uppercase tracking-[0.14em] text-muted">{story.date}</p>
+                    <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">{story.eyebrow}</p>
+                    <p className="mt-3 font-mono text-xs uppercase tracking-[0.14em] text-muted">{story.meta}</p>
                   </div>
                   <div>
-                    <h2 className="text-3xl font-semibold tracking-[-0.05em] text-fg">{story.title}</h2>
-                    <p className="mt-5 max-w-2xl text-sm leading-7 text-muted">{story.summary}</p>
+                    <h3 className="max-w-4xl text-3xl font-semibold leading-tight tracking-[-0.055em] text-fg transition-colors group-hover:text-muted sm:text-5xl">
+                      {story.title}
+                    </h3>
+                    <p className="mt-6 max-w-2xl text-sm leading-7 text-muted sm:text-base">
+                      {story.summary}
+                    </p>
+                  </div>
+                  <div className="font-mono text-2xl leading-none text-muted transition-transform duration-300 group-hover:translate-x-2">
+                    →
                   </div>
                 </article>
               ))}
             </div>
+          </div>
+        </section>
+
+        <section className="brand-font border-t border-border bg-surface px-5 py-16 sm:px-8 lg:py-24">
+          <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+            <h2 className="max-w-3xl text-4xl font-semibold leading-[1.02] tracking-[-0.06em] text-fg sm:text-6xl">
+              For media and qualified operational inquiries.
+            </h2>
+            <p className="max-w-xl text-sm leading-7 text-muted sm:text-base lg:text-right">
+              Contact Spectr for company information, product context, and deployment qualification requests.
+            </p>
           </div>
         </section>
         <Footer />
