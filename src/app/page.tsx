@@ -6,14 +6,14 @@ import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
 const productShowcase = [
   {
     name: "ATTACK",
-    href: "/products/spectr-attack",
+    href: "/products/attack",
     index: "/0.1",
     summary: "Long-endurance aerial capability for demanding field operations",
     explanation: "A fixed-wing platform for teams that need range, payload flexibility, and reliable deployment in the field.",
   },
   {
     name: "RECON",
-    href: "/products/spectr-uav",
+    href: "/products/recon",
     index: "/0.2",
     summary: "Mission-configurable reconnaissance systems",
     explanation: "Built around payload, range, and operator workflow so each system fits the environment it serves.",
@@ -96,15 +96,21 @@ export default function Home() {
                 <article
                   key={product.name}
                   tabIndex={0}
-                  className="product-row group grid cursor-default gap-5 px-5 py-7 outline-none sm:grid-cols-[150px_72px_1fr] sm:items-start sm:px-6"
+                  className="product-row group grid cursor-pointer gap-5 px-5 py-7 outline-none sm:grid-cols-[150px_72px_1fr] sm:items-start sm:px-6"
                 >
                   <ScrollRevealHeading
                     as="h3"
                     delay={120 + index * 140}
                     className="text-2xl font-semibold text-fg transition-transform duration-300 group-hover:translate-x-2 group-focus:translate-x-2 sm:text-3xl"
                   >
-                    <Link href={product.href} className="inline-block hover:text-muted">
+                    <Link
+                      href={product.href}
+                      className="inline-flex items-center gap-3 underline-offset-8 transition-[color,gap] duration-300 hover:gap-5 hover:text-muted hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fg"
+                    >
                       {product.name}
+                      <span className="font-mono text-base leading-none opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100">
+                        →
+                      </span>
                     </Link>
                   </ScrollRevealHeading>
                   <p className="font-mono text-sm text-muted transition-colors group-hover:text-fg group-focus:text-fg">

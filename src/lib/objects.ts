@@ -26,7 +26,7 @@ export type DroneProduct = {
 
 export const objects: DroneProduct[] = [
   {
-    slug: "spectr-attack",
+    slug: "attack",
     name: "ATTACK",
     tagline: "Long-endurance fixed-wing platform for demanding aerial operations.",
     description:
@@ -69,7 +69,7 @@ export const objects: DroneProduct[] = [
     visual: "orbit",
   },
   {
-    slug: "spectr-uav",
+    slug: "recon",
     name: "RECON",
     tagline: "Configurable reconnaissance vehicle for observation and field operations.",
     description:
