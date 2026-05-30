@@ -37,8 +37,8 @@ export default function Home() {
       <main className="h-screen flex-1 snap-y snap-proximity overflow-y-auto scroll-smooth">
         <div className="relative overflow-hidden bg-bg">
           <BackgroundPaths />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_38%,rgba(255,255,255,0.84),rgba(255,255,255,0.5)_42%,rgba(255,255,255,0.08)_76%)]" />
-          <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-bg via-bg/70 to-transparent" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_38%,rgba(255,255,255,0.68),rgba(255,255,255,0.34)_44%,rgba(255,255,255,0.04)_78%)]" />
+          <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-bg via-bg/60 to-transparent" />
 
           <section className="relative z-10 flex min-h-screen snap-start items-center">
             <div className="mx-auto flex w-full max-w-7xl items-center justify-center px-5 py-32 text-center sm:px-8 lg:py-36">
