@@ -35,37 +35,39 @@ export default function Home() {
       <Nav />
 
       <main className="h-screen flex-1 snap-y snap-proximity overflow-y-auto scroll-smooth">
-        <section className="relative flex min-h-screen snap-start items-center overflow-hidden">
+        <div className="relative overflow-hidden bg-bg">
           <BackgroundPaths />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.82),rgba(255,255,255,0.45)_45%,rgba(255,255,255,0)_72%)]" />
-          <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-bg via-bg/40 to-transparent" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_38%,rgba(255,255,255,0.84),rgba(255,255,255,0.5)_42%,rgba(255,255,255,0.08)_76%)]" />
+          <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-bg via-bg/70 to-transparent" />
 
-          <div className="relative mx-auto flex w-full max-w-7xl items-center justify-center px-5 py-32 text-center sm:px-8 lg:py-36">
-            <div className="mx-auto">
-              <ScrollRevealHeading
-                as="h1"
-                revealOnMount
-                className="mx-auto max-w-4xl text-4xl font-semibold leading-[0.98] text-fg sm:text-6xl lg:text-7xl"
-              >
-                For real-world aerial operations.
-              </ScrollRevealHeading>
+          <section className="relative z-10 flex min-h-screen snap-start items-center">
+            <div className="mx-auto flex w-full max-w-7xl items-center justify-center px-5 py-32 text-center sm:px-8 lg:py-36">
+              <div className="mx-auto">
+                <ScrollRevealHeading
+                  as="h1"
+                  revealOnMount
+                  className="mx-auto max-w-4xl text-4xl font-semibold leading-[0.98] text-fg sm:text-6xl lg:text-7xl"
+                >
+                  For real-world aerial operations.
+                </ScrollRevealHeading>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <section className="brand-font flex snap-start items-center bg-bg py-24 sm:py-32">
-          <div className="mx-auto w-full max-w-4xl px-5 text-center sm:px-8">
-            <ScrollRevealHeading
-              as="h2"
-              className="text-2xl font-medium leading-[1.25] tracking-[-0.03em] text-fg sm:text-3xl lg:text-4xl"
-            >
-              Our hardware powers real-time decisions in critical operations across the West — from the factory floor to the front lines.
-            </ScrollRevealHeading>
-            <p className="mt-8 font-mono text-xs uppercase tracking-[0.2em] text-muted">
-              Makwan Ismail, Founder of Spectr
-            </p>
-          </div>
-        </section>
+          <section className="brand-font relative z-10 flex snap-start items-center py-24 sm:py-32">
+            <div className="mx-auto w-full max-w-4xl px-5 text-center sm:px-8">
+              <ScrollRevealHeading
+                as="h2"
+                className="text-2xl font-medium leading-[1.25] tracking-[-0.03em] text-fg sm:text-3xl lg:text-4xl"
+              >
+                Our hardware powers real-time decisions in critical operations across the West — from the factory floor to the front lines.
+              </ScrollRevealHeading>
+              <p className="mt-8 font-mono text-xs uppercase tracking-[0.2em] text-muted">
+                Makwan Ismail, Founder of Spectr
+              </p>
+            </div>
+          </section>
+        </div>
 
         <section className="brand-font flex snap-start items-center bg-bg">
           <div className="mx-auto w-full max-w-7xl px-5 py-28 sm:px-8 lg:py-32">
