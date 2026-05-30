@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Nav } from "@/components/nav";
 import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
 
@@ -151,6 +152,54 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <footer className="brand-font flex min-h-screen snap-start items-end border-t border-border bg-bg text-fg">
+          <div className="mx-auto w-full max-w-7xl px-5 py-16 sm:px-8 lg:py-20">
+            <div className="grid gap-14 border-y border-border py-14 lg:grid-cols-[1.1fr_1.9fr]">
+              <div>
+                <Link href="/" className="inline-block text-sm font-medium uppercase tracking-[0.34em]">
+                  Spectr
+                </Link>
+                <p className="mt-6 max-w-sm text-sm leading-7 text-muted">
+                  Mission-ready aerial systems for operations, intelligence, and aerospace use cases.
+                </p>
+              </div>
+
+              <div className="grid gap-10 sm:grid-cols-3">
+                <div>
+                  <h3 className="font-mono text-xs uppercase tracking-[0.16em] text-muted">Development</h3>
+                  <ul className="mt-6 space-y-4 text-sm">
+                    <li><Link href="/products" className="hover:text-muted">ATTACK</Link></li>
+                    <li><Link href="/products" className="hover:text-muted">RECON</Link></li>
+                    <li><Link href="/products" className="hover:text-muted">JAMMER</Link></li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 className="font-mono text-xs uppercase tracking-[0.16em] text-muted">Use Cases</h3>
+                  <ul className="mt-6 space-y-4 text-sm">
+                    <li>Operations</li>
+                    <li>Intelligence</li>
+                    <li>Aerospace</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 className="font-mono text-xs uppercase tracking-[0.16em] text-muted">Company</h3>
+                  <ul className="mt-6 space-y-4 text-sm">
+                    <li><Link href="/contact" className="hover:text-muted">Get Started</Link></li>
+                    <li><Link href="/products" className="hover:text-muted">Products</Link></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-4 pt-8 text-xs uppercase tracking-[0.14em] text-muted sm:flex-row sm:items-center sm:justify-between">
+              <p>Copyright 2026 Spectr</p>
+              <p>For real-world aerial operations.</p>
+            </div>
+          </div>
+        </footer>
 
       </main>
     </>
