@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Nav } from "@/components/nav";
 import { ObjectVisual } from "@/components/object-visual";
 import { objects } from "@/lib/objects";
@@ -21,7 +22,11 @@ export default function ProductsPage() {
                   <div className="flex items-start justify-between gap-6">
                     <div>
                       <p className="label">{product.category}</p>
-                      <h2 className="mt-5 text-3xl font-semibold tracking-[-0.05em]">{product.name}</h2>
+                      <h2 className="mt-5 text-3xl font-semibold tracking-[-0.05em]">
+                        <Link href={`/products/${product.slug}`} className="hover:text-muted">
+                          {product.name}
+                        </Link>
+                      </h2>
                     </div>
                     <span className="font-mono text-sm text-muted">{product.price}</span>
                   </div>

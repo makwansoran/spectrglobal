@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState, type ElementType } from "react";
+import { useEffect, useRef, useState, type ElementType, type ReactNode } from "react";
 
 type ScrollRevealHeadingProps = {
   as?: "h1" | "h2" | "h3";
   className?: string;
-  children: string;
+  children: ReactNode;
   delay?: number;
   revealOnMount?: boolean;
 };

@@ -6,18 +6,21 @@ import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
 const productShowcase = [
   {
     name: "ATTACK",
+    href: "/products/spectr-attack",
     index: "/0.1",
     summary: "Long-endurance aerial capability for demanding field operations",
     explanation: "A fixed-wing platform for teams that need range, payload flexibility, and reliable deployment in the field.",
   },
   {
     name: "RECON",
+    href: "/products/spectr-uav",
     index: "/0.2",
     summary: "Mission-configurable reconnaissance systems",
     explanation: "Built around payload, range, and operator workflow so each system fits the environment it serves.",
   },
   {
     name: "JAMMER",
+    href: "/products/jammer",
     index: "/0.3",
     summary: "Counter-UAS support for controlled environments",
     explanation: "Configured for qualified operational use cases where planning, authorization, and compliance come first.",
@@ -100,7 +103,9 @@ export default function Home() {
                     delay={120 + index * 140}
                     className="text-2xl font-semibold text-fg transition-transform duration-300 group-hover:translate-x-2 group-focus:translate-x-2 sm:text-3xl"
                   >
-                    {product.name}
+                    <Link href={product.href} className="inline-block hover:text-muted">
+                      {product.name}
+                    </Link>
                   </ScrollRevealHeading>
                   <p className="font-mono text-sm text-muted transition-colors group-hover:text-fg group-focus:text-fg">
                     {product.index}

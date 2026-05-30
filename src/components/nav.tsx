@@ -8,17 +8,9 @@ const menuSections = [
   {
     title: "Development",
     links: [
-      { label: "ATTACK", href: "/products" },
-      { label: "RECON", href: "/products" },
-      { label: "JAMMER", href: "/products" },
-    ],
-  },
-  {
-    title: "Use Cases",
-    links: [
-      { label: "Operations", href: "/#use-cases" },
-      { label: "Intelligence", href: "/#use-cases" },
-      { label: "Aerospace", href: "/#use-cases" },
+      { label: "ATTACK", href: "/products/spectr-attack" },
+      { label: "RECON", href: "/products/spectr-uav" },
+      { label: "JAMMER", href: "/products/jammer" },
     ],
   },
   {
