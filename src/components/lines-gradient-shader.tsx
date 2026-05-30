@@ -7,17 +7,30 @@ type LineBand = {
   speed: number;
   amplitude: number;
   thickness: number;
-  colorA: string;
-  colorB: string;
+  phase: number;
+  colors: [string, string, string];
 };
 
-const bands: LineBand[] = [
-  { offset: -120, speed: 0.42, amplitude: 46, thickness: 18, colorA: "#67e8f9", colorB: "#a78bfa" },
-  { offset: -58, speed: 0.36, amplitude: 38, thickness: 14, colorA: "#22d3ee", colorB: "#60a5fa" },
-  { offset: 0, speed: 0.5, amplitude: 58, thickness: 20, colorA: "#818cf8", colorB: "#f0abfc" },
-  { offset: 66, speed: 0.31, amplitude: 42, thickness: 16, colorA: "#38bdf8", colorB: "#c084fc" },
-  { offset: 138, speed: 0.45, amplitude: 52, thickness: 18, colorA: "#93c5fd", colorB: "#f9a8d4" },
+const palette: Array<[string, string, string]> = [
+  ["#00f5ff", "#3b82f6", "#8b5cf6"],
+  ["#06b6d4", "#7c3aed", "#ff2d95"],
+  ["#22d3ee", "#2563eb", "#c026d3"],
+  ["#60a5fa", "#a855f7", "#f97316"],
+  ["#14f1d9", "#6366f1", "#ec4899"],
 ];
+
+const bands: LineBand[] = Array.from({ length: 24 }, (_, index) => {
+  const center = index - 11.5;
+
+  return {
+    offset: center * 10,
+    speed: 0.42 + (index % 5) * 0.035,
+    amplitude: 70 + (index % 6) * 8,
+    thickness: 7 + (index % 4) * 2,
+    phase: index * 0.42,
+    colors: palette[index % palette.length],
+  };
+});
 
 export function LinesGradientShader() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -46,10 +59,10 @@ export function LinesGradientShader() {
     };
 
     const drawBand = (band: LineBand, time: number) => {
-      const gradient = context.createLinearGradient(0, 0, width, height);
-      gradient.addColorStop(0, band.colorA);
-      gradient.addColorStop(0.5, "rgba(255,255,255,0.34)");
-      gradient.addColorStop(1, band.colorB);
+      const gradient = context.createLinearGradient(width * 0.08, height * 0.2, width * 0.92, height * 0.82);
+      gradient.addColorStop(0, band.colors[0]);
+      gradient.addColorStop(0.48, band.colors[1]);
+      gradient.addColorStop(1, band.colors[2]);
 
       context.beginPath();
       context.lineWidth = band.thickness;
@@ -57,15 +70,17 @@ export function LinesGradientShader() {
       context.lineJoin = "round";
       context.strokeStyle = gradient;
 
-      const baseY = height * 0.5 + band.offset;
-      const segments = 92;
+      const baseY = height * 0.52 + band.offset;
+      const segments = 140;
 
       for (let i = 0; i <= segments; i += 1) {
         const progress = i / segments;
         const x = progress * width;
-        const waveA = Math.sin(progress * Math.PI * 2.15 + time * band.speed);
-        const waveB = Math.sin(progress * Math.PI * 4.2 - time * band.speed * 0.72);
-        const y = baseY + waveA * band.amplitude + waveB * band.amplitude * 0.32;
+        const flow = time * band.speed + band.phase;
+        const waveA = Math.sin(progress * Math.PI * 2.45 + flow);
+        const waveB = Math.sin(progress * Math.PI * 5.8 - flow * 0.68);
+        const pinch = Math.sin(progress * Math.PI);
+        const y = baseY + waveA * band.amplitude * pinch + waveB * band.amplitude * 0.22;
 
         if (i === 0) {
           context.moveTo(x, y);
@@ -84,25 +99,35 @@ export function LinesGradientShader() {
       const time = frame * 0.018;
 
       context.clearRect(0, 0, width, height);
-      context.fillStyle = "#ffffff";
+      context.fillStyle = "#03040a";
       context.fillRect(0, 0, width, height);
 
-      context.globalAlpha = 0.72;
-      context.filter = "blur(0.15px)";
-      bands.forEach((band) => drawBand(band, time));
-      context.filter = "none";
+      const glow = context.createRadialGradient(width * 0.5, height * 0.52, 0, width * 0.5, height * 0.52, width * 0.62);
+      glow.addColorStop(0, "rgba(59,130,246,0.22)");
+      glow.addColorStop(0.48, "rgba(168,85,247,0.13)");
+      glow.addColorStop(1, "rgba(3,4,10,0)");
+      context.fillStyle = glow;
+      context.fillRect(0, 0, width, height);
 
-      context.globalAlpha = 0.22;
+      context.globalCompositeOperation = "lighter";
+
+      context.globalAlpha = 0.5;
+      context.filter = "blur(14px)";
       bands.forEach((band) =>
         drawBand(
           {
             ...band,
-            offset: band.offset + 18,
-            thickness: Math.max(4, band.thickness * 0.38),
+            thickness: band.thickness * 2.8,
           },
-          time + 1.6,
+          time,
         ),
       );
+
+      context.globalAlpha = 0.95;
+      context.filter = "none";
+      bands.forEach((band) => drawBand(band, time));
+
+      context.globalCompositeOperation = "source-over";
       context.globalAlpha = 1;
 
       animationFrame = window.requestAnimationFrame(draw);

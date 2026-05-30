@@ -36,15 +36,15 @@ export default function Home() {
       <main className="h-screen flex-1 snap-y snap-proximity overflow-y-auto scroll-smooth">
         <section className="relative flex min-h-screen snap-start items-center overflow-hidden">
           <LinesGradientShader />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,rgba(255,255,255,0.16),rgba(255,255,255,0.64)_54%,rgba(255,255,255,0.92)_100%)]" />
-          <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-bg to-transparent" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_48%,rgba(3,4,10,0.08),rgba(3,4,10,0.32)_54%,rgba(3,4,10,0.72)_100%)]" />
+          <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-bg via-bg/35 to-transparent" />
 
           <div className="relative mx-auto flex w-full max-w-7xl items-center justify-center px-5 py-32 text-center sm:px-8 lg:py-36">
             <div className="mx-auto">
               <ScrollRevealHeading
                 as="h1"
                 revealOnMount
-                className="mx-auto max-w-4xl text-4xl font-semibold leading-[0.98] text-fg sm:text-6xl lg:text-7xl"
+                className="mx-auto max-w-4xl text-4xl font-semibold leading-[0.98] text-white sm:text-6xl lg:text-7xl"
               >
                 For real-world aerial operations.
               </ScrollRevealHeading>
