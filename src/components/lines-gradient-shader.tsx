@@ -144,6 +144,7 @@ varying vec3 v_color;
 
 void main() {
   float time = u_time * u_global.noiseSpeed;
+
   vec2 noiseCoord = resolution * uvNorm * u_global.noiseFreq;
 
   float tilt = resolution.y / 2.0 * uvNorm.y;
@@ -191,6 +192,12 @@ void main() {
 }
 `;
 
+// Bold Stripe-style gradient palette: base + 3 wave layers.
+const baseColor = "#1e2a8a";
+const waveColors = ["#5b2ee0", "#0ea5e9", "#ff5d8f"];
+
+const seed = 5;
+
 export function LinesGradientShader() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -211,6 +218,8 @@ export function LinesGradientShader() {
     let running = true;
     let animationFrame = 0;
     let vertexCount = 0;
+    let elapsed = 1253106;
+    let lastTime = performance.now();
 
     const compileShader = (type: number, source: string) => {
       const shader = gl.createShader(type);
@@ -308,9 +317,11 @@ export function LinesGradientShader() {
       0, 0, 0, 1,
     ]);
 
+    // Flat plane: vertices live at y = 0, the shader's `tilt` term spreads
+    // them vertically so the gradient flows diagonally like Stripe.
     const uploadMesh = () => {
-      const rows = 80;
-      const cols = 80;
+      const cols = 96;
+      const rows = 96;
       const positions: number[] = [];
       const uvs: number[] = [];
       const uvNorms: number[] = [];
@@ -319,7 +330,7 @@ export function LinesGradientShader() {
         for (let col = 0; col < cols; col += 1) {
           const u = col / (cols - 1);
           const v = row / (rows - 1);
-          positions.push((u - 0.5) * width, (v - 0.5) * height, 0);
+          positions.push((u - 0.5) * width, 0, 0);
           uvs.push(u, v);
           uvNorms.push(u * 2 - 1, v * 2 - 1);
         }
@@ -375,50 +386,50 @@ export function LinesGradientShader() {
       canvas.width = Math.floor(width * dpr);
       canvas.height = Math.floor(height * dpr);
       gl.viewport(0, 0, canvas.width, canvas.height);
-      gl.uniform2f(uniforms.resolution, canvas.width, canvas.height);
+      gl.uniform2f(uniforms.resolution, width, height);
       gl.uniformMatrix4fv(uniforms.projectionMatrix, false, ortho(-width / 2, width / 2, -height / 2, height / 2));
       gl.uniformMatrix4fv(uniforms.modelViewMatrix, false, identity);
       uploadMesh();
     };
 
-    gl.uniform1f(uniforms.shadowPower, 6);
-    gl.uniform1f(uniforms.darkenTop, 0);
+    // Stripe Gradient.js defaults.
+    gl.uniform1f(uniforms.shadowPower, 5);
+    gl.uniform1f(uniforms.darkenTop, 1);
     gl.uniform4f(uniforms.activeColors, 1, 1, 1, 1);
-    gl.uniform2f(uniforms.globalNoiseFreq, 0.00018, 0.00024);
-    gl.uniform1f(uniforms.globalNoiseSpeed, 0.62);
-    gl.uniform1f(uniforms.deformIncline, -0.18);
-    gl.uniform1f(uniforms.deformOffsetTop, -0.72);
-    gl.uniform1f(uniforms.deformOffsetBottom, 0.1);
-    gl.uniform2f(uniforms.deformNoiseFreq, 2.2, 2.8);
-    gl.uniform1f(uniforms.deformNoiseAmp, 330);
-    gl.uniform1f(uniforms.deformNoiseSpeed, 6.5);
-    gl.uniform1f(uniforms.deformNoiseFlow, 3.1);
-    gl.uniform1f(uniforms.deformNoiseSeed, 5.0);
-    gl.uniform3fv(uniforms.baseColor, hexToRgb("#3b82f6"));
+    gl.uniform2f(uniforms.globalNoiseFreq, 0.00014, 0.00029);
+    gl.uniform1f(uniforms.globalNoiseSpeed, 0.000005);
+    gl.uniform1f(uniforms.deformIncline, Math.sin(0.25) / Math.cos(0.25));
+    gl.uniform1f(uniforms.deformOffsetTop, -0.5);
+    gl.uniform1f(uniforms.deformOffsetBottom, -0.5);
+    gl.uniform2f(uniforms.deformNoiseFreq, 3, 4);
+    gl.uniform1f(uniforms.deformNoiseAmp, 320);
+    gl.uniform1f(uniforms.deformNoiseSpeed, 10);
+    gl.uniform1f(uniforms.deformNoiseFlow, 3);
+    gl.uniform1f(uniforms.deformNoiseSeed, seed);
+    gl.uniform3fv(uniforms.baseColor, hexToRgb(baseColor));
 
-    const layers = [
-      { color: "#8b5cf6", freq: [0.0014, 0.0022], speed: 12.0, flow: 9.0, seed: 1.0, floor: 0.18, ceil: 0.62 },
-      { color: "#06b6d4", freq: [0.0018, 0.0012], speed: 9.0, flow: 7.0, seed: 8.0, floor: 0.15, ceil: 0.58 },
-      { color: "#f97316", freq: [0.0012, 0.0017], speed: 7.5, flow: 6.0, seed: 19.0, floor: 0.2, ceil: 0.72 },
-    ];
-
-    layers.forEach((layer, index) => {
-      const uniformsForLayer = layerUniforms[index];
-      gl.uniform3fv(uniformsForLayer.color, hexToRgb(layer.color));
-      gl.uniform2f(uniformsForLayer.noiseFreq, layer.freq[0], layer.freq[1]);
-      gl.uniform1f(uniformsForLayer.noiseSpeed, layer.speed);
-      gl.uniform1f(uniformsForLayer.noiseFlow, layer.flow);
-      gl.uniform1f(uniformsForLayer.noiseSeed, layer.seed);
-      gl.uniform1f(uniformsForLayer.noiseFloor, layer.floor);
-      gl.uniform1f(uniformsForLayer.noiseCeil, layer.ceil);
+    waveColors.forEach((color, index) => {
+      const n = index + 1;
+      const layer = layerUniforms[index];
+      gl.uniform3fv(layer.color, hexToRgb(color));
+      gl.uniform2f(layer.noiseFreq, 2 + n / waveColors.length, 3 + n / waveColors.length);
+      gl.uniform1f(layer.noiseSpeed, 11 + 0.3 * n);
+      gl.uniform1f(layer.noiseFlow, 6.5 + 0.3 * n);
+      gl.uniform1f(layer.noiseSeed, seed + 10 * n);
+      gl.uniform1f(layer.noiseFloor, 0.1);
+      gl.uniform1f(layer.noiseCeil, 0.63 + 0.07 * n);
     });
 
     const draw = () => {
       if (!running) return;
 
-      gl.clearColor(0.02, 0.02, 0.04, 1);
+      const now = performance.now();
+      elapsed += Math.min(now - lastTime, 1000 / 15);
+      lastTime = now;
+
+      gl.uniform1f(uniforms.time, elapsed);
+      gl.clearColor(0.06, 0.07, 0.16, 1);
       gl.clear(gl.COLOR_BUFFER_BIT);
-      gl.uniform1f(uniforms.time, performance.now() / 1000);
       gl.drawArrays(gl.TRIANGLES, 0, vertexCount);
 
       animationFrame = window.requestAnimationFrame(draw);
@@ -427,6 +438,7 @@ export function LinesGradientShader() {
     const handleVisibilityChange = () => {
       running = document.visibilityState === "visible";
       if (running) {
+        lastTime = performance.now();
         animationFrame = window.requestAnimationFrame(draw);
       } else {
         window.cancelAnimationFrame(animationFrame);
