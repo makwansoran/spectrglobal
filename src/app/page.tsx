@@ -108,51 +108,6 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="brand-font flex min-h-screen snap-start items-center border-b border-border bg-bg">
-          <div className="mx-auto w-full max-w-7xl px-5 py-28 sm:px-8 lg:py-32">
-            <div>
-              <ScrollRevealHeading
-                as="h2"
-                className="text-4xl font-semibold leading-none text-fg sm:text-6xl"
-              >
-                Use Cases
-              </ScrollRevealHeading>
-            </div>
-
-            <div className="mt-10 grid gap-px bg-border sm:grid-cols-3">
-              {capabilityBoxes.map((capability) => (
-                <article
-                  key={capability.name}
-                  className={`group relative h-80 overflow-hidden p-6 transition-[background-color,box-shadow,transform] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:z-10 hover:-translate-y-2 hover:scale-[1.045] hover:shadow-[0_28px_70px_rgba(0,0,0,0.18)] ${
-                    capability.image ? "bg-black" : "bg-bg hover:bg-surface"
-                  }`}
-                >
-                  {capability.image ? (
-                    <>
-                      <Image
-                        src={capability.image}
-                        alt=""
-                        fill
-                        quality={100}
-                        sizes="(max-width: 640px) 100vw, 33vw"
-                        className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-black/40 transition-colors duration-500 group-hover:bg-black/25" aria-hidden="true" />
-                    </>
-                  ) : null}
-                  <h3
-                    className={`relative z-10 text-2xl font-semibold tracking-[-0.045em] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-2 sm:text-3xl ${
-                      capability.image ? "text-white" : "text-fg"
-                    }`}
-                  >
-                    {capability.name}
-                  </h3>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
         <footer className="brand-font flex min-h-screen snap-start flex-col justify-end border-t border-border bg-bg text-fg">
           <div className="mx-auto w-full max-w-7xl px-5 py-16 sm:px-8 lg:py-20">
 
