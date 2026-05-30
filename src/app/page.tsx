@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Nav } from "@/components/nav";
+import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
 
 const productShowcase = [
   {
@@ -50,9 +51,12 @@ export default function Home() {
 
           <div className="relative mx-auto flex w-full max-w-7xl items-center justify-center px-5 py-32 text-center sm:px-8 lg:py-36">
             <div className="mx-auto">
-              <h1 className="mx-auto max-w-4xl text-4xl font-semibold leading-[0.98] tracking-[-0.055em] text-fg sm:text-6xl lg:text-7xl">
+              <ScrollRevealHeading
+                as="h1"
+                className="mx-auto max-w-4xl text-4xl font-semibold leading-[0.98] text-fg sm:text-6xl lg:text-7xl"
+              >
                 For real-world aerial operations.
-              </h1>
+              </ScrollRevealHeading>
             </div>
           </div>
         </section>
@@ -60,21 +64,28 @@ export default function Home() {
         <section className="brand-font flex min-h-screen snap-start items-center border-b border-border bg-bg">
           <div className="mx-auto w-full max-w-7xl px-5 py-28 sm:px-8 lg:py-32">
             <div>
-              <h2 className="text-reveal text-4xl font-semibold leading-none tracking-[-0.055em] text-fg sm:text-6xl">
+              <ScrollRevealHeading
+                as="h2"
+                className="text-4xl font-semibold leading-none text-fg sm:text-6xl"
+              >
                 Development
-              </h2>
+              </ScrollRevealHeading>
             </div>
 
             <div className="mt-10 divide-y divide-border border-y border-border">
-              {productShowcase.map((product) => (
+              {productShowcase.map((product, index) => (
                 <article
                   key={product.name}
                   tabIndex={0}
                   className="product-row group grid cursor-default gap-5 px-5 py-7 outline-none sm:grid-cols-[150px_72px_1fr] sm:items-start sm:px-6"
                 >
-                  <h3 className="text-2xl font-semibold tracking-[-0.045em] text-fg transition-transform duration-300 group-hover:translate-x-2 group-focus:translate-x-2 sm:text-3xl">
+                  <ScrollRevealHeading
+                    as="h3"
+                    delay={120 + index * 140}
+                    className="text-2xl font-semibold text-fg transition-transform duration-300 group-hover:translate-x-2 group-focus:translate-x-2 sm:text-3xl"
+                  >
                     {product.name}
-                  </h3>
+                  </ScrollRevealHeading>
                   <p className="font-mono text-sm text-muted transition-colors group-hover:text-fg group-focus:text-fg">
                     {product.index}
                   </p>
@@ -99,9 +110,12 @@ export default function Home() {
         <section className="brand-font flex min-h-screen snap-start items-center border-b border-border bg-bg">
           <div className="mx-auto w-full max-w-7xl px-5 py-28 sm:px-8 lg:py-32">
             <div>
-              <h2 className="text-reveal text-4xl font-semibold leading-none tracking-[-0.055em] text-fg sm:text-6xl">
+              <ScrollRevealHeading
+                as="h2"
+                className="text-4xl font-semibold leading-none text-fg sm:text-6xl"
+              >
                 Use Cases
-              </h2>
+              </ScrollRevealHeading>
             </div>
 
             <div className="mt-10 grid gap-px bg-border sm:grid-cols-3">
