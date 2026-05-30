@@ -119,7 +119,7 @@ export default function Home() {
           </div>
         </section>
 
-        <footer className="brand-font flex min-h-screen snap-start flex-col justify-end border-t border-border bg-bg text-fg">
+        <footer className="brand-font flex snap-start flex-col justify-end border-t border-border bg-bg text-fg">
           <div className="mx-auto w-full max-w-7xl px-5 py-16 sm:px-8 lg:py-20">
 
             {/* Top: logo + tagline / nav columns */}
