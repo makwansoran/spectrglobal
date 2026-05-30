@@ -63,10 +63,7 @@ function FloatingPaths({ position }: { position: number }) {
 
 export function BackgroundPaths() {
   return (
-    <div className="absolute inset-0 overflow-hidden bg-[linear-gradient(135deg,#ffffff_0%,#f7f5ff_20%,#e8fbff_42%,#f4ffe8_62%,#fff3d6_78%,#fff0fb_100%)]">
-      <div className="absolute -left-1/4 top-0 h-2/3 w-2/3 rounded-full bg-[#635bff]/25 blur-3xl" />
-      <div className="absolute right-0 top-1/4 h-2/3 w-2/3 rounded-full bg-[#00d4ff]/20 blur-3xl" />
-      <div className="absolute bottom-0 left-1/4 h-1/2 w-2/3 rounded-full bg-[#ffb000]/20 blur-3xl" />
+    <div className="absolute inset-0 overflow-hidden bg-white">
       <FloatingPaths position={1} />
       <FloatingPaths position={-1} />
     </div>
