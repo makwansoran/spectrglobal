@@ -34,6 +34,17 @@ export default function ContactPage() {
                 </Field>
               </div>
 
+              <Field label="Product">
+                <select name="product" required defaultValue="">
+                  <option value="" disabled>
+                    Select a product
+                  </option>
+                  <option value="attack">ATTACK</option>
+                  <option value="recon">RECON</option>
+                  <option value="jammer">JAMMER</option>
+                </select>
+              </Field>
+
               <Field label="Message">
                 <textarea name="message" required rows={6} />
               </Field>
@@ -57,7 +68,7 @@ function Field({ label, children }: { label: string; children: ReactNode }) {
   return (
     <label className="block">
       <span className="label block">{label}</span>
-      <div className="mt-3 [&_input]:w-full [&_input]:border [&_input]:border-border [&_input]:bg-bg [&_input]:px-4 [&_input]:py-3 [&_input]:text-base [&_input]:outline-none [&_input]:focus:border-fg [&_textarea]:w-full [&_textarea]:resize-none [&_textarea]:border [&_textarea]:border-border [&_textarea]:bg-bg [&_textarea]:px-4 [&_textarea]:py-3 [&_textarea]:text-base [&_textarea]:outline-none [&_textarea]:focus:border-fg">
+      <div className="mt-3 [&_input]:w-full [&_input]:border [&_input]:border-border [&_input]:bg-bg [&_input]:px-4 [&_input]:py-3 [&_input]:text-base [&_input]:outline-none [&_input]:focus:border-fg [&_select]:w-full [&_select]:appearance-none [&_select]:border [&_select]:border-border [&_select]:bg-bg [&_select]:px-4 [&_select]:py-3 [&_select]:text-base [&_select]:outline-none [&_select]:focus:border-fg [&_textarea]:w-full [&_textarea]:resize-none [&_textarea]:border [&_textarea]:border-border [&_textarea]:bg-bg [&_textarea]:px-4 [&_textarea]:py-3 [&_textarea]:text-base [&_textarea]:outline-none [&_textarea]:focus:border-fg">
         {children}
       </div>
     </label>
