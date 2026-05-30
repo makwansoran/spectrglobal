@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
-import { newsStories } from "@/lib/news-stories";
+import { latestNewsStories } from "@/lib/news-stories";
 
 export const metadata: Metadata = { title: "Newsroom" };
 
@@ -79,7 +79,7 @@ export default function NewsroomPage() {
             </div>
 
             <div className="divide-y divide-border">
-              {newsStories.map((story) => (
+              {latestNewsStories.map((story) => (
                 <article
                   key={story.title}
                   className="group grid gap-8 py-10 lg:grid-cols-[240px_1fr_80px] lg:items-start"

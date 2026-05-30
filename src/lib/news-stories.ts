@@ -28,3 +28,5 @@ export const newsStories = [
     meta: "February 2026",
   },
 ];
+
+export const latestNewsStories = newsStories.slice(0, 3);

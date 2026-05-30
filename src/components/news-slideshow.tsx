@@ -2,26 +2,26 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { newsStories } from "@/lib/news-stories";
+import { latestNewsStories } from "@/lib/news-stories";
 
 export function NewsSlideshow() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const activeStory = newsStories[activeIndex];
+  const activeStory = latestNewsStories[activeIndex];
 
   useEffect(() => {
     const intervalId = window.setInterval(() => {
-      setActiveIndex((index) => (index + 1) % newsStories.length);
+      setActiveIndex((index) => (index + 1) % latestNewsStories.length);
     }, 6500);
 
     return () => window.clearInterval(intervalId);
   }, []);
 
   const goToPrevious = () => {
-    setActiveIndex((index) => (index - 1 + newsStories.length) % newsStories.length);
+    setActiveIndex((index) => (index - 1 + latestNewsStories.length) % latestNewsStories.length);
   };
 
   const goToNext = () => {
-    setActiveIndex((index) => (index + 1) % newsStories.length);
+    setActiveIndex((index) => (index + 1) % latestNewsStories.length);
   };
 
   return (
@@ -30,7 +30,7 @@ export function NewsSlideshow() {
         <div className="flex h-full flex-col justify-between gap-12">
           <div>
             <div className="flex flex-wrap items-center gap-4 font-mono text-xs uppercase tracking-[0.18em] text-white/45">
-              <span>{String(activeIndex + 1).padStart(2, "0")} / {String(newsStories.length).padStart(2, "0")}</span>
+              <span>{String(activeIndex + 1).padStart(2, "0")} / {String(latestNewsStories.length).padStart(2, "0")}</span>
               <span>{activeStory.meta}</span>
             </div>
             <h3 className="mt-10 max-w-4xl text-3xl font-semibold leading-[1.02] tracking-[-0.06em] sm:text-5xl lg:text-6xl">
@@ -72,7 +72,7 @@ export function NewsSlideshow() {
       </article>
 
       <div className="grid gap-2">
-        {newsStories.map((story, index) => {
+        {latestNewsStories.map((story, index) => {
           const selected = index === activeIndex;
 
           return (
