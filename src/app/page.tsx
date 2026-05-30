@@ -86,17 +86,13 @@ export default function Home() {
             </div>
 
             <div className="mt-10 divide-y divide-border border-y border-border">
-              {productShowcase.map((product, index) => (
+              {productShowcase.map((product) => (
                 <article
                   key={product.name}
                   tabIndex={0}
-                  className="product-row group grid cursor-pointer gap-5 px-5 py-7 outline-none sm:grid-cols-[150px_72px_1fr] sm:items-start sm:px-6"
+                  className="product-row group grid cursor-pointer gap-5 px-5 py-7 outline-none sm:grid-cols-[180px_72px_1fr] sm:items-start sm:px-6"
                 >
-                  <ScrollRevealHeading
-                    as="h3"
-                    delay={120 + index * 140}
-                    className="text-2xl font-semibold text-fg transition-transform duration-300 group-hover:translate-x-2 group-focus:translate-x-2 sm:text-3xl"
-                  >
+                  <h3 className="text-2xl font-semibold text-fg transition-transform duration-300 group-hover:translate-x-2 group-focus:translate-x-2 sm:text-3xl">
                     <Link
                       href={product.href}
                       className="inline-flex items-center gap-3 underline-offset-8 transition-[color,gap] duration-300 hover:gap-5 hover:text-muted hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fg"
@@ -106,7 +102,7 @@ export default function Home() {
                         →
                       </span>
                     </Link>
-                  </ScrollRevealHeading>
+                  </h3>
                   <p className="font-mono text-sm text-muted transition-colors group-hover:text-fg group-focus:text-fg">
                     {product.index}
                   </p>
