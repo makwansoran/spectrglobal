@@ -27,14 +27,31 @@ function FloatingPaths({ position }: { position: number }) {
       >
         <title>Background Paths</title>
         <defs>
-          <linearGradient id={GRADIENT_ID} x1="0%" y1="0%" x2="100%" y2="100%">
+          <motion.linearGradient
+            id={GRADIENT_ID}
+            x1="-25%"
+            y1="0%"
+            x2="115%"
+            y2="100%"
+            animate={{
+              x1: ["-25%", "12%", "-25%"],
+              y1: ["0%", "30%", "0%"],
+              x2: ["115%", "135%", "115%"],
+              y2: ["100%", "70%", "100%"],
+            }}
+            transition={{
+              duration: 26,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
             <stop offset="0%" stopColor="#635bff" />
-            <stop offset="22%" stopColor="#7a5cff" />
-            <stop offset="43%" stopColor="#00d4ff" />
-            <stop offset="62%" stopColor="#00d924" />
-            <stop offset="78%" stopColor="#ffb000" />
-            <stop offset="100%" stopColor="#ff4fd8" />
-          </linearGradient>
+            <stop offset="18%" stopColor="#a960ee" />
+            <stop offset="36%" stopColor="#ff5fcb" />
+            <stop offset="56%" stopColor="#00d4ff" />
+            <stop offset="76%" stopColor="#ffd166" />
+            <stop offset="100%" stopColor="#ff8a00" />
+          </motion.linearGradient>
         </defs>
         {paths.map((path) => (
           <motion.path
