@@ -24,7 +24,7 @@ const productShowcase = [
 ];
 
 const capabilityBoxes = [
-  { name: "Operations", image: "/operations-hq.jpg" },
+  { name: "Operations", image: "/covertops.png" },
   { name: "Intelligence", image: "/intelligence-hq.jpg" },
   { name: "Aerospace", image: "/aerospace-hq.jpg" },
 ];
