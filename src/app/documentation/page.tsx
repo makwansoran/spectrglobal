@@ -93,13 +93,10 @@ export default function DocumentationPage() {
       <Nav />
       <main className="flex-1">
         <section className="brand-font bg-black px-5 pb-20 pt-36 text-white sm:px-8 lg:pb-28 lg:pt-44">
-          <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
+          <div className="mx-auto max-w-7xl">
             <h1 className="max-w-5xl text-6xl font-semibold leading-[0.9] tracking-[-0.075em] sm:text-8xl lg:text-[9.5rem]">
               Documentation
             </h1>
-            <p className="max-w-lg text-base leading-8 text-white/62 sm:text-lg">
-              Product references, operator guidance, and deployment planning resources for Spectr systems.
-            </p>
           </div>
         </section>
 
