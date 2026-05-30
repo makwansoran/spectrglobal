@@ -120,8 +120,8 @@ textarea {
 .reveal-char {
   display: inline-block;
   opacity: 0;
-  transition: opacity 180ms linear;
-  transition-delay: calc(var(--char-index) * 24ms);
+  transition: opacity 55ms steps(1, end);
+  transition-delay: calc(var(--char-index) * 12ms);
 }
 
 .scroll-reveal.is-visible .reveal-char {
