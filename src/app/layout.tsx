@@ -19,9 +19,9 @@ export const metadata: Metadata = {
   title: { default: "Spectr", template: "%s — Spectr" },
   description: "Mission-ready UAV, drone, and jammer products for field operators.",
   icons: {
-    icon: "/inzure-logo.png",
-    shortcut: "/inzure-logo.png",
-    apple: "/inzure-logo.png",
+    icon: "/inzure-logo.svg",
+    shortcut: "/inzure-logo.svg",
+    apple: "/inzure-logo.svg",
   },
 };
 

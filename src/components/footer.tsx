@@ -9,7 +9,7 @@ export function Footer() {
           <div>
             <Link href="/" className="inline-flex items-center gap-3 hover:opacity-70">
               <Image
-                src="/inzure-logo.png"
+                src="/inzure-logo.svg"
                 alt="Spectr"
                 width={28}
                 height={28}

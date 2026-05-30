@@ -45,7 +45,7 @@ export function Nav() {
             onClick={() => setOpen(false)}
           >
             <Image
-              src="/inzure-logo.png"
+              src="/inzure-logo.svg"
               alt="Spectr"
               width={32}
               height={32}
