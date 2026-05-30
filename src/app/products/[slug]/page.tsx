@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
 import { ObjectVisual } from "@/components/object-visual";
 import { getObject, objects } from "@/lib/objects";
@@ -80,6 +81,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           <SpecList title="Specifications" items={product.specifications} />
           <SpecList title="Recommended Equipment" items={product.equipment} />
         </section>
+        <Footer />
       </main>
     </>
   );

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
 
 export const metadata: Metadata = { title: "Contact" };
@@ -46,6 +47,7 @@ export default function ContactPage() {
             </form>
           </div>
         </section>
+        <Footer />
       </main>
     </>
   );

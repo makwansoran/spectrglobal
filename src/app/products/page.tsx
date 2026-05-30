@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
 import { ObjectVisual } from "@/components/object-visual";
 import { objects } from "@/lib/objects";
@@ -64,6 +65,7 @@ export default function ProductsPage() {
             </article>
           ))}
         </section>
+        <Footer />
       </main>
     </>
   );

@@ -28,6 +28,7 @@ export function ScrollRevealHeading({
     if (!scrollRoot) return;
 
     let revealTimer: number | undefined;
+    let settleTimer: number | undefined;
     let hasUserScrolled = revealOnMount;
 
     const revealIfInView = () => {
@@ -41,15 +42,32 @@ export function ScrollRevealHeading({
       if (elementRect.top <= triggerTop && elementRect.bottom >= triggerBottom) {
         revealTimer = window.setTimeout(() => setVisible(true), delay);
         scrollRoot.removeEventListener("scroll", onScroll);
+        window.removeEventListener("wheel", onUserIntent);
+        window.removeEventListener("touchmove", onUserIntent);
+        window.removeEventListener("keydown", onUserIntent);
       }
+    };
+
+    const scheduleRevealChecks = () => {
+      window.requestAnimationFrame(revealIfInView);
+      window.clearTimeout(settleTimer);
+      settleTimer = window.setTimeout(revealIfInView, 180);
+    };
+
+    const onUserIntent = () => {
+      hasUserScrolled = true;
+      scheduleRevealChecks();
     };
 
     const onScroll = () => {
       hasUserScrolled = true;
-      revealIfInView();
+      scheduleRevealChecks();
     };
 
     scrollRoot.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("wheel", onUserIntent, { passive: true });
+    window.addEventListener("touchmove", onUserIntent, { passive: true });
+    window.addEventListener("keydown", onUserIntent);
 
     if (revealOnMount) {
       window.requestAnimationFrame(revealIfInView);
@@ -57,7 +75,11 @@ export function ScrollRevealHeading({
 
     return () => {
       window.clearTimeout(revealTimer);
+      window.clearTimeout(settleTimer);
       scrollRoot.removeEventListener("scroll", onScroll);
+      window.removeEventListener("wheel", onUserIntent);
+      window.removeEventListener("touchmove", onUserIntent);
+      window.removeEventListener("keydown", onUserIntent);
     };
   }, [delay, revealOnMount, visible]);
 
