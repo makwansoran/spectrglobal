@@ -62,6 +62,17 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="brand-font flex snap-start items-center border-b border-border bg-bg py-24 sm:py-32">
+          <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
+            <ScrollRevealHeading
+              as="p"
+              className="max-w-4xl text-2xl font-medium leading-[1.25] tracking-[-0.03em] text-fg sm:text-3xl lg:text-4xl"
+            >
+              Our hardware powers real-time decisions in critical operations across the West — from the factory floor to the front lines.
+            </ScrollRevealHeading>
+          </div>
+        </section>
+
         <section className="brand-font flex snap-start items-center border-b border-border bg-bg">
           <div className="mx-auto w-full max-w-7xl px-5 py-28 sm:px-8 lg:py-32">
             <div>
