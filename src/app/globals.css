@@ -124,6 +124,11 @@ textarea {
   transition-delay: calc(var(--char-index) * 12ms);
 }
 
+.reveal-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
 .scroll-reveal.is-visible .reveal-char {
   opacity: 1;
 }

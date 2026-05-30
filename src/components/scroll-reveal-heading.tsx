@@ -123,17 +123,27 @@ function renderLetterReveal(
   indexRef: { current: number },
 ): ReactNode {
   if (typeof node === "string") {
-    return node.split("").map((char) => {
-      const index = indexRef.current;
-      indexRef.current += 1;
+    return node.split(/(\s+)/).map((token, tokenIndex) => {
+      if (/^\s+$/.test(token)) {
+        return <span key={`space-${tokenIndex}`}> </span>;
+      }
 
       return (
-        <span
-          key={`${char}-${index}`}
-          className="reveal-char"
-          style={{ "--char-index": index } as CSSProperties}
-        >
-          {char === " " ? "\u00A0" : char}
+        <span key={`word-${tokenIndex}`} className="reveal-word">
+          {token.split("").map((char) => {
+            const index = indexRef.current;
+            indexRef.current += 1;
+
+            return (
+              <span
+                key={`${char}-${index}`}
+                className="reveal-char"
+                style={{ "--char-index": index } as CSSProperties}
+              >
+                {char}
+              </span>
+            );
+          })}
         </span>
       );
     });
