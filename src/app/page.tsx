@@ -185,15 +185,6 @@ export default function Home() {
                 </div>
 
                 <div>
-                  <h3 className="font-mono text-xs uppercase tracking-[0.16em] text-muted">Use Cases</h3>
-                  <ul className="mt-6 space-y-4 text-sm text-muted">
-                    <li>Operations</li>
-                    <li>Intelligence</li>
-                    <li>Aerospace</li>
-                  </ul>
-                </div>
-
-                <div>
                   <h3 className="font-mono text-xs uppercase tracking-[0.16em] text-muted">Company</h3>
                   <ul className="mt-6 space-y-4 text-sm">
                     <li><Link href="/contact" className="transition-opacity hover:opacity-50">Get Started</Link></li>
