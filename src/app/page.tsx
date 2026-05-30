@@ -9,9 +9,9 @@ const productShowcase = [
     explanation: "A fixed-wing platform for teams that need range, payload flexibility, and reliable deployment in the field.",
   },
   {
-    name: "UAV",
+    name: "RECON",
     index: "/0.2",
-    summary: "Mission-configurable unmanned aerial systems",
+    summary: "Mission-configurable reconnaissance systems",
     explanation: "Built around payload, range, and operator workflow so each system fits the environment it serves.",
   },
   {

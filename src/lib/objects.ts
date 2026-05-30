@@ -70,10 +70,10 @@ export const objects: DroneProduct[] = [
   },
   {
     slug: "spectr-uav",
-    name: "UAV",
-    tagline: "Configurable unmanned aerial vehicle for observation and field operations.",
+    name: "RECON",
+    tagline: "Configurable reconnaissance vehicle for observation and field operations.",
     description:
-      "UAV is a mission-configurable unmanned aircraft platform for teams that need persistent aerial visibility, adaptable payload options, and dependable field handling.",
+      "RECON is a mission-configurable unmanned aircraft platform for teams that need persistent aerial visibility, adaptable payload options, and dependable field handling.",
     category: "UAV",
     use: "UAV",
     year: 2026,
