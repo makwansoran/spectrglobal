@@ -19,6 +19,7 @@ export function ScrollRevealHeading({
 }: ScrollRevealHeadingProps) {
   const ref = useRef<HTMLElement>(null);
   const [visible, setVisible] = useState(false);
+  const visibleRef = useRef(false);
 
   useEffect(() => {
     const element = ref.current;
@@ -28,19 +29,22 @@ export function ScrollRevealHeading({
     if (!scrollRoot) return;
 
     let revealTimer: number | undefined;
-    let settleTimer: number | undefined;
+    let settleTimers: number[] = [];
     let hasUserScrolled = revealOnMount;
 
     const revealIfInView = () => {
-      if (!hasUserScrolled || visible) return;
+      if (!hasUserScrolled || visibleRef.current) return;
 
       const elementRect = element.getBoundingClientRect();
       const rootRect = scrollRoot.getBoundingClientRect();
-      const triggerTop = rootRect.top + rootRect.height * 0.72;
-      const triggerBottom = rootRect.top + rootRect.height * 0.12;
+      const triggerTop = rootRect.bottom - 32;
+      const triggerBottom = rootRect.top + 32;
 
       if (elementRect.top <= triggerTop && elementRect.bottom >= triggerBottom) {
-        revealTimer = window.setTimeout(() => setVisible(true), delay);
+        revealTimer = window.setTimeout(() => {
+          visibleRef.current = true;
+          setVisible(true);
+        }, delay);
         scrollRoot.removeEventListener("scroll", onScroll);
         window.removeEventListener("wheel", onUserIntent);
         window.removeEventListener("touchmove", onUserIntent);
@@ -50,8 +54,12 @@ export function ScrollRevealHeading({
 
     const scheduleRevealChecks = () => {
       window.requestAnimationFrame(revealIfInView);
-      window.clearTimeout(settleTimer);
-      settleTimer = window.setTimeout(revealIfInView, 180);
+      settleTimers.forEach((timer) => window.clearTimeout(timer));
+      settleTimers = [
+        window.setTimeout(revealIfInView, 120),
+        window.setTimeout(revealIfInView, 360),
+        window.setTimeout(revealIfInView, 700),
+      ];
     };
 
     const onUserIntent = () => {
@@ -75,13 +83,13 @@ export function ScrollRevealHeading({
 
     return () => {
       window.clearTimeout(revealTimer);
-      window.clearTimeout(settleTimer);
+      settleTimers.forEach((timer) => window.clearTimeout(timer));
       scrollRoot.removeEventListener("scroll", onScroll);
       window.removeEventListener("wheel", onUserIntent);
       window.removeEventListener("touchmove", onUserIntent);
       window.removeEventListener("keydown", onUserIntent);
     };
-  }, [delay, revealOnMount, visible]);
+  }, [delay, revealOnMount]);
 
   const Component = Tag as ElementType;
 
