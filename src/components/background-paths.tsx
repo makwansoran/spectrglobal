@@ -5,16 +5,16 @@ import { motion } from "framer-motion";
 const GRADIENT_ID = "spectr-paths-gradient";
 
 function FloatingPaths({ position }: { position: number }) {
-  const paths = Array.from({ length: 88 }, (_, i) => ({
+  const paths = Array.from({ length: 116 }, (_, i) => ({
     id: i,
-    d: `M-${420 - i * 2.7 * position} -${230 + i * 3.2}C-${
-      390 - i * 2.7 * position
-    } -${210 + i * 3.2} -${330 - i * 2.7 * position} ${170 - i * 3.2} ${
-      138 - i * 2.7 * position
-    } ${318 - i * 3.2}C${612 - i * 2.7 * position} ${456 - i * 3.2} ${
-      742 - i * 2.7 * position
-    } ${828 - i * 3.2} ${742 - i * 2.7 * position} ${828 - i * 3.2}`,
-    width: 0.16 + (i % 10) * 0.018,
+    d: `M-${420 - i * 2.35 * position} -${230 + i * 2.7}C-${
+      390 - i * 2.35 * position
+    } -${210 + i * 2.7} -${330 - i * 2.35 * position} ${170 - i * 2.7} ${
+      138 - i * 2.35 * position
+    } ${318 - i * 2.7}C${612 - i * 2.35 * position} ${456 - i * 2.7} ${
+      742 - i * 2.35 * position
+    } ${828 - i * 2.7} ${742 - i * 2.35 * position} ${828 - i * 2.7}`,
+    width: 0.24 + (i % 10) * 0.024,
   }));
 
   return (
