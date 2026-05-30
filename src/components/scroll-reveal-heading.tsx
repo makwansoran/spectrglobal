@@ -22,32 +22,41 @@ export function ScrollRevealHeading({
     const element = ref.current;
     if (!element) return;
 
-    const scrollRoot = document.querySelector("main");
+    let revealTimer: number | undefined;
+    let setupTimer: number | undefined;
 
-    let timer: number | undefined;
+    // Defer observer setup by two frames so the snap-scroll layout
+    // is fully settled before we start observing — prevents all
+    // headings from firing at once during hydration.
+    setupTimer = window.setTimeout(() => {
+      const scrollRoot = document.querySelector("main") as HTMLElement | null;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) return;
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry.isIntersecting) return;
+          revealTimer = window.setTimeout(() => setVisible(true), delay);
+          observer.disconnect();
+        },
+        {
+          root: scrollRoot,
+          // Only trigger once the element is at least 20 % inside the
+          // scroll viewport and not within the top 15 % guard band.
+          threshold: 0.2,
+          rootMargin: "-15% 0px -5% 0px",
+        },
+      );
 
-        timer = window.setTimeout(() => {
-          setVisible(true);
-        }, delay);
+      observer.observe(element);
 
-        observer.disconnect();
-      },
-      {
-        root: scrollRoot,
-        threshold: 0.4,
-        rootMargin: "-8% 0px",
-      },
-    );
-
-    observer.observe(element);
+      // Store disconnect on element for cleanup
+      (element as HTMLElement & { _observer?: IntersectionObserver })._observer = observer;
+    }, 120);
 
     return () => {
-      observer.disconnect();
-      if (timer) window.clearTimeout(timer);
+      window.clearTimeout(setupTimer);
+      window.clearTimeout(revealTimer);
+      const obs = (element as HTMLElement & { _observer?: IntersectionObserver })._observer;
+      if (obs) obs.disconnect();
     };
   }, [delay]);
 
