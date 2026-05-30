@@ -20,6 +20,13 @@ const menuSections = [
       { label: "Products", href: "/products" },
     ],
   },
+  {
+    title: "Resources",
+    links: [
+      { label: "Newsroom", href: "/newsroom" },
+      { label: "Documentation", href: "/documentation" },
+    ],
+  },
 ];
 
 export function Nav() {

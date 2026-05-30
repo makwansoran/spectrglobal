@@ -39,6 +39,14 @@ export function Footer() {
                 <li><Link href="/products" className="transition-opacity hover:opacity-50">Products</Link></li>
               </ul>
             </div>
+
+            <div>
+              <h3 className="font-mono text-xs uppercase tracking-[0.16em] text-muted">Resources</h3>
+              <ul className="mt-6 space-y-4 text-sm">
+                <li><Link href="/newsroom" className="transition-opacity hover:opacity-50">Newsroom</Link></li>
+                <li><Link href="/documentation" className="transition-opacity hover:opacity-50">Documentation</Link></li>
+              </ul>
+            </div>
           </div>
         </div>
 
