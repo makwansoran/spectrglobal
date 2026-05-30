@@ -44,12 +44,12 @@ export function GlobeVisual({ className = "" }: { className?: string }) {
       phi,
       theta: 0.28,
       dark: 1,
-      diffuse: 1.8,
+      diffuse: 1.6,
       mapSamples: 18000,
-      mapBrightness: 7,
-      baseColor: [0.18, 0.2, 0.24],
-      glowColor: [0.42, 0.48, 0.65],
-      markerColor: [1, 1, 1],
+      mapBrightness: 9,
+      baseColor: [1, 1, 1],
+      glowColor: [0.88, 0.9, 0.95],
+      markerColor: [0.08, 0.08, 0.08],
       markers: [
         { location: [59.9139, 10.7522], size: 0.09 },
         { location: [40.7128, -74.006], size: 0.06 },
@@ -76,7 +76,7 @@ export function GlobeVisual({ className = "" }: { className?: string }) {
     <div className={className}>
       <canvas
         ref={canvasRef}
-        className="h-full w-full opacity-80"
+        className="h-full w-full opacity-95"
         style={{ contain: "layout paint size" }}
         aria-hidden="true"
       />
