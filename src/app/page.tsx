@@ -2,7 +2,9 @@ import Link from "next/link";
 import { Footer } from "@/components/footer";
 import { BackgroundPaths } from "@/components/background-paths";
 import { Nav } from "@/components/nav";
+import { PartnerSlideshow } from "@/components/partner-slideshow";
 import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
+import { partnerQuotes } from "@/lib/partner-quotes";
 
 const productShowcase = [
   {
@@ -113,6 +115,21 @@ export default function Home() {
                 </article>
               ))}
             </div>
+          </div>
+        </section>
+
+        <section className="brand-font snap-start border-b border-border bg-surface">
+          <div className="mx-auto w-full max-w-7xl px-5 py-24 sm:px-8 lg:py-32">
+            <div className="max-w-4xl">
+              <p className="label">Partners</p>
+              <ScrollRevealHeading
+                as="h2"
+                className="mt-5 text-4xl font-semibold leading-none text-fg sm:text-6xl"
+              >
+                What our partners say about us
+              </ScrollRevealHeading>
+            </div>
+            <PartnerSlideshow quotes={partnerQuotes} />
           </div>
         </section>
 
