@@ -54,6 +54,7 @@ export default function Home() {
             <div className="mx-auto">
               <ScrollRevealHeading
                 as="h1"
+                revealOnMount
                 className="mx-auto max-w-4xl text-4xl font-semibold leading-[0.98] text-fg sm:text-6xl lg:text-7xl"
               >
                 For real-world aerial operations.

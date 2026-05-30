@@ -7,6 +7,7 @@ type ScrollRevealHeadingProps = {
   className?: string;
   children: string;
   delay?: number;
+  revealOnMount?: boolean;
 };
 
 export function ScrollRevealHeading({
@@ -14,6 +15,7 @@ export function ScrollRevealHeading({
   className = "",
   children,
   delay = 0,
+  revealOnMount = false,
 }: ScrollRevealHeadingProps) {
   const ref = useRef<HTMLElement>(null);
   const [visible, setVisible] = useState(false);
@@ -22,43 +24,42 @@ export function ScrollRevealHeading({
     const element = ref.current;
     if (!element) return;
 
+    const scrollRoot = document.querySelector("main") as HTMLElement | null;
+    if (!scrollRoot) return;
+
     let revealTimer: number | undefined;
-    let setupTimer: number | undefined;
+    let hasUserScrolled = revealOnMount;
 
-    // Defer observer setup by two frames so the snap-scroll layout
-    // is fully settled before we start observing — prevents all
-    // headings from firing at once during hydration.
-    setupTimer = window.setTimeout(() => {
-      const scrollRoot = document.querySelector("main") as HTMLElement | null;
+    const revealIfInView = () => {
+      if (!hasUserScrolled || visible) return;
 
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (!entry.isIntersecting) return;
-          revealTimer = window.setTimeout(() => setVisible(true), delay);
-          observer.disconnect();
-        },
-        {
-          root: scrollRoot,
-          // Only trigger once the element is at least 20 % inside the
-          // scroll viewport and not within the top 15 % guard band.
-          threshold: 0.2,
-          rootMargin: "-15% 0px -5% 0px",
-        },
-      );
+      const elementRect = element.getBoundingClientRect();
+      const rootRect = scrollRoot.getBoundingClientRect();
+      const triggerTop = rootRect.top + rootRect.height * 0.72;
+      const triggerBottom = rootRect.top + rootRect.height * 0.12;
 
-      observer.observe(element);
+      if (elementRect.top <= triggerTop && elementRect.bottom >= triggerBottom) {
+        revealTimer = window.setTimeout(() => setVisible(true), delay);
+        scrollRoot.removeEventListener("scroll", onScroll);
+      }
+    };
 
-      // Store disconnect on element for cleanup
-      (element as HTMLElement & { _observer?: IntersectionObserver })._observer = observer;
-    }, 120);
+    const onScroll = () => {
+      hasUserScrolled = true;
+      revealIfInView();
+    };
+
+    scrollRoot.addEventListener("scroll", onScroll, { passive: true });
+
+    if (revealOnMount) {
+      window.requestAnimationFrame(revealIfInView);
+    }
 
     return () => {
-      window.clearTimeout(setupTimer);
       window.clearTimeout(revealTimer);
-      const obs = (element as HTMLElement & { _observer?: IntersectionObserver })._observer;
-      if (obs) obs.disconnect();
+      scrollRoot.removeEventListener("scroll", onScroll);
     };
-  }, [delay]);
+  }, [delay, revealOnMount, visible]);
 
   const Component = Tag as ElementType;
 
