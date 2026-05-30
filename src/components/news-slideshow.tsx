@@ -25,11 +25,11 @@ export function NewsSlideshow() {
   };
 
   return (
-    <div className="mt-12 grid gap-6 lg:grid-cols-[1fr_360px]">
-      <article className="h-[340px] overflow-hidden bg-fg p-6 text-bg sm:p-8 lg:p-10">
+    <div className="mt-12 grid gap-6 lg:grid-cols-[1fr_400px]">
+      <article className="h-[420px] overflow-hidden bg-fg p-6 text-bg sm:p-8 lg:p-10">
         <div className="flex h-full flex-col justify-between gap-10">
           <div>
-            <h3 className="max-w-4xl overflow-hidden text-3xl font-semibold leading-[1.02] tracking-[-0.06em] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3] sm:text-5xl lg:text-6xl">
+            <h3 className="max-w-4xl overflow-hidden text-2xl font-semibold leading-[1.05] tracking-[-0.05em] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3] sm:text-4xl lg:text-5xl">
               {activeStory.title}
             </h3>
           </div>
@@ -64,7 +64,7 @@ export function NewsSlideshow() {
         </div>
       </article>
 
-      <div className="grid h-[340px] grid-rows-3 gap-2">
+      <div className="grid h-[420px] grid-rows-3 gap-2">
         {latestNewsStories.map((story, index) => {
           const selected = index === activeIndex;
 
@@ -78,7 +78,7 @@ export function NewsSlideshow() {
                 selected ? "bg-surface" : ""
               }`}
             >
-              <span className="block overflow-hidden text-2xl font-semibold leading-tight tracking-[-0.05em] text-fg transition-transform [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3] group-hover:translate-x-1">
+              <span className="block overflow-hidden text-xl font-semibold leading-tight tracking-[-0.045em] text-fg transition-transform [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3] group-hover:translate-x-1">
                 {story.title}
               </span>
             </button>
