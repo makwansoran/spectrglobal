@@ -120,10 +120,9 @@ export default function Home() {
         <section className="brand-font snap-start bg-bg">
           <div className="mx-auto w-full max-w-7xl px-5 py-24 sm:px-8 lg:py-32">
             <div className="max-w-4xl">
-              <p className="label">Newsroom</p>
               <ScrollRevealHeading
                 as="h2"
-                className="mt-5 text-4xl font-semibold leading-none text-fg sm:text-6xl"
+                className="text-4xl font-semibold leading-none text-fg sm:text-6xl"
               >
                 Latest news from Spectr
               </ScrollRevealHeading>

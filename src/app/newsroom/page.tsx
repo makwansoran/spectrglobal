@@ -28,8 +28,7 @@ export default function NewsroomPage() {
       <main className="flex-1">
         <section className="brand-font bg-black px-5 pb-20 pt-36 text-white sm:px-8 lg:pb-28 lg:pt-44">
           <div className="mx-auto max-w-7xl">
-            <p className="font-mono text-xs uppercase tracking-[0.2em] text-white/45">Newsroom</p>
-            <div className="mt-10 grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
+            <div className="grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
               <h1 className="max-w-5xl text-6xl font-semibold leading-[0.9] tracking-[-0.075em] sm:text-8xl lg:text-[9.5rem]">
                 Newsroom
               </h1>
@@ -47,8 +46,7 @@ export default function NewsroomPage() {
               className="group flex min-h-[420px] flex-col justify-between bg-black p-8 text-white transition-opacity hover:opacity-95 sm:p-10"
             >
               <div>
-                <p className="font-mono text-xs uppercase tracking-[0.2em] text-white/45">Featured</p>
-                <h2 className="mt-8 max-w-2xl text-4xl font-semibold leading-[0.98] tracking-[-0.06em] sm:text-6xl">
+                <h2 className="max-w-2xl text-4xl font-semibold leading-[0.98] tracking-[-0.06em] sm:text-6xl">
                   Read the latest field systems update from Spectr.
                 </h2>
               </div>
@@ -63,7 +61,6 @@ export default function NewsroomPage() {
             <div className="grid gap-px bg-border">
               {briefs.map((brief) => (
                 <article key={brief.label} className="bg-surface p-7 sm:p-8">
-                  <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">{brief.label}</p>
                   <p className="mt-5 max-w-2xl text-2xl font-medium leading-tight tracking-[-0.04em] text-fg sm:text-3xl">
                     {brief.value}
                   </p>
@@ -75,8 +72,7 @@ export default function NewsroomPage() {
 
         <section className="brand-font px-5 py-20 sm:px-8 lg:py-28">
           <div className="mx-auto max-w-7xl">
-            <div className="grid gap-8 border-b border-border pb-10 lg:grid-cols-[0.8fr_1.2fr]">
-              <p className="label">Latest</p>
+            <div className="border-b border-border pb-10">
               <h2 className="max-w-4xl text-4xl font-semibold leading-none tracking-[-0.06em] text-fg sm:text-6xl">
                 Company news and operational updates.
               </h2>
@@ -89,8 +85,7 @@ export default function NewsroomPage() {
                   className="group grid gap-8 py-10 lg:grid-cols-[240px_1fr_80px] lg:items-start"
                 >
                   <div>
-                    <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">{story.eyebrow}</p>
-                    <p className="mt-3 font-mono text-xs uppercase tracking-[0.14em] text-muted">{story.meta}</p>
+                    <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">{story.meta}</p>
                   </div>
                   <div>
                     <h3 className="max-w-4xl text-3xl font-semibold leading-tight tracking-[-0.055em] text-fg transition-colors group-hover:text-muted sm:text-5xl">

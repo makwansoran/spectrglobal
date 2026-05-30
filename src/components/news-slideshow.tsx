@@ -31,7 +31,6 @@ export function NewsSlideshow() {
           <div>
             <div className="flex flex-wrap items-center gap-4 font-mono text-xs uppercase tracking-[0.18em] text-white/45">
               <span>{String(activeIndex + 1).padStart(2, "0")} / {String(newsStories.length).padStart(2, "0")}</span>
-              <span>{activeStory.eyebrow}</span>
               <span>{activeStory.meta}</span>
             </div>
             <h3 className="mt-10 max-w-4xl text-3xl font-semibold leading-[1.02] tracking-[-0.06em] sm:text-5xl lg:text-6xl">
@@ -87,7 +86,7 @@ export function NewsSlideshow() {
               }`}
             >
               <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
-                {String(index + 1).padStart(2, "0")} / {story.eyebrow}
+                {String(index + 1).padStart(2, "0")}
               </span>
               <span className="mt-4 block text-2xl font-semibold leading-tight tracking-[-0.05em] text-fg transition-transform group-hover:translate-x-1">
                 {story.title}
