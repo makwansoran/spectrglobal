@@ -166,9 +166,9 @@ export default function Home() {
 
                 <Link
                   href="/contact"
-                  className="mt-12 inline-flex w-fit items-center gap-3 bg-white px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-black hover:opacity-80"
+                  className="mt-12 inline-flex w-fit items-center gap-3 border border-transparent px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:border-white"
                 >
-                  Contact Investor Relations
+                  Go To Investor Page
                   <span aria-hidden="true">→</span>
                 </Link>
               </div>
