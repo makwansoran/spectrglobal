@@ -126,7 +126,7 @@ export default function Home() {
                 as="h2"
                 className="text-4xl font-semibold leading-none text-fg sm:text-6xl"
               >
-                Latest news from Spectr
+                Newsroom
               </ScrollRevealHeading>
             </div>
             <NewsSlideshow />
