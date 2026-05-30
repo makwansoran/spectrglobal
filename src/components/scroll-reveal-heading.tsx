@@ -1,6 +1,17 @@
 "use client";
 
-import { useEffect, useRef, useState, type ElementType, type ReactNode } from "react";
+import {
+  Children,
+  cloneElement,
+  isValidElement,
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type ElementType,
+  type ReactElement,
+  type ReactNode,
+} from "react";
 
 type ScrollRevealHeadingProps = {
   as?: "h1" | "h2" | "h3";
@@ -20,6 +31,7 @@ export function ScrollRevealHeading({
   const ref = useRef<HTMLElement>(null);
   const [visible, setVisible] = useState(false);
   const visibleRef = useRef(false);
+  const charIndexRef = useRef(0);
 
   useEffect(() => {
     const element = ref.current;
@@ -92,6 +104,7 @@ export function ScrollRevealHeading({
   }, [delay, revealOnMount]);
 
   const Component = Tag as ElementType;
+  charIndexRef.current = 0;
 
   return (
     <Component
@@ -100,7 +113,45 @@ export function ScrollRevealHeading({
         Tag === "h3" ? "block" : "inline-block"
       } ${className}`}
     >
-      {children}
+      {renderLetterReveal(children, charIndexRef)}
     </Component>
   );
+}
+
+function renderLetterReveal(
+  node: ReactNode,
+  indexRef: { current: number },
+): ReactNode {
+  if (typeof node === "string") {
+    return node.split("").map((char) => {
+      const index = indexRef.current;
+      indexRef.current += 1;
+
+      return (
+        <span
+          key={`${char}-${index}`}
+          className="reveal-char"
+          style={{ "--char-index": index } as CSSProperties}
+        >
+          {char === " " ? "\u00A0" : char}
+        </span>
+      );
+    });
+  }
+
+  if (Array.isArray(node)) {
+    return node.map((child, index) => (
+      <span key={index}>{renderLetterReveal(child, indexRef)}</span>
+    ));
+  }
+
+  if (isValidElement(node)) {
+    const element = node as ReactElement<{ children?: ReactNode }>;
+
+    return cloneElement(element, {
+      children: renderLetterReveal(element.props.children, indexRef),
+    });
+  }
+
+  return node;
 }
