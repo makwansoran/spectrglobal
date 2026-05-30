@@ -62,7 +62,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="brand-font flex min-h-screen snap-start items-center border-b border-border bg-bg">
+        <section className="brand-font flex snap-start items-center border-b border-border bg-bg">
           <div className="mx-auto w-full max-w-7xl px-5 py-28 sm:px-8 lg:py-32">
             <div>
               <ScrollRevealHeading
