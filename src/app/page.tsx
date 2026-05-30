@@ -25,7 +25,7 @@ const productShowcase = [
 
 const capabilityBoxes = [
   { name: "Operations", image: "/covertops.png" },
-  { name: "Intelligence", image: "/intelligence-hq.jpg" },
+  { name: "Intelligence", image: "/port-of-discharge-hq.jpg" },
   { name: "Aerospace", image: "/aerospace-hq.jpg" },
 ];
 
@@ -132,6 +132,7 @@ export default function Home() {
                         src={capability.image}
                         alt=""
                         fill
+                        quality={100}
                         sizes="(max-width: 640px) 100vw, 33vw"
                         className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110"
                       />
