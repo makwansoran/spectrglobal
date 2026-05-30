@@ -241,7 +241,7 @@ export default function Home() {
                 </a>
               </div>
               <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
-                © 2026 Spectr. For real-world aerial operations.
+                © 2026 Spectr
               </p>
             </div>
 
