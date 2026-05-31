@@ -40,12 +40,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
     <>
       <Nav />
       <main className="flex-1 bg-bg">
-        <section className="mx-auto grid max-w-7xl gap-10 px-5 pb-20 pt-32 sm:px-8 lg:grid-cols-[0.95fr_1.05fr] lg:pb-28 lg:pt-36">
-          <div className="border border-border bg-surface">
-            <ObjectVisual visual={product.visual} className="h-[420px] w-full grayscale lg:h-full" />
-          </div>
-
-          <div>
+        <section className="mx-auto max-w-7xl px-5 pb-24 pt-32 sm:px-8 lg:pb-32 lg:pt-36">
+          <div className="max-w-4xl">
             <Link href="/products" className="label hover:text-fg">
               Products
             </Link>
@@ -58,28 +54,30 @@ export default async function ProductPage({ params }: ProductPageProps) {
             <p className="mt-6 max-w-2xl text-sm leading-7 text-muted">
               {product.description}
             </p>
-
-            <dl className="mt-10 grid grid-cols-2 gap-px border border-border bg-border text-sm">
-              {[
-                ["Category", product.category],
-                ["Use", product.use],
-                ["Flight", product.flightTime],
-                ["Range", product.range],
-                ["Status", product.availability],
-                ["Pricing", product.price],
-              ].map(([label, value]) => (
-                <div key={label} className="bg-surface p-4">
-                  <dt className="label">{label}</dt>
-                  <dd className="mt-2 text-fg">{value}</dd>
-                </div>
-              ))}
-            </dl>
           </div>
-        </section>
 
-        <section className="mx-auto grid max-w-7xl gap-10 px-5 pb-24 sm:px-8 lg:grid-cols-2">
-          <SpecList title="Specifications" items={product.specifications} />
-          <SpecList title="Recommended Equipment" items={product.equipment} />
+          <div className="mt-12 border border-border bg-surface">
+            <ObjectVisual visual={product.visual} className="h-[420px] w-full grayscale sm:h-[520px]" />
+          </div>
+
+          <div className="mt-14 max-w-4xl">
+            <h2 className="text-3xl font-semibold tracking-[-0.05em] text-fg sm:text-4xl">Specs</h2>
+            <div className="mt-8 space-y-12">
+              <SpecList
+                title="Overview"
+                items={[
+                  { label: "Category", value: product.category },
+                  { label: "Use", value: product.use },
+                  { label: "Flight", value: product.flightTime },
+                  { label: "Range", value: product.range },
+                  { label: "Status", value: product.availability },
+                  { label: "Pricing", value: product.price },
+                ]}
+              />
+              <SpecList title="Specifications" items={product.specifications} />
+              <SpecList title="Recommended Equipment" items={product.equipment} />
+            </div>
+          </div>
         </section>
         <Footer />
       </main>
