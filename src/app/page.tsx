@@ -110,10 +110,10 @@ export default function Home() {
                     type="video/mp4"
                   />
                 </video>
-                <div className="absolute inset-0 bg-black/50" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
-                <div className="relative flex min-h-[520px] flex-col justify-between p-7 sm:p-10 lg:p-12">
-                  <div className="max-w-4xl">
+                <div className="absolute inset-0 bg-black/45" />
+                <div className="absolute inset-0 bg-gradient-to-l from-black/80 via-black/25 to-transparent" />
+                <div className="relative flex min-h-[520px] flex-col justify-between p-7 sm:p-10 lg:items-end lg:p-12 lg:text-right">
+                  <div className="max-w-3xl">
                     <p className="font-mono text-xs uppercase tracking-[0.22em] text-white/50">
                       Operations Dashboard
                     </p>
@@ -124,7 +124,7 @@ export default function Home() {
                       A command dashboard for monitoring missions, coordinating field activity, and keeping operational context in one place.
                     </p>
                   </div>
-                  <span className="mt-12 inline-flex w-fit items-center gap-3 border border-transparent px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-white transition-colors group-hover:border-white">
+                  <span className="mt-12 inline-flex w-fit items-center gap-3 border border-transparent px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-white transition-colors group-hover:border-white lg:self-end">
                     Request Access
                     <span aria-hidden="true">→</span>
                   </span>
