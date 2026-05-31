@@ -15,6 +15,7 @@ const menuSections = [
     title: "Company",
     links: [
       { label: "Get Started", href: "/contact" },
+      { label: "About Us", href: "/about" },
       { label: "Products", href: "/products" },
     ],
   },
@@ -23,6 +24,8 @@ const menuSections = [
     links: [
       { label: "Newsroom", href: "/newsroom" },
       { label: "Documentation", href: "/documentation" },
+      { label: "Privacy Policy", href: "/privacy" },
+      { label: "Terms of Service", href: "/terms" },
     ],
   },
 ];
