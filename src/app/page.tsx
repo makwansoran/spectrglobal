@@ -114,10 +114,7 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-l from-black/80 via-black/25 to-transparent" />
                 <div className="relative flex min-h-[520px] flex-col justify-between p-7 sm:p-10 lg:items-end lg:p-12 lg:text-right">
                   <div className="max-w-3xl">
-                    <p className="font-mono text-xs uppercase tracking-[0.22em] text-white/50">
-                      Operations Dashboard
-                    </p>
-                    <h2 className="mt-5 text-5xl font-semibold leading-[0.92] tracking-[-0.075em] sm:text-7xl lg:text-8xl">
+                    <h2 className="text-5xl font-semibold leading-[0.92] tracking-[-0.075em] sm:text-7xl lg:text-8xl">
                       Centurion
                     </h2>
                     <p className="mt-6 max-w-xl text-base leading-8 text-white/68 sm:text-lg">
