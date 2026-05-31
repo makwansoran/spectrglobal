@@ -39,9 +39,7 @@ export default function ContactPage() {
                   <option value="" disabled>
                     Select a product
                   </option>
-                  <option value="attack">ATTACK</option>
                   <option value="recon">RECON</option>
-                  <option value="jammer">JAMMER</option>
                 </select>
               </Field>
 

@@ -9,7 +9,7 @@ const quickStart = [
   {
     title: "Evaluate a platform",
     description:
-      "Compare ATTACK, RECON, and JAMMER by mission profile, operating environment, payload needs, and deployment readiness.",
+      "Review RECON by mission profile, operating environment, payload needs, and deployment readiness.",
     href: "/products",
     action: "View products",
   },
@@ -34,9 +34,7 @@ const documentationSections = [
     title: "Product Documentation",
     description: "Platform references for teams evaluating Spectr systems.",
     links: [
-      "ATTACK fixed-wing platform overview",
       "RECON payload and sensing configuration",
-      "JAMMER qualified-use deployment notes",
       "Recommended support equipment",
     ],
   },
@@ -74,16 +72,8 @@ const documentationSections = [
 
 const referenceCards = [
   {
-    title: "ATTACK",
-    text: "Long-endurance aerial capability for demanding field operations.",
-  },
-  {
     title: "RECON",
     text: "Mission-configurable reconnaissance systems built around payload and workflow.",
-  },
-  {
-    title: "JAMMER",
-    text: "Counter-UAS support for controlled environments and qualified operational use.",
   },
 ];
 

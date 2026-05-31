@@ -6,25 +6,11 @@ import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
 
 const productShowcase = [
   {
-    name: "ATTACK",
-    href: "/products/attack",
-    index: "/0.1",
-    summary: "Long-endurance aerial capability for demanding field operations",
-    explanation: "A fixed-wing platform for teams that need range, payload flexibility, and reliable deployment in the field.",
-  },
-  {
     name: "RECON",
     href: "/products/recon",
-    index: "/0.2",
+    index: "/0.1",
     summary: "Mission-configurable reconnaissance systems",
     explanation: "Built around payload, range, and operator workflow so each system fits the environment it serves.",
-  },
-  {
-    name: "JAMMER",
-    href: "/products/jammer",
-    index: "/0.3",
-    summary: "Counter-UAS support for controlled environments",
-    explanation: "Configured for qualified operational use cases where planning, authorization, and compliance come first.",
   },
 ];
 

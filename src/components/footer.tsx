@@ -26,9 +26,7 @@ export function Footer() {
             <div>
               <h3 className="font-mono text-xs uppercase tracking-[0.16em] text-muted">Development</h3>
               <ul className="mt-6 space-y-4 text-sm">
-                <li><Link href="/products/attack" className="transition-opacity hover:opacity-50">ATTACK</Link></li>
                 <li><Link href="/products/recon" className="transition-opacity hover:opacity-50">RECON</Link></li>
-                <li><Link href="/products/jammer" className="transition-opacity hover:opacity-50">JAMMER</Link></li>
               </ul>
             </div>
 

@@ -17,7 +17,7 @@ const syne = Syne({
 
 export const metadata: Metadata = {
   title: { default: "Spectr", template: "%s — Spectr" },
-  description: "Mission-ready UAV, drone, and jammer products for field operators.",
+  description: "Mission-ready UAV and drone systems for field operators.",
   icons: {
     icon: [
       { url: "/favicon.ico", type: "image/x-icon" },

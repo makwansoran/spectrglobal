@@ -15,9 +15,9 @@ export const newsStories = [
   },
   {
     eyebrow: "Product",
-    title: "Inside the next phase of controlled-environment counter-UAS support",
+    title: "Inside the next phase of RECON field support",
     summary:
-      "Updates on JAMMER development, authorization-first planning, and the compliance boundaries that guide qualified deployments.",
+      "Updates on RECON development, operator planning, and the field readiness work that guides qualified deployments.",
     meta: "March 2026",
   },
   {

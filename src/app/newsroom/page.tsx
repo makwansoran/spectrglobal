@@ -13,7 +13,7 @@ const briefs = [
   },
   {
     label: "Development",
-    value: "ATTACK endurance profile validation enters the next build cycle.",
+    value: "RECON payload workflow validation enters the next build cycle.",
   },
   {
     label: "Operations",
@@ -33,7 +33,7 @@ export default function NewsroomPage() {
                 Newsroom
               </h1>
               <p className="max-w-lg text-base leading-8 text-white/62 sm:text-lg">
-                Updates from Spectr on field-ready aerial systems, operational hardware, and the development work behind ATTACK, RECON, and JAMMER.
+                Updates from Spectr on field-ready aerial systems, operational hardware, and the development work behind RECON.
               </p>
             </div>
           </div>

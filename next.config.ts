@@ -9,11 +9,6 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: "/products/spectr-attack",
-        destination: "/products/attack",
-        permanent: true,
-      },
-      {
         source: "/products/spectr-uav",
         destination: "/products/recon",
         permanent: true,
