@@ -26,7 +26,7 @@ export default function Home() {
                 <div className="mt-10 flex justify-center">
                   <Link
                     href="/products/recon"
-                    className="gradient-cta inline-flex items-center gap-3 px-6 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-white shadow-[0_18px_45px_rgba(236,72,153,0.28)] hover:opacity-90"
+                    className="inline-flex items-center gap-3 border border-fg bg-white px-6 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-black shadow-[0_18px_45px_rgba(11,12,13,0.08)] hover:bg-fg hover:text-white"
                   >
                     Check Out RECON
                     <span aria-hidden="true">→</span>
