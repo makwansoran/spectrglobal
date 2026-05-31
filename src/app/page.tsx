@@ -89,10 +89,14 @@ export default function Home() {
                 </div>
               </div>
             </Link>
+          </div>
+        </section>
 
+        <section className="brand-font snap-start bg-bg px-5 py-24 sm:px-8 lg:py-32">
+          <div className="mx-auto max-w-7xl">
             <Link
               href="/contact"
-              className="group mt-6 block overflow-hidden bg-black text-white"
+              className="group block overflow-hidden bg-black text-white"
             >
               <div className="relative min-h-[520px]">
                 <video
