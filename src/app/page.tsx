@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Footer } from "@/components/footer";
-import { GlobeVisual } from "@/components/globe-visual";
 import { Nav } from "@/components/nav";
 import { NewsSlideshow } from "@/components/news-slideshow";
 import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
@@ -167,22 +166,6 @@ export default function Home() {
                   Go To Investor Page
                   <span aria-hidden="true">→</span>
                 </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="brand-font snap-start bg-bg px-5 pb-24 sm:px-8 lg:pb-32">
-          <div className="relative mx-auto min-h-[720px] max-w-7xl bg-bg text-fg">
-            <GlobeVisual className="absolute left-1/2 top-1/2 aspect-square w-[min(86vw,720px)] -translate-x-1/2 -translate-y-1/2 drop-shadow-[0_32px_90px_rgba(0,0,0,0.18)]" />
-            <div className="relative z-10 flex min-h-[720px] items-center justify-center px-6 text-center">
-              <div>
-                <p className="font-mono text-xs uppercase tracking-[0.22em] text-muted">
-                  Made in Norway
-                </p>
-                <h2 className="mt-5 max-w-5xl text-5xl font-semibold leading-[0.92] tracking-[-0.075em] sm:text-7xl lg:text-8xl">
-                  For the people, For the World.
-                </h2>
               </div>
             </div>
           </div>
