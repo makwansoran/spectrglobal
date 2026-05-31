@@ -69,6 +69,12 @@ textarea {
   font-family: var(--font-syne), var(--font-sans);
 }
 
+.gradient-cta {
+  background: linear-gradient(120deg, #dc2626, #f97316, #7c3aed, #ec4899, #dc2626);
+  background-size: 260% 260%;
+  animation: gradient-shift 5s ease-in-out infinite;
+}
+
 .product-row {
   position: relative;
   transition: background-color 220ms ease, padding 220ms ease;
@@ -161,6 +167,12 @@ textarea {
 @keyframes fade-up {
   from { opacity: 0; transform: translateY(12px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .fade-up {
