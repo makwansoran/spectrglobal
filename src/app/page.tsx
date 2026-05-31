@@ -13,7 +13,7 @@ export default function Home() {
         <div className="relative overflow-hidden bg-bg">
           <section className="relative z-10 flex min-h-screen snap-start items-center">
             <div className="mx-auto flex w-full max-w-7xl items-center justify-center px-5 py-32 text-center sm:px-8 lg:py-36">
-              <div className="mx-auto">
+              <div className="mx-auto flex flex-col items-center">
                 <ScrollRevealHeading
                   as="h1"
                   revealOnMount
@@ -21,13 +21,15 @@ export default function Home() {
                 >
                   For real-world aerial operations.
                 </ScrollRevealHeading>
-                <Link
-                  href="/products/recon"
-                  className="mt-10 inline-flex items-center gap-3 bg-fg px-6 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-bg transition-opacity hover:opacity-80"
-                >
-                  Check Out RECON
-                  <span aria-hidden="true">→</span>
-                </Link>
+                <div className="mt-10 flex justify-center">
+                  <Link
+                    href="/products/recon"
+                    className="inline-flex items-center gap-3 bg-fg px-6 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-bg transition-opacity hover:opacity-80"
+                  >
+                    Check Out RECON
+                    <span aria-hidden="true">→</span>
+                  </Link>
+                </div>
               </div>
             </div>
           </section>
