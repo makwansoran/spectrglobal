@@ -89,6 +89,48 @@ export default function Home() {
                 </div>
               </div>
             </Link>
+
+            <Link
+              href="/contact"
+              className="group mt-6 block overflow-hidden bg-black text-white"
+            >
+              <div className="relative min-h-[520px]">
+                <video
+                  className="absolute inset-0 h-full w-full object-cover grayscale"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  poster="https://cdn.pixabay.com/video/2020/01/06/30978-384234040_tiny.jpg"
+                  aria-label="Centurion operations dashboard preview"
+                >
+                  <source
+                    src="https://cdn.pixabay.com/video/2020/01/06/30978-384234040_large.mp4"
+                    type="video/mp4"
+                  />
+                </video>
+                <div className="absolute inset-0 bg-black/50" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
+                <div className="relative flex min-h-[520px] flex-col justify-between p-7 sm:p-10 lg:p-12">
+                  <div className="max-w-4xl">
+                    <p className="font-mono text-xs uppercase tracking-[0.22em] text-white/50">
+                      Operations Dashboard
+                    </p>
+                    <h2 className="mt-5 text-5xl font-semibold leading-[0.92] tracking-[-0.075em] sm:text-7xl lg:text-8xl">
+                      Centurion
+                    </h2>
+                    <p className="mt-6 max-w-xl text-base leading-8 text-white/68 sm:text-lg">
+                      A command dashboard for monitoring missions, coordinating field activity, and keeping operational context in one place.
+                    </p>
+                  </div>
+                  <span className="mt-12 inline-flex w-fit items-center gap-3 border border-transparent px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-white transition-colors group-hover:border-white">
+                    Request Access
+                    <span aria-hidden="true">→</span>
+                  </span>
+                </div>
+              </div>
+            </Link>
           </div>
         </section>
 
