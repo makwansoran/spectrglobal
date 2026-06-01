@@ -163,13 +163,6 @@ export default function Home() {
 
                 <div className="mt-10 flex flex-col items-start gap-5 sm:mt-12">
                   <Link
-                    href="/contact"
-                    className="inline-flex items-center gap-3 border border-fg bg-fg px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:bg-transparent hover:text-fg"
-                  >
-                    Request Access
-                    <span aria-hidden="true">→</span>
-                  </Link>
-                  <Link
                     href="/about"
                     className="inline-flex items-center gap-3 border border-transparent px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-fg transition-colors hover:border-fg"
                   >
