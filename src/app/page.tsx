@@ -57,21 +57,13 @@ export default function Home() {
               className="group block overflow-hidden bg-black text-white"
             >
               <div className="relative min-h-[520px]">
-                <video
-                  className="absolute inset-0 h-full w-full object-cover grayscale"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  poster="https://cdn.pixabay.com/video/2020/01/06/30978-384234040_tiny.jpg"
-                  aria-label="VALKYRIE drone video preview"
-                >
-                  <source
-                    src="https://cdn.pixabay.com/video/2020/01/06/30978-384234040_large.mp4"
-                    type="video/mp4"
-                  />
-                </video>
+                <Image
+                  src="/valkyrie-hero.jpg"
+                  alt="VALKYRIE aircraft flying over mountain terrain"
+                  fill
+                  className="object-cover grayscale"
+                  sizes="(max-width: 1280px) 100vw, 1280px"
+                />
                 <div className="absolute inset-0 bg-black/45" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <div className="relative flex min-h-[520px] flex-col justify-between p-7 sm:p-10 lg:p-12">
