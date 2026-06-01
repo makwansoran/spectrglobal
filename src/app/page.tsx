@@ -31,6 +31,14 @@ export default function Home() {
                     <span aria-hidden="true">→</span>
                   </Link>
                 </div>
+                <Image
+                  src="/recon-drone.png"
+                  alt="RECON aircraft front view"
+                  width={1024}
+                  height={576}
+                  priority
+                  className="mt-12 h-auto w-full max-w-4xl object-contain"
+                />
               </div>
             </div>
           </section>
