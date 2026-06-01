@@ -43,10 +43,7 @@ export default function SecurityPage() {
       <main className="flex-1 bg-bg">
         <section className="brand-font bg-black px-5 pb-20 pt-36 text-white sm:px-8 lg:pb-28 lg:pt-44">
           <div className="mx-auto max-w-7xl">
-            <p className="font-mono text-xs uppercase tracking-[0.2em] text-white/50">
-              Security &amp; confidentiality
-            </p>
-            <h1 className="mt-8 max-w-6xl text-5xl font-semibold leading-[0.9] tracking-[-0.075em] sm:text-7xl lg:text-[8.5rem]">
+            <h1 className="max-w-6xl text-5xl font-semibold leading-[0.9] tracking-[-0.075em] sm:text-7xl lg:text-[8.5rem]">
               Developed and produced in Norway
             </h1>
             <p className="mt-10 max-w-3xl text-base leading-8 text-white/68 sm:text-lg">
@@ -62,10 +59,7 @@ export default function SecurityPage() {
                 <article key={principle.title} className="bg-surface p-7 sm:p-8">
                   <div className="flex h-full flex-col justify-between gap-10">
                     <div>
-                      <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">
-                        Secure by control
-                      </p>
-                      <h2 className="mt-6 text-3xl font-semibold leading-none tracking-[-0.055em] text-fg">
+                      <h2 className="text-3xl font-semibold leading-none tracking-[-0.055em] text-fg">
                         {principle.title}
                       </h2>
                     </div>
