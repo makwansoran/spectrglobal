@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
-import { ObjectVisual } from "@/components/object-visual";
+import { ProductGallery } from "@/components/product-gallery";
 import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
 import { getObject, objects } from "@/lib/objects";
 
@@ -54,8 +54,11 @@ export default async function ProductPage({ params }: ProductPageProps) {
             </p>
           </div>
 
-          <div className="mt-12 border border-border bg-surface">
-            <ObjectVisual visual={product.visual} className="h-[420px] w-full grayscale sm:h-[520px]" />
+          <div className="mt-12">
+            <ProductGallery images={product.gallery} />
+            <p className="mx-auto mt-8 max-w-2xl text-center text-base leading-8 text-muted sm:text-lg">
+              {product.description}
+            </p>
           </div>
 
           <div className="mx-auto mt-14 max-w-3xl text-center">
