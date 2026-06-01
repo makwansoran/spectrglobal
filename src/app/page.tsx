@@ -12,20 +12,30 @@ export default function Home() {
 
       <main className="h-screen flex-1 snap-y snap-proximity overflow-y-auto scroll-smooth">
         <div className="relative overflow-hidden bg-bg">
-          <section className="relative z-10 flex min-h-screen snap-start items-center">
+          <section className="relative z-10 flex min-h-screen snap-start items-center bg-black text-white">
+            <Image
+              src="/hero-fjord.png"
+              alt="Norwegian fjord landscape"
+              fill
+              className="object-cover"
+              sizes="100vw"
+              priority
+            />
+            <div className="absolute inset-0 bg-black/45" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/20" />
             <div className="mx-auto flex w-full max-w-7xl items-center justify-center px-5 py-32 text-center sm:px-8 lg:py-36">
-              <div className="mx-auto flex flex-col items-center">
+              <div className="relative mx-auto flex flex-col items-center">
                 <ScrollRevealHeading
                   as="h1"
                   revealOnMount
-                  className="mx-auto max-w-4xl text-4xl font-semibold leading-[0.98] text-fg sm:text-6xl lg:text-7xl"
+                  className="mx-auto max-w-4xl text-4xl font-semibold leading-[0.98] text-white sm:text-6xl lg:text-7xl"
                 >
                   &quot;For real-world aerial operations.&quot;
                 </ScrollRevealHeading>
                 <div className="mt-10 flex justify-center">
                   <Link
                     href="/products/valkyrie"
-                    className="inline-flex items-center gap-3 border border-fg bg-white px-6 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-black shadow-[0_18px_45px_rgba(11,12,13,0.08)] hover:bg-fg hover:text-white"
+                    className="inline-flex items-center gap-3 border border-white bg-white px-6 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-black shadow-[0_18px_45px_rgba(11,12,13,0.18)] hover:bg-transparent hover:text-white"
                   >
                     Check Out VALKYRIE
                     <span aria-hidden="true">→</span>
