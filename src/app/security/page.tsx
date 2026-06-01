@@ -66,7 +66,7 @@ export default function SecurityPage() {
 
         <section id="security-principles" className="brand-font bg-bg px-5 py-20 sm:px-8 lg:py-28">
           <div className="mx-auto max-w-7xl">
-            <div className="grid gap-0 lg:grid-cols-[1fr_0.9fr]">
+            <div className="grid gap-8 lg:grid-cols-[1fr_0.9fr] lg:gap-14">
               <div className="divide-y divide-border">
                 {principles.map((principle) => (
                   <article key={principle.title} className="grid gap-5 py-7 sm:grid-cols-[220px_1fr] sm:py-8">
