@@ -20,9 +20,7 @@ export default function Home() {
                   revealOnMount
                   className="mx-auto max-w-4xl text-4xl font-semibold leading-[0.98] text-fg sm:text-6xl lg:text-7xl"
                 >
-                  <span className="font-mono text-[0.72em] font-normal text-muted">[</span>
-                  For real-world aerial operations.
-                  <span className="font-mono text-[0.72em] font-normal text-muted">]</span>
+                  &quot;For real-world aerial operations.&quot;
                 </ScrollRevealHeading>
                 <div className="mt-10 flex justify-center">
                   <Link
