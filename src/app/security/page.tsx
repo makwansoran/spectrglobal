@@ -46,9 +46,10 @@ export default function SecurityPage() {
             <h1 className="max-w-6xl text-5xl font-semibold leading-[0.9] tracking-[-0.075em] sm:text-7xl lg:text-[8.5rem]">
               Developed and produced in Norway
             </h1>
-            <p className="mt-10 max-w-3xl text-base leading-8 text-white/68 sm:text-lg">
-              Everything we build, from development to production, happens on Norwegian soil, in our own systems, under full internal control. No data ever leaves Norway.
-            </p>
+            <div className="mt-12 inline-flex items-center gap-4 font-mono text-xs uppercase tracking-[0.2em] text-white/50">
+              <span>Scroll to verify</span>
+              <span aria-hidden="true">↓</span>
+            </div>
           </div>
         </section>
 
