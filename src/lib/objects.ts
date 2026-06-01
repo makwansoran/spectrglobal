@@ -40,7 +40,6 @@ export const objects: DroneProduct[] = [
     gallery: [
       { src: "/valkyrie-front.png", alt: "VALKYRIE front view" },
       { src: "/valkyrie-top.png", alt: "VALKYRIE top view" },
-      { src: "/valkyrie-angle.png", alt: "VALKYRIE angled view" },
       { src: "/valkyrie-mountain.png", alt: "VALKYRIE in mountain terrain" },
     ],
     highlights: ["Mission payload ready", "Field-serviceable setup", "Operator support", "Built to order"],
