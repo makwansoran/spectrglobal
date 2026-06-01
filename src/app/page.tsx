@@ -204,7 +204,7 @@ export default function Home() {
                 </div>
 
                 <Link
-                  href="/contact"
+                  href="/investor"
                   className="mt-12 inline-flex w-fit items-center gap-3 border border-transparent px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:border-white"
                 >
                   Go To Investor Page
