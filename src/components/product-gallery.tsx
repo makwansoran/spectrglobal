@@ -29,7 +29,7 @@ export function ProductGallery({ images }: { images: ProductGalleryImage[] }) {
   };
 
   return (
-    <div className="border border-border bg-surface p-3 sm:p-4">
+    <div>
       <div className="relative h-[420px] overflow-hidden border border-border bg-white sm:h-[520px]">
         <Image
           key={activeImage.src}
