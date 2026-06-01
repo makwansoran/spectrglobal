@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
@@ -43,13 +42,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
       <main className="flex-1 bg-bg">
         <section className="mx-auto max-w-7xl px-5 pb-24 pt-32 sm:px-8 lg:pb-32 lg:pt-36">
           <div className="max-w-4xl">
-            <Link href="/products" className="label hover:text-fg">
-              Products
-            </Link>
             <ScrollRevealHeading
               as="h1"
               revealOnMount
-              className="mt-6 text-5xl font-semibold leading-none tracking-[-0.06em] text-fg sm:text-7xl"
+              className="text-5xl font-semibold leading-none tracking-[-0.06em] text-fg sm:text-7xl"
             >
               {product.name}
             </ScrollRevealHeading>
