@@ -41,19 +41,24 @@ export default function SecurityPage() {
     <>
       <Nav />
       <main className="flex-1 bg-bg">
-        <section className="brand-font bg-black px-5 pb-20 pt-36 text-white sm:px-8 lg:pb-28 lg:pt-44">
+        <section className="brand-font relative flex min-h-screen items-center bg-black px-5 py-36 text-white sm:px-8 lg:py-44">
           <div className="mx-auto max-w-7xl">
             <h1 className="max-w-6xl text-5xl font-semibold leading-[0.9] tracking-[-0.075em] sm:text-7xl lg:text-[8.5rem]">
               Developed and produced in Norway
             </h1>
-            <div className="mt-12 inline-flex items-center gap-4 font-mono text-xs uppercase tracking-[0.2em] text-white/50">
-              <span>Scroll to verify</span>
-              <span aria-hidden="true">↓</span>
-            </div>
           </div>
+          <a
+            href="#security-principles"
+            className="absolute bottom-10 left-1/2 flex -translate-x-1/2 flex-col items-center gap-4 font-mono text-[10px] uppercase tracking-[0.22em] text-white/45 transition-colors hover:text-white sm:bottom-12"
+          >
+            <span>Scroll to verify</span>
+            <span className="security-scroll-icon" aria-hidden="true">
+              <span />
+            </span>
+          </a>
         </section>
 
-        <section className="brand-font bg-bg px-5 py-20 sm:px-8 lg:py-28">
+        <section id="security-principles" className="brand-font bg-bg px-5 py-20 sm:px-8 lg:py-28">
           <div className="mx-auto max-w-7xl">
             <div className="grid gap-px border border-border bg-border lg:grid-cols-3">
               {principles.map((principle) => (
