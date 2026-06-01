@@ -43,9 +43,7 @@ export function Nav({ variant = "dark" }: NavProps) {
     ? "bg-white text-black shadow-2xl shadow-black/20 ring-1 ring-black/10"
     : "bg-black text-white shadow-2xl shadow-black/20 ring-1 ring-white/10";
   const logoClass = light ? "h-8 w-auto" : "h-8 w-auto invert";
-  const ctaClass = light
-    ? "bg-black text-white"
-    : "bg-white text-black";
+  const ctaUnderlineClass = light ? "bg-black" : "bg-white";
   const menuLineClass = light ? "bg-black" : "bg-white";
 
   useEffect(() => {
@@ -85,9 +83,13 @@ export function Nav({ variant = "dark" }: NavProps) {
             <Link
               href="/contact"
               onClick={() => setOpen(false)}
-              className={`px-5 py-2.5 text-xs uppercase tracking-[0.16em] transition-opacity hover:opacity-80 ${ctaClass}`}
+              className="group relative py-2 text-xs uppercase tracking-[0.16em]"
             >
               Get Started
+              <span
+                aria-hidden="true"
+                className={`absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100 ${ctaUnderlineClass}`}
+              />
             </Link>
 
             {/* Hamburger / Close */}
