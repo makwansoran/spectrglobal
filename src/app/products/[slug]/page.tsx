@@ -50,17 +50,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
       <Nav />
       <main className="flex-1 bg-bg">
         <section className="mx-auto max-w-7xl px-5 pb-24 pt-32 sm:px-8 lg:pb-32 lg:pt-36">
-          <div className="max-w-4xl">
-            <ScrollRevealHeading
-              as="h1"
-              revealOnMount
-              className="text-5xl font-semibold leading-none tracking-[-0.06em] text-fg sm:text-7xl"
-            >
-              {product.name}
-            </ScrollRevealHeading>
-          </div>
-
-          <div className="mt-12 grid gap-8 lg:grid-cols-[minmax(0,1.4fr)_minmax(300px,0.6fr)] lg:items-stretch">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1.4fr)_minmax(300px,0.6fr)] lg:items-stretch">
             <ProductGallery images={product.gallery} />
             <aside className="brand-font flex min-h-[320px] items-center justify-center bg-bg p-7 text-center sm:p-10 lg:p-12">
               <div className="mx-auto max-w-4xl">
