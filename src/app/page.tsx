@@ -92,22 +92,14 @@ export default function Home() {
               className="group block overflow-hidden bg-black text-white"
             >
               <div className="relative min-h-[520px]">
-                <video
-                  className="absolute inset-0 h-full w-full object-cover grayscale"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  poster="https://cdn.pixabay.com/video/2020/01/06/30978-384234040_tiny.jpg"
-                  aria-label="Centurion operations dashboard preview"
-                >
-                  <source
-                    src="https://cdn.pixabay.com/video/2020/01/06/30978-384234040_large.mp4"
-                    type="video/mp4"
-                  />
-                </video>
-                <div className="absolute inset-0 bg-black/45" />
+                <Image
+                  src="/centurion-laptop-mockup.png"
+                  alt="Centurion command dashboard on laptop"
+                  fill
+                  className="object-cover object-center"
+                  sizes="(max-width: 1280px) 100vw, 1280px"
+                />
+                <div className="absolute inset-0 bg-black/20" />
                 <div className="absolute inset-0 bg-gradient-to-l from-black/80 via-black/25 to-transparent" />
                 <div className="relative flex min-h-[520px] flex-col justify-between p-7 sm:p-10 lg:items-end lg:p-12 lg:text-right">
                   <div className="max-w-3xl">
