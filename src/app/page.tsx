@@ -35,19 +35,6 @@ export default function Home() {
             </div>
           </section>
 
-          <section className="brand-font relative z-10 flex snap-start items-center py-24 sm:py-32">
-            <div className="mx-auto w-full max-w-4xl px-5 text-center sm:px-8">
-              <ScrollRevealHeading
-                as="h2"
-                className="text-2xl font-medium leading-[1.25] tracking-[-0.03em] text-fg sm:text-3xl lg:text-4xl"
-              >
-                Our hardware powers real-time decisions in critical operations across the West — from the factory floor to the front lines.
-              </ScrollRevealHeading>
-              <p className="mt-8 font-mono text-xs uppercase tracking-[0.2em] text-muted">
-                Makwan Ismail, Founder of Spectr
-              </p>
-            </div>
-          </section>
         </div>
 
         <section className="brand-font snap-start bg-bg px-5 py-24 sm:px-8 lg:py-32">
@@ -82,6 +69,20 @@ export default function Home() {
                 </div>
               </div>
             </Link>
+          </div>
+        </section>
+
+        <section className="brand-font snap-start bg-bg py-24 sm:py-32">
+          <div className="mx-auto w-full max-w-4xl px-5 text-center sm:px-8">
+            <ScrollRevealHeading
+              as="h2"
+              className="text-2xl font-medium leading-[1.25] tracking-[-0.03em] text-fg sm:text-3xl lg:text-4xl"
+            >
+              Our hardware powers real-time decisions in critical operations across the West — from the factory floor to the front lines.
+            </ScrollRevealHeading>
+            <p className="mt-8 font-mono text-xs uppercase tracking-[0.2em] text-muted">
+              Makwan Ismail, Founder of Spectr
+            </p>
           </div>
         </section>
 
