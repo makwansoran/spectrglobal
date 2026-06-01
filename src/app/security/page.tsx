@@ -80,10 +80,7 @@ export default function SecurityPage() {
         <section className="brand-font bg-bg px-5 pb-20 sm:px-8 lg:pb-28">
           <div className="mx-auto grid max-w-7xl gap-10 border border-border bg-black p-7 text-white sm:p-10 lg:grid-cols-[0.8fr_1.2fr] lg:p-12">
             <div>
-              <p className="font-mono text-xs uppercase tracking-[0.2em] text-white/50">
-                Proud Norwegian company
-              </p>
-              <h2 className="mt-6 max-w-2xl text-4xl font-semibold leading-[1.02] tracking-[-0.06em] sm:text-6xl">
+              <h2 className="max-w-2xl text-4xl font-semibold leading-[1.02] tracking-[-0.06em] sm:text-6xl">
                 Critical technology should stay local.
               </h2>
             </div>
@@ -117,10 +114,7 @@ export default function SecurityPage() {
         <section className="brand-font bg-surface px-5 py-16 sm:px-8 lg:py-24">
           <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
             <div>
-              <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
-                Proud Norwegian company
-              </p>
-              <h2 className="mt-6 max-w-5xl text-4xl font-semibold leading-[1.02] tracking-[-0.06em] text-fg sm:text-6xl">
+              <h2 className="max-w-5xl text-4xl font-semibold leading-[1.02] tracking-[-0.06em] text-fg sm:text-6xl">
                 We believe critical technology should be developed under full national control.
               </h2>
             </div>
