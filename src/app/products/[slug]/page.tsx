@@ -67,6 +67,9 @@ export default async function ProductPage({ params }: ProductPageProps) {
             <ProductGallery images={product.gallery} />
             <aside className="brand-font flex min-h-[320px] items-center justify-center bg-bg p-7 text-center sm:p-10 lg:p-12">
               <div className="mx-auto max-w-4xl">
+                <h2 className="mb-8 text-5xl font-semibold leading-[0.92] tracking-[-0.075em] text-fg sm:text-7xl">
+                  {product.name}
+                </h2>
                 <ScrollRevealHeading
                   as="h2"
                   className="text-2xl font-medium leading-[1.25] tracking-[-0.03em] text-fg sm:text-3xl lg:text-4xl"
