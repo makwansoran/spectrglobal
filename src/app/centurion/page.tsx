@@ -29,40 +29,36 @@ export default function CenturionPage() {
     <>
       <Nav variant="light" />
       <main className="brand-font min-h-screen flex-1 bg-black text-white">
-        <section className="px-5 pb-20 pt-36 sm:px-8 lg:pb-28 lg:pt-44">
-          <div className="mx-auto max-w-7xl">
-            <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-              <div>
-                <ScrollRevealHeading
-                  as="h1"
-                  revealOnMount
-                  className="max-w-5xl text-6xl font-semibold leading-[0.9] tracking-[-0.075em] sm:text-8xl lg:text-[9.5rem]"
-                >
-                  Centurion
-                </ScrollRevealHeading>
-                <p className="mt-8 max-w-xl text-base leading-8 text-white/62 sm:text-lg">
-                  A command dashboard for monitoring missions, coordinating field activity, and keeping operational context in one place.
-                </p>
-                <Link
-                  href="/contact"
-                  className="mt-10 inline-flex w-fit items-center gap-3 bg-white px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-black hover:opacity-80"
-                >
-                  Request Access
-                  <span aria-hidden="true">→</span>
-                </Link>
-              </div>
-
-              <div className="relative min-h-[360px] overflow-hidden border border-white/12 bg-white/5 sm:min-h-[460px]">
-                <Image
-                  src="/centurion-laptop-mockup.png"
-                  alt="Centurion command dashboard on laptop"
-                  fill
-                  className="object-cover object-center"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  priority
-                />
-                <div className="absolute inset-0 bg-black/10" />
-              </div>
+        <section className="relative min-h-screen overflow-hidden px-5 pb-20 pt-36 sm:px-8 lg:pb-28 lg:pt-44">
+          <Image
+            src="/centurion-laptop-mockup.png"
+            alt="Centurion command dashboard on laptop"
+            fill
+            className="object-cover object-center"
+            sizes="100vw"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/55" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/45 to-black/10" />
+          <div className="relative mx-auto flex min-h-[calc(100vh-16rem)] max-w-7xl items-center">
+            <div>
+              <ScrollRevealHeading
+                as="h1"
+                revealOnMount
+                className="max-w-5xl text-6xl font-semibold leading-[0.9] tracking-[-0.075em] sm:text-8xl lg:text-[9.5rem]"
+              >
+                Centurion
+              </ScrollRevealHeading>
+              <p className="mt-8 max-w-xl text-base leading-8 text-white/68 sm:text-lg">
+                A command dashboard for monitoring missions, coordinating field activity, and keeping operational context in one place.
+              </p>
+              <Link
+                href="/contact"
+                className="mt-10 inline-flex w-fit items-center gap-3 bg-white px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-black hover:opacity-80"
+              >
+                Request Access
+                <span aria-hidden="true">→</span>
+              </Link>
             </div>
           </div>
         </section>
