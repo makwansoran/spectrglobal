@@ -86,16 +86,15 @@ export default function SecurityPage() {
             </div>
 
             <div className="space-y-10">
-              <p className="max-w-3xl text-base leading-8 text-white/68 sm:text-lg">
-                We believe critical technology should be developed, owned, and controlled locally &mdash; to safeguard Norwegian interests for the long term.
-              </p>
-
-              <div className="border-t border-white/15 pt-8">
+              <div>
                 <h3 className="text-3xl font-semibold tracking-[-0.05em] text-white">
                   Legal compliance
                 </h3>
                 <p className="mt-6 max-w-3xl text-sm leading-7 text-white/68 sm:text-base sm:leading-8">
                   Our operations are structured in accordance with the Norwegian Security Act (sikkerhetsloven) and the Business Security Regulation (virksomhetsikkerhetsforskriften &sect; 83). We maintain the necessary organisational and technical safeguards to meet the requirements for handling classified information and critical infrastructure, as defined under Norwegian law.
+                </p>
+                <p className="mt-6 max-w-3xl text-base leading-8 text-white/68 sm:text-lg">
+                  We believe critical technology should be developed, owned, and controlled locally &mdash; to safeguard Norwegian interests for the long term.
                 </p>
                 <Link
                   href="https://lovdata.no/lov/2018-06-01-24/%C2%A79-3"
