@@ -36,6 +36,15 @@ export default async function ProductPage({ params }: ProductPageProps) {
     notFound();
   }
 
+  const overviewItems = [
+    { label: "Category", value: product.category },
+    { label: "Use", value: product.use },
+    { label: "Flight", value: product.flightTime },
+    { label: "Range", value: product.range },
+    { label: "Status", value: product.availability },
+    { label: "Pricing", value: product.price },
+  ];
+
   return (
     <>
       <Nav />
@@ -54,31 +63,33 @@ export default async function ProductPage({ params }: ProductPageProps) {
             </p>
           </div>
 
-          <div className="mt-12">
+          <div className="mt-12 grid gap-8 lg:grid-cols-[minmax(0,1.4fr)_minmax(300px,0.6fr)] lg:items-stretch">
             <ProductGallery images={product.gallery} />
-            <p className="mx-auto mt-8 max-w-2xl text-center text-base leading-8 text-muted sm:text-lg">
-              {product.description}
-            </p>
+            <aside className="brand-font flex min-h-[320px] items-center bg-surface p-7 sm:p-10 lg:p-12">
+              <div>
+                <p className="text-2xl font-medium leading-[1.25] tracking-[-0.03em] text-fg sm:text-3xl lg:text-4xl">
+                  {product.description}
+                </p>
+                <p className="mt-8 font-mono text-xs uppercase tracking-[0.2em] text-muted">
+                  {product.name}, Spectr
+                </p>
+              </div>
+            </aside>
           </div>
 
-          <div className="mx-auto mt-14 max-w-3xl text-center">
-            <h2 className="text-3xl font-semibold tracking-[-0.05em] text-fg sm:text-4xl">Specs</h2>
-            <div className="mt-8 space-y-12">
-              <SpecList
-                title="Overview"
-                items={[
-                  { label: "Category", value: product.category },
-                  { label: "Use", value: product.use },
-                  { label: "Flight", value: product.flightTime },
-                  { label: "Range", value: product.range },
-                  { label: "Status", value: product.availability },
-                  { label: "Pricing", value: product.price },
-                ]}
-              />
+          <details className="group mt-8 border border-border bg-surface">
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-6 p-6 text-left text-2xl font-semibold tracking-[-0.045em] text-fg marker:hidden sm:p-8 [&::-webkit-details-marker]:hidden">
+              Specs
+              <span className="font-mono text-sm transition-transform group-open:rotate-180" aria-hidden="true">
+                ↓
+              </span>
+            </summary>
+            <div className="grid gap-10 border-t border-border p-6 sm:p-8 lg:grid-cols-3">
+              <SpecList title="Overview" items={overviewItems} />
               <SpecList title="Specifications" items={product.specifications} />
               <SpecList title="Recommended Equipment" items={product.equipment} />
             </div>
-          </div>
+          </details>
         </section>
         <Footer />
       </main>
@@ -92,9 +103,9 @@ function SpecList({ title, items }: { title: string; items: { label: string; val
       <h2 className="label">{title}</h2>
       <dl className="mt-4 divide-y divide-border border-y border-border">
         {items.map((item) => (
-          <div key={item.label} className="py-4 text-sm">
+          <div key={item.label} className="grid gap-2 py-4 text-left text-sm sm:grid-cols-[0.85fr_1.15fr] sm:gap-4">
             <dt className="text-muted">{item.label}</dt>
-            <dd className="mt-2 text-fg">{item.value}</dd>
+            <dd className="text-fg">{item.value}</dd>
           </div>
         ))}
       </dl>
