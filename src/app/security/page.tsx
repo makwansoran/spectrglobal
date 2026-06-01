@@ -111,19 +111,10 @@ export default function SecurityPage() {
         </section>
 
         <section className="brand-font bg-surface px-5 py-16 sm:px-8 lg:py-24">
-          <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
-            <div>
-              <h2 className="max-w-5xl text-4xl font-semibold leading-[1.02] tracking-[-0.06em] text-fg sm:text-6xl">
-                We believe critical technology should be developed under full national control.
-              </h2>
-            </div>
-            <Link
-              href="/contact"
-              className="inline-flex w-fit items-center gap-3 border border-fg px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-fg transition-colors hover:bg-fg hover:text-white"
-            >
-              Contact Spectr
-              <span aria-hidden="true">→</span>
-            </Link>
+          <div className="mx-auto flex max-w-7xl justify-center text-center">
+            <h2 className="max-w-5xl text-4xl font-semibold leading-[1.02] tracking-[-0.06em] text-fg sm:text-6xl">
+              We believe critical technology should be developed under full national control.
+            </h2>
           </div>
         </section>
         <Footer />
