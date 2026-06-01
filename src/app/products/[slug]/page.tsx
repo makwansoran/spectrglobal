@@ -73,9 +73,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 >
                   {product.description}
                 </ScrollRevealHeading>
-                <p className="mt-8 font-mono text-xs uppercase tracking-[0.2em] text-muted">
-                  {product.name}, Spectr
-                </p>
               </div>
             </aside>
           </div>
