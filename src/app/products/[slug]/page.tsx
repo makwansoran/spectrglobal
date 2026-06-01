@@ -77,14 +77,14 @@ export default async function ProductPage({ params }: ProductPageProps) {
             </aside>
           </div>
 
-          <details className="group mt-8 border border-border bg-surface">
-            <summary className="flex cursor-pointer list-none items-center justify-between gap-6 p-6 text-left text-2xl font-semibold tracking-[-0.045em] text-fg marker:hidden sm:p-8 [&::-webkit-details-marker]:hidden">
+          <details className="group mt-8">
+            <summary className="inline-flex cursor-pointer list-none items-center gap-4 border border-border bg-surface px-5 py-3 text-left text-sm font-semibold uppercase tracking-[0.16em] text-fg marker:hidden hover:border-fg [&::-webkit-details-marker]:hidden">
               Specs
-              <span className="font-mono text-sm transition-transform group-open:rotate-180" aria-hidden="true">
+              <span className="font-mono text-xs transition-transform group-open:rotate-180" aria-hidden="true">
                 ↓
               </span>
             </summary>
-            <div className="grid gap-10 border-t border-border p-6 sm:p-8 lg:grid-cols-3">
+            <div className="mt-4 grid gap-10 border border-border bg-surface p-6 sm:p-8 lg:grid-cols-3">
               <SpecList title="Overview" items={overviewItems} />
               <SpecList title="Specifications" items={product.specifications} />
               <SpecList title="Recommended Equipment" items={product.equipment} />
