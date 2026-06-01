@@ -65,7 +65,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
             <ObjectVisual visual={product.visual} className="h-[420px] w-full grayscale sm:h-[520px]" />
           </div>
 
-          <div className="mt-14 max-w-4xl">
+          <div className="mx-auto mt-14 max-w-3xl text-center">
             <h2 className="text-3xl font-semibold tracking-[-0.05em] text-fg sm:text-4xl">Specs</h2>
             <div className="mt-8 space-y-12">
               <SpecList
@@ -96,9 +96,9 @@ function SpecList({ title, items }: { title: string; items: { label: string; val
       <h2 className="label">{title}</h2>
       <dl className="mt-4 divide-y divide-border border-y border-border">
         {items.map((item) => (
-          <div key={item.label} className="grid gap-2 py-4 text-sm sm:grid-cols-[170px_1fr]">
+          <div key={item.label} className="py-4 text-sm">
             <dt className="text-muted">{item.label}</dt>
-            <dd className="text-fg">{item.value}</dd>
+            <dd className="mt-2 text-fg">{item.value}</dd>
           </div>
         ))}
       </dl>

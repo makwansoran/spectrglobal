@@ -31,7 +31,7 @@ export default function ProductsPage() {
                   <ObjectVisual visual={product.visual} className="h-80 w-full grayscale sm:h-[460px]" />
                 </div>
 
-                <div className="p-6 sm:p-8">
+                <div className="p-6 text-center sm:p-8">
                   <h3 className="text-2xl font-semibold tracking-[-0.04em] text-fg">Specs</h3>
                   <div className="mt-8 space-y-10">
                     <SpecList
@@ -64,9 +64,9 @@ function SpecList({ title, items }: { title: string; items: { label: string; val
       <h3 className="label">{title}</h3>
       <dl className="mt-4 divide-y divide-border border-y border-border">
         {items.map((item) => (
-          <div key={item.label} className="grid gap-2 py-3 text-sm sm:grid-cols-[150px_1fr]">
+          <div key={item.label} className="py-3 text-sm">
             <dt className="text-muted">{item.label}</dt>
-            <dd className="text-fg">{item.value}</dd>
+            <dd className="mt-2 text-fg">{item.value}</dd>
           </div>
         ))}
       </dl>
