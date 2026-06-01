@@ -52,9 +52,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
             <p className="mt-6 max-w-2xl text-xl leading-8 tracking-[-0.03em] text-fg">
               {product.tagline}
             </p>
-            <p className="mt-6 max-w-2xl text-sm leading-7 text-muted">
-              {product.description}
-            </p>
           </div>
 
           <div className="mt-12 border border-border bg-surface">
