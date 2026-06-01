@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
@@ -60,19 +61,28 @@ export default function SecurityPage() {
 
         <section id="security-principles" className="brand-font bg-bg px-5 py-20 sm:px-8 lg:py-28">
           <div className="mx-auto max-w-7xl">
-            <div className="grid gap-px border border-border bg-border lg:grid-cols-3">
-              {principles.map((principle) => (
-                <article key={principle.title} className="bg-surface p-7 sm:p-8">
-                  <div className="flex h-full flex-col justify-between gap-10">
-                    <div>
-                      <h2 className="text-3xl font-semibold leading-none tracking-[-0.055em] text-fg">
-                        {principle.title}
-                      </h2>
-                    </div>
-                    <p className="text-sm leading-7 text-muted">{principle.text}</p>
-                  </div>
-                </article>
-              ))}
+            <div className="grid gap-0 lg:grid-cols-[1fr_0.9fr]">
+              <div className="divide-y divide-border">
+                {principles.map((principle) => (
+                  <article key={principle.title} className="grid gap-5 py-7 sm:grid-cols-[220px_1fr] sm:py-8">
+                    <h2 className="text-3xl font-semibold leading-none tracking-[-0.055em] text-fg">
+                      {principle.title}
+                    </h2>
+                    <p className="max-w-2xl text-sm leading-7 text-muted">{principle.text}</p>
+                  </article>
+                ))}
+              </div>
+
+              <div className="relative min-h-[420px] overflow-hidden bg-black lg:min-h-full">
+                <Image
+                  src="/operations-hq.jpg"
+                  alt="Controlled Norwegian operational infrastructure"
+                  fill
+                  className="object-cover grayscale"
+                  sizes="(max-width: 1024px) 100vw, 45vw"
+                />
+                <div className="absolute inset-0 bg-black/15" />
+              </div>
             </div>
           </div>
         </section>
