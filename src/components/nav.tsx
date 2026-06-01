@@ -24,6 +24,7 @@ const menuSections = [
     links: [
       { label: "Newsroom", href: "/newsroom" },
       { label: "Documentation", href: "/documentation" },
+      { label: "Security", href: "/security" },
       { label: "Privacy Policy", href: "/privacy" },
       { label: "Terms of Service", href: "/terms" },
     ],

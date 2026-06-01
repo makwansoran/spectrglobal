@@ -44,6 +44,7 @@ export function Footer() {
               <ul className="mt-6 space-y-4 text-sm">
                 <li><Link href="/newsroom" className="transition-opacity hover:opacity-50">Newsroom</Link></li>
                 <li><Link href="/documentation" className="transition-opacity hover:opacity-50">Documentation</Link></li>
+                <li><Link href="/security" className="transition-opacity hover:opacity-50">Security</Link></li>
                 <li><Link href="/privacy" className="transition-opacity hover:opacity-50">Privacy Policy</Link></li>
                 <li><Link href="/terms" className="transition-opacity hover:opacity-50">Terms of Service</Link></li>
               </ul>
