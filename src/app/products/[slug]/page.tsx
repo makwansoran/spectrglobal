@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
 import { ObjectVisual } from "@/components/object-visual";
+import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
 import { getObject, objects } from "@/lib/objects";
 
 type ProductPageProps = {
@@ -45,9 +46,13 @@ export default async function ProductPage({ params }: ProductPageProps) {
             <Link href="/products" className="label hover:text-fg">
               Products
             </Link>
-            <h1 className="mt-6 text-5xl font-semibold leading-none tracking-[-0.06em] text-fg sm:text-7xl">
+            <ScrollRevealHeading
+              as="h1"
+              revealOnMount
+              className="mt-6 text-5xl font-semibold leading-none tracking-[-0.06em] text-fg sm:text-7xl"
+            >
               {product.name}
-            </h1>
+            </ScrollRevealHeading>
             <p className="mt-6 max-w-2xl text-xl leading-8 tracking-[-0.03em] text-fg">
               {product.tagline}
             </p>

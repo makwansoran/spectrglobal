@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
+import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
 import { latestNewsStories } from "@/lib/news-stories";
 
 export const metadata: Metadata = { title: "Newsroom" };
@@ -29,9 +30,13 @@ export default function NewsroomPage() {
         <section className="brand-font bg-black px-5 pb-20 pt-36 text-white sm:px-8 lg:pb-28 lg:pt-44">
           <div className="mx-auto max-w-7xl">
             <div className="grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
-              <h1 className="max-w-5xl text-6xl font-semibold leading-[0.9] tracking-[-0.075em] sm:text-8xl lg:text-[9.5rem]">
+              <ScrollRevealHeading
+                as="h1"
+                revealOnMount
+                className="max-w-5xl text-6xl font-semibold leading-[0.9] tracking-[-0.075em] sm:text-8xl lg:text-[9.5rem]"
+              >
                 Newsroom
-              </h1>
+              </ScrollRevealHeading>
               <p className="max-w-lg text-base leading-8 text-white/62 sm:text-lg">
                 Updates from Spectr on field-ready aerial systems, operational hardware, and the development work behind RECON.
               </p>

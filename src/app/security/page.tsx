@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
+import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
 
 export const metadata: Metadata = {
   title: "Security & Confidentiality",
@@ -44,9 +45,13 @@ export default function SecurityPage() {
       <main className="flex-1 bg-bg">
         <section className="brand-font relative flex min-h-screen items-center bg-black px-5 py-36 text-white sm:px-8 lg:py-44">
           <div className="mx-auto max-w-7xl">
-            <h1 className="max-w-6xl text-5xl font-semibold leading-[0.9] tracking-[-0.075em] sm:text-7xl lg:text-[8.5rem]">
+            <ScrollRevealHeading
+              as="h1"
+              revealOnMount
+              className="max-w-6xl text-5xl font-semibold leading-[0.9] tracking-[-0.075em] sm:text-7xl lg:text-[8.5rem]"
+            >
               Developed and produced in Norway
-            </h1>
+            </ScrollRevealHeading>
           </div>
           <a
             href="#security-principles"

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
+import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
 
 export const metadata: Metadata = { title: "Contact" };
 
@@ -12,9 +13,13 @@ export default function ContactPage() {
       <main className="flex-1">
         <section className="px-5 pb-20 pt-32 sm:px-8 lg:pb-28 lg:pt-36">
           <div className="mx-auto max-w-3xl">
-            <h1 className="text-5xl font-semibold leading-[0.98] tracking-[-0.06em] sm:text-7xl">
+            <ScrollRevealHeading
+              as="h1"
+              revealOnMount
+              className="text-5xl font-semibold leading-[0.98] tracking-[-0.06em] sm:text-7xl"
+            >
               Send a request.
-            </h1>
+            </ScrollRevealHeading>
 
             <form className="mt-12 space-y-6">
               <Field label="Name">

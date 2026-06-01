@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
+import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
 
 export const metadata: Metadata = { title: "About Us" };
 
@@ -30,9 +31,13 @@ export default function AboutPage() {
       <main className="flex-1">
         <section className="brand-font bg-black px-5 pb-20 pt-36 text-white sm:px-8 lg:pb-28 lg:pt-44">
           <div className="mx-auto max-w-7xl">
-            <h1 className="max-w-5xl text-6xl font-semibold leading-[0.9] tracking-[-0.075em] sm:text-8xl lg:text-[9.5rem]">
+            <ScrollRevealHeading
+              as="h1"
+              revealOnMount
+              className="max-w-5xl text-6xl font-semibold leading-[0.9] tracking-[-0.075em] sm:text-8xl lg:text-[9.5rem]"
+            >
               About Us
-            </h1>
+            </ScrollRevealHeading>
             <p className="mt-10 max-w-2xl text-base leading-8 text-white/62 sm:text-lg">
               Spectr is a Norway-based aerospace company building mission-ready UAV systems and operational tools for teams that need dependable field technology.
             </p>
