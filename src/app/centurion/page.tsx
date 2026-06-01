@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
 import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
 
@@ -104,6 +105,9 @@ export default function CenturionPage() {
             </Link>
           </div>
         </section>
+        <div className="bg-bg text-fg">
+          <Footer />
+        </div>
       </main>
     </>
   );
