@@ -97,7 +97,7 @@ export default function Home() {
                   src="/centurion-laptop-mockup.png"
                   alt="Centurion command dashboard on laptop"
                   fill
-                  className="object-contain object-center p-8 sm:p-12 lg:p-16"
+                  className="object-cover object-center"
                   sizes="(max-width: 1280px) 100vw, 1280px"
                 />
                 <div className="absolute inset-0 bg-black/20" />
