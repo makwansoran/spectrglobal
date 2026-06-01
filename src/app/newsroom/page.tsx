@@ -10,11 +10,11 @@ export const metadata: Metadata = { title: "Newsroom" };
 const briefs = [
   {
     label: "Field Notes",
-    value: "RECON trials continue across mixed-weather test windows.",
+    value: "VALKYRIE trials continue across mixed-weather test windows.",
   },
   {
     label: "Development",
-    value: "RECON payload workflow validation enters the next build cycle.",
+    value: "VALKYRIE payload workflow validation enters the next build cycle.",
   },
   {
     label: "Operations",
@@ -38,7 +38,7 @@ export default function NewsroomPage() {
                 Newsroom
               </ScrollRevealHeading>
               <p className="max-w-lg text-base leading-8 text-white/62 sm:text-lg">
-                Updates from Spectr on field-ready aerial systems, operational hardware, and the development work behind RECON.
+                Updates from Spectr on field-ready aerial systems, operational hardware, and the development work behind VALKYRIE.
               </p>
             </div>
           </div>

@@ -24,10 +24,10 @@ export default function Home() {
                 </ScrollRevealHeading>
                 <div className="mt-10 flex justify-center">
                   <Link
-                    href="/products/recon"
+                    href="/products/valkyrie"
                     className="inline-flex items-center gap-3 border border-fg bg-white px-6 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-black shadow-[0_18px_45px_rgba(11,12,13,0.08)] hover:bg-fg hover:text-white"
                   >
-                    Check Out RECON
+                    Check Out VALKYRIE
                     <span aria-hidden="true">→</span>
                   </Link>
                 </div>
@@ -53,7 +53,7 @@ export default function Home() {
         <section className="brand-font snap-start bg-bg px-5 py-24 sm:px-8 lg:py-32">
           <div className="mx-auto max-w-7xl">
             <Link
-              href="/products/recon"
+              href="/products/valkyrie"
               className="group block overflow-hidden bg-black text-white"
             >
               <div className="relative min-h-[520px]">
@@ -65,7 +65,7 @@ export default function Home() {
                   playsInline
                   preload="metadata"
                   poster="https://cdn.pixabay.com/video/2020/01/06/30978-384234040_tiny.jpg"
-                  aria-label="RECON drone video preview"
+                  aria-label="VALKYRIE drone video preview"
                 >
                   <source
                     src="https://cdn.pixabay.com/video/2020/01/06/30978-384234040_large.mp4"
@@ -77,14 +77,14 @@ export default function Home() {
                 <div className="relative flex min-h-[520px] flex-col justify-between p-7 sm:p-10 lg:p-12">
                   <div className="max-w-4xl">
                     <h2 className="text-5xl font-semibold leading-[0.92] tracking-[-0.075em] sm:text-7xl lg:text-8xl">
-                      RECON
+                      VALKYRIE
                     </h2>
                     <p className="mt-6 max-w-xl text-base leading-8 text-white/68 sm:text-lg">
                       Mission-configurable reconnaissance systems built around payload, range, and operator workflow.
                     </p>
                   </div>
                   <span className="mt-12 inline-flex w-fit items-center gap-3 border border-transparent px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-white transition-colors group-hover:border-white">
-                    View RECON
+                    View VALKYRIE
                     <span aria-hidden="true">→</span>
                   </span>
                 </div>

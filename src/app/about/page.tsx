@@ -14,7 +14,7 @@ const milestones = [
   },
   {
     year: "2025",
-    title: "RECON takes shape",
+    title: "VALKYRIE takes shape",
     text: "The team refined a mission-configurable UAV direction around payload planning, operator needs, and deployment support.",
   },
   {
@@ -56,7 +56,7 @@ export default function AboutPage() {
                 Spectr was created to build technology that feels useful in the field, not just impressive in a showroom. Our work centers on UAV platforms, operator workflow, and the systems needed to plan, monitor, and support missions.
               </p>
               <p>
-                We design around the realities of deployment: payload needs, environmental constraints, training, support, and the handoff between hardware and software. RECON and Centurion reflect that direction.
+                We design around the realities of deployment: payload needs, environmental constraints, training, support, and the handoff between hardware and software. VALKYRIE and Centurion reflect that direction.
               </p>
             </div>
           </div>

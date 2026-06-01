@@ -15,9 +15,9 @@ export const newsStories = [
   },
   {
     eyebrow: "Product",
-    title: "Inside the next phase of RECON field support",
+    title: "Inside the next phase of VALKYRIE field support",
     summary:
-      "Updates on RECON development, operator planning, and the field readiness work that guides qualified deployments.",
+      "Updates on VALKYRIE development, operator planning, and the field readiness work that guides qualified deployments.",
     meta: "March 2026",
   },
   {

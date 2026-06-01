@@ -44,7 +44,7 @@ export default function ContactPage() {
                   <option value="" disabled>
                     Select a product
                   </option>
-                  <option value="recon">RECON</option>
+                  <option value="valkyrie">VALKYRIE</option>
                 </select>
               </Field>
 

@@ -23,11 +23,11 @@ export type DroneProduct = {
 
 export const objects: DroneProduct[] = [
   {
-    slug: "recon",
-    name: "RECON",
+    slug: "valkyrie",
+    name: "VALKYRIE",
     tagline: "Configurable reconnaissance vehicle for observation and field operations.",
     description:
-      "RECON is a mission-configurable unmanned aircraft platform for teams that need persistent aerial visibility, adaptable payload options, and dependable field handling.",
+      "VALKYRIE is a mission-configurable unmanned aircraft platform for teams that need persistent aerial visibility, adaptable payload options, and dependable field handling.",
     category: "UAV",
     use: "UAV",
     year: 2026,

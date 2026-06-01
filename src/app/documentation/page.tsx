@@ -10,7 +10,7 @@ const quickStart = [
   {
     title: "Evaluate a platform",
     description:
-      "Review RECON by mission profile, operating environment, payload needs, and deployment readiness.",
+      "Review VALKYRIE by mission profile, operating environment, payload needs, and deployment readiness.",
     href: "/products",
     action: "View products",
   },
@@ -35,7 +35,7 @@ const documentationSections = [
     title: "Product Documentation",
     description: "Platform references for teams evaluating Spectr systems.",
     links: [
-      "RECON payload and sensing configuration",
+      "VALKYRIE payload and sensing configuration",
       "Recommended support equipment",
     ],
   },
@@ -73,7 +73,7 @@ const documentationSections = [
 
 const referenceCards = [
   {
-    title: "RECON",
+    title: "VALKYRIE",
     text: "Mission-configurable reconnaissance systems built around payload and workflow.",
   },
 ];

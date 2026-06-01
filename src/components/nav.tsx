@@ -8,7 +8,7 @@ const menuSections = [
   {
     title: "Development",
     links: [
-      { label: "RECON", href: "/products/recon" },
+      { label: "VALKYRIE", href: "/products/valkyrie" },
     ],
   },
   {

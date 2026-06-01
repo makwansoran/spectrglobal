@@ -10,7 +10,12 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/products/spectr-uav",
-        destination: "/products/recon",
+        destination: "/products/valkyrie",
+        permanent: true,
+      },
+      {
+        source: "/products/recon",
+        destination: "/products/valkyrie",
         permanent: true,
       },
     ];
