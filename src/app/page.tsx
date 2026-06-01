@@ -89,7 +89,7 @@ export default function Home() {
         <section className="brand-font snap-start bg-bg px-5 py-24 sm:px-8 lg:py-32">
           <div className="mx-auto max-w-7xl">
             <Link
-              href="/contact"
+              href="/centurion"
               className="group block overflow-hidden bg-black text-white"
             >
               <div className="relative min-h-[520px]">

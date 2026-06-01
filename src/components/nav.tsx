@@ -9,6 +9,7 @@ const menuSections = [
     title: "Development",
     links: [
       { label: "VALKYRIE", href: "/products/valkyrie" },
+      { label: "Centurion", href: "/centurion" },
     ],
   },
   {
@@ -31,8 +32,21 @@ const menuSections = [
   },
 ];
 
-export function Nav() {
+type NavProps = {
+  variant?: "dark" | "light";
+};
+
+export function Nav({ variant = "dark" }: NavProps) {
   const [open, setOpen] = useState(false);
+  const light = variant === "light";
+  const headerClass = light
+    ? "bg-white text-black shadow-2xl shadow-black/20 ring-1 ring-black/10"
+    : "bg-black text-white shadow-2xl shadow-black/20 ring-1 ring-white/10";
+  const logoClass = light ? "h-8 w-auto" : "h-8 w-auto invert";
+  const ctaClass = light
+    ? "bg-black text-white"
+    : "bg-white text-black";
+  const menuLineClass = light ? "bg-black" : "bg-white";
 
   useEffect(() => {
     const main = document.querySelector("main") as HTMLElement | null;
@@ -45,7 +59,7 @@ export function Nav() {
   return (
     <>
       <header className="fixed inset-x-0 top-4 z-50 px-4">
-        <div className="relative mx-auto flex h-16 max-w-5xl items-center justify-between rounded-full bg-black px-5 text-white shadow-2xl shadow-black/20 ring-1 ring-white/10 sm:px-7">
+        <div className={`relative mx-auto flex h-16 max-w-5xl items-center justify-between rounded-full px-5 sm:px-7 ${headerClass}`}>
 
           {/* Logo */}
           <Link
@@ -58,7 +72,7 @@ export function Nav() {
               alt="Spectr"
               width={32}
               height={32}
-              className="h-8 w-auto invert"
+              className={logoClass}
               priority
             />
             <span className="brand-font text-sm font-semibold uppercase tracking-[0.34em]">
@@ -71,7 +85,7 @@ export function Nav() {
             <Link
               href="/contact"
               onClick={() => setOpen(false)}
-              className="text-xs uppercase tracking-[0.16em] bg-white px-5 py-2.5 text-black transition-opacity hover:opacity-80"
+              className={`px-5 py-2.5 text-xs uppercase tracking-[0.16em] transition-opacity hover:opacity-80 ${ctaClass}`}
             >
               Get Started
             </Link>
@@ -85,19 +99,19 @@ export function Nav() {
               className="relative flex h-8 w-8 flex-col items-center justify-center gap-[5px] focus:outline-none"
             >
               <span
-                className={`block h-px w-5 origin-center bg-white transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                className={`block h-px w-5 origin-center transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                   open ? "translate-y-[3px] rotate-45" : ""
-                }`}
+                } ${menuLineClass}`}
               />
               <span
-                className={`block h-px bg-white transition-[width,opacity] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                className={`block h-px transition-[width,opacity] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                   open ? "w-0 opacity-0" : "w-5"
-                }`}
+                } ${menuLineClass}`}
               />
               <span
-                className={`block h-px w-5 origin-center bg-white transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                className={`block h-px w-5 origin-center transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                   open ? "-translate-y-[3px] -rotate-45" : ""
-                }`}
+                } ${menuLineClass}`}
               />
             </button>
           </div>
