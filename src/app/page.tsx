@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
@@ -134,6 +135,50 @@ export default function Home() {
                 </div>
               </div>
             </Link>
+          </div>
+        </section>
+
+        <section className="brand-font snap-start bg-bg px-5 py-24 sm:px-8 lg:py-32">
+          <div className="mx-auto max-w-7xl">
+            <div className="grid overflow-hidden border border-border lg:grid-cols-2">
+              <div className="relative min-h-[360px] bg-black sm:min-h-[420px] lg:min-h-[520px]">
+                <Image
+                  src="/aerospace-hq.jpg"
+                  alt="Spectr development and production in Norway"
+                  fill
+                  className="object-cover grayscale"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              </div>
+
+              <div className="flex min-h-[360px] flex-col justify-between bg-surface p-7 sm:min-h-[420px] sm:p-10 lg:min-h-[520px] lg:p-12">
+                <div className="max-w-xl">
+                  <h2 className="text-4xl font-semibold leading-[0.95] tracking-[-0.06em] text-fg sm:text-5xl lg:text-6xl">
+                    Developed and produced in Norway
+                  </h2>
+                  <p className="mt-6 text-base leading-8 text-muted sm:text-lg">
+                    Spectr builds mission-ready aerial systems and operational software from Norway, with a focus on field reliability and operator workflow.
+                  </p>
+                </div>
+
+                <div className="mt-10 flex flex-col items-start gap-5 sm:mt-12">
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center gap-3 border border-fg bg-fg px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:bg-transparent hover:text-fg"
+                  >
+                    Request Access
+                    <span aria-hidden="true">→</span>
+                  </Link>
+                  <Link
+                    href="/about"
+                    className="inline-flex items-center gap-3 border border-transparent px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-fg transition-colors hover:border-fg"
+                  >
+                    Learn More
+                    <span aria-hidden="true">→</span>
+                  </Link>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
