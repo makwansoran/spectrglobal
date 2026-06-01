@@ -65,11 +65,14 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
           <div className="mt-12 grid gap-8 lg:grid-cols-[minmax(0,1.4fr)_minmax(300px,0.6fr)] lg:items-stretch">
             <ProductGallery images={product.gallery} />
-            <aside className="brand-font flex min-h-[320px] items-center bg-surface p-7 sm:p-10 lg:p-12">
-              <div>
-                <p className="text-2xl font-medium leading-[1.25] tracking-[-0.03em] text-fg sm:text-3xl lg:text-4xl">
+            <aside className="brand-font flex min-h-[320px] items-center justify-center bg-bg p-7 text-center sm:p-10 lg:p-12">
+              <div className="mx-auto max-w-4xl">
+                <ScrollRevealHeading
+                  as="h2"
+                  className="text-2xl font-medium leading-[1.25] tracking-[-0.03em] text-fg sm:text-3xl lg:text-4xl"
+                >
                   {product.description}
-                </p>
+                </ScrollRevealHeading>
                 <p className="mt-8 font-mono text-xs uppercase tracking-[0.2em] text-muted">
                   {product.name}, Spectr
                 </p>
