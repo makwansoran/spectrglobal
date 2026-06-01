@@ -58,9 +58,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
             >
               {product.name}
             </ScrollRevealHeading>
-            <p className="mt-6 max-w-2xl text-xl leading-8 tracking-[-0.03em] text-fg">
-              {product.tagline}
-            </p>
           </div>
 
           <div className="mt-12 grid gap-8 lg:grid-cols-[minmax(0,1.4fr)_minmax(300px,0.6fr)] lg:items-stretch">
