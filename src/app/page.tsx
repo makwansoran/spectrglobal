@@ -111,7 +111,7 @@ export default function Home() {
         </section>
 
         <section className="brand-font snap-start bg-bg">
-          <div className="mx-auto max-w-7xl">
+          <div>
             <div className="grid overflow-hidden border-x border-b border-border lg:grid-cols-2">
               <div className="relative min-h-[360px] bg-black sm:min-h-[420px] lg:min-h-[520px]">
                 <Image
@@ -148,13 +148,13 @@ export default function Home() {
         </section>
 
         <section className="brand-font snap-start bg-bg">
-          <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
+          <div>
             <NewsSlideshow />
           </div>
         </section>
 
         <section className="brand-font snap-start bg-bg">
-          <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <div>
             <div className="relative min-h-[520px] overflow-hidden bg-neutral-800 text-white">
               <video
                 className="absolute inset-0 h-full w-full object-cover grayscale"
