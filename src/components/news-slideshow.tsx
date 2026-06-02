@@ -1,90 +1,83 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import { latestNewsStories } from "@/lib/news-stories";
+import { newsStories } from "@/lib/news-stories";
 
 export function NewsSlideshow() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const activeStory = latestNewsStories[activeIndex];
-
-  useEffect(() => {
-    const intervalId = window.setInterval(() => {
-      setActiveIndex((index) => (index + 1) % latestNewsStories.length);
-    }, 6500);
-
-    return () => window.clearInterval(intervalId);
-  }, []);
-
-  const goToPrevious = () => {
-    setActiveIndex((index) => (index - 1 + latestNewsStories.length) % latestNewsStories.length);
-  };
-
-  const goToNext = () => {
-    setActiveIndex((index) => (index + 1) % latestNewsStories.length);
-  };
+  const [leadStory, secondStory, thirdStory] = newsStories;
+  const featureStories = [
+    { label: "PT — 01 / 02", title: "Rebuild field autonomy" },
+    { label: "PT — 02 / 02", title: "Rebuild mission systems" },
+  ];
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[1fr_400px]">
-      <article className="h-[420px] overflow-hidden bg-fg p-6 text-bg sm:p-8 lg:p-10">
-        <div className="flex h-full flex-col justify-between gap-10">
-          <div>
-            <h3 className="max-w-4xl overflow-hidden text-2xl font-semibold leading-[1.05] tracking-[-0.05em] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3] sm:text-4xl lg:text-5xl">
-              {activeStory.title}
-            </h3>
-          </div>
+    <section className="border-y border-border py-12 sm:py-16">
+      <div className="flex items-start justify-between gap-8 border-b border-border pb-8">
+        <h2 className="text-4xl font-semibold leading-none tracking-[-0.06em] text-fg sm:text-6xl">
+          News &amp; Insights
+        </h2>
+        <Link
+          href="/newsroom"
+          className="mt-2 whitespace-nowrap text-xs font-semibold uppercase tracking-[0.16em] text-fg underline-offset-8 hover:underline"
+        >
+          All articles
+        </Link>
+      </div>
 
-          <div className="flex flex-col gap-6 pt-6 sm:flex-row sm:items-center sm:justify-between">
+      <div className="grid border-b border-border lg:grid-cols-[1.1fr_0.9fr]">
+        <article className="border-b border-border py-8 lg:border-b-0 lg:border-r lg:pr-10">
+          <p className="font-mono text-xs uppercase tracking-[0.16em] text-muted">5/5/2026</p>
+          <h3 className="mt-8 max-w-4xl text-3xl font-semibold leading-[1.02] tracking-[-0.055em] text-fg sm:text-5xl">
+            {leadStory.title}
+          </h3>
+          <p className="mt-6 max-w-2xl text-base leading-8 text-muted">
+            {leadStory.summary}
+          </p>
+          <Link
+            href="/newsroom"
+            className="mt-10 inline-flex w-fit items-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-fg underline-offset-8 hover:underline"
+          >
+            Read more
+          </Link>
+        </article>
+
+        <div className="lg:pl-10">
+          {[secondStory, thirdStory].map((story, index) => (
+            <article key={story.title} className="border-b border-border py-8 last:border-b-0">
+              <p className="font-mono text-xs uppercase tracking-[0.16em] text-muted">
+                {index === 0 ? "12/09/2025" : "10/21/2025"}
+              </p>
+              <h3 className="mt-6 text-2xl font-semibold leading-[1.05] tracking-[-0.05em] text-fg sm:text-3xl">
+                {story.title}
+              </h3>
+              <Link
+                href="/newsroom"
+                className="mt-8 inline-flex w-fit items-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-fg underline-offset-8 hover:underline"
+              >
+                Read more
+              </Link>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <div className="grid lg:grid-cols-2">
+        {featureStories.map((story, index) => (
+          <article
+            key={story.label}
+            className={`py-8 ${index === 0 ? "border-b border-border lg:border-b-0 lg:border-r lg:pr-10" : "lg:pl-10"}`}
+          >
+            <p className="font-mono text-xs uppercase tracking-[0.16em] text-muted">{story.label}</p>
+            <h3 className="mt-6 text-3xl font-semibold leading-none tracking-[-0.055em] text-fg sm:text-5xl">
+              {story.title}
+            </h3>
             <Link
               href="/newsroom"
-              className="inline-flex w-fit items-center gap-3 bg-white px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-black hover:opacity-80"
+              className="mt-8 inline-flex w-fit items-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-fg underline-offset-8 hover:underline"
             >
-              Visit Newsroom
-              <span aria-hidden="true">→</span>
+              Read more
             </Link>
-            <div className="flex items-center gap-3">
-              <button
-                type="button"
-                onClick={goToPrevious}
-                aria-label="Show previous news item"
-                className="grid h-11 w-11 place-items-center bg-white/10 text-lg text-white/80 hover:bg-white hover:text-black"
-              >
-                &larr;
-              </button>
-              <button
-                type="button"
-                onClick={goToNext}
-                aria-label="Show next news item"
-                className="grid h-11 w-11 place-items-center bg-white/10 text-lg text-white/80 hover:bg-white hover:text-black"
-              >
-                &rarr;
-              </button>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <div className="grid h-[420px] grid-rows-3 gap-2">
-        {latestNewsStories.map((story, index) => {
-          const selected = index === activeIndex;
-
-          return (
-            <button
-              key={story.title}
-              type="button"
-              onClick={() => setActiveIndex(index)}
-              aria-current={selected ? "true" : undefined}
-              className={`group overflow-hidden p-5 text-left transition-colors hover:bg-surface ${
-                selected ? "bg-surface" : ""
-              }`}
-            >
-              <span className="block overflow-hidden text-xl font-semibold leading-tight tracking-[-0.045em] text-fg transition-transform [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3] group-hover:translate-x-1">
-                {story.title}
-              </span>
-            </button>
-          );
-        })}
+          </article>
+        ))}
       </div>
-    </div>
+    </section>
   );
 }
