@@ -26,8 +26,9 @@ export const objects: DroneProduct[] = [
   {
     slug: "valkyrie",
     name: "VALKYRIE",
-    tagline: "Configurable reconnaissance vehicle for observation and field operations.",
-    description: "Configurable reconnaissance vehicle for observation and field operations.",
+    tagline: "Mission-configurable attack UAV for payload delivery and terminal mission profiles.",
+    description:
+      "VALKYRIE is a mission-configurable attack UAV built to deliver payloads, execute terminal strike profiles, and fulfill predefined field missions with operator-controlled deployment.",
     category: "UAV",
     use: "UAV",
     year: 2026,
@@ -50,7 +51,7 @@ export const objects: DroneProduct[] = [
       { label: "Length", value: "990 mm" },
       { label: "All-up weight", value: "2000-3000 g" },
       { label: "Optimal speed", value: "60-70 km/h" },
-      { label: "Use case", value: "Observation, inspection, and field support" },
+      { label: "Use case", value: "Payload delivery, terminal strike profiles, and mission execution" },
     ],
     equipment: [
       { label: "Payload", value: "Configured for mission requirements" },

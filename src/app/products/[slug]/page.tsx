@@ -56,6 +56,9 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 <h1 className="text-5xl font-semibold leading-[0.92] tracking-[-0.075em] text-fg sm:text-7xl">
                   {product.name}
                 </h1>
+                <p className="mt-8 text-base leading-8 text-muted sm:text-lg">
+                  {product.description}
+                </p>
               </div>
             </aside>
           </div>

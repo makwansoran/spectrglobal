@@ -74,7 +74,7 @@ const documentationSections = [
 const referenceCards = [
   {
     title: "VALKYRIE",
-    text: "Mission-configurable reconnaissance systems built around payload and workflow.",
+    text: "Mission-configurable attack UAV built around payload delivery, terminal mission profiles, and workflow.",
   },
 ];
 

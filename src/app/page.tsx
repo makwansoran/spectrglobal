@@ -69,7 +69,7 @@ export default function Home() {
                       VALKYRIE
                     </h2>
                     <p className="mt-6 max-w-xl text-base leading-8 text-white/68 sm:text-lg">
-                      Mission-configurable reconnaissance systems built around payload, range, and operator workflow.
+                      Mission-configurable attack UAV built around payload delivery, terminal mission profiles, and operator workflow.
                     </p>
                   </div>
                   <span className="mt-12 inline-flex w-fit items-center gap-3 border border-transparent px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-white transition-colors group-hover:border-white">
