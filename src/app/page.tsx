@@ -50,74 +50,64 @@ export default function Home() {
 
         </div>
 
-        <section className="brand-font snap-start bg-bg px-5 py-24 sm:px-8 lg:py-32">
-          <div className="mx-auto max-w-7xl">
-            <Link
-              href="/products/valkyrie"
-              className="group block overflow-hidden bg-black text-white"
-            >
-              <div className="relative min-h-[520px]">
-                <Image
-                  src="/valkyrie-hero.jpg"
-                  alt="VALKYRIE aircraft flying over mountain terrain"
-                  fill
-                  className="object-cover grayscale"
-                  sizes="(max-width: 1280px) 100vw, 1280px"
-                />
-                <div className="absolute inset-0 bg-black/45" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                <div className="relative flex min-h-[520px] flex-col justify-between p-7 sm:p-10 lg:p-12">
-                  <div className="max-w-4xl">
-                    <h2 className="text-5xl font-semibold leading-[0.92] tracking-[-0.075em] sm:text-7xl lg:text-8xl">
-                      VALKYRIE
-                    </h2>
-                    <p className="mt-6 max-w-xl text-base leading-8 text-white/68 sm:text-lg">
-                      Mission-configurable attack UAV built around payload delivery, terminal mission profiles, and operator workflow.
-                    </p>
-                  </div>
-                  <span className="mt-12 inline-flex w-fit items-center gap-3 border border-transparent px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-white transition-colors group-hover:border-white">
-                    View VALKYRIE
-                    <span aria-hidden="true">→</span>
-                  </span>
-                </div>
+        <section className="brand-font flex min-h-screen snap-start flex-col bg-black lg:flex-row">
+          <Link
+            href="/products/valkyrie"
+            className="group relative min-h-[50vh] flex-1 overflow-hidden bg-black text-white transition-[flex] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:flex-[1.45] lg:min-h-screen"
+          >
+            <Image
+              src="/valkyrie-hero.jpg"
+              alt="VALKYRIE aircraft flying over mountain terrain"
+              fill
+              className="object-cover grayscale transition-transform duration-700 group-hover:scale-105"
+              sizes="(max-width: 1024px) 100vw, 60vw"
+            />
+            <div className="absolute inset-0 bg-black/45" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
+            <div className="relative flex min-h-[50vh] flex-col justify-between p-7 sm:p-10 lg:min-h-screen lg:p-12">
+              <div className="max-w-3xl">
+                <h2 className="text-5xl font-semibold leading-[0.92] tracking-[-0.075em] sm:text-7xl lg:text-8xl">
+                  VALKYRIE
+                </h2>
+                <p className="mt-6 max-w-xl text-base leading-8 text-white/68 sm:text-lg">
+                  Mission-configurable attack UAV built around payload delivery, terminal mission profiles, and operator workflow.
+                </p>
               </div>
-            </Link>
-          </div>
-        </section>
+              <span className="mt-12 inline-flex w-fit items-center gap-3 border border-transparent px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-white transition-colors group-hover:border-white">
+                View VALKYRIE
+                <span aria-hidden="true">→</span>
+              </span>
+            </div>
+          </Link>
 
-        <section className="brand-font snap-start bg-bg px-5 py-24 sm:px-8 lg:py-32">
-          <div className="mx-auto max-w-7xl">
-            <Link
-              href="/centurion"
-              className="group block overflow-hidden bg-black text-white"
-            >
-              <div className="relative min-h-[520px]">
-                <Image
-                  src="/centurion-laptop-mockup.png"
-                  alt="Centurion command dashboard on laptop"
-                  fill
-                  className="object-cover object-center"
-                  sizes="(max-width: 1280px) 100vw, 1280px"
-                />
-                <div className="absolute inset-0 bg-black/20" />
-                <div className="absolute inset-0 bg-gradient-to-l from-black/80 via-black/25 to-transparent" />
-                <div className="relative flex min-h-[520px] flex-col justify-between p-7 sm:p-10 lg:items-end lg:p-12 lg:text-right">
-                  <div className="max-w-3xl">
-                    <h2 className="text-5xl font-semibold leading-[0.92] tracking-[-0.075em] sm:text-7xl lg:text-8xl">
-                      Centurion
-                    </h2>
-                    <p className="mt-6 max-w-xl text-base leading-8 text-white/68 sm:text-lg">
-                      A command dashboard for monitoring missions, coordinating field activity, and keeping operational context in one place.
-                    </p>
-                  </div>
-                  <span className="mt-12 inline-flex w-fit items-center gap-3 border border-transparent px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-white transition-colors group-hover:border-white lg:self-end">
-                    Request Access
-                    <span aria-hidden="true">→</span>
-                  </span>
-                </div>
+          <Link
+            href="/centurion"
+            className="group relative min-h-[50vh] flex-1 overflow-hidden bg-black text-white transition-[flex] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:flex-[1.45] lg:min-h-screen"
+          >
+            <Image
+              src="/centurion-laptop-mockup.png"
+              alt="Centurion command dashboard on laptop"
+              fill
+              className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+              sizes="(max-width: 1024px) 100vw, 60vw"
+            />
+            <div className="absolute inset-0 bg-black/25" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
+            <div className="relative flex min-h-[50vh] flex-col justify-between p-7 sm:p-10 lg:min-h-screen lg:p-12">
+              <div className="max-w-3xl">
+                <h2 className="text-5xl font-semibold leading-[0.92] tracking-[-0.075em] sm:text-7xl lg:text-8xl">
+                  Centurion
+                </h2>
+                <p className="mt-6 max-w-xl text-base leading-8 text-white/68 sm:text-lg">
+                  A command dashboard for monitoring missions, coordinating field activity, and keeping operational context in one place.
+                </p>
               </div>
-            </Link>
-          </div>
+              <span className="mt-12 inline-flex w-fit items-center gap-3 border border-transparent px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-white transition-colors group-hover:border-white">
+                Request Access
+                <span aria-hidden="true">→</span>
+              </span>
+            </div>
+          </Link>
         </section>
 
         <section className="brand-font snap-start bg-bg px-5 py-24 sm:px-8 lg:py-32">
