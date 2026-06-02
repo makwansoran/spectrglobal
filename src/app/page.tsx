@@ -148,15 +148,7 @@ export default function Home() {
         </section>
 
         <section className="brand-font snap-start bg-bg">
-          <div className="mx-auto w-full max-w-7xl px-5 py-24 sm:px-8 lg:py-32">
-            <div className="max-w-4xl">
-              <ScrollRevealHeading
-                as="h2"
-                className="text-4xl font-semibold leading-none text-fg sm:text-6xl"
-              >
-                Newsroom
-              </ScrollRevealHeading>
-            </div>
+          <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
             <NewsSlideshow />
           </div>
         </section>
