@@ -112,7 +112,7 @@ export default function Home() {
 
         <section className="brand-font snap-start bg-bg">
           <div className="mx-auto max-w-7xl">
-            <div className="grid overflow-hidden border border-border lg:grid-cols-2">
+            <div className="grid overflow-hidden border-x border-b border-border lg:grid-cols-2">
               <div className="relative min-h-[360px] bg-black sm:min-h-[420px] lg:min-h-[520px]">
                 <Image
                   src="/norway-operations.png"
