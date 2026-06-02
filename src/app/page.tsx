@@ -31,19 +31,10 @@ export default function Home() {
                 <ScrollRevealHeading
                   as="h1"
                   revealOnMount
-                  className="mx-auto max-w-4xl text-4xl font-semibold leading-[0.98] text-white sm:text-6xl lg:text-7xl"
+                  className="mx-auto max-w-3xl text-3xl font-semibold leading-[0.98] text-white sm:text-5xl lg:text-6xl"
                 >
-                  &quot;For real-world aerial operations.&quot;
+                  For real-world aerial operations.
                 </ScrollRevealHeading>
-                <div className="mt-10 flex justify-center">
-                  <Link
-                    href="/products/valkyrie"
-                    className="inline-flex items-center gap-3 border border-white bg-white px-6 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-black shadow-[0_18px_45px_rgba(11,12,13,0.18)] hover:bg-transparent hover:text-white"
-                  >
-                    Check Out VALKYRIE
-                    <span aria-hidden="true">→</span>
-                  </Link>
-                </div>
               </div>
             </div>
           </section>
