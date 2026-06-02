@@ -13,7 +13,7 @@ const focusAreas = [
   },
   {
     title: "Operating milestones",
-    text: "Track product, manufacturing, and field-readiness milestones across VALKYRIE, Centurion, and supporting systems.",
+    text: "Track product, manufacturing, and field-readiness milestones across VALKYRIE, CENTURION, and supporting systems.",
   },
   {
     title: "Long-term roadmap",

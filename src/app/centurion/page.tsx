@@ -6,7 +6,7 @@ import { Nav } from "@/components/nav";
 import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
 
 export const metadata: Metadata = {
-  title: "Centurion",
+  title: "CENTURION",
   description: "Command dashboard for monitoring missions and coordinating field activity.",
 };
 
@@ -33,7 +33,7 @@ export default function CenturionPage() {
         <section className="relative min-h-screen overflow-hidden px-5 pb-20 pt-36 sm:px-8 lg:pb-28 lg:pt-44">
           <Image
             src="/centurion-laptop-mockup.png"
-            alt="Centurion command dashboard on laptop"
+            alt="CENTURION command dashboard on laptop"
             fill
             className="object-cover object-center"
             sizes="100vw"
@@ -48,7 +48,7 @@ export default function CenturionPage() {
                 revealOnMount
                 className="max-w-5xl text-6xl font-semibold leading-[0.9] tracking-[-0.075em] sm:text-8xl lg:text-[9.5rem]"
               >
-                Centurion
+                CENTURION
               </ScrollRevealHeading>
               <p className="mt-8 max-w-xl text-base leading-8 text-white/68 sm:text-lg">
                 A command dashboard for monitoring missions, coordinating field activity, and keeping operational context in one place.
@@ -71,7 +71,7 @@ export default function CenturionPage() {
             </h2>
             <div className="space-y-7 text-base leading-8 text-white/62 sm:text-lg">
               <p>
-                Centurion is designed for operators who need mission context, map data, live feeds, and coordination tools to stay close together during real-world activity.
+                CENTURION is designed for operators who need mission context, map data, live feeds, and coordination tools to stay close together during real-world activity.
               </p>
               <p>
                 The interface supports aerial operations by keeping the operational picture clear, readable, and ready for teams working under time pressure.
@@ -94,7 +94,7 @@ export default function CenturionPage() {
         <section className="px-5 pb-20 sm:px-8 lg:pb-28">
           <div className="mx-auto flex max-w-7xl flex-col gap-8 border border-white/10 bg-white p-7 text-black sm:p-10 lg:flex-row lg:items-center lg:justify-between lg:p-12">
             <h2 className="max-w-3xl text-4xl font-semibold leading-[1.02] tracking-[-0.06em] sm:text-6xl">
-              Request access to Centurion.
+              Request access to CENTURION.
             </h2>
             <Link
               href="/contact"

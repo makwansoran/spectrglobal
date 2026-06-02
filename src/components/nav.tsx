@@ -9,7 +9,7 @@ const menuSections = [
     title: "Development",
     links: [
       { label: "VALKYRIE", href: "/products/valkyrie" },
-      { label: "Centurion", href: "/centurion" },
+      { label: "CENTURION", href: "/centurion" },
     ],
   },
   {
