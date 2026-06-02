@@ -13,14 +13,17 @@ export default function Home() {
       <main className="h-screen flex-1 snap-y snap-proximity overflow-y-auto scroll-smooth">
         <div className="relative overflow-hidden bg-bg">
           <section className="relative z-10 flex min-h-screen snap-start items-center bg-black text-white">
-            <Image
-              src="/hero-fjord.png"
-              alt="Norwegian fjord landscape"
-              fill
-              className="object-cover"
-              sizes="100vw"
-              priority
-            />
+            <video
+              className="absolute inset-0 h-full w-full object-cover"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-hidden="true"
+            >
+              <source src="/landing-hero-video.mp4" type="video/mp4" />
+            </video>
             <div className="absolute inset-0 bg-black/45" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/20" />
             <div className="mx-auto flex w-full max-w-7xl items-center justify-center px-5 py-32 text-center sm:px-8 lg:py-36">
