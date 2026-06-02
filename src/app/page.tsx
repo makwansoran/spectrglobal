@@ -103,7 +103,7 @@ export default function Home() {
                 </p>
               </div>
               <span className="mt-12 inline-flex w-fit items-center gap-3 border border-transparent px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-white transition-colors group-hover:border-white">
-                Request Access
+                View Centurion
                 <span aria-hidden="true">→</span>
               </span>
             </div>
