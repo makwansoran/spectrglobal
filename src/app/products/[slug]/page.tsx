@@ -63,19 +63,18 @@ export default async function ProductPage({ params }: ProductPageProps) {
             </aside>
           </div>
 
-          <details className="group mt-8">
-            <summary className="inline-flex cursor-pointer list-none items-center gap-4 border border-border bg-surface px-5 py-3 text-left text-sm font-semibold uppercase tracking-[0.16em] text-fg marker:hidden hover:border-fg [&::-webkit-details-marker]:hidden">
-              Specs
-              <span className="font-mono text-xs transition-transform group-open:rotate-180" aria-hidden="true">
-                ↓
-              </span>
-            </summary>
-            <div className="mt-4 grid gap-10 border border-border bg-surface p-6 sm:p-8 lg:grid-cols-3">
-              <SpecList title="Overview" items={overviewItems} />
-              <SpecList title="Specifications" items={product.specifications} />
-              <SpecList title="Recommended Equipment" items={product.equipment} />
+          <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1.4fr)_minmax(300px,0.6fr)]">
+            <div className="border border-border bg-surface p-6 sm:p-8">
+              <h2 className="text-3xl font-semibold tracking-[-0.05em] text-fg sm:text-4xl">
+                Specs
+              </h2>
+              <div className="mt-8 space-y-10">
+                <SpecList title="Overview" items={overviewItems} />
+                <SpecList title="Specifications" items={product.specifications} />
+                <SpecList title="Recommended Equipment" items={product.equipment} />
+              </div>
             </div>
-          </details>
+          </div>
         </section>
         <Footer />
       </main>
