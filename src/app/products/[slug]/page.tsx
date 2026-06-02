@@ -46,16 +46,16 @@ const valkyrieCapabilities = [
 
 const valkyriePayloads = [
   {
-    title: "Mission payload",
-    text: "Configurable payload integration for qualified mission requirements and operator-controlled deployment.",
+    title: "Spectr mission payload",
+    text: "In-house payload option built around qualified mission requirements and operator-controlled deployment.",
   },
   {
-    title: "Observation payload",
-    text: "Sensor-ready configuration for field awareness, target confirmation, and operational context before deployment.",
+    title: "Spectr observation payload",
+    text: "In-house sensor payload for field awareness, target confirmation, and operational context before deployment.",
   },
   {
-    title: "Training payload",
-    text: "Inert payload option for operator training, handling workflows, and field readiness validation.",
+    title: "Spectr training payload",
+    text: "In-house inert payload for operator training, handling workflows, and field readiness validation.",
   },
 ];
 
@@ -129,8 +129,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           <div className="mx-auto mt-12 grid max-w-7xl gap-4 lg:grid-cols-3">
             {valkyriePayloads.map((payload) => (
               <article key={payload.title} className="border border-white/10 bg-white/[0.04] p-7 sm:p-8">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/44">Compatible payload</p>
-                <h3 className="mt-5 text-3xl font-semibold tracking-[-0.055em] text-white">{payload.title}</h3>
+                <h3 className="text-3xl font-semibold tracking-[-0.055em] text-white">{payload.title}</h3>
                 <p className="mt-5 text-sm leading-7 text-white/56">{payload.text}</p>
               </article>
             ))}
