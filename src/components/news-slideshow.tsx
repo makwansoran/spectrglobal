@@ -25,7 +25,7 @@ export function NewsSlideshow() {
   };
 
   return (
-    <div className="mt-12 grid gap-6 lg:grid-cols-[1fr_400px]">
+    <div className="grid gap-6 lg:grid-cols-[1fr_400px]">
       <article className="h-[420px] overflow-hidden bg-fg p-6 text-bg sm:p-8 lg:p-10">
         <div className="flex h-full flex-col justify-between gap-10">
           <div>
