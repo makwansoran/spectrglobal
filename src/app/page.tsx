@@ -153,8 +153,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="brand-font snap-start bg-bg px-5 py-24 sm:px-8 lg:py-32">
-          <div className="mx-auto max-w-7xl">
+        <section className="brand-font snap-start bg-bg">
+          <div className="mx-auto max-w-7xl px-5 sm:px-8">
             <div className="relative min-h-[520px] overflow-hidden bg-neutral-800 text-white">
               <video
                 className="absolute inset-0 h-full w-full object-cover grayscale"
