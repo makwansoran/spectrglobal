@@ -174,23 +174,25 @@ export default function Home() {
               <div className="absolute inset-0 bg-neutral-900/65" />
               <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/30 to-black/10" />
 
-              <div className="relative flex min-h-[520px] flex-col justify-between p-7 sm:p-10 lg:p-12">
-                <div className="max-w-4xl">
-                  <h2 className="text-5xl font-semibold leading-[0.92] tracking-[-0.075em] sm:text-7xl lg:text-8xl">
-                    Investor Relations
-                  </h2>
-                  <p className="mt-8 max-w-xl text-base leading-8 text-white/68 sm:text-lg">
-                    Follow Spectr&apos;s company updates, operating milestones, and long-term aerospace systems roadmap.
-                  </p>
-                </div>
+              <div className="relative mx-auto flex min-h-[520px] w-full max-w-7xl flex-col justify-between px-5 py-7 sm:px-8 sm:py-10 lg:px-12 lg:py-12">
+                <div>
+                  <div className="max-w-4xl">
+                    <h2 className="text-5xl font-semibold leading-[0.92] tracking-[-0.075em] sm:text-7xl lg:text-8xl">
+                      Investor Relations
+                    </h2>
+                    <p className="mt-8 max-w-xl text-base leading-8 text-white/68 sm:text-lg">
+                      Follow Spectr&apos;s company updates, operating milestones, and long-term aerospace systems roadmap.
+                    </p>
+                  </div>
 
-                <Link
-                  href="/investor"
-                  className="mt-12 inline-flex w-fit items-center gap-3 border border-transparent px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:border-white"
-                >
-                  Go To Investor Page
-                  <span aria-hidden="true">→</span>
-                </Link>
+                  <Link
+                    href="/investor"
+                    className="mt-12 inline-flex w-fit items-center gap-3 border border-transparent px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:border-white"
+                  >
+                    Go To Investor Page
+                    <span aria-hidden="true">→</span>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
