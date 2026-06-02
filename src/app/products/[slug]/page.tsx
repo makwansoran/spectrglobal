@@ -64,7 +64,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           </div>
 
           <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1.4fr)_minmax(300px,0.6fr)]">
-            <div className="border border-border bg-surface p-6 sm:p-8">
+            <div>
               <h2 className="text-3xl font-semibold tracking-[-0.05em] text-fg sm:text-4xl">
                 Specs
               </h2>
