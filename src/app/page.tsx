@@ -196,6 +196,26 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="brand-font snap-start bg-bg">
+          <div className="mx-auto flex max-w-7xl flex-col gap-8 px-5 py-16 sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:py-24">
+            <div className="max-w-4xl">
+              <h2 className="text-5xl font-semibold leading-[0.92] tracking-[-0.075em] text-fg sm:text-7xl lg:text-8xl">
+                Join Our Mission
+              </h2>
+              <p className="mt-8 max-w-2xl text-base leading-8 text-muted sm:text-lg">
+                Build aerospace systems and operational software for teams working in demanding real-world environments.
+              </p>
+            </div>
+            <Link
+              href="/careers"
+              className="inline-flex w-fit items-center gap-3 bg-fg px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-bg hover:opacity-80"
+            >
+              View Careers
+              <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+        </section>
+
         <Footer />
 
       </main>

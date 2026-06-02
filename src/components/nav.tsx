@@ -18,6 +18,7 @@ const menuSections = [
       { label: "Get Started", href: "/contact" },
       { label: "About Us", href: "/about" },
       { label: "Products", href: "/products" },
+      { label: "Careers", href: "/careers" },
     ],
   },
   {
