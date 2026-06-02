@@ -66,14 +66,14 @@ export default function Home() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
             <div className="relative flex min-h-[41vh] flex-col justify-between p-7 sm:p-10 lg:min-h-[82vh] lg:p-12">
               <div className="max-w-3xl">
-                <h2 className="text-5xl font-semibold leading-[0.92] tracking-[-0.075em] sm:text-7xl lg:text-8xl">
+                <h2 className="text-4xl font-semibold leading-[0.92] tracking-[-0.075em] sm:text-6xl lg:text-7xl">
                   VALKYRIE
                 </h2>
-                <p className="mt-6 max-w-xl text-base leading-8 text-white/68 sm:text-lg">
+                <p className="mt-5 max-w-lg text-sm leading-7 text-white/68 sm:text-base">
                   Affordable, highly effective, long-range attack UAV built around payload delivery, terminal mission profiles, and operator workflow.
                 </p>
               </div>
-              <span className="mt-12 inline-flex w-fit items-center gap-3 border border-transparent px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-white transition-colors group-hover:border-white">
+              <span className="mt-10 inline-flex w-fit items-center gap-3 border border-transparent px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-white transition-colors group-hover:border-white">
                 View VALKYRIE
                 <span aria-hidden="true">→</span>
               </span>
@@ -95,14 +95,14 @@ export default function Home() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
             <div className="relative flex min-h-[41vh] flex-col justify-between p-7 sm:p-10 lg:min-h-[82vh] lg:p-12">
               <div className="max-w-3xl">
-                <h2 className="text-5xl font-semibold leading-[0.92] tracking-[-0.075em] sm:text-7xl lg:text-8xl">
+                <h2 className="text-4xl font-semibold leading-[0.92] tracking-[-0.075em] sm:text-6xl lg:text-7xl">
                   CENTURION
                 </h2>
-                <p className="mt-6 max-w-xl text-base leading-8 text-white/68 sm:text-lg">
+                <p className="mt-5 max-w-lg text-sm leading-7 text-white/68 sm:text-base">
                   A command dashboard for monitoring missions, coordinating field activity, and keeping operational context in one place.
                 </p>
               </div>
-              <span className="mt-12 inline-flex w-fit items-center gap-3 border border-transparent px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-white transition-colors group-hover:border-white">
+              <span className="mt-10 inline-flex w-fit items-center gap-3 border border-transparent px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-white transition-colors group-hover:border-white">
                 View CENTURION
                 <span aria-hidden="true">→</span>
               </span>
