@@ -23,17 +23,20 @@ export function NewsSlideshow() {
       </div>
 
       <div className="grid border-b border-border lg:grid-cols-[1.1fr_0.9fr]">
-        <article className="border-b border-border py-8 lg:border-b-0 lg:border-r lg:pr-10">
-          <p className="font-mono text-xs uppercase tracking-[0.16em] text-muted">5/5/2026</p>
-          <h3 className="mt-8 max-w-4xl text-3xl font-semibold leading-[1.02] tracking-[-0.055em] text-fg sm:text-5xl">
+        <article className="border-b border-border py-8 text-center lg:border-b-0 lg:border-r lg:pr-10">
+          <div className="flex min-h-[280px] items-center justify-center border border-border bg-muted/10 text-xs font-semibold uppercase tracking-[0.16em] text-muted sm:min-h-[360px]">
+            Image placeholder
+          </div>
+          <p className="mt-8 font-mono text-xs uppercase tracking-[0.16em] text-muted">5/5/2026</p>
+          <h3 className="mx-auto mt-8 max-w-4xl text-3xl font-semibold leading-[1.02] tracking-[-0.055em] text-fg sm:text-5xl">
             {leadStory.title}
           </h3>
-          <p className="mt-6 max-w-2xl text-base leading-8 text-muted">
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-muted">
             {leadStory.summary}
           </p>
           <Link
             href="/newsroom"
-            className="mt-10 inline-flex w-fit items-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-fg underline-offset-8 hover:underline"
+            className="mt-10 inline-flex w-fit items-center justify-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-fg underline-offset-8 hover:underline"
           >
             Read more
           </Link>
@@ -41,16 +44,19 @@ export function NewsSlideshow() {
 
         <div className="lg:pl-10">
           {[secondStory, thirdStory].map((story, index) => (
-            <article key={story.title} className="border-b border-border py-8 last:border-b-0">
-              <p className="font-mono text-xs uppercase tracking-[0.16em] text-muted">
+            <article key={story.title} className="border-b border-border py-8 text-center last:border-b-0">
+              <div className="flex min-h-[180px] items-center justify-center border border-border bg-muted/10 text-xs font-semibold uppercase tracking-[0.16em] text-muted">
+                Image placeholder
+              </div>
+              <p className="mt-6 font-mono text-xs uppercase tracking-[0.16em] text-muted">
                 {index === 0 ? "12/09/2025" : "10/21/2025"}
               </p>
-              <h3 className="mt-6 text-2xl font-semibold leading-[1.05] tracking-[-0.05em] text-fg sm:text-3xl">
+              <h3 className="mx-auto mt-6 max-w-xl text-2xl font-semibold leading-[1.05] tracking-[-0.05em] text-fg sm:text-3xl">
                 {story.title}
               </h3>
               <Link
                 href="/newsroom"
-                className="mt-8 inline-flex w-fit items-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-fg underline-offset-8 hover:underline"
+                className="mt-8 inline-flex w-fit items-center justify-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-fg underline-offset-8 hover:underline"
               >
                 Read more
               </Link>
@@ -63,15 +69,18 @@ export function NewsSlideshow() {
         {featureStories.map((story, index) => (
           <article
             key={story.label}
-            className={`py-8 ${index === 0 ? "border-b border-border lg:border-b-0 lg:border-r lg:pr-10" : "lg:pl-10"}`}
+            className={`py-8 text-center ${index === 0 ? "border-b border-border lg:border-b-0 lg:border-r lg:pr-10" : "lg:pl-10"}`}
           >
-            <p className="font-mono text-xs uppercase tracking-[0.16em] text-muted">{story.label}</p>
-            <h3 className="mt-6 text-3xl font-semibold leading-none tracking-[-0.055em] text-fg sm:text-5xl">
+            <div className="flex min-h-[220px] items-center justify-center border border-border bg-muted/10 text-xs font-semibold uppercase tracking-[0.16em] text-muted">
+              Image placeholder
+            </div>
+            <p className="mt-6 font-mono text-xs uppercase tracking-[0.16em] text-muted">{story.label}</p>
+            <h3 className="mx-auto mt-6 max-w-2xl text-3xl font-semibold leading-none tracking-[-0.055em] text-fg sm:text-5xl">
               {story.title}
             </h3>
             <Link
               href="/newsroom"
-              className="mt-8 inline-flex w-fit items-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-fg underline-offset-8 hover:underline"
+              className="mt-8 inline-flex w-fit items-center justify-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-fg underline-offset-8 hover:underline"
             >
               Read more
             </Link>
