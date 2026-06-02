@@ -17,7 +17,7 @@ const focusAreas = [
   },
   {
     title: "Long-term roadmap",
-    text: "Understand the strategic direction behind Spectr's hardware, software, and national-control technology priorities.",
+    text: "Understand the strategic direction behind Spectr's hardware, software, and national-control technology.",
   },
 ];
 
@@ -68,6 +68,17 @@ export default function InvestorPage() {
                   <p className="mt-5 text-sm leading-7 text-muted">{area.text}</p>
                 </article>
               ))}
+            </div>
+            <div className="mx-auto mt-20 max-w-4xl text-center">
+              <ScrollRevealHeading
+                as="h2"
+                className="text-2xl font-medium leading-[1.25] tracking-[-0.03em] text-fg sm:text-3xl lg:text-4xl"
+              >
+                Our hardware powers real-time decisions in critical operations across the West — from the factory floor to the front lines.
+              </ScrollRevealHeading>
+              <p className="mt-8 font-mono text-xs uppercase tracking-[0.2em] text-muted">
+                Makwan Ismail, Founder of Spectr
+              </p>
             </div>
           </div>
         </section>
