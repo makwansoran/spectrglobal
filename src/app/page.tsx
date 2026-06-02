@@ -50,21 +50,21 @@ export default function Home() {
 
         </div>
 
-        <section className="brand-font flex min-h-screen snap-start flex-col bg-black lg:flex-row">
+        <section className="brand-font flex min-h-[82vh] snap-start flex-col bg-black lg:flex-row">
           <Link
             href="/products/valkyrie"
-            className="group relative min-h-[50vh] flex-1 overflow-hidden bg-black text-white transition-[flex] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:flex-[1.45] lg:min-h-screen"
+            className="group relative min-h-[41vh] flex-1 overflow-hidden bg-black text-white transition-[flex] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:flex-[1.35] lg:min-h-[82vh]"
           >
             <Image
               src="/valkyrie-hero.jpg"
               alt="VALKYRIE aircraft flying over mountain terrain"
               fill
-              className="object-cover grayscale transition-transform duration-700 group-hover:scale-105"
+              className="object-cover grayscale transition-transform duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
               sizes="(max-width: 1024px) 100vw, 60vw"
             />
             <div className="absolute inset-0 bg-black/45" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
-            <div className="relative flex min-h-[50vh] flex-col justify-between p-7 sm:p-10 lg:min-h-screen lg:p-12">
+            <div className="relative flex min-h-[41vh] flex-col justify-between p-7 sm:p-10 lg:min-h-[82vh] lg:p-12">
               <div className="max-w-3xl">
                 <h2 className="text-5xl font-semibold leading-[0.92] tracking-[-0.075em] sm:text-7xl lg:text-8xl">
                   VALKYRIE
@@ -82,18 +82,18 @@ export default function Home() {
 
           <Link
             href="/centurion"
-            className="group relative min-h-[50vh] flex-1 overflow-hidden bg-black text-white transition-[flex] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:flex-[1.45] lg:min-h-screen"
+            className="group relative min-h-[41vh] flex-1 overflow-hidden bg-black text-white transition-[flex] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:flex-[1.35] lg:min-h-[82vh]"
           >
             <Image
               src="/centurion-laptop-mockup.png"
               alt="Centurion command dashboard on laptop"
               fill
-              className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+              className="object-cover object-center transition-transform duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
               sizes="(max-width: 1024px) 100vw, 60vw"
             />
             <div className="absolute inset-0 bg-black/25" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
-            <div className="relative flex min-h-[50vh] flex-col justify-between p-7 sm:p-10 lg:min-h-screen lg:p-12">
+            <div className="relative flex min-h-[41vh] flex-col justify-between p-7 sm:p-10 lg:min-h-[82vh] lg:p-12">
               <div className="max-w-3xl">
                 <h2 className="text-5xl font-semibold leading-[0.92] tracking-[-0.075em] sm:text-7xl lg:text-8xl">
                   Centurion
