@@ -110,12 +110,12 @@ export default function Home() {
           </Link>
         </section>
 
-        <section className="brand-font snap-start bg-bg px-5 py-24 sm:px-8 lg:py-32">
+        <section className="brand-font snap-start bg-bg">
           <div className="mx-auto max-w-7xl">
             <div className="grid overflow-hidden border border-border lg:grid-cols-2">
               <div className="relative min-h-[360px] bg-black sm:min-h-[420px] lg:min-h-[520px]">
                 <Image
-                  src="/aerospace-hq.jpg"
+                  src="/norway-operations.png"
                   alt="Spectr development and production in Norway"
                   fill
                   className="object-cover grayscale"
