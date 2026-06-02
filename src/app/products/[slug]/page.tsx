@@ -31,16 +31,16 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 
 const valkyrieCapabilities = [
   {
-    title: "Payload delivery",
-    text: "Configured around mission payload requirements and predefined field objectives.",
+    title: "Cost-effective",
+    text: "Cheap to field and sustain relative to comparable mission platforms, without sacrificing operational readiness.",
   },
   {
-    title: "Terminal profiles",
-    text: "Built for terminal mission execution with operator-controlled deployment workflows.",
+    title: "Highly effective",
+    text: "Built for terminal mission execution, payload delivery, and operator-controlled deployment workflows.",
   },
   {
-    title: "Field support",
-    text: "Procurement, setup guidance, and control-link requirements are specified around each mission.",
+    title: "Long range",
+    text: "Configured for long-range operation so teams can cover distance without redesigning the platform per mission.",
   },
 ];
 
@@ -52,13 +52,22 @@ export default async function ProductPage({ params }: ProductPageProps) {
     notFound();
   }
 
+  const overviewItems = [
+    { label: "Category", value: product.category },
+    { label: "Use", value: product.use },
+    { label: "Flight", value: product.flightTime },
+    { label: "Range", value: product.range },
+    { label: "Status", value: product.availability },
+    { label: "Pricing", value: product.price },
+  ];
+
   return (
     <>
       <Nav variant="light" />
       <main className="brand-font min-h-screen flex-1 bg-black text-white">
         <section className="relative min-h-screen overflow-hidden px-5 pb-20 pt-36 sm:px-8 lg:pb-28 lg:pt-44">
           <Image
-            src="/valkyrie-hero.jpg"
+            src="/valkyrie-hero.png"
             alt="VALKYRIE UAV over mountain terrain"
             fill
             className="object-cover object-center"
@@ -98,7 +107,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
             <div className="space-y-7 text-base leading-8 text-white/62 sm:text-lg">
               <p>{product.description}</p>
               <p>
-                The platform supports aerial operations by aligning payload requirements, operator workflow, and field support around each mission.
+                VALKYRIE is cheap to field, highly effective in mission execution, and built for long-range operation — aligning payload requirements, operator workflow, and field support around each deployment.
               </p>
             </div>
           </div>
@@ -112,6 +121,23 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 <p className="mt-5 text-sm leading-7 text-white/56">{capability.text}</p>
               </article>
             ))}
+          </div>
+        </section>
+
+        <section className="border-t border-white/10 px-5 py-20 sm:px-8 lg:py-28">
+          <div className="mx-auto max-w-7xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/48">Specs</p>
+            <h2 className="mt-4 text-4xl font-semibold leading-none tracking-[-0.06em] text-white sm:text-6xl">
+              VALKYRIE Specification Sheet
+            </h2>
+            <p className="mt-6 max-w-2xl text-base leading-8 text-white/62 sm:text-lg">
+              Full platform overview, dimensions, operating profile, and recommended equipment for VALKYRIE.
+            </p>
+            <div className="mt-10 space-y-10">
+              <SpecList title="Overview" items={overviewItems} />
+              <SpecList title="Specifications" items={product.specifications} />
+              <SpecList title="Recommended Equipment" items={product.equipment} />
+            </div>
           </div>
         </section>
 
@@ -134,5 +160,21 @@ export default async function ProductPage({ params }: ProductPageProps) {
         </div>
       </main>
     </>
+  );
+}
+
+function SpecList({ title, items }: { title: string; items: { label: string; value: string }[] }) {
+  return (
+    <section>
+      <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-white/48">{title}</h3>
+      <dl className="mt-4 divide-y divide-white/10 border-y border-white/10">
+        {items.map((item) => (
+          <div key={item.label} className="grid gap-2 py-4 text-left text-sm sm:grid-cols-[0.85fr_1.15fr] sm:gap-4">
+            <dt className="text-white/56">{item.label}</dt>
+            <dd className="text-white">{item.value}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
   );
 }

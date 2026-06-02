@@ -56,7 +56,7 @@ export default function Home() {
             className="group relative min-h-[41vh] flex-1 overflow-hidden bg-black text-white transition-[flex] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:flex-[1.35] lg:min-h-[82vh]"
           >
             <Image
-              src="/valkyrie-hero.jpg"
+              src="/valkyrie-hero.png"
               alt="VALKYRIE aircraft flying over mountain terrain"
               fill
               className="object-cover grayscale transition-transform duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
@@ -70,7 +70,7 @@ export default function Home() {
                   VALKYRIE
                 </h2>
                 <p className="mt-6 max-w-xl text-base leading-8 text-white/68 sm:text-lg">
-                  Mission-configurable attack UAV built around payload delivery, terminal mission profiles, and operator workflow.
+                  Affordable, highly effective, long-range attack UAV built around payload delivery, terminal mission profiles, and operator workflow.
                 </p>
               </div>
               <span className="mt-12 inline-flex w-fit items-center gap-3 border border-transparent px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-white transition-colors group-hover:border-white">

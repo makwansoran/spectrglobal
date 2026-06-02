@@ -26,9 +26,10 @@ export const objects: DroneProduct[] = [
   {
     slug: "valkyrie",
     name: "VALKYRIE",
-    tagline: "Mission-configurable attack UAV for payload delivery and terminal mission profiles.",
+    tagline:
+      "An affordable, highly effective, long-range attack UAV for payload delivery and terminal mission profiles.",
     description:
-      "VALKYRIE is a mission-configurable attack UAV built to deliver payloads, execute terminal strike profiles, and fulfill predefined field missions with operator-controlled deployment.",
+      "VALKYRIE is a mission-configurable attack UAV built to deliver payloads, execute terminal strike profiles, and fulfill predefined field missions with operator-controlled deployment. It is designed to be cheap to field, highly effective in mission execution, and capable of long-range operation when configured for the task.",
     category: "UAV",
     use: "UAV",
     year: 2026,
@@ -37,13 +38,20 @@ export const objects: DroneProduct[] = [
     price: "Contact for pricing",
     availability: "Available by request",
     stock: 100,
-    range: "Configured per mission",
+    range: "Long-range, configured per mission",
     gallery: [
       { src: "/valkyrie-front.png", alt: "VALKYRIE front view" },
       { src: "/valkyrie-top.png", alt: "VALKYRIE top view" },
       { src: "/valkyrie-mountain.png", alt: "VALKYRIE in mountain terrain" },
     ],
-    highlights: ["Mission payload ready", "Field-serviceable setup", "Operator support", "Built to order"],
+    highlights: [
+      "Cost-effective to field",
+      "Highly effective mission execution",
+      "Long-range operation",
+      "Mission payload ready",
+      "Field-serviceable setup",
+      "Operator support",
+    ],
     specifications: [
       { label: "Platform", value: "VTOL fixed-wing UAV" },
       { label: "Layout", value: "Tricopter VTOL with front tilt motors and rear stationary motor" },
