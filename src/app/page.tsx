@@ -35,6 +35,9 @@ export default function Home() {
                 >
                   For real-world aerial operations.
                 </ScrollRevealHeading>
+                <p className="mt-5 text-xs font-semibold uppercase tracking-[0.18em] text-white/70 sm:text-sm">
+                  Made In Norway
+                </p>
               </div>
             </div>
           </section>
