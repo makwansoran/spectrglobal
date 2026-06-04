@@ -24,7 +24,7 @@ export function NewsSlideshow() {
 
       <div className="grid border-b border-border lg:grid-cols-[1.1fr_0.9fr]">
         <article className="border-b border-border py-8 text-center lg:border-b-0 lg:border-r lg:pr-10">
-          <div className="flex min-h-[280px] items-center justify-center border border-border bg-muted/10 text-xs font-semibold uppercase tracking-[0.16em] text-muted sm:min-h-[360px]">
+          <div className="mx-auto flex min-h-[280px] w-full max-w-3xl items-center justify-center border border-border bg-muted/10 text-xs font-semibold uppercase tracking-[0.16em] text-muted sm:min-h-[360px]">
             Image placeholder
           </div>
           <p className="mt-8 font-mono text-xs uppercase tracking-[0.16em] text-muted">5/5/2026</p>
@@ -45,7 +45,7 @@ export function NewsSlideshow() {
         <div className="lg:pl-10">
           {[secondStory, thirdStory].map((story, index) => (
             <article key={story.title} className="border-b border-border py-8 text-center last:border-b-0">
-              <div className="flex min-h-[180px] items-center justify-center border border-border bg-muted/10 text-xs font-semibold uppercase tracking-[0.16em] text-muted">
+              <div className="mx-auto flex min-h-[180px] w-full max-w-md items-center justify-center border border-border bg-muted/10 text-xs font-semibold uppercase tracking-[0.16em] text-muted">
                 Image placeholder
               </div>
               <p className="mt-6 font-mono text-xs uppercase tracking-[0.16em] text-muted">
@@ -71,7 +71,7 @@ export function NewsSlideshow() {
             key={story.label}
             className={`py-8 text-center ${index === 0 ? "border-b border-border lg:border-b-0 lg:border-r lg:pr-10" : "lg:pl-10"}`}
           >
-            <div className="flex min-h-[220px] items-center justify-center border border-border bg-muted/10 text-xs font-semibold uppercase tracking-[0.16em] text-muted">
+            <div className="mx-auto flex min-h-[220px] w-full max-w-xl items-center justify-center border border-border bg-muted/10 text-xs font-semibold uppercase tracking-[0.16em] text-muted">
               Image placeholder
             </div>
             <p className="mt-6 font-mono text-xs uppercase tracking-[0.16em] text-muted">{story.label}</p>
