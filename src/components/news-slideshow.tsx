@@ -3,10 +3,6 @@ import { newsStories } from "@/lib/news-stories";
 
 export function NewsSlideshow() {
   const [leadStory, secondStory, thirdStory] = newsStories;
-  const featureStories = [
-    { label: "PT — 01 / 02", title: "Rebuild field autonomy" },
-    { label: "PT — 02 / 02", title: "Rebuild mission systems" },
-  ];
 
   return (
     <section className="border-y border-border py-12 sm:py-16">
@@ -65,28 +61,6 @@ export function NewsSlideshow() {
         </div>
       </div>
 
-      <div className="grid lg:grid-cols-2">
-        {featureStories.map((story, index) => (
-          <article
-            key={story.label}
-            className={`py-8 text-center ${index === 0 ? "border-b border-border lg:border-b-0 lg:border-r lg:pr-10" : "lg:pl-10"}`}
-          >
-            <div className="mx-auto flex min-h-[220px] w-full max-w-xl items-center justify-center border border-border bg-muted/10 text-xs font-semibold uppercase tracking-[0.16em] text-muted">
-              Image placeholder
-            </div>
-            <p className="mt-6 font-mono text-xs uppercase tracking-[0.16em] text-muted">{story.label}</p>
-            <h3 className="mx-auto mt-6 max-w-2xl text-3xl font-semibold leading-none tracking-[-0.055em] text-fg sm:text-5xl">
-              {story.title}
-            </h3>
-            <Link
-              href="/newsroom"
-              className="mt-8 inline-flex w-fit items-center justify-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-fg underline-offset-8 hover:underline"
-            >
-              Read more
-            </Link>
-          </article>
-        ))}
-      </div>
     </section>
   );
 }
