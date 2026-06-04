@@ -107,13 +107,21 @@ export default function Home() {
           <div>
             <div className="grid overflow-hidden border-x border-b border-border lg:grid-cols-2">
               <div className="relative min-h-[360px] bg-black sm:min-h-[420px] lg:min-h-[520px]">
-                <Image
-                  src="/norway-operations.png"
-                  alt="Spectr development and production in Norway"
-                  fill
-                  className="object-cover grayscale"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
+                <video
+                  className="absolute inset-0 h-full w-full object-cover grayscale"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  poster="/norway-operations.png"
+                  aria-label="Real 4K Earth footage from space"
+                >
+                  <source
+                    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/View_of_Planet_Earth_%284K%29.webm"
+                    type="video/webm"
+                  />
+                </video>
               </div>
 
               <div className="flex min-h-[360px] flex-col justify-between bg-surface p-7 sm:min-h-[420px] sm:p-10 lg:min-h-[520px] lg:p-12">
