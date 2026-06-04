@@ -142,20 +142,28 @@ export default function Home() {
 
         <section className="brand-font snap-start bg-bg">
           <div>
-            <div className="flex min-h-[420px] flex-col items-center justify-center border-y border-border px-5 py-20 text-center sm:px-8 lg:min-h-[520px] lg:py-28">
-              <h2 className="text-5xl font-semibold leading-[0.92] tracking-[-0.075em] text-fg sm:text-7xl lg:text-8xl">
-                Newsroom
-              </h2>
-              <p className="mt-8 max-w-xl text-base leading-8 text-muted sm:text-lg">
-                Company updates, media coverage, founder notes, and product stories from Spectr.
-              </p>
-              <Link
-                href="/newsroom"
-                className="mt-12 inline-flex w-fit items-center gap-3 bg-fg px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-bg hover:opacity-80"
-              >
-                Go To Newsroom
-                <span aria-hidden="true">→</span>
-              </Link>
+            <div className="relative flex min-h-[420px] overflow-hidden border-y border-border bg-white px-5 py-20 text-center sm:px-8 lg:min-h-[520px] lg:py-28">
+              <div className="pointer-events-none absolute inset-0">
+                <div className="absolute inset-0 opacity-70 [background-image:radial-gradient(circle_at_center,rgba(0,220,170,0.72)_0_1.4px,transparent_1.7px)] [background-position:0_0] [background-size:28px_28px]" />
+                <div className="absolute inset-0 opacity-55 [background-image:radial-gradient(circle_at_center,rgba(38,198,255,0.64)_0_1.2px,transparent_1.6px)] [background-position:14px_10px] [background-size:42px_42px]" />
+                <div className="absolute inset-0 opacity-45 [background-image:radial-gradient(circle_at_center,rgba(168,85,247,0.58)_0_1.1px,transparent_1.5px)] [background-position:22px_18px] [background-size:56px_56px]" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0,rgba(255,255,255,0.28)_52%,rgba(255,255,255,0.92)_100%)]" />
+              </div>
+              <div className="relative z-10 mx-auto flex flex-col items-center justify-center">
+                <h2 className="text-5xl font-semibold leading-[0.92] tracking-[-0.075em] text-fg sm:text-7xl lg:text-8xl">
+                  Newsroom
+                </h2>
+                <p className="mt-8 max-w-xl text-base leading-8 text-muted sm:text-lg">
+                  Company updates, media coverage, founder notes, and product stories from Spectr.
+                </p>
+                <Link
+                  href="/newsroom"
+                  className="mt-12 inline-flex w-fit items-center gap-3 bg-fg px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-bg hover:opacity-80"
+                >
+                  Go To Newsroom
+                  <span aria-hidden="true">→</span>
+                </Link>
+              </div>
             </div>
           </div>
         </section>
