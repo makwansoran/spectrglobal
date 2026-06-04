@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
-import { NewsSlideshow } from "@/components/news-slideshow";
 import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
 
 export default function Home() {
@@ -143,7 +142,21 @@ export default function Home() {
 
         <section className="brand-font snap-start bg-bg">
           <div>
-            <NewsSlideshow />
+            <div className="flex min-h-[420px] flex-col items-center justify-center border-y border-border px-5 py-20 text-center sm:px-8 lg:min-h-[520px] lg:py-28">
+              <h2 className="text-5xl font-semibold leading-[0.92] tracking-[-0.075em] text-fg sm:text-7xl lg:text-8xl">
+                Newsroom
+              </h2>
+              <p className="mt-8 max-w-xl text-base leading-8 text-muted sm:text-lg">
+                Company updates, media coverage, founder notes, and product stories from Spectr.
+              </p>
+              <Link
+                href="/newsroom"
+                className="mt-12 inline-flex w-fit items-center gap-3 bg-fg px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-bg hover:opacity-80"
+              >
+                Go To Newsroom
+                <span aria-hidden="true">→</span>
+              </Link>
+            </div>
           </div>
         </section>
 
