@@ -144,10 +144,55 @@ export default function Home() {
           <div>
             <div className="relative flex min-h-[420px] overflow-hidden border-y border-border bg-white px-5 py-20 text-center sm:px-8 lg:min-h-[520px] lg:py-28">
               <div className="pointer-events-none absolute inset-0">
-                <div className="absolute inset-0 opacity-70 [background-image:radial-gradient(circle_at_center,rgba(0,220,170,0.72)_0_1.4px,transparent_1.7px)] [background-position:0_0] [background-size:28px_28px]" />
-                <div className="absolute inset-0 opacity-55 [background-image:radial-gradient(circle_at_center,rgba(38,198,255,0.64)_0_1.2px,transparent_1.6px)] [background-position:14px_10px] [background-size:42px_42px]" />
-                <div className="absolute inset-0 opacity-45 [background-image:radial-gradient(circle_at_center,rgba(168,85,247,0.58)_0_1.1px,transparent_1.5px)] [background-position:22px_18px] [background-size:56px_56px]" />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0,rgba(255,255,255,0.28)_52%,rgba(255,255,255,0.92)_100%)]" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 1920 1080"
+                  preserveAspectRatio="none"
+                  className="absolute inset-0 h-full w-full opacity-80"
+                  aria-hidden="true"
+                >
+                  <defs>
+                    <linearGradient id="newsroom-wave-gradient" x1="0" x2="0" y1="1080" y2="0" gradientUnits="userSpaceOnUse">
+                      <stop offset="0" stopColor="#1742ff" />
+                      <stop offset="1" stopColor="#38bdf8" />
+                    </linearGradient>
+                  </defs>
+                  {[
+                    { y: -170, scaleY: 1.55, opacity: 0.16, duration: "58s" },
+                    { y: -45, scaleY: 1.1, opacity: 0.22, duration: "72s" },
+                    { y: 120, scaleY: 0.82, opacity: 0.18, duration: "64s" },
+                  ].map((line) => (
+                    <g key={line.duration} opacity={line.opacity} transform={`translate(0 ${line.y}) scale(1 ${line.scaleY})`}>
+                      <path
+                        fill="url(#newsroom-wave-gradient)"
+                        d="M-1920 538.5C-1650 430-1420 690-1160 565-910 445-690 380-430 515-170 650 20 720 310 560 610 395 800 410 1080 555c280 145 500 110 760-35 260-145 500-130 760 35 260 165 480 90 760-35v82c-280 125-500 200-760 35-260-165-500-180-760-35-260 145-480 180-760 35-280-145-470-160-770 35-290 160-480 90-740-45-260-135-480-70-730 50-260 125-490-135-760-27Z"
+                      >
+                        <animateTransform
+                          attributeName="transform"
+                          type="translate"
+                          from="0 0"
+                          to="-1920 0"
+                          dur={line.duration}
+                          repeatCount="indefinite"
+                        />
+                      </path>
+                      <path
+                        fill="url(#newsroom-wave-gradient)"
+                        d="M0 538.5C270 430 500 690 760 565c250-120 470-185 730-50 260 135 450 205 740 45 300-165 490-150 770-5s500 110 760-35c260-145 500-130 760 35 260 165 480 90 760-35v82c-280 125-500 200-760 35-260-165-500-180-760-35-260 145-480 180-760 35-280-145-470-160-770 35-290 160-480 90-740-45-260-135-480-70-730 50C500 800 270 540 0 648.5Z"
+                      >
+                        <animateTransform
+                          attributeName="transform"
+                          type="translate"
+                          from="0 0"
+                          to="-1920 0"
+                          dur={line.duration}
+                          repeatCount="indefinite"
+                        />
+                      </path>
+                    </g>
+                  ))}
+                </svg>
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.58)_0,rgba(255,255,255,0.82)_46%,rgba(255,255,255,0.98)_100%)]" />
               </div>
               <div className="relative z-10 mx-auto flex flex-col items-center justify-center">
                 <h2 className="text-5xl font-semibold leading-[0.92] tracking-[-0.075em] text-fg sm:text-7xl lg:text-8xl">
