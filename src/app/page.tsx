@@ -148,19 +148,20 @@ export default function Home() {
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 1920 1080"
                   preserveAspectRatio="none"
-                  className="absolute inset-0 h-full w-full opacity-80"
+                  className="absolute inset-0 h-full w-full opacity-95"
                   aria-hidden="true"
                 >
                   <defs>
                     <linearGradient id="newsroom-wave-gradient" x1="0" x2="0" y1="1080" y2="0" gradientUnits="userSpaceOnUse">
-                      <stop offset="0" stopColor="#1742ff" />
-                      <stop offset="1" stopColor="#38bdf8" />
+                      <stop offset="0" stopColor="#002dff" />
+                      <stop offset="0.48" stopColor="#1266ff" />
+                      <stop offset="1" stopColor="#00a3ff" />
                     </linearGradient>
                   </defs>
                   {[
-                    { y: -170, scaleY: 1.55, opacity: 0.16, duration: "58s" },
-                    { y: -45, scaleY: 1.1, opacity: 0.22, duration: "72s" },
-                    { y: 120, scaleY: 0.82, opacity: 0.18, duration: "64s" },
+                    { y: -170, scaleY: 1.55, opacity: 0.28, duration: "24s" },
+                    { y: -45, scaleY: 1.1, opacity: 0.34, duration: "30s" },
+                    { y: 120, scaleY: 0.82, opacity: 0.3, duration: "27s" },
                   ].map((line) => (
                     <g key={line.duration} opacity={line.opacity} transform={`translate(0 ${line.y}) scale(1 ${line.scaleY})`}>
                       <path
@@ -192,7 +193,7 @@ export default function Home() {
                     </g>
                   ))}
                 </svg>
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.58)_0,rgba(255,255,255,0.82)_46%,rgba(255,255,255,0.98)_100%)]" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.42)_0,rgba(255,255,255,0.7)_46%,rgba(255,255,255,0.96)_100%)]" />
               </div>
               <div className="relative z-10 mx-auto flex flex-col items-center justify-center">
                 <h2 className="text-5xl font-semibold leading-[0.92] tracking-[-0.075em] text-fg sm:text-7xl lg:text-8xl">
