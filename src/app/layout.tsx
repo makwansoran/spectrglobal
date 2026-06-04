@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Instrument_Serif, Syne } from "next/font/google";
+import { CookieConsent } from "@/components/cookie-consent";
 import "./globals.css";
 
 const geist = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
@@ -34,7 +35,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       className={`${geist.variable} ${geistMono.variable} ${instrumentSerif.variable} ${syne.variable} h-full`}
     >
-      <body className="flex min-h-full flex-col bg-bg text-fg">{children}</body>
+      <body className="flex min-h-full flex-col bg-bg text-fg">
+        {children}
+        <CookieConsent />
+      </body>
     </html>
   );
 }

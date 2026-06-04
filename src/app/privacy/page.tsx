@@ -8,23 +8,47 @@ export const metadata: Metadata = { title: "Privacy Policy" };
 const sections = [
   {
     title: "Information we collect",
-    text: "When you contact Spectr, we may collect details such as your name, email address, phone number, organization, product interest, and message content.",
+    text: "When you contact Spectr, request information, apply for careers, or engage with our website, we may collect details such as your name, email address, phone number, organization, role, country, product interest, procurement context, and message content. For defense, aerospace, or military-related inquiries, we may also request information needed to assess eligibility, end use, end user, operational context, and compliance requirements.",
   },
   {
     title: "How we use information",
-    text: "We use submitted information to respond to inquiries, coordinate product or documentation requests, evaluate operational fit, and improve our communication with prospective partners.",
+    text: "We use submitted information to respond to inquiries, coordinate product or documentation requests, evaluate operational fit, perform security and qualification review, support recruitment, maintain business records, and improve website communication. Where relevant, we may use information to support screening under Norwegian law, applicable EU/EEA rules, sanctions regimes, export-control requirements, NATO-aligned procurement expectations, and defense-sector compliance procedures.",
   },
   {
-    title: "Sharing",
-    text: "We do not sell personal information. We may share information with service providers when needed to operate the website, manage communications, or comply with legal obligations.",
+    title: "Defense and military service inquiries",
+    text: "Spectr operates in a sensitive sector. We may review inquiries from government, defense, security, law-enforcement, and qualified commercial operators before responding or providing further information. We may decline, delay, or restrict engagement where an inquiry raises legal, ethical, export-control, sanctions, end-use, national-security, or operational-safety concerns.",
+  },
+  {
+    title: "Norwegian, EEA, NATO, and export-control context",
+    text: "Spectr is based in Norway and expects to operate in accordance with Norwegian law, applicable EEA privacy rules, and relevant defense, security, sanctions, and export-control requirements. References to NATO or NATO-aligned requirements do not imply that Spectr is endorsed by NATO; they reflect that some customers, partners, or compliance reviews may involve NATO member-state standards, procurement expectations, or allied defense controls.",
+  },
+  {
+    title: "Cookies and website data",
+    text: "We may use essential cookies and similar technologies to operate the website, remember cookie preferences, protect the site, and understand basic usage. If analytics, embedded media, marketing, or third-party tools are introduced, they may use additional cookies subject to your consent where required by law. You can control cookies through the banner on the site and through your browser settings.",
+  },
+  {
+    title: "Sharing and processors",
+    text: "We do not sell personal information. We may share information with service providers that host the website, support communications, process forms, provide security, or help us operate our business. We may also share information when required by law, regulation, court order, export-control screening, sanctions review, government request, or to protect Spectr, our users, or public safety.",
+  },
+  {
+    title: "International transfers",
+    text: "Because website infrastructure and service providers may operate across borders, information may be processed outside Norway. Where required, Spectr will seek to use appropriate safeguards for international transfers, including EEA-recognized mechanisms and vendor security reviews.",
+  },
+  {
+    title: "Security",
+    text: "We use reasonable technical and organizational measures to protect information. No website or online transmission is fully secure. Defense-related inquiries should not include classified information, controlled technical data, weapons instructions, sensitive operational plans, or other restricted material unless Spectr has expressly approved a secure handling process.",
   },
   {
     title: "Retention",
-    text: "We keep inquiry information only as long as needed for business, support, security, and legal purposes.",
+    text: "We keep inquiry information only as long as needed for business, support, security, compliance, audit, export-control, sanctions, recruitment, and legal purposes. Defense-sector records may be retained longer where necessary to document screening, eligibility, end-use review, or regulatory compliance.",
+  },
+  {
+    title: "Your rights",
+    text: "Depending on where you are located, you may have rights to access, correct, delete, restrict, or object to certain processing of your personal information. Some requests may be limited where Spectr must retain information for legal, defense-sector, export-control, sanctions, security, or recordkeeping reasons.",
   },
   {
     title: "Contact",
-    text: "For privacy questions or requests, contact Spectr through the contact page with Privacy Request in the message.",
+    text: "For privacy questions or requests, contact Spectr through the contact page with Privacy Request in the message. Do not send classified, restricted, or sensitive operational information through the public contact form.",
   },
 ];
 
@@ -43,7 +67,7 @@ export default function PrivacyPage() {
               Privacy Policy
             </ScrollRevealHeading>
             <p className="mt-8 max-w-2xl text-sm leading-7 text-white/58">
-              Last updated: May 31, 2026
+              Last updated: June 4, 2026
             </p>
           </div>
         </section>
