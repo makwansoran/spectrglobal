@@ -29,7 +29,7 @@ export function CookieConsent() {
   }
 
   return (
-    <div className="fixed inset-0 z-[80] flex items-center justify-center bg-black/20 px-4 py-6 backdrop-blur-sm sm:px-6">
+    <div className="fixed inset-0 z-[80] flex items-center justify-center bg-black/20 px-4 py-6 sm:px-6">
       <section className="brand-font w-full max-w-2xl border border-border bg-bg p-6 text-center text-fg shadow-2xl shadow-black/20 sm:p-8">
         <div className="flex flex-col items-center">
           <Image
