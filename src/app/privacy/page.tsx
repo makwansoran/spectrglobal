@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
 import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
@@ -79,6 +80,15 @@ export default function PrivacyPage() {
                 <article key={section.title} className="bg-surface p-7 sm:p-8">
                   <h2 className="text-3xl font-semibold tracking-[-0.055em] text-fg">{section.title}</h2>
                   <p className="mt-5 text-sm leading-7 text-muted sm:text-base">{section.text}</p>
+                  {section.title === "Contact" ? (
+                    <Link
+                      href="/contact"
+                      className="mt-7 inline-flex w-fit items-center gap-3 bg-fg px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-bg hover:opacity-80"
+                    >
+                      Contact Spectr
+                      <span aria-hidden="true">→</span>
+                    </Link>
+                  ) : null}
                 </article>
               ))}
             </div>
