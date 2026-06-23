@@ -127,26 +127,26 @@
   },
   "About": {
     "title": "Om oss",
-    "builtFor": "Bygget for praktiske operasjoner.",
-    "paragraph1": "Spectr ble etablert for å bygge teknologi som er nyttig i felt, ikke bare imponerende i et showrom. Arbeidet vårt sentreres om UAV-plattformer, operatørflyt og systemene som trengs for å planlegge, overvåke og støtte oppdrag.",
-    "paragraph2": "Vi designer for deployeringens realiteter: sensorbehov, miljøbegrensninger, opplæring, støtte og overgangen mellom hardware og programvare. VALKYRIE og CENTURION gjenspeiler den retningen.",
+    "builtFor": "Vi bygger maskinen som bygger maskinen.",
+    "paragraph1": "Spectr er et ingeniørselskap først. Vi outsourcer ikke de vanskelige delene. Teamet vårt designer, produserer og flyr autonome luftfartssystemer fra første prinsipper — fra PCB til luftfartøy, fra firmware til oppdragsprogramvare.",
+    "paragraph2": "Hver ingeniør her lærer hele stacken: skjemategning og layout, CAD og strukturanalyse, CNC og additiv produksjon, vakuumforming, montering, test og feltdeployering. Slik leverer du hardware som tåler møte med virkeligheten.",
     "historyTitle": "Selskapshistorie.",
     "ctaTitle": "Vil du samarbeide med Spectr?",
     "team": {
-      "founder": {
-        "name": "Makwan Ismail",
-        "role": "Grunnlegger og CEO",
-        "text": "Leder Spectrs produktretning, oppdragskrav og koblingen mellom hardwareutvikling, feltflyt og langsiktige selskapsprioriteringer."
+      "manufacturing": {
+        "name": "Der Vi Bygger Ingeniører",
+        "role": "Produksjon og design",
+        "text": "Vi kjører en intern pipeline fra konsept til fysisk produkt. Ingeniører trener på PCB-design og layout, parametrisk CAD, struktursimulering, CNC-bearbeiding, industriell 3D-printing og vakuumformverktøy. Ingen overleveringer til anonyme leverandører. Du eier tegningen, verktøybanen og første eksemplar av linjen."
       },
-      "aerospace": {
-        "name": "Luftfartssystemer",
-        "role": "Engineering",
-        "text": "Fokuserer på UAV-plattformer, sensorintegrasjon, materialer, deployeringsbegrensninger og praktisk ingeniørarbeid for pålitelig feltbruk."
+      "platforms": {
+        "name": "Hva Vi Bygger",
+        "role": "Autonome luftfartssystemer",
+        "text": "Autonome UAV-plattformer konstruert for militære operasjoner — langdistanse rekognosering, vedvarende overvåking og oppdragskonfigurerbare nyttelaster. Luftfartøy, fremdrift, sensorer og autonomi designet som ett integrert system. Bygget i Norge. Testet mot reelle operative begrensninger, ikke presentasjoner."
       },
-      "software": {
-        "name": "Operasjonsprogramvare",
-        "role": "Programvare",
-        "text": "Bygger programvarelaget for planlegging, overvåking, støtte og overgangen mellom operatører, luftfartøy og oppdragskontekst."
+      "avionics": {
+        "name": "Hjerne og nervesystem",
+        "role": "Avionikk og intelligens",
+        "text": "Ombord-flydatamaskiner, egne flight controllere, krafttette batteripakker og en full avionikk-stack — designet, bygget og iterert internt. Over dette ligger vår AI-intelligens og beslutningsmotor: sensorfusjon, autonom ruting, trusselbevisst ruteplanlegging og operatør-i-løkken-kommando. Hardware og programvare deles av de samme ingeniørene. Det er den eneste måten det fungerer på."
       }
     },
     "milestones": {

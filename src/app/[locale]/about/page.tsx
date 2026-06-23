@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: AboutPageProps): Promise<Meta
   return { title: t("title") };
 }
 
-const teamKeys = ["founder", "aerospace", "software"] as const;
+const teamKeys = ["manufacturing", "platforms", "avionics"] as const;
 const milestoneKeys = ["2024", "2025", "2026"] as const;
 
 export default async function AboutPage({ params }: AboutPageProps) {

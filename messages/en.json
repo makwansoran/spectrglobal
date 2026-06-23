@@ -127,26 +127,26 @@
   },
   "About": {
     "title": "About Us",
-    "builtFor": "Built for practical operations.",
-    "paragraph1": "Spectr was created to build technology that feels useful in the field, not just impressive in a showroom. Our work centers on UAV platforms, operator workflow, and the systems needed to plan, monitor, and support missions.",
-    "paragraph2": "We design around the realities of deployment: sensing needs, environmental constraints, training, support, and the handoff between hardware and software. VALKYRIE and CENTURION reflect that direction.",
+    "builtFor": "We build the machine that builds the machine.",
+    "paragraph1": "Spectr is an engineering company first. We do not outsource the hard parts. Our team designs, manufactures, and flies autonomous aerial systems from first principles — PCB to airframe, firmware to mission software.",
+    "paragraph2": "Every engineer here learns the full stack: schematic capture and layout, CAD and structural analysis, CNC and additive manufacturing, vacuum forming, assembly, test, and field deployment. That is how you ship hardware that survives contact with reality.",
     "historyTitle": "Company history.",
     "ctaTitle": "Want to work with Spectr?",
     "team": {
-      "founder": {
-        "name": "Makwan Ismail",
-        "role": "Founder & CEO",
-        "text": "Leads Spectr's product direction, mission requirements, and the connection between hardware development, field workflow, and long-term company priorities."
+      "manufacturing": {
+        "name": "Where We Build Engineers",
+        "role": "Manufacturing & Design",
+        "text": "We run an in-house pipeline from concept to physical product. Engineers train on PCB design and layout, parametric CAD, structural simulation, CNC machining, industrial 3D printing, and vacuum-form tooling. No handoffs to anonymous suppliers. You own the drawing, the toolpath, and the first article off the line."
       },
-      "aerospace": {
-        "name": "Aerospace Systems",
-        "role": "Engineering",
-        "text": "Focuses on UAV platforms, sensor integration, materials, deployment constraints, and the practical engineering needed for reliable field use."
+      "platforms": {
+        "name": "What We Build",
+        "role": "Autonomous Air Systems",
+        "text": "Autonomous UAV platforms engineered for military operations — long-range reconnaissance, persistent overwatch, and mission-configurable payloads. Airframes, propulsion, sensing, and autonomy designed as one integrated system. Built in Norway. Tested against real operational constraints, not slide decks."
       },
-      "software": {
-        "name": "Operations Software",
-        "role": "Software",
-        "text": "Builds the operational software layer around planning, monitoring, support, and the handoff between operators, aircraft, and mission context."
+      "avionics": {
+        "name": "Brains & Nervous System",
+        "role": "Avionics & Intelligence",
+        "text": "Onboard flight computers, custom flight controllers, power-dense battery packs, and a full avionics stack — designed, built, and iterated in-house. Above that sits our AI intelligence and decision engine: sensor fusion, autonomous routing, threat-aware path planning, and operator-in-the-loop command. Hardware and software share the same engineers. That is the only way it works."
       }
     },
     "milestones": {
