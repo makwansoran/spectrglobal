@@ -71,13 +71,7 @@
     "norwayTitle": "Developed and produced in Norway",
     "norwayDescription": "Spectr designs and produces ISR hardware and Centurion command software in Norway, with NATO-compatible allied components and no critical dependency on non-allied suppliers.",
     "newsroomTitle": "Newsroom",
-    "newsroomCta": "Go To Newsroom",
-    "investorTitle": "Investor Relations",
-    "investorDescription": "Follow Spectr's company updates, operating milestones, and long-term aerospace systems roadmap.",
-    "investorCta": "Go To Investor Page",
-    "careersTitle": "Join Our Mission",
-    "careersDescription": "Build aerospace systems and operational software for teams working in demanding real-world environments.",
-    "careersCta": "View Careers"
+    "newsroomCta": "Go To Newsroom"
   },
   "Contact": {
     "title": "Send a request.",

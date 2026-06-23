@@ -40,14 +40,25 @@ export function ScrollRevealHeading({
   revealOnMount = false,
 }: ScrollRevealHeadingProps) {
   const ref = useRef<HTMLElement>(null);
-  const [visible, setVisible] = useState(revealOnMount);
-  const visibleRef = useRef(revealOnMount);
+  const [visible, setVisible] = useState(false);
+  const visibleRef = useRef(false);
 
   useEffect(() => {
     if (revealOnMount) {
-      visibleRef.current = true;
-      setVisible(true);
-      return;
+      let revealTimer: number | undefined;
+      const frame = window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+          revealTimer = window.setTimeout(() => {
+            visibleRef.current = true;
+            setVisible(true);
+          }, delay);
+        });
+      });
+
+      return () => {
+        window.cancelAnimationFrame(frame);
+        window.clearTimeout(revealTimer);
+      };
     }
 
     const element = ref.current;

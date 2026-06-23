@@ -168,64 +168,6 @@ export default async function Home({ params }: HomePageProps) {
           </div>
         </section>
 
-        <section className="brand-font snap-start bg-bg">
-          <div>
-            <div className="relative min-h-[520px] overflow-hidden bg-neutral-900 text-white">
-              <Image
-                src="/hero-fjord.png"
-                alt=""
-                fill
-                className="object-cover grayscale"
-                sizes="100vw"
-                aria-hidden="true"
-              />
-              <div className="absolute inset-0 bg-neutral-900/65" />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/30 to-black/10" />
-
-              <div className="relative mx-auto flex min-h-[520px] w-full max-w-[88rem] flex-col justify-between px-5 py-7 sm:px-8 sm:py-10 lg:px-16 lg:py-12">
-                <div>
-                  <div className="max-w-4xl">
-                    <h2 className="text-5xl font-semibold leading-[0.92] tracking-[-0.075em] sm:text-7xl lg:text-8xl">
-                      {t("investorTitle")}
-                    </h2>
-                    <p className="mt-8 max-w-2xl text-base leading-8 text-white/68 sm:text-lg">
-                      {t("investorDescription")}
-                    </p>
-                  </div>
-
-                  <Link
-                    href="/investor"
-                    className="mt-12 inline-flex w-fit items-center gap-3 border border-transparent px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:border-white"
-                  >
-                    {t("investorCta")}
-                    <span aria-hidden="true">→</span>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="brand-font snap-start bg-black text-white">
-          <div className="mx-auto flex max-w-[88rem] flex-col gap-8 px-5 py-16 sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:px-16 lg:py-24">
-            <div className="max-w-4xl">
-              <h2 className="text-5xl font-semibold leading-[0.92] tracking-[-0.075em] text-white sm:text-7xl lg:text-8xl">
-                {t("careersTitle")}
-              </h2>
-              <p className="mt-8 max-w-2xl text-base leading-8 text-white/62 sm:text-lg">
-                {t("careersDescription")}
-              </p>
-            </div>
-            <Link
-              href="/careers"
-              className="inline-flex w-fit items-center gap-3 bg-white px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-black hover:opacity-80"
-            >
-              {t("careersCta")}
-              <span aria-hidden="true">→</span>
-            </Link>
-          </div>
-        </section>
-
         <Footer />
       </main>
     </>
