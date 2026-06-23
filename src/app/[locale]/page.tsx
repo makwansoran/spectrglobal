@@ -45,7 +45,7 @@ export default async function Home({ params }: HomePageProps) {
                 <ScrollRevealHeading
                   as="h1"
                   revealOnMount
-                  className="mx-auto max-w-3xl text-3xl font-semibold leading-[0.98] text-white sm:text-5xl lg:text-6xl"
+                  className="mx-auto max-w-4xl text-4xl font-semibold leading-[0.98] text-white sm:text-6xl lg:text-7xl"
                 >
                   {t("hero")}
                 </ScrollRevealHeading>
