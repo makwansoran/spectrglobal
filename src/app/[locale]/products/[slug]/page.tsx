@@ -145,10 +145,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
           <div className="mx-auto max-w-7xl">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/48">{tCommon("specs")}</p>
             <h2 className="mt-4 text-4xl font-semibold leading-none tracking-[-0.06em] text-white sm:text-6xl">
-              {product.slug === "valkyrie" ? t("specSheet") : `${product.name} — ${tCommon("specifications")}`}
+              {product.slug === "recon" ? t("specSheet") : `${product.name} — ${tCommon("specifications")}`}
             </h2>
             <p className="mt-6 max-w-2xl text-base leading-8 text-white/62 sm:text-lg">
-              {product.slug === "valkyrie"
+              {product.slug === "recon"
                 ? t("specSheetDescription")
                 : pickProductField(product.tagline, typedLocale)}
             </p>

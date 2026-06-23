@@ -26,7 +26,7 @@ export async function Footer() {
             <div>
               <h3 className="font-mono text-xs uppercase tracking-[0.16em] text-muted">{sections("development")}</h3>
               <ul className="mt-6 space-y-4 text-sm">
-                <li><Link href="/products/valkyrie" className="transition-opacity hover:opacity-50">{nav("valkyrie")}</Link></li>
+                <li><Link href="/products/recon" className="transition-opacity hover:opacity-50">{nav("recon")}</Link></li>
                 <li><Link href="/products/centurion" className="transition-opacity hover:opacity-50">{nav("centurion")}</Link></li>
               </ul>
             </div>

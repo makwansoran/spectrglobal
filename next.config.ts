@@ -13,12 +13,22 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/products/spectr-uav",
-        destination: "/products/valkyrie",
+        destination: "/products/recon",
         permanent: true,
       },
       {
-        source: "/products/recon",
-        destination: "/products/valkyrie",
+        source: "/products/valkyrie",
+        destination: "/products/recon",
+        permanent: true,
+      },
+      {
+        source: "/newsroom/:category/valkyrie-field-readiness-2026",
+        destination: "/newsroom/:category/recon-field-readiness-2026",
+        permanent: true,
+      },
+      {
+        source: "/documentation/valkyrie-sensing-configuration",
+        destination: "/documentation/recon-sensing-configuration",
         permanent: true,
       },
       {

@@ -55,7 +55,7 @@ export function ContactForm() {
           <option value="" disabled>
             {t("selectProduct")}
           </option>
-          <option value="valkyrie">VALKYRIE</option>
+          <option value="recon">RECON</option>
           <option value="centurion">CENTURION</option>
           <option value="general">{t("general")}</option>
         </select>

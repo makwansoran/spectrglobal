@@ -18,7 +18,7 @@ export function Nav({ variant = "dark" }: NavProps) {
     {
       title: t("sections.development"),
       links: [
-        { label: t("links.valkyrie"), href: "/products/valkyrie" },
+        { label: t("links.recon"), href: "/products/recon" },
         { label: t("links.centurion"), href: "/products/centurion" },
       ],
     },

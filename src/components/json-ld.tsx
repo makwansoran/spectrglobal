@@ -3,9 +3,12 @@ export function OrganizationJsonLd() {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Spectr",
+    legalName: "spectr as",
     url: "https://www.spectr.no",
     logo: "https://www.spectr.no/spectr-logo.png",
     email: "makwan@spectr.no",
+    telephone: "+4746503934",
+    taxID: "936961967",
     address: {
       "@type": "PostalAddress",
       addressCountry: "NO",

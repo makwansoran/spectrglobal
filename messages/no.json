@@ -1,7 +1,7 @@
 {
   "Metadata": {
     "siteName": "Spectr",
-    "description": "Spectr er et teknologi- og produksjonsselskap med fokus på sikkerhet, forsvar, logistikk og kritisk infrastruktur."
+    "description": "Spectr bygger en suverent norsk ISR-plattform — autonome, EW-motstandsdyktige luftfartssystemer og kommandoprogramvare."
   },
   "Nav": {
     "brand": "Spectr",
@@ -14,7 +14,7 @@
       "resources": "Ressurser"
     },
     "links": {
-      "valkyrie": "VALKYRIE",
+      "recon": "RECON",
       "centurion": "CENTURION",
       "contact": "Kom i gang",
       "about": "Om oss",
@@ -29,14 +29,14 @@
     }
   },
   "Footer": {
-    "tagline": "Oppdragsklare luftfartssystemer for operasjoner, etterretning og luftfartsbruk.",
+    "tagline": "Autonom ISR for et samband-nektet slagfelt.",
     "sections": {
       "development": "Utvikling",
       "company": "Selskap",
       "resources": "Ressurser"
     },
     "copyright": "© 2026 Spectr",
-    "orgNumber": "Org.nr oppgis på forespørsel",
+    "orgNumber": "Org.nr 936 961 967",
     "location": "Norge"
   },
   "LocaleSwitcher": {
@@ -61,15 +61,15 @@
     "viewProduct": "Se produkt"
   },
   "Home": {
-    "hero": "For luftoperasjoner i virkeligheten.",
-    "valkyrieTitle": "VALKYRIE",
-    "valkyrieDescription": "Rimelig, svært effektiv rekognoserings-UAV med lang rekkevidde, bygget for observasjon, feltbevissthet og operatørflyt.",
-    "valkyrieCta": "Se VALKYRIE",
+    "hero": "Autonom rekognosering for et samband-nektet slagfelt.",
+    "reconTitle": "RECON",
+    "reconDescription": "Langtrekkende, autonom ISR-plattform for kontinuerlig overvåking — uten bakkeinfrastruktur og uten GPS-avhengighet.",
+    "reconCta": "Se RECON",
     "centurionTitle": "CENTURION",
-    "centurionDescription": "Et kommandodashbord for overvåking av oppdrag, koordinering av feltaktivitet og samlet operasjonell kontekst.",
+    "centurionDescription": "Én suveren kommandoplattform med AI-assistert beslutningsstøtte, multi-drone-koordinering og mission staging.",
     "centurionCta": "Se CENTURION",
     "norwayTitle": "Utviklet og produsert i Norge",
-    "norwayDescription": "Spectr bygger oppdragsklare luftfartssystemer og operasjonell programvare fra Norge, med fokus på feltpålitelighet og operatørflyt.",
+    "norwayDescription": "Spectr designer og produserer ISR-hardware og Centurion-kommandoprogramvare i Norge, med NATO-kompatible allierte komponenter og ingen kritisk avhengighet av ikke-allierte leverandører.",
     "newsroomTitle": "Newsroom",
     "newsroomCta": "Gå til newsroom",
     "investorTitle": "Investor Relations",
@@ -103,21 +103,23 @@
     "locationLabel": "Sted",
     "locationValue": "Norge",
     "orgLabel": "Organisasjon",
-    "orgValue": "Spectr AS",
+    "orgValue": "spectr as",
+    "phoneLabel": "Telefon",
+    "phoneValue": "+47 465 03 934",
     "securityNote": "Ikke send klassifisert eller begrenset materiale via dette skjemaet. For sikkerhetsfølsomme henvendelser, oppgi organisasjon og klareringskontekst i meldingen.",
     "rolePrefill": "Søknad om stilling: {role}"
   },
   "Products": {
     "title": "Produkter",
     "hero": "Oppdragsklare systemer.",
-    "heroDescription": "VALKYRIE for feltrekognosering. CENTURION for oppdragskommando. Bygget og kontrollert fra Norge.",
+    "heroDescription": "RECON for autonom ISR. CENTURION for suveren oppdragskommando. Bygget og kontrollert fra Norge.",
     "exploreProduct": "Utforsk {product}",
-    "builtForRecon": "Bygget for rekognoseringsoppdrag.",
-    "valkyrieExtra": "VALKYRIE er rimelig å ta i bruk, svært effektiv i rekognosering og bygget for lang rekkevidde — med sensorbehov, operatørflyt og feltstøtte tilpasset hver deployering.",
-    "specSheet": "VALKYRIE spesifikasjonsark",
-    "specSheetDescription": "Full plattformoversikt, dimensjoner, operasjonsprofil og anbefalt utstyr for VALKYRIE.",
+    "builtForRecon": "Bygget for et samband-nektet slagfelt.",
+    "reconExtra": "Operatøren definerer oppdraget i Centurion. RECON tar av vertikalt, cruiser autonomt og returnerer — selv når GPS og samband er nede.",
+    "specSheet": "RECON spesifikasjonsark",
+    "specSheetDescription": "Plattformdimensjoner, ytelsesmål, nyttelastkonfigurasjon og operasjonsprofil for RECON.",
     "requestProduct": "Be om tilgang til {product}.",
-    "centurionBuiltFor": "Bygget for feltkommando.",
+    "centurionBuiltFor": "Én suveren kommandoplattform.",
     "category": "Kategori",
     "use": "Bruk",
     "flight": "Flytid",
@@ -127,26 +129,26 @@
   },
   "About": {
     "title": "Om oss",
-    "builtFor": "Vi bygger maskinen som bygger maskinen.",
-    "paragraph1": "Spectr er et ingeniørselskap først. Vi outsourcer ikke de vanskelige delene. Teamet vårt designer, produserer og flyr autonome luftfartssystemer fra første prinsipper — fra PCB til luftfartøy, fra firmware til oppdragsprogramvare.",
-    "paragraph2": "Hver ingeniør her lærer hele stacken: skjemategning og layout, CAD og strukturanalyse, CNC og additiv produksjon, vakuumforming, montering, test og feltdeployering. Slik leverer du hardware som tåler møte med virkeligheten.",
+    "builtFor": "Suveren produksjon. Allierte komponenter.",
+    "paragraph1": "Spectr bygger en suverent norsk ISR-plattform — autonom, EW-motstandsdyktig og produsert i Norge til en brøkdel av prisen på dagens systemer.",
+    "paragraph2": "In-house i Norge: vakuumformede karbonfiber-luftfartøy, avionikk, flykontrollere, ombord-datamaskiner, telemetriradio, batteripakke-design, Centurion-programvare og sluttmontering. Allierte leverandører kun for EO/IR-gimbaler, battericeller og motorer. NDAA Section 889-kompatibel by design.",
     "historyTitle": "Selskapshistorie.",
     "ctaTitle": "Vil du samarbeide med Spectr?",
     "team": {
       "manufacturing": {
-        "name": "Der Vi Bygger Ingeniører",
-        "role": "Produksjon og design",
-        "text": "Vi kjører en intern pipeline fra konsept til fysisk produkt. Ingeniører trener på PCB-design og layout, parametrisk CAD, struktursimulering, CNC-bearbeiding, industriell 3D-printing og vakuumformverktøy. Ingen overleveringer til anonyme leverandører. Du eier tegningen, verktøybanen og første eksemplar av linjen."
+        "name": "Produsert in-house",
+        "role": "Norsk produksjon",
+        "text": "Luftfartøy i vakuumformet karbonfiber-kompositt, avionikk og flykontrollere, ombord-datamaskiner, telemetriradio, batteripakke-design med BMS og termisk håndtering, Centurion-programvare og sluttmontering — alt i Norge."
       },
       "platforms": {
-        "name": "Hva Vi Bygger",
-        "role": "Autonome luftfartssystemer",
-        "text": "Autonome UAV-plattformer konstruert for militære operasjoner — langdistanse rekognosering, vedvarende overvåking og oppdragskonfigurerbare nyttelaster. Luftfartøy, fremdrift, sensorer og autonomi designet som ett integrert system. Bygget i Norge. Testet mot reelle operative begrensninger, ikke presentasjoner."
+        "name": "RECON",
+        "role": "Autonom ISR",
+        "text": "En VTOL fastvinge-ISR-plattform for kontinuerlig overvåking over store områder. Autonom oppdragsgjennomføring i GNSS-nektede og samband-nektede miljøer. Prototype montert — bakketesting pågår."
       },
       "avionics": {
-        "name": "Hjerne og nervesystem",
-        "role": "Avionikk og intelligens",
-        "text": "Ombord-flydatamaskiner, egne flight controllere, krafttette batteripakker og en full avionikk-stack — designet, bygget og iterert internt. Over dette ligger vår AI-intelligens og beslutningsmotor: sensorfusjon, autonom ruting, trusselbevisst ruteplanlegging og operatør-i-løkken-kommando. Hardware og programvare deles av de samme ingeniørene. Det er den eneste måten det fungerer på."
+        "name": "GNSS-nektet stack",
+        "role": "Avionikk og navigasjon",
+        "text": "Visual-Inertial Odometry i utvikling, terrengreferert navigasjon på roadmap, og taktisk-grad INS som fallback. Egne flight controllere, krafttette batteripakker og sikre ombord-systemer bygget etter NATO STANAG-prinsipper."
       }
     },
     "milestones": {
@@ -155,12 +157,12 @@
         "text": "Spectr startet med fokus på praktiske luftfartssystemer, feltbruk og hardware som kunne støtte reelle operative arbeidsflyter."
       },
       "2025": {
-        "title": "VALKYRIE tar form",
+        "title": "RECON tar form",
         "text": "Teamet finjusterte en oppdragskonfigurerbar rekognoserings-UAV-retning rundt sensorer, operatørbehov og deployeringsstøtte."
       },
       "2026": {
-        "title": "Operasjonell klarhet",
-        "text": "Spectr fortsetter å bygge mot pålitelige luftfartssystemer og programvareassisterte feltoperasjoner fra Norge."
+        "title": "Prototype og demo-klarhet",
+        "text": "RECON-prototype montert med bakketesting pågående. Centurion v0.1 operativ med mission staging og AI-chat — demo-klar."
       }
     }
   },
@@ -199,7 +201,7 @@
     "quickStart": {
       "evaluate": {
         "title": "Evaluer en plattform",
-        "description": "Gjennomgå VALKYRIE etter rekognoseringsprofil, operasjonsmiljø, sensorbehov og deployeringsklarhet.",
+        "description": "Gjennomgå RECON etter rekognoseringsprofil, operasjonsmiljø, sensorbehov og deployeringsklarhet.",
         "action": "Se produkter"
       },
       "prepare": {
@@ -261,11 +263,11 @@
   "Investor": {
     "title": "Investor Relations",
     "intro": "Følg Spectrs selskapsoppdateringer, operative milepæler og langsiktige veikart for luftfartssystemer.",
-    "headline": "Bygger varig luftfartskapabilitet fra Norge.",
-    "paragraph1": "Spectr utvikler oppdragsklart UAV-hardware og operasjonell programvare for organisasjoner som trenger pålitelig felteknologi, sikker kontroll og langsiktig produktdybde.",
+    "headline": "Suveren ISR-kapabilitet fra Norge.",
+    "paragraph1": "Spectr utvikler RECON — en autonom, EW-motstandsdyktig ISR-plattform — og Centurion, en suveren kommandoplattform for multi-drone mission staging og AI-assistert beslutningsstøtte.",
     "paragraph2": "Investor Relations-henvendelser håndteres direkte av Spectr-teamet. Vi deler selskapsmateriell, milepæler og strategisk kontekst med kvalifiserte interessenter.",
-    "quote": "Norsk-eid teknologi for observasjon, kommando og feltoperasjoner — bygget for å forbli under nasjonal kontroll.",
-    "quoteAttribution": "Makwan Ismail, grunnlegger av Spectr",
+    "quote": "Vesten trenger ISR-droner som ser alt, og som ikke kan slås ut.",
+    "quoteAttribution": "Makwan Soran, daglig leder og head engineer",
     "ctaTitle": "Be om investorinformasjon.",
     "focus": {
       "updates": {
@@ -274,7 +276,7 @@
       },
       "milestones": {
         "title": "Operative milepæler",
-        "text": "Følg produkt-, produksjons- og feltklarhetsmilepæler på tvers av VALKYRIE, CENTURION og støttesystemer."
+        "text": "Følg produkt-, produksjons- og feltklarhetsmilepæler på tvers av RECON, CENTURION og støttesystemer."
       },
       "roadmap": {
         "title": "Langsiktig veikart",

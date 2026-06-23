@@ -60,6 +60,14 @@ export default async function ContactPage({ params }: ContactPageProps) {
                   </dd>
                 </div>
                 <div>
+                  <dt className="label">{t("phoneLabel")}</dt>
+                  <dd className="mt-2">
+                    <a href="tel:+4746503934" className="text-fg underline underline-offset-4 hover:opacity-70">
+                      {t("phoneValue")}
+                    </a>
+                  </dd>
+                </div>
+                <div>
                   <dt className="label">{t("orgLabel")}</dt>
                   <dd className="mt-2 text-fg">{t("orgValue")}</dd>
                 </div>

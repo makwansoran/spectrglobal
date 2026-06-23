@@ -56,12 +56,12 @@ export default async function Home({ params }: HomePageProps) {
 
         <section className="brand-font flex min-h-[82vh] snap-start flex-col bg-black lg:flex-row">
           <Link
-            href="/products/valkyrie"
+            href="/products/recon"
             className="group relative min-h-[41vh] flex-1 overflow-hidden bg-black text-white transition-[flex] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:flex-[1.35] lg:min-h-[82vh]"
           >
             <Image
-              src="/valkyrie-hero.png"
-              alt="VALKYRIE aircraft flying over mountain terrain"
+              src="/recon-hero.png"
+              alt="RECON aircraft flying over mountain terrain"
               fill
               className="object-cover transition-transform duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
               sizes="(max-width: 1024px) 100vw, 60vw"
@@ -71,14 +71,14 @@ export default async function Home({ params }: HomePageProps) {
             <div className="relative flex min-h-[41vh] flex-col justify-between p-7 sm:p-10 lg:min-h-[82vh] lg:p-12">
               <div className="max-w-3xl">
                 <h2 className="text-4xl font-semibold leading-[0.92] tracking-[-0.075em] sm:text-6xl lg:text-7xl">
-                  {t("valkyrieTitle")}
+                  {t("reconTitle")}
                 </h2>
                 <p className="mt-5 max-w-lg text-sm leading-7 text-white/68 sm:text-base">
-                  {t("valkyrieDescription")}
+                  {t("reconDescription")}
                 </p>
               </div>
               <span className="mt-10 inline-flex w-fit items-center gap-3 border border-transparent px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-white transition-colors group-hover:border-white">
-                {t("valkyrieCta")}
+                {t("reconCta")}
                 <span aria-hidden="true">→</span>
               </span>
             </div>

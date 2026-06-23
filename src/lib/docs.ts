@@ -11,23 +11,23 @@ export type DocPage = {
 
 export const docPages: DocPage[] = [
   {
-    slug: "valkyrie-sensing-configuration",
+    slug: "recon-sensing-configuration",
     section: "product",
     title: {
-      en: "VALKYRIE sensing and observation configuration",
-      no: "VALKYRIE sensor- og observasjonskonfigurasjon",
+      en: "RECON sensing and observation configuration",
+      no: "RECON sensor- og observasjonskonfigurasjon",
     },
     description: {
-      en: "Overview of sensing options, payload planning, and observation workflows for VALKYRIE.",
-      no: "Oversikt over sensoralternativer, nyttelastplanlegging og observasjonsflyt for VALKYRIE.",
+      en: "Overview of sensing options, payload planning, and observation workflows for RECON.",
+      no: "Oversikt over sensoralternativer, nyttelastplanlegging og observasjonsflyt for RECON.",
     },
     body: {
       en: [
-        "VALKYRIE is configured per mission for reconnaissance, observation, and field awareness. Sensing requirements should be defined before procurement so payload, control link, and support expectations can be aligned.",
+        "RECON is configured per mission for ISR surveillance with an EO/IR gimbal payload of 1–1.5 kg (FLIR Boson + Sony block, 300–500 g gimbal). Sensing requirements should be defined before procurement.",
         "This reference covers typical observation profiles, environmental considerations, and the information Spectr needs to prepare a deployment conversation.",
       ],
       no: [
-        "VALKYRIE konfigureres per oppdrag for rekognosering, observasjon og feltbevissthet. Sensorbehov bør defineres før innkjøp slik at nyttelast, kontrolllenke og støtteforventninger kan avstemmes.",
+        "RECON konfigureres per oppdrag for ISR-overvåking med EO/IR-gimbal-nyttelast på 1–1,5 kg (FLIR Boson + Sony block, 300–500 g gimbal). Sensorbehov bør defineres før innkjøp.",
         "Denne referansen dekker typiske observasjonsprofiler, miljøhensyn og informasjon Spectr trenger for å forberede en deployeringssamtale.",
       ],
     },

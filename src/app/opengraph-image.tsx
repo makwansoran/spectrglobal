@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "Spectr — mission-ready aerial systems from Norway";
+export const alt = "Spectr — autonomous ISR from Norway";
 
 export default function OpenGraphImage() {
   return new ImageResponse(
@@ -49,10 +49,10 @@ export default function OpenGraphImage() {
               maxWidth: "900px",
             }}
           >
-            Mission-ready aerial systems from Norway
+            Autonomous ISR from Norway
           </div>
           <div style={{ marginTop: "28px", fontSize: "28px", color: "rgba(255,255,255,0.62)" }}>
-            VALKYRIE · CENTURION · Security · Operations
+            RECON · CENTURION · Sovereign · EW-resilient
           </div>
         </div>
       </div>
