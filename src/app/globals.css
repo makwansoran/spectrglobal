@@ -128,7 +128,7 @@ textarea {
   display: inline-block;
   opacity: 0;
   transition: opacity 55ms steps(1, end);
-  transition-delay: calc(var(--char-index) * 12ms);
+  transition-delay: calc(var(--char-index) * 14ms);
 }
 
 .reveal-word {

@@ -1,0 +1,298 @@
+{
+  "Metadata": {
+    "siteName": "Spectr",
+    "description": "Spectr is a technology and manufacturing company focused on security, military, logistics, and critical infrastructure."
+  },
+  "Nav": {
+    "brand": "Spectr",
+    "getStarted": "Get Started",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "sections": {
+      "development": "Development",
+      "company": "Company",
+      "resources": "Resources"
+    },
+    "links": {
+      "valkyrie": "VALKYRIE",
+      "centurion": "CENTURION",
+      "contact": "Get Started",
+      "about": "About Us",
+      "products": "Products",
+      "careers": "Careers",
+      "newsroom": "Newsroom",
+      "documentation": "Documentation",
+      "security": "Security",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "investor": "Investor Relations"
+    }
+  },
+  "Footer": {
+    "tagline": "Mission-ready aerial systems for operations, intelligence, and aerospace use cases.",
+    "sections": {
+      "development": "Development",
+      "company": "Company",
+      "resources": "Resources"
+    },
+    "copyright": "© 2026 Spectr",
+    "orgNumber": "Org.nr available on request",
+    "location": "Norway"
+  },
+  "LocaleSwitcher": {
+    "label": "Language",
+    "en": "English",
+    "no": "Norsk"
+  },
+  "Common": {
+    "learnMore": "Learn More",
+    "contactSpectr": "Contact Spectr",
+    "requestAccess": "Request Access",
+    "contactUs": "Contact us",
+    "seeMore": "See More",
+    "readMore": "Read More",
+    "backToNewsroom": "Back to newsroom",
+    "backToCategory": "Back to {category}",
+    "specs": "Specs",
+    "overview": "Overview",
+    "specifications": "Specifications",
+    "recommendedEquipment": "Recommended Equipment",
+    "skipToContent": "Skip to main content",
+    "viewProduct": "View product"
+  },
+  "Home": {
+    "hero": "For real-world aerial operations.",
+    "valkyrieTitle": "VALKYRIE",
+    "valkyrieDescription": "Affordable, highly effective, long-range reconnaissance UAV built around observation, field awareness, and operator workflow.",
+    "valkyrieCta": "View VALKYRIE",
+    "centurionTitle": "CENTURION",
+    "centurionDescription": "A command dashboard for monitoring missions, coordinating field activity, and keeping operational context in one place.",
+    "centurionCta": "View CENTURION",
+    "norwayTitle": "Developed and produced in Norway",
+    "norwayDescription": "Spectr builds mission-ready aerial systems and operational software from Norway, with a focus on field reliability and operator workflow.",
+    "newsroomTitle": "Newsroom",
+    "newsroomCta": "Go To Newsroom",
+    "investorTitle": "Investor Relations",
+    "investorDescription": "Follow Spectr's company updates, operating milestones, and long-term aerospace systems roadmap.",
+    "investorCta": "Go To Investor Page",
+    "careersTitle": "Join Our Mission",
+    "careersDescription": "Build aerospace systems and operational software for teams working in demanding real-world environments.",
+    "careersCta": "View Careers"
+  },
+  "Contact": {
+    "title": "Send a request.",
+    "name": "Name",
+    "organization": "Organization",
+    "email": "Email",
+    "phone": "Phone Number",
+    "product": "Product",
+    "message": "Message",
+    "selectProduct": "Select a product",
+    "general": "General inquiry",
+    "submit": "Submit",
+    "submitting": "Sending…",
+    "success": "Request received. We will respond shortly.",
+    "errorGeneric": "Something went wrong. Please try again or email us directly.",
+    "errorName": "Name is required.",
+    "errorEmail": "A valid email is required.",
+    "errorProduct": "Please select a product.",
+    "errorMessage": "Message is required.",
+    "trustTitle": "Direct contact",
+    "trustIntro": "For procurement, security-sensitive, or operational inquiries, contact Spectr directly.",
+    "emailLabel": "Email",
+    "locationLabel": "Location",
+    "locationValue": "Norway",
+    "orgLabel": "Organization",
+    "orgValue": "Spectr AS",
+    "securityNote": "Do not send classified or restricted material through this form. For security-sensitive inquiries, state your organization and clearance context in the message.",
+    "rolePrefill": "Application for role: {role}"
+  },
+  "Products": {
+    "title": "Products",
+    "hero": "Mission-ready systems.",
+    "heroDescription": "VALKYRIE for field reconnaissance. CENTURION for mission command. Built and controlled from Norway.",
+    "exploreProduct": "Explore {product}",
+    "builtForRecon": "Built for reconnaissance missions.",
+    "valkyrieExtra": "VALKYRIE is affordable to field, highly effective in reconnaissance, and built for long-range operation — aligning sensing requirements, operator workflow, and field support around each deployment.",
+    "specSheet": "VALKYRIE Specification Sheet",
+    "specSheetDescription": "Full platform overview, dimensions, operating profile, and recommended equipment for VALKYRIE.",
+    "requestProduct": "Request access to {product}.",
+    "centurionBuiltFor": "Built for field command.",
+    "category": "Category",
+    "use": "Use",
+    "flight": "Flight",
+    "range": "Range",
+    "status": "Status",
+    "pricing": "Pricing"
+  },
+  "About": {
+    "title": "About Us",
+    "builtFor": "Built for practical operations.",
+    "paragraph1": "Spectr was created to build technology that feels useful in the field, not just impressive in a showroom. Our work centers on UAV platforms, operator workflow, and the systems needed to plan, monitor, and support missions.",
+    "paragraph2": "We design around the realities of deployment: sensing needs, environmental constraints, training, support, and the handoff between hardware and software. VALKYRIE and CENTURION reflect that direction.",
+    "historyTitle": "Company history.",
+    "ctaTitle": "Want to work with Spectr?",
+    "team": {
+      "founder": {
+        "name": "Makwan Ismail",
+        "role": "Founder & CEO",
+        "text": "Leads Spectr's product direction, mission requirements, and the connection between hardware development, field workflow, and long-term company priorities."
+      },
+      "aerospace": {
+        "name": "Aerospace Systems",
+        "role": "Engineering",
+        "text": "Focuses on UAV platforms, sensor integration, materials, deployment constraints, and the practical engineering needed for reliable field use."
+      },
+      "software": {
+        "name": "Operations Software",
+        "role": "Software",
+        "text": "Builds the operational software layer around planning, monitoring, support, and the handoff between operators, aircraft, and mission context."
+      }
+    },
+    "milestones": {
+      "2024": {
+        "title": "Early systems work",
+        "text": "Spectr began with a focus on practical aerial systems, field handling, and hardware that could support real operational workflows."
+      },
+      "2025": {
+        "title": "VALKYRIE takes shape",
+        "text": "The team refined a mission-configurable reconnaissance UAV direction around sensing, operator needs, and deployment support."
+      },
+      "2026": {
+        "title": "Operational readiness",
+        "text": "Spectr continues building toward reliable aerospace systems and software-assisted field operations from Norway."
+      }
+    }
+  },
+  "Careers": {
+    "title": "Join Our Mission",
+    "intro": "Spectr is building mission-ready aerospace systems and operational software from Norway.",
+    "buildTitle": "Build systems for real-world operations.",
+    "paragraph1": "We are looking for people who care about practical engineering, disciplined execution, and technology that can hold up outside the lab.",
+    "paragraph2": "If you want to work across aerospace hardware, operator workflow, and secure software systems, we want to hear from you.",
+    "openRoles": "Open roles",
+    "applyCta": "Apply via contact",
+    "ctaTitle": "Interested in joining Spectr?",
+    "focus": {
+      "aerospace": {
+        "title": "Aerospace systems",
+        "text": "Work on UAV platforms, field-ready hardware, and the systems that support demanding operational use."
+      },
+      "software": {
+        "title": "Operational software",
+        "text": "Build command interfaces, mission workflows, and tools that help operators keep context when decisions matter."
+      },
+      "norway": {
+        "title": "Norwegian capability",
+        "text": "Help develop critical technology under national control, with a focus on reliability, security, and real deployment needs."
+      }
+    }
+  },
+  "Documentation": {
+    "title": "Documentation",
+    "browseTitle": "Browse documentation",
+    "browseDescription": "Start with the product family, then move through operator planning, deployment readiness, and support.",
+    "platformReferences": "Platform references",
+    "needDocumentTitle": "Need a specific document?",
+    "needDocumentText": "Contact Spectr with your platform, operating environment, and qualification context so the right documentation can be prepared.",
+    "requestDocumentation": "Request documentation",
+    "quickStart": {
+      "evaluate": {
+        "title": "Evaluate a platform",
+        "description": "Review VALKYRIE by reconnaissance profile, operating environment, sensing needs, and deployment readiness.",
+        "action": "View products"
+      },
+      "prepare": {
+        "title": "Prepare a request",
+        "description": "Collect the operational context, qualification requirements, and support details Spectr needs before a deployment conversation.",
+        "action": "Contact Spectr"
+      },
+      "updates": {
+        "title": "Read the latest updates",
+        "description": "Follow product development notes, field readiness updates, and company information from the Spectr team.",
+        "action": "Open newsroom"
+      }
+    },
+    "sections": {
+      "product": {
+        "title": "Product Documentation",
+        "description": "Platform references for teams evaluating Spectr systems."
+      },
+      "operator": {
+        "title": "Operator Guides",
+        "description": "Field guidance for preparation, readiness, and handoff."
+      },
+      "deployment": {
+        "title": "Deployment Readiness",
+        "description": "Qualification and planning material for operational use."
+      },
+      "support": {
+        "title": "Support",
+        "description": "Help paths for teams already coordinating with Spectr."
+      }
+    }
+  },
+  "Newsroom": {
+    "title": "Newsroom",
+    "seeMore": "See More",
+    "mediaCta": "For media and qualified operational inquiries.",
+    "contact": "Contact",
+    "noArticles": "No articles published in this category yet.",
+    "readArticle": "Read article"
+  },
+  "Security": {
+    "title": "Security",
+    "learnMore": "Learn more",
+    "description": "Spectr security, confidentiality, Norwegian ownership, and controlled infrastructure commitments.",
+    "scrollToVerify": "Scroll to verify",
+    "criticalLocal": "Critical technology should stay local.",
+    "legalCompliance": "Legal compliance",
+    "legalText1": "Our operations are structured in accordance with the Norwegian Security Act (sikkerhetsloven) and the Business Security Regulation (virksomhetsikkerhetsforskriften § 83). We maintain organisational and technical safeguards for classified information and critical infrastructure under Norwegian law.",
+    "legalText2": "We believe critical technology should be developed, owned, and controlled locally — to safeguard Norwegian interests for the long term.",
+    "lovdataCta": "Read more: sikkerhetsloven § 9-3 (Lovdata)",
+    "nationalControl": "We believe critical technology should be developed under full national control."
+  },
+  "Legal": {
+    "privacyTitle": "Privacy Policy",
+    "termsTitle": "Terms of Service",
+    "lastUpdated": "Last updated: June 4, 2026",
+    "contactCta": "Contact Spectr"
+  },
+  "Investor": {
+    "title": "Investor Relations",
+    "intro": "Follow Spectr's company updates, operating milestones, and long-term aerospace systems roadmap.",
+    "headline": "Building durable aerospace capability from Norway.",
+    "paragraph1": "Spectr is developing mission-ready UAV hardware and operational software for organizations that need reliable field technology, secure control, and long-term product depth.",
+    "paragraph2": "Investor relations inquiries are handled directly by the Spectr team. We share company materials, milestone updates, and strategic context with qualified stakeholders.",
+    "quote": "Norwegian-owned technology for observation, command, and field operations — built to stay under national control.",
+    "quoteAttribution": "Makwan Ismail, Founder of Spectr",
+    "ctaTitle": "Request investor information.",
+    "focus": {
+      "updates": {
+        "title": "Company updates",
+        "text": "Follow Spectr's progress as we build Norway-based aerospace systems for real-world operational use."
+      },
+      "milestones": {
+        "title": "Operating milestones",
+        "text": "Track product, manufacturing, and field-readiness milestones across VALKYRIE, CENTURION, and supporting systems."
+      },
+      "roadmap": {
+        "title": "Long-term roadmap",
+        "text": "Understand the strategic direction behind Spectr's hardware, software, and national-control technology."
+      }
+    }
+  },
+  "NotFound": {
+    "title": "Page not found",
+    "description": "The page you requested does not exist or may have moved.",
+    "home": "Back to home"
+  },
+  "CookieConsent": {
+    "label": "Cookie notice",
+    "title": "Spectr uses cookies to run and improve this website.",
+    "description": "We use essential cookies to remember your choices and keep the site working. With your permission, we may also use analytics or similar tools to understand website usage. You can read more in our Privacy Policy.",
+    "essential": "Essential Only",
+    "accept": "Accept Cookies",
+    "privacyLink": "Privacy Policy"
+  }
+}

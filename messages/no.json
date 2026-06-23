@@ -1,0 +1,298 @@
+{
+  "Metadata": {
+    "siteName": "Spectr",
+    "description": "Spectr er et teknologi- og produksjonsselskap med fokus på sikkerhet, forsvar, logistikk og kritisk infrastruktur."
+  },
+  "Nav": {
+    "brand": "Spectr",
+    "getStarted": "Kom i gang",
+    "openMenu": "Åpne meny",
+    "closeMenu": "Lukk meny",
+    "sections": {
+      "development": "Utvikling",
+      "company": "Selskap",
+      "resources": "Ressurser"
+    },
+    "links": {
+      "valkyrie": "VALKYRIE",
+      "centurion": "CENTURION",
+      "contact": "Kom i gang",
+      "about": "Om oss",
+      "products": "Produkter",
+      "careers": "Karriere",
+      "newsroom": "Newsroom",
+      "documentation": "Dokumentasjon",
+      "security": "Sikkerhet",
+      "privacy": "Personvern",
+      "terms": "Vilkår",
+      "investor": "Investor Relations"
+    }
+  },
+  "Footer": {
+    "tagline": "Oppdragsklare luftfartssystemer for operasjoner, etterretning og luftfartsbruk.",
+    "sections": {
+      "development": "Utvikling",
+      "company": "Selskap",
+      "resources": "Ressurser"
+    },
+    "copyright": "© 2026 Spectr",
+    "orgNumber": "Org.nr oppgis på forespørsel",
+    "location": "Norge"
+  },
+  "LocaleSwitcher": {
+    "label": "Språk",
+    "en": "English",
+    "no": "Norsk"
+  },
+  "Common": {
+    "learnMore": "Les mer",
+    "contactSpectr": "Kontakt Spectr",
+    "requestAccess": "Be om tilgang",
+    "contactUs": "Kontakt oss",
+    "seeMore": "Se mer",
+    "readMore": "Les mer",
+    "backToNewsroom": "Tilbake til newsroom",
+    "backToCategory": "Tilbake til {category}",
+    "specs": "Spesifikasjoner",
+    "overview": "Oversikt",
+    "specifications": "Spesifikasjoner",
+    "recommendedEquipment": "Anbefalt utstyr",
+    "skipToContent": "Hopp til hovedinnhold",
+    "viewProduct": "Se produkt"
+  },
+  "Home": {
+    "hero": "For luftoperasjoner i virkeligheten.",
+    "valkyrieTitle": "VALKYRIE",
+    "valkyrieDescription": "Rimelig, svært effektiv rekognoserings-UAV med lang rekkevidde, bygget for observasjon, feltbevissthet og operatørflyt.",
+    "valkyrieCta": "Se VALKYRIE",
+    "centurionTitle": "CENTURION",
+    "centurionDescription": "Et kommandodashbord for overvåking av oppdrag, koordinering av feltaktivitet og samlet operasjonell kontekst.",
+    "centurionCta": "Se CENTURION",
+    "norwayTitle": "Utviklet og produsert i Norge",
+    "norwayDescription": "Spectr bygger oppdragsklare luftfartssystemer og operasjonell programvare fra Norge, med fokus på feltpålitelighet og operatørflyt.",
+    "newsroomTitle": "Newsroom",
+    "newsroomCta": "Gå til newsroom",
+    "investorTitle": "Investor Relations",
+    "investorDescription": "Følg Spectrs selskapsoppdateringer, operative milepæler og langsiktige veikart for luftfartssystemer.",
+    "investorCta": "Gå til investorsiden",
+    "careersTitle": "Bli med på oppdraget",
+    "careersDescription": "Bygg luftfartssystemer og operasjonell programvare for team som jobber i krevende virkelige miljøer.",
+    "careersCta": "Se karriere"
+  },
+  "Contact": {
+    "title": "Send en forespørsel.",
+    "name": "Navn",
+    "organization": "Organisasjon",
+    "email": "E-post",
+    "phone": "Telefonnummer",
+    "product": "Produkt",
+    "message": "Melding",
+    "selectProduct": "Velg et produkt",
+    "general": "Generell henvendelse",
+    "submit": "Send",
+    "submitting": "Sender…",
+    "success": "Forespørselen er mottatt. Vi svarer snart.",
+    "errorGeneric": "Noe gikk galt. Prøv igjen eller send e-post direkte.",
+    "errorName": "Navn er påkrevd.",
+    "errorEmail": "Gyldig e-post er påkrevd.",
+    "errorProduct": "Velg et produkt.",
+    "errorMessage": "Melding er påkrevd.",
+    "trustTitle": "Direkte kontakt",
+    "trustIntro": "For innkjøp, sikkerhetsfølsomme eller operative henvendelser, kontakt Spectr direkte.",
+    "emailLabel": "E-post",
+    "locationLabel": "Sted",
+    "locationValue": "Norge",
+    "orgLabel": "Organisasjon",
+    "orgValue": "Spectr AS",
+    "securityNote": "Ikke send klassifisert eller begrenset materiale via dette skjemaet. For sikkerhetsfølsomme henvendelser, oppgi organisasjon og klareringskontekst i meldingen.",
+    "rolePrefill": "Søknad om stilling: {role}"
+  },
+  "Products": {
+    "title": "Produkter",
+    "hero": "Oppdragsklare systemer.",
+    "heroDescription": "VALKYRIE for feltrekognosering. CENTURION for oppdragskommando. Bygget og kontrollert fra Norge.",
+    "exploreProduct": "Utforsk {product}",
+    "builtForRecon": "Bygget for rekognoseringsoppdrag.",
+    "valkyrieExtra": "VALKYRIE er rimelig å ta i bruk, svært effektiv i rekognosering og bygget for lang rekkevidde — med sensorbehov, operatørflyt og feltstøtte tilpasset hver deployering.",
+    "specSheet": "VALKYRIE spesifikasjonsark",
+    "specSheetDescription": "Full plattformoversikt, dimensjoner, operasjonsprofil og anbefalt utstyr for VALKYRIE.",
+    "requestProduct": "Be om tilgang til {product}.",
+    "centurionBuiltFor": "Bygget for feltkommando.",
+    "category": "Kategori",
+    "use": "Bruk",
+    "flight": "Flytid",
+    "range": "Rekkevidde",
+    "status": "Status",
+    "pricing": "Pris"
+  },
+  "About": {
+    "title": "Om oss",
+    "builtFor": "Bygget for praktiske operasjoner.",
+    "paragraph1": "Spectr ble etablert for å bygge teknologi som er nyttig i felt, ikke bare imponerende i et showrom. Arbeidet vårt sentreres om UAV-plattformer, operatørflyt og systemene som trengs for å planlegge, overvåke og støtte oppdrag.",
+    "paragraph2": "Vi designer for deployeringens realiteter: sensorbehov, miljøbegrensninger, opplæring, støtte og overgangen mellom hardware og programvare. VALKYRIE og CENTURION gjenspeiler den retningen.",
+    "historyTitle": "Selskapshistorie.",
+    "ctaTitle": "Vil du samarbeide med Spectr?",
+    "team": {
+      "founder": {
+        "name": "Makwan Ismail",
+        "role": "Grunnlegger og CEO",
+        "text": "Leder Spectrs produktretning, oppdragskrav og koblingen mellom hardwareutvikling, feltflyt og langsiktige selskapsprioriteringer."
+      },
+      "aerospace": {
+        "name": "Luftfartssystemer",
+        "role": "Engineering",
+        "text": "Fokuserer på UAV-plattformer, sensorintegrasjon, materialer, deployeringsbegrensninger og praktisk ingeniørarbeid for pålitelig feltbruk."
+      },
+      "software": {
+        "name": "Operasjonsprogramvare",
+        "role": "Programvare",
+        "text": "Bygger programvarelaget for planlegging, overvåking, støtte og overgangen mellom operatører, luftfartøy og oppdragskontekst."
+      }
+    },
+    "milestones": {
+      "2024": {
+        "title": "Tidlig systemarbeid",
+        "text": "Spectr startet med fokus på praktiske luftfartssystemer, feltbruk og hardware som kunne støtte reelle operative arbeidsflyter."
+      },
+      "2025": {
+        "title": "VALKYRIE tar form",
+        "text": "Teamet finjusterte en oppdragskonfigurerbar rekognoserings-UAV-retning rundt sensorer, operatørbehov og deployeringsstøtte."
+      },
+      "2026": {
+        "title": "Operasjonell klarhet",
+        "text": "Spectr fortsetter å bygge mot pålitelige luftfartssystemer og programvareassisterte feltoperasjoner fra Norge."
+      }
+    }
+  },
+  "Careers": {
+    "title": "Bli med på oppdraget",
+    "intro": "Spectr bygger oppdragsklare luftfartssystemer og operasjonell programvare fra Norge.",
+    "buildTitle": "Bygg systemer for operasjoner i virkeligheten.",
+    "paragraph1": "Vi ser etter folk som bryr seg om praktisk ingeniørarbeid, disiplinert gjennomføring og teknologi som tåler bruk utenfor labben.",
+    "paragraph2": "Hvis du vil jobbe på tvers av luftfartshardware, operatørflyt og sikker programvare, vil vi gjerne høre fra deg.",
+    "openRoles": "Ledige stillinger",
+    "applyCta": "Søk via kontakt",
+    "ctaTitle": "Interessert i å bli med i Spectr?",
+    "focus": {
+      "aerospace": {
+        "title": "Luftfartssystemer",
+        "text": "Arbeid med UAV-plattformer, feltklart hardware og systemer som støtter krevende operasjonell bruk."
+      },
+      "software": {
+        "title": "Operasjonell programvare",
+        "text": "Bygg kommandogrensesnitt, oppdragsflyt og verktøy som hjelper operatører å beholde kontekst når beslutninger teller."
+      },
+      "norway": {
+        "title": "Norsk kapabilitet",
+        "text": "Bidra til utvikling av kritisk teknologi under nasjonal kontroll, med fokus på pålitelighet, sikkerhet og reelle deployeringsbehov."
+      }
+    }
+  },
+  "Documentation": {
+    "title": "Dokumentasjon",
+    "browseTitle": "Bla i dokumentasjon",
+    "browseDescription": "Start med produktfamilien, deretter operatørplanlegging, deployeringsklarhet og støtte.",
+    "platformReferences": "Plattformreferanser",
+    "needDocumentTitle": "Trenger du et spesifikt dokument?",
+    "needDocumentText": "Kontakt Spectr med plattform, operasjonsmiljø og kvalifiseringskontekst slik at riktig dokumentasjon kan forberedes.",
+    "requestDocumentation": "Be om dokumentasjon",
+    "quickStart": {
+      "evaluate": {
+        "title": "Evaluer en plattform",
+        "description": "Gjennomgå VALKYRIE etter rekognoseringsprofil, operasjonsmiljø, sensorbehov og deployeringsklarhet.",
+        "action": "Se produkter"
+      },
+      "prepare": {
+        "title": "Forbered en forespørsel",
+        "description": "Samle operasjonell kontekst, kvalifiseringskrav og støttedetaljer Spectr trenger før en deployeringssamtale.",
+        "action": "Kontakt Spectr"
+      },
+      "updates": {
+        "title": "Les siste oppdateringer",
+        "description": "Følg produktutviklingsnotater, feltklarhetsoppdateringer og selskapsinformasjon fra Spectr-teamet.",
+        "action": "Åpne newsroom"
+      }
+    },
+    "sections": {
+      "product": {
+        "title": "Produktdokumentasjon",
+        "description": "Plattformreferanser for team som evaluerer Spectr-systemer."
+      },
+      "operator": {
+        "title": "Operatørguider",
+        "description": "Feltveiledning for forberedelse, klarhet og overlevering."
+      },
+      "deployment": {
+        "title": "Deployeringsklarhet",
+        "description": "Kvalifiserings- og planleggingsmateriell for operasjonell bruk."
+      },
+      "support": {
+        "title": "Støtte",
+        "description": "Hjelpeveier for team som allerede koordinerer med Spectr."
+      }
+    }
+  },
+  "Newsroom": {
+    "title": "Newsroom",
+    "seeMore": "Se mer",
+    "mediaCta": "For media og kvalifiserte operative henvendelser.",
+    "contact": "Kontakt",
+    "noArticles": "Ingen artikler publisert i denne kategorien ennå.",
+    "readArticle": "Les artikkel"
+  },
+  "Security": {
+    "title": "Sikkerhet",
+    "learnMore": "Les mer",
+    "description": "Spectrs sikkerhet, konfidensialitet, norsk eierskap og kontrollert infrastruktur.",
+    "scrollToVerify": "Rull for å bekrefte",
+    "criticalLocal": "Kritisk teknologi bør forbli lokalt.",
+    "legalCompliance": "Juridisk etterlevelse",
+    "legalText1": "Driften vår er strukturert i tråd med sikkerhetsloven og virksomhetsikkerhetsforskriften § 83. Vi opprettholder organisatoriske og tekniske sikringstiltak for klassifisert informasjon og kritisk infrastruktur under norsk lov.",
+    "legalText2": "Vi mener kritisk teknologi skal utvikles, eies og kontrolleres lokalt — for å sikre norske interesser på lang sikt.",
+    "lovdataCta": "Les mer: sikkerhetsloven § 9-3 (Lovdata)",
+    "nationalControl": "Vi mener kritisk teknologi skal utvikles under full nasjonal kontroll."
+  },
+  "Legal": {
+    "privacyTitle": "Personvernerklæring",
+    "termsTitle": "Vilkår for bruk",
+    "lastUpdated": "Sist oppdatert: 4. juni 2026",
+    "contactCta": "Kontakt Spectr"
+  },
+  "Investor": {
+    "title": "Investor Relations",
+    "intro": "Følg Spectrs selskapsoppdateringer, operative milepæler og langsiktige veikart for luftfartssystemer.",
+    "headline": "Bygger varig luftfartskapabilitet fra Norge.",
+    "paragraph1": "Spectr utvikler oppdragsklart UAV-hardware og operasjonell programvare for organisasjoner som trenger pålitelig felteknologi, sikker kontroll og langsiktig produktdybde.",
+    "paragraph2": "Investor Relations-henvendelser håndteres direkte av Spectr-teamet. Vi deler selskapsmateriell, milepæler og strategisk kontekst med kvalifiserte interessenter.",
+    "quote": "Norsk-eid teknologi for observasjon, kommando og feltoperasjoner — bygget for å forbli under nasjonal kontroll.",
+    "quoteAttribution": "Makwan Ismail, grunnlegger av Spectr",
+    "ctaTitle": "Be om investorinformasjon.",
+    "focus": {
+      "updates": {
+        "title": "Selskapsoppdateringer",
+        "text": "Følg Spectrs fremgang mens vi bygger luftfartssystemer fra Norge for operasjoner i virkeligheten."
+      },
+      "milestones": {
+        "title": "Operative milepæler",
+        "text": "Følg produkt-, produksjons- og feltklarhetsmilepæler på tvers av VALKYRIE, CENTURION og støttesystemer."
+      },
+      "roadmap": {
+        "title": "Langsiktig veikart",
+        "text": "Forstå den strategiske retningen bak Spectrs hardware, programvare og nasjonalt kontrollert teknologi."
+      }
+    }
+  },
+  "NotFound": {
+    "title": "Siden finnes ikke",
+    "description": "Siden du ba om finnes ikke, eller kan ha blitt flyttet.",
+    "home": "Tilbake til forsiden"
+  },
+  "CookieConsent": {
+    "label": "Informasjonskapsler",
+    "title": "Spectr bruker informasjonskapsler for å drive og forbedre nettstedet.",
+    "description": "Vi bruker nødvendige informasjonskapsler for å huske valgene dine og holde nettstedet i gang. Med ditt samtykke kan vi også bruke analyse eller lignende verktøy for å forstå nettstedsbruk. Les mer i personvernerklæringen.",
+    "essential": "Kun nødvendige",
+    "accept": "Godta informasjonskapsler",
+    "privacyLink": "Personvernerklæring"
+  }
+}
