@@ -1,11 +1,13 @@
 import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { EarthVideo } from "@/components/earth-video";
 import { Footer } from "@/components/footer";
-import { HalftoneBackground } from "@/components/halftone-background";
+import { LandingChapter } from "@/components/landing-chapter";
 import { Nav } from "@/components/nav";
+import { Reveal } from "@/components/reveal";
 import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
 import { Link } from "@/i18n/navigation";
+import { pickProductField, products } from "@/lib/objects";
+import type { Locale } from "@/i18n/routing";
 
 type HomePageProps = {
   params: Promise<{ locale: string }>;
@@ -14,6 +16,7 @@ type HomePageProps = {
 export default async function Home({ params }: HomePageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const typedLocale = locale as Locale;
   const t = await getTranslations({ locale, namespace: "Home" });
   const tCommon = await getTranslations({ locale, namespace: "Common" });
 
@@ -25,6 +28,7 @@ export default async function Home({ params }: HomePageProps) {
         id="main-content"
         className="flex-1 lg:h-screen lg:snap-y lg:snap-proximity lg:overflow-y-auto lg:scroll-smooth"
       >
+        {/* Hero — unchanged */}
         <div className="relative overflow-hidden bg-bg">
           <section className="relative z-10 flex min-h-screen snap-start items-center bg-black text-white">
             <video
@@ -54,117 +58,167 @@ export default async function Home({ params }: HomePageProps) {
           </section>
         </div>
 
-        <section className="brand-font flex min-h-[82vh] snap-start flex-col bg-black lg:flex-row">
-          <Link
-            href="/products/recon"
-            className="group relative min-h-[41vh] flex-1 overflow-hidden bg-black text-white transition-[flex] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:flex-[1.35] lg:min-h-[82vh]"
-          >
-            <Image
-              src="/recon-hero.png"
-              alt="RECON aircraft flying over mountain terrain"
-              fill
-              className="object-cover transition-transform duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
-              sizes="(max-width: 1024px) 100vw, 60vw"
-            />
-            <div className="absolute inset-0 bg-black/45" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
-            <div className="relative flex min-h-[41vh] flex-col justify-between p-7 sm:p-10 lg:min-h-[82vh] lg:p-12">
-              <div className="max-w-3xl">
-                <h2 className="text-4xl font-semibold leading-[0.92] tracking-[-0.075em] sm:text-6xl lg:text-7xl">
-                  {t("reconTitle")}
-                </h2>
-                <p className="mt-5 max-w-lg text-sm leading-7 text-white/68 sm:text-base">
-                  {t("reconDescription")}
-                </p>
-              </div>
-              <span className="mt-10 inline-flex w-fit items-center gap-3 border border-transparent px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-white transition-colors group-hover:border-white">
-                {t("reconCta")}
+        {/* Mission statement — large fade-up text */}
+        <section className="brand-font flex min-h-screen snap-start items-center bg-black px-5 py-28 text-white sm:px-8 lg:px-16">
+          <div className="mx-auto w-full max-w-[88rem]">
+            <Reveal as="p" className="font-mono text-[11px] uppercase tracking-[0.3em] text-white/45">
+              {t("missionEyebrow")}
+            </Reveal>
+            <Reveal
+              as="h2"
+              delay={120}
+              className="mt-8 max-w-5xl text-3xl font-semibold leading-[1.08] tracking-[-0.03em] sm:text-5xl lg:text-6xl"
+            >
+              {t("missionStatement")}
+            </Reveal>
+            <Reveal delay={260}>
+              <Link
+                href="/about"
+                className="mt-12 inline-flex items-center gap-3 border-b border-white/40 pb-1 text-xs font-semibold uppercase tracking-[0.18em] text-white transition-colors hover:border-white"
+              >
+                {tCommon("learnMore")}
                 <span aria-hidden="true">→</span>
-              </span>
-            </div>
-          </Link>
-
-          <Link
-            href="/products/centurion"
-            className="group relative min-h-[41vh] flex-1 overflow-hidden bg-black text-white transition-[flex] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:flex-[1.35] lg:min-h-[82vh]"
-          >
-            <Image
-              src="/centurion-laptop-mockup.png"
-              alt="CENTURION command dashboard on laptop"
-              fill
-              className="object-cover object-center transition-transform duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
-              sizes="(max-width: 1024px) 100vw, 60vw"
-            />
-            <div className="absolute inset-0 bg-black/25" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
-            <div className="relative flex min-h-[41vh] flex-col justify-between p-7 sm:p-10 lg:min-h-[82vh] lg:p-12">
-              <div className="max-w-3xl">
-                <h2 className="text-4xl font-semibold leading-[0.92] tracking-[-0.075em] sm:text-6xl lg:text-7xl">
-                  {t("centurionTitle")}
-                </h2>
-                <p className="mt-5 max-w-lg text-sm leading-7 text-white/68 sm:text-base">
-                  {t("centurionDescription")}
-                </p>
-              </div>
-              <span className="mt-10 inline-flex w-fit items-center gap-3 border border-transparent px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-white transition-colors group-hover:border-white">
-                {t("centurionCta")}
-                <span aria-hidden="true">→</span>
-              </span>
-            </div>
-          </Link>
+              </Link>
+            </Reveal>
+          </div>
         </section>
 
-        <section className="brand-font snap-start bg-bg">
-          <div>
-            <div className="grid overflow-hidden border-x border-b border-border lg:grid-cols-2">
-              <div className="relative min-h-[360px] overflow-hidden bg-black sm:min-h-[420px] lg:min-h-[520px]">
-                <EarthVideo />
-              </div>
+        {/* Product chapters — full-screen pinned with parallax media */}
+        <LandingChapter
+          index="01"
+          eyebrow={t("reconEyebrow")}
+          title={t("reconTitle")}
+          description={t("reconDescription")}
+          cta={t("reconCta")}
+          href="/products/recon"
+          image="/recon-hero.png"
+          alt="RECON autonomous ISR platform over mountain terrain"
+          priority
+        />
 
-              <div className="flex min-h-[360px] flex-col justify-between bg-surface p-7 sm:min-h-[420px] sm:p-10 lg:min-h-[520px] lg:p-12">
-                <div className="max-w-xl">
-                  <h2 className="text-4xl font-semibold leading-[0.95] tracking-[-0.06em] text-fg sm:text-5xl lg:text-6xl">
-                    {t("norwayTitle")}
-                  </h2>
-                  <p className="mt-6 text-base leading-8 text-muted sm:text-lg">
-                    {t("norwayDescription")}
-                  </p>
-                </div>
+        <LandingChapter
+          index="02"
+          eyebrow={t("centurionEyebrow")}
+          title={t("centurionTitle")}
+          description={t("centurionDescription")}
+          cta={t("centurionCta")}
+          href="/products/centurion"
+          image="/centurion-laptop-mockup.png"
+          alt="CENTURION command platform"
+        />
 
-                <div className="mt-10 flex flex-col items-start gap-5 sm:mt-12">
+        {/* Family of systems — grid */}
+        <section className="brand-font snap-start bg-bg px-5 py-24 sm:px-8 lg:px-16 lg:py-32">
+          <div className="mx-auto max-w-[88rem]">
+            <Reveal as="p" className="font-mono text-[11px] uppercase tracking-[0.3em] text-muted">
+              {t("familyEyebrow")}
+            </Reveal>
+            <Reveal
+              as="h2"
+              delay={100}
+              className="mt-6 max-w-4xl text-4xl font-semibold leading-[0.95] tracking-[-0.05em] text-fg sm:text-6xl lg:text-7xl"
+            >
+              {t("familyTitle")}
+            </Reveal>
+
+            <div className="mt-16 grid gap-6 md:grid-cols-2">
+              {products.map((product, idx) => (
+                <Reveal key={product.slug} delay={idx * 120}>
                   <Link
-                    href="/security"
-                    className="inline-flex items-center gap-3 border border-transparent px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-fg transition-colors hover:border-fg"
+                    href={`/products/${product.slug}`}
+                    className="group block overflow-hidden border border-border bg-surface transition-colors hover:border-fg/40"
                   >
-                    {tCommon("learnMore")}
-                    <span aria-hidden="true">→</span>
+                    <div className="relative h-80 overflow-hidden sm:h-96">
+                      <Image
+                        src={product.heroImage}
+                        alt={pickProductField(product.heroAlt, typedLocale)}
+                        fill
+                        className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, 44vw"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent" />
+                      <div className="absolute bottom-0 left-0 p-7 sm:p-9">
+                        <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-white/55">
+                          {pickProductField(product.category, typedLocale)}
+                        </p>
+                        <h3 className="mt-3 text-4xl font-semibold tracking-[-0.05em] text-white sm:text-5xl">
+                          {product.name}
+                        </h3>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between gap-6 p-7 sm:p-9">
+                      <p className="max-w-md text-sm leading-7 text-muted">
+                        {pickProductField(product.tagline, typedLocale)}
+                      </p>
+                      <span className="inline-flex shrink-0 items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-fg transition-transform duration-300 group-hover:translate-x-1">
+                        {tCommon("viewProduct")}
+                        <span aria-hidden="true">→</span>
+                      </span>
+                    </div>
                   </Link>
-                </div>
-              </div>
+                </Reveal>
+              ))}
             </div>
           </div>
         </section>
 
-        <section className="brand-font snap-start bg-bg">
-          <div>
-            <div className="relative flex min-h-[420px] overflow-hidden border-y border-border bg-white px-5 py-20 text-center sm:px-8 lg:min-h-[520px] lg:py-28">
-              <div className="pointer-events-none absolute inset-0">
-                <HalftoneBackground />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.46)_0,rgba(255,255,255,0.74)_48%,rgba(255,255,255,0.98)_100%)]" />
-              </div>
-              <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center justify-center">
-                <h2 className="text-5xl font-semibold leading-[0.92] tracking-[-0.075em] text-fg sm:text-7xl lg:text-8xl">
-                  {t("newsroomTitle")}
-                </h2>
+        {/* Sovereign capability — split media + text */}
+        <section className="brand-font relative flex min-h-screen snap-start items-end overflow-hidden bg-black text-white">
+          <Image
+            src="/norway-operations.png"
+            alt=""
+            fill
+            className="object-cover opacity-70"
+            sizes="100vw"
+            aria-hidden="true"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-black/20" />
+          <div className="relative z-10 w-full px-5 pb-16 sm:px-8 lg:px-16 lg:pb-24">
+            <div className="mx-auto max-w-[88rem]">
+              <Reveal as="p" className="font-mono text-[11px] uppercase tracking-[0.3em] text-white/55">
+                {t("norwayEyebrow")}
+              </Reveal>
+              <Reveal
+                as="h2"
+                delay={120}
+                className="mt-6 max-w-4xl text-4xl font-semibold leading-[0.95] tracking-[-0.05em] sm:text-6xl lg:text-7xl"
+              >
+                {t("norwayTitle")}
+              </Reveal>
+              <Reveal as="p" delay={220} className="mt-7 max-w-2xl text-base leading-8 text-white/72 sm:text-lg">
+                {t("norwayDescription")}
+              </Reveal>
+              <Reveal delay={320}>
                 <Link
-                  href="/newsroom"
-                  className="mt-12 inline-flex w-fit items-center gap-3 bg-fg px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-bg hover:opacity-80"
+                  href="/security"
+                  className="mt-9 inline-flex items-center gap-3 border-b border-white/40 pb-1 text-xs font-semibold uppercase tracking-[0.18em] text-white transition-colors hover:border-white"
                 >
-                  {t("newsroomCta")}
+                  {tCommon("learnMore")}
                   <span aria-hidden="true">→</span>
                 </Link>
-              </div>
+              </Reveal>
             </div>
+          </div>
+        </section>
+
+        {/* Closing CTA */}
+        <section className="brand-font flex min-h-[80vh] snap-start items-center bg-bg px-5 py-28 sm:px-8 lg:px-16">
+          <div className="mx-auto w-full max-w-[88rem]">
+            <Reveal
+              as="h2"
+              className="max-w-5xl text-5xl font-semibold leading-[0.92] tracking-[-0.06em] text-fg sm:text-7xl lg:text-8xl"
+            >
+              {t("ctaTitle")}
+            </Reveal>
+            <Reveal delay={180}>
+              <Link
+                href="/contact"
+                className="mt-12 inline-flex w-fit items-center gap-3 bg-fg px-6 py-4 text-xs font-semibold uppercase tracking-[0.16em] text-bg hover:opacity-80"
+              >
+                {tCommon("contactSpectr")}
+                <span aria-hidden="true">→</span>
+              </Link>
+            </Reveal>
           </div>
         </section>
 
