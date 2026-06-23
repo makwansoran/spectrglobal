@@ -101,7 +101,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           </div>
         </section>
 
-        {galleryImages.length > 0 ? (
+        {galleryImages.length > 0 && product.slug !== "recon" ? (
           <section className="px-5 py-20 sm:px-8 lg:py-28">
             <div className="mx-auto max-w-7xl">
               <ProductGallery images={galleryImages} productName={product.name} />
