@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { LocaleSwitcher } from "@/components/locale-switcher";
 
 type NavProps = {
   variant?: "dark" | "light";
@@ -85,7 +84,6 @@ export function Nav({ variant = "dark" }: NavProps) {
           </Link>
 
           <div className="flex items-center gap-4 sm:gap-5">
-            <LocaleSwitcher variant={variant} />
             <Link href="/contact" onClick={() => setOpen(false)} className="group relative py-2 text-xs uppercase tracking-[0.16em]">
               {t("getStarted")}
               <span
