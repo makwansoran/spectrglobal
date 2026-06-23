@@ -4,7 +4,6 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
-import { ProductGallery } from "@/components/product-gallery";
 import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
 import { Link } from "@/i18n/navigation";
 import { routing, type Locale } from "@/i18n/routing";
@@ -46,11 +45,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
   const t = await getTranslations({ locale, namespace: "Products" });
   const tCommon = await getTranslations({ locale, namespace: "Common" });
-
-  const galleryImages = product.gallery.map((image) => ({
-    src: image.src,
-    alt: pickProductField(image.alt, typedLocale),
-  }));
 
   const overviewItems = [
     { label: t("category"), value: pickProductField(product.category, typedLocale) },
@@ -100,14 +94,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
             </div>
           </div>
         </section>
-
-        {galleryImages.length > 0 && product.slug !== "recon" ? (
-          <section className="px-5 py-20 sm:px-8 lg:py-28">
-            <div className="mx-auto max-w-7xl">
-              <ProductGallery images={galleryImages} productName={product.name} />
-            </div>
-          </section>
-        ) : null}
 
         <section className="px-5 py-20 sm:px-8 lg:py-28">
           <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.85fr_1.15fr]">
