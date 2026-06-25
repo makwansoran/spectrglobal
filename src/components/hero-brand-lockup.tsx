@@ -183,7 +183,7 @@ export function HeroBrandLockup({
   if (variant === "logo") {
     return (
       <div
-        className={`hero-brand-lockup scroll-reveal mx-auto mt-10 flex flex-col items-center ${
+        className={`hero-brand-lockup scroll-reveal mx-auto mt-10 flex items-center justify-center gap-3 ${
           visible ? "is-visible" : ""
         }`}
       >
@@ -202,7 +202,7 @@ export function HeroBrandLockup({
             priority
           />
         </PowerOnMark>
-        <span className="brand-font mt-4 text-sm font-semibold uppercase tracking-[0.34em] text-white">
+        <span className="brand-font text-sm font-semibold uppercase tracking-[0.34em] text-white">
           {renderLetterReveal(brand, charIndex)}
         </span>
       </div>
