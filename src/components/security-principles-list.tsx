@@ -65,8 +65,7 @@ export function SecurityPrinciplesList({ principles }: SecurityPrinciplesListPro
 
             <div className="security-principle-panel">
               <div>
-                <div className="max-w-3xl space-y-6 pt-8 text-base leading-8 text-muted sm:pt-10 sm:text-lg sm:leading-9">
-                  <p className="text-fg/75">{principle.text}</p>
+                <div className="max-w-3xl pt-8 text-base leading-8 text-muted sm:pt-10 sm:text-lg sm:leading-9">
                   {principle.paragraphs.map((paragraph) => (
                     <p key={paragraph}>{paragraph}</p>
                   ))}
