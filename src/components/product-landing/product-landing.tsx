@@ -18,8 +18,15 @@ type ProductLandingProps = {
 };
 
 export function ProductLanding({ content }: ProductLandingProps) {
+  useEffect(() => {
+    if (window.location.hash) return;
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }, [content.slug]);
+
   return (
-    <main className="product-landing bg-[#050505] text-white">
+    <main id="main-content" className="product-landing bg-[#050505] text-white">
       <HeroSection content={content} />
       <ProblemSection content={content} />
       <PlatformSection content={content} />

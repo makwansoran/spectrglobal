@@ -98,6 +98,7 @@ export function LandingChapter({
           >
             <Link
               href={href}
+              scroll
               className="mt-9 inline-flex items-center gap-3 border-b border-white/40 pb-1 text-xs font-semibold uppercase tracking-[0.18em] text-white transition-colors hover:border-white"
             >
               {cta}
