@@ -3,7 +3,7 @@ import { pick, type Localized } from "@/lib/locale";
 
 export type LandingCard = { title: string; text: string };
 export type LandingStep = { title: string; text: string };
-export type LandingNode = { label: string };
+export type LandingNode = { label: string; description: string; image: string };
 export type LandingAgent = { title: string; text: string };
 export type LandingTech = { title: string; text: string };
 export type LandingApp = { title: string; image: string };
@@ -83,23 +83,83 @@ const reconLanding: LocalizedLanding = {
     en: {
       headline: "The RECON platform",
       nodes: [
-        { label: "Sensors" },
-        { label: "Edge Processing" },
-        { label: "Mission Intelligence" },
-        { label: "Autonomous Flight" },
-        { label: "Operator Oversight" },
-        { label: "ISR Delivery" },
+        {
+          label: "Sensors",
+          description:
+            "EO/IR gimbal with FLIR Boson thermal and Sony EO block. A 1–1.5 kg payload for continuous area surveillance day and night.",
+          image: "/recon-front.png",
+        },
+        {
+          label: "Edge Processing",
+          description:
+            "Onboard compute fuses sensor feeds at the aircraft — cutting latency and keeping ISR useful when datalinks degrade.",
+          image: "/recon-top.png",
+        },
+        {
+          label: "Mission Intelligence",
+          description:
+            "Centurion-defined objectives shape flight paths, loiter points, and observation priorities before and during the mission.",
+          image: "/centurion-laptop-mockup.png",
+        },
+        {
+          label: "Autonomous Flight",
+          description:
+            "VTOL launch, wing-borne cruise, and GNSS-denied navigation — the platform flies the mission without continuous operator input.",
+          image: "/recon-hero.png",
+        },
+        {
+          label: "Operator Oversight",
+          description:
+            "Human-in-the-loop control through Centurion. Operators approve plans, monitor live feeds, and intervene when required.",
+          image: "/operations-hq.jpg",
+        },
+        {
+          label: "ISR Delivery",
+          description:
+            "Imagery and telemetry returned to command — sustained surveillance across a 50–100 km operating radius.",
+          image: "/recon-mountain.png",
+        },
       ],
     },
     no: {
       headline: "RECON-plattformen",
       nodes: [
-        { label: "Sensorer" },
-        { label: "Edge-prosessering" },
-        { label: "Oppdragsintelligens" },
-        { label: "Autonom flyging" },
-        { label: "Operatørtilsyn" },
-        { label: "ISR-leveranse" },
+        {
+          label: "Sensorer",
+          description:
+            "EO/IR-gimbal med FLIR Boson termisk og Sony EO-blokk. Nyttelast på 1–1,5 kg for kontinuerlig områdeovervåking dag og natt.",
+          image: "/recon-front.png",
+        },
+        {
+          label: "Edge-prosessering",
+          description:
+            "Ombord-beregning fusjonerer sensorfeeds på luftfartøyet — reduserer forsinkelse og holder ISR nyttig når datalenker degraderes.",
+          image: "/recon-top.png",
+        },
+        {
+          label: "Oppdragsintelligens",
+          description:
+            "Centurion-definerte mål former flybaner, loiter-punkter og observasjonsprioriteter før og under oppdraget.",
+          image: "/centurion-laptop-mockup.png",
+        },
+        {
+          label: "Autonom flyging",
+          description:
+            "VTOL-start, vingebåren cruise og GNSS-nektet navigasjon — plattformen flyr oppdraget uten kontinuerlig operatørinput.",
+          image: "/recon-hero.png",
+        },
+        {
+          label: "Operatørtilsyn",
+          description:
+            "Menneske-i-løkken-kontroll via Centurion. Operatører godkjenner planer, overvåker live feeds og griper inn ved behov.",
+          image: "/operations-hq.jpg",
+        },
+        {
+          label: "ISR-leveranse",
+          description:
+            "Bilder og telemetri returnert til kommando — vedvarende overvåking over en operasjonsradius på 50–100 km.",
+          image: "/recon-mountain.png",
+        },
       ],
     },
   },
@@ -297,23 +357,83 @@ const centurionLanding: LocalizedLanding = {
     en: {
       headline: "The Centurion platform",
       nodes: [
-        { label: "Data Ingest" },
-        { label: "AI Processing" },
-        { label: "Mission Intelligence" },
-        { label: "Fleet Coordination" },
-        { label: "Human Approval" },
-        { label: "Autonomous Execution" },
+        {
+          label: "Data Ingest",
+          description:
+            "Live feeds from RECON sensors, telemetry, and operator inputs fused into a single operational picture.",
+          image: "/recon-mountain.png",
+        },
+        {
+          label: "AI Processing",
+          description:
+            "Natural language interface and AI-assisted analysis turn raw data into mission-ready intelligence.",
+          image: "/centurion-laptop-mockup.png",
+        },
+        {
+          label: "Mission Intelligence",
+          description:
+            "Goals and constraints become staged mission plans — routes, timelines, and asset assignments for operator review.",
+          image: "/operations-hq.jpg",
+        },
+        {
+          label: "Fleet Coordination",
+          description:
+            "Multiple RECON units synchronized as one operation — robust when individual assets or links are lost.",
+          image: "/recon-top.png",
+        },
+        {
+          label: "Human Approval",
+          description:
+            "Every critical decision requires operator sign-off. Centurion recommends; the human commands.",
+          image: "/norway-operations.png",
+        },
+        {
+          label: "Autonomous Execution",
+          description:
+            "Approved plans dispatched to the fleet. RECON executes autonomously and reports back in real time.",
+          image: "/recon-hero.png",
+        },
       ],
     },
     no: {
       headline: "Centurion-plattformen",
       nodes: [
-        { label: "Datainntak" },
-        { label: "AI-prosessering" },
-        { label: "Oppdragsintelligens" },
-        { label: "Flåtekoordinering" },
-        { label: "Menneskelig godkjenning" },
-        { label: "Autonom gjennomføring" },
+        {
+          label: "Datainntak",
+          description:
+            "Live feeds fra RECON-sensorer, telemetri og operatørinndata fusert til ett operasjonelt bilde.",
+          image: "/recon-mountain.png",
+        },
+        {
+          label: "AI-prosessering",
+          description:
+            "Naturlig språkgrensesnitt og AI-assistert analyse gjør rådata om til oppdragsklar etterretning.",
+          image: "/centurion-laptop-mockup.png",
+        },
+        {
+          label: "Oppdragsintelligens",
+          description:
+            "Mål og begrensninger blir staged oppdragsplaner — ruter, tidslinjer og enhetstildelinger for operatørgjennomgang.",
+          image: "/operations-hq.jpg",
+        },
+        {
+          label: "Flåtekoordinering",
+          description:
+            "Flere RECON-enheter synkronisert som én operasjon — robust når enkelt-enheter eller lenker går tapt.",
+          image: "/recon-top.png",
+        },
+        {
+          label: "Menneskelig godkjenning",
+          description:
+            "Hver kritisk beslutning krever operatørens godkjenning. Centurion anbefaler; mennesket kommandrerer.",
+          image: "/norway-operations.png",
+        },
+        {
+          label: "Autonom gjennomføring",
+          description:
+            "Godkjente planer sendt til flåten. RECON utfører autonomt og rapporterer tilbake i sanntid.",
+          image: "/recon-hero.png",
+        },
       ],
     },
   },

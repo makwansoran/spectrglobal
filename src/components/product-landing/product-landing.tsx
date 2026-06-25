@@ -188,6 +188,7 @@ function ProblemSection({ content }: ProductLandingProps) {
 
 function PlatformSection({ content }: ProductLandingProps) {
   const [active, setActive] = useState(0);
+  const activeNode = content.platform.nodes[active] ?? content.platform.nodes[0];
 
   return (
     <SectionShell id="platform" className="border-t border-white/[0.06] bg-[#080808]">
@@ -196,7 +197,7 @@ function PlatformSection({ content }: ProductLandingProps) {
           {content.platform.headline}
         </h2>
       </FadeIn>
-      <div className="mt-20 grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-center">
+      <div className="mt-20 grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-stretch">
         <div className="space-y-2">
           {content.platform.nodes.map((node, index) => (
             <button
@@ -215,28 +216,43 @@ function PlatformSection({ content }: ProductLandingProps) {
             </button>
           ))}
         </div>
-        <div className="product-glass relative min-h-[420px] overflow-hidden p-8 sm:p-10">
-          <div className="product-grid absolute inset-0 opacity-30" />
-          <div className="relative flex h-full flex-col justify-between">
-            <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/40">Architecture</p>
-            <div className="my-auto space-y-6">
-              {content.platform.nodes.map((node, index) => (
-                <motion.div
-                  key={node.label}
-                  animate={{
-                    opacity: active === index ? 1 : 0.2,
-                    x: active === index ? 0 : -8,
-                  }}
-                  transition={{ duration: 0.4 }}
-                  className="flex items-center gap-4"
-                >
-                  <span className={`product-node-dot ${active === index ? "is-active" : ""}`} />
-                  <span className="text-xl font-medium tracking-[-0.03em] sm:text-2xl">{node.label}</span>
-                </motion.div>
-              ))}
-            </div>
-            <div className="product-pulse-line" />
-          </div>
+        <div className="product-platform-panel relative min-h-[480px] overflow-hidden border border-white/10">
+          <AnimatePresence mode="sync">
+            <motion.div
+              key={activeNode.image + activeNode.label}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute inset-0"
+            >
+              <Image
+                src={activeNode.image}
+                alt=""
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 60vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/15" />
+            </motion.div>
+          </AnimatePresence>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeNode.label}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 8 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="relative z-10 flex min-h-[480px] flex-col justify-end p-8 sm:p-10"
+            >
+              <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/55">
+                {activeNode.label}
+              </p>
+              <p className="mt-4 max-w-md text-sm leading-7 text-white/80 sm:text-base sm:leading-8">
+                {activeNode.description}
+              </p>
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </SectionShell>
