@@ -228,6 +228,49 @@ textarea {
   transform: translateY(0);
 }
 
+.security-principle {
+  cursor: default;
+  outline: none;
+}
+
+.security-principle-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.security-principle.is-open .security-principle-panel,
+.security-principle:focus-within .security-principle-panel {
+  grid-template-rows: 1fr;
+}
+
+@media (hover: hover) {
+  .security-principle:hover .security-principle-panel {
+    grid-template-rows: 1fr;
+  }
+}
+
+.security-principle-panel > div {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .security-principle-panel {
+    transition: none;
+  }
+
+  .security-principle.is-open .security-principle-panel,
+  .security-principle:focus-within .security-principle-panel {
+    grid-template-rows: 1fr;
+  }
+
+  @media (hover: hover) {
+    .security-principle:hover .security-principle-panel {
+      grid-template-rows: 1fr;
+    }
+  }
+}
+
 .chapter-media {
   transform: scale(1.05);
   transition: transform 1800ms cubic-bezier(0.16, 1, 0.3, 1);

@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Footer } from "@/components/footer";
+import { HeroBrandLockup } from "@/components/hero-brand-lockup";
 import { Nav } from "@/components/nav";
+import { SecurityPrinciplesList } from "@/components/security-principles-list";
 import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
-import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { buildPageMetadata, localizedPath } from "@/lib/metadata";
 import { pickSecurityField, securityPrinciples } from "@/lib/security-principles";
@@ -23,20 +24,39 @@ export default async function SecurityPage({ params }: SecurityPageProps) {
   setRequestLocale(locale);
   const typedLocale = locale as Locale;
   const t = await getTranslations({ locale, namespace: "Security" });
+  const tHome = await getTranslations({ locale, namespace: "Home" });
+  const tNav = await getTranslations({ locale, namespace: "Nav" });
+  const securityTitle = t("title");
+  const brandLockupDelay = securityTitle.replace(/\s/g, "").length * 14 + 80;
+  const principles = securityPrinciples.map((principle) => ({
+    slug: principle.slug,
+    title: pickSecurityField(principle.title, typedLocale),
+    text: pickSecurityField(principle.text, typedLocale),
+    paragraphs: pickSecurityField(principle.paragraphs, typedLocale),
+  }));
 
   return (
     <>
       <Nav />
       <main id="main-content" className="flex-1 bg-bg">
         <section className="brand-font relative flex min-h-screen items-center bg-black px-5 py-36 text-white sm:px-8 lg:py-44">
-          <div className="mx-auto max-w-7xl">
-            <ScrollRevealHeading
-              as="h1"
-              revealOnMount
-              className="max-w-6xl text-5xl font-semibold leading-[0.9] tracking-[-0.075em] sm:text-7xl lg:text-[8.5rem]"
-            >
-              {t("title")}
-            </ScrollRevealHeading>
+          <div className="mx-auto w-full max-w-7xl">
+            <div className="flex w-full max-w-4xl flex-col">
+              <ScrollRevealHeading
+                as="h1"
+                revealOnMount
+                className="max-w-6xl text-5xl font-semibold leading-[0.9] tracking-[-0.075em] sm:text-7xl lg:text-[8.5rem]"
+              >
+                {securityTitle}
+              </ScrollRevealHeading>
+              <div className="flex w-full justify-center lg:justify-start">
+                <HeroBrandLockup
+                  madeInNorway={tHome("madeInNorway")}
+                  brand={tNav("brand")}
+                  revealDelay={brandLockupDelay}
+                />
+              </div>
+            </div>
           </div>
           <a
             href="#security-principles"
@@ -50,24 +70,8 @@ export default async function SecurityPage({ params }: SecurityPageProps) {
         </section>
 
         <section id="security-principles" className="brand-font bg-bg px-5 py-20 sm:px-8 lg:py-28">
-          <div className="mx-auto max-w-6xl space-y-8">
-            {securityPrinciples.map((principle) => (
-              <Link
-                key={principle.slug}
-                href={`/security/${principle.slug}`}
-                className="group block w-full text-left"
-              >
-                <span className="grid gap-5 py-3 sm:grid-cols-[260px_1fr] sm:items-start">
-                  <span className="text-3xl font-semibold leading-none tracking-[-0.055em] text-fg">
-                    {pickSecurityField(principle.title, typedLocale)}
-                  </span>
-                  <span className="max-w-3xl text-sm leading-7 text-muted">
-                    {pickSecurityField(principle.text, typedLocale)}
-                  </span>
-                </span>
-                <span className="mt-5 block h-px w-1/2 origin-left bg-fg transition-transform duration-500 ease-out group-hover:scale-x-0" />
-              </Link>
-            ))}
+          <div className="mx-auto max-w-6xl">
+            <SecurityPrinciplesList principles={principles} />
           </div>
         </section>
 
