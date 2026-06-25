@@ -82,10 +82,10 @@ function HeroSection({ content }: ProductLandingProps) {
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
-    <section ref={ref} className="relative flex min-h-screen items-center overflow-hidden bg-[#050505] px-5 pt-28 sm:px-8">
-      <div className="product-grid absolute inset-0 opacity-40" />
+    <section ref={ref} className="relative flex min-h-screen items-end overflow-hidden bg-[#050505] px-5 pt-28 sm:px-8">
+      <div className="product-grid absolute inset-0 opacity-25" />
       <motion.div className="product-radar absolute inset-0" style={{ opacity }} />
-      <div className="product-particles absolute inset-0" />
+      <div className="product-particles absolute inset-0 opacity-60" />
 
       <motion.div className="absolute inset-0" style={{ y }}>
         <Image
@@ -93,21 +93,25 @@ function HeroSection({ content }: ProductLandingProps) {
           alt={content.name}
           fill
           priority
-          className="object-cover opacity-20"
+          className={`object-cover opacity-70 ${
+            content.slug === "recon" ? "object-[72%_center]" : "object-[center_35%]"
+          }`}
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/40 via-[#050505]/70 to-[#050505]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#050505]/95 via-[#050505]/35 to-[#050505]/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/20 to-transparent" />
       </motion.div>
 
-      <motion.div style={{ opacity }} className="relative z-10 mx-auto w-full max-w-7xl pb-24">
-        <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-white/45">{content.name}</p>
-        <h1 className="mt-6 max-w-5xl text-5xl font-semibold leading-[0.92] tracking-[-0.05em] sm:text-7xl lg:text-8xl">
-          {content.hero.headline}
-        </h1>
-        <p className="mt-8 max-w-2xl text-lg leading-8 text-white/55 sm:text-xl">
-          {content.hero.subheadline}
-        </p>
-        <div className="mt-12 flex flex-wrap gap-4">
+      <motion.div style={{ opacity }} className="relative z-10 mx-auto w-full max-w-7xl pb-20 lg:pb-24">
+        <div className="max-w-md sm:max-w-lg lg:max-w-xl">
+          <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/50">{content.name}</p>
+          <h1 className="mt-4 text-3xl font-semibold leading-[1.05] tracking-[-0.04em] sm:mt-5 sm:text-4xl lg:text-5xl">
+            {content.hero.headline}
+          </h1>
+          <p className="mt-4 max-w-md text-sm leading-7 text-white/60 sm:mt-5 sm:text-base">
+            {content.hero.subheadline}
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3 sm:mt-10">
           <Link
             href="/contact"
             className="inline-flex items-center gap-3 bg-white px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.18em] text-black transition-opacity hover:opacity-80"
@@ -121,6 +125,7 @@ function HeroSection({ content }: ProductLandingProps) {
           >
             {content.hero.ctaSecondary}
           </a>
+        </div>
         </div>
       </motion.div>
 
