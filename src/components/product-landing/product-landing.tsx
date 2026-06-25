@@ -32,10 +32,10 @@ export function ProductLanding({ content }: ProductLandingProps) {
       {content.slug !== "recon" ? <ProblemSection content={content} /> : null}
       <PlatformSection content={content} />
       <WorkflowSection content={content} />
-      <CommandCenterSection content={content} />
-      <AgentsSection content={content} />
-      <TrustSection content={content} />
-      <ApplicationsSection content={content} />
+      {content.slug !== "recon" ? <CommandCenterSection content={content} /> : null}
+      {content.slug !== "recon" ? <AgentsSection content={content} /> : null}
+      {content.slug !== "recon" ? <TrustSection content={content} /> : null}
+      {content.slug !== "recon" ? <ApplicationsSection content={content} /> : null}
       <TechnologySection content={content} />
       <StatsSection content={content} />
       <CtaSection content={content} />
