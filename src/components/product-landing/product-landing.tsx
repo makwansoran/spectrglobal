@@ -243,26 +243,37 @@ function PlatformSection({ content }: ProductLandingProps) {
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 60vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/15" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
             </motion.div>
           </AnimatePresence>
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeNode.label}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 8 }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              className="relative z-10 flex min-h-[480px] flex-col justify-end p-8 sm:p-10"
-            >
-              <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/55">
-                {activeNode.label}
-              </p>
-              <p className="mt-4 max-w-md text-sm leading-7 text-white/80 sm:text-base sm:leading-8">
-                {activeNode.description}
-              </p>
-            </motion.div>
-          </AnimatePresence>
+          <div className="pointer-events-none absolute inset-0 z-10">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeNode.label}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 8 }}
+                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute bottom-0 left-0 max-w-md p-8 sm:p-10"
+              >
+                <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/55">
+                  {activeNode.label}
+                </p>
+                <p className="mt-4 text-sm leading-7 text-white/85 sm:text-base sm:leading-8">
+                  {activeNode.description}
+                </p>
+              </motion.div>
+            </AnimatePresence>
+            <div className="absolute bottom-8 right-8 sm:bottom-10 sm:right-10">
+              <Image
+                src="/spectr-logo.png"
+                alt="Spectr"
+                width={28}
+                height={28}
+                className="h-7 w-auto invert"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </SectionShell>

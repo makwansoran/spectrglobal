@@ -87,7 +87,7 @@ const reconLanding: LocalizedLanding = {
           label: "Sensors",
           description:
             "EO/IR gimbal with FLIR Boson thermal and Sony EO block. A 1–1.5 kg payload for continuous area surveillance day and night.",
-          image: "/recon-front.png",
+          image: "/recon-sensors.png",
         },
         {
           label: "Edge Processing",
@@ -128,7 +128,7 @@ const reconLanding: LocalizedLanding = {
           label: "Sensorer",
           description:
             "EO/IR-gimbal med FLIR Boson termisk og Sony EO-blokk. Nyttelast på 1–1,5 kg for kontinuerlig områdeovervåking dag og natt.",
-          image: "/recon-front.png",
+          image: "/recon-sensors.png",
         },
         {
           label: "Edge-prosessering",
