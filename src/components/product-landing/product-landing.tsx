@@ -11,6 +11,7 @@ import {
 import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { Link } from "@/i18n/navigation";
 import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
+import { HeroBrandLockup } from "@/components/hero-brand-lockup";
 import { scrollAllRootsToTop, scheduleScrollResets } from "@/components/scroll-to-top";
 import type { ProductLandingContent } from "@/lib/product-landing-content";
 
@@ -26,21 +27,21 @@ export function ProductLanding({ content }: ProductLandingProps) {
     return scheduleScrollResets();
   }, [content.slug]);
 
-  const isRecon = content.slug === "recon";
+  const isSlimLanding = content.slug === "recon" || content.slug === "centurion";
 
   return (
     <main id="main-content" className="product-landing bg-[#050505] text-white">
       <HeroSection content={content} />
-      {isRecon ? <StatsSection content={content} placement="hero" /> : null}
-      {!isRecon ? <ProblemSection content={content} /> : null}
+      {isSlimLanding ? <StatsSection content={content} placement="hero" /> : null}
+      {!isSlimLanding ? <ProblemSection content={content} /> : null}
       <PlatformSection content={content} />
       <WorkflowSection content={content} />
-      {!isRecon ? <CommandCenterSection content={content} /> : null}
-      {!isRecon ? <AgentsSection content={content} /> : null}
-      {!isRecon ? <TrustSection content={content} /> : null}
-      {!isRecon ? <ApplicationsSection content={content} /> : null}
+      {!isSlimLanding ? <CommandCenterSection content={content} /> : null}
+      {!isSlimLanding ? <AgentsSection content={content} /> : null}
+      {!isSlimLanding ? <TrustSection content={content} /> : null}
+      {!isSlimLanding ? <ApplicationsSection content={content} /> : null}
       <TechnologySection content={content} />
-      {!isRecon ? <StatsSection content={content} /> : null}
+      {!isSlimLanding ? <StatsSection content={content} /> : null}
       <CtaSection content={content} />
     </main>
   );
@@ -99,6 +100,9 @@ function HeroSection({ content }: ProductLandingProps) {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const isCenturion = content.slug === "centurion";
+  const brandLockupDelay = content.name.replace(/\s/g, "").length * 14 + 80;
+  const taglineDelay = brandLockupDelay + 2600;
 
   return (
     <section ref={ref} className="relative flex min-h-screen items-end overflow-hidden bg-[#050505] px-5 pt-28 sm:px-8">
@@ -122,23 +126,51 @@ function HeroSection({ content }: ProductLandingProps) {
       </motion.div>
 
       <motion.div style={{ opacity }} className="relative z-10 mx-auto w-full max-w-7xl pb-20 lg:pb-24">
-        <div className="max-w-md sm:max-w-lg lg:max-w-xl">
-          <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/50">{content.name}</p>
-          <ScrollRevealHeading
-            as="h1"
-            revealOnMount
-            className="mt-4 block max-w-md text-3xl font-semibold leading-[1.05] tracking-[-0.04em] sm:mt-5 sm:text-4xl lg:text-5xl"
-          >
-            {content.hero.headline}
-          </ScrollRevealHeading>
-          <ScrollRevealHeading
-            as="h2"
-            revealOnMount
-            delay={500}
-            className="mt-4 block max-w-md text-sm font-normal leading-7 text-white/60 sm:mt-5 sm:text-base"
-          >
-            {content.hero.subheadline}
-          </ScrollRevealHeading>
+        <div className={isCenturion ? "max-w-3xl" : "max-w-md sm:max-w-lg lg:max-w-xl"}>
+          {isCenturion ? (
+            <>
+              <ScrollRevealHeading
+                as="h1"
+                revealOnMount
+                className="block text-5xl font-semibold leading-[0.9] tracking-[-0.075em] sm:text-7xl lg:text-[6.5rem]"
+              >
+                {content.name}
+              </ScrollRevealHeading>
+              <HeroBrandLockup
+                brand="SPECTR"
+                revealDelay={brandLockupDelay}
+                variant="logo"
+                className="mt-6 justify-start"
+              />
+              <ScrollRevealHeading
+                as="h2"
+                revealOnMount
+                delay={taglineDelay}
+                className="mt-6 block max-w-lg text-sm font-normal leading-7 text-white/60 sm:mt-7 sm:text-base"
+              >
+                {content.hero.headline}
+              </ScrollRevealHeading>
+            </>
+          ) : (
+            <>
+              <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/50">{content.name}</p>
+              <ScrollRevealHeading
+                as="h1"
+                revealOnMount
+                className="mt-4 block max-w-md text-3xl font-semibold leading-[1.05] tracking-[-0.04em] sm:mt-5 sm:text-4xl lg:text-5xl"
+              >
+                {content.hero.headline}
+              </ScrollRevealHeading>
+              <ScrollRevealHeading
+                as="h2"
+                revealOnMount
+                delay={500}
+                className="mt-4 block max-w-md text-sm font-normal leading-7 text-white/60 sm:mt-5 sm:text-base"
+              >
+                {content.hero.subheadline}
+              </ScrollRevealHeading>
+            </>
+          )}
           <div className="mt-8 flex flex-wrap gap-3 sm:mt-10">
           <Link
             href="/contact"

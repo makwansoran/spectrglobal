@@ -14,6 +14,7 @@ type HeroBrandLockupProps = {
   brand: string;
   revealDelay?: number;
   variant?: "full" | "logo";
+  className?: string;
 };
 
 const flagPowerOnAnimation = {
@@ -146,6 +147,7 @@ export function HeroBrandLockup({
   brand,
   revealDelay = 0,
   variant = "full",
+  className = "",
 }: HeroBrandLockupProps) {
   const reduceMotion = useReducedMotion() ?? false;
   const [visible, setVisible] = useState(reduceMotion);
@@ -183,9 +185,9 @@ export function HeroBrandLockup({
   if (variant === "logo") {
     return (
       <div
-        className={`hero-brand-lockup scroll-reveal mx-auto mt-10 flex items-center justify-center gap-3 ${
-          visible ? "is-visible" : ""
-        }`}
+        className={`hero-brand-lockup scroll-reveal flex items-center justify-center gap-3 ${
+          className || "mx-auto mt-10"
+        } ${visible ? "is-visible" : ""}`}
       >
         <PowerOnMark
           active={visible}

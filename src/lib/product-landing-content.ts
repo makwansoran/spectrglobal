@@ -308,17 +308,17 @@ const reconLanding: LocalizedLanding = {
 const centurionLanding: LocalizedLanding = {
   slug: "centurion",
   name: "CENTURION",
-  heroImage: "/centurion-laptop-mockup.png",
+  heroImage: "/centurion-hq.jpg",
   hero: {
     en: {
-      headline: "Sovereign command for autonomous operations.",
-      subheadline: "Transform mission intent into coordinated action with AI-assisted decision support.",
+      headline: "Sovereign, AI-assisted command from mission intent to coordinated action.",
+      subheadline: "",
       ctaPrimary: "Request Demo",
       ctaSecondary: "Explore Platform",
     },
     no: {
-      headline: "Suveren kommando for autonome operasjoner.",
-      subheadline: "Gjør oppdragsintensjon til koordinert handling med AI-assistert beslutningsstøtte.",
+      headline: "Suveren, AI-assistert kommando fra oppdragsintensjon til koordinert handling.",
+      subheadline: "",
       ctaPrimary: "Be om demo",
       ctaSecondary: "Utforsk plattformen",
     },
@@ -349,7 +349,7 @@ const centurionLanding: LocalizedLanding = {
           label: "Data Ingest",
           description:
             "Live feeds from RECON sensors, telemetry, and operator inputs fused into a single operational picture.",
-          image: "/recon-mountain.png",
+          image: "/recon-isr-delivery.png",
         },
         {
           label: "AI Processing",
@@ -361,25 +361,25 @@ const centurionLanding: LocalizedLanding = {
           label: "Mission Intelligence",
           description:
             "Goals and constraints become staged mission plans — routes, timelines, and asset assignments for operator review.",
-          image: "/operations-hq.jpg",
+          image: "/centurion-laptop-mockup.png",
         },
         {
           label: "Fleet Coordination",
           description:
             "Multiple RECON units synchronized as one operation — robust when individual assets or links are lost.",
-          image: "/recon-top.png",
+          image: "/recon-autonomous-flight.png",
         },
         {
           label: "Human Approval",
           description:
             "Every critical decision requires operator sign-off. Centurion recommends; the human commands.",
-          image: "/norway-operations.png",
+          image: "/recon-operator-oversight.png",
         },
         {
           label: "Autonomous Execution",
           description:
             "Approved plans dispatched to the fleet. RECON executes autonomously and reports back in real time.",
-          image: "/recon-hero.png",
+          image: "/recon-isr-delivery.png",
         },
       ],
     },
@@ -390,7 +390,7 @@ const centurionLanding: LocalizedLanding = {
           label: "Datainntak",
           description:
             "Live feeds fra RECON-sensorer, telemetri og operatørinndata fusert til ett operasjonelt bilde.",
-          image: "/recon-mountain.png",
+          image: "/recon-isr-delivery.png",
         },
         {
           label: "AI-prosessering",
@@ -402,25 +402,25 @@ const centurionLanding: LocalizedLanding = {
           label: "Oppdragsintelligens",
           description:
             "Mål og begrensninger blir staged oppdragsplaner — ruter, tidslinjer og enhetstildelinger for operatørgjennomgang.",
-          image: "/operations-hq.jpg",
+          image: "/centurion-laptop-mockup.png",
         },
         {
           label: "Flåtekoordinering",
           description:
             "Flere RECON-enheter synkronisert som én operasjon — robust når enkelt-enheter eller lenker går tapt.",
-          image: "/recon-top.png",
+          image: "/recon-autonomous-flight.png",
         },
         {
           label: "Menneskelig godkjenning",
           description:
             "Hver kritisk beslutning krever operatørens godkjenning. Centurion anbefaler; mennesket kommandrerer.",
-          image: "/norway-operations.png",
+          image: "/recon-operator-oversight.png",
         },
         {
           label: "Autonom gjennomføring",
           description:
             "Godkjente planer sendt til flåten. RECON utfører autonomt og rapporterer tilbake i sanntid.",
-          image: "/recon-hero.png",
+          image: "/recon-isr-delivery.png",
         },
       ],
     },
