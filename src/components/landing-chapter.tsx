@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { Link } from "@/i18n/navigation";
+import { scrollAllRootsToTop } from "@/components/scroll-to-top";
 
 type LandingChapterProps = {
   index: string;
@@ -99,6 +100,10 @@ export function LandingChapter({
             <Link
               href={href}
               scroll
+              onClick={() => {
+                scrollAllRootsToTop();
+                window.setTimeout(scrollAllRootsToTop, 0);
+              }}
               className="mt-9 inline-flex items-center gap-3 border-b border-white/40 pb-1 text-xs font-semibold uppercase tracking-[0.18em] text-white transition-colors hover:border-white"
             >
               {cta}

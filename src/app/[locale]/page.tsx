@@ -23,6 +23,7 @@ export default async function Home({ params }: HomePageProps) {
 
       <main
         id="main-content"
+        data-scroll-root
         className="flex-1 lg:h-screen lg:snap-y lg:snap-proximity lg:overflow-y-auto lg:scroll-smooth"
       >
         {/* Hero — unchanged */}

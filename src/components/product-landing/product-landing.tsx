@@ -8,21 +8,22 @@ import {
   useTransform,
   AnimatePresence,
 } from "framer-motion";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { Link } from "@/i18n/navigation";
 import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
+import { scrollAllRootsToTop, scheduleScrollResets } from "@/components/scroll-to-top";
 import type { ProductLandingContent } from "@/lib/product-landing-content";
+
+const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 type ProductLandingProps = {
   content: ProductLandingContent;
 };
 
 export function ProductLanding({ content }: ProductLandingProps) {
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (window.location.hash) return;
-    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
+    return scheduleScrollResets();
   }, [content.slug]);
 
   return (
@@ -343,7 +344,7 @@ function CommandCenterSection({ content }: ProductLandingProps) {
 }
 
 function AgentsSection({ content }: ProductLandingProps) {
-  const [expanded, setExpanded] = useState<number | null>(0);
+  const [expanded, setExpanded] = useState<number | null>(null);
 
   return (
     <SectionShell className="border-t border-white/[0.06]">
