@@ -111,7 +111,7 @@ const reconLanding: LocalizedLanding = {
           label: "Operator Oversight",
           description:
             "Human-in-the-loop control through Centurion. Operators approve plans, monitor live feeds, and intervene when required.",
-          image: "/operations-hq.jpg",
+          image: "/recon-operator-oversight.png",
         },
         {
           label: "ISR Delivery",
@@ -152,7 +152,7 @@ const reconLanding: LocalizedLanding = {
           label: "Operatørtilsyn",
           description:
             "Menneske-i-løkken-kontroll via Centurion. Operatører godkjenner planer, overvåker live feeds og griper inn ved behov.",
-          image: "/operations-hq.jpg",
+          image: "/recon-operator-oversight.png",
         },
         {
           label: "ISR-leveranse",
