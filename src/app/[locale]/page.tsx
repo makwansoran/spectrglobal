@@ -49,7 +49,7 @@ export default async function Home({ params }: HomePageProps) {
             <div className="absolute inset-0 bg-black/45" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/20" />
             <div className="mx-auto flex w-full max-w-7xl items-center justify-center px-5 py-32 text-center sm:px-8 lg:py-36">
-              <div className="relative mx-auto flex flex-col items-center">
+              <div className="relative mx-auto flex w-full max-w-4xl flex-col items-center">
                 <ScrollRevealHeading
                   as="h1"
                   revealOnMount

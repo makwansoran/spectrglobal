@@ -15,24 +15,46 @@ type HeroBrandLockupProps = {
   revealDelay?: number;
 };
 
-const powerOnAnimation = {
-  opacity: [0, 1, 0.08, 1, 0.08, 1, 0.08, 1],
+const flagPowerOnAnimation = {
+  opacity: [0, 1, 0.06, 1, 0.06, 1, 0.06, 1],
   filter: [
     "brightness(0.15)",
-    "brightness(2)",
-    "brightness(0.2)",
-    "brightness(1.8)",
-    "brightness(0.2)",
-    "brightness(1.6)",
-    "brightness(0.2)",
+    "brightness(2.1)",
+    "brightness(0.18)",
+    "brightness(1.9)",
+    "brightness(0.18)",
+    "brightness(1.7)",
+    "brightness(0.18)",
     "brightness(1)",
   ],
 };
 
-const powerOnTransition = {
-  duration: 1.8,
-  times: [0, 0.08, 0.16, 0.3, 0.38, 0.52, 0.6, 1],
+const logoPowerOnAnimation = {
+  opacity: [0, 1, 0.1, 1, 0.1, 1, 0.1, 1],
+  filter: [
+    "brightness(0.12)",
+    "brightness(1.9)",
+    "brightness(0.22)",
+    "brightness(1.7)",
+    "brightness(0.22)",
+    "brightness(1.5)",
+    "brightness(0.22)",
+    "brightness(1)",
+  ],
+};
+
+const flagPowerOnTransition = {
+  duration: 1.55,
+  times: [0, 0.09, 0.18, 0.32, 0.41, 0.55, 0.64, 1],
   ease: "linear" as const,
+  delay: 0,
+};
+
+const logoPowerOnTransition = {
+  duration: 2.05,
+  times: [0, 0.07, 0.15, 0.31, 0.4, 0.56, 0.65, 1],
+  ease: "linear" as const,
+  delay: 0.72,
 };
 
 function renderLetterReveal(
@@ -84,22 +106,29 @@ function NorwegianFlag({ className = "" }: { className?: string }) {
 function PowerOnMark({
   active,
   reduceMotion,
+  variant,
   children,
 }: {
   active: boolean;
   reduceMotion: boolean;
+  variant: "flag" | "logo";
   children: ReactNode;
 }) {
   if (reduceMotion) {
     return <span className="inline-flex shrink-0">{children}</span>;
   }
 
+  const animation =
+    variant === "flag" ? flagPowerOnAnimation : logoPowerOnAnimation;
+  const transition =
+    variant === "flag" ? flagPowerOnTransition : logoPowerOnTransition;
+
   return (
     <motion.span
       className="inline-flex shrink-0"
       initial={{ opacity: 0, filter: "brightness(0.15)" }}
-      animate={active ? powerOnAnimation : { opacity: 0 }}
-      transition={powerOnTransition}
+      animate={active ? animation : { opacity: 0 }}
+      transition={active ? transition : { duration: 0 }}
     >
       {children}
     </motion.span>
@@ -146,41 +175,43 @@ export function HeroBrandLockup({
 
   return (
     <div
-      className={`hero-brand-lockup scroll-reveal mt-10 flex flex-wrap items-center justify-center gap-x-4 gap-y-3 ${
+      className={`hero-brand-lockup scroll-reveal mt-10 grid w-full max-w-3xl grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-x-3 sm:gap-x-5 ${
         visible ? "is-visible" : ""
       }`}
     >
-      <div className="flex items-center gap-3">
-        <PowerOnMark active={visible} reduceMotion={reduceMotion}>
-          <NorwegianFlag className="h-5 w-7 rounded-[2px]" />
+      <div className="flex items-center justify-end gap-2.5 sm:gap-3">
+        <PowerOnMark active={visible} reduceMotion={reduceMotion} variant="flag">
+          <NorwegianFlag className="h-6 w-[1.65rem] shrink-0 rounded-[2px]" />
         </PowerOnMark>
         <span className="brand-font text-sm font-semibold uppercase tracking-[0.34em] text-white">
           {renderLetterReveal(madeInNorway, charIndex)}
         </span>
       </div>
-      <span
-        className="reveal-char text-sm text-white/35"
-        style={
-          {
-            "--char-index": (() => {
-              const index = charIndex.current;
-              charIndex.current += 1;
-              return index;
-            })(),
-          } as CSSProperties
-        }
-        aria-hidden="true"
-      >
-        |
-      </span>
-      <div className="flex items-center gap-3">
-        <PowerOnMark active={visible} reduceMotion={reduceMotion}>
+      <div className="flex items-center justify-center self-stretch px-0.5 sm:px-1">
+        <span
+          className="reveal-char text-sm leading-none text-white/35"
+          style={
+            {
+              "--char-index": (() => {
+                const index = charIndex.current;
+                charIndex.current += 1;
+                return index;
+              })(),
+            } as CSSProperties
+          }
+          aria-hidden="true"
+        >
+          |
+        </span>
+      </div>
+      <div className="flex items-center justify-start gap-2.5 sm:gap-3">
+        <PowerOnMark active={visible} reduceMotion={reduceMotion} variant="logo">
           <Image
             src="/spectr-logo.png"
             alt={brand}
             width={32}
             height={32}
-            className="h-8 w-auto invert"
+            className="h-6 w-auto shrink-0 invert"
             priority
           />
         </PowerOnMark>
