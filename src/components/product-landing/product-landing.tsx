@@ -26,18 +26,21 @@ export function ProductLanding({ content }: ProductLandingProps) {
     return scheduleScrollResets();
   }, [content.slug]);
 
+  const isRecon = content.slug === "recon";
+
   return (
     <main id="main-content" className="product-landing bg-[#050505] text-white">
       <HeroSection content={content} />
-      {content.slug !== "recon" ? <ProblemSection content={content} /> : null}
+      {isRecon ? <StatsSection content={content} placement="hero" /> : null}
+      {!isRecon ? <ProblemSection content={content} /> : null}
       <PlatformSection content={content} />
       <WorkflowSection content={content} />
-      {content.slug !== "recon" ? <CommandCenterSection content={content} /> : null}
-      {content.slug !== "recon" ? <AgentsSection content={content} /> : null}
-      {content.slug !== "recon" ? <TrustSection content={content} /> : null}
-      {content.slug !== "recon" ? <ApplicationsSection content={content} /> : null}
+      {!isRecon ? <CommandCenterSection content={content} /> : null}
+      {!isRecon ? <AgentsSection content={content} /> : null}
+      {!isRecon ? <TrustSection content={content} /> : null}
+      {!isRecon ? <ApplicationsSection content={content} /> : null}
       <TechnologySection content={content} />
-      <StatsSection content={content} />
+      {!isRecon ? <StatsSection content={content} /> : null}
       <CtaSection content={content} />
     </main>
   );
@@ -474,13 +477,20 @@ function TechnologySection({ content }: ProductLandingProps) {
   );
 }
 
-function StatsSection({ content }: ProductLandingProps) {
+function StatsSection({
+  content,
+  placement = "default",
+}: ProductLandingProps & { placement?: "default" | "hero" }) {
+  const isHero = placement === "hero";
+
   return (
-    <SectionShell className="border-t border-white/[0.06]">
-      <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
+    <SectionShell
+      className={`border-t border-white/[0.06] ${isHero ? "py-12 sm:py-16 lg:py-20" : ""}`}
+    >
+      <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
         {content.stats.items.map((stat, index) => (
           <FadeIn key={stat.label} delay={index * 0.1}>
-            <StatCounter stat={stat} />
+            <StatCounter stat={stat} compact={isHero} />
           </FadeIn>
         ))}
       </div>
@@ -488,7 +498,13 @@ function StatsSection({ content }: ProductLandingProps) {
   );
 }
 
-function StatCounter({ stat }: { stat: { label: string; value: number; suffix: string } }) {
+function StatCounter({
+  stat,
+  compact = false,
+}: {
+  stat: { label: string; value: number; suffix: string };
+  compact?: boolean;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true });
   const [display, setDisplay] = useState(0);
@@ -510,8 +526,12 @@ function StatCounter({ stat }: { stat: { label: string; value: number; suffix: s
     stat.value % 1 !== 0 ? display.toFixed(2) : Math.round(display).toString();
 
   return (
-    <div ref={ref} className="border-t border-white/15 pt-8">
-      <p className="text-5xl font-semibold tracking-[-0.05em] sm:text-6xl lg:text-7xl">
+    <div ref={ref} className={`border-t border-white/15 ${compact ? "pt-6" : "pt-8"}`}>
+      <p
+        className={`font-semibold tracking-[-0.05em] ${
+          compact ? "text-4xl sm:text-5xl" : "text-5xl sm:text-6xl lg:text-7xl"
+        }`}
+      >
         {formatted}
         <span className="text-white/40">{stat.suffix}</span>
       </p>
