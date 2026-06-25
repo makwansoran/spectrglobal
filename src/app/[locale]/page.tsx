@@ -15,6 +15,7 @@ export default async function Home({ params }: HomePageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "Home" });
+  const tNav = await getTranslations({ locale, namespace: "Nav" });
   const tCommon = await getTranslations({ locale, namespace: "Common" });
 
   return (
@@ -51,6 +52,19 @@ export default async function Home({ params }: HomePageProps) {
                 >
                   {t("hero")}
                 </ScrollRevealHeading>
+                <div className="mt-10 flex items-center justify-center gap-3">
+                  <Image
+                    src="/spectr-logo.png"
+                    alt={tNav("brand")}
+                    width={32}
+                    height={32}
+                    className="h-8 w-auto invert"
+                    priority
+                  />
+                  <span className="brand-font text-sm font-semibold uppercase tracking-[0.34em] text-white">
+                    {tNav("brand")}
+                  </span>
+                </div>
               </div>
             </div>
           </section>
