@@ -52,18 +52,29 @@ export default async function Home({ params }: HomePageProps) {
                 >
                   {t("hero")}
                 </ScrollRevealHeading>
-                <div className="mt-10 flex items-center justify-center gap-3">
-                  <Image
-                    src="/spectr-logo.png"
-                    alt={tNav("brand")}
-                    width={32}
-                    height={32}
-                    className="h-8 w-auto invert"
-                    priority
-                  />
-                  <span className="brand-font text-sm font-semibold uppercase tracking-[0.34em] text-white">
-                    {tNav("brand")}
+                <div className="mt-10 flex flex-wrap items-center justify-center gap-x-4 gap-y-3">
+                  <div className="flex items-center gap-3">
+                    <NorwegianFlag className="h-5 w-7 shrink-0 rounded-[2px]" />
+                    <span className="brand-font text-sm font-semibold uppercase tracking-[0.34em] text-white">
+                      {t("madeInNorway")}
+                    </span>
+                  </div>
+                  <span className="text-sm text-white/35" aria-hidden="true">
+                    |
                   </span>
+                  <div className="flex items-center gap-3">
+                    <Image
+                      src="/spectr-logo.png"
+                      alt={tNav("brand")}
+                      width={32}
+                      height={32}
+                      className="h-8 w-auto invert"
+                      priority
+                    />
+                    <span className="brand-font text-sm font-semibold uppercase tracking-[0.34em] text-white">
+                      {tNav("brand")}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -181,5 +192,17 @@ export default async function Home({ params }: HomePageProps) {
         <Footer />
       </main>
     </>
+  );
+}
+
+function NorwegianFlag({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 22 16" className={className} aria-hidden="true">
+      <rect width="22" height="16" fill="#BA0C2F" />
+      <rect x="6" width="4" height="16" fill="#FFFFFF" />
+      <rect y="6" width="22" height="4" fill="#FFFFFF" />
+      <rect x="7" width="2" height="16" fill="#00205B" />
+      <rect y="7" width="22" height="2" fill="#00205B" />
+    </svg>
   );
 }
