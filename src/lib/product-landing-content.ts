@@ -105,7 +105,7 @@ const reconLanding: LocalizedLanding = {
           label: "Autonomous Flight",
           description:
             "VTOL launch, wing-borne cruise, and GNSS-denied navigation — the platform flies the mission without continuous operator input.",
-          image: "/recon-hero.png",
+          image: "/recon-autonomous-flight.png",
         },
         {
           label: "Operator Oversight",
@@ -146,7 +146,7 @@ const reconLanding: LocalizedLanding = {
           label: "Autonom flyging",
           description:
             "VTOL-start, vingebåren cruise og GNSS-nektet navigasjon — plattformen flyr oppdraget uten kontinuerlig operatørinput.",
-          image: "/recon-hero.png",
+          image: "/recon-autonomous-flight.png",
         },
         {
           label: "Operatørtilsyn",
