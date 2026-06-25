@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
+import { ScrollProgress } from "@/components/scroll-progress";
 import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
 import type { Locale } from "@/i18n/routing";
 import { pickLegalField, termsSections } from "@/lib/legal";
@@ -31,6 +32,7 @@ export default async function TermsPage({ params }: TermsPageProps) {
   return (
     <>
       <Nav />
+      <ScrollProgress />
       <main id="main-content" className="flex-1">
         <section className="brand-font bg-black px-5 pb-20 pt-36 text-white sm:px-8 lg:pb-28 lg:pt-44">
           <div className="mx-auto max-w-7xl">
@@ -55,6 +57,13 @@ export default async function TermsPage({ params }: TermsPageProps) {
                 <p className="mt-5 text-sm leading-7 text-muted sm:text-base">
                   {pickLegalField(section.text, typedLocale)}
                 </p>
+                {section.bullets ? (
+                  <ul className="mt-5 list-disc space-y-2 pl-5 text-sm leading-7 text-muted sm:text-base">
+                    {pickLegalField(section.bullets, typedLocale).map((bullet) => (
+                      <li key={bullet}>{bullet}</li>
+                    ))}
+                  </ul>
+                ) : null}
               </article>
             ))}
           </div>

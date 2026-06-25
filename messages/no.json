@@ -259,8 +259,10 @@
   "Legal": {
     "privacyTitle": "Personvernerklæring",
     "termsTitle": "Vilkår for bruk",
-    "lastUpdated": "Sist oppdatert: 4. juni 2026",
-    "contactCta": "Kontakt Spectr"
+    "lastUpdated": "Sist oppdatert: 25. juni 2026",
+    "contactCta": "Kontakt Spectr",
+    "cookieTitle": "Erklæring om informasjonskapsler",
+    "cookieIntro": "Denne erklæringen forklarer hvordan Spectr bruker informasjonskapsler og lignende teknologier på dette nettstedet, og hvordan du kan styre valgene dine."
   },
   "Investor": {
     "title": "Investor Relations",

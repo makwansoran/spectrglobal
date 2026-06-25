@@ -259,8 +259,10 @@
   "Legal": {
     "privacyTitle": "Privacy Policy",
     "termsTitle": "Terms of Service",
-    "lastUpdated": "Last updated: June 4, 2026",
-    "contactCta": "Contact Spectr"
+    "lastUpdated": "Last updated: June 25, 2026",
+    "contactCta": "Contact Spectr",
+    "cookieTitle": "Cookie Policy",
+    "cookieIntro": "This Cookie Policy explains how Spectr uses cookies and similar technologies on this website, and how you can manage your preferences."
   },
   "Investor": {
     "title": "Investor Relations",
