@@ -29,7 +29,7 @@ export function ProductLanding({ content }: ProductLandingProps) {
   return (
     <main id="main-content" className="product-landing bg-[#050505] text-white">
       <HeroSection content={content} />
-      <ProblemSection content={content} />
+      {content.slug !== "recon" ? <ProblemSection content={content} /> : null}
       <PlatformSection content={content} />
       <WorkflowSection content={content} />
       <CommandCenterSection content={content} />
