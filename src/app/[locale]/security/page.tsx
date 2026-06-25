@@ -24,7 +24,6 @@ export default async function SecurityPage({ params }: SecurityPageProps) {
   setRequestLocale(locale);
   const typedLocale = locale as Locale;
   const t = await getTranslations({ locale, namespace: "Security" });
-  const tHome = await getTranslations({ locale, namespace: "Home" });
   const tNav = await getTranslations({ locale, namespace: "Nav" });
   const securityTitle = t("title");
   const brandLockupDelay = securityTitle.replace(/\s/g, "").length * 14 + 80;
@@ -39,23 +38,21 @@ export default async function SecurityPage({ params }: SecurityPageProps) {
     <>
       <Nav />
       <main id="main-content" className="flex-1 bg-bg">
-        <section className="brand-font relative flex min-h-screen items-center bg-black px-5 py-36 text-white sm:px-8 lg:py-44">
-          <div className="mx-auto w-full max-w-7xl">
-            <div className="flex w-full max-w-4xl flex-col">
+        <section className="brand-font relative flex min-h-screen items-center justify-center bg-black px-5 py-36 text-center text-white sm:px-8 lg:py-44">
+          <div className="mx-auto flex w-full max-w-7xl items-center justify-center">
+            <div className="relative mx-auto flex w-full max-w-4xl flex-col items-center">
               <ScrollRevealHeading
                 as="h1"
                 revealOnMount
-                className="max-w-6xl text-5xl font-semibold leading-[0.9] tracking-[-0.075em] sm:text-7xl lg:text-[8.5rem]"
+                className="mx-auto max-w-6xl text-5xl font-semibold leading-[0.9] tracking-[-0.075em] sm:text-7xl lg:text-[8.5rem]"
               >
                 {securityTitle}
               </ScrollRevealHeading>
-              <div className="flex w-full justify-center lg:justify-start">
-                <HeroBrandLockup
-                  madeInNorway={tHome("madeInNorway")}
-                  brand={tNav("brand")}
-                  revealDelay={brandLockupDelay}
-                />
-              </div>
+              <HeroBrandLockup
+                brand={tNav("brand")}
+                revealDelay={brandLockupDelay}
+                variant="logo"
+              />
             </div>
           </div>
           <a
@@ -70,7 +67,10 @@ export default async function SecurityPage({ params }: SecurityPageProps) {
         </section>
 
         <section id="security-principles" className="brand-font bg-bg px-5 py-20 sm:px-8 lg:py-28">
-          <div className="mx-auto max-w-6xl">
+          <div className="mx-auto max-w-7xl">
+            <h2 className="mb-14 max-w-4xl text-3xl font-semibold leading-[1.02] tracking-[-0.05em] text-fg sm:mb-20 sm:text-5xl lg:text-6xl">
+              {t("principlesHeadline")}
+            </h2>
             <SecurityPrinciplesList principles={principles} />
           </div>
         </section>

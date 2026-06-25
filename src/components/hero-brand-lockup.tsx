@@ -10,9 +10,10 @@ import {
 } from "react";
 
 type HeroBrandLockupProps = {
-  madeInNorway: string;
+  madeInNorway?: string;
   brand: string;
   revealDelay?: number;
+  variant?: "full" | "logo";
 };
 
 const flagPowerOnAnimation = {
@@ -107,11 +108,13 @@ function PowerOnMark({
   active,
   reduceMotion,
   variant,
+  immediate = false,
   children,
 }: {
   active: boolean;
   reduceMotion: boolean;
   variant: "flag" | "logo";
+  immediate?: boolean;
   children: ReactNode;
 }) {
   if (reduceMotion) {
@@ -120,8 +123,11 @@ function PowerOnMark({
 
   const animation =
     variant === "flag" ? flagPowerOnAnimation : logoPowerOnAnimation;
-  const transition =
+  const baseTransition =
     variant === "flag" ? flagPowerOnTransition : logoPowerOnTransition;
+  const transition = immediate
+    ? { ...baseTransition, delay: 0 }
+    : baseTransition;
 
   return (
     <motion.span
@@ -136,9 +142,10 @@ function PowerOnMark({
 }
 
 export function HeroBrandLockup({
-  madeInNorway,
+  madeInNorway = "",
   brand,
   revealDelay = 0,
+  variant = "full",
 }: HeroBrandLockupProps) {
   const reduceMotion = useReducedMotion() ?? false;
   const [visible, setVisible] = useState(reduceMotion);
@@ -173,9 +180,38 @@ export function HeroBrandLockup({
 
   const charIndex = { current: 0 };
 
+  if (variant === "logo") {
+    return (
+      <div
+        className={`hero-brand-lockup scroll-reveal mx-auto mt-10 flex flex-col items-center ${
+          visible ? "is-visible" : ""
+        }`}
+      >
+        <PowerOnMark
+          active={visible}
+          reduceMotion={reduceMotion}
+          variant="logo"
+          immediate
+        >
+          <Image
+            src="/spectr-logo.png"
+            alt={brand}
+            width={40}
+            height={40}
+            className="h-8 w-auto shrink-0 invert"
+            priority
+          />
+        </PowerOnMark>
+        <span className="brand-font mt-4 text-sm font-semibold uppercase tracking-[0.34em] text-white">
+          {renderLetterReveal(brand, charIndex)}
+        </span>
+      </div>
+    );
+  }
+
   return (
     <div
-      className={`hero-brand-lockup scroll-reveal mt-10 grid w-full max-w-3xl grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-x-3 sm:gap-x-5 ${
+      className={`hero-brand-lockup scroll-reveal mx-auto mt-10 grid w-full max-w-3xl grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-x-3 sm:gap-x-5 ${
         visible ? "is-visible" : ""
       }`}
     >

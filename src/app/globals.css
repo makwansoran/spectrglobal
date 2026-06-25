@@ -231,12 +231,17 @@ textarea {
 .security-principle {
   cursor: default;
   outline: none;
+  transition: opacity 300ms ease;
+}
+
+.security-principles-stack:has(.security-principle:hover) .security-principle:not(:hover):not(.is-open) {
+  opacity: 0.42;
 }
 
 .security-principle-panel {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: grid-template-rows 700ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .security-principle.is-open .security-principle-panel,
@@ -257,6 +262,10 @@ textarea {
 @media (prefers-reduced-motion: reduce) {
   .security-principle-panel {
     transition: none;
+  }
+
+  .security-principles-stack:has(.security-principle:hover) .security-principle:not(:hover):not(.is-open) {
+    opacity: 1;
   }
 
   .security-principle.is-open .security-principle-panel,
