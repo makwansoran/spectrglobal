@@ -10,6 +10,7 @@ import {
 } from "framer-motion";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Link } from "@/i18n/navigation";
+import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
 import type { ProductLandingContent } from "@/lib/product-landing-content";
 
 type ProductLandingProps = {
@@ -105,12 +106,21 @@ function HeroSection({ content }: ProductLandingProps) {
       <motion.div style={{ opacity }} className="relative z-10 mx-auto w-full max-w-7xl pb-20 lg:pb-24">
         <div className="max-w-md sm:max-w-lg lg:max-w-xl">
           <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/50">{content.name}</p>
-          <h1 className="mt-4 text-3xl font-semibold leading-[1.05] tracking-[-0.04em] sm:mt-5 sm:text-4xl lg:text-5xl">
+          <ScrollRevealHeading
+            as="h1"
+            revealOnMount
+            className="mt-4 block max-w-md text-3xl font-semibold leading-[1.05] tracking-[-0.04em] sm:mt-5 sm:text-4xl lg:text-5xl"
+          >
             {content.hero.headline}
-          </h1>
-          <p className="mt-4 max-w-md text-sm leading-7 text-white/60 sm:mt-5 sm:text-base">
+          </ScrollRevealHeading>
+          <ScrollRevealHeading
+            as="h2"
+            revealOnMount
+            delay={500}
+            className="mt-4 block max-w-md text-sm font-normal leading-7 text-white/60 sm:mt-5 sm:text-base"
+          >
             {content.hero.subheadline}
-          </p>
+          </ScrollRevealHeading>
           <div className="mt-8 flex flex-wrap gap-3 sm:mt-10">
           <Link
             href="/contact"
