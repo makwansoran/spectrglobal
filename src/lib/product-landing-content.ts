@@ -117,7 +117,7 @@ const reconLanding: LocalizedLanding = {
           label: "ISR Delivery",
           description:
             "Imagery and telemetry returned to command — sustained surveillance across a 50–100 km operating radius.",
-          image: "/recon-mountain.png",
+          image: "/recon-isr-delivery.png",
         },
       ],
     },
@@ -158,7 +158,7 @@ const reconLanding: LocalizedLanding = {
           label: "ISR-leveranse",
           description:
             "Bilder og telemetri returnert til kommando — vedvarende overvåking over en operasjonsradius på 50–100 km.",
-          image: "/recon-mountain.png",
+          image: "/recon-isr-delivery.png",
         },
       ],
     },
