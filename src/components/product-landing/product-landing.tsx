@@ -100,7 +100,7 @@ function HeroSection({ content }: ProductLandingProps) {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-  const isCenturion = content.slug === "centurion";
+  const isBrandedHero = content.slug === "recon" || content.slug === "centurion";
   const brandLockupDelay = content.name.replace(/\s/g, "").length * 14 + 80;
   const taglineDelay = brandLockupDelay + 2600;
 
@@ -126,8 +126,8 @@ function HeroSection({ content }: ProductLandingProps) {
       </motion.div>
 
       <motion.div style={{ opacity }} className="relative z-10 mx-auto w-full max-w-7xl pb-20 lg:pb-24">
-        <div className={isCenturion ? "max-w-3xl" : "max-w-md sm:max-w-lg lg:max-w-xl"}>
-          {isCenturion ? (
+        <div className={isBrandedHero ? "max-w-3xl" : "max-w-md sm:max-w-lg lg:max-w-xl"}>
+          {isBrandedHero ? (
             <>
               <ScrollRevealHeading
                 as="h1"

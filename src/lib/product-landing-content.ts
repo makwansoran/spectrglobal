@@ -49,14 +49,14 @@ const reconLanding: LocalizedLanding = {
   heroImage: "/recon-hero.png",
   hero: {
     en: {
-      headline: "Autonomous ISR for the denied battlefield.",
-      subheadline: "Continuous surveillance without GPS. Without ground infrastructure. Without stopping the mission.",
+      headline: "Autonomous ISR for the denied battlefield — continuous surveillance without GPS, infrastructure, or stopping the mission.",
+      subheadline: "",
       ctaPrimary: "Request Access",
       ctaSecondary: "Explore Platform",
     },
     no: {
-      headline: "Autonom ISR for det nektede slagfeltet.",
-      subheadline: "Kontinuerlig overvåking uten GPS. Uten bakkeinfrastruktur. Uten å stoppe oppdraget.",
+      headline: "Autonom ISR for det nektede slagfeltet — kontinuerlig overvåking uten GPS, infrastruktur eller avbrudd i oppdraget.",
+      subheadline: "",
       ctaPrimary: "Be om tilgang",
       ctaSecondary: "Utforsk plattformen",
     },
@@ -367,7 +367,7 @@ const centurionLanding: LocalizedLanding = {
           label: "Fleet Coordination",
           description:
             "Multiple RECON units synchronized as one operation — robust when individual assets or links are lost.",
-          image: "/recon-autonomous-flight.png",
+          image: "/centurion-fleet-coordination.png",
         },
         {
           label: "Human Approval",
@@ -408,7 +408,7 @@ const centurionLanding: LocalizedLanding = {
           label: "Flåtekoordinering",
           description:
             "Flere RECON-enheter synkronisert som én operasjon — robust når enkelt-enheter eller lenker går tapt.",
-          image: "/recon-autonomous-flight.png",
+          image: "/centurion-fleet-coordination.png",
         },
         {
           label: "Menneskelig godkjenning",
