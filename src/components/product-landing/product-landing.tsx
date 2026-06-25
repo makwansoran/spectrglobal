@@ -50,13 +50,20 @@ function SectionShell({
   children,
   className = "",
   id,
+  compact = false,
 }: {
   children: ReactNode;
   className?: string;
   id?: string;
+  compact?: boolean;
 }) {
   return (
-    <section id={id} className={`relative px-5 py-28 sm:px-8 lg:py-36 ${className}`}>
+    <section
+      id={id}
+      className={`relative px-5 sm:px-8 ${
+        compact ? "py-12 lg:py-16" : "py-28 lg:py-36"
+      } ${className}`}
+    >
       <div className="mx-auto max-w-7xl">{children}</div>
     </section>
   );
@@ -484,9 +491,7 @@ function StatsSection({
   const isHero = placement === "hero";
 
   return (
-    <SectionShell
-      className={`border-t border-white/[0.06] ${isHero ? "py-12 sm:py-16 lg:py-20" : ""}`}
-    >
+    <SectionShell compact={isHero} className="border-t border-white/[0.06]">
       <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
         {content.stats.items.map((stat, index) => (
           <FadeIn key={stat.label} delay={index * 0.1}>
