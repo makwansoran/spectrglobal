@@ -99,7 +99,7 @@ export default async function Home({ params }: HomePageProps) {
           description={t("reconDescription")}
           cta={t("reconCta")}
           href="/products/recon"
-          image="/recon-hero.png"
+          image="/recon-hero-hq.jpg"
           alt="RECON autonomous ISR platform over mountain terrain"
           priority
         />
@@ -111,17 +111,18 @@ export default async function Home({ params }: HomePageProps) {
           description={t("centurionDescription")}
           cta={t("centurionCta")}
           href="/products/centurion"
-          image="/centurion-laptop-mockup.png"
+          image="/centurion-hq.jpg"
           alt="CENTURION command platform"
         />
 
         {/* Sovereign capability — split media + text */}
         <section className="brand-font relative flex min-h-screen snap-start items-end overflow-hidden bg-black text-white">
           <Image
-            src="/norway-operations.png"
+            src="/operations-hq.jpg"
             alt=""
             fill
-            className="object-cover opacity-70"
+            quality={92}
+            className="object-cover opacity-85"
             sizes="100vw"
             aria-hidden="true"
           />

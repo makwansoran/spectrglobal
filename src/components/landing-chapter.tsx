@@ -15,6 +15,7 @@ type LandingChapterProps = {
   image: string;
   alt: string;
   priority?: boolean;
+  quality?: number;
 };
 
 export function LandingChapter({
@@ -27,6 +28,7 @@ export function LandingChapter({
   image,
   alt,
   priority = false,
+  quality = 92,
 }: LandingChapterProps) {
   const ref = useRef<HTMLElement>(null);
   const [visible, setVisible] = useState(false);
@@ -62,6 +64,7 @@ export function LandingChapter({
         alt={alt}
         fill
         priority={priority}
+        quality={quality}
         className="chapter-media object-cover"
         sizes="100vw"
       />

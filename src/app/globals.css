@@ -229,7 +229,7 @@ textarea {
 }
 
 .chapter-media {
-  transform: scale(1.14);
+  transform: scale(1.05);
   transition: transform 1800ms cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform;
 }
