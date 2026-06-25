@@ -87,13 +87,13 @@ const reconLanding: LocalizedLanding = {
           label: "Sensors",
           description:
             "EO/IR gimbal with FLIR Boson thermal and Sony EO block. A 1–1.5 kg payload for continuous area surveillance day and night.",
-          image: "/recon-sensors.png",
+          image: "/recon-top.png",
         },
         {
           label: "Edge Processing",
           description:
             "Onboard compute fuses sensor feeds at the aircraft — cutting latency and keeping ISR useful when datalinks degrade.",
-          image: "/recon-top.png",
+          image: "/recon-sensors.png",
         },
         {
           label: "Mission Intelligence",
@@ -128,13 +128,13 @@ const reconLanding: LocalizedLanding = {
           label: "Sensorer",
           description:
             "EO/IR-gimbal med FLIR Boson termisk og Sony EO-blokk. Nyttelast på 1–1,5 kg for kontinuerlig områdeovervåking dag og natt.",
-          image: "/recon-sensors.png",
+          image: "/recon-top.png",
         },
         {
           label: "Edge-prosessering",
           description:
             "Ombord-beregning fusjonerer sensorfeeds på luftfartøyet — reduserer forsinkelse og holder ISR nyttig når datalenker degraderes.",
-          image: "/recon-top.png",
+          image: "/recon-sensors.png",
         },
         {
           label: "Oppdragsintelligens",
