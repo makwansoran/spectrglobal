@@ -258,3 +258,234 @@ textarea {
     transition: none;
   }
 }
+
+/* Product landing — Palantir-inspired */
+.product-landing {
+  --pl-surface: rgba(255, 255, 255, 0.04);
+  --pl-border: rgba(255, 255, 255, 0.1);
+  --pl-glow: rgba(255, 255, 255, 0.12);
+}
+
+.product-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 20%, transparent 100%);
+}
+
+.product-radar {
+  background: conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(255, 255, 255, 0.06) 40deg, transparent 80deg);
+  animation: product-radar-spin 8s linear infinite;
+  mask-image: radial-gradient(circle at 50% 50%, black 0%, transparent 65%);
+}
+
+.product-particles {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.35) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: 0.15;
+  animation: product-particles-drift 20s linear infinite;
+}
+
+.product-scroll-line {
+  display: block;
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), transparent);
+  animation: product-scroll-pulse 2s ease-in-out infinite;
+}
+
+.product-glass {
+  border: 1px solid var(--pl-border);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+  backdrop-filter: blur(12px);
+}
+
+.product-problem-grid {
+  display: grid;
+  gap: 1.25rem;
+}
+
+@media (min-width: 1024px) {
+  .product-problem-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.product-flow-connector {
+  position: absolute;
+  top: 50%;
+  right: -0.75rem;
+  width: 1.5rem;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.3), transparent);
+}
+
+.product-flow-node {
+  border: 1px solid transparent;
+  border-radius: 2px;
+  padding: 1rem 1.25rem;
+  transition: border-color 300ms, background 300ms;
+}
+
+.product-flow-node:hover,
+.product-flow-node.is-active,
+.product-flow-node:focus-visible {
+  border-color: var(--pl-border);
+  background: var(--pl-surface);
+  outline: none;
+}
+
+.product-node-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  transition: background 300ms, box-shadow 300ms;
+}
+
+.product-node-dot.is-active {
+  background: white;
+  box-shadow: 0 0 16px var(--pl-glow);
+}
+
+.product-pulse-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: product-pulse-line 3s ease-in-out infinite;
+}
+
+.product-command {
+  box-shadow: 0 0 80px rgba(0, 0, 0, 0.5);
+}
+
+.product-map {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    radial-gradient(circle at 30% 40%, rgba(255, 255, 255, 0.08), transparent 40%),
+    radial-gradient(circle at 70% 60%, rgba(16, 185, 129, 0.12), transparent 35%);
+  background-size: 32px 32px, 32px 32px, 100% 100%, 100% 100%;
+  position: relative;
+}
+
+.product-map::after {
+  content: "";
+  position: absolute;
+  inset: 20%;
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  animation: product-radar-spin 12s linear infinite;
+}
+
+.product-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.65rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.product-agent-card {
+  border: 1px solid var(--pl-border);
+  background: var(--pl-surface);
+  padding: 1.75rem;
+  transition: border-color 300ms, background 300ms;
+  cursor: pointer;
+}
+
+.product-agent-card:hover,
+.product-agent-card.is-open {
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.product-trust-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  border: 1px solid var(--pl-border);
+  background: var(--pl-surface);
+  min-height: 88px;
+}
+
+.product-trust-ring {
+  flex-shrink: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.15);
+  animation: product-trust-pulse 2.5s ease-in-out infinite;
+}
+
+.product-apps-scroll {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.product-apps-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.product-app-card {
+  position: relative;
+  width: min(85vw, 360px);
+  height: 420px;
+  overflow: hidden;
+  border: 1px solid var(--pl-border);
+  scroll-snap-align: start;
+}
+
+.product-tech-card {
+  border: 1px solid var(--pl-border);
+  background: var(--pl-surface);
+  padding: 1.5rem;
+  transition: border-color 300ms;
+}
+
+.product-tech-card:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+@keyframes product-radar-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes product-particles-drift {
+  from { background-position: 0 0; }
+  to { background-position: 48px 48px; }
+}
+
+@keyframes product-scroll-pulse {
+  0%, 100% { opacity: 0.4; transform: scaleY(0.8); }
+  50% { opacity: 1; transform: scaleY(1); }
+}
+
+@keyframes product-pulse-line {
+  0%, 100% { opacity: 0.3; transform: scaleX(0.6); }
+  50% { opacity: 1; transform: scaleX(1); }
+}
+
+@keyframes product-trust-pulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(255, 255, 255, 0.1); }
+  50% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.25); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .product-radar,
+  .product-particles,
+  .product-scroll-line,
+  .product-pulse-line,
+  .product-trust-ring,
+  .product-map::after {
+    animation: none;
+  }
+}
