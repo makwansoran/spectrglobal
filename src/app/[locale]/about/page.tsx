@@ -3,6 +3,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
 import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
+import { BevelButton } from "@/components/bevel-button";
 import { Link } from "@/i18n/navigation";
 import { buildPageMetadata, localizedPath } from "@/lib/metadata";
 
@@ -87,13 +88,10 @@ export default async function AboutPage({ params }: AboutPageProps) {
             <h2 className="max-w-3xl text-4xl font-semibold leading-[1.02] tracking-[-0.06em] text-fg sm:text-5xl">
               {t("ctaTitle")}
             </h2>
-            <Link
-              href="/contact"
-              className="inline-flex w-fit items-center gap-3 bg-fg px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-bg hover:opacity-80"
-            >
+            <BevelButton href="/contact" className="w-fit">
               {tCommon("contactUs")}
               <span aria-hidden="true">→</span>
-            </Link>
+            </BevelButton>
           </div>
         </section>
         <Footer />

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { BevelButton } from "@/components/bevel-button";
 import { Link } from "@/i18n/navigation";
 
 type NavProps = {
@@ -48,7 +49,6 @@ export function Nav({ variant = "dark" }: NavProps) {
     ? "bg-white text-black shadow-2xl shadow-black/20 ring-1 ring-black/10"
     : "bg-black text-white shadow-2xl shadow-black/20 ring-1 ring-white/10";
   const logoClass = light ? "h-8 w-auto" : "h-8 w-auto invert";
-  const ctaUnderlineClass = light ? "bg-black" : "bg-white";
   const menuLineClass = light ? "bg-black" : "bg-white";
 
   useEffect(() => {
@@ -84,13 +84,15 @@ export function Nav({ variant = "dark" }: NavProps) {
           </Link>
 
           <div className="flex items-center gap-4 sm:gap-5">
-            <Link href="/contact" onClick={() => setOpen(false)} className="group relative py-2 text-xs uppercase tracking-[0.16em]">
+            <BevelButton
+              href="/contact"
+              variant={light ? "primary" : "inverse-primary"}
+              size="sm"
+              className="inline-flex"
+              onClick={() => setOpen(false)}
+            >
               {t("getStarted")}
-              <span
-                aria-hidden="true"
-                className={`absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100 ${ctaUnderlineClass}`}
-              />
-            </Link>
+            </BevelButton>
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}

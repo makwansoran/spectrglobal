@@ -3,6 +3,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
 import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
+import { BevelButton } from "@/components/bevel-button";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { getDocPagesBySection, pickDocField } from "@/lib/docs";
@@ -141,13 +142,10 @@ export default async function DocumentationPage({ params }: DocumentationPagePro
             </h2>
             <div className="max-w-xl lg:text-right">
               <p className="text-sm leading-7 text-muted">{t("needDocumentText")}</p>
-              <Link
-                href="/contact"
-                className="mt-8 inline-flex items-center gap-3 bg-fg px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-bg hover:opacity-80"
-              >
+              <BevelButton href="/contact" className="mt-8">
                 {t("requestDocumentation")}
                 <span aria-hidden="true">→</span>
-              </Link>
+              </BevelButton>
             </div>
           </div>
         </section>

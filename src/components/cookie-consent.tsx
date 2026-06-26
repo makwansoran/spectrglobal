@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { BevelButton } from "@/components/bevel-button";
 import { Link } from "@/i18n/navigation";
 import { useEffect, useState } from "react";
 
@@ -41,20 +42,12 @@ export function CookieConsent() {
           </p>
         </div>
         <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
-          <button
-            type="button"
-            onClick={() => saveConsent("essential")}
-            className="inline-flex justify-center border border-border px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-fg transition-colors hover:border-fg"
-          >
+          <BevelButton type="button" variant="secondary" className="justify-center" onClick={() => saveConsent("essential")}>
             {t("essential")}
-          </button>
-          <button
-            type="button"
-            onClick={() => saveConsent("accepted")}
-            className="inline-flex justify-center bg-fg px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-bg transition-opacity hover:opacity-80"
-          >
+          </BevelButton>
+          <BevelButton type="button" className="justify-center" onClick={() => saveConsent("accepted")}>
             {t("accept")}
-          </button>
+          </BevelButton>
         </div>
       </section>
     </div>

@@ -4,6 +4,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
 import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
+import { BevelButton } from "@/components/bevel-button";
 import { Link } from "@/i18n/navigation";
 import { pickProductField, products } from "@/lib/objects";
 import type { Locale } from "@/i18n/routing";
@@ -66,13 +67,10 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
                 </div>
                 <div className="flex flex-col gap-6 p-7 sm:p-8">
                   <p className="text-sm leading-7 text-muted">{pickProductField(product.tagline, typedLocale)}</p>
-                  <Link
-                    href={`/products/${product.slug}`}
-                    className="inline-flex w-fit items-center gap-3 bg-fg px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-bg hover:opacity-80"
-                  >
+                  <BevelButton href={`/products/${product.slug}`} className="w-fit">
                     {t("exploreProduct", { product: product.name })}
                     <span aria-hidden="true">→</span>
-                  </Link>
+                  </BevelButton>
                 </div>
               </article>
             ))}
@@ -84,13 +82,10 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
             <h2 className="max-w-3xl text-4xl font-semibold leading-[1.02] tracking-[-0.06em] text-fg sm:text-6xl">
               {t("heroDescription")}
             </h2>
-            <Link
-              href="/contact"
-              className="inline-flex w-fit items-center gap-3 bg-fg px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-bg hover:opacity-80"
-            >
+            <BevelButton href="/contact" className="w-fit">
               {tCommon("requestAccess")}
               <span aria-hidden="true">→</span>
-            </Link>
+            </BevelButton>
           </div>
         </section>
         <Footer />

@@ -4,6 +4,7 @@ import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
+import { BevelButton } from "@/components/bevel-button";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { cookieSections, pickLegalField, privacySections } from "@/lib/legal";
@@ -66,13 +67,10 @@ export default async function PrivacyPage({ params }: PrivacyPageProps) {
                   </ul>
                 ) : null}
                 {section.hasContactLink ? (
-                  <Link
-                    href="/contact"
-                    className="mt-7 inline-flex w-fit items-center gap-3 bg-fg px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-bg hover:opacity-80"
-                  >
+                  <BevelButton href="/contact" className="mt-7 w-fit">
                     {t("contactCta")}
                     <span aria-hidden="true">→</span>
-                  </Link>
+                  </BevelButton>
                 ) : null}
               </article>
             ))}

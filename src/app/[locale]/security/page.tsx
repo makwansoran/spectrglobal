@@ -4,6 +4,8 @@ import { Footer } from "@/components/footer";
 import { HeroBrandLockup } from "@/components/hero-brand-lockup";
 import { Nav } from "@/components/nav";
 import { SecurityPrinciplesList } from "@/components/security-principles-list";
+import { BevelButton } from "@/components/bevel-button";
+import { Link } from "@/i18n/navigation";
 import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
 import type { Locale } from "@/i18n/routing";
 import { buildPageMetadata, localizedPath } from "@/lib/metadata";
@@ -84,15 +86,15 @@ export default async function SecurityPage({ params }: SecurityPageProps) {
               <h3 className="text-3xl font-semibold tracking-[-0.05em] text-white">{t("legalCompliance")}</h3>
               <p className="mt-6 max-w-3xl text-sm leading-7 text-white/68 sm:text-base sm:leading-8">{t("legalText1")}</p>
               <p className="mt-6 max-w-3xl text-base leading-8 text-white/68 sm:text-lg">{t("legalText2")}</p>
-              <a
+              <BevelButton
                 href="https://lovdata.no/lov/2018-06-01-24/%C2%A79-3"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-8 inline-flex w-fit items-center gap-3 border border-white/20 px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:border-white"
+                external
+                variant="inverse-secondary"
+                className="mt-8 w-fit"
               >
                 {t("lovdataCta")}
                 <span aria-hidden="true">→</span>
-              </a>
+              </BevelButton>
             </div>
           </div>
         </section>

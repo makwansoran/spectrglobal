@@ -3,6 +3,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
 import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
+import { BevelButton } from "@/components/bevel-button";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { jobListings, pickJobField } from "@/lib/jobs";
@@ -92,13 +93,10 @@ export default async function CareersPage({ params }: CareersPageProps) {
                         ))}
                       </ul>
                     </div>
-                    <Link
-                      href={`/contact?role=${job.slug}`}
-                      className="inline-flex w-fit shrink-0 items-center gap-3 bg-fg px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-bg hover:opacity-80"
-                    >
+                    <BevelButton href={`/contact?role=${job.slug}`} className="w-fit shrink-0">
                       {t("applyCta")}
                       <span aria-hidden="true">→</span>
-                    </Link>
+                    </BevelButton>
                   </div>
                 </article>
               ))}
@@ -111,13 +109,10 @@ export default async function CareersPage({ params }: CareersPageProps) {
             <h2 className="max-w-3xl text-4xl font-semibold leading-[1.02] tracking-[-0.06em] text-fg sm:text-6xl">
               {t("ctaTitle")}
             </h2>
-            <Link
-              href="/contact"
-              className="inline-flex w-fit items-center gap-3 bg-fg px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-bg hover:opacity-80"
-            >
+            <BevelButton href="/contact" className="w-fit">
               {tCommon("contactSpectr")}
               <span aria-hidden="true">→</span>
-            </Link>
+            </BevelButton>
           </div>
         </section>
         <Footer />

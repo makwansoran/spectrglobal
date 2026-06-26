@@ -69,6 +69,111 @@ textarea {
   font-family: var(--font-syne), var(--font-sans);
 }
 
+.bevel-button {
+  position: relative;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 11px;
+  line-height: 1;
+}
+
+.bevel-button:not(:focus-visible):has([data-bevel]) {
+  margin-inline: 9px;
+  border-radius: 0;
+  padding-inline: 2px;
+}
+
+.bevel-button-mark {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  pointer-events: none;
+}
+
+.bevel-button-mark-start {
+  left: 0;
+  transform: translateX(calc(-100% + 1px));
+}
+
+.bevel-button-mark-end {
+  right: 0;
+  transform: translateX(calc(100% - 1px));
+}
+
+.bevel-button:focus-visible .bevel-button-mark {
+  display: none;
+}
+
+.bevel-button-primary {
+  background-color: var(--fg);
+  color: var(--bg);
+}
+
+.bevel-button-primary .bevel-button-mark {
+  color: var(--fg);
+}
+
+.bevel-button-primary:hover {
+  opacity: 0.8;
+}
+
+.bevel-button-primary:disabled,
+.bevel-button-primary[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.bevel-button-secondary {
+  background-color: var(--bg);
+  color: var(--fg);
+  border-color: var(--border);
+}
+
+.bevel-button-secondary .bevel-button-mark {
+  color: var(--bg);
+}
+
+.bevel-button-secondary:hover {
+  border-color: var(--fg);
+}
+
+.bevel-button-inverse-primary {
+  background-color: #ffffff;
+  color: #0b0c0d;
+}
+
+.bevel-button-inverse-primary .bevel-button-mark {
+  color: #ffffff;
+}
+
+.bevel-button-inverse-primary:hover {
+  opacity: 0.8;
+}
+
+.bevel-button-inverse-secondary {
+  background-color: #050505;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.bevel-button-inverse-secondary .bevel-button-mark {
+  color: #050505;
+}
+
+.bevel-button-inverse-secondary:hover {
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.bevel-button-lg:not(:focus-visible):has([data-bevel]) {
+  padding-inline: 6px;
+}
+
+.bevel-button-form:not(:focus-visible):has([data-bevel]) {
+  padding-inline: 6px;
+}
+
 .gradient-cta {
   background: linear-gradient(120deg, #dc2626, #f97316, #7c3aed, #ec4899, #dc2626);
   background-size: 260% 260%;

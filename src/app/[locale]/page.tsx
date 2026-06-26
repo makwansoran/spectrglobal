@@ -8,6 +8,7 @@ import { LandingChapter } from "@/components/landing-chapter";
 import { Nav } from "@/components/nav";
 import { Reveal } from "@/components/reveal";
 import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
+import { BevelButton } from "@/components/bevel-button";
 import { Link } from "@/i18n/navigation";
 
 type HomePageProps = {
@@ -165,13 +166,10 @@ export default async function Home({ params }: HomePageProps) {
               {t("ctaTitle")}
             </Reveal>
             <Reveal delay={180}>
-              <Link
-                href="/contact"
-                className="mt-12 inline-flex w-fit items-center gap-3 bg-fg px-6 py-4 text-xs font-semibold uppercase tracking-[0.16em] text-bg hover:opacity-80"
-              >
+              <BevelButton href="/contact" size="lg" className="mt-12 w-fit">
                 {tCommon("contactSpectr")}
                 <span aria-hidden="true">→</span>
-              </Link>
+              </BevelButton>
             </Reveal>
           </div>
         </section>

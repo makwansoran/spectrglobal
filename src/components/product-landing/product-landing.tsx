@@ -9,7 +9,7 @@ import {
   AnimatePresence,
 } from "framer-motion";
 import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
-import { Link } from "@/i18n/navigation";
+import { BevelButton } from "@/components/bevel-button";
 import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
 import { HeroBrandLockup } from "@/components/hero-brand-lockup";
 import { scrollAllRootsToTop, scheduleScrollResets } from "@/components/scroll-to-top";
@@ -172,19 +172,21 @@ function HeroSection({ content }: ProductLandingProps) {
             </>
           )}
           <div className="mt-8 flex flex-wrap gap-3 sm:mt-10">
-          <Link
+          <BevelButton
             href="/contact"
-            className="inline-flex items-center gap-3 bg-white px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.18em] text-black transition-opacity hover:opacity-80"
+            variant="inverse-primary"
+            className="tracking-[0.18em]"
           >
             {content.hero.ctaPrimary}
             <span aria-hidden="true">→</span>
-          </Link>
-          <a
+          </BevelButton>
+          <BevelButton
             href="#platform"
-            className="inline-flex items-center gap-3 border border-white/25 px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.18em] text-white transition-colors hover:border-white/60"
+            variant="inverse-secondary"
+            className="tracking-[0.18em]"
           >
             {content.hero.ctaSecondary}
-          </a>
+          </BevelButton>
         </div>
         </div>
       </motion.div>
@@ -598,19 +600,13 @@ function CtaSection({ content }: ProductLandingProps) {
           {content.cta.headline}
         </h2>
         <div className="mt-12 flex flex-wrap justify-center gap-4">
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-3 bg-white px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.18em] text-black transition-opacity hover:opacity-80"
-          >
+          <BevelButton href="/contact" variant="inverse-primary" className="tracking-[0.18em]">
             {content.cta.primary}
             <span aria-hidden="true">→</span>
-          </Link>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-3 border border-white/25 px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.18em] text-white transition-colors hover:border-white/60"
-          >
+          </BevelButton>
+          <BevelButton href="/contact" variant="inverse-secondary" className="tracking-[0.18em]">
             {content.cta.secondary}
-          </Link>
+          </BevelButton>
         </div>
       </FadeIn>
     </section>

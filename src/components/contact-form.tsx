@@ -3,6 +3,7 @@
 import { useActionState, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { BevelButton } from "@/components/bevel-button";
 import { submitContactForm, type ContactFormState } from "@/app/actions/contact";
 
 const initialState: ContactFormState = { ok: false };
@@ -77,13 +78,9 @@ export function ContactForm() {
         </p>
       ) : null}
 
-      <button
-        type="submit"
-        disabled={pending}
-        className="bg-fg px-8 py-4 text-sm font-medium text-bg hover:opacity-80 disabled:opacity-50"
-      >
+      <BevelButton type="submit" size="form" disabled={pending}>
         {pending ? t("submitting") : t("submit")}
-      </button>
+      </BevelButton>
     </form>
   );
 }
