@@ -7,7 +7,6 @@ import { Geist, Geist_Mono, Syne } from "next/font/google";
 import { CookieConsent } from "@/components/cookie-consent";
 import { OrganizationJsonLd } from "@/components/json-ld";
 import { ScrollToTop } from "@/components/scroll-to-top";
-import { SkipLink } from "@/components/skip-link";
 import { defaultOgImage, localeAlternates } from "@/lib/metadata";
 import { routing, type Locale } from "@/i18n/routing";
 import "../globals.css";
@@ -78,7 +77,6 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
     <html lang={locale} className={`${geist.variable} ${geistMono.variable} ${syne.variable} h-full`}>
       <body className="flex min-h-full flex-col bg-bg text-fg">
         <OrganizationJsonLd />
-        <SkipLink />
         <NextIntlClientProvider messages={messages}>
           <ScrollToTop />
           {children}
