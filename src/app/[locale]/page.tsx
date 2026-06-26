@@ -80,7 +80,7 @@ export default async function Home({ params }: HomePageProps) {
               {t("missionStatement")}
             </ScrollRevealHeading>
             <Reveal delay={260}>
-              <BevelButton href="/about" variant="inverse-secondary" className="mt-12 tracking-[0.18em]">
+              <BevelButton href="/about" variant="inverse-primary" className="mt-12 tracking-[0.18em]">
                 {tCommon("learnMore")}
                 <span aria-hidden="true">→</span>
               </BevelButton>
@@ -140,7 +140,7 @@ export default async function Home({ params }: HomePageProps) {
                 {t("norwayDescription")}
               </Reveal>
               <Reveal delay={320}>
-                <BevelButton href="/security" variant="inverse-secondary" className="mt-9 tracking-[0.18em]">
+                <BevelButton href="/security" variant="inverse-primary" className="mt-9 tracking-[0.18em]">
                   {tCommon("learnMore")}
                   <span aria-hidden="true">→</span>
                 </BevelButton>

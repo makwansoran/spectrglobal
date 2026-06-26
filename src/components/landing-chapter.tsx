@@ -102,7 +102,7 @@ export function LandingChapter({
           >
             <BevelButton
               href={href}
-              variant="inverse-secondary"
+              variant="inverse-primary"
               className="mt-9 tracking-[0.18em]"
               onClick={() => {
                 scrollAllRootsToTop();
