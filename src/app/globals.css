@@ -71,11 +71,13 @@ textarea {
 
 .bevel-button {
   position: relative;
+  z-index: 0;
   white-space: nowrap;
   border: 1px solid transparent;
   border-radius: 8px;
   padding: 11px;
   line-height: 1;
+  overflow: visible;
 }
 
 .bevel-button:not(:focus-visible):has([data-bevel]) {
@@ -107,12 +109,13 @@ textarea {
 }
 
 .bevel-button-primary {
-  background-color: var(--fg);
+  --bevel-button-fill: var(--fg);
+  background-color: var(--bevel-button-fill);
   color: var(--bg);
 }
 
 .bevel-button-primary .bevel-button-mark {
-  color: var(--fg);
+  color: var(--bevel-button-fill);
 }
 
 .bevel-button-primary:hover {
@@ -126,26 +129,30 @@ textarea {
 }
 
 .bevel-button-secondary {
-  background-color: var(--bg);
+  --bevel-button-fill: var(--surface);
+  background-color: var(--bevel-button-fill);
   color: var(--fg);
-  border-color: var(--border);
+  border-color: transparent;
 }
 
 .bevel-button-secondary .bevel-button-mark {
-  color: var(--bg);
+  color: var(--bevel-button-fill);
 }
 
-.bevel-button-secondary:hover {
-  border-color: var(--fg);
+@media (hover: hover) {
+  .bevel-button-secondary:hover {
+    --bevel-button-fill: #e8e9eb;
+  }
 }
 
 .bevel-button-inverse-primary {
-  background-color: #ffffff;
+  --bevel-button-fill: #ffffff;
+  background-color: var(--bevel-button-fill);
   color: #0b0c0d;
 }
 
 .bevel-button-inverse-primary .bevel-button-mark {
-  color: #ffffff;
+  color: var(--bevel-button-fill);
 }
 
 .bevel-button-inverse-primary:hover {
@@ -153,17 +160,20 @@ textarea {
 }
 
 .bevel-button-inverse-secondary {
-  background-color: #050505;
+  --bevel-button-fill: rgba(255, 255, 255, 0.12);
+  background-color: var(--bevel-button-fill);
   color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.25);
+  border-color: transparent;
 }
 
 .bevel-button-inverse-secondary .bevel-button-mark {
-  color: #050505;
+  color: var(--bevel-button-fill);
 }
 
-.bevel-button-inverse-secondary:hover {
-  border-color: rgba(255, 255, 255, 0.6);
+@media (hover: hover) {
+  .bevel-button-inverse-secondary:hover {
+    --bevel-button-fill: rgba(255, 255, 255, 0.2);
+  }
 }
 
 .bevel-button-lg:not(:focus-visible):has([data-bevel]) {

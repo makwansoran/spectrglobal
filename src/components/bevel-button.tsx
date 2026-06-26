@@ -69,7 +69,7 @@ function bevelButtonClassName({
     "bevel-button group",
     `bevel-button-${variant}`,
     sizeClass,
-    "inline-flex items-center gap-3 font-semibold",
+    "inline-flex items-center gap-3 font-semibold [&>:not(.bevel-button-mark)]:relative [&>:not(.bevel-button-mark)]:z-[1]",
     className,
   ]
     .filter(Boolean)
