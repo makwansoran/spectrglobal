@@ -4,6 +4,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
 import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
+import { BevelButton, bevelButtonClassName } from "@/components/bevel-button";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { getNewsroomCardField, newsroomCards, newsroomHref } from "@/lib/newsroom";
@@ -70,11 +71,15 @@ export default async function NewsroomPage({ params }: NewsroomPageProps) {
                     </span>
                   </h2>
                   <span className="mt-10 block w-full">
-                    <span className="inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-fg">
+                    <span
+                      className={bevelButtonClassName({
+                        variant: "primary",
+                        className: "pointer-events-none",
+                      })}
+                    >
                       {getNewsroomCardField(card.action, typedLocale)}
                       <span aria-hidden="true">→</span>
                     </span>
-                    <span className="mt-4 block h-px w-full origin-left bg-fg transition-transform duration-500 ease-out group-hover:scale-x-0" />
                   </span>
                 </div>
               </Link>
@@ -87,13 +92,10 @@ export default async function NewsroomPage({ params }: NewsroomPageProps) {
             <h2 className="max-w-3xl text-4xl font-semibold leading-[1.02] tracking-[-0.06em] text-fg sm:text-6xl">
               {t("mediaCta")}
             </h2>
-            <Link href="/contact" className="group w-full text-fg lg:max-w-sm lg:justify-self-end">
-              <span className="inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.16em]">
-                {t("contact")}
-                <span aria-hidden="true">→</span>
-              </span>
-              <span className="mt-4 block h-px w-full origin-left bg-fg transition-transform duration-500 ease-out group-hover:scale-x-0" />
-            </Link>
+            <BevelButton href="/contact" className="w-fit lg:max-w-sm lg:justify-self-end">
+              {t("contact")}
+              <span aria-hidden="true">→</span>
+            </BevelButton>
           </div>
         </section>
         <div className="bg-bg text-fg">

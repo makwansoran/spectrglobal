@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { Link } from "@/i18n/navigation";
+import { BevelButton } from "@/components/bevel-button";
 import { scrollAllRootsToTop } from "@/components/scroll-to-top";
 
 type LandingChapterProps = {
@@ -100,18 +100,18 @@ export function LandingChapter({
             className={blockClass}
             style={{ "--reveal-delay": "320ms" } as CSSProperties}
           >
-            <Link
+            <BevelButton
               href={href}
-              scroll
+              variant="inverse-secondary"
+              className="mt-9 tracking-[0.18em]"
               onClick={() => {
                 scrollAllRootsToTop();
                 window.setTimeout(scrollAllRootsToTop, 0);
               }}
-              className="mt-9 inline-flex items-center gap-3 border-b border-white/40 pb-1 text-xs font-semibold uppercase tracking-[0.18em] text-white transition-colors hover:border-white"
             >
               {cta}
               <span aria-hidden="true">→</span>
-            </Link>
+            </BevelButton>
           </div>
         </div>
       </div>

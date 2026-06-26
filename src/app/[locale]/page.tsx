@@ -9,7 +9,6 @@ import { Nav } from "@/components/nav";
 import { Reveal } from "@/components/reveal";
 import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
 import { BevelButton } from "@/components/bevel-button";
-import { Link } from "@/i18n/navigation";
 
 type HomePageProps = {
   params: Promise<{ locale: string }>;
@@ -81,13 +80,10 @@ export default async function Home({ params }: HomePageProps) {
               {t("missionStatement")}
             </ScrollRevealHeading>
             <Reveal delay={260}>
-              <Link
-                href="/about"
-                className="mt-12 inline-flex items-center gap-3 border-b border-white/40 pb-1 text-xs font-semibold uppercase tracking-[0.18em] text-white transition-colors hover:border-white"
-              >
+              <BevelButton href="/about" variant="inverse-secondary" className="mt-12 tracking-[0.18em]">
                 {tCommon("learnMore")}
                 <span aria-hidden="true">→</span>
-              </Link>
+              </BevelButton>
             </Reveal>
           </div>
         </section>
@@ -144,13 +140,10 @@ export default async function Home({ params }: HomePageProps) {
                 {t("norwayDescription")}
               </Reveal>
               <Reveal delay={320}>
-                <Link
-                  href="/security"
-                  className="mt-9 inline-flex items-center gap-3 border-b border-white/40 pb-1 text-xs font-semibold uppercase tracking-[0.18em] text-white transition-colors hover:border-white"
-                >
+                <BevelButton href="/security" variant="inverse-secondary" className="mt-9 tracking-[0.18em]">
                   {tCommon("learnMore")}
                   <span aria-hidden="true">→</span>
-                </Link>
+                </BevelButton>
               </Reveal>
             </div>
           </div>

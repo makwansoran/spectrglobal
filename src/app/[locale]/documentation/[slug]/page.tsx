@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
 import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
-import { Link } from "@/i18n/navigation";
+import { BevelButton } from "@/components/bevel-button";
 import { routing, type Locale } from "@/i18n/routing";
 import { docPages, getDocPage, pickDocField } from "@/lib/docs";
 
@@ -50,12 +50,9 @@ export default async function DocDetailPage({ params }: DocDetailPageProps) {
       <main className="brand-font flex-1 bg-bg text-fg">
         <section className="px-5 pb-16 pt-36 sm:px-8 lg:pb-24 lg:pt-44">
           <div className="mx-auto max-w-7xl">
-            <Link
-              href="/documentation"
-              className="text-xs font-semibold uppercase tracking-[0.16em] text-muted hover:text-fg"
-            >
+            <BevelButton href="/documentation" variant="secondary" className="w-fit">
               ← {t("title")}
-            </Link>
+            </BevelButton>
             <ScrollRevealHeading
               as="h1"
               revealOnMount

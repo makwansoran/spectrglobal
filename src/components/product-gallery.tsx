@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { BevelButton, bevelButtonClassName } from "@/components/bevel-button";
 
 type ProductGalleryImage = {
   src: string;
@@ -65,9 +66,10 @@ export function ProductGallery({
                     onClick={() => setActiveIndex(index)}
                     aria-label={`Show ${productName} image ${index + 1}`}
                     aria-current={selected ? "true" : undefined}
-                    className={`relative h-24 overflow-hidden border bg-black transition-opacity sm:h-28 ${
-                      selected ? "border-white opacity-100" : "border-white/15 opacity-55 hover:opacity-100"
-                    }`}
+                    className={`${bevelButtonClassName({
+                      variant: "inverse-secondary",
+                      className: "bevel-button flush relative h-24 w-full overflow-hidden sm:h-28",
+                    })} ${selected ? "opacity-100" : "opacity-55 hover:opacity-100"}`}
                   >
                     <Image src={image.src} alt="" fill className="object-cover" sizes="160px" />
                   </button>
@@ -77,22 +79,24 @@ export function ProductGallery({
           </div>
 
           <div className="mt-4 flex items-center justify-end gap-3">
-            <button
+            <BevelButton
               type="button"
+              size="icon"
+              variant="inverse-secondary"
               onClick={goToPrevious}
               aria-label={`Show previous ${productName} image`}
-              className="grid h-11 w-11 place-items-center border border-white/15 text-lg text-white hover:border-white"
             >
               &larr;
-            </button>
-            <button
+            </BevelButton>
+            <BevelButton
               type="button"
+              size="icon"
+              variant="inverse-secondary"
               onClick={goToNext}
               aria-label={`Show next ${productName} image`}
-              className="grid h-11 w-11 place-items-center border border-white/15 text-lg text-white hover:border-white"
             >
               &rarr;
-            </button>
+            </BevelButton>
           </div>
         </>
       ) : null}

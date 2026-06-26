@@ -3,9 +3,11 @@ import { Link } from "@/i18n/navigation";
 
 type BevelButtonVariant = "primary" | "secondary" | "inverse-primary" | "inverse-secondary";
 
+type BevelButtonSize = "sm" | "lg" | "form" | "icon";
+
 type BevelButtonBaseProps = {
   variant?: BevelButtonVariant;
-  size?: "sm" | "lg" | "form";
+  size?: BevelButtonSize;
   className?: string;
   children: ReactNode;
 };
@@ -24,7 +26,7 @@ type BevelButtonAsButton = BevelButtonBaseProps &
 
 export type BevelButtonProps = BevelButtonAsLink | BevelButtonAsButton;
 
-function bevelButtonClassName({
+export function bevelButtonClassName({
   variant = "primary",
   size = "sm",
   className = "",
@@ -34,7 +36,9 @@ function bevelButtonClassName({
       ? "bevel-button-lg"
       : size === "form"
         ? "bevel-button-form"
-        : "bevel-button-sm";
+        : size === "icon"
+          ? "bevel-button-icon"
+          : "bevel-button-sm";
 
   return ["bevel-button", `bevel-button-${variant}`, sizeClass, className].filter(Boolean).join(" ");
 }

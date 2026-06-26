@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
 import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
+import { BevelButton, bevelButtonClassName } from "@/components/bevel-button";
 import { Link } from "@/i18n/navigation";
 import { routing, type Locale } from "@/i18n/routing";
 import {
@@ -58,12 +59,9 @@ export default async function NewsroomCategoryPage({ params }: NewsroomCategoryP
       <main className="brand-font flex-1 bg-white text-fg">
         <section className="px-5 pb-20 pt-36 sm:px-8 lg:pb-28 lg:pt-44">
           <div className="mx-auto max-w-7xl">
-            <Link
-              href="/newsroom"
-              className="text-xs font-semibold uppercase tracking-[0.16em] text-muted hover:text-fg"
-            >
+            <BevelButton href="/newsroom" variant="secondary" className="w-fit">
               ← {t("title")}
-            </Link>
+            </BevelButton>
             <ScrollRevealHeading
               as="h1"
               revealOnMount
@@ -103,13 +101,18 @@ export default async function NewsroomCategoryPage({ params }: NewsroomCategoryP
                         <p className="mt-3 max-w-2xl text-sm leading-7 text-muted sm:text-base">
                           {getArticleExcerpt(article, typedLocale)}
                         </p>
-                        <span className="mt-4 inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-fg">
+                        <span
+                          className={bevelButtonClassName({
+                            variant: "primary",
+                            className: "mt-4 pointer-events-none",
+                          })}
+                        >
                           {t("readArticle")}
                           <span aria-hidden="true">→</span>
                         </span>
                       </div>
                     </div>
-                    <span className="mt-6 block h-px w-full origin-left bg-fg transition-transform duration-500 ease-out group-hover:scale-x-0" />
+                    <span className="mt-6 block h-px w-full bg-border" />
                   </article>
                 </Link>
               ))

@@ -3,7 +3,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
 import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
-import { BevelButton } from "@/components/bevel-button";
+import { BevelButton, bevelButtonClassName } from "@/components/bevel-button";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { getDocPagesBySection, pickDocField } from "@/lib/docs";
@@ -64,9 +64,14 @@ export default async function DocumentationPage({ params }: DocumentationPagePro
                   </h2>
                   <p className="mt-5 text-sm leading-7 text-muted">{t(`quickStart.${key}.description`)}</p>
                 </div>
-                <span className="mt-10 inline-flex items-center gap-3 text-sm font-semibold text-fg">
+                <span
+                  className={bevelButtonClassName({
+                    variant: "primary",
+                    className: "mt-10 pointer-events-none",
+                  })}
+                >
                   {t(`quickStart.${key}.action`)}
-                  <span className="transition-transform duration-300 group-hover:translate-x-2">→</span>
+                  <span aria-hidden="true">→</span>
                 </span>
               </Link>
             ))}
@@ -102,7 +107,10 @@ export default async function DocumentationPage({ params }: DocumentationPagePro
                           <li key={doc.slug}>
                             <Link
                               href={`/documentation/${doc.slug}`}
-                              className="block bg-bg px-4 py-4 transition-opacity hover:opacity-80"
+                              className={bevelButtonClassName({
+                                variant: "secondary",
+                                className: "w-full justify-start",
+                              })}
                             >
                               {pickDocField(doc.title, typedLocale)}
                             </Link>

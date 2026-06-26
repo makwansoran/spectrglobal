@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
 import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
-import { Link } from "@/i18n/navigation";
+import { BevelButton } from "@/components/bevel-button";
 import { routing, type Locale } from "@/i18n/routing";
 import {
   articles,
@@ -62,12 +62,9 @@ export default async function ArticleDetailPage({ params }: ArticleDetailPagePro
       <main className="brand-font flex-1 bg-white text-fg">
         <section className="px-5 pb-16 pt-36 sm:px-8 lg:pb-24 lg:pt-44">
           <div className="mx-auto max-w-7xl">
-            <Link
-              href={`/newsroom/${category}`}
-              className="text-xs font-semibold uppercase tracking-[0.16em] text-muted hover:text-fg"
-            >
+            <BevelButton href={`/newsroom/${category}`} variant="secondary" className="w-fit">
               ← {tCommon("backToCategory", { category: getNewsroomCardField(card.title, typedLocale) })}
-            </Link>
+            </BevelButton>
             <p className="mt-8 font-mono text-xs uppercase tracking-[0.18em] text-muted">{article.date}</p>
             <ScrollRevealHeading
               as="h1"
