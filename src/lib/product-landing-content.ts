@@ -24,6 +24,7 @@ export type ProductLandingContent = {
   technology: { headline: string; items: LandingTech[] };
   stats: { items: LandingStat[] };
   cta: { headline: string; primary: string; secondary: string };
+  specSheet?: { label: string; href: string };
 };
 
 type LocalizedLanding = {
@@ -41,6 +42,7 @@ type LocalizedLanding = {
   technology: Localized<{ headline: string; items: LandingTech[] }>;
   stats: Localized<{ items: LandingStat[] }>;
   cta: Localized<{ headline: string; primary: string; secondary: string }>;
+  specSheet?: Localized<{ label: string; href: string }>;
 };
 
 const reconLanding: LocalizedLanding = {
@@ -302,6 +304,274 @@ const reconLanding: LocalizedLanding = {
       primary: "Be om tilgang",
       secondary: "Kontakt Spectr",
     },
+  },
+};
+
+const interceptorLanding: LocalizedLanding = {
+  slug: "interceptor",
+  name: "INTERCEPTOR",
+  heroImage: "/interceptor-hero-hq.jpg",
+  hero: {
+    en: {
+      headline:
+        "Affordable autonomous intercept — Eclipse is faster than the threat, built to defeat saturation attacks at sovereign scale.",
+      subheadline: "",
+      ctaPrimary: "Request Access",
+      ctaSecondary: "Explore Platform",
+    },
+    no: {
+      headline:
+        "Rimelig autonom intercept — Eclipse er raskere enn trusselen, bygget for å beseire metningsangrep i suveren skala.",
+      subheadline: "",
+      ctaPrimary: "Be om tilgang",
+      ctaSecondary: "Utforsk plattformen",
+    },
+  },
+  problem: {
+    en: {
+      headline: "Cheap attack drones scale faster than traditional air defense can respond.",
+      cards: [
+        { title: "Threat Volume", text: "Shahed-class saturation overwhelms expensive interceptors." },
+        { title: "Cost Asymmetry", text: "One missile per drone is not economically sustainable." },
+        { title: "Response Time", text: "Manual engagement loops lag behind autonomous threats." },
+      ],
+    },
+    no: {
+      headline: "Billige angrepsdroner skalerer raskere enn tradisjonelt luftvern kan svare.",
+      cards: [
+        { title: "Trusselvolum", text: "Shahed-klasse metning overvelder kostbare interceptorer." },
+        { title: "Kostnadsasymmetri", text: "Én missil per drone er ikke økonomisk bærekraftig." },
+        { title: "Responstid", text: "Manuelle engasjementsløkker henger etter autonome trusler." },
+      ],
+    },
+  },
+  platform: {
+    en: {
+      headline: "The Eclipse interceptor platform",
+      nodes: [
+        {
+          label: "Threat Detection",
+          description:
+            "RECON and Centurion fuse sensor feeds to identify incoming low-cost attack drones before they reach critical infrastructure.",
+          image: "/recon-isr-delivery.png",
+        },
+        {
+          label: "Eclipse Airframe",
+          description:
+            "Compact quadcopter interceptor — small, light, and fast. Designed for rapid launch and pursuit in urban and infrastructure defense.",
+          image: "/interceptor-hero.png",
+        },
+        {
+          label: "Autonomous Pursuit",
+          description:
+            "Onboard autonomy closes the intercept loop without operator micromanagement — faster than the threat, mission-driven from Centurion.",
+          image: "/recon-autonomous-flight.png",
+        },
+        {
+          label: "Edge Compute",
+          description:
+            "Raspberry Pi Zero 2 W and Pi Camera Module 3 provide onboard tracking and decision support at the edge of the engagement.",
+          image: "/recon-sensors.png",
+        },
+        {
+          label: "Scalable Defense",
+          description:
+            "Deploy many Eclipse units against saturation attacks — affordable interceptors that protect cities and critical sites across Norway.",
+          image: "/operations-hq.jpg",
+        },
+      ],
+    },
+    no: {
+      headline: "Eclipse-interceptorplattformen",
+      nodes: [
+        {
+          label: "Trusseldeteksjon",
+          description:
+            "RECON og Centurion fusjonerer sensorfeeds for å identifisere innkommende lavkostnads angrepsdroner før de når kritisk infrastruktur.",
+          image: "/recon-isr-delivery.png",
+        },
+        {
+          label: "Eclipse-luftfartøy",
+          description:
+            "Kompakt kvadrokopter-interceptor — liten, lett og rask. Designet for rask utskyting og forfølgelse i urban og infrastrukturforsvar.",
+          image: "/interceptor-hero.png",
+        },
+        {
+          label: "Autonom forfølgelse",
+          description:
+            "Ombord-autonomi lukker intercept-løkken uten operatørmikrostyring — raskere enn trusselen, oppdragsdrevet fra Centurion.",
+          image: "/recon-autonomous-flight.png",
+        },
+        {
+          label: "Edge-beregning",
+          description:
+            "Raspberry Pi Zero 2 W og Pi Camera Module 3 gir ombord-sporing og beslutningsstøtte ved kanten av engasjementet.",
+          image: "/recon-sensors.png",
+        },
+        {
+          label: "Skalerbart forsvar",
+          description:
+            "Deployer mange Eclipse-enheter mot metningsangrep — rimelige interceptorer som beskytter byer og kritiske steder i Norge.",
+          image: "/operations-hq.jpg",
+        },
+      ],
+    },
+  },
+  workflow: {
+    en: {
+      headline: "From threat detection to kinetic intercept",
+      steps: [
+        { title: "Threat identified", text: "RECON or ground sensors cue Centurion to an incoming attack profile." },
+        { title: "Interceptor staged", text: "Eclipse units armed and cleared for autonomous engagement." },
+        { title: "Autonomous launch", text: "Rapid vertical launch — no runway, minimal footprint." },
+        { title: "Pursuit and intercept", text: "Onboard compute tracks and closes on the threat faster than manual loops." },
+        { title: "Report to command", text: "Outcome and telemetry returned to Centurion for after-action review." },
+      ],
+    },
+    no: {
+      headline: "Fra trusseldeteksjon til kinetisk intercept",
+      steps: [
+        { title: "Trussel identifisert", text: "RECON eller bakkesensorer peker Centurion mot innkommende angrepsprofil." },
+        { title: "Interceptor staged", text: "Eclipse-enheter bevæpnet og klarert for autonomt engasjement." },
+        { title: "Autonom utskyting", text: "Rask vertikal start — ingen rullebane, minimalt fotavtrykk." },
+        { title: "Forfølgelse og intercept", text: "Ombord-beregning sporer og lukker på trusselen raskere enn manuelle løkker." },
+        { title: "Rapport til kommando", text: "Resultat og telemetri returnert til Centurion for etteranalyse." },
+      ],
+    },
+  },
+  commandCenter: {
+    en: {
+      headline: "Intercept command interface",
+      status: "ACTIVE — 4 Eclipse units armed",
+      telemetry: ["RNG 1.2 km", "SPD 94 km/h", "TRK LOCK", "LINK CENTURION"],
+      threats: ["INBOUND DRONE", "SATURATION RISK", "INTERCEPT AUTHORIZED"],
+    },
+    no: {
+      headline: "Intercept-kommandogrensesnitt",
+      status: "AKTIV — 4 Eclipse-enheter bevæpnet",
+      telemetry: ["AVST 1,2 km", "FART 94 km/t", "SPOR LÅST", "LENKE CENTURION"],
+      threats: ["INNKOMMENDE DRONE", "METNINGSRISIKO", "INTERCEPT AUTORISERT"],
+    },
+  },
+  agents: {
+    en: {
+      headline: "Intercept capabilities",
+      items: [
+        { title: "C-UAS Defense", text: "Purpose-built to defeat cheap attack drones and Shahed-class threats." },
+        { title: "Autonomous Engagement", text: "Centurion-driven pursuit without continuous operator input." },
+        { title: "Compact Footprint", text: "Small quadcopter form factor for rapid staging near cities and infrastructure." },
+        { title: "Norwegian Production", text: "Designed and produced in-house in Norway." },
+      ],
+    },
+    no: {
+      headline: "Intercept-kapabiliteter",
+      items: [
+        { title: "C-UAS-forsvar", text: "Bygget for å beseire billige angrepsdroner og Shahed-klasse trusler." },
+        { title: "Autonomt engasjement", text: "Centurion-drevet forfølgelse uten kontinuerlig operatørinput." },
+        { title: "Kompakt fotavtrykk", text: "Liten kvadrokopter-form for rask staging nær byer og infrastruktur." },
+        { title: "Norsk produksjon", text: "Designet og produsert internt i Norge." },
+      ],
+    },
+  },
+  trust: {
+    en: {
+      headline: "Built for sovereign air defense",
+      items: [
+        "Produced in Norway",
+        "Affordable vs. missile interceptors",
+        "Centurion mission integration",
+        "Scalable against saturation attacks",
+        "Human-in-the-loop authorization",
+      ],
+    },
+    no: {
+      headline: "Bygget for suverent luftvern",
+      items: [
+        "Produsert i Norge",
+        "Rimelig vs. missil-interceptorer",
+        "Centurion oppdragsintegrasjon",
+        "Skalerbart mot metningsangrep",
+        "Menneske-i-løkken-autorisasjon",
+      ],
+    },
+  },
+  applications: {
+    en: {
+      headline: "Defense domains",
+      items: [
+        { title: "Critical Infrastructure", image: "/operations-hq.jpg" },
+        { title: "Urban Air Defense", image: "/interceptor-hero-hq.jpg" },
+        { title: "C-UAS Layer", image: "/interceptor-hero.png" },
+        { title: "Border Protection", image: "/recon-mountain.png" },
+        { title: "Integrated with RECON", image: "/recon-hero.png" },
+      ],
+    },
+    no: {
+      headline: "Forsvarsdomener",
+      items: [
+        { title: "Kritisk infrastruktur", image: "/operations-hq.jpg" },
+        { title: "Urban luftvern", image: "/interceptor-hero-hq.jpg" },
+        { title: "C-UAS-lag", image: "/interceptor-hero.png" },
+        { title: "Grensebeskyttelse", image: "/recon-mountain.png" },
+        { title: "Integrert med RECON", image: "/recon-hero.png" },
+      ],
+    },
+  },
+  technology: {
+    en: {
+      headline: "Technology stack",
+      items: [
+        { title: "Eclipse Quadcopter", text: "Compact interceptor airframe — 4× 1800kv motors." },
+        { title: "SpeedyBee FC", text: "Flight controller tuned for aggressive pursuit profiles." },
+        { title: "Pi Zero 2 W", text: "Onboard compute for tracking and mission logic." },
+        { title: "Pi Camera Module 3", text: "Visual tracking and threat acquisition." },
+        { title: "Centurion AI", text: "Mission reasoning and fleet coordination from Spectr command." },
+      ],
+    },
+    no: {
+      headline: "Teknologistack",
+      items: [
+        { title: "Eclipse-kvadrokopter", text: "Kompakt interceptor-luftfartøy — 4× 1800kv motorer." },
+        { title: "SpeedyBee FC", text: "Flykontroller tunet for aggressive forfølgelsesprofiler." },
+        { title: "Pi Zero 2 W", text: "Ombord-beregning for sporing og oppdragslogikk." },
+        { title: "Pi Camera Module 3", text: "Visuell sporing og trusseloppdagelse." },
+        { title: "Centurion AI", text: "Oppdragsresonnering og flåtekoordinering fra Spectr-kommando." },
+      ],
+    },
+  },
+  stats: {
+    en: {
+      items: [
+        { label: "Intercept range", value: 2, suffix: " km" },
+        { label: "Quad motors", value: 4, suffix: "× 1800kv" },
+        { label: "Deployable units", value: 10, suffix: "+" },
+        { label: "Onboard compute", value: 2, suffix: " W" },
+      ],
+    },
+    no: {
+      items: [
+        { label: "Intercept-rekkevidde", value: 2, suffix: " km" },
+        { label: "Kvadromotorer", value: 4, suffix: "× 1800kv" },
+        { label: "Deployerbare enheter", value: 10, suffix: "+" },
+        { label: "Ombord-beregning", value: 2, suffix: " W" },
+      ],
+    },
+  },
+  cta: {
+    en: {
+      headline: "Intercept that scales when missiles cannot.",
+      primary: "Request Access",
+      secondary: "Contact Spectr",
+    },
+    no: {
+      headline: "Intercept som skalerer når missiler ikke kan.",
+      primary: "Be om tilgang",
+      secondary: "Kontakt Spectr",
+    },
+  },
+  specSheet: {
+    en: { label: "Download Specification Sheet", href: "/interceptor-spec-sheet.pdf" },
+    no: { label: "Last ned spesifikasjonsark", href: "/interceptor-spec-sheet.pdf" },
   },
 };
 
@@ -581,6 +851,7 @@ const centurionLanding: LocalizedLanding = {
 
 const landingBySlug: Record<string, LocalizedLanding> = {
   recon: reconLanding,
+  interceptor: interceptorLanding,
   centurion: centurionLanding,
 };
 
@@ -600,6 +871,7 @@ function localizeLanding(entry: LocalizedLanding, locale: Locale): ProductLandin
     technology: pick(entry.technology, locale),
     stats: pick(entry.stats, locale),
     cta: pick(entry.cta, locale),
+    specSheet: entry.specSheet ? pick(entry.specSheet, locale) : undefined,
   };
 }
 

@@ -27,7 +27,7 @@ export function ProductLanding({ content }: ProductLandingProps) {
     return scheduleScrollResets();
   }, [content.slug]);
 
-  const isSlimLanding = content.slug === "recon" || content.slug === "centurion";
+  const isSlimLanding = content.slug === "recon" || content.slug === "interceptor" || content.slug === "centurion";
 
   return (
     <main id="main-content" className="product-landing bg-[#050505] text-white">
@@ -100,7 +100,7 @@ function HeroSection({ content }: ProductLandingProps) {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-  const isBrandedHero = content.slug === "recon" || content.slug === "centurion";
+  const isBrandedHero = content.slug === "recon" || content.slug === "interceptor" || content.slug === "centurion";
   const brandLockupDelay = content.name.replace(/\s/g, "").length * 14 + 80;
   const taglineDelay = brandLockupDelay + 2600;
 
@@ -117,7 +117,11 @@ function HeroSection({ content }: ProductLandingProps) {
           fill
           priority
           className={`object-cover opacity-70 ${
-            content.slug === "recon" ? "object-[72%_center]" : "object-[center_35%]"
+            content.slug === "recon"
+              ? "object-[72%_center]"
+              : content.slug === "interceptor"
+                ? "object-[center_40%]"
+                : "object-[center_35%]"
           }`}
           sizes="100vw"
         />
@@ -604,9 +608,25 @@ function CtaSection({ content }: ProductLandingProps) {
             {content.cta.primary}
             <span aria-hidden="true">→</span>
           </BevelButton>
-          <BevelButton href="/contact" variant="inverse-secondary" className="tracking-[0.18em]">
-            {content.cta.secondary}
-          </BevelButton>
+          {content.specSheet ? (
+            <BevelButton
+              href={content.specSheet.href}
+              variant="inverse-secondary"
+              className="tracking-[0.18em]"
+              external
+            >
+              {content.specSheet.label}
+            </BevelButton>
+          ) : (
+            <BevelButton href="/contact" variant="inverse-secondary" className="tracking-[0.18em]">
+              {content.cta.secondary}
+            </BevelButton>
+          )}
+          {content.specSheet ? (
+            <BevelButton href="/contact" variant="inverse-secondary" className="tracking-[0.18em]">
+              {content.cta.secondary}
+            </BevelButton>
+          ) : null}
         </div>
       </FadeIn>
     </section>
