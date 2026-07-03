@@ -103,17 +103,6 @@ export default async function Home({ params }: HomePageProps) {
 
         <LandingChapter
           index="02"
-          eyebrow={t("interceptorEyebrow")}
-          title={t("interceptorTitle")}
-          description={t("interceptorDescription")}
-          cta={t("interceptorCta")}
-          href="/products/interceptor"
-          image="/interceptor-hero-hq.jpg"
-          alt="INTERCEPTOR Eclipse quadcopter"
-        />
-
-        <LandingChapter
-          index="03"
           eyebrow={t("centurionEyebrow")}
           title={t("centurionTitle")}
           description={t("centurionDescription")}
