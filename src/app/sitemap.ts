@@ -2,7 +2,6 @@ import type { MetadataRoute } from "next";
 import { routing } from "@/i18n/routing";
 import { articles } from "@/lib/articles";
 import { docPages } from "@/lib/docs";
-import { products } from "@/lib/objects";
 import { newsroomCards } from "@/lib/newsroom";
 import { securityPrinciples } from "@/lib/security-principles";
 
@@ -17,7 +16,6 @@ const staticPaths = [
   "/investor",
   "/newsroom",
   "/privacy",
-  "/products",
   "/security",
   "/terms",
 ];
@@ -38,10 +36,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         url: localizedUrl(locale, path),
         lastModified: new Date(),
       });
-    }
-
-    for (const product of products) {
-      entries.push({ url: localizedUrl(locale, `/products/${product.slug}`), lastModified: new Date() });
     }
 
     for (const card of newsroomCards) {

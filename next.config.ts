@@ -11,17 +11,17 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/drones",
-        destination: "/products",
+        destination: "/",
         permanent: true,
       },
       {
-        source: "/products/spectr-uav",
-        destination: "/products/recon",
+        source: "/products/:path*",
+        destination: "/",
         permanent: true,
       },
       {
-        source: "/products/valkyrie",
-        destination: "/products/recon",
+        source: "/centurion",
+        destination: "/",
         permanent: true,
       },
       {
@@ -32,11 +32,6 @@ const nextConfig: NextConfig = {
       {
         source: "/documentation/valkyrie-sensing-configuration",
         destination: "/documentation/recon-sensing-configuration",
-        permanent: true,
-      },
-      {
-        source: "/centurion",
-        destination: "/products/centurion",
         permanent: true,
       },
     ];

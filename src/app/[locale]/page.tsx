@@ -4,7 +4,6 @@ import { Footer } from "@/components/footer";
 import {
   HeroBrandLockup,
 } from "@/components/hero-brand-lockup";
-import { LandingChapter } from "@/components/landing-chapter";
 import { Nav } from "@/components/nav";
 import { Reveal } from "@/components/reveal";
 import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
@@ -58,7 +57,6 @@ export default async function Home({ params }: HomePageProps) {
                   {heroText}
                 </ScrollRevealHeading>
                 <HeroBrandLockup
-                  madeInNorway={t("madeInNorway")}
                   brand={tNav("brand")}
                   revealDelay={brandLockupDelay}
                 />
@@ -87,30 +85,6 @@ export default async function Home({ params }: HomePageProps) {
             </Reveal>
           </div>
         </section>
-
-        {/* Product chapters — full-screen pinned with parallax media */}
-        <LandingChapter
-          index="01"
-          eyebrow={t("reconEyebrow")}
-          title={t("reconTitle")}
-          description={t("reconDescription")}
-          cta={t("reconCta")}
-          href="/products/recon"
-          image="/recon-hero-hq.jpg"
-          alt="RECON autonomous ISR platform over mountain terrain"
-          priority
-        />
-
-        <LandingChapter
-          index="02"
-          eyebrow={t("centurionEyebrow")}
-          title={t("centurionTitle")}
-          description={t("centurionDescription")}
-          cta={t("centurionCta")}
-          href="/products/centurion"
-          image="/centurion-hq.jpg"
-          alt="CENTURION command platform"
-        />
 
         {/* Sovereign capability — split media + text */}
         <section className="brand-font relative flex min-h-screen snap-start items-end overflow-hidden bg-black text-white">

@@ -7,7 +7,6 @@ import { BevelButton, bevelButtonClassName } from "@/components/bevel-button";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { getDocPagesBySection, pickDocField } from "@/lib/docs";
-import { pickProductField, products } from "@/lib/objects";
 
 type DocumentationPageProps = {
   params: Promise<{ locale: string }>;
@@ -23,7 +22,7 @@ const sectionKeys = ["product", "operator", "deployment", "support"] as const;
 const quickStartKeys = ["evaluate", "prepare", "updates"] as const;
 
 const quickStartHrefs = {
-  evaluate: "/products",
+  evaluate: "/contact",
   prepare: "/contact",
   updates: "/newsroom",
 } as const;
@@ -121,24 +120,6 @@ export default async function DocumentationPage({ params }: DocumentationPagePro
                   </article>
                 );
               })}
-            </div>
-          </div>
-        </section>
-
-        <section className="brand-font bg-bg px-5 py-16 sm:px-8 lg:py-24">
-          <div className="mx-auto max-w-7xl">
-            <h2 className="max-w-4xl text-4xl font-semibold leading-none tracking-[-0.06em] text-fg sm:text-6xl">
-              {t("platformReferences")}
-            </h2>
-            <div className="mt-10 grid gap-4 lg:grid-cols-3">
-              {products.map((product) => (
-                <article key={product.slug} className="bg-black p-7 text-white sm:p-8">
-                  <h3 className="text-4xl font-semibold tracking-[-0.06em]">{product.name}</h3>
-                  <p className="mt-6 text-sm leading-7 text-white/62">
-                    {pickProductField(product.tagline, typedLocale)}
-                  </p>
-                </article>
-              ))}
             </div>
           </div>
         </section>

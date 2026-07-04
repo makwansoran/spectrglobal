@@ -17,18 +17,10 @@ export function Nav({ variant = "dark" }: NavProps) {
 
   const menuSections = [
     {
-      title: t("sections.development"),
-      links: [
-        { label: t("links.recon"), href: "/products/recon" },
-        { label: t("links.centurion"), href: "/products/centurion" },
-      ],
-    },
-    {
       title: t("sections.company"),
       links: [
         { label: t("links.contact"), href: "/contact" },
         { label: t("links.about"), href: "/about" },
-        { label: t("links.products"), href: "/products" },
         { label: t("links.careers"), href: "/careers" },
       ],
     },
@@ -114,7 +106,7 @@ export function Nav({ variant = "dark" }: NavProps) {
       >
         <div className={`flex h-full flex-col px-5 pb-10 pt-28 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] sm:px-8 ${open ? "translate-y-0" : "translate-y-6"}`}>
           <nav className="mx-auto w-full max-w-5xl flex-1">
-            <div className="grid gap-14 pt-4 sm:grid-cols-3 sm:gap-8">
+            <div className="grid gap-14 pt-4 sm:grid-cols-2 sm:gap-8">
               {menuSections.map((section) => (
                 <div key={section.title}>
                   <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/35">{section.title}</p>

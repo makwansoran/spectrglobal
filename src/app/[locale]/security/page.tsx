@@ -50,11 +50,7 @@ export default async function SecurityPage({ params }: SecurityPageProps) {
               >
                 {securityTitle}
               </ScrollRevealHeading>
-              <HeroBrandLockup
-                brand={tNav("brand")}
-                revealDelay={brandLockupDelay}
-                variant="logo"
-              />
+              <HeroBrandLockup brand={tNav("brand")} revealDelay={brandLockupDelay} />
             </div>
           </div>
           <a
