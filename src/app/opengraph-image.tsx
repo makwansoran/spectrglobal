@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "Spectr — autonomous ISR from Norway";
+export const alt = "Spectr — autonomous drone software from Norway";
 
 export default function OpenGraphImage() {
   return new ImageResponse(
@@ -49,10 +49,10 @@ export default function OpenGraphImage() {
               maxWidth: "900px",
             }}
           >
-            Autonomous ISR from Norway
+            Autonomous drone software from Norway
           </div>
           <div style={{ marginTop: "28px", fontSize: "28px", color: "rgba(255,255,255,0.62)" }}>
-            RECON · CENTURION · Sovereign · EW-resilient
+            CENTURION · Sovereign · EW-resilient
           </div>
         </div>
       </div>

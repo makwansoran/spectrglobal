@@ -152,8 +152,8 @@ export const termsSections: LegalSection[] = [
   {
     title: { en: "2. Purpose", no: "2. Formål" },
     text: {
-      en: "This website provides information regarding defense technologies, unmanned aerial systems, autonomous defense systems, software, research, and related activities conducted by spectr as.",
-      no: "Dette nettstedet gir informasjon om forsvarsteknologi, ubemannede luftfartøy, autonome forsvarssystemer, programvare, forskning og relatert virksomhet utført av spectr as.",
+      en: "This website provides information regarding defense technologies, autonomous defense software, mission systems, research, and related activities conducted by spectr as.",
+      no: "Dette nettstedet gir informasjon om forsvarsteknologi, autonom forsvarsprogramvare, oppdragssystemer, forskning og relatert virksomhet utført av spectr as.",
     },
   },
   {

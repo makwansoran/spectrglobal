@@ -1,7 +1,7 @@
 {
   "Metadata": {
     "siteName": "Spectr",
-    "description": "Spectr builds a sovereign Norwegian ISR platform — autonomous, EW-resilient aerial systems and command software."
+    "description": "Spectr develops sovereign Norwegian autonomous drone software — mission command, AI-assisted decision support, and EW-resilient operations for any airframe."
   },
   "Nav": {
     "brand": "Spectr",
@@ -14,11 +14,8 @@
       "resources": "Resources"
     },
     "links": {
-      "recon": "RECON",
-      "centurion": "CENTURION",
       "contact": "Get Started",
       "about": "About Us",
-      "products": "Products",
       "careers": "Careers",
       "newsroom": "Newsroom",
       "documentation": "Documentation",
@@ -29,7 +26,7 @@
     }
   },
   "Footer": {
-    "tagline": "For real-world aerial operations.",
+    "tagline": "Autonomous drone software for real-world operations.",
     "sections": {
       "development": "Development",
       "company": "Company",
@@ -61,22 +58,13 @@
     "viewProduct": "View product"
   },
   "Home": {
-    "hero": "For real-world aerial operations.",
+    "hero": "Autonomous drone software for real-world operations.",
     "missionEyebrow": "Our Mission",
-    "missionStatement": "Spectr builds autonomous systems that see and act on a comms-denied battlefield — sovereign hardware and software, developed and controlled from Norway.",
-    "reconEyebrow": "Autonomous ISR",
-    "reconTitle": "RECON",
-    "reconDescription": "Long-range, autonomous ISR platform for continuous surveillance — without ground infrastructure or GPS dependency.",
-    "reconCta": "View RECON",
-    "centurionEyebrow": "Command Platform",
-    "centurionTitle": "CENTURION",
-    "centurionDescription": "One sovereign command platform with AI-assisted decision support, multi-drone coordination, and mission staging.",
-    "centurionCta": "View CENTURION",
-    "familyEyebrow": "Family of Systems",
-    "familyTitle": "One integrated system. Hardware and software built together.",
+    "missionStatement": "Spectr builds autonomous drone software that keeps missions running on comms-denied battlefields — developed and controlled from Norway.",
+    "autonomousEngineTitle": "Try Autonomous Engine now.",
     "norwayEyebrow": "Sovereign Capability",
-    "norwayTitle": "Developed and produced in Norway",
-    "norwayDescription": "Spectr designs and produces ISR hardware and Centurion command software in Norway, with NATO-compatible allied components and no critical dependency on non-allied suppliers.",
+    "norwayTitle": "Developed in Norway",
+    "norwayDescription": "Spectr develops mission software in Norway with national control over code, data, and deployment — without critical dependency on non-allied infrastructure.",
     "ctaTitle": "Ready when the mission is.",
     "newsroomTitle": "Newsroom",
     "newsroomCta": "Go To Newsroom"
@@ -111,66 +99,48 @@
     "securityNote": "Do not send classified or restricted material through this form. For security-sensitive inquiries, state your organization and clearance context in the message.",
     "rolePrefill": "Application for role: {role}"
   },
-  "Products": {
-    "title": "Products",
-    "hero": "Mission-ready systems.",
-    "heroDescription": "RECON for autonomous ISR. CENTURION for sovereign mission command. Built and controlled from Norway.",
-    "exploreProduct": "Explore {product}",
-    "builtForRecon": "Built for the comms-denied battlefield.",
-    "reconExtra": "The operator defines the mission in Centurion. RECON takes off vertically, cruises autonomously, and returns — even when GPS and communications are down.",
-    "specSheet": "RECON Specification Sheet",
-    "specSheetDescription": "Platform dimensions, performance targets, payload configuration, and operating profile for RECON.",
-    "requestProduct": "Request access to {product}.",
-    "centurionBuiltFor": "One sovereign command platform.",
-    "category": "Category",
-    "use": "Use",
-    "flight": "Flight",
-    "range": "Range",
-    "status": "Status",
-    "pricing": "Pricing"
-  },
   "About": {
     "title": "About Us",
-    "heroIntro": "Spectr is a Norwegian defense technology company developing autonomous unmanned systems, mission software, and sovereign avionics for demanding operational environments.",
+    "heroIntro": "Spectr is a Norwegian defense technology company developing autonomous drone software and sovereign mission systems for demanding operational environments.",
     "securityLink": "Security page",
     "ctaTitle": "Want to work with Spectr?",
     "sections": {
       "overview": {
         "title": "Company Overview",
         "paragraphs": [
-          "spectr as is a Norwegian defense technology company headquartered in Norway (Org.nr 936 961 967). We develop unmanned aerial systems, autonomous defense software, and onboard avionics for intelligence, surveillance, and reconnaissance in contested environments.",
-          "Our work spans hardware and software: from airframe design and flight controllers to mission command systems and AI-assisted decision support. Everything is built with a focus on field readiness, sovereign control, and operational reliability outside the lab."
+          "spectr as is a Norwegian defense technology company headquartered in Norway (Org.nr 936 961 967). We develop autonomous drone software for mission command, fleet coordination, and AI-assisted decision support in contested environments.",
+          "Our work focuses on software that integrates with the drones operators already fly — from mission planning and staging to resilient communications and autonomous execution when links degrade."
         ]
       },
       "mission": {
         "title": "Mission",
         "paragraphs": [
-          "Spectr builds autonomous systems that see and act on a comms-denied battlefield. We believe allied forces need ISR capability they can trust, control, and sustain — without dependence on foreign supply chains for critical components.",
-          "Our mission is to deliver sovereign Norwegian hardware and software that operates when GPS is denied, communications are jammed, and conventional systems fail. We build for the conditions operators actually face."
+          "Spectr builds autonomous drone software for comms-denied battlefields. We believe allied forces need mission capability they can trust, control, and sustain — without dependence on foreign supply chains for critical software infrastructure.",
+          "Our mission is to deliver sovereign Norwegian software that keeps missions running when GPS is denied, communications are jammed, and conventional systems fail. We build for the conditions operators actually face."
         ]
       },
       "whatWeBuild": {
         "title": "What We Build",
         "paragraphs": [
-          "RECON is our VTOL fixed-wing ISR platform for continuous surveillance over large areas. It executes autonomous missions in GNSS-denied and comms-denied environments. The prototype is assembled with ground testing ongoing, advancing toward flight test and operational demonstration.",
-          "CENTURION is our sovereign mission command platform. The operator defines goals and waypoints; Centurion plans, executes, and reports. Version 0.1 is operational with mission staging, AI-assisted decision support, and multi-drone coordination.",
-          "Beyond platforms, we design and produce avionics in-house: flight controllers, onboard computers, telemetry radios, and battery packs with BMS and thermal management. Airframes are built in vacuum-formed carbon fiber composite. Final assembly and software integration are completed in Norway."
+          "CENTURION is our sovereign mission command platform. The operator defines goals and constraints; Centurion plans, coordinates, and reports across mixed drone fleets. Version 0.1 is operational with mission staging, AI-assisted decision support, and multi-asset coordination.",
+          "Spectr does not manufacture drones. We build software that works across airframes — helping operators plan missions, coordinate assets, maintain context under pressure, and execute autonomously when the environment demands it.",
+          "Everything is developed in Norway with a focus on field readiness, sovereign control, and operational reliability outside the lab."
         ]
       },
       "whyNorway": {
         "title": "Why Norway",
         "paragraphs": [
-          "Norway provides a stable, NATO-aligned foundation for developing critical defense technology under national control. Spectr produces in Norway to maintain sovereignty over design, manufacturing, and software — reducing supply-chain risk and ensuring allied compatibility.",
-          "We use allied suppliers only where necessary: EO/IR gimbals, battery cells, and motors. Everything else — airframes, avionics, flight controllers, onboard computers, telemetry, battery pack design, Centurion software, and final assembly — is developed and produced in-house in Norway.",
-          "This model delivers capable systems at a fraction of the cost of today's alternatives, while keeping critical technology local and NDAA Section 889 compatible by design."
+          "Norway provides a stable, NATO-aligned foundation for developing critical defense technology under national control. Spectr develops in Norway to maintain sovereignty over software, data, and deployment — reducing supply-chain risk and ensuring allied compatibility.",
+          "This model keeps critical mission software local and NDAA Section 889 compatible by design, while integrating with the platforms and sensors operators already field.",
+          "National control over code and infrastructure is not optional for the missions our customers run."
         ]
       },
       "technology": {
         "title": "Technology & Innovation",
         "paragraphs": [
-          "RECON is designed for resilient operation in denied environments. Our navigation stack includes Visual-Inertial Odometry in development, terrain-referenced navigation on the roadmap, and tactical-grade INS as fallback. Multi-layer positioning and resilient communications keep the platform operating when conventional links fail.",
-          "On the hardware side, we engineer power-dense battery packs, custom flight controllers, and secure onboard systems aligned with NATO STANAG principles. Carbon fiber composite airframes are vacuum-formed for strength-to-weight performance suited to extended ISR missions.",
-          "CENTURION brings AI-assisted decision support and natural language interfaces to mission command — helping operators maintain context and coordinate multiple assets under pressure."
+          "Spectr software is designed for resilient operation in denied environments — resilient datalinks, autonomous mission execution, and operator workflows that continue when conventional systems fail.",
+          "CENTURION brings AI-assisted decision support and natural language interfaces to mission command — helping operators maintain context and coordinate multiple assets under pressure.",
+          "We integrate with diverse drone platforms rather than prescribing a single airframe, so customers can adopt capability without replacing existing fleets."
         ]
       },
       "security": {
@@ -184,7 +154,7 @@
       "leadership": {
         "title": "Leadership",
         "paragraphs": [
-          "Spectr is led by Makwan Soran, Chief Executive Officer. The company is built by engineers working across aerospace hardware, embedded systems, and operational software — with a shared focus on systems that perform in real-world conditions.",
+          "Spectr is led by Makwan Soran, Chief Executive Officer. The company is built by engineers working across autonomous systems, secure software, and operator workflow — with a shared focus on technology that performs in real-world conditions.",
           "We are a small, execution-focused team. We hire for practical engineering ability, disciplined delivery, and the judgment required to build technology for demanding operational environments."
         ]
       }
@@ -192,17 +162,17 @@
   },
   "Careers": {
     "title": "Join Our Mission",
-    "intro": "Spectr is building mission-ready aerospace systems and operational software from Norway.",
-    "buildTitle": "Build systems for real-world operations.",
+    "intro": "Spectr is building autonomous drone software and operational mission systems from Norway.",
+    "buildTitle": "Build software for real-world operations.",
     "paragraph1": "We are looking for people who care about practical engineering, disciplined execution, and technology that can hold up outside the lab.",
-    "paragraph2": "If you want to work across aerospace hardware, operator workflow, and secure software systems, we want to hear from you.",
+    "paragraph2": "If you want to work across autonomous systems, operator workflow, and secure software, we want to hear from you.",
     "openRoles": "Open roles",
     "applyCta": "Apply via contact",
     "ctaTitle": "Interested in joining Spectr?",
     "focus": {
-      "aerospace": {
-        "title": "Aerospace systems",
-        "text": "Work on UAV platforms, field-ready hardware, and the systems that support demanding operational use."
+      "autonomy": {
+        "title": "Autonomous systems",
+        "text": "Work on mission logic, fleet coordination, and software that keeps drones operating in denied environments."
       },
       "software": {
         "title": "Operational software",
@@ -217,16 +187,15 @@
   "Documentation": {
     "title": "Documentation",
     "browseTitle": "Browse documentation",
-    "browseDescription": "Start with the product family, then move through operator planning, deployment readiness, and support.",
-    "platformReferences": "Platform references",
+    "browseDescription": "Start with software overview, then move through operator planning, deployment readiness, and support.",
     "needDocumentTitle": "Need a specific document?",
-    "needDocumentText": "Contact Spectr with your platform, operating environment, and qualification context so the right documentation can be prepared.",
+    "needDocumentText": "Contact Spectr with your operational environment, fleet context, and qualification needs so the right documentation can be prepared.",
     "requestDocumentation": "Request documentation",
     "quickStart": {
       "evaluate": {
-        "title": "Evaluate a platform",
-        "description": "Review RECON by reconnaissance profile, operating environment, sensing needs, and deployment readiness.",
-        "action": "View products"
+        "title": "Evaluate the software",
+        "description": "Review Centurion by mission profile, operating environment, fleet mix, and deployment readiness.",
+        "action": "Contact Spectr"
       },
       "prepare": {
         "title": "Prepare a request",
@@ -235,14 +204,14 @@
       },
       "updates": {
         "title": "Read the latest updates",
-        "description": "Follow product development notes, field readiness updates, and company information from the Spectr team.",
+        "description": "Follow software release notes, deployment updates, and company information from the Spectr team.",
         "action": "Open newsroom"
       }
     },
     "sections": {
       "product": {
-        "title": "Product Documentation",
-        "description": "Platform references for teams evaluating Spectr systems."
+        "title": "Software Documentation",
+        "description": "References for teams evaluating Spectr mission software."
       },
       "operator": {
         "title": "Operator Guides",
@@ -289,25 +258,25 @@
   },
   "Investor": {
     "title": "Investor Relations",
-    "intro": "Follow Spectr's company updates, operating milestones, and long-term aerospace systems roadmap.",
-    "headline": "Sovereign ISR capability from Norway.",
-    "paragraph1": "Spectr is developing RECON — an autonomous, EW-resilient ISR platform — and Centurion, a sovereign command platform for multi-drone mission staging and AI-assisted decision support.",
+    "intro": "Follow Spectr's company updates, operating milestones, and long-term software roadmap.",
+    "headline": "Sovereign autonomous drone software from Norway.",
+    "paragraph1": "Spectr is developing Centurion — a sovereign mission command platform for multi-asset coordination, AI-assisted decision support, and autonomous operations across diverse drone fleets.",
     "paragraph2": "Investor relations inquiries are handled directly by the Spectr team. We share company materials, milestone updates, and strategic context with qualified stakeholders.",
-    "quote": "The West needs ISR drones that see everything — and cannot be knocked out.",
+    "quote": "Operators need mission software that keeps working when everything else fails.",
     "quoteAttribution": "Makwan Soran, CEO & Head Engineer",
     "ctaTitle": "Request investor information.",
     "focus": {
       "updates": {
         "title": "Company updates",
-        "text": "Follow Spectr's progress as we build Norway-based aerospace systems for real-world operational use."
+        "text": "Follow Spectr's progress as we build Norway-based autonomous drone software for real-world operational use."
       },
       "milestones": {
         "title": "Operating milestones",
-        "text": "Track product, manufacturing, and field-readiness milestones across RECON, CENTURION, and supporting systems."
+        "text": "Track software releases, deployment milestones, and field-readiness progress across Centurion and supporting systems."
       },
       "roadmap": {
         "title": "Long-term roadmap",
-        "text": "Understand the strategic direction behind Spectr's hardware, software, and national-control technology."
+        "text": "Understand the strategic direction behind Spectr's mission software and national-control technology."
       }
     }
   },

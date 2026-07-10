@@ -29,15 +29,15 @@ export const securityPrinciples: SecurityPrinciple[] = [
     slug: "own-infrastructure",
     title: { en: "Own infrastructure", no: "Egen infrastruktur" },
     text: {
-      en: "All production and data processing runs exclusively on our own controlled systems hosted on Norwegian infrastructure.",
-      no: "All produksjon og databehandling kjører utelukkende på våre egne kontrollerte systemer hostet på norsk infrastruktur.",
+      en: "All software development and data processing runs exclusively on our own controlled systems hosted on Norwegian infrastructure.",
+      no: "All programvareutvikling og databehandling kjører utelukkende på våre egne kontrollerte systemer hostet på norsk infrastruktur.",
     },
     paragraphs: {
       en: [
-        "Production and data processing run on Spectr-controlled systems on Norwegian infrastructure. Access, logging, and security requirements are defined before sensitive work begins.",
+        "Software development and data processing run on Spectr-controlled systems on Norwegian infrastructure. Access, logging, and security requirements are defined before sensitive work begins.",
       ],
       no: [
-        "Produksjon og databehandling kjører på Spectr-kontrollerte systemer på norsk infrastruktur. Tilgang, logging og sikkerhetskrav defineres før sensitivt arbeid starter.",
+        "Programvareutvikling og databehandling kjører på Spectr-kontrollerte systemer på norsk infrastruktur. Tilgang, logging og sikkerhetskrav defineres før sensitivt arbeid starter.",
       ],
     },
   },
@@ -45,15 +45,15 @@ export const securityPrinciples: SecurityPrinciple[] = [
     slug: "no-third-parties",
     title: { en: "No third parties", no: "Ingen tredjeparter" },
     text: {
-      en: "We use no external vendors in our production chain. No data is shared with or processed by third parties.",
-      no: "Vi bruker ingen eksterne leverandører i produksjonskjeden. Ingen data deles med eller behandles av tredjeparter.",
+      en: "We use no external vendors in our software supply chain. No data is shared with or processed by third parties.",
+      no: "Vi bruker ingen eksterne leverandører i programvareleveransekjeden. Ingen data deles med eller behandles av tredjeparter.",
     },
     paragraphs: {
       en: [
-        "Sensitive production does not rely on unnecessary external vendors. Customer data is not shared with third parties unless a documented, customer-approved exception applies.",
+        "Sensitive software development does not rely on unnecessary external vendors. Customer data is not shared with third parties unless a documented, customer-approved exception applies.",
       ],
       no: [
-        "Sensitiv produksjon avhenger ikke av unødvendige eksterne leverandører. Kundedata deles ikke med tredjeparter med mindre et dokumentert, kundegodkjent unntak gjelder.",
+        "Sensitiv programvareutvikling avhenger ikke av unødvendige eksterne leverandører. Kundedata deles ikke med tredjeparter med mindre et dokumentert, kundegodkjent unntak gjelder.",
       ],
     },
   },

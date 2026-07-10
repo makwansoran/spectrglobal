@@ -1,7 +1,7 @@
 {
   "Metadata": {
     "siteName": "Spectr",
-    "description": "Spectr bygger en suverent norsk ISR-plattform — autonome, EW-motstandsdyktige luftfartssystemer og kommandoprogramvare."
+    "description": "Spectr utvikler suverent norsk autonom droneprogramvare — oppdragskommando, AI-assistert beslutningsstøtte og EW-motstandsdyktige operasjoner for alle typer luftfartøy."
   },
   "Nav": {
     "brand": "Spectr",
@@ -14,11 +14,8 @@
       "resources": "Ressurser"
     },
     "links": {
-      "recon": "RECON",
-      "centurion": "CENTURION",
       "contact": "Kom i gang",
       "about": "Om oss",
-      "products": "Produkter",
       "careers": "Karriere",
       "newsroom": "Newsroom",
       "documentation": "Dokumentasjon",
@@ -29,7 +26,7 @@
     }
   },
   "Footer": {
-    "tagline": "For luftoperasjoner i virkeligheten.",
+    "tagline": "Autonom droneprogramvare for operasjoner i virkeligheten.",
     "sections": {
       "development": "Utvikling",
       "company": "Selskap",
@@ -61,22 +58,13 @@
     "viewProduct": "Se produkt"
   },
   "Home": {
-    "hero": "For luftoperasjoner i virkeligheten.",
+    "hero": "Autonom droneprogramvare for operasjoner i virkeligheten.",
     "missionEyebrow": "Vårt oppdrag",
-    "missionStatement": "Spectr bygger autonome systemer som ser og handler på et samband-nektet slagfelt — suveren hardware og programvare, utviklet og kontrollert fra Norge.",
-    "reconEyebrow": "Autonom ISR",
-    "reconTitle": "RECON",
-    "reconDescription": "Langtrekkende, autonom ISR-plattform for kontinuerlig overvåking — uten bakkeinfrastruktur og uten GPS-avhengighet.",
-    "reconCta": "Se RECON",
-    "centurionEyebrow": "Kommandoplattform",
-    "centurionTitle": "CENTURION",
-    "centurionDescription": "Én suveren kommandoplattform med AI-assistert beslutningsstøtte, multi-drone-koordinering og mission staging.",
-    "centurionCta": "Se CENTURION",
-    "familyEyebrow": "Systemfamilie",
-    "familyTitle": "Ett integrert system. Hardware og programvare bygget sammen.",
+    "missionStatement": "Spectr bygger autonom droneprogramvare som holder oppdrag i gang på samband-nektede slagfelt — utviklet og kontrollert fra Norge.",
+    "autonomousEngineTitle": "Prøv Autonomous Engine nå.",
     "norwayEyebrow": "Suveren kapabilitet",
-    "norwayTitle": "Utviklet og produsert i Norge",
-    "norwayDescription": "Spectr designer og produserer ISR-hardware og Centurion-kommandoprogramvare i Norge, med NATO-kompatible allierte komponenter og ingen kritisk avhengighet av ikke-allierte leverandører.",
+    "norwayTitle": "Utviklet i Norge",
+    "norwayDescription": "Spectr utvikler oppdragsprogramvare i Norge med nasjonal kontroll over kode, data og deployering — uten kritisk avhengighet av ikke-alliert infrastruktur.",
     "ctaTitle": "Klar når oppdraget er.",
     "newsroomTitle": "Newsroom",
     "newsroomCta": "Gå til newsroom"
@@ -111,66 +99,48 @@
     "securityNote": "Ikke send klassifisert eller begrenset materiale via dette skjemaet. For sikkerhetsfølsomme henvendelser, oppgi organisasjon og klareringskontekst i meldingen.",
     "rolePrefill": "Søknad om stilling: {role}"
   },
-  "Products": {
-    "title": "Produkter",
-    "hero": "Oppdragsklare systemer.",
-    "heroDescription": "RECON for autonom ISR. CENTURION for suveren oppdragskommando. Bygget og kontrollert fra Norge.",
-    "exploreProduct": "Utforsk {product}",
-    "builtForRecon": "Bygget for et samband-nektet slagfelt.",
-    "reconExtra": "Operatøren definerer oppdraget i Centurion. RECON tar av vertikalt, cruiser autonomt og returnerer — selv når GPS og samband er nede.",
-    "specSheet": "RECON spesifikasjonsark",
-    "specSheetDescription": "Plattformdimensjoner, ytelsesmål, nyttelastkonfigurasjon og operasjonsprofil for RECON.",
-    "requestProduct": "Be om tilgang til {product}.",
-    "centurionBuiltFor": "Én suveren kommandoplattform.",
-    "category": "Kategori",
-    "use": "Bruk",
-    "flight": "Flytid",
-    "range": "Rekkevidde",
-    "status": "Status",
-    "pricing": "Pris"
-  },
   "About": {
     "title": "Om oss",
-    "heroIntro": "Spectr er et norsk forsvarsteknologiselskap som utvikler autonome ubemannede systemer, oppdragsprogramvare og suveren avionikk for krevende operative miljøer.",
+    "heroIntro": "Spectr er et norsk forsvarsteknologiselskap som utvikler autonom droneprogramvare og suverene oppdragssystemer for krevende operative miljøer.",
     "securityLink": "sikkerhetsside",
     "ctaTitle": "Vil du samarbeide med Spectr?",
     "sections": {
       "overview": {
         "title": "Selskapsoversikt",
         "paragraphs": [
-          "spectr as er et norsk forsvarsteknologiselskap med hovedkontor i Norge (Org.nr 936 961 967). Vi utvikler ubemannede luftfartøy, autonom forsvarsprogramvare og ombord-avionikk for etterretning, overvåking og rekognosering i omstridte miljøer.",
-          "Arbeidet vårt spenner over hardware og programvare: fra luftfartøydesign og flykontrollere til oppdragskommandosystemer og AI-assistert beslutningsstøtte. Alt bygges med fokus på feltklarhet, suveren kontroll og operasjonell pålitelighet utenfor labben."
+          "spectr as er et norsk forsvarsteknologiselskap med hovedkontor i Norge (Org.nr 936 961 967). Vi utvikler autonom droneprogramvare for oppdragskommando, flåtekoordinering og AI-assistert beslutningsstøtte i omstridte miljøer.",
+          "Arbeidet vårt fokuserer på programvare som integreres med dronene operatører allerede flyr — fra oppdragsplanlegging og staging til robust kommunikasjon og autonom gjennomføring når lenker degraderes."
         ]
       },
       "mission": {
         "title": "Oppdrag",
         "paragraphs": [
-          "Spectr bygger autonome systemer som ser og handler på et samband-nektet slagfelt. Vi mener allierte styrker trenger ISR-kapabilitet de kan stole på, kontrollere og opprettholde — uten avhengighet av utenlandske leverandørkjeder for kritiske komponenter.",
-          "Oppdraget vårt er å levere suverent norsk hardware og programvare som opererer når GPS er nektet, kommunikasjon er jammet og konvensjonelle systemer svikter. Vi bygger for forholdene operatører faktisk møter."
+          "Spectr bygger autonom droneprogramvare for samband-nektede slagfelt. Vi mener allierte styrker trenger oppdragskapabilitet de kan stole på, kontrollere og opprettholde — uten avhengighet av utenlandske leverandørkjeder for kritisk programvareinfrastruktur.",
+          "Oppdraget vårt er å levere suverent norsk programvare som holder oppdrag i gang når GPS er nektet, kommunikasjon er jammet og konvensjonelle systemer svikter. Vi bygger for forholdene operatører faktisk møter."
         ]
       },
       "whatWeBuild": {
         "title": "Hva vi bygger",
         "paragraphs": [
-          "RECON er vår VTOL fastvinge-ISR-plattform for kontinuerlig overvåking over store områder. Den gjennomfører autonome oppdrag i GNSS-nektede og samband-nektede miljøer. Prototypen er montert med bakketesting pågående, på vei mot flytest og operasjonell demonstrasjon.",
-          "CENTURION er vår suverene oppdragskommandoplattform. Operatøren definerer mål og waypoints; Centurion planlegger, utfører og rapporterer. Versjon 0.1 er operativ med mission staging, AI-assistert beslutningsstøtte og multi-drone-koordinering.",
-          "Utover plattformer designer og produserer vi avionikk in-house: flykontrollere, ombord-datamaskiner, telemetriradio og batteripakker med BMS og termisk håndtering. Luftfartøy bygges i vakuumformet karbonfiber-kompositt. Sluttmontering og programvareintegrasjon fullføres i Norge."
+          "CENTURION er vår suverene oppdragskommandoplattform. Operatøren definerer mål og begrensninger; Centurion planlegger, koordinerer og rapporterer på tvers av blandede droneflåter. Versjon 0.1 er operativ med mission staging, AI-assistert beslutningsstøtte og multi-enhet-koordinering.",
+          "Spectr produserer ikke droner. Vi bygger programvare som fungerer på tvers av luftfartøy — og hjelper operatører planlegge oppdrag, koordinere enheter, beholde kontekst under press og utføre autonomt når miljøet krever det.",
+          "Alt utvikles i Norge med fokus på feltklarhet, suveren kontroll og operasjonell pålitelighet utenfor labben."
         ]
       },
       "whyNorway": {
         "title": "Hvorfor Norge",
         "paragraphs": [
-          "Norge gir et stabilt, NATO-tilpasset grunnlag for å utvikle kritisk forsvarsteknologi under nasjonal kontroll. Spectr produserer i Norge for å opprettholde suverenitet over design, produksjon og programvare — og redusere leverandørkjederisiko samtidig som alliert kompatibilitet sikres.",
-          "Vi bruker allierte leverandører kun der det er nødvendig: EO/IR-gimbaler, battericeller og motorer. Alt annet — luftfartøy, avionikk, flykontrollere, ombord-datamaskiner, telemetri, batteripakke-design, Centurion-programvare og sluttmontering — utvikles og produseres in-house i Norge.",
-          "Denne modellen leverer kapable systemer til en brøkdel av kostnaden for dagens alternativer, samtidig som kritisk teknologi forblir lokalt og NDAA Section 889-kompatibel by design."
+          "Norge gir et stabilt, NATO-tilpasset grunnlag for å utvikle kritisk forsvarsteknologi under nasjonal kontroll. Spectr utvikler i Norge for å opprettholde suverenitet over programvare, data og deployering — og redusere leverandørkjederisiko samtidig som alliert kompatibilitet sikres.",
+          "Denne modellen holder kritisk oppdragsprogramvare lokalt og NDAA Section 889-kompatibel by design, samtidig som den integreres med plattformene og sensorene operatører allerede bruker.",
+          "Nasjonal kontroll over kode og infrastruktur er ikke valgfritt for oppdragene kundene våre kjører."
         ]
       },
       "technology": {
         "title": "Teknologi og innovasjon",
         "paragraphs": [
-          "RECON er designet for robust drift i nektede miljøer. Navigasjonsstacken vår inkluderer Visual-Inertial Odometry i utvikling, terrengreferert navigasjon på roadmap, og taktisk-grad INS som fallback. Flerlags posisjonering og robust kommunikasjon holder plattformen operativ når konvensjonelle lenker svikter.",
-          "På hardware-siden utvikler vi krafttette batteripakker, egne flykontrollere og sikre ombord-systemer i tråd med NATO STANAG-prinsipper. Karbonfiber-komposittluftfartøy vakuumformes for styrke-til-vekt-ytelse egnet for utvidede ISR-oppdrag.",
-          "CENTURION bringer AI-assistert beslutningsstøtte og naturlig språkgrensesnitt til oppdragskommando — og hjelper operatører å beholde kontekst og koordinere flere enheter under press."
+          "Spectr-programvare er designet for robust drift i nektede miljøer — robuste datalenker, autonom oppdragsgjennomføring og operatørflyt som fortsetter når konvensjonelle systemer svikter.",
+          "CENTURION bringer AI-assistert beslutningsstøtte og naturlig språkgrensesnitt til oppdragskommando — og hjelper operatører å beholde kontekst og koordinere flere enheter under press.",
+          "Vi integrerer med ulike droneplattformer i stedet for å foreskrive ett luftfartøy, slik at kunder kan ta i bruk kapabilitet uten å erstatte eksisterende flåter."
         ]
       },
       "security": {
@@ -184,7 +154,7 @@
       "leadership": {
         "title": "Ledelse",
         "paragraphs": [
-          "Spectr ledes av Makwan Soran, administrerende direktør. Selskapet er bygget av ingeniører som jobber på tvers av luftfartshardware, innebygde systemer og operasjonell programvare — med felles fokus på systemer som presterer i virkelige forhold.",
+          "Spectr ledes av Makwan Soran, administrerende direktør. Selskapet er bygget av ingeniører som jobber på tvers av autonome systemer, sikker programvare og operatørflyt — med felles fokus på teknologi som presterer i virkelige forhold.",
           "Vi er et lite, gjennomføringsorientert team. Vi ansetter for praktisk ingeniørkompetanse, disiplinert leveranse og dømmekraften som kreves for å bygge teknologi for krevende operative miljøer."
         ]
       }
@@ -192,17 +162,17 @@
   },
   "Careers": {
     "title": "Bli med på oppdraget",
-    "intro": "Spectr bygger oppdragsklare luftfartssystemer og operasjonell programvare fra Norge.",
-    "buildTitle": "Bygg systemer for operasjoner i virkeligheten.",
+    "intro": "Spectr bygger autonom droneprogramvare og operative oppdragssystemer fra Norge.",
+    "buildTitle": "Bygg programvare for operasjoner i virkeligheten.",
     "paragraph1": "Vi ser etter folk som bryr seg om praktisk ingeniørarbeid, disiplinert gjennomføring og teknologi som tåler bruk utenfor labben.",
-    "paragraph2": "Hvis du vil jobbe på tvers av luftfartshardware, operatørflyt og sikker programvare, vil vi gjerne høre fra deg.",
+    "paragraph2": "Hvis du vil jobbe på tvers av autonome systemer, operatørflyt og sikker programvare, vil vi gjerne høre fra deg.",
     "openRoles": "Ledige stillinger",
     "applyCta": "Søk via kontakt",
     "ctaTitle": "Interessert i å bli med i Spectr?",
     "focus": {
-      "aerospace": {
-        "title": "Luftfartssystemer",
-        "text": "Arbeid med UAV-plattformer, feltklart hardware og systemer som støtter krevende operasjonell bruk."
+      "autonomy": {
+        "title": "Autonome systemer",
+        "text": "Arbeid med oppdragslogikk, flåtekoordinering og programvare som holder droner operative i nektede miljøer."
       },
       "software": {
         "title": "Operasjonell programvare",
@@ -217,16 +187,15 @@
   "Documentation": {
     "title": "Dokumentasjon",
     "browseTitle": "Bla i dokumentasjon",
-    "browseDescription": "Start med produktfamilien, deretter operatørplanlegging, deployeringsklarhet og støtte.",
-    "platformReferences": "Plattformreferanser",
+    "browseDescription": "Start med programvareoversikt, deretter operatørplanlegging, deployeringsklarhet og støtte.",
     "needDocumentTitle": "Trenger du et spesifikt dokument?",
-    "needDocumentText": "Kontakt Spectr med plattform, operasjonsmiljø og kvalifiseringskontekst slik at riktig dokumentasjon kan forberedes.",
+    "needDocumentText": "Kontakt Spectr med operasjonsmiljø, flåtekontekst og kvalifiseringsbehov slik at riktig dokumentasjon kan forberedes.",
     "requestDocumentation": "Be om dokumentasjon",
     "quickStart": {
       "evaluate": {
-        "title": "Evaluer en plattform",
-        "description": "Gjennomgå RECON etter rekognoseringsprofil, operasjonsmiljø, sensorbehov og deployeringsklarhet.",
-        "action": "Se produkter"
+        "title": "Evaluer programvaren",
+        "description": "Gjennomgå Centurion etter oppdragsprofil, operasjonsmiljø, flåtesammensetning og deployeringsklarhet.",
+        "action": "Kontakt Spectr"
       },
       "prepare": {
         "title": "Forbered en forespørsel",
@@ -235,14 +204,14 @@
       },
       "updates": {
         "title": "Les siste oppdateringer",
-        "description": "Følg produktutviklingsnotater, feltklarhetsoppdateringer og selskapsinformasjon fra Spectr-teamet.",
+        "description": "Følg programvareversjonsnotater, deployeringsoppdateringer og selskapsinformasjon fra Spectr-teamet.",
         "action": "Åpne newsroom"
       }
     },
     "sections": {
       "product": {
-        "title": "Produktdokumentasjon",
-        "description": "Plattformreferanser for team som evaluerer Spectr-systemer."
+        "title": "Programvaredokumentasjon",
+        "description": "Referanser for team som evaluerer Spectrs oppdragsprogramvare."
       },
       "operator": {
         "title": "Operatørguider",
@@ -289,25 +258,25 @@
   },
   "Investor": {
     "title": "Investor Relations",
-    "intro": "Følg Spectrs selskapsoppdateringer, operative milepæler og langsiktige veikart for luftfartssystemer.",
-    "headline": "Suveren ISR-kapabilitet fra Norge.",
-    "paragraph1": "Spectr utvikler RECON — en autonom, EW-motstandsdyktig ISR-plattform — og Centurion, en suveren kommandoplattform for multi-drone mission staging og AI-assistert beslutningsstøtte.",
+    "intro": "Følg Spectrs selskapsoppdateringer, operative milepæler og langsiktige programvareveikart.",
+    "headline": "Suveren autonom droneprogramvare fra Norge.",
+    "paragraph1": "Spectr utvikler Centurion — en suveren oppdragskommandoplattform for multi-enhet-koordinering, AI-assistert beslutningsstøtte og autonome operasjoner på tvers av ulike droneflåter.",
     "paragraph2": "Investor Relations-henvendelser håndteres direkte av Spectr-teamet. Vi deler selskapsmateriell, milepæler og strategisk kontekst med kvalifiserte interessenter.",
-    "quote": "Vesten trenger ISR-droner som ser alt, og som ikke kan slås ut.",
+    "quote": "Operatører trenger oppdragsprogramvare som fortsetter å fungere når alt annet svikter.",
     "quoteAttribution": "Makwan Soran, daglig leder og head engineer",
     "ctaTitle": "Be om investorinformasjon.",
     "focus": {
       "updates": {
         "title": "Selskapsoppdateringer",
-        "text": "Følg Spectrs fremgang mens vi bygger luftfartssystemer fra Norge for operasjoner i virkeligheten."
+        "text": "Følg Spectrs fremgang mens vi bygger autonom droneprogramvare fra Norge for operasjoner i virkeligheten."
       },
       "milestones": {
         "title": "Operative milepæler",
-        "text": "Følg produkt-, produksjons- og feltklarhetsmilepæler på tvers av RECON, CENTURION og støttesystemer."
+        "text": "Følg programvareversjoner, deployeringsmilepæler og feltklarhetsfremgang for Centurion og støttesystemer."
       },
       "roadmap": {
         "title": "Langsiktig veikart",
-        "text": "Forstå den strategiske retningen bak Spectrs hardware, programvare og nasjonalt kontrollert teknologi."
+        "text": "Forstå den strategiske retningen bak Spectrs oppdragsprogramvare og nasjonalt kontrollert teknologi."
       }
     }
   },

@@ -49,8 +49,8 @@ export const newsroomCards: NewsroomCard[] = [
     title: { en: "Blog", no: "Blogg" },
     action: { en: "Read More", no: "Les mer" },
     description: {
-      en: "Product notes, field-readiness updates, and company stories.",
-      no: "Produktnotater, feltklarhetsoppdateringer og selskapshistorier.",
+      en: "Software release notes, deployment updates, and company stories.",
+      no: "Programvareversjonsnotater, deployeringsoppdateringer og selskapshistorier.",
     },
   },
   {

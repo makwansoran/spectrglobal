@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: CareersPageProps): Promise<Me
   };
 }
 
-const focusKeys = ["aerospace", "software", "norway"] as const;
+const focusKeys = ["autonomy", "software", "norway"] as const;
 
 export default async function CareersPage({ params }: CareersPageProps) {
   const { locale } = await params;

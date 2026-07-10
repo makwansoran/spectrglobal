@@ -31,7 +31,7 @@ export const defaultOgImage = {
   url: `${baseUrl}/opengraph-image`,
   width: 1200,
   height: 630,
-  alt: "Spectr — mission-ready aerial systems from Norway",
+  alt: "Spectr — autonomous drone software from Norway",
 };
 
 export function buildPageMetadata({

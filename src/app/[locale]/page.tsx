@@ -7,6 +7,7 @@ import {
 import { Nav } from "@/components/nav";
 import { Reveal } from "@/components/reveal";
 import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
+import { AutonomousEngineSection } from "@/components/autonomous-engine-section";
 import { BevelButton } from "@/components/bevel-button";
 
 type HomePageProps = {
@@ -85,6 +86,8 @@ export default async function Home({ params }: HomePageProps) {
             </Reveal>
           </div>
         </section>
+
+        <AutonomousEngineSection title={t("autonomousEngineTitle")} cta={tNav("getStarted")} />
 
         {/* Sovereign capability — split media + text */}
         <section className="brand-font relative flex min-h-screen snap-start items-end overflow-hidden bg-black text-white">
