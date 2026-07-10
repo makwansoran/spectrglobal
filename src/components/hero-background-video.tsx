@@ -6,7 +6,6 @@ export function HeroBackgroundVideo() {
   return (
     <LazyBackgroundVideo
       src="/landing-hero-video.mp4"
-      poster="/hero-fjord.png"
       eager
     />
   );

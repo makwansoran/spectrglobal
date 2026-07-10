@@ -4,7 +4,6 @@ import { useEffect, useRef } from "react";
 
 type LazyBackgroundVideoProps = {
   src: string;
-  poster?: string;
   className?: string;
   /** Load and play immediately (hero). */
   eager?: boolean;
@@ -12,7 +11,6 @@ type LazyBackgroundVideoProps = {
 
 export function LazyBackgroundVideo({
   src,
-  poster,
   className = "absolute inset-0 h-full w-full object-cover",
   eager = false,
 }: LazyBackgroundVideoProps) {
@@ -70,11 +68,12 @@ export function LazyBackgroundVideo({
       <video
         ref={videoRef}
         className={className}
-        poster={poster}
+        src={eager ? src : undefined}
         muted
         loop
         playsInline
-        preload="none"
+        preload={eager ? "auto" : "none"}
+        autoPlay={eager}
       />
     </div>
   );
