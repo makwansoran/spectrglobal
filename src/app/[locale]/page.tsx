@@ -35,7 +35,6 @@ export default async function Home({ params }: HomePageProps) {
   const tNav = await getTranslations({ locale, namespace: "Nav" });
   const tCommon = await getTranslations({ locale, namespace: "Common" });
   const heroText = t("hero");
-  const brandLockupDelay = 450;
 
   return (
     <>
@@ -56,15 +55,11 @@ export default async function Home({ params }: HomePageProps) {
               <div className="relative mx-auto flex w-full max-w-4xl flex-col items-center">
                 <ScrollRevealHeading
                   as="h1"
-                  revealOnMount
                   className="mx-auto max-w-4xl text-3xl font-semibold leading-[1.02] text-white sm:text-5xl lg:text-6xl"
                 >
                   {heroText}
                 </ScrollRevealHeading>
-                <HeroBrandLockup
-                  brand={tNav("brand")}
-                  revealDelay={brandLockupDelay}
-                />
+                <HeroBrandLockup brand={tNav("brand")} />
               </div>
             </div>
           </section>

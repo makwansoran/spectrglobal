@@ -227,56 +227,6 @@ textarea {
   transform: translateY(0);
 }
 
-.scroll-reveal {
-  position: relative;
-  opacity: 0;
-  transition: opacity 700ms ease;
-  transition-delay: var(--reveal-delay, 0ms);
-}
-
-.scroll-reveal.is-visible {
-  opacity: 1;
-}
-
-.hero-logo-power-on {
-  opacity: 0;
-}
-
-.hero-logo-power-on.is-active {
-  animation: hero-logo-power-on 2.05s linear forwards;
-}
-
-@keyframes hero-logo-power-on {
-  0% { opacity: 0; }
-  7% { opacity: 1; }
-  15% { opacity: 0.1; }
-  31% { opacity: 1; }
-  40% { opacity: 0.1; }
-  56% { opacity: 1; }
-  65% { opacity: 0.1; }
-  100% { opacity: 1; }
-}
-
-.reveal-char {
-  display: inline;
-}
-
-.reveal-word {
-  display: inline;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .scroll-reveal {
-    opacity: 1;
-    transition: none;
-  }
-
-  .hero-logo-power-on,
-  .hero-logo-power-on.is-active {
-    opacity: 1;
-    animation: none;
-  }
-}
 
 /* Typewriter */
 .typing-caret {
@@ -339,19 +289,10 @@ textarea {
   animation: fade-up 500ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-/* Landing scroll-reveal / parallax (Anduril-style chapters) */
+/* Landing chapter parallax */
 .reveal-block {
-  opacity: 0;
-  transform: translateY(30px);
-  transition:
-    opacity 900ms cubic-bezier(0.16, 1, 0.3, 1),
-    transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
-  transition-delay: var(--reveal-delay, 0ms);
-}
-
-.reveal-block.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 .security-principle {

@@ -1,5 +1,3 @@
-"use client";
-
 import { BevelButton } from "@/components/bevel-button";
 import { LazyBackgroundVideo } from "@/components/lazy-background-video";
 import { Reveal } from "@/components/reveal";
