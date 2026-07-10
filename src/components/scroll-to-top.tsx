@@ -24,12 +24,8 @@ export function scrollAllRootsToTop() {
 
 export function scheduleScrollResets() {
   scrollAllRootsToTop();
-  window.requestAnimationFrame(scrollAllRootsToTop);
-
-  const delays = [0, 16, 50, 120, 300];
-  const timers = delays.map((delay) => window.setTimeout(scrollAllRootsToTop, delay));
-
-  return () => timers.forEach((timer) => window.clearTimeout(timer));
+  const timer = window.setTimeout(scrollAllRootsToTop, 50);
+  return () => window.clearTimeout(timer);
 }
 
 export function ScrollToTop() {

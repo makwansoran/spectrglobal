@@ -25,7 +25,6 @@
 
 html {
   background: var(--bg);
-  scroll-behavior: smooth;
 }
 
 body {
@@ -230,32 +229,51 @@ textarea {
 
 .scroll-reveal {
   position: relative;
+  opacity: 0;
+  transition: opacity 700ms ease;
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.scroll-reveal.is-visible {
   opacity: 1;
+}
+
+.hero-logo-power-on {
+  opacity: 0;
+}
+
+.hero-logo-power-on.is-active {
+  animation: hero-logo-power-on 2.05s linear forwards;
+}
+
+@keyframes hero-logo-power-on {
+  0% { opacity: 0; }
+  7% { opacity: 1; }
+  15% { opacity: 0.1; }
+  31% { opacity: 1; }
+  40% { opacity: 0.1; }
+  56% { opacity: 1; }
+  65% { opacity: 0.1; }
+  100% { opacity: 1; }
 }
 
 .reveal-char {
-  display: inline-block;
-  opacity: 0;
-  transition: opacity 55ms steps(1, end);
-  transition-delay: calc(var(--char-index) * 14ms);
+  display: inline;
 }
 
 .reveal-word {
-  display: inline-block;
-  white-space: nowrap;
-}
-
-.scroll-reveal.is-visible .reveal-char {
-  opacity: 1;
+  display: inline;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal-char {
+  .scroll-reveal {
     opacity: 1;
     transition: none;
   }
 
-  .scroll-reveal.is-visible {
+  .hero-logo-power-on,
+  .hero-logo-power-on.is-active {
+    opacity: 1;
     animation: none;
   }
 }
@@ -329,7 +347,6 @@ textarea {
     opacity 900ms cubic-bezier(0.16, 1, 0.3, 1),
     transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
   transition-delay: var(--reveal-delay, 0ms);
-  will-change: opacity, transform;
 }
 
 .reveal-block.is-visible {
@@ -392,7 +409,6 @@ textarea {
 .chapter-media {
   transform: scale(1.05);
   transition: transform 1800ms cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform;
 }
 
 .chapter.is-visible .chapter-media {

@@ -1,14 +1,28 @@
+import dynamic from "next/dynamic";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { AutonomousEngineSection } from "@/components/autonomous-engine-section";
 import { BevelButton } from "@/components/bevel-button";
 import { Footer } from "@/components/footer";
+import { HeroBackgroundVideo } from "@/components/hero-background-video";
 import {
   HeroBrandLockup,
 } from "@/components/hero-brand-lockup";
 import { Nav } from "@/components/nav";
 import { Reveal } from "@/components/reveal";
 import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
-import { ScrollVideoBackground } from "@/components/scroll-video-background";
+
+const AutonomousEngineSection = dynamic(
+  () =>
+    import("@/components/autonomous-engine-section").then((mod) => ({
+      default: mod.AutonomousEngineSection,
+    })),
+);
+
+const ScrollVideoBackground = dynamic(
+  () =>
+    import("@/components/scroll-video-background").then((mod) => ({
+      default: mod.ScrollVideoBackground,
+    })),
+);
 
 type HomePageProps = {
   params: Promise<{ locale: string }>;
@@ -21,7 +35,7 @@ export default async function Home({ params }: HomePageProps) {
   const tNav = await getTranslations({ locale, namespace: "Nav" });
   const tCommon = await getTranslations({ locale, namespace: "Common" });
   const heroText = t("hero");
-  const brandLockupDelay = heroText.replace(/\s/g, "").length * 14 + 80;
+  const brandLockupDelay = 450;
 
   return (
     <>
@@ -30,22 +44,12 @@ export default async function Home({ params }: HomePageProps) {
       <main
         id="main-content"
         data-scroll-root
-        className="flex-1 lg:h-screen lg:snap-y lg:snap-proximity lg:overflow-y-auto lg:scroll-smooth"
+        className="flex-1 lg:h-screen lg:snap-y lg:snap-proximity lg:overflow-y-auto"
       >
         {/* Hero — unchanged */}
         <div className="relative overflow-hidden bg-bg">
           <section className="relative z-10 flex min-h-screen snap-start items-center bg-black text-white">
-            <video
-              className="absolute inset-0 h-full w-full object-cover"
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              aria-hidden="true"
-            >
-              <source src="/landing-hero-video.mp4" type="video/mp4" />
-            </video>
+            <HeroBackgroundVideo />
             <div className="absolute inset-0 bg-black/45" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/20" />
             <div className="mx-auto flex w-full max-w-7xl items-center justify-center px-5 py-32 text-center sm:px-8 lg:py-36">

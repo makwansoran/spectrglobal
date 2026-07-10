@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type CSSProperties, type ElementType, type ReactNode } from "react";
+import { observeIntersection } from "@/lib/intersection-observer";
 
 type RevealProps = {
   children: ReactNode;
@@ -17,18 +18,16 @@ export function Reveal({ children, as: Tag = "div", delay = 0, className = "" }:
     const element = ref.current;
     if (!element) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
+    return observeIntersection(
+      element,
+      (entry) => {
+        if (entry.isIntersecting) {
           setVisible(true);
-          observer.disconnect();
         }
       },
       { threshold: 0.2, rootMargin: "0px 0px -10% 0px" },
+      true,
     );
-
-    observer.observe(element);
-    return () => observer.disconnect();
   }, []);
 
   return (

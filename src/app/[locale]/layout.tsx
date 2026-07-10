@@ -4,7 +4,7 @@ import { getMessages, getTranslations, setRequestLocale } from "next-intl/server
 import { notFound } from "next/navigation";
 import { hasLocale } from "next-intl";
 import { Geist, Geist_Mono, Syne } from "next/font/google";
-import { CookieConsent } from "@/components/cookie-consent";
+import { CookieConsentLazy } from "@/components/cookie-consent-lazy";
 import { OrganizationJsonLd } from "@/components/json-ld";
 import { ScrollToTop } from "@/components/scroll-to-top";
 import { defaultOgImage, localeAlternates } from "@/lib/metadata";
@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"]
 const syne = Syne({
   variable: "--font-syne",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["600", "700"],
 });
 
 type LocaleLayoutProps = {
@@ -80,7 +80,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
         <NextIntlClientProvider messages={messages}>
           <ScrollToTop />
           {children}
-          <CookieConsent />
+          <CookieConsentLazy />
         </NextIntlClientProvider>
       </body>
     </html>
