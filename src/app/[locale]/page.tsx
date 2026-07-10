@@ -1,5 +1,6 @@
-import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { AutonomousEngineSection } from "@/components/autonomous-engine-section";
+import { BevelButton } from "@/components/bevel-button";
 import { Footer } from "@/components/footer";
 import {
   HeroBrandLockup,
@@ -7,8 +8,7 @@ import {
 import { Nav } from "@/components/nav";
 import { Reveal } from "@/components/reveal";
 import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
-import { AutonomousEngineSection } from "@/components/autonomous-engine-section";
-import { BevelButton } from "@/components/bevel-button";
+import { ScrollVideoBackground } from "@/components/scroll-video-background";
 
 type HomePageProps = {
   params: Promise<{ locale: string }>;
@@ -90,16 +90,10 @@ export default async function Home({ params }: HomePageProps) {
         <AutonomousEngineSection title={t("autonomousEngineTitle")} cta={tNav("getStarted")} />
 
         {/* Sovereign capability — split media + text */}
-        <section className="brand-font relative flex min-h-screen snap-start items-end overflow-hidden bg-black text-white">
-          <Image
-            src="/operations-hq.jpg"
-            alt=""
-            fill
-            quality={92}
-            className="object-cover opacity-85"
-            sizes="100vw"
-            aria-hidden="true"
-          />
+        <ScrollVideoBackground
+          src="/norway-sovereign.mp4"
+          className="brand-font relative flex min-h-screen snap-start items-end overflow-hidden bg-black text-white"
+        >
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-black/20" />
           <div className="relative z-10 w-full px-5 pb-16 sm:px-8 lg:px-16 lg:pb-24">
             <div className="mx-auto max-w-[88rem]">
@@ -124,7 +118,7 @@ export default async function Home({ params }: HomePageProps) {
               </Reveal>
             </div>
           </div>
-        </section>
+        </ScrollVideoBackground>
 
         {/* Closing CTA */}
         <section className="brand-font flex min-h-[80vh] snap-start items-center bg-bg px-5 py-28 sm:px-8 lg:px-16">

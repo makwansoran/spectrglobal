@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { BevelButton } from "@/components/bevel-button";
 import { Reveal } from "@/components/reveal";
@@ -53,6 +54,19 @@ export function AutonomousEngineSection({ title, cta }: AutonomousEngineSectionP
       >
         <source src="/autonomous-engine.mp4" type="video/mp4" />
       </video>
+      <div
+        className="pointer-events-none absolute bottom-5 right-5 z-[5] flex items-center gap-2.5 rounded-md bg-black/95 px-3 py-2.5 shadow-lg ring-1 ring-white/10 sm:bottom-8 sm:right-8"
+        aria-hidden="true"
+      >
+        <Image
+          src="/spectr-logo.png"
+          alt=""
+          width={28}
+          height={28}
+          className="h-7 w-auto invert"
+        />
+        <span className="brand-font text-xs font-semibold uppercase tracking-[0.34em] text-white">Spectr</span>
+      </div>
       <div className="absolute inset-0 bg-black/50" />
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-black/25" />
       <div className="relative z-10 mx-auto w-full max-w-[88rem] px-5 py-28 sm:px-8 lg:px-16">

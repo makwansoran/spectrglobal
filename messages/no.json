@@ -26,7 +26,7 @@
     }
   },
   "Footer": {
-    "tagline": "Autonom droneprogramvare for operasjoner i virkeligheten.",
+    "tagline": "For operasjoner i virkeligheten.",
     "sections": {
       "development": "Utvikling",
       "company": "Selskap",
@@ -58,7 +58,7 @@
     "viewProduct": "Se produkt"
   },
   "Home": {
-    "hero": "Autonom droneprogramvare for operasjoner i virkeligheten.",
+    "hero": "For operasjoner i virkeligheten.",
     "missionEyebrow": "Vårt oppdrag",
     "missionStatement": "Spectr bygger autonom droneprogramvare som holder oppdrag i gang på samband-nektede slagfelt — utviklet og kontrollert fra Norge.",
     "autonomousEngineTitle": "Prøv Autonomous Engine nå.",

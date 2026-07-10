@@ -26,7 +26,7 @@
     }
   },
   "Footer": {
-    "tagline": "Autonomous drone software for real-world operations.",
+    "tagline": "For real world operations.",
     "sections": {
       "development": "Development",
       "company": "Company",
@@ -58,7 +58,7 @@
     "viewProduct": "View product"
   },
   "Home": {
-    "hero": "Autonomous drone software for real-world operations.",
+    "hero": "For real world operations.",
     "missionEyebrow": "Our Mission",
     "missionStatement": "Spectr builds autonomous drone software that keeps missions running on comms-denied battlefields — developed and controlled from Norway.",
     "autonomousEngineTitle": "Try Autonomous Engine now.",
