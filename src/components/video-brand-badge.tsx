@@ -9,9 +9,9 @@ export function VideoBrandBadge() {
       <Image
         src="/spectr-logo.png"
         alt=""
-        width={32}
-        height={32}
-        className="h-8 w-auto invert"
+        width={48}
+        height={48}
+        className="h-12 w-auto invert"
       />
     </div>
   );
