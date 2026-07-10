@@ -1,14 +1,21 @@
 "use client";
 
 import { useEffect, useRef, type ReactNode } from "react";
+import { VideoBrandBadge } from "@/components/video-brand-badge";
 
 type ScrollVideoBackgroundProps = {
   src: string;
   children: ReactNode;
   className?: string;
+  brandOverlay?: boolean;
 };
 
-export function ScrollVideoBackground({ src, children, className = "" }: ScrollVideoBackgroundProps) {
+export function ScrollVideoBackground({
+  src,
+  children,
+  className = "",
+  brandOverlay = false,
+}: ScrollVideoBackgroundProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -48,6 +55,7 @@ export function ScrollVideoBackground({ src, children, className = "" }: ScrollV
       >
         <source src={src} type="video/mp4" />
       </video>
+      {brandOverlay ? <VideoBrandBadge /> : null}
       {children}
     </section>
   );

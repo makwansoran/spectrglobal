@@ -92,6 +92,7 @@ export default async function Home({ params }: HomePageProps) {
         {/* Sovereign capability — split media + text */}
         <ScrollVideoBackground
           src="/norway-sovereign.mp4"
+          brandOverlay
           className="brand-font relative flex min-h-screen snap-start items-end overflow-hidden bg-black text-white"
         >
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-black/20" />
