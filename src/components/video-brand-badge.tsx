@@ -3,7 +3,7 @@ import Image from "next/image";
 export function VideoBrandBadge() {
   return (
     <div
-      className="pointer-events-none absolute bottom-14 right-5 z-[5] -translate-x-full rounded-md bg-black/95 p-2.5 shadow-lg ring-1 ring-white/10 sm:bottom-[4.5rem] sm:right-8"
+      className="pointer-events-none absolute bottom-16 right-5 z-[5] -translate-x-full rounded-md bg-black/95 p-2.5 shadow-lg ring-1 ring-white/10 sm:bottom-20 sm:right-8"
       aria-hidden="true"
     >
       <Image
