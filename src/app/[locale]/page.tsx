@@ -86,7 +86,7 @@ export default async function Home({ params }: HomePageProps) {
           </div>
         </section>
 
-        <AutonomousEngineSection title={t("autonomousEngineTitle")} cta={tNav("getStarted")} />
+        <AutonomousEngineSection title={t("autonomousEngineTitle")} cta={t("tryNow")} />
 
         {/* Sovereign capability — split media + text */}
         <ScrollVideoBackground

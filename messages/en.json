@@ -62,12 +62,35 @@
     "missionEyebrow": "Our Mission",
     "missionStatement": "Spectr builds autonomous drone software that keeps missions running on comms-denied battlefields.",
     "autonomousEngineTitle": "Try Autonomous Engine now.",
+    "tryNow": "Try Now",
     "norwayEyebrow": "Sovereign Capability",
     "norwayTitle": "Developed in Norway",
     "norwayDescription": "Spectr develops mission software in Norway with national control over code, data, and deployment — without critical dependency on non-allied infrastructure.",
     "ctaTitle": "Ready when the mission is.",
     "newsroomTitle": "Newsroom",
     "newsroomCta": "Go To Newsroom"
+  },
+  "AutonomousEngine": {
+    "title": "Autonomous Engine",
+    "tagline": "Autonomous mission execution for comms-denied operations.",
+    "heroIntro": "Spectr Autonomous Engine is the runtime layer that keeps drones executing mission objectives when links degrade, GPS is denied, or operators need assets to continue without constant manual control.",
+    "overviewTitle": "Built for the battlefield, not the lab",
+    "overviewText": "Autonomous Engine handles onboard mission logic, navigation, and execution — so approved plans keep running when the environment turns hostile. It integrates with the platforms operators already field and is developed in Norway under sovereign control.",
+    "ctaTitle": "Ready to evaluate Autonomous Engine?",
+    "features": {
+      "execution": {
+        "title": "Autonomous execution",
+        "text": "Dispatch approved mission plans to the airframe with waypoint navigation, loiter patterns, and return logic."
+      },
+      "denied": {
+        "title": "Denied-environment resilience",
+        "text": "Continue operating when GPS and datalinks degrade — with onboard navigation that does not depend on constant connectivity."
+      },
+      "integration": {
+        "title": "Platform-agnostic integration",
+        "text": "Works across drone platforms so customers can adopt capability without replacing existing fleets."
+      }
+    }
   },
   "Contact": {
     "title": "Send a request.",

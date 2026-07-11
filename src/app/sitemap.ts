@@ -10,6 +10,7 @@ const baseUrl = "https://www.spectr.no";
 const staticPaths = [
   "",
   "/about",
+  "/autonomous-engine",
   "/careers",
   "/contact",
   "/documentation",
