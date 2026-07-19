@@ -28,23 +28,21 @@ export default async function NewsroomPage({ params }: NewsroomPageProps) {
   return (
     <>
       <Nav />
-      <main className="brand-font flex-1 bg-white text-fg">
+      <main className="brand-font flex-1 bg-[#f8f8f8] text-fg">
         <section className="px-5 pb-12 pt-36 sm:px-8 lg:pb-16 lg:pt-44">
-          <div className="mx-auto max-w-7xl">
-            <div className="grid gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:items-end">
-              <ScrollRevealHeading
-                as="h1"
-                revealOnMount
-                className="text-6xl font-semibold leading-[0.86] tracking-[-0.075em] text-fg sm:text-8xl lg:text-[10rem]"
-              >
-                {t("title")}
-              </ScrollRevealHeading>
-            </div>
+          <div className="mx-auto max-w-[90rem]">
+            <ScrollRevealHeading
+              as="h1"
+              revealOnMount
+              className="text-6xl font-semibold leading-[0.86] tracking-[-0.075em] text-fg sm:text-8xl lg:text-[10rem]"
+            >
+              {t("title")}
+            </ScrollRevealHeading>
           </div>
         </section>
 
         <section className="px-5 pb-20 sm:px-8 lg:pb-28">
-          <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-2">
+          <div className="mx-auto grid max-w-[90rem] gap-8 lg:grid-cols-2">
             {newsroomCards.map((card) => (
               <Link
                 key={card.slug}
@@ -87,20 +85,18 @@ export default async function NewsroomPage({ params }: NewsroomPageProps) {
           </div>
         </section>
 
-        <section className="px-5 py-16 sm:px-8 lg:py-24">
-          <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
-            <h2 className="max-w-3xl text-4xl font-semibold leading-[1.02] tracking-[-0.06em] text-fg sm:text-6xl">
+        <section className="bg-white px-5 py-16 sm:px-8 lg:py-24">
+          <div className="mx-auto flex max-w-[90rem] flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+            <h2 className="max-w-3xl text-4xl font-semibold leading-[1.02] tracking-[-0.06em] text-fg sm:text-5xl">
               {t("mediaCta")}
             </h2>
-            <BevelButton href="/contact" className="w-fit lg:max-w-sm lg:justify-self-end">
+            <BevelButton href="/contact" className="w-fit tracking-[0.16em]">
               {t("contact")}
               <span aria-hidden="true">→</span>
             </BevelButton>
           </div>
         </section>
-        <div className="bg-bg text-fg">
-          <Footer />
-        </div>
+        <Footer />
       </main>
     </>
   );

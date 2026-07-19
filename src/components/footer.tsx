@@ -22,7 +22,7 @@ export async function Footer() {
             </p>
           </div>
 
-          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
             <div>
               <h3 className="font-mono text-xs uppercase tracking-[0.16em] text-muted">{sections("products")}</h3>
               <ul className="mt-6 space-y-4 text-sm">
@@ -32,24 +32,10 @@ export async function Footer() {
             </div>
 
             <div>
-              <h3 className="font-mono text-xs uppercase tracking-[0.16em] text-muted">{sections("applications")}</h3>
-              <ul className="mt-6 space-y-4 text-sm">
-                <li><Link href="/applications/defense" className="transition-opacity hover:opacity-50">{nav("defense")}</Link></li>
-                <li><Link href="/applications/denied-environments" className="transition-opacity hover:opacity-50">{nav("deniedEnvironments")}</Link></li>
-                <li><Link href="/applications/isr" className="transition-opacity hover:opacity-50">{nav("isr")}</Link></li>
-                <li><Link href="/applications/fleet" className="transition-opacity hover:opacity-50">{nav("fleet")}</Link></li>
-                <li><Link href="/applications/mission-command" className="transition-opacity hover:opacity-50">{nav("missionCommand")}</Link></li>
-                <li><Link href="/applications/field-ops" className="transition-opacity hover:opacity-50">{nav("fieldOps")}</Link></li>
-              </ul>
-            </div>
-
-            <div>
               <h3 className="font-mono text-xs uppercase tracking-[0.16em] text-muted">{sections("company")}</h3>
               <ul className="mt-6 space-y-4 text-sm">
                 <li><Link href="/about" className="transition-opacity hover:opacity-50">{nav("about")}</Link></li>
                 <li><Link href="/careers" className="transition-opacity hover:opacity-50">{nav("careers")}</Link></li>
-                <li><Link href="/investor" className="transition-opacity hover:opacity-50">{nav("investor")}</Link></li>
-                <li><Link href="/security" className="transition-opacity hover:opacity-50">{nav("security")}</Link></li>
               </ul>
             </div>
 
@@ -66,7 +52,6 @@ export async function Footer() {
               <h3 className="font-mono text-xs uppercase tracking-[0.16em] text-muted">{sections("support")}</h3>
               <ul className="mt-6 space-y-4 text-sm">
                 <li><Link href="/contact" className="transition-opacity hover:opacity-50">{nav("contact")}</Link></li>
-                <li><Link href="/documentation" className="transition-opacity hover:opacity-50">{nav("documentation")}</Link></li>
                 <li><Link href="/privacy" className="transition-opacity hover:opacity-50">{nav("privacy")}</Link></li>
                 <li><Link href="/terms" className="transition-opacity hover:opacity-50">{nav("terms")}</Link></li>
               </ul>

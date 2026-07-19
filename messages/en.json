@@ -41,7 +41,6 @@
     "tagline": "For real world operations.",
     "sections": {
       "products": "Products",
-      "applications": "Applications",
       "company": "Company",
       "updates": "Updates",
       "support": "Support"
@@ -276,10 +275,38 @@
   },
   "AutonomousEngine": {
     "title": "Autonomous Engine",
-    "tagline": "Autonomous mission execution for comms-denied operations.",
-    "heroIntro": "Spectr Autonomous Engine is the mission runtime that keeps drones executing objectives when links degrade, GPS is denied, or operators need assets to continue without constant manual control. Flight control stays on Betaflight — Spectr does not ship custom flight-controller firmware.",
+    "tagline": "Precise autonomy, exactly where the mission needs it.",
+    "heroIntro": "Imagine mission execution that is not limited by perfect links or constant manual control. Autonomous Engine keeps approved plans running when GPS is denied, datalinks degrade, or operators need fleets to continue without hand-flying every asset. Flight control stays on Betaflight — Spectr does not ship custom flight-controller firmware.",
     "overviewTitle": "Built for the battlefield, not the lab",
     "overviewText": "Autonomous Engine handles mission logic, navigation, and execution above the flight stack. Betaflight manages stabilization and manual flight modes on the airframe, while Spectr software coordinates approved plans when the environment turns hostile.",
+    "possibilitiesTitle": "What's possible with autonomous execution?",
+    "possibilities": {
+      "denied": {
+        "title": "Denied environments",
+        "text": "Keep approved plans executing through jamming, GPS stress, and contested spectrum."
+      },
+      "fleet": {
+        "title": "Collaborative fleets",
+        "text": "Each drone runs its own AI agent so multi-drone missions stay coherent under pressure."
+      },
+      "inspection": {
+        "title": "Inspection & logistics",
+        "text": "Extend reach for time-critical inspection and coordinated logistics work."
+      },
+      "defense": {
+        "title": "Defense operations",
+        "text": "Sustain critical missions when conventional control models break down."
+      }
+    },
+    "benefitsTitle": "Field-ready autonomy without replacing your airframes.",
+    "benefitsLabel": "Benefits",
+    "benefits": [
+      "Operator-approved plans that can be stopped at any time",
+      "Mission logic above the flight stack you already fly",
+      "Continuation under degraded links and GPS stress",
+      "Works with Betaflight — no custom FC firmware",
+      "Developed in Norway under national control"
+    ],
     "ctaTitle": "Ready to evaluate Autonomous Engine?",
     "flyLabel": "Fly",
     "configureLabel": "Configure",
@@ -400,7 +427,7 @@
     }
   },
   "Contact": {
-    "title": "Send a request.",
+    "title": "Contact",
     "name": "Name",
     "organization": "Organization",
     "email": "Email",
@@ -430,73 +457,31 @@
     "rolePrefill": "Application for role: {role}"
   },
   "About": {
-    "title": "About Us",
-    "heroIntro": "Spectr is a Norwegian defense technology company developing autonomous drone software and sovereign mission systems for demanding operational environments.",
-    "securityLink": "Security page",
+    "title": "Our Team",
+    "eyebrow": "Our team",
+    "heroIntro": "Spectr builds collaborative multi-drone systems that autonomously run missions together — developed in Norway for real-world autonomous operations.",
+    "joinCta": "Join Us",
     "ctaTitle": "Want to work with Spectr?",
-    "sections": {
-      "overview": {
-        "title": "Company Overview",
-        "paragraphs": [
-          "spectr as is a Norwegian defense technology company headquartered in Norway (Org.nr 936 961 967). We develop autonomous drone software for mission command, fleet coordination, and AI-assisted decision support in contested environments.",
-          "Our work focuses on software that integrates with the drones operators already fly — from mission planning and staging to resilient communications and autonomous execution when links degrade."
-        ]
-      },
-      "mission": {
-        "title": "Mission",
-        "paragraphs": [
-          "Spectr builds autonomous drone software for comms-denied battlefields. We believe allied forces need mission capability they can trust, control, and sustain — without dependence on foreign supply chains for critical software infrastructure.",
-          "Our mission is to deliver sovereign Norwegian software that keeps missions running when GPS is denied, communications are jammed, and conventional systems fail. We build for the conditions operators actually face."
-        ]
-      },
-      "whatWeBuild": {
-        "title": "What We Build",
-        "paragraphs": [
-          "CENTURION is our sovereign mission command platform. The operator defines goals and constraints; Centurion plans, coordinates, and reports across mixed drone fleets. Version 0.1 is operational with mission staging, AI-assisted decision support, and multi-asset coordination.",
-          "Spectr does not manufacture drones. We build software that works across airframes — helping operators plan missions, coordinate assets, maintain context under pressure, and execute autonomously when the environment demands it.",
-          "Everything is developed in Norway with a focus on field readiness, sovereign control, and operational reliability outside the lab."
-        ]
-      },
-      "whyNorway": {
-        "title": "Why Norway",
-        "paragraphs": [
-          "Norway provides a stable, NATO-aligned foundation for developing critical defense technology under national control. Spectr develops in Norway to maintain sovereignty over software, data, and deployment — reducing supply-chain risk and ensuring allied compatibility.",
-          "This model keeps critical mission software local and NDAA Section 889 compatible by design, while integrating with the platforms and sensors operators already field.",
-          "National control over code and infrastructure is not optional for the missions our customers run."
-        ]
-      },
-      "technology": {
-        "title": "Technology & Innovation",
-        "paragraphs": [
-          "Spectr software is designed for resilient operation in denied environments — resilient datalinks, autonomous mission execution, and operator workflows that continue when conventional systems fail.",
-          "CENTURION brings AI-assisted decision support and natural language interfaces to mission command — helping operators maintain context and coordinate multiple assets under pressure.",
-          "We integrate with diverse drone platforms rather than prescribing a single airframe, so customers can adopt capability without replacing existing fleets."
-        ]
-      },
-      "security": {
-        "title": "Security & Compliance",
-        "paragraphs": [
-          "Spectr operates in a sensitive sector. Our products, software, and technical information may be subject to Norwegian export controls, EU export control regulations, and international sanctions laws. We conduct qualification review before engaging with customers and may decline transactions where legal or national-security concerns arise.",
-          "We maintain Norwegian ownership and controlled infrastructure. Customer data, mission information, and proprietary technology are handled under strict confidentiality. Defense-related inquiries should not include classified material through public channels.",
-          "For more detail on our security commitments, see our"
-        ]
-      },
-      "leadership": {
-        "title": "Leadership",
-        "paragraphs": [
-          "Spectr is led by Makwan Soran, Chief Executive Officer. The company is built by engineers working across autonomous systems, secure software, and operator workflow — with a shared focus on technology that performs in real-world conditions.",
-          "We are a small, execution-focused team. We hire for practical engineering ability, disciplined delivery, and the judgment required to build technology for demanding operational environments."
-        ]
+    "teamNarrative": [
+      "Spectr exists because reliable autonomy is becoming the foundation of real-world operations. We are building collaborative multi-drone systems where each drone runs its own AI agent, coordinated through sovereign command and control software.",
+      "Our technology keeps missions running for inspection, logistics, ISR, and contested environments — when links degrade, GPS is denied, or operators need fleets to continue without constant manual control.",
+      "We do not manufacture drones. We build the mission layer above the stacks operators already fly, developed in Norway under national control. Humanity already flies capable airframes. What operators still need is software that lets those fleets work together."
+    ],
+    "teamMembers": [
+      {
+        "name": "Makwan Soran",
+        "role": "CEO & Head Engineer"
       }
-    }
+    ]
   },
   "Careers": {
-    "title": "Join Our Mission",
-    "intro": "Spectr is building autonomous drone software and operational mission systems from Norway.",
+    "title": "Careers at Spectr",
+    "intro": "Spectr is building collaborative multi-drone systems that autonomously run missions together. Our ambitions are significant, our timelines are aggressive, and the constraints are unforgiving.",
     "buildTitle": "Build software for real-world operations.",
-    "paragraph1": "We are looking for people who care about practical engineering, disciplined execution, and technology that can hold up outside the lab.",
+    "paragraph1": "We are looking for builders motivated by extreme ownership, moving fast, and learning in reality — people who care about practical engineering for autonomous operations.",
     "paragraph2": "If you want to work across autonomous systems, operator workflow, and secure software, we want to hear from you.",
-    "openRoles": "Open roles",
+    "seeOpenRoles": "See Open Roles",
+    "openRoles": "Open Positions",
     "applyCta": "Apply via contact",
     "ctaTitle": "Interested in joining Spectr?",
     "focus": {

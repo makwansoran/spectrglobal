@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { Suspense } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ContactForm } from "@/components/contact-form";
@@ -32,52 +31,50 @@ export default async function ContactPage({ params }: ContactPageProps) {
     <>
       <Nav />
       <main id="main-content" className="flex-1">
-        <section className="px-5 pb-20 pt-32 sm:px-8 lg:pb-28 lg:pt-36">
-          <div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-[1fr_320px] lg:items-start">
-            <div>
-              <ScrollRevealHeading
-                as="h1"
-                revealOnMount
-                className="text-5xl font-semibold leading-[0.98] tracking-[-0.06em] sm:text-7xl lg:text-8xl"
-              >
-                {t("title")}
-              </ScrollRevealHeading>
+        <section className="brand-font bg-[#f8f8f8] px-5 pb-20 pt-36 sm:px-8 lg:pb-28 lg:pt-44">
+          <div className="mx-auto max-w-[42rem]">
+            <ScrollRevealHeading
+              as="h1"
+              revealOnMount
+              className="text-5xl font-semibold leading-[0.95] tracking-[-0.05em] text-fg sm:text-7xl"
+            >
+              {t("title")}
+            </ScrollRevealHeading>
+            <p className="mt-6 text-base leading-7 text-muted sm:text-lg">{t("trustIntro")}</p>
+
+            <div className="mt-12">
               <Suspense fallback={null}>
                 <ContactForm />
               </Suspense>
             </div>
 
-            <aside className="bg-surface p-7 sm:p-8 lg:sticky lg:top-28">
-              <h2 className="text-2xl font-semibold tracking-[-0.05em] text-fg">{t("trustTitle")}</h2>
-              <p className="mt-5 text-sm leading-7 text-muted">{t("trustIntro")}</p>
-              <dl className="mt-8 space-y-5 text-sm">
-                <div>
-                  <dt className="label">{t("emailLabel")}</dt>
-                  <dd className="mt-2">
-                    <a href="mailto:makwan@spectr.no" className="text-fg underline underline-offset-4 hover:opacity-70">
-                      makwan@spectr.no
-                    </a>
-                  </dd>
-                </div>
-                <div>
-                  <dt className="label">{t("phoneLabel")}</dt>
-                  <dd className="mt-2">
-                    <a href="tel:+4746503934" className="text-fg underline underline-offset-4 hover:opacity-70">
-                      {t("phoneValue")}
-                    </a>
-                  </dd>
-                </div>
-                <div>
-                  <dt className="label">{t("orgLabel")}</dt>
-                  <dd className="mt-2 text-fg">{t("orgValue")}</dd>
-                </div>
-                <div>
-                  <dt className="label">{t("locationLabel")}</dt>
-                  <dd className="mt-2 text-fg">{t("locationValue")}</dd>
-                </div>
-              </dl>
-              <p className="mt-8 text-xs leading-6 text-muted">{t("securityNote")}</p>
-            </aside>
+            <dl className="mt-12 grid gap-6 border-t border-[#d4d4d4] pt-10 sm:grid-cols-2">
+              <div>
+                <dt className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted">{t("emailLabel")}</dt>
+                <dd className="mt-2">
+                  <a href="mailto:makwan@spectr.no" className="text-fg underline underline-offset-4 hover:opacity-70">
+                    makwan@spectr.no
+                  </a>
+                </dd>
+              </div>
+              <div>
+                <dt className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted">{t("phoneLabel")}</dt>
+                <dd className="mt-2">
+                  <a href="tel:+4746503934" className="text-fg underline underline-offset-4 hover:opacity-70">
+                    {t("phoneValue")}
+                  </a>
+                </dd>
+              </div>
+              <div>
+                <dt className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted">{t("orgLabel")}</dt>
+                <dd className="mt-2 text-fg">{t("orgValue")}</dd>
+              </div>
+              <div>
+                <dt className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted">{t("locationLabel")}</dt>
+                <dd className="mt-2 text-fg">{t("locationValue")}</dd>
+              </div>
+            </dl>
+            <p className="mt-8 text-xs leading-6 text-muted">{t("securityNote")}</p>
           </div>
         </section>
         <Footer />

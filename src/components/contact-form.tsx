@@ -31,7 +31,7 @@ export function ContactForm() {
     : null;
 
   return (
-    <form action={formAction} className="mt-12 space-y-6">
+    <form action={formAction} className="space-y-6">
       <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
 
       <Field label={t("name")}>

@@ -9,7 +9,7 @@ type HomeExclusionBannerProps = {
 export function HomeExclusionBanner({
   text,
   cta,
-  href = "/security",
+  href = "/about",
 }: HomeExclusionBannerProps) {
   return (
     <section className="brand-font bg-[#f8f8f8] px-5 py-12 sm:px-8 lg:px-12 lg:py-16">

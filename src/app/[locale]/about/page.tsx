@@ -1,25 +1,14 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { BevelButton } from "@/components/bevel-button";
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
 import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
-import { BevelButton } from "@/components/bevel-button";
-import { Link } from "@/i18n/navigation";
 import { buildPageMetadata, localizedPath } from "@/lib/metadata";
 
 type AboutPageProps = {
   params: Promise<{ locale: string }>;
 };
-
-const sectionKeys = [
-  "overview",
-  "mission",
-  "whatWeBuild",
-  "whyNorway",
-  "technology",
-  "security",
-  "leadership",
-] as const;
 
 export async function generateMetadata({ params }: AboutPageProps): Promise<Metadata> {
   const { locale } = await params;
@@ -37,61 +26,58 @@ export default async function AboutPage({ params }: AboutPageProps) {
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "About" });
   const tCommon = await getTranslations({ locale, namespace: "Common" });
+  const narrative = t.raw("teamNarrative") as string[];
+  const team = t.raw("teamMembers") as { name: string; role: string }[];
 
   return (
     <>
       <Nav />
       <main className="flex-1">
-        <section className="brand-font bg-black px-5 pb-20 pt-36 text-white sm:px-8 lg:pb-28 lg:pt-44">
-          <div className="mx-auto max-w-4xl">
+        <section className="brand-font bg-[#f8f8f8] px-5 pb-16 pt-36 sm:px-8 lg:pb-24 lg:pt-44">
+          <div className="mx-auto max-w-[55rem]">
+            <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-muted">{t("eyebrow")}</p>
             <ScrollRevealHeading
               as="h1"
               revealOnMount
-              className="max-w-5xl text-6xl font-semibold leading-[0.9] tracking-[-0.075em] sm:text-8xl lg:text-[9.5rem]"
+              className="mt-4 text-5xl font-semibold leading-[0.95] tracking-[-0.05em] text-fg sm:text-7xl lg:text-8xl"
             >
               {t("title")}
             </ScrollRevealHeading>
-            <p className="mt-10 max-w-3xl text-base leading-8 text-white/68 sm:text-lg">{t("heroIntro")}</p>
+            <div className="mt-10 space-y-6 text-lg leading-8 text-fg sm:text-xl sm:leading-9">
+              {narrative.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
           </div>
         </section>
 
-        <section className="brand-font bg-bg px-5 py-20 sm:px-8 lg:py-28">
-          <div className="mx-auto max-w-4xl space-y-20">
-            {sectionKeys.map((key) => (
-              <article key={key}>
-                <h2 className="text-3xl font-semibold tracking-[-0.055em] text-fg sm:text-4xl">
-                  {t(`sections.${key}.title`)}
-                </h2>
-                <div className="mt-6 space-y-5 text-base leading-8 text-muted sm:text-lg">
-                  {t.raw(`sections.${key}.paragraphs`).map((paragraph: string, index: number) => (
-                    <p key={paragraph}>
-                      {paragraph}
-                      {key === "security" && index === 2 ? (
-                        <>
-                          {" "}
-                          <Link href="/security" className="text-fg underline underline-offset-4 hover:opacity-70">
-                            {t("securityLink")}
-                          </Link>
-                          .
-                        </>
-                      ) : null}
-                    </p>
-                  ))}
-                </div>
+        <section className="brand-font bg-white px-5 py-16 sm:px-8 lg:py-24">
+          <div className="mx-auto grid max-w-[90rem] gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {team.map((member) => (
+              <article key={member.name} className="border-t border-[#d4d4d4] pt-6">
+                <div className="bevel-card mb-6 aspect-[4/5] bg-[#efefef]" aria-hidden="true" />
+                <h2 className="text-2xl font-semibold tracking-[-0.03em] text-fg">{member.name}</h2>
+                <p className="mt-2 text-base text-muted">{member.role}</p>
               </article>
             ))}
           </div>
         </section>
 
-        <section className="brand-font bg-surface px-5 py-16 sm:px-8 lg:py-24">
-          <div className="mx-auto grid max-w-4xl gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
-            <h2 className="max-w-3xl text-4xl font-semibold leading-[1.02] tracking-[-0.06em] text-fg sm:text-5xl">
+        <section className="brand-font bg-[#f8f8f8] px-5 py-16 sm:px-8 lg:py-24">
+          <div className="mx-auto flex max-w-[90rem] flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+            <h2 className="max-w-3xl text-4xl font-semibold tracking-[-0.05em] text-fg sm:text-5xl">
               {t("ctaTitle")}
             </h2>
-            <BevelButton href="/contact" className="w-fit">
-              {tCommon("contactUs")}
-              <span aria-hidden="true">→</span>
-            </BevelButton>
+            <div className="flex flex-wrap gap-3">
+              <BevelButton href="/contact" className="w-fit tracking-[0.16em]">
+                {tCommon("contactUs")}
+                <span aria-hidden="true">→</span>
+              </BevelButton>
+              <BevelButton href="/careers" variant="secondary" className="w-fit tracking-[0.16em]">
+                {t("joinCta")}
+                <span aria-hidden="true">→</span>
+              </BevelButton>
+            </div>
           </div>
         </section>
         <Footer />

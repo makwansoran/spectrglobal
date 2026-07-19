@@ -24,6 +24,13 @@ export const applicationCardImages: Record<(typeof featuredApplicationSlugs)[num
   "mission-command": "/centurion-laptop-mockup.png",
 };
 
+export const applicationCardHrefs: Record<(typeof featuredApplicationSlugs)[number], string> = {
+  defense: "/autonomous-engine",
+  "denied-environments": "/autonomous-engine",
+  fleet: "/centurion",
+  "mission-command": "/centurion",
+};
+
 export function isApplicationSlug(value: string): value is ApplicationSlug {
   return (applicationSlugs as readonly string[]).includes(value);
 }

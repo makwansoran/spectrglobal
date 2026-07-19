@@ -41,7 +41,6 @@
     "tagline": "For operasjoner i virkeligheten.",
     "sections": {
       "products": "Produkter",
-      "applications": "Anvendelser",
       "company": "Selskap",
       "updates": "Oppdateringer",
       "support": "Support"
@@ -276,10 +275,38 @@
   },
   "AutonomousEngine": {
     "title": "Autonomous Engine",
-    "tagline": "Autonom oppdragsgjennomføring for samband-nektede operasjoner.",
-    "heroIntro": "Spectr Autonomous Engine er oppdragskjøretiden som holder droner i utførelse av mål når lenker degraderes, GPS er nektet, eller operatører trenger at enheter fortsetter uten konstant manuell kontroll. Flykontroll ligger på Betaflight — Spectr leverer ikke egen flash-programvare for flykontrollere.",
+    "tagline": "Presis autonomi, akkurat der oppdraget trenger det.",
+    "heroIntro": "Se for deg oppdragsgjennomføring som ikke er begrenset av perfekte lenker eller konstant manuell kontroll. Autonomous Engine holder godkjente planer i gang når GPS er nektet, datalenker degraderes, eller operatører trenger at flåter fortsetter uten å håndfly hver enhet. Flykontroll ligger på Betaflight — Spectr leverer ikke egen flash-programvare for flykontrollere.",
     "overviewTitle": "Bygget for slagfeltet, ikke labben",
     "overviewText": "Autonomous Engine håndterer oppdragslogikk, navigasjon og gjennomføring over flystacken. Betaflight styrer stabilisering og manuelle flymodus på luftfartøyet, mens Spectr-programvaren koordinerer godkjente planer når miljøet blir fiendtlig.",
+    "possibilitiesTitle": "Hva er mulig med autonom gjennomføring?",
+    "possibilities": {
+      "denied": {
+        "title": "Nektede miljøer",
+        "text": "Hold godkjente planer i gang gjennom jamming, GPS-stress og omstridt spektrum."
+      },
+      "fleet": {
+        "title": "Samarbeidende flåter",
+        "text": "Hver drone kjører sin egen AI-agent slik at multi-droneoppdrag holder seg sammenhengende under press."
+      },
+      "inspection": {
+        "title": "Inspeksjon og logistikk",
+        "text": "Utvid rekkevidden for tidskritisk inspeksjon og koordinert logistikk."
+      },
+      "defense": {
+        "title": "Forsvarsoperasjoner",
+        "text": "Oppretthold kritiske oppdrag når konvensjonelle kontrollmodeller svikter."
+      }
+    },
+    "benefitsTitle": "Feltklar autonomi uten å bytte ut luftfartøyene dine.",
+    "benefitsLabel": "Fordeler",
+    "benefits": [
+      "Operatørgodkjente planer som kan stoppes når som helst",
+      "Oppdragslogikk over flystacken du allerede bruker",
+      "Fortsettelse under degraderte lenker og GPS-stress",
+      "Fungerer med Betaflight — ingen egen FC-firmware",
+      "Utviklet i Norge under nasjonal kontroll"
+    ],
     "ctaTitle": "Klar til å evaluere Autonomous Engine?",
     "flyLabel": "Fly",
     "configureLabel": "Konfigurer",
@@ -400,7 +427,7 @@
     }
   },
   "Contact": {
-    "title": "Send en forespørsel.",
+    "title": "Kontakt",
     "name": "Navn",
     "organization": "Organisasjon",
     "email": "E-post",
@@ -430,87 +457,45 @@
     "rolePrefill": "Søknad om stilling: {role}"
   },
   "About": {
-    "title": "Om oss",
-    "heroIntro": "Spectr er et norsk forsvarsteknologiselskap som utvikler autonom droneprogramvare og suverene oppdragssystemer for krevende operative miljøer.",
-    "securityLink": "sikkerhetsside",
+    "title": "Vårt team",
+    "eyebrow": "Vårt team",
+    "heroIntro": "Spectr bygger samarbeidende multi-dronesystemer som autonomt utfører oppdrag sammen — utviklet i Norge for autonome operasjoner i virkeligheten.",
+    "joinCta": "Bli med oss",
     "ctaTitle": "Vil du samarbeide med Spectr?",
-    "sections": {
-      "overview": {
-        "title": "Selskapsoversikt",
-        "paragraphs": [
-          "spectr as er et norsk forsvarsteknologiselskap med hovedkontor i Norge (Org.nr 936 961 967). Vi utvikler autonom droneprogramvare for oppdragskommando, flåtekoordinering og AI-assistert beslutningsstøtte i omstridte miljøer.",
-          "Arbeidet vårt fokuserer på programvare som integreres med dronene operatører allerede flyr — fra oppdragsplanlegging og staging til robust kommunikasjon og autonom gjennomføring når lenker degraderes."
-        ]
-      },
-      "mission": {
-        "title": "Oppdrag",
-        "paragraphs": [
-          "Spectr bygger autonom droneprogramvare for samband-nektede slagfelt. Vi mener allierte styrker trenger oppdragskapabilitet de kan stole på, kontrollere og opprettholde — uten avhengighet av utenlandske leverandørkjeder for kritisk programvareinfrastruktur.",
-          "Oppdraget vårt er å levere suverent norsk programvare som holder oppdrag i gang når GPS er nektet, kommunikasjon er jammet og konvensjonelle systemer svikter. Vi bygger for forholdene operatører faktisk møter."
-        ]
-      },
-      "whatWeBuild": {
-        "title": "Hva vi bygger",
-        "paragraphs": [
-          "CENTURION er vår suverene oppdragskommandoplattform. Operatøren definerer mål og begrensninger; Centurion planlegger, koordinerer og rapporterer på tvers av blandede droneflåter. Versjon 0.1 er operativ med mission staging, AI-assistert beslutningsstøtte og multi-enhet-koordinering.",
-          "Spectr produserer ikke droner. Vi bygger programvare som fungerer på tvers av luftfartøy — og hjelper operatører planlegge oppdrag, koordinere enheter, beholde kontekst under press og utføre autonomt når miljøet krever det.",
-          "Alt utvikles i Norge med fokus på feltklarhet, suveren kontroll og operasjonell pålitelighet utenfor labben."
-        ]
-      },
-      "whyNorway": {
-        "title": "Hvorfor Norge",
-        "paragraphs": [
-          "Norge gir et stabilt, NATO-tilpasset grunnlag for å utvikle kritisk forsvarsteknologi under nasjonal kontroll. Spectr utvikler i Norge for å opprettholde suverenitet over programvare, data og deployering — og redusere leverandørkjederisiko samtidig som alliert kompatibilitet sikres.",
-          "Denne modellen holder kritisk oppdragsprogramvare lokalt og NDAA Section 889-kompatibel by design, samtidig som den integreres med plattformene og sensorene operatører allerede bruker.",
-          "Nasjonal kontroll over kode og infrastruktur er ikke valgfritt for oppdragene kundene våre kjører."
-        ]
-      },
-      "technology": {
-        "title": "Teknologi og innovasjon",
-        "paragraphs": [
-          "Spectr-programvare er designet for robust drift i nektede miljøer — robuste datalenker, autonom oppdragsgjennomføring og operatørflyt som fortsetter når konvensjonelle systemer svikter.",
-          "CENTURION bringer AI-assistert beslutningsstøtte og naturlig språkgrensesnitt til oppdragskommando — og hjelper operatører å beholde kontekst og koordinere flere enheter under press.",
-          "Vi integrerer med ulike droneplattformer i stedet for å foreskrive ett luftfartøy, slik at kunder kan ta i bruk kapabilitet uten å erstatte eksisterende flåter."
-        ]
-      },
-      "security": {
-        "title": "Sikkerhet og etterlevelse",
-        "paragraphs": [
-          "Spectr opererer i en sensitiv sektor. Produktene, programvaren og teknisk informasjon kan være underlagt norsk eksportkontroll, EUs eksportkontrollregelverk og internasjonale sanksjonslover. Vi gjennomfører kvalifiseringsgjennomgang før kundeengasjement og kan avslå transaksjoner der juridiske eller nasjonale sikkerhetshensyn oppstår.",
-          "Vi opprettholder norsk eierskap og kontrollert infrastruktur. Kundedata, oppdragsinformasjon og proprietær teknologi håndteres under streng konfidensialitet. Forsvarsrelaterte henvendelser bør ikke inneholde klassifisert materiale via offentlige kanaler.",
-          "For mer detaljer om våre sikkerhetsforpliktelser, se vår"
-        ]
-      },
-      "leadership": {
-        "title": "Ledelse",
-        "paragraphs": [
-          "Spectr ledes av Makwan Soran, administrerende direktør. Selskapet er bygget av ingeniører som jobber på tvers av autonome systemer, sikker programvare og operatørflyt — med felles fokus på teknologi som presterer i virkelige forhold.",
-          "Vi er et lite, gjennomføringsorientert team. Vi ansetter for praktisk ingeniørkompetanse, disiplinert leveranse og dømmekraften som kreves for å bygge teknologi for krevende operative miljøer."
-        ]
+    "teamNarrative": [
+      "Spectr eksisterer fordi pålitelig autonomi blir grunnlaget for operasjoner i virkeligheten. Vi bygger samarbeidende multi-dronesystemer der hver drone kjører sin egen AI-agent, koordinert gjennom suveren kommando- og kontrollprogramvare.",
+      "Teknologien vår holder oppdrag i gang for inspeksjon, logistikk, ISR og omstridte miljøer — når lenker degraderes, GPS er nektet, eller operatører trenger at flåter fortsetter uten konstant manuell kontroll.",
+      "Vi produserer ikke droner. Vi bygger oppdragslaget over stackene operatører allerede flyr, utviklet i Norge under nasjonal kontroll. Menneskeheten flyr allerede kapable luftfartøy. Det operatører fortsatt trenger er programvare som lar flåtene jobbe sammen."
+    ],
+    "teamMembers": [
+      {
+        "name": "Makwan Soran",
+        "role": "CEO & Head Engineer"
       }
-    }
+    ]
   },
   "Careers": {
-    "title": "Bli med på oppdraget",
-    "intro": "Spectr bygger autonom droneprogramvare og operative oppdragssystemer fra Norge.",
+    "title": "Karriere i Spectr",
+    "intro": "Spectr bygger samarbeidende multi-dronesystemer som autonomt utfører oppdrag sammen. Ambisjonene er store, tidslinjene er aggressive, og begrensningene er uforsonlige.",
     "buildTitle": "Bygg programvare for operasjoner i virkeligheten.",
-    "paragraph1": "Vi ser etter folk som bryr seg om praktisk ingeniørarbeid, disiplinert gjennomføring og teknologi som tåler bruk utenfor labben.",
-    "paragraph2": "Hvis du vil jobbe på tvers av autonome systemer, operatørflyt og sikker programvare, vil vi gjerne høre fra deg.",
+    "paragraph1": "Vi ser etter byggere motivert av ekstremt eierskap, tempo og læring i virkeligheten — folk som bryr seg om praktisk ingeniørarbeid for autonome operasjoner.",
+    "paragraph2": "Hvis du vil jobbe på tvers av autonome systemer, operatørarbeidsflyt og sikker programvare, vil vi høre fra deg.",
+    "seeOpenRoles": "Se ledige stillinger",
     "openRoles": "Ledige stillinger",
     "applyCta": "Søk via kontakt",
     "ctaTitle": "Interessert i å bli med i Spectr?",
     "focus": {
       "autonomy": {
         "title": "Autonome systemer",
-        "text": "Arbeid med oppdragslogikk, flåtekoordinering og programvare som holder droner operative i nektede miljøer."
+        "text": "Jobb med oppdragslogikk, flåtekoordinering og programvare som holder droner i drift i nektede miljøer."
       },
       "software": {
-        "title": "Operasjonell programvare",
-        "text": "Bygg kommandogrensesnitt, oppdragsflyt og verktøy som hjelper operatører å beholde kontekst når beslutninger teller."
+        "title": "Operativ programvare",
+        "text": "Bygg kommando­grensesnitt, oppdragsarbeidsflyter og verktøy som hjelper operatører å beholde kontekst."
       },
       "norway": {
         "title": "Norsk kapabilitet",
-        "text": "Bidra til utvikling av kritisk teknologi under nasjonal kontroll, med fokus på pålitelighet, sikkerhet og reelle deployeringsbehov."
+        "text": "Bidra til kritisk teknologi under nasjonal kontroll, med fokus på pålitelighet, sikkerhet og reell deployering."
       }
     }
   },

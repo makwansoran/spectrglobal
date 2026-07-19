@@ -11,6 +11,7 @@ import { HomeRoadmap } from "@/components/home-roadmap";
 import { Nav } from "@/components/nav";
 import { ScrubPhrase } from "@/components/scrub-phrase";
 import {
+  applicationCardHrefs,
   applicationCardImages,
   featuredApplicationSlugs,
 } from "@/lib/applications";
@@ -52,6 +53,7 @@ export default async function Home({ params }: HomePageProps) {
     title: t(`applications.${slug}.title`),
     text: t(`applications.${slug}.text`),
     imageSrc: applicationCardImages[slug],
+    href: applicationCardHrefs[slug],
   }));
 
   const bigPictureItems = t.raw("bigPictureItems") as {

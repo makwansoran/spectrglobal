@@ -7,6 +7,7 @@ type ApplicationCard = {
   title: string;
   text: string;
   imageSrc: string;
+  href: string;
 };
 
 type HomeApplicationsProps = {
@@ -27,7 +28,7 @@ export function HomeApplications({ title, items }: HomeApplicationsProps) {
             {items.map((item) => (
               <li key={item.slug} className="shrink-0 lg:min-w-0 lg:flex-1">
                 <Link
-                  href={`/applications/${item.slug}`}
+                  href={item.href}
                   className="bevel-card group relative block h-[26.875rem] w-[min(20.25rem,78vw)] overflow-hidden bg-black text-white transition-opacity duration-200 hover:opacity-90 lg:h-[28rem] lg:w-full"
                 >
                   <Image

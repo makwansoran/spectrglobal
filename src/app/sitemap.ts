@@ -1,9 +1,7 @@
 import type { MetadataRoute } from "next";
 import { routing } from "@/i18n/routing";
 import { articles } from "@/lib/articles";
-import { docPages } from "@/lib/docs";
 import { newsroomCards } from "@/lib/newsroom";
-import { securityPrinciples } from "@/lib/security-principles";
 
 const baseUrl = "https://www.spectr.no";
 
@@ -12,19 +10,10 @@ const staticPaths = [
   "/about",
   "/autonomous-engine",
   "/centurion",
-  "/applications/defense",
-  "/applications/denied-environments",
-  "/applications/isr",
-  "/applications/fleet",
-  "/applications/mission-command",
-  "/applications/field-ops",
   "/careers",
   "/contact",
-  "/documentation",
-  "/investor",
   "/newsroom",
   "/privacy",
-  "/security",
   "/terms",
 ];
 
@@ -55,14 +44,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         url: localizedUrl(locale, `/newsroom/${article.category}/${article.slug}`),
         lastModified: new Date(article.date),
       });
-    }
-
-    for (const doc of docPages) {
-      entries.push({ url: localizedUrl(locale, `/documentation/${doc.slug}`), lastModified: new Date() });
-    }
-
-    for (const principle of securityPrinciples) {
-      entries.push({ url: localizedUrl(locale, `/security/${principle.slug}`), lastModified: new Date() });
     }
   }
 
