@@ -73,24 +73,16 @@
   "AutonomousEngine": {
     "title": "Autonomous Engine",
     "tagline": "Autonomous mission execution for comms-denied operations.",
-    "heroIntro": "Spectr Autonomous Engine is the runtime layer that keeps drones executing mission objectives when links degrade, GPS is denied, or operators need assets to continue without constant manual control.",
+    "heroIntro": "Spectr Autonomous Engine is the mission runtime that keeps drones executing objectives when links degrade, GPS is denied, or operators need assets to continue without constant manual control. Flight control stays on Betaflight — Spectr does not ship custom flight-controller firmware.",
     "overviewTitle": "Built for the battlefield, not the lab",
-    "overviewText": "Autonomous Engine handles onboard mission logic, navigation, and execution — so approved plans keep running when the environment turns hostile. It integrates with the platforms operators already field and is developed in Norway under sovereign control.",
+    "overviewText": "Autonomous Engine handles mission logic, navigation, and execution above the flight stack. Betaflight manages stabilization and manual flight modes on the airframe, while Spectr software coordinates approved plans when the environment turns hostile.",
     "ctaTitle": "Ready to evaluate Autonomous Engine?",
-    "features": {
-      "execution": {
-        "title": "Autonomous execution",
-        "text": "Dispatch approved mission plans to the airframe with waypoint navigation, loiter patterns, and return logic."
-      },
-      "denied": {
-        "title": "Denied-environment resilience",
-        "text": "Continue operating when GPS and datalinks degrade — with onboard navigation that does not depend on constant connectivity."
-      },
-      "integration": {
-        "title": "Platform-agnostic integration",
-        "text": "Works across drone platforms so customers can adopt capability without replacing existing fleets."
-      }
-    }
+    "flyLabel": "Fly",
+    "configureLabel": "Configure",
+    "flyTitle": "Fly the mission",
+    "flyDescription": "Run approved mission plans through Autonomous Engine while Betaflight handles stabilization and manual flight control on the airframe.",
+    "configureTitle": "Configure in Betaflight",
+    "configureDescription": "Tune rates, modes, and flight-controller settings in Betaflight. Spectr does not ship custom flight-controller firmware — configure the stack you already use, then connect Autonomous Engine at the mission layer."
   },
   "Contact": {
     "title": "Send a request.",

@@ -1,21 +1,11 @@
 import dynamic from "next/dynamic";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { AutonomousEngineSection } from "@/components/autonomous-engine-section";
 import { BevelButton } from "@/components/bevel-button";
 import { Footer } from "@/components/footer";
-import { HeroBackgroundVideo } from "@/components/hero-background-video";
-import {
-  HeroBrandLockup,
-} from "@/components/hero-brand-lockup";
 import { Nav } from "@/components/nav";
 import { Reveal } from "@/components/reveal";
 import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
-
-const AutonomousEngineSection = dynamic(
-  () =>
-    import("@/components/autonomous-engine-section").then((mod) => ({
-      default: mod.AutonomousEngineSection,
-    })),
-);
 
 const ScrollVideoBackground = dynamic(
   () =>
@@ -32,9 +22,7 @@ export default async function Home({ params }: HomePageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "Home" });
-  const tNav = await getTranslations({ locale, namespace: "Nav" });
   const tCommon = await getTranslations({ locale, namespace: "Common" });
-  const heroText = t("hero");
 
   return (
     <>
@@ -45,25 +33,11 @@ export default async function Home({ params }: HomePageProps) {
         data-scroll-root
         className="flex-1 lg:h-screen lg:snap-y lg:snap-proximity lg:overflow-y-auto"
       >
-        {/* Hero — unchanged */}
-        <div className="relative overflow-hidden bg-bg">
-          <section className="relative z-10 flex min-h-screen snap-start items-center bg-black text-white">
-            <HeroBackgroundVideo />
-            <div className="absolute inset-0 bg-black/45" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/20" />
-            <div className="mx-auto flex w-full max-w-7xl items-center justify-center px-5 py-32 text-center sm:px-8 lg:py-36">
-              <div className="relative mx-auto flex w-full max-w-4xl flex-col items-center">
-                <ScrollRevealHeading
-                  as="h1"
-                  className="mx-auto max-w-4xl text-3xl font-semibold leading-[1.02] text-white sm:text-5xl lg:text-6xl"
-                >
-                  {heroText}
-                </ScrollRevealHeading>
-                <HeroBrandLockup brand={tNav("brand")} />
-              </div>
-            </div>
-          </section>
-        </div>
+        <AutonomousEngineSection
+          title={t("autonomousEngineTitle")}
+          cta={t("tryNow")}
+          eager
+        />
 
         {/* Mission statement — large fade-up text */}
         <section className="brand-font flex min-h-screen snap-start items-center bg-black px-5 py-28 text-white sm:px-8 lg:px-16">
@@ -85,8 +59,6 @@ export default async function Home({ params }: HomePageProps) {
             </Reveal>
           </div>
         </section>
-
-        <AutonomousEngineSection title={t("autonomousEngineTitle")} cta={t("tryNow")} />
 
         {/* Sovereign capability — split media + text */}
         <ScrollVideoBackground

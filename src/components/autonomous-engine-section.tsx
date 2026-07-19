@@ -7,12 +7,13 @@ import { VideoBrandBadge } from "@/components/video-brand-badge";
 type AutonomousEngineSectionProps = {
   title: string;
   cta: string;
+  eager?: boolean;
 };
 
-export function AutonomousEngineSection({ title, cta }: AutonomousEngineSectionProps) {
+export function AutonomousEngineSection({ title, cta, eager = false }: AutonomousEngineSectionProps) {
   return (
     <section className="brand-font relative flex min-h-screen snap-start items-center overflow-hidden bg-black text-white">
-      <LazyBackgroundVideo src="/autonomous-engine.mp4" />
+      <LazyBackgroundVideo src="/autonomous-engine.mp4" eager={eager} />
       <VideoBrandBadge />
       <div className="absolute inset-0 bg-black/50" />
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-black/25" />

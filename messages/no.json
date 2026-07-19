@@ -73,24 +73,16 @@
   "AutonomousEngine": {
     "title": "Autonomous Engine",
     "tagline": "Autonom oppdragsgjennomføring for samband-nektede operasjoner.",
-    "heroIntro": "Spectr Autonomous Engine er kjøretidslaget som holder droner i utførelse av oppdragsmål når lenker degraderes, GPS er nektet, eller operatører trenger at enheter fortsetter uten konstant manuell kontroll.",
+    "heroIntro": "Spectr Autonomous Engine er oppdragskjøretiden som holder droner i utførelse av mål når lenker degraderes, GPS er nektet, eller operatører trenger at enheter fortsetter uten konstant manuell kontroll. Flykontroll ligger på Betaflight — Spectr leverer ikke egen flash-programvare for flykontrollere.",
     "overviewTitle": "Bygget for slagfeltet, ikke labben",
-    "overviewText": "Autonomous Engine håndterer oppdragslogikk, navigasjon og gjennomføring om bord — slik at godkjente planer fortsetter når miljøet blir fiendtlig. Den integreres med plattformene operatører allerede bruker og utvikles i Norge under suveren kontroll.",
+    "overviewText": "Autonomous Engine håndterer oppdragslogikk, navigasjon og gjennomføring over flystacken. Betaflight styrer stabilisering og manuelle flymodus på luftfartøyet, mens Spectr-programvaren koordinerer godkjente planer når miljøet blir fiendtlig.",
     "ctaTitle": "Klar til å evaluere Autonomous Engine?",
-    "features": {
-      "execution": {
-        "title": "Autonom gjennomføring",
-        "text": "Send godkjente oppdragsplaner til luftfartøyet med waypoint-navigasjon, loiter-mønstre og returlogikk."
-      },
-      "denied": {
-        "title": "Motstandsdyktighet i nektet miljø",
-        "text": "Fortsett operasjon når GPS og datalenker degraderes — med navigasjon om bord som ikke avhenger av konstant tilkobling."
-      },
-      "integration": {
-        "title": "Plattformagnostisk integrasjon",
-        "text": "Fungerer på tvers av droneplattformer, slik at kunder kan ta i bruk kapabilitet uten å erstatte eksisterende flåter."
-      }
-    }
+    "flyLabel": "Fly",
+    "configureLabel": "Konfigurer",
+    "flyTitle": "Fly oppdraget",
+    "flyDescription": "Kjør godkjente oppdragsplaner gjennom Autonomous Engine mens Betaflight håndterer stabilisering og manuell flykontroll på luftfartøyet.",
+    "configureTitle": "Konfigurer i Betaflight",
+    "configureDescription": "Juster rates, moduser og flykontroller-innstillinger i Betaflight. Spectr leverer ikke egen flykontroller-firmware — konfigurer stacken du allerede bruker, og koble deretter Autonomous Engine på oppdragslaget."
   },
   "Contact": {
     "title": "Send en forespørsel.",
