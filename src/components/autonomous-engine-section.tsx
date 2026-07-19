@@ -17,10 +17,10 @@ export function AutonomousEngineSection({ title, cta, eager = false }: Autonomou
       <VideoBrandBadge />
       <div className="absolute inset-0 bg-black/50" />
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-black/25" />
-      <div className="relative z-10 mx-auto w-full max-w-[88rem] px-5 py-28 sm:px-8 lg:px-16">
+      <div className="relative z-10 mx-auto flex w-full max-w-[88rem] flex-col items-center px-5 py-28 text-center sm:px-8 lg:px-16">
         <ScrollRevealHeading
           as="h2"
-          className="max-w-4xl text-4xl font-semibold leading-[1.02] tracking-[-0.04em] sm:text-6xl lg:text-7xl"
+          className="max-w-3xl text-2xl font-semibold leading-[1.15] tracking-[-0.03em] sm:text-4xl lg:text-5xl"
         >
           {title}
         </ScrollRevealHeading>
