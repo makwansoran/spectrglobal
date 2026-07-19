@@ -9,26 +9,36 @@ type HomeBigPictureProps = {
   title: string;
   items: BigPictureItem[];
   imageAlt: string;
+  imageSrc?: string;
 };
 
-export function HomeBigPicture({ title, items, imageAlt }: HomeBigPictureProps) {
+export function HomeBigPicture({ title, items, imageAlt, imageSrc }: HomeBigPictureProps) {
   return (
-    <section className="brand-font relative overflow-hidden bg-[#efefef]">
-      <div className="relative mx-auto flex w-full max-w-[84rem] flex-col lg:min-h-[40rem] lg:flex-row lg:items-stretch lg:justify-end">
-        <div className="relative mx-auto w-full max-w-md px-5 pt-10 sm:px-8 lg:absolute lg:inset-y-0 lg:left-0 lg:mx-0 lg:max-w-none lg:w-[58%] lg:px-0 lg:pt-0">
-          <div className="relative aspect-[397/477] w-full lg:absolute lg:inset-0 lg:aspect-auto">
+    <section className="brand-font bg-[#efefef] px-5 py-16 sm:px-8 lg:px-12 lg:py-24">
+      <div className="mx-auto grid w-full max-w-[90rem] items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <div className="bevel-card relative aspect-[4/5] w-full max-w-xl overflow-hidden bg-black lg:max-w-none">
+          {imageSrc ? (
             <Image
-              src="/big-picture-flare.webp"
+              src={imageSrc}
               alt={imageAlt}
               fill
-              className="object-contain object-center lg:object-cover lg:object-left"
-              sizes="(max-width: 1024px) 100vw, 58vw"
-              priority={false}
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 45vw"
             />
-          </div>
+          ) : (
+            <div
+              className="absolute inset-0 flex items-center justify-center bg-white/[0.04]"
+              role="img"
+              aria-label={imageAlt}
+            >
+              <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/30">
+                Image
+              </span>
+            </div>
+          )}
         </div>
 
-        <div className="relative z-10 w-full px-5 pb-16 pt-8 sm:px-8 lg:w-1/2 lg:max-w-[41.25rem] lg:px-0 lg:py-24 lg:pr-8">
+        <div className="w-full">
           <h2 className="text-4xl font-semibold leading-none tracking-[-0.05em] text-fg sm:text-5xl lg:text-[3rem]">
             {title}
           </h2>
@@ -41,12 +51,13 @@ export function HomeBigPicture({ title, items, imageAlt }: HomeBigPictureProps) 
                   index === 0 ? "border-t-0 pt-2" : ""
                 } ${index === items.length - 1 ? "border-b-0 pb-0" : ""}`}
               >
-                <Image
-                  src="/icons/big-picture-mark.svg"
-                  alt=""
-                  width={38}
-                  height={38}
-                  className="mt-1 shrink-0"
+                <span
+                  aria-hidden="true"
+                  className="mt-1.5 inline-block h-3 w-3 shrink-0 bg-[#f44200]"
+                  style={{
+                    clipPath:
+                      "polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px)",
+                  }}
                 />
                 <p
                   className={`text-xl leading-snug tracking-[-0.05em] text-fg sm:text-2xl ${
