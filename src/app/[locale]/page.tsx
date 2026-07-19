@@ -3,6 +3,7 @@ import { AutonomousEngineSection } from "@/components/autonomous-engine-section"
 import { BevelButton } from "@/components/bevel-button";
 import { Footer } from "@/components/footer";
 import { HomeApplications } from "@/components/home-applications";
+import { HomeBigPicture } from "@/components/home-big-picture";
 import { HomeCapabilityGrid } from "@/components/home-capability-grid";
 import { HomeFaq } from "@/components/home-faq";
 import { HomeRoadmap } from "@/components/home-roadmap";
@@ -55,7 +56,10 @@ export default async function Home({ params }: HomePageProps) {
     imageSrc: applicationCardImages[slug],
   }));
 
-  const bigPicture = t.raw("bigPictureBody") as string[];
+  const bigPictureItems = t.raw("bigPictureItems") as {
+    text: string;
+    emphasis: boolean;
+  }[];
   const faq = t.raw("faq") as { question: string; answer: string }[];
 
   const phases = roadmapYears.map((year) => ({
@@ -82,18 +86,11 @@ export default async function Home({ params }: HomePageProps) {
 
         <HomeApplications title={t("applicationsTitle")} items={applications} />
 
-        <section className="brand-font bg-bg px-5 py-24 sm:px-8 lg:px-16 lg:py-32">
-          <div className="mx-auto w-full max-w-[88rem]">
-            <h2 className="max-w-3xl text-4xl font-semibold leading-[1.05] tracking-[-0.05em] text-fg sm:text-5xl lg:text-6xl">
-              {t("bigPictureTitle")}
-            </h2>
-            <div className="mt-12 max-w-3xl space-y-6 text-base leading-8 text-muted sm:text-lg">
-              {bigPicture.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
-            </div>
-          </div>
-        </section>
+        <HomeBigPicture
+          title={t("bigPictureTitle")}
+          imageAlt={t("bigPictureImageAlt")}
+          items={bigPictureItems}
+        />
 
         <HomeRoadmap
           title={t("roadmapTitle")}

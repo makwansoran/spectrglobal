@@ -136,10 +136,20 @@
       }
     },
     "bigPictureTitle": "The Big Picture",
-    "bigPictureBody": [
-      "Autonomy is becoming the difference between missions that finish and missions that stall. Every contested environment — jammed links, denied GPS, overloaded operators — pushes conventional control models past their limits.",
-      "Humanity already flies capable airframes. What operators still need is mission software they can trust when the environment turns hostile: onboard execution, sovereign control, and workflows that hold up outside the lab.",
-      "Spectr is building that layer — Autonomous Engine for execution, Centurion for command — developed in Norway for allied forces that need national control over critical software."
+    "bigPictureImageAlt": "Black and white Earth sphere with wide, irregular bright orange flare shapes extending from its sides on a black background.",
+    "bigPictureItems": [
+      {
+        "text": "Collaborative autonomy is becoming the difference between missions that finish and missions that stall. Every contested environment — jammed links, denied GPS, overloaded operators — pushes conventional control models past their limits.",
+        "emphasis": true
+      },
+      {
+        "text": "Humanity already flies capable airframes. What operators still need is multi-drone systems that run missions together — each drone with its own AI agent, commanded through software built for real operations, not lab demos.",
+        "emphasis": true
+      },
+      {
+        "text": "Spectr is creating that layer of sovereign autonomy — command and control, inspection, and logistics — developed in Norway to unlock what fleets can do together.",
+        "emphasis": false
+      }
     ],
     "roadmapTitle": "Our capability and markets will continuously expand",
     "roadmapAutonomy": "Autonomous Engine",

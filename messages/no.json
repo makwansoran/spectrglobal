@@ -136,10 +136,20 @@
       }
     },
     "bigPictureTitle": "Det store bildet",
-    "bigPictureBody": [
-      "Autonomi blir forskjellen mellom oppdrag som fullføres og oppdrag som stopper. Hvert omstridte miljø — jammede lenker, nektet GPS, overbelastede operatører — presser konvensjonelle kontrollmodeller forbi grensen.",
-      "Menneskeheten flyr allerede kapable luftfartøy. Det operatører fortsatt trenger er oppdragsprogramvare de kan stole på når miljøet blir fiendtlig: utførelse om bord, suveren kontroll, og arbeidsflyter som holder utenfor labben.",
-      "Spectr bygger det laget — Autonomous Engine for utførelse, Centurion for kommando — utviklet i Norge for allierte styrker som trenger nasjonal kontroll over kritisk programvare."
+    "bigPictureImageAlt": "Svart-hvitt jordkule med brede, uregelmessige oransje flammer som strekker seg ut fra sidene mot svart bakgrunn.",
+    "bigPictureItems": [
+      {
+        "text": "Samarbeidende autonomi blir forskjellen mellom oppdrag som fullføres og oppdrag som stopper. Hvert omstridte miljø — jammede lenker, nektet GPS, overbelastede operatører — presser konvensjonelle kontrollmodeller forbi grensen.",
+        "emphasis": true
+      },
+      {
+        "text": "Menneskeheten flyr allerede kapable luftfartøy. Det operatører fortsatt trenger er multi-dronesystemer som utfører oppdrag sammen — hver drone med sin egen AI-agent, styrt gjennom programvare bygget for reelle operasjoner, ikke labdemoer.",
+        "emphasis": true
+      },
+      {
+        "text": "Spectr bygger det laget av suveren autonomi — kommando og kontroll, inspeksjon og logistikk — utviklet i Norge for å låse opp det flåter kan gjøre sammen.",
+        "emphasis": false
+      }
     ],
     "roadmapTitle": "Kapabilitet og markeder vil kontinuerlig ekspandere",
     "roadmapAutonomy": "Autonomous Engine",
