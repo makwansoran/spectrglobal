@@ -20,7 +20,7 @@ export function AutonomousEngineSection({ title, cta, eager = false }: Autonomou
       <div className="relative z-10 mx-auto flex w-full max-w-[88rem] flex-col items-center px-5 py-28 text-center sm:px-8 lg:px-16">
         <ScrollRevealHeading
           as="h2"
-          className="max-w-3xl text-2xl font-semibold leading-[1.15] tracking-[-0.03em] sm:text-4xl lg:text-5xl"
+          className="max-w-4xl text-2xl font-semibold leading-[1.35] tracking-[-0.01em] sm:text-4xl sm:leading-[1.3] lg:text-5xl lg:leading-[1.25]"
         >
           {title}
         </ScrollRevealHeading>
