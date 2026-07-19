@@ -9,28 +9,42 @@
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "sections": {
-      "development": "Development",
+      "products": "Products",
+      "applications": "Applications",
       "company": "Company",
-      "resources": "Resources"
+      "updates": "Updates",
+      "support": "Support"
     },
     "links": {
-      "contact": "Get Started",
-      "about": "About Us",
+      "contact": "Contact",
+      "about": "Team",
       "careers": "Careers",
       "newsroom": "Newsroom",
       "documentation": "Documentation",
       "security": "Security",
       "privacy": "Privacy Policy",
       "terms": "Terms of Service",
-      "investor": "Investor Relations"
+      "investor": "Investor Relations",
+      "autonomousEngine": "Autonomous Engine",
+      "centurion": "Centurion",
+      "defense": "Defense",
+      "deniedEnvironments": "Denied Environments",
+      "isr": "ISR",
+      "fleet": "Fleet Coordination",
+      "missionCommand": "Mission Command",
+      "fieldOps": "Field Operations",
+      "press": "Press",
+      "media": "Media"
     }
   },
   "Footer": {
     "tagline": "For real world operations.",
     "sections": {
-      "development": "Development",
+      "products": "Products",
+      "applications": "Applications",
       "company": "Company",
-      "resources": "Resources"
+      "updates": "Updates",
+      "support": "Support"
     },
     "copyright": "© 2026 Spectr",
     "orgNumber": "Org.nr 936 961 967",
@@ -59,16 +73,163 @@
   },
   "Home": {
     "hero": "For real world operations.",
-    "missionEyebrow": "Our Mission",
-    "missionStatement": "Spectr builds autonomous drone software that keeps missions running on comms-denied battlefields.",
     "autonomousEngineTitle": "Try Autonomous Engine now.",
     "tryNow": "Try Now",
-    "norwayEyebrow": "Sovereign Capability",
-    "norwayTitle": "Developed in Norway",
-    "norwayDescription": "Spectr develops mission software in Norway with national control over code, data, and deployment — without critical dependency on non-allied infrastructure.",
-    "ctaTitle": "Ready when the mission is.",
-    "newsroomTitle": "Newsroom",
-    "newsroomCta": "Go To Newsroom"
+    "statementTitle": "The Autonomy Company",
+    "statementBody": "Spectr builds autonomous drone software that keeps missions running when links degrade, GPS is denied, or operators need assets to continue without constant manual control. We exist because reliable mission capability — under national control — is the foundation of real-world operations.",
+    "capabilities": {
+      "denied": {
+        "title": "Denied-environment",
+        "text": "Continue executing approved plans when datalinks and GPS degrade."
+      },
+      "localized": {
+        "title": "Mission-scoped",
+        "text": "Directed to the approved objectives and constraints you set."
+      },
+      "configurable": {
+        "title": "Configurable",
+        "text": "Tune mission profiles to the operation, airframe, and rules of engagement."
+      },
+      "resilient": {
+        "title": "Resilient",
+        "text": "From supervised autonomy to onboard execution when the environment turns hostile."
+      },
+      "ondemand": {
+        "title": "Operator-controlled",
+        "text": "Approve plans, intervene when needed, and stop execution instantly."
+      },
+      "easy": {
+        "title": "Easy to integrate",
+        "text": "Works above Betaflight and the stacks operators already fly."
+      },
+      "uniform": {
+        "title": "Platform-agnostic",
+        "text": "Adopt capability across mixed fleets without replacing airframes."
+      },
+      "dynamic": {
+        "title": "Dynamic",
+        "text": "Retask assets and update plans as the situation changes."
+      },
+      "sovereign": {
+        "title": "No foreign lock-in",
+        "text": "Norwegian ownership, code, and deployment under national control."
+      }
+    },
+    "applicationsTitle": "What's possible with sovereign autonomy?",
+    "applications": {
+      "defense": {
+        "title": "Defense",
+        "text": "Keep critical missions executing when conventional links fail."
+      },
+      "denied-environments": {
+        "title": "Denied Environments",
+        "text": "Operate through jamming, GPS denial, and contested spectrum."
+      },
+      "isr": {
+        "title": "ISR",
+        "text": "Sustain reconnaissance and collection under pressure."
+      },
+      "fleet": {
+        "title": "Fleet Coordination",
+        "text": "Plan and coordinate mixed drone fleets from one mission layer."
+      },
+      "mission-command": {
+        "title": "Mission Command",
+        "text": "Define goals and constraints; let software stage and report."
+      },
+      "field-ops": {
+        "title": "Field Operations",
+        "text": "Extend working reach for remote sites and time-critical tasks."
+      }
+    },
+    "bigPictureTitle": "The Big Picture",
+    "bigPictureBody": [
+      "Autonomy is becoming the difference between missions that finish and missions that stall. Every contested environment — jammed links, denied GPS, overloaded operators — pushes conventional control models past their limits.",
+      "Humanity already flies capable airframes. What operators still need is mission software they can trust when the environment turns hostile: onboard execution, sovereign control, and workflows that hold up outside the lab.",
+      "Spectr is building that layer — Autonomous Engine for execution, Centurion for command — developed in Norway for allied forces that need national control over critical software."
+    ],
+    "roadmapTitle": "Our capability and markets will continuously expand",
+    "roadmapAutonomy": "Autonomous Engine",
+    "roadmapCommand": "Centurion",
+    "roadmapNote": "We maintain strict controls for export compliance, confidentiality, and sovereign deployment.",
+    "roadmap": {
+      "2026": {
+        "scale": "Field evaluation",
+        "autonomy": [
+          "Mission runtime above Betaflight for approved plans.",
+          "Denied-link continuation for evaluated profiles."
+        ],
+        "command": [
+          "Mission staging and operator workflow.",
+          "Early multi-asset coordination."
+        ]
+      },
+      "2027": {
+        "scale": "Operational pilots",
+        "autonomy": [
+          "Expanded navigation resilience under GPS stress.",
+          "Broader airframe integration profiles."
+        ],
+        "command": [
+          "AI-assisted decision support in the loop.",
+          "Hardened reporting across mixed fleets."
+        ]
+      },
+      "2028": {
+        "scale": "Allied deployments",
+        "autonomy": [
+          "Scaled onboard execution for contested operations.",
+          "Faster retasking under operator approval."
+        ],
+        "command": [
+          "Deeper fleet coordination and mission rehearsal.",
+          "Deployment packages for sovereign environments."
+        ]
+      },
+      "2030": {
+        "scale": "Program scale",
+        "autonomy": [
+          "High-tempo autonomy across larger force packages.",
+          "Continuous improvement from field feedback."
+        ],
+        "command": [
+          "Theater-level coordination workflows.",
+          "Extended integration with allied systems."
+        ]
+      }
+    },
+    "faqTitle": "Frequently Asked Questions",
+    "faq": [
+      {
+        "question": "What is Autonomous Engine?",
+        "answer": "Autonomous Engine is Spectr's mission runtime. It keeps drones executing approved objectives when links degrade, GPS is denied, or operators need assets to continue without constant manual control. Flight control stays on Betaflight — Spectr does not ship custom flight-controller firmware."
+      },
+      {
+        "question": "How is this different from a flight controller?",
+        "answer": "Flight controllers stabilize and fly the airframe. Spectr software sits above that stack and handles mission logic, navigation context, and execution of approved plans — especially when the environment turns hostile."
+      },
+      {
+        "question": "What platforms does it work with?",
+        "answer": "Spectr is platform-agnostic by design. We integrate with the airframes and sensors operators already field rather than requiring a single proprietary drone."
+      },
+      {
+        "question": "Can operators stay in control?",
+        "answer": "Yes. Operators define goals and constraints, approve plans, and can intervene or stop execution. Autonomy extends reach; it does not remove authority."
+      },
+      {
+        "question": "Who is this for?",
+        "answer": "Defense and security operators who need mission software that keeps working in contested and denied environments — with Norwegian ownership and national control over critical code."
+      },
+      {
+        "question": "Is it sovereign?",
+        "answer": "Spectr develops in Norway with national control over code, data, and deployment. We design for allied compatibility without critical dependency on non-allied infrastructure."
+      },
+      {
+        "question": "How do I evaluate the software?",
+        "answer": "Start with Autonomous Engine on the site, review Centurion for mission command, then contact Spectr with your operational context and qualification needs."
+      }
+    ],
+    "ctaTitle": "Ready when the mission is."
   },
   "AutonomousEngine": {
     "title": "Autonomous Engine",
@@ -83,6 +244,117 @@
     "flyDescription": "Run approved mission plans through Autonomous Engine while Betaflight handles stabilization and manual flight control on the airframe.",
     "configureTitle": "Configure in Betaflight",
     "configureDescription": "Tune rates, modes, and flight-controller settings in Betaflight. Spectr does not ship custom flight-controller firmware — configure the stack you already use, then connect Autonomous Engine at the mission layer."
+  },
+  "Centurion": {
+    "title": "Centurion",
+    "tagline": "Sovereign mission command for mixed drone fleets.",
+    "heroIntro": "Imagine mission command that stays coherent when the environment turns hostile. Operators define goals and constraints; Centurion plans, coordinates, and reports across mixed fleets — with AI-assisted decision support built for real operations, not lab demos.",
+    "possibilitiesTitle": "What's possible with Centurion?",
+    "possibilities": {
+      "staging": {
+        "title": "Mission staging",
+        "text": "Prepare and release approved plans with clear operator authority."
+      },
+      "coordination": {
+        "title": "Fleet coordination",
+        "text": "Coordinate multiple assets without losing operational context."
+      },
+      "decision": {
+        "title": "Decision support",
+        "text": "Keep operators oriented with AI-assisted support under pressure."
+      },
+      "reporting": {
+        "title": "Mission reporting",
+        "text": "Maintain situational awareness as plans execute and conditions change."
+      }
+    },
+    "benefitsTitle": "Clean command workflows without replacing your fleet.",
+    "benefitsLabel": "Benefits",
+    "benefits": [
+      "Operator-defined goals and constraints",
+      "Multi-asset coordination across mixed fleets",
+      "AI-assisted decision support in the loop",
+      "Built for contested and denied environments",
+      "Developed in Norway under national control"
+    ],
+    "ctaTitle": "Ready to evaluate Centurion?"
+  },
+  "Applications": {
+    "learnMore": "Learn More",
+    "backHome": "Back to home",
+    "ctaTitle": "Talk to Spectr about this use case.",
+    "defense": {
+      "title": "Defense",
+      "headline": "Mission software for contested operations",
+      "intro": "Defense missions fail when links fail. Spectr keeps approved plans executing — and command workflows coherent — when conventional control models break down.",
+      "body": "From autonomous continuation on the airframe to mission command across fleets, Spectr software is built for operators who need capability that holds up in real contested environments.",
+      "benefits": [
+        "Autonomous execution of approved plans",
+        "Operator authority retained at every step",
+        "Sovereign Norwegian development and control",
+        "Integration with platforms already in the field"
+      ]
+    },
+    "denied-environments": {
+      "title": "Denied Environments",
+      "headline": "Operate when GPS and datalinks degrade",
+      "intro": "Jamming and denial are the operating condition, not an edge case. Spectr software is designed so missions can continue when connectivity and positioning are under attack.",
+      "body": "Autonomous Engine carries mission logic above the flight stack. Centurion keeps operators oriented as conditions change. Together they reduce dependence on perfect links.",
+      "benefits": [
+        "Continuation under degraded links",
+        "Navigation resilience under GPS stress",
+        "Clear stop and intervene controls",
+        "Field-oriented evaluation paths"
+      ]
+    },
+    "isr": {
+      "title": "ISR",
+      "headline": "Sustain collection under pressure",
+      "intro": "ISR only matters if the asset can keep collecting and the operator can keep context. Spectr supports resilient execution and command for reconnaissance missions.",
+      "body": "Use Autonomous Engine to keep ISR profiles executing when links degrade, and Centurion to stage, coordinate, and report across collection assets.",
+      "benefits": [
+        "Resilient mission continuation",
+        "Multi-asset ISR coordination",
+        "Operator-approved retasking",
+        "Platform-agnostic integration"
+      ]
+    },
+    "fleet": {
+      "title": "Fleet Coordination",
+      "headline": "Coordinate mixed fleets from one mission layer",
+      "intro": "Operators fly diverse airframes. Spectr does not force a single platform — it adds a mission layer that plans and coordinates across the fleet you already have.",
+      "body": "Centurion stages goals and constraints across assets. Autonomous Engine executes approved plans on the airframe when the environment demands autonomy.",
+      "benefits": [
+        "Mixed-fleet mission planning",
+        "Shared operational context",
+        "Airframe-agnostic software layer",
+        "Scales from evaluation to deployment"
+      ]
+    },
+    "mission-command": {
+      "title": "Mission Command",
+      "headline": "Define goals. Keep the mission coherent.",
+      "intro": "Centurion is Spectr's sovereign mission command platform. Operators set objectives and constraints; the software stages, coordinates, and reports.",
+      "body": "Built for pressure: contested links, multi-asset complexity, and the need for decision support that does not invent authority the operator never gave.",
+      "benefits": [
+        "Goal and constraint driven workflows",
+        "AI-assisted decision support",
+        "Mission staging and reporting",
+        "Norwegian national control"
+      ]
+    },
+    "field-ops": {
+      "title": "Field Operations",
+      "headline": "Extend reach for time-critical field work",
+      "intro": "Remote sites, short windows, and hostile environments demand software that works outside the lab. Spectr focuses on field readiness from day one.",
+      "body": "Whether the need is autonomous continuation, clearer command, or both, Spectr helps operators cover more ground with the fleets they already trust.",
+      "benefits": [
+        "Practical field evaluation",
+        "Fast operator workflows",
+        "Works with existing airframes",
+        "Support path through Spectr contact"
+      ]
+    }
   },
   "Contact": {
     "title": "Send a request.",

@@ -17,20 +17,45 @@ export function Nav({ variant = "dark" }: NavProps) {
 
   const menuSections = [
     {
-      title: t("sections.company"),
+      title: t("sections.products"),
       links: [
-        { label: t("links.contact"), href: "/contact" },
-        { label: t("links.about"), href: "/about" },
-        { label: t("links.careers"), href: "/careers" },
+        { label: t("links.autonomousEngine"), href: "/autonomous-engine" },
+        { label: t("links.centurion"), href: "/centurion" },
       ],
     },
     {
-      title: t("sections.resources"),
+      title: t("sections.applications"),
+      links: [
+        { label: t("links.defense"), href: "/applications/defense" },
+        { label: t("links.deniedEnvironments"), href: "/applications/denied-environments" },
+        { label: t("links.isr"), href: "/applications/isr" },
+        { label: t("links.fleet"), href: "/applications/fleet" },
+        { label: t("links.missionCommand"), href: "/applications/mission-command" },
+        { label: t("links.fieldOps"), href: "/applications/field-ops" },
+      ],
+    },
+    {
+      title: t("sections.company"),
+      links: [
+        { label: t("links.about"), href: "/about" },
+        { label: t("links.careers"), href: "/careers" },
+        { label: t("links.investor"), href: "/investor" },
+        { label: t("links.security"), href: "/security" },
+      ],
+    },
+    {
+      title: t("sections.updates"),
       links: [
         { label: t("links.newsroom"), href: "/newsroom" },
+        { label: t("links.press"), href: "/newsroom/press-releases" },
+        { label: t("links.media"), href: "/newsroom/media-coverage" },
+      ],
+    },
+    {
+      title: t("sections.support"),
+      links: [
+        { label: t("links.contact"), href: "/contact" },
         { label: t("links.documentation"), href: "/documentation" },
-        { label: t("links.security"), href: "/security" },
-        { label: t("links.investor"), href: "/investor" },
         { label: t("links.privacy"), href: "/privacy" },
         { label: t("links.terms"), href: "/terms" },
       ],
@@ -105,18 +130,18 @@ export function Nav({ variant = "dark" }: NavProps) {
         className={`fixed inset-0 z-40 bg-black transition-[opacity,visibility] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${open ? "visible opacity-100" : "invisible opacity-0"}`}
       >
         <div className={`flex h-full flex-col px-5 pb-10 pt-28 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] sm:px-8 ${open ? "translate-y-0" : "translate-y-6"}`}>
-          <nav className="mx-auto w-full max-w-5xl flex-1">
-            <div className="grid gap-14 pt-4 sm:grid-cols-2 sm:gap-8">
+          <nav className="mx-auto w-full max-w-6xl flex-1 overflow-y-auto">
+            <div className="grid gap-12 pt-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
               {menuSections.map((section) => (
                 <div key={section.title}>
                   <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/35">{section.title}</p>
-                  <ul className="mt-7 space-y-5">
+                  <ul className="mt-6 space-y-4">
                     {section.links.map((link) => (
                       <li key={link.label}>
                         <Link
                           href={link.href}
                           onClick={() => setOpen(false)}
-                          className="brand-font block text-2xl font-medium tracking-[-0.02em] text-white/90 transition-opacity duration-200 hover:text-white/40 sm:text-3xl"
+                          className="brand-font block text-xl font-medium tracking-[-0.02em] text-white/90 transition-opacity duration-200 hover:text-white/40 sm:text-2xl"
                         >
                           {link.label}
                         </Link>
@@ -128,7 +153,7 @@ export function Nav({ variant = "dark" }: NavProps) {
             </div>
           </nav>
 
-          <div className="mx-auto w-full max-w-5xl border-t border-white/10 pt-8">
+          <div className="mx-auto w-full max-w-6xl border-t border-white/10 pt-8">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-7">
                 <SocialLink href="https://x.com/spectrnorway" label="X / Twitter">

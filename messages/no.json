@@ -9,28 +9,42 @@
     "openMenu": "Åpne meny",
     "closeMenu": "Lukk meny",
     "sections": {
-      "development": "Utvikling",
+      "products": "Produkter",
+      "applications": "Anvendelser",
       "company": "Selskap",
-      "resources": "Ressurser"
+      "updates": "Oppdateringer",
+      "support": "Support"
     },
     "links": {
-      "contact": "Kom i gang",
-      "about": "Om oss",
+      "contact": "Kontakt",
+      "about": "Team",
       "careers": "Karriere",
       "newsroom": "Newsroom",
       "documentation": "Dokumentasjon",
       "security": "Sikkerhet",
       "privacy": "Personvern",
       "terms": "Vilkår",
-      "investor": "Investor Relations"
+      "investor": "Investor Relations",
+      "autonomousEngine": "Autonomous Engine",
+      "centurion": "Centurion",
+      "defense": "Forsvar",
+      "deniedEnvironments": "Nektede miljøer",
+      "isr": "ISR",
+      "fleet": "Flåtekoordinering",
+      "missionCommand": "Oppdragskommando",
+      "fieldOps": "Feltoperasjoner",
+      "press": "Presse",
+      "media": "Media"
     }
   },
   "Footer": {
     "tagline": "For operasjoner i virkeligheten.",
     "sections": {
-      "development": "Utvikling",
+      "products": "Produkter",
+      "applications": "Anvendelser",
       "company": "Selskap",
-      "resources": "Ressurser"
+      "updates": "Oppdateringer",
+      "support": "Support"
     },
     "copyright": "© 2026 Spectr",
     "orgNumber": "Org.nr 936 961 967",
@@ -59,16 +73,163 @@
   },
   "Home": {
     "hero": "For operasjoner i virkeligheten.",
-    "missionEyebrow": "Vårt oppdrag",
-    "missionStatement": "Spectr bygger autonom droneprogramvare som holder oppdrag i gang på samband-nektede slagfelt.",
     "autonomousEngineTitle": "Prøv Autonomous Engine nå.",
     "tryNow": "Prøv nå",
-    "norwayEyebrow": "Suveren kapabilitet",
-    "norwayTitle": "Utviklet i Norge",
-    "norwayDescription": "Spectr utvikler oppdragsprogramvare i Norge med nasjonal kontroll over kode, data og deployering — uten kritisk avhengighet av ikke-alliert infrastruktur.",
-    "ctaTitle": "Klar når oppdraget er.",
-    "newsroomTitle": "Newsroom",
-    "newsroomCta": "Gå til newsroom"
+    "statementTitle": "Autonomiselskapet",
+    "statementBody": "Spectr bygger autonom droneprogramvare som holder oppdrag i gang når lenker degraderes, GPS er nektet, eller operatører trenger at enheter fortsetter uten konstant manuell kontroll. Vi eksisterer fordi pålitelig oppdragskapabilitet — under nasjonal kontroll — er grunnlaget for operasjoner i virkeligheten.",
+    "capabilities": {
+      "denied": {
+        "title": "Nektet miljø",
+        "text": "Fortsett godkjente planer når datalenker og GPS degraderes."
+      },
+      "localized": {
+        "title": "Oppdragsavgrenset",
+        "text": "Styrt mot godkjente mål og begrensninger du setter."
+      },
+      "configurable": {
+        "title": "Konfigurerbar",
+        "text": "Tilpass oppdragsprofiler til operasjon, luftfartøy og regler."
+      },
+      "resilient": {
+        "title": "Motstandsdyktig",
+        "text": "Fra overvåket autonomi til utførelse om bord når miljøet blir fiendtlig."
+      },
+      "ondemand": {
+        "title": "Operatørstyrt",
+        "text": "Godkjenn planer, grip inn ved behov, og stopp utførelse umiddelbart."
+      },
+      "easy": {
+        "title": "Enkel å integrere",
+        "text": "Fungerer over Betaflight og stackene operatører allerede flyr."
+      },
+      "uniform": {
+        "title": "Plattformagnostisk",
+        "text": "Ta i bruk kapabilitet på tvers av blandede flåter uten å bytte luftfartøy."
+      },
+      "dynamic": {
+        "title": "Dynamisk",
+        "text": "Omfordel enheter og oppdater planer når situasjonen endrer seg."
+      },
+      "sovereign": {
+        "title": "Uten utenlandsk låsing",
+        "text": "Norsk eierskap, kode og deployering under nasjonal kontroll."
+      }
+    },
+    "applicationsTitle": "Hva er mulig med suveren autonomi?",
+    "applications": {
+      "defense": {
+        "title": "Forsvar",
+        "text": "Hold kritiske oppdrag i gang når konvensjonelle lenker svikter."
+      },
+      "denied-environments": {
+        "title": "Nektede miljøer",
+        "text": "Operer gjennom jamming, GPS-nekt og omstridt spektrum."
+      },
+      "isr": {
+        "title": "ISR",
+        "text": "Oppretthold rekognosering og innsamling under press."
+      },
+      "fleet": {
+        "title": "Flåtekoordinering",
+        "text": "Planlegg og koordiner blandede droneflåter fra ett oppdragslag."
+      },
+      "mission-command": {
+        "title": "Oppdragskommando",
+        "text": "Definer mål og begrensninger; la programvaren klargjøre og rapportere."
+      },
+      "field-ops": {
+        "title": "Feltoperasjoner",
+        "text": "Utvid rekkevidde for remote steder og tidskritiske oppgaver."
+      }
+    },
+    "bigPictureTitle": "Det store bildet",
+    "bigPictureBody": [
+      "Autonomi blir forskjellen mellom oppdrag som fullføres og oppdrag som stopper. Hvert omstridte miljø — jammede lenker, nektet GPS, overbelastede operatører — presser konvensjonelle kontrollmodeller forbi grensen.",
+      "Menneskeheten flyr allerede kapable luftfartøy. Det operatører fortsatt trenger er oppdragsprogramvare de kan stole på når miljøet blir fiendtlig: utførelse om bord, suveren kontroll, og arbeidsflyter som holder utenfor labben.",
+      "Spectr bygger det laget — Autonomous Engine for utførelse, Centurion for kommando — utviklet i Norge for allierte styrker som trenger nasjonal kontroll over kritisk programvare."
+    ],
+    "roadmapTitle": "Kapabilitet og markeder vil kontinuerlig ekspandere",
+    "roadmapAutonomy": "Autonomous Engine",
+    "roadmapCommand": "Centurion",
+    "roadmapNote": "Vi opprettholder strenge kontroller for eksportcompliance, konfidensialitet og suveren deployering.",
+    "roadmap": {
+      "2026": {
+        "scale": "Feltevaluering",
+        "autonomy": [
+          "Oppdragskjøretid over Betaflight for godkjente planer.",
+          "Fortsettelse ved nektet lenke for evaluerte profiler."
+        ],
+        "command": [
+          "Oppdragsklargjøring og operatørarbeidsflyt.",
+          "Tidlig flerkjøretøy-koordinering."
+        ]
+      },
+      "2027": {
+        "scale": "Operative piloter",
+        "autonomy": [
+          "Utvidet navigasjonsmotstand under GPS-stress.",
+          "Bredere luftfartøy-integrasjonsprofiler."
+        ],
+        "command": [
+          "AI-assistert beslutningsstøtte i loopen.",
+          "Herdet rapportering på tvers av blandede flåter."
+        ]
+      },
+      "2028": {
+        "scale": "Allierte deployeringer",
+        "autonomy": [
+          "Skalert utførelse om bord for omstridte operasjoner.",
+          "Raskere omfordeling under operatørgodkjenning."
+        ],
+        "command": [
+          "Dypere flåtekoordinering og oppdragsøving.",
+          "Deployeringspakker for suverene miljøer."
+        ]
+      },
+      "2030": {
+        "scale": "Programskala",
+        "autonomy": [
+          "Høytempo-autonomi på tvers av større styrkepakker.",
+          "Kontinuerlig forbedring fra tilbakemelding i felt."
+        ],
+        "command": [
+          "Teaternivå-koordineringsarbeidsflyter.",
+          "Utvidet integrasjon med allierte systemer."
+        ]
+      }
+    },
+    "faqTitle": "Ofte stilte spørsmål",
+    "faq": [
+      {
+        "question": "Hva er Autonomous Engine?",
+        "answer": "Autonomous Engine er Spectrs oppdragskjøretid. Den holder droner i utførelse av godkjente mål når lenker degraderes, GPS er nektet, eller operatører trenger at enheter fortsetter uten konstant manuell kontroll. Flykontroll ligger på Betaflight — Spectr leverer ikke egen flykontroller-firmware."
+      },
+      {
+        "question": "Hvordan skiller dette seg fra en flykontroller?",
+        "answer": "Flykontrollere stabiliserer og flyr luftfartøyet. Spectr-programvare ligger over den stacken og håndterer oppdragslogikk, navigasjonskontekst og utførelse av godkjente planer — særlig når miljøet blir fiendtlig."
+      },
+      {
+        "question": "Hvilke plattformer fungerer det med?",
+        "answer": "Spectr er plattformagnostisk. Vi integrerer med luftfartøyene og sensorene operatører allerede bruker, i stedet for å kreve én proprietær drone."
+      },
+      {
+        "question": "Kan operatører beholde kontrollen?",
+        "answer": "Ja. Operatører definerer mål og begrensninger, godkjenner planer, og kan gripe inn eller stoppe utførelse. Autonomi utvider rekkevidde; den fjerner ikke myndighet."
+      },
+      {
+        "question": "Hvem er dette for?",
+        "answer": "Forsvars- og sikkerhetsoperatører som trenger oppdragsprogramvare som fortsetter å fungere i omstridte og nektede miljøer — med norsk eierskap og nasjonal kontroll over kritisk kode."
+      },
+      {
+        "question": "Er det suverent?",
+        "answer": "Spectr utvikler i Norge med nasjonal kontroll over kode, data og deployering. Vi designer for alliert kompatibilitet uten kritisk avhengighet av ikke-alliert infrastruktur."
+      },
+      {
+        "question": "Hvordan evaluerer jeg programvaren?",
+        "answer": "Start med Autonomous Engine på nettstedet, se Centurion for oppdragskommando, og kontakt deretter Spectr med operasjonell kontekst og kvalifikasjonsbehov."
+      }
+    ],
+    "ctaTitle": "Klar når oppdraget er."
   },
   "AutonomousEngine": {
     "title": "Autonomous Engine",
@@ -83,6 +244,117 @@
     "flyDescription": "Kjør godkjente oppdragsplaner gjennom Autonomous Engine mens Betaflight håndterer stabilisering og manuell flykontroll på luftfartøyet.",
     "configureTitle": "Konfigurer i Betaflight",
     "configureDescription": "Juster rates, moduser og flykontroller-innstillinger i Betaflight. Spectr leverer ikke egen flykontroller-firmware — konfigurer stacken du allerede bruker, og koble deretter Autonomous Engine på oppdragslaget."
+  },
+  "Centurion": {
+    "title": "Centurion",
+    "tagline": "Suveren oppdragskommando for blandede droneflåter.",
+    "heroIntro": "Se for deg oppdragskommando som holder seg sammenhengende når miljøet blir fiendtlig. Operatører definerer mål og begrensninger; Centurion planlegger, koordinerer og rapporterer på tvers av blandede flåter — med AI-assistert beslutningsstøtte bygget for reelle operasjoner, ikke labdemoer.",
+    "possibilitiesTitle": "Hva er mulig med Centurion?",
+    "possibilities": {
+      "staging": {
+        "title": "Oppdragsklargjøring",
+        "text": "Forbered og frigi godkjente planer med klar operatørmyndighet."
+      },
+      "coordination": {
+        "title": "Flåtekoordinering",
+        "text": "Koordiner flere enheter uten å miste operasjonell kontekst."
+      },
+      "decision": {
+        "title": "Beslutningsstøtte",
+        "text": "Hold operatører orientert med AI-assistert støtte under press."
+      },
+      "reporting": {
+        "title": "Oppdragsrapportering",
+        "text": "Oppretthold situasjonsforståelse mens planer kjøres og forhold endres."
+      }
+    },
+    "benefitsTitle": "Rene kommandoarbeidsflyter uten å bytte flåte.",
+    "benefitsLabel": "Fordeler",
+    "benefits": [
+      "Operatørdefinerte mål og begrensninger",
+      "Flerkjøretøy-koordinering på tvers av blandede flåter",
+      "AI-assistert beslutningsstøtte i loopen",
+      "Bygget for omstridte og nektede miljøer",
+      "Utviklet i Norge under nasjonal kontroll"
+    ],
+    "ctaTitle": "Klar til å evaluere Centurion?"
+  },
+  "Applications": {
+    "learnMore": "Les mer",
+    "backHome": "Tilbake til forsiden",
+    "ctaTitle": "Snakk med Spectr om dette brukstilfellet.",
+    "defense": {
+      "title": "Forsvar",
+      "headline": "Oppdragsprogramvare for omstridte operasjoner",
+      "intro": "Forsvarsoppdrag feiler når lenker feiler. Spectr holder godkjente planer i gang — og kommandoarbeidsflyter sammenhengende — når konvensjonelle kontrollmodeller bryter sammen.",
+      "body": "Fra autonom fortsettelse på luftfartøyet til oppdragskommando på tvers av flåter er Spectr-programvare bygget for operatører som trenger kapabilitet som holder i reelle omstridte miljøer.",
+      "benefits": [
+        "Autonom utførelse av godkjente planer",
+        "Operatørmyndighet beholdt i hvert steg",
+        "Suveren norsk utvikling og kontroll",
+        "Integrasjon med plattformer allerede i felt"
+      ]
+    },
+    "denied-environments": {
+      "title": "Nektede miljøer",
+      "headline": "Operer når GPS og datalenker degraderes",
+      "intro": "Jamming og nekt er driftsvilkåret, ikke et unntak. Spectr-programvare er designet slik at oppdrag kan fortsette når tilkobling og posisjonering er under angrep.",
+      "body": "Autonomous Engine bærer oppdragslogikk over flystacken. Centurion holder operatører orientert når forhold endres. Sammen reduserer de avhengighet av perfekte lenker.",
+      "benefits": [
+        "Fortsettelse under degraderte lenker",
+        "Navigasjonsmotstand under GPS-stress",
+        "Klare stopp- og inngrepskontroller",
+        "Feltorienterte evalueringsløp"
+      ]
+    },
+    "isr": {
+      "title": "ISR",
+      "headline": "Oppretthold innsamling under press",
+      "intro": "ISR betyr bare noe hvis enheten kan fortsette å samle inn og operatøren kan beholde kontekst. Spectr støtter motstandsdyktig utførelse og kommando for rekognoseringsoppdrag.",
+      "body": "Bruk Autonomous Engine til å holde ISR-profiler i gang når lenker degraderes, og Centurion til å klargjøre, koordinere og rapportere på tvers av innsamlingsenheter.",
+      "benefits": [
+        "Motstandsdyktig oppdragsfortsettelse",
+        "ISR-koordinering for flere enheter",
+        "Operatørgodkjent omfordeling",
+        "Plattformagnostisk integrasjon"
+      ]
+    },
+    "fleet": {
+      "title": "Flåtekoordinering",
+      "headline": "Koordiner blandede flåter fra ett oppdragslag",
+      "intro": "Operatører flyr ulike luftfartøy. Spectr tvinger ikke én plattform — vi legger til et oppdragslag som planlegger og koordinerer på tvers av flåten du allerede har.",
+      "body": "Centurion klargjør mål og begrensninger på tvers av enheter. Autonomous Engine utfører godkjente planer på luftfartøyet når miljøet krever autonomi.",
+      "benefits": [
+        "Oppdragsplanlegging for blandede flåter",
+        "Delt operasjonell kontekst",
+        "Luftfartøy-agnostisk programvarelag",
+        "Skalerer fra evaluering til deployering"
+      ]
+    },
+    "mission-command": {
+      "title": "Oppdragskommando",
+      "headline": "Definer mål. Hold oppdraget sammenhengende.",
+      "intro": "Centurion er Spectrs suverene oppdragskommandoplattform. Operatører setter mål og begrensninger; programvaren klargjør, koordinerer og rapporterer.",
+      "body": "Bygget for press: omstridte lenker, flerkjøretøy-kompleksitet, og behov for beslutningsstøtte som ikke oppfinner myndighet operatøren aldri ga.",
+      "benefits": [
+        "Mål- og begrensningsdrevne arbeidsflyter",
+        "AI-assistert beslutningsstøtte",
+        "Oppdragsklargjøring og rapportering",
+        "Norsk nasjonal kontroll"
+      ]
+    },
+    "field-ops": {
+      "title": "Feltoperasjoner",
+      "headline": "Utvid rekkevidde for tidskritisk feltarbeid",
+      "intro": "Remote steder, korte vinduer og fiendtlige miljøer krever programvare som fungerer utenfor labben. Spectr fokuserer på feltklarhet fra dag én.",
+      "body": "Enten behovet er autonom fortsettelse, klarere kommando, eller begge, hjelper Spectr operatører å dekke mer med flåtene de allerede stoler på.",
+      "benefits": [
+        "Praktisk feltevaluering",
+        "Raske operatørarbeidsflyter",
+        "Fungerer med eksisterende luftfartøy",
+        "Supportvia gjennom Spectr-kontakt"
+      ]
+    }
   },
   "Contact": {
     "title": "Send en forespørsel.",

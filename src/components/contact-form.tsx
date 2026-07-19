@@ -57,6 +57,8 @@ export function ContactForm() {
             {t("selectProduct")}
           </option>
           <option value="general">{t("general")}</option>
+          <option value="Autonomous Engine">Autonomous Engine</option>
+          <option value="Centurion">Centurion</option>
         </select>
       </Field>
 
