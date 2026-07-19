@@ -75,44 +75,37 @@
     "hero": "For operasjoner i virkeligheten.",
     "autonomousEngineTitle": "Prøv Autonomous Engine nå.",
     "tryNow": "Prøv nå",
-    "statementTitle": "Autonomiselskapet",
-    "statementBody": "Spectr bygger autonom droneprogramvare som holder oppdrag i gang når lenker degraderes, GPS er nektet, eller operatører trenger at enheter fortsetter uten konstant manuell kontroll. Vi eksisterer fordi pålitelig oppdragskapabilitet — under nasjonal kontroll — er grunnlaget for operasjoner i virkeligheten.",
+    "statementPhrase": "Spectr bygger samarbeidende multi-dronesystemer som autonomt utfører oppdrag sammen.",
     "capabilities": {
-      "denied": {
-        "title": "Nektet miljø",
-        "text": "Fortsett godkjente planer når datalenker og GPS degraderes."
+      "agents": {
+        "title": "AI-agenter",
+        "text": "Hver drone kjører sin egen AI-agent.",
+        "secondaryTitle": "Samarbeidende",
+        "secondaryText": "Multi-dronesystemer som flyr oppdrag sammen."
       },
-      "localized": {
-        "title": "Oppdragsavgrenset",
-        "text": "Styrt mot godkjente mål og begrensninger du setter."
+      "command": {
+        "title": "Kommando og kontroll",
+        "text": "Programvare for oppdragskommando og kontroll.",
+        "secondaryTitle": "Konfigurerbar",
+        "secondaryText": "Juster oppdragsprofiler etter behov."
       },
-      "configurable": {
-        "title": "Konfigurerbar",
-        "text": "Tilpass oppdragsprofiler til operasjon, luftfartøy og regler."
-      },
-      "resilient": {
-        "title": "Motstandsdyktig",
-        "text": "Fra overvåket autonomi til utførelse om bord når miljøet blir fiendtlig."
+      "inspection": {
+        "title": "Inspeksjon",
+        "text": "Autonom inspeksjon på tvers av enheter.",
+        "secondaryTitle": "Logistikk",
+        "secondaryText": "Koordinert logistikk for flåten."
       },
       "ondemand": {
-        "title": "Operatørstyrt",
-        "text": "Godkjenn planer, grip inn ved behov, og stopp utførelse umiddelbart."
-      },
-      "easy": {
-        "title": "Enkel å integrere",
-        "text": "Fungerer over Betaflight og stackene operatører allerede flyr."
-      },
-      "uniform": {
-        "title": "Plattformagnostisk",
-        "text": "Ta i bruk kapabilitet på tvers av blandede flåter uten å bytte luftfartøy."
+        "title": "On demand",
+        "text": "Start godkjente oppdrag når du trenger dem."
       },
       "dynamic": {
         "title": "Dynamisk",
-        "text": "Omfordel enheter og oppdater planer når situasjonen endrer seg."
+        "text": "Omfordel droner når situasjonen endrer seg."
       },
-      "sovereign": {
-        "title": "Uten utenlandsk låsing",
-        "text": "Norsk eierskap, kode og deployering under nasjonal kontroll."
+      "deploy": {
+        "title": "Enkel å deployere",
+        "text": "Enkel oppsett med flåtene du allerede flyr."
       }
     },
     "applicationsTitle": "Hva er mulig med suveren autonomi?",

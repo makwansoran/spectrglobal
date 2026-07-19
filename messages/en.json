@@ -75,44 +75,37 @@
     "hero": "For real world operations.",
     "autonomousEngineTitle": "Try Autonomous Engine now.",
     "tryNow": "Try Now",
-    "statementTitle": "The Autonomy Company",
-    "statementBody": "Spectr builds autonomous drone software that keeps missions running when links degrade, GPS is denied, or operators need assets to continue without constant manual control. We exist because reliable mission capability — under national control — is the foundation of real-world operations.",
+    "statementPhrase": "Spectr builds collaborative multi-drone systems that autonomously run missions together.",
     "capabilities": {
-      "denied": {
-        "title": "Denied-environment",
-        "text": "Continue executing approved plans when datalinks and GPS degrade."
+      "agents": {
+        "title": "AI Agents",
+        "text": "Each drone runs its own AI agent.",
+        "secondaryTitle": "Collaborative",
+        "secondaryText": "Multi-drone systems that fly missions together."
       },
-      "localized": {
-        "title": "Mission-scoped",
-        "text": "Directed to the approved objectives and constraints you set."
+      "command": {
+        "title": "Command & Control",
+        "text": "Software for mission command and control.",
+        "secondaryTitle": "Configurable",
+        "secondaryText": "Adjust mission profiles as needed."
       },
-      "configurable": {
-        "title": "Configurable",
-        "text": "Tune mission profiles to the operation, airframe, and rules of engagement."
-      },
-      "resilient": {
-        "title": "Resilient",
-        "text": "From supervised autonomy to onboard execution when the environment turns hostile."
+      "inspection": {
+        "title": "Inspection",
+        "text": "Autonomous inspection across assets.",
+        "secondaryTitle": "Logistics",
+        "secondaryText": "Coordinated logistics for the fleet."
       },
       "ondemand": {
-        "title": "Operator-controlled",
-        "text": "Approve plans, intervene when needed, and stop execution instantly."
-      },
-      "easy": {
-        "title": "Easy to integrate",
-        "text": "Works above Betaflight and the stacks operators already fly."
-      },
-      "uniform": {
-        "title": "Platform-agnostic",
-        "text": "Adopt capability across mixed fleets without replacing airframes."
+        "title": "On Demand",
+        "text": "Launch approved missions when you need them."
       },
       "dynamic": {
         "title": "Dynamic",
-        "text": "Retask assets and update plans as the situation changes."
+        "text": "Retask drones as the situation changes."
       },
-      "sovereign": {
-        "title": "No foreign lock-in",
-        "text": "Norwegian ownership, code, and deployment under national control."
+      "deploy": {
+        "title": "Easy to deploy",
+        "text": "Simple set-up with the fleets you already fly."
       }
     },
     "applicationsTitle": "What's possible with sovereign autonomy?",

@@ -7,24 +7,19 @@ import { HomeCapabilityGrid } from "@/components/home-capability-grid";
 import { HomeFaq } from "@/components/home-faq";
 import { HomeRoadmap } from "@/components/home-roadmap";
 import { Nav } from "@/components/nav";
-import { Reveal } from "@/components/reveal";
+import { ScrubPhrase } from "@/components/scrub-phrase";
 import { applicationSlugs } from "@/lib/applications";
 
 type HomePageProps = {
   params: Promise<{ locale: string }>;
 };
 
-const capabilityKeys = [
-  "denied",
-  "localized",
-  "configurable",
-  "resilient",
-  "ondemand",
-  "easy",
-  "uniform",
-  "dynamic",
-  "sovereign",
+const capabilityRows = [
+  ["agents", "command", "inspection"],
+  ["ondemand", "dynamic", "deploy"],
 ] as const;
+
+const capabilityKeysWithSecondary = new Set(["agents", "command", "inspection"]);
 
 const roadmapYears = ["2026", "2027", "2028", "2030"] as const;
 
@@ -34,10 +29,21 @@ export default async function Home({ params }: HomePageProps) {
   const t = await getTranslations({ locale, namespace: "Home" });
   const tCommon = await getTranslations({ locale, namespace: "Common" });
 
-  const capabilities = capabilityKeys.map((key) => ({
-    title: t(`capabilities.${key}.title`),
-    text: t(`capabilities.${key}.text`),
-  }));
+  const capabilities = capabilityRows.map((row) =>
+    row.map((key) => ({
+      key,
+      title: t(`capabilities.${key}.title`),
+      text: t(`capabilities.${key}.text`),
+      secondaryTitle: capabilityKeysWithSecondary.has(key)
+        ? t(`capabilities.${key}.secondaryTitle`)
+        : undefined,
+      secondaryText: capabilityKeysWithSecondary.has(key)
+        ? t(`capabilities.${key}.secondaryText`)
+        : undefined,
+      // Add files to /public/capabilities/{key}.svg then set e.g. `/capabilities/${key}.svg`
+      imageSrc: undefined as string | undefined,
+    })),
+  );
 
   const applications = applicationSlugs.map((slug) => ({
     slug,
@@ -66,25 +72,9 @@ export default async function Home({ params }: HomePageProps) {
           eager
         />
 
-        <section className="brand-font bg-bg px-5 py-24 sm:px-8 lg:px-16 lg:py-32">
-          <div className="mx-auto w-full max-w-[88rem]">
-            <Reveal
-              as="h2"
-              className="max-w-4xl text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-fg sm:text-7xl lg:text-8xl"
-            >
-              {t("statementTitle")}
-            </Reveal>
-            <Reveal
-              as="p"
-              delay={120}
-              className="mt-10 max-w-3xl text-base leading-8 text-muted sm:text-lg"
-            >
-              {t("statementBody")}
-            </Reveal>
-          </div>
-        </section>
+        <ScrubPhrase text={t("statementPhrase")} />
 
-        <HomeCapabilityGrid items={capabilities} />
+        <HomeCapabilityGrid rows={capabilities} />
 
         <HomeApplications
           title={t("applicationsTitle")}
