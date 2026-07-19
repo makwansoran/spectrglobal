@@ -152,55 +152,96 @@
       }
     ],
     "roadmapTitle": "Kapabilitet og markeder vil kontinuerlig ekspandere",
-    "roadmapAutonomy": "Autonomous Engine",
-    "roadmapCommand": "Centurion",
     "roadmapNote": "Vi opprettholder strenge kontroller for eksportcompliance, konfidensialitet og suveren deployering.",
-    "roadmap": {
-      "2026": {
-        "scale": "Feltevaluering",
-        "autonomy": [
-          "Oppdragskjøretid over Betaflight for godkjente planer.",
-          "Fortsettelse ved nektet lenke for evaluerte profiler."
-        ],
-        "command": [
-          "Oppdragsklargjøring og operatørarbeidsflyt.",
-          "Tidlig flerkjøretøy-koordinering."
+    "roadmapMilestones": [
+      { "year": "2026", "scale": "Pilotflåter", "dots": 2 },
+      { "year": "2027", "scale": "Flersite-flåter", "dots": 36 },
+      { "year": "2028", "scale": "1k+ droner", "dots": 80 },
+      { "year": "2030", "scale": "5k+ droner", "dots": 110 },
+      { "year": "2035", "scale": "50k+ droner", "dots": 120 }
+    ],
+    "roadmapServices": [
+      {
+        "title": "Autonomous Engine",
+        "cells": [
+          {
+            "year": "2026",
+            "lines": [
+              "Oppdragskjøretid over Betaflight for godkjente planer.",
+              "Fortsettelse ved nektet lenke for evaluerte profiler."
+            ]
+          },
+          {
+            "year": "2027",
+            "lines": [
+              "Utvidet navigasjonsmotstand under GPS-stress.",
+              "Bredere luftfartøy-integrasjonsprofiler."
+            ]
+          },
+          {
+            "year": "2028",
+            "lines": [
+              "Skalert utførelse om bord for omstridte operasjoner.",
+              "Raskere omfordeling under operatørgodkjenning."
+            ]
+          },
+          {
+            "year": "2030",
+            "lines": [
+              "Høytempo-autonomi på tvers av større styrkepakker.",
+              "Kontinuerlig forbedring fra tilbakemelding i felt."
+            ]
+          },
+          {
+            "year": "2035",
+            "lines": [
+              "Styrkeomfattende autonom utførelse i skala.",
+              "Vedvarende multi-drone oppdragsfortsettelse."
+            ]
+          }
         ]
       },
-      "2027": {
-        "scale": "Operative piloter",
-        "autonomy": [
-          "Utvidet navigasjonsmotstand under GPS-stress.",
-          "Bredere luftfartøy-integrasjonsprofiler."
-        ],
-        "command": [
-          "AI-assistert beslutningsstøtte i loopen.",
-          "Herdet rapportering på tvers av blandede flåter."
-        ]
-      },
-      "2028": {
-        "scale": "Allierte deployeringer",
-        "autonomy": [
-          "Skalert utførelse om bord for omstridte operasjoner.",
-          "Raskere omfordeling under operatørgodkjenning."
-        ],
-        "command": [
-          "Dypere flåtekoordinering og oppdragsøving.",
-          "Deployeringspakker for suverene miljøer."
-        ]
-      },
-      "2030": {
-        "scale": "Programskala",
-        "autonomy": [
-          "Høytempo-autonomi på tvers av større styrkepakker.",
-          "Kontinuerlig forbedring fra tilbakemelding i felt."
-        ],
-        "command": [
-          "Teaternivå-koordineringsarbeidsflyter.",
-          "Utvidet integrasjon med allierte systemer."
+      {
+        "title": "Centurion",
+        "cells": [
+          {
+            "year": "2026",
+            "lines": [
+              "Oppdragsklargjøring og operatørarbeidsflyt.",
+              "Tidlig flerkjøretøy-koordinering."
+            ]
+          },
+          {
+            "year": "2027",
+            "lines": [
+              "AI-assistert beslutningsstøtte i loopen.",
+              "Herdet rapportering på tvers av blandede flåter."
+            ]
+          },
+          {
+            "year": "2028",
+            "lines": [
+              "Dypere flåtekoordinering og oppdragsøving.",
+              "Deployeringspakker for suverene miljøer."
+            ]
+          },
+          {
+            "year": "2030",
+            "lines": [
+              "Teaternivå-koordineringsarbeidsflyter.",
+              "Utvidet integrasjon med allierte systemer."
+            ]
+          },
+          {
+            "year": "2035",
+            "lines": [
+              "Storskala samarbeidende kommando på tvers av flåter.",
+              "Ende-til-ende inspeksjons- og logistikkorchestrering."
+            ]
+          }
         ]
       }
-    },
+    ],
     "faqTitle": "Ofte stilte spørsmål",
     "faq": [
       {

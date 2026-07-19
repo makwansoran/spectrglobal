@@ -25,8 +25,6 @@ const capabilityRows = [
 
 const capabilityKeysWithSecondary = new Set(["agents", "command", "inspection"]);
 
-const roadmapYears = ["2026", "2027", "2028", "2030"] as const;
-
 export default async function Home({ params }: HomePageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
@@ -61,13 +59,15 @@ export default async function Home({ params }: HomePageProps) {
     emphasis: boolean;
   }[];
   const faq = t.raw("faq") as { question: string; answer: string }[];
-
-  const phases = roadmapYears.map((year) => ({
-    year,
-    scale: t(`roadmap.${year}.scale`),
-    autonomy: t.raw(`roadmap.${year}.autonomy`) as string[],
-    command: t.raw(`roadmap.${year}.command`) as string[],
-  }));
+  const milestones = t.raw("roadmapMilestones") as {
+    year: string;
+    scale: string;
+    dots: number;
+  }[];
+  const services = t.raw("roadmapServices") as {
+    title: string;
+    cells: { year: string; lines: string[] }[];
+  }[];
 
   return (
     <>
@@ -96,9 +96,8 @@ export default async function Home({ params }: HomePageProps) {
           title={t("roadmapTitle")}
           note={t("roadmapNote")}
           learnMore={tCommon("learnMore")}
-          phases={phases}
-          autonomyLabel={t("roadmapAutonomy")}
-          commandLabel={t("roadmapCommand")}
+          milestones={milestones}
+          services={services}
         />
 
         <HomeFaq title={t("faqTitle")} items={faq} contactLabel={tCommon("contactUs")} />

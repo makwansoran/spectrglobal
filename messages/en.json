@@ -152,55 +152,96 @@
       }
     ],
     "roadmapTitle": "Our capability and markets will continuously expand",
-    "roadmapAutonomy": "Autonomous Engine",
-    "roadmapCommand": "Centurion",
     "roadmapNote": "We maintain strict controls for export compliance, confidentiality, and sovereign deployment.",
-    "roadmap": {
-      "2026": {
-        "scale": "Field evaluation",
-        "autonomy": [
-          "Mission runtime above Betaflight for approved plans.",
-          "Denied-link continuation for evaluated profiles."
-        ],
-        "command": [
-          "Mission staging and operator workflow.",
-          "Early multi-asset coordination."
+    "roadmapMilestones": [
+      { "year": "2026", "scale": "Pilot fleets", "dots": 2 },
+      { "year": "2027", "scale": "Multi-site fleets", "dots": 36 },
+      { "year": "2028", "scale": "1k+ drones", "dots": 80 },
+      { "year": "2030", "scale": "5k+ drones", "dots": 110 },
+      { "year": "2035", "scale": "50k+ drones", "dots": 120 }
+    ],
+    "roadmapServices": [
+      {
+        "title": "Autonomous Engine",
+        "cells": [
+          {
+            "year": "2026",
+            "lines": [
+              "Mission runtime above Betaflight for approved plans.",
+              "Denied-link continuation for evaluated profiles."
+            ]
+          },
+          {
+            "year": "2027",
+            "lines": [
+              "Expanded navigation resilience under GPS stress.",
+              "Broader airframe integration profiles."
+            ]
+          },
+          {
+            "year": "2028",
+            "lines": [
+              "Scaled onboard execution for contested operations.",
+              "Faster retasking under operator approval."
+            ]
+          },
+          {
+            "year": "2030",
+            "lines": [
+              "High-tempo autonomy across larger force packages.",
+              "Continuous improvement from field feedback."
+            ]
+          },
+          {
+            "year": "2035",
+            "lines": [
+              "Force-wide autonomous execution at scale.",
+              "Persistent multi-drone mission continuity."
+            ]
+          }
         ]
       },
-      "2027": {
-        "scale": "Operational pilots",
-        "autonomy": [
-          "Expanded navigation resilience under GPS stress.",
-          "Broader airframe integration profiles."
-        ],
-        "command": [
-          "AI-assisted decision support in the loop.",
-          "Hardened reporting across mixed fleets."
-        ]
-      },
-      "2028": {
-        "scale": "Allied deployments",
-        "autonomy": [
-          "Scaled onboard execution for contested operations.",
-          "Faster retasking under operator approval."
-        ],
-        "command": [
-          "Deeper fleet coordination and mission rehearsal.",
-          "Deployment packages for sovereign environments."
-        ]
-      },
-      "2030": {
-        "scale": "Program scale",
-        "autonomy": [
-          "High-tempo autonomy across larger force packages.",
-          "Continuous improvement from field feedback."
-        ],
-        "command": [
-          "Theater-level coordination workflows.",
-          "Extended integration with allied systems."
+      {
+        "title": "Centurion",
+        "cells": [
+          {
+            "year": "2026",
+            "lines": [
+              "Mission staging and operator workflow.",
+              "Early multi-asset coordination."
+            ]
+          },
+          {
+            "year": "2027",
+            "lines": [
+              "AI-assisted decision support in the loop.",
+              "Hardened reporting across mixed fleets."
+            ]
+          },
+          {
+            "year": "2028",
+            "lines": [
+              "Deeper fleet coordination and mission rehearsal.",
+              "Deployment packages for sovereign environments."
+            ]
+          },
+          {
+            "year": "2030",
+            "lines": [
+              "Theater-level coordination workflows.",
+              "Extended integration with allied systems."
+            ]
+          },
+          {
+            "year": "2035",
+            "lines": [
+              "Large-scale collaborative command across fleets.",
+              "End-to-end inspection and logistics orchestration."
+            ]
+          }
         ]
       }
-    },
+    ],
     "faqTitle": "Frequently Asked Questions",
     "faq": [
       {
