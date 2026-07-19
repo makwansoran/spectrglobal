@@ -157,91 +157,79 @@
     "contactUs": "Contact Us",
     "joinUs": "Join Us",
     "roadmapMilestones": [
-      { "year": "2026", "scale": "Pilot fleets", "dots": 2 },
-      { "year": "2027", "scale": "Multi-site fleets", "dots": 36 },
-      { "year": "2028", "scale": "1k+ drones", "dots": 80 },
-      { "year": "2030", "scale": "5k+ drones", "dots": 110 },
-      { "year": "2035", "scale": "50k+ drones", "dots": 120 }
-    ],
-    "roadmapServices": [
       {
-        "title": "Autonomous Engine",
-        "cells": [
-          {
-            "year": "2026",
-            "lines": [
-              "Mission runtime above Betaflight for approved plans.",
-              "Denied-link continuation for evaluated profiles."
-            ]
-          },
-          {
-            "year": "2027",
-            "lines": [
-              "Expanded navigation resilience under GPS stress.",
-              "Broader airframe integration profiles."
-            ]
-          },
-          {
-            "year": "2028",
-            "lines": [
-              "Scaled onboard execution for contested operations.",
-              "Faster retasking under operator approval."
-            ]
-          },
-          {
-            "year": "2030",
-            "lines": [
-              "High-tempo autonomy across larger force packages.",
-              "Continuous improvement from field feedback."
-            ]
-          },
-          {
-            "year": "2035",
-            "lines": [
-              "Force-wide autonomous execution at scale.",
-              "Persistent multi-drone mission continuity."
-            ]
-          }
+        "year": "2026",
+        "scale": "Pilot fleets",
+        "summary": "Stand up evaluation fleets and prove collaborative multi-drone missions in controlled field conditions.",
+        "autonomyTitle": "Autonomous Engine",
+        "autonomy": [
+          "Mission runtime above Betaflight for approved plans.",
+          "Denied-link continuation for evaluated profiles."
+        ],
+        "commandTitle": "Centurion",
+        "command": [
+          "Mission staging and operator workflow.",
+          "Early multi-asset coordination."
         ]
       },
       {
-        "title": "Centurion",
-        "cells": [
-          {
-            "year": "2026",
-            "lines": [
-              "Mission staging and operator workflow.",
-              "Early multi-asset coordination."
-            ]
-          },
-          {
-            "year": "2027",
-            "lines": [
-              "AI-assisted decision support in the loop.",
-              "Hardened reporting across mixed fleets."
-            ]
-          },
-          {
-            "year": "2028",
-            "lines": [
-              "Deeper fleet coordination and mission rehearsal.",
-              "Deployment packages for sovereign environments."
-            ]
-          },
-          {
-            "year": "2030",
-            "lines": [
-              "Theater-level coordination workflows.",
-              "Extended integration with allied systems."
-            ]
-          },
-          {
-            "year": "2035",
-            "lines": [
-              "Large-scale collaborative command across fleets.",
-              "End-to-end inspection and logistics orchestration."
-            ]
-          }
+        "year": "2027",
+        "scale": "Multi-site fleets",
+        "summary": "Expand from single-site pilots to multi-site fleet operations with stronger decision support and airframe coverage.",
+        "autonomyTitle": "Autonomous Engine",
+        "autonomy": [
+          "Expanded navigation resilience under GPS stress.",
+          "Broader airframe integration profiles."
+        ],
+        "commandTitle": "Centurion",
+        "command": [
+          "AI-assisted decision support in the loop.",
+          "Hardened reporting across mixed fleets."
+        ]
+      },
+      {
+        "year": "2028",
+        "scale": "1k+ drones",
+        "summary": "Scale collaborative autonomy across larger allied deployments with faster retasking and sovereign deployment packages.",
+        "autonomyTitle": "Autonomous Engine",
+        "autonomy": [
+          "Scaled onboard execution for contested operations.",
+          "Faster retasking under operator approval."
+        ],
+        "commandTitle": "Centurion",
+        "command": [
+          "Deeper fleet coordination and mission rehearsal.",
+          "Deployment packages for sovereign environments."
+        ]
+      },
+      {
+        "year": "2030",
+        "scale": "5k+ drones",
+        "summary": "Move to program-scale operations where high-tempo autonomy and theater-level command work across large force packages.",
+        "autonomyTitle": "Autonomous Engine",
+        "autonomy": [
+          "High-tempo autonomy across larger force packages.",
+          "Continuous improvement from field feedback."
+        ],
+        "commandTitle": "Centurion",
+        "command": [
+          "Theater-level coordination workflows.",
+          "Extended integration with allied systems."
+        ]
+      },
+      {
+        "year": "2035",
+        "scale": "50k+ drones",
+        "summary": "Deliver force-wide collaborative autonomy — persistent multi-drone execution with end-to-end inspection and logistics orchestration.",
+        "autonomyTitle": "Autonomous Engine",
+        "autonomy": [
+          "Force-wide autonomous execution at scale.",
+          "Persistent multi-drone mission continuity."
+        ],
+        "commandTitle": "Centurion",
+        "command": [
+          "Large-scale collaborative command across fleets.",
+          "End-to-end inspection and logistics orchestration."
         ]
       }
     ],

@@ -62,11 +62,11 @@ export default async function Home({ params }: HomePageProps) {
   const milestones = t.raw("roadmapMilestones") as {
     year: string;
     scale: string;
-    dots: number;
-  }[];
-  const services = t.raw("roadmapServices") as {
-    title: string;
-    cells: { year: string; lines: string[] }[];
+    summary: string;
+    autonomyTitle: string;
+    autonomy: string[];
+    commandTitle: string;
+    command: string[];
   }[];
 
   return (
@@ -92,7 +92,7 @@ export default async function Home({ params }: HomePageProps) {
           items={bigPictureItems}
         />
 
-        <HomeRoadmap title={t("roadmapTitle")} milestones={milestones} services={services} />
+        <HomeRoadmap title={t("roadmapTitle")} milestones={milestones} />
 
         <HomeExclusionBanner text={t("exclusionBanner")} cta={tCommon("learnMore")} />
 

@@ -157,91 +157,79 @@
     "contactUs": "Kontakt oss",
     "joinUs": "Bli med oss",
     "roadmapMilestones": [
-      { "year": "2026", "scale": "Pilotflåter", "dots": 2 },
-      { "year": "2027", "scale": "Flersite-flåter", "dots": 36 },
-      { "year": "2028", "scale": "1k+ droner", "dots": 80 },
-      { "year": "2030", "scale": "5k+ droner", "dots": 110 },
-      { "year": "2035", "scale": "50k+ droner", "dots": 120 }
-    ],
-    "roadmapServices": [
       {
-        "title": "Autonomous Engine",
-        "cells": [
-          {
-            "year": "2026",
-            "lines": [
-              "Oppdragskjøretid over Betaflight for godkjente planer.",
-              "Fortsettelse ved nektet lenke for evaluerte profiler."
-            ]
-          },
-          {
-            "year": "2027",
-            "lines": [
-              "Utvidet navigasjonsmotstand under GPS-stress.",
-              "Bredere luftfartøy-integrasjonsprofiler."
-            ]
-          },
-          {
-            "year": "2028",
-            "lines": [
-              "Skalert utførelse om bord for omstridte operasjoner.",
-              "Raskere omfordeling under operatørgodkjenning."
-            ]
-          },
-          {
-            "year": "2030",
-            "lines": [
-              "Høytempo-autonomi på tvers av større styrkepakker.",
-              "Kontinuerlig forbedring fra tilbakemelding i felt."
-            ]
-          },
-          {
-            "year": "2035",
-            "lines": [
-              "Styrkeomfattende autonom utførelse i skala.",
-              "Vedvarende multi-drone oppdragsfortsettelse."
-            ]
-          }
+        "year": "2026",
+        "scale": "Pilotflåter",
+        "summary": "Etabler evalueringsflåter og bevis samarbeidende multi-drone oppdrag under kontrollerte feltforhold.",
+        "autonomyTitle": "Autonomous Engine",
+        "autonomy": [
+          "Oppdragskjøretid over Betaflight for godkjente planer.",
+          "Fortsettelse ved nektet lenke for evaluerte profiler."
+        ],
+        "commandTitle": "Centurion",
+        "command": [
+          "Oppdragsklargjøring og operatørarbeidsflyt.",
+          "Tidlig flerkjøretøy-koordinering."
         ]
       },
       {
-        "title": "Centurion",
-        "cells": [
-          {
-            "year": "2026",
-            "lines": [
-              "Oppdragsklargjøring og operatørarbeidsflyt.",
-              "Tidlig flerkjøretøy-koordinering."
-            ]
-          },
-          {
-            "year": "2027",
-            "lines": [
-              "AI-assistert beslutningsstøtte i loopen.",
-              "Herdet rapportering på tvers av blandede flåter."
-            ]
-          },
-          {
-            "year": "2028",
-            "lines": [
-              "Dypere flåtekoordinering og oppdragsøving.",
-              "Deployeringspakker for suverene miljøer."
-            ]
-          },
-          {
-            "year": "2030",
-            "lines": [
-              "Teaternivå-koordineringsarbeidsflyter.",
-              "Utvidet integrasjon med allierte systemer."
-            ]
-          },
-          {
-            "year": "2035",
-            "lines": [
-              "Storskala samarbeidende kommando på tvers av flåter.",
-              "Ende-til-ende inspeksjons- og logistikkorchestrering."
-            ]
-          }
+        "year": "2027",
+        "scale": "Flersite-flåter",
+        "summary": "Utvid fra enkeltsted-piloter til flersite-flåteoperasjoner med sterkere beslutningsstøtte og bredere luftfartøydekning.",
+        "autonomyTitle": "Autonomous Engine",
+        "autonomy": [
+          "Utvidet navigasjonsmotstand under GPS-stress.",
+          "Bredere luftfartøy-integrasjonsprofiler."
+        ],
+        "commandTitle": "Centurion",
+        "command": [
+          "AI-assistert beslutningsstøtte i loopen.",
+          "Herdet rapportering på tvers av blandede flåter."
+        ]
+      },
+      {
+        "year": "2028",
+        "scale": "1k+ droner",
+        "summary": "Skaler samarbeidende autonomi på tvers av større allierte deployeringer med raskere omfordeling og suverene deployeringspakker.",
+        "autonomyTitle": "Autonomous Engine",
+        "autonomy": [
+          "Skalert utførelse om bord for omstridte operasjoner.",
+          "Raskere omfordeling under operatørgodkjenning."
+        ],
+        "commandTitle": "Centurion",
+        "command": [
+          "Dypere flåtekoordinering og oppdragsøving.",
+          "Deployeringspakker for suverene miljøer."
+        ]
+      },
+      {
+        "year": "2030",
+        "scale": "5k+ droner",
+        "summary": "Gå til programskala der høytempo-autonomi og teaternivå-kommando fungerer på tvers av store styrkepakker.",
+        "autonomyTitle": "Autonomous Engine",
+        "autonomy": [
+          "Høytempo-autonomi på tvers av større styrkepakker.",
+          "Kontinuerlig forbedring fra tilbakemelding i felt."
+        ],
+        "commandTitle": "Centurion",
+        "command": [
+          "Teaternivå-koordineringsarbeidsflyter.",
+          "Utvidet integrasjon med allierte systemer."
+        ]
+      },
+      {
+        "year": "2035",
+        "scale": "50k+ droner",
+        "summary": "Lever styrkeomfattende samarbeidende autonomi — vedvarende multi-drone utførelse med ende-til-ende inspeksjon og logistikkorchestrering.",
+        "autonomyTitle": "Autonomous Engine",
+        "autonomy": [
+          "Styrkeomfattende autonom utførelse i skala.",
+          "Vedvarende multi-drone oppdragsfortsettelse."
+        ],
+        "commandTitle": "Centurion",
+        "command": [
+          "Storskala samarbeidende kommando på tvers av flåter.",
+          "Ende-til-ende inspeksjons- og logistikkorchestrering."
         ]
       }
     ],

@@ -1,210 +1,109 @@
 "use client";
 
 import { useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { bevelButtonClassName } from "@/components/bevel-button";
 
 export type RoadmapMilestone = {
   year: string;
   scale: string;
-  dots: number;
-};
-
-export type RoadmapService = {
-  title: string;
-  cells: {
-    year: string;
-    lines: string[];
-  }[];
+  summary: string;
+  autonomyTitle: string;
+  autonomy: string[];
+  commandTitle: string;
+  command: string[];
 };
 
 type HomeRoadmapProps = {
   title: string;
   milestones: RoadmapMilestone[];
-  services: RoadmapService[];
 };
 
-function ConstellationVisual({ count }: { count: number }) {
-  const points = buildPoints(count);
-
-  return (
-    <svg viewBox="0 0 204 204" className="h-full w-full" aria-hidden="true">
-      {points.map((point, index) => (
-        <circle key={index} cx={point.x} cy={point.y} r={point.r} fill="#0b0c0d" />
-      ))}
-    </svg>
-  );
-}
-
-function buildPoints(count: number) {
-  const points: { x: number; y: number; r: number }[] = [];
-  const clamped = Math.min(Math.max(count, 2), 120);
-  for (let i = 0; i < clamped; i += 1) {
-    const angle = (i * 2.399963) % (Math.PI * 2);
-    const radius = 18 + Math.sqrt(i + 1) * (62 / Math.sqrt(clamped));
-    const x = 102 + Math.cos(angle) * radius * 0.92;
-    const y = 102 + Math.sin(angle) * radius * 0.92;
-    const r = clamped < 10 ? 3.2 : clamped < 40 ? 2.4 : clamped < 80 ? 1.8 : 1.35;
-    if (x > 8 && x < 196 && y > 8 && y < 196) {
-      points.push({ x, y, r });
-    }
-  }
-  return points;
-}
-
-function FadeIn({
-  children,
-  delay = 0,
-  className = "",
-}: {
-  children: React.ReactNode;
-  delay?: number;
-  className?: string;
-}) {
+export function HomeRoadmap({ title, milestones }: HomeRoadmapProps) {
+  const [activeYear, setActiveYear] = useState(milestones[0]?.year ?? "");
   const reducedMotion = useReducedMotion();
-
-  if (reducedMotion) {
-    return <div className={className}>{children}</div>;
-  }
-
-  return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, y: 18 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.25 }}
-      transition={{ duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-export function HomeRoadmap({
-  title,
-  milestones,
-  services,
-}: HomeRoadmapProps) {
-  const [openIndex, setOpenIndex] = useState(0);
+  const active = milestones.find((item) => item.year === activeYear) ?? milestones[0];
 
   return (
     <section className="brand-font bg-[#f8f8f8] px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
       <div className="mx-auto w-full max-w-[90rem]">
-        <FadeIn>
-          <h2 className="mx-auto max-w-4xl text-center text-3xl font-semibold tracking-[-0.05em] text-fg sm:text-4xl lg:text-[2.25rem]">
-            {title}
-          </h2>
-        </FadeIn>
+        <h2 className="mx-auto max-w-4xl text-center text-3xl font-semibold tracking-[-0.05em] text-fg sm:text-4xl lg:text-[2.25rem]">
+          {title}
+        </h2>
 
-        <FadeIn delay={0.12} className="mt-14">
-          <div className="hidden justify-between gap-4 lg:flex">
-            {milestones.map((milestone) => (
-              <div key={milestone.year} className="flex w-full max-w-[204px] flex-col items-center">
-                <div className="mb-8 flex h-[12.8rem] w-full items-center justify-center">
-                  <ConstellationVisual count={milestone.dots} />
-                </div>
-                <p className="mb-2 text-center text-sm font-semibold text-[#f44200]">
+        <div className="mt-14 -mx-5 flex gap-3 overflow-x-auto px-5 pb-2 sm:mx-0 sm:flex-wrap sm:justify-center sm:overflow-visible sm:px-0 sm:pb-0">
+          {milestones.map((milestone) => {
+            const selected = milestone.year === active?.year;
+            return (
+              <button
+                key={milestone.year}
+                type="button"
+                aria-pressed={selected}
+                onClick={() => setActiveYear(milestone.year)}
+                className={bevelButtonClassName({
+                  variant: selected ? "primary" : "secondary",
+                  size: "lg",
+                  className: "h-auto min-w-[9.5rem] shrink-0 flex-col gap-2 !whitespace-normal px-5 py-5 text-center",
+                })}
+              >
+                <span className={`block text-xs font-semibold uppercase tracking-[0.16em] ${selected ? "text-white/70" : "text-muted"}`}>
                   {milestone.scale}
-                </p>
-                <p className="text-center text-4xl font-semibold tracking-[-0.05em] text-fg">
+                </span>
+                <span className="block text-2xl font-semibold tracking-[-0.04em] sm:text-3xl">
                   {milestone.year}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="mt-12 min-h-[12rem] border-t border-[#d4d4d4] pt-10">
+          <AnimatePresence mode="wait">
+            {active ? (
+              <motion.div
+                key={active.year}
+                initial={reducedMotion ? false : { opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={reducedMotion ? undefined : { opacity: 0, y: -8 }}
+                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#f44200]">
+                  {active.scale} · {active.year}
                 </p>
-              </div>
-            ))}
-          </div>
+                <p className="mt-4 max-w-3xl text-xl leading-8 text-fg sm:text-2xl sm:leading-9">
+                  {active.summary}
+                </p>
 
-          <div className="-mx-5 flex gap-6 overflow-x-auto px-5 pb-2 lg:hidden">
-            {milestones.map((milestone) => (
-              <div key={milestone.year} className="w-[11rem] shrink-0 text-center">
-                <div className="mx-auto mb-6 h-36 w-36">
-                  <ConstellationVisual count={milestone.dots} />
+                <div className="mt-10 grid gap-10 sm:grid-cols-2">
+                  <div>
+                    <h3 className="text-lg font-semibold tracking-[-0.03em] text-fg">
+                      {active.autonomyTitle}
+                    </h3>
+                    <ul className="mt-4 list-none space-y-3 p-0 text-base leading-7 text-muted">
+                      {active.autonomy.map((line) => (
+                        <li key={line} className="border-b border-[#d4d4d4] pb-3 last:border-b-0">
+                          {line}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold tracking-[-0.03em] text-fg">
+                      {active.commandTitle}
+                    </h3>
+                    <ul className="mt-4 list-none space-y-3 p-0 text-base leading-7 text-muted">
+                      {active.command.map((line) => (
+                        <li key={line} className="border-b border-[#d4d4d4] pb-3 last:border-b-0">
+                          {line}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-                <p className="mb-2 text-sm font-semibold text-[#f44200]">{milestone.scale}</p>
-                <p className="text-3xl font-semibold tracking-[-0.05em] text-fg">{milestone.year}</p>
-              </div>
-            ))}
-          </div>
-        </FadeIn>
-
-        <FadeIn delay={0.2} className="mt-16">
-          <ul className="list-none p-0">
-            {services.map((service, index) => {
-              const open = openIndex === index;
-              return (
-                <li
-                  key={service.title}
-                  className={`border-t border-[#d4d4d4] ${
-                    index === services.length - 1 ? "border-b border-[#d4d4d4]" : ""
-                  }`}
-                >
-                  <button
-                    type="button"
-                    aria-expanded={open}
-                    onClick={() => setOpenIndex(open ? -1 : index)}
-                    className="flex w-full items-center justify-between gap-6 py-6 text-left"
-                  >
-                    <span className="text-2xl font-semibold tracking-[-0.05em] text-fg sm:text-[2.25rem]">
-                      {service.title}
-                    </span>
-                    <span
-                      aria-hidden="true"
-                      className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2"
-                      style={{ borderColor: open ? "#0b0c0d" : "#f44200" }}
-                    >
-                      <span className="relative block h-0.5 w-3 bg-current" style={{ color: open ? "#0b0c0d" : "#f44200" }}>
-                        {!open ? (
-                          <span className="absolute left-1/2 top-1/2 h-3 w-0.5 -translate-x-1/2 -translate-y-1/2 bg-current" />
-                        ) : null}
-                      </span>
-                    </span>
-                  </button>
-
-                  {open ? (
-                    <div className="pb-10">
-                      <div className="hidden gap-4 lg:flex">
-                        {service.cells.map((cell) => (
-                          <div key={cell.year} className="min-w-0 flex-1">
-                            <div className="mb-4">
-                              <span className="inline-flex rounded-lg bg-[#f44200] px-3 py-1.5 text-xs font-semibold text-white">
-                                {cell.year}
-                              </span>
-                            </div>
-                            <div className="space-y-4">
-                              {cell.lines.map((line) => (
-                                <p
-                                  key={line}
-                                  className="border-b border-[#d4d4d4] pb-4 text-base leading-6 text-fg last:border-b-0 last:pb-0"
-                                >
-                                  {line}
-                                </p>
-                              ))}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-
-                      <div className="space-y-8 lg:hidden">
-                        {service.cells.map((cell) => (
-                          <div key={cell.year}>
-                            <span className="inline-flex rounded-lg bg-[#f44200] px-3 py-1.5 text-xs font-semibold text-white">
-                              {cell.year}
-                            </span>
-                            <div className="mt-4 space-y-3">
-                              {cell.lines.map((line) => (
-                                <p key={line} className="text-base leading-6 text-fg">
-                                  {line}
-                                </p>
-                              ))}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  ) : null}
-                </li>
-              );
-            })}
-          </ul>
-        </FadeIn>
+              </motion.div>
+            ) : null}
+          </AnimatePresence>
+        </div>
       </div>
     </section>
   );
