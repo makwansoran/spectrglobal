@@ -8,7 +8,10 @@ import { HomeFaq } from "@/components/home-faq";
 import { HomeRoadmap } from "@/components/home-roadmap";
 import { Nav } from "@/components/nav";
 import { ScrubPhrase } from "@/components/scrub-phrase";
-import { applicationSlugs } from "@/lib/applications";
+import {
+  applicationCardImages,
+  featuredApplicationSlugs,
+} from "@/lib/applications";
 
 type HomePageProps = {
   params: Promise<{ locale: string }>;
@@ -45,10 +48,11 @@ export default async function Home({ params }: HomePageProps) {
     })),
   );
 
-  const applications = applicationSlugs.map((slug) => ({
+  const applications = featuredApplicationSlugs.map((slug) => ({
     slug,
     title: t(`applications.${slug}.title`),
     text: t(`applications.${slug}.text`),
+    imageSrc: applicationCardImages[slug],
   }));
 
   const bigPicture = t.raw("bigPictureBody") as string[];
@@ -76,11 +80,7 @@ export default async function Home({ params }: HomePageProps) {
 
         <HomeCapabilityGrid rows={capabilities} />
 
-        <HomeApplications
-          title={t("applicationsTitle")}
-          learnMore={tCommon("learnMore")}
-          items={applications}
-        />
+        <HomeApplications title={t("applicationsTitle")} items={applications} />
 
         <section className="brand-font bg-bg px-5 py-24 sm:px-8 lg:px-16 lg:py-32">
           <div className="mx-auto w-full max-w-[88rem]">

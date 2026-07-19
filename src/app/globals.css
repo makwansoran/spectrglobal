@@ -177,6 +177,25 @@ textarea {
   padding: 0;
 }
 
+.bevel-card {
+  --bevel-cut: 16px;
+  clip-path: polygon(
+    var(--bevel-cut) 0,
+    100% 0,
+    100% calc(100% - var(--bevel-cut)),
+    calc(100% - var(--bevel-cut)) 100%,
+    0 100%,
+    0 var(--bevel-cut)
+  );
+}
+
+.bevel-card:focus-visible {
+  clip-path: none;
+  border-radius: 8px;
+  outline: 2px solid var(--fg);
+  outline-offset: 3px;
+}
+
 .gradient-cta {
   background: linear-gradient(120deg, #dc2626, #f97316, #7c3aed, #ec4899, #dc2626);
   background-size: 260% 260%;
