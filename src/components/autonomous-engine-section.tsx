@@ -25,7 +25,7 @@ export function AutonomousEngineSection({ title, cta, eager = false }: Autonomou
           {title}
         </ScrollRevealHeading>
         <Reveal delay={220}>
-          <BevelButton href="/autonomous-engine" variant="inverse-primary" className="mt-10 tracking-[0.18em]">
+          <BevelButton href="/contact" variant="inverse-primary" className="mt-10 tracking-[0.18em]">
             {cta}
             <span aria-hidden="true">→</span>
           </BevelButton>

@@ -76,7 +76,7 @@ export default async function Home({ params }: HomePageProps) {
       <main id="main-content" data-scroll-root className="flex-1">
         <AutonomousEngineSection
           title={t("autonomousEngineTitle")}
-          cta={t("tryNow")}
+          cta={t("contactUs")}
           eager
         />
 
