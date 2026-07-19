@@ -1,11 +1,12 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { AutonomousEngineSection } from "@/components/autonomous-engine-section";
-import { BevelButton } from "@/components/bevel-button";
 import { Footer } from "@/components/footer";
 import { HomeApplications } from "@/components/home-applications";
 import { HomeBigPicture } from "@/components/home-big-picture";
 import { HomeCapabilityGrid } from "@/components/home-capability-grid";
+import { HomeExclusionBanner } from "@/components/home-exclusion-banner";
 import { HomeFaq } from "@/components/home-faq";
+import { HomeLaunchCta } from "@/components/home-launch-cta";
 import { HomeRoadmap } from "@/components/home-roadmap";
 import { Nav } from "@/components/nav";
 import { ScrubPhrase } from "@/components/scrub-phrase";
@@ -42,7 +43,6 @@ export default async function Home({ params }: HomePageProps) {
       secondaryText: capabilityKeysWithSecondary.has(key)
         ? t(`capabilities.${key}.secondaryText`)
         : undefined,
-      // Add files to /public/capabilities/{key}.svg then set e.g. `/capabilities/${key}.svg`
       imageSrc: undefined as string | undefined,
     })),
   );
@@ -92,27 +92,17 @@ export default async function Home({ params }: HomePageProps) {
           items={bigPictureItems}
         />
 
-        <HomeRoadmap
-          title={t("roadmapTitle")}
-          note={t("roadmapNote")}
-          learnMore={tCommon("learnMore")}
-          milestones={milestones}
-          services={services}
+        <HomeRoadmap title={t("roadmapTitle")} milestones={milestones} services={services} />
+
+        <HomeExclusionBanner text={t("exclusionBanner")} cta={tCommon("learnMore")} />
+
+        <HomeFaq title={t("faqTitle")} items={faq} contactLabel={t("contactUs")} />
+
+        <HomeLaunchCta
+          title={t("launchTitle")}
+          contactLabel={t("contactUs")}
+          joinLabel={t("joinUs")}
         />
-
-        <HomeFaq title={t("faqTitle")} items={faq} contactLabel={tCommon("contactUs")} />
-
-        <section className="brand-font flex min-h-[70vh] items-center bg-black px-5 py-28 text-white sm:px-8 lg:px-16">
-          <div className="mx-auto w-full max-w-[88rem]">
-            <h2 className="max-w-5xl text-5xl font-semibold leading-[0.92] tracking-[-0.06em] sm:text-7xl lg:text-8xl">
-              {t("ctaTitle")}
-            </h2>
-            <BevelButton href="/contact" variant="inverse-primary" size="lg" className="mt-12 w-fit">
-              {tCommon("contactSpectr")}
-              <span aria-hidden="true">→</span>
-            </BevelButton>
-          </div>
-        </section>
 
         <Footer />
       </main>

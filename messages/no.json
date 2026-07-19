@@ -152,7 +152,10 @@
       }
     ],
     "roadmapTitle": "Kapabilitet og markeder vil kontinuerlig ekspandere",
-    "roadmapNote": "Vi opprettholder strenge kontroller for eksportcompliance, konfidensialitet og suveren deployering.",
+    "exclusionBanner": "Vi opprettholder strenge kontroller for eksportcompliance, konfidensialitet og suveren deployering.",
+    "launchTitle": "Vi lanserer fremtiden for autonomi",
+    "contactUs": "Kontakt oss",
+    "joinUs": "Bli med oss",
     "roadmapMilestones": [
       { "year": "2026", "scale": "Pilotflåter", "dots": 2 },
       { "year": "2027", "scale": "Flersite-flåter", "dots": 36 },
@@ -245,32 +248,40 @@
     "faqTitle": "Ofte stilte spørsmål",
     "faq": [
       {
-        "question": "Hva er Autonomous Engine?",
-        "answer": "Autonomous Engine er Spectrs oppdragskjøretid. Den holder droner i utførelse av godkjente mål når lenker degraderes, GPS er nektet, eller operatører trenger at enheter fortsetter uten konstant manuell kontroll. Flykontroll ligger på Betaflight — Spectr leverer ikke egen flykontroller-firmware."
+        "question": "Hva er samarbeidende multi-drone autonomi?",
+        "answer": "Det er oppdragsprogramvare som lar flere droner kjøre godkjente planer sammen — hver med sin egen AI-agent — slik at flåter fortsetter når lenker degraderes, GPS er nektet, eller operatører ikke kan gi konstant manuell kontroll."
       },
       {
         "question": "Hvordan skiller dette seg fra en flykontroller?",
-        "answer": "Flykontrollere stabiliserer og flyr luftfartøyet. Spectr-programvare ligger over den stacken og håndterer oppdragslogikk, navigasjonskontekst og utførelse av godkjente planer — særlig når miljøet blir fiendtlig."
+        "answer": "Flykontrollere stabiliserer og flyr luftfartøyet. Spectr-programvare ligger over den stacken og håndterer oppdragslogikk, samarbeid mellom droner og utførelse av godkjente planer — særlig når miljøet blir fiendtlig."
       },
       {
-        "question": "Hvilke plattformer fungerer det med?",
-        "answer": "Spectr er plattformagnostisk. Vi integrerer med luftfartøyene og sensorene operatører allerede bruker, i stedet for å kreve én proprietær drone."
+        "question": "Hvilke miljøer kan den operere i?",
+        "answer": "Spectr er bygget for omstridte og nektede miljøer: jamming, GPS-stress og degraderte datalenker. Oppdrag holdes innenfor godkjente mål og begrensninger."
       },
       {
-        "question": "Kan operatører beholde kontrollen?",
-        "answer": "Ja. Operatører definerer mål og begrensninger, godkjenner planer, og kan gripe inn eller stoppe utførelse. Autonomi utvider rekkevidde; den fjerner ikke myndighet."
+        "question": "Kan oppdrag justeres?",
+        "answer": "Ja. Operatører kan omfordele enheter, oppdatere planer, gripe inn eller stoppe utførelse. Autonomi utvider rekkevidde; den fjerner ikke myndighet."
       },
       {
-        "question": "Hvem er dette for?",
-        "answer": "Forsvars- og sikkerhetsoperatører som trenger oppdragsprogramvare som fortsetter å fungere i omstridte og nektede miljøer — med norsk eierskap og nasjonal kontroll over kritisk kode."
+        "question": "Hvem har nytte av denne teknologien?",
+        "answer": "Forsvars- og sikkerhetsoperatører som trenger samarbeidende flåter for inspeksjon, logistikk, ISR og omstridte operasjoner — med norsk eierskap og nasjonal kontroll over kritisk kode."
       },
       {
-        "question": "Er det suverent?",
-        "answer": "Spectr utvikler i Norge med nasjonal kontroll over kode, data og deployering. Vi designer for alliert kompatibilitet uten kritisk avhengighet av ikke-alliert infrastruktur."
+        "question": "Er det trygt og kontrollerbart?",
+        "answer": "Ja. Planer er operatørgodkjente, avgrenset av oppdragsbegrensninger, og kan stoppes umiddelbart. Spectr designer for ansvarlig autonomi, ikke ukontrollert atferd."
       },
       {
-        "question": "Hvordan evaluerer jeg programvaren?",
-        "answer": "Start med Autonomous Engine på nettstedet, se Centurion for oppdragskommando, og kontakt deretter Spectr med operasjonell kontekst og kvalifikasjonsbehov."
+        "question": "Kan operasjoner begrenses eller unngås?",
+        "answer": "Ja. Deployering følger kvalifikasjon, eksportkontroller og kundens regler. Spectr støtter kun godkjent bruk under nasjonale og allierte compliance-rammeverk."
+      },
+      {
+        "question": "Hvordan vil operasjoner se ut i felt?",
+        "answer": "Operatører definerer mål i Centurion, godkjenner planer, og lar Autonomous Engine utføre på tvers av flåten. Hver drone kjører sin egen AI-agent mens kommando og kontroll forblir sammenhengende."
+      },
+      {
+        "question": "Hvordan kan jeg be om denne tjenesten?",
+        "answer": "Kontakt Spectr med operasjonell kontekst og kvalifikasjonsbehov. Start med å prøve Autonomous Engine, og be deretter om tilgang for evaluering."
       }
     ],
     "ctaTitle": "Klar når oppdraget er."

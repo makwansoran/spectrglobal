@@ -152,7 +152,10 @@
       }
     ],
     "roadmapTitle": "Our capability and markets will continuously expand",
-    "roadmapNote": "We maintain strict controls for export compliance, confidentiality, and sovereign deployment.",
+    "exclusionBanner": "We maintain strict controls for export compliance, confidentiality, and sovereign deployment.",
+    "launchTitle": "We're launching the future of autonomy",
+    "contactUs": "Contact Us",
+    "joinUs": "Join Us",
     "roadmapMilestones": [
       { "year": "2026", "scale": "Pilot fleets", "dots": 2 },
       { "year": "2027", "scale": "Multi-site fleets", "dots": 36 },
@@ -245,32 +248,40 @@
     "faqTitle": "Frequently Asked Questions",
     "faq": [
       {
-        "question": "What is Autonomous Engine?",
-        "answer": "Autonomous Engine is Spectr's mission runtime. It keeps drones executing approved objectives when links degrade, GPS is denied, or operators need assets to continue without constant manual control. Flight control stays on Betaflight — Spectr does not ship custom flight-controller firmware."
+        "question": "What is collaborative multi-drone autonomy?",
+        "answer": "It is mission software that lets multiple drones run approved plans together — each with its own AI agent — so fleets keep executing when links degrade, GPS is denied, or operators cannot provide constant manual control."
       },
       {
         "question": "How is this different from a flight controller?",
-        "answer": "Flight controllers stabilize and fly the airframe. Spectr software sits above that stack and handles mission logic, navigation context, and execution of approved plans — especially when the environment turns hostile."
+        "answer": "Flight controllers stabilize and fly the airframe. Spectr software sits above that stack and handles mission logic, collaboration between drones, and execution of approved plans — especially when the environment turns hostile."
       },
       {
-        "question": "What platforms does it work with?",
-        "answer": "Spectr is platform-agnostic by design. We integrate with the airframes and sensors operators already field rather than requiring a single proprietary drone."
+        "question": "What environments can it operate in?",
+        "answer": "Spectr is built for contested and denied environments: jamming, GPS stress, and degraded datalinks. Missions stay scoped to approved objectives and constraints."
       },
       {
-        "question": "Can operators stay in control?",
-        "answer": "Yes. Operators define goals and constraints, approve plans, and can intervene or stop execution. Autonomy extends reach; it does not remove authority."
+        "question": "Can missions be adjusted?",
+        "answer": "Yes. Operators can retask assets, update plans, intervene, or stop execution. Autonomy extends reach; it does not remove authority."
       },
       {
-        "question": "Who is this for?",
-        "answer": "Defense and security operators who need mission software that keeps working in contested and denied environments — with Norwegian ownership and national control over critical code."
+        "question": "Who benefits from this technology?",
+        "answer": "Defense and security operators who need collaborative fleets for inspection, logistics, ISR, and contested operations — with Norwegian ownership and national control over critical code."
       },
       {
-        "question": "Is it sovereign?",
-        "answer": "Spectr develops in Norway with national control over code, data, and deployment. We design for allied compatibility without critical dependency on non-allied infrastructure."
+        "question": "Is it safe and controllable?",
+        "answer": "Yes. Plans are operator-approved, scoped to mission constraints, and can be stopped instantly. Spectr designs for accountable autonomy, not uncontrolled behavior."
       },
       {
-        "question": "How do I evaluate the software?",
-        "answer": "Start with Autonomous Engine on the site, review Centurion for mission command, then contact Spectr with your operational context and qualification needs."
+        "question": "Can operations be limited or avoided?",
+        "answer": "Yes. Deployment follows qualification, export controls, and customer rules of engagement. Spectr only supports approved use under national and allied compliance frameworks."
+      },
+      {
+        "question": "What will operations look like on the ground?",
+        "answer": "Operators define goals in Centurion, approve plans, and let Autonomous Engine execute across the fleet. Each drone runs its own AI agent while command and control stays coherent."
+      },
+      {
+        "question": "How can I request this service?",
+        "answer": "Contact Spectr with your operational context and qualification needs. Start by trying Autonomous Engine, then request access for evaluation."
       }
     ],
     "ctaTitle": "Ready when the mission is."

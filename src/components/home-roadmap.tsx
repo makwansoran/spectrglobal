@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { BevelButton } from "@/components/bevel-button";
 
 export type RoadmapMilestone = {
   year: string;
@@ -20,8 +19,6 @@ export type RoadmapService = {
 
 type HomeRoadmapProps = {
   title: string;
-  note: string;
-  learnMore: string;
   milestones: RoadmapMilestone[];
   services: RoadmapService[];
 };
@@ -84,8 +81,6 @@ function FadeIn({
 
 export function HomeRoadmap({
   title,
-  note,
-  learnMore,
   milestones,
   services,
 }: HomeRoadmapProps) {
@@ -209,18 +204,6 @@ export function HomeRoadmap({
               );
             })}
           </ul>
-        </FadeIn>
-
-        <FadeIn delay={0.28} className="mt-12">
-          <div className="flex flex-col gap-6 rounded-2xl bg-black px-6 py-8 text-white sm:flex-row sm:items-center sm:justify-between sm:px-10">
-            <p className="max-w-2xl text-lg leading-7 sm:text-2xl sm:font-semibold sm:tracking-[-0.03em]">
-              {note}
-            </p>
-            <BevelButton href="/security" variant="inverse-primary" className="w-fit shrink-0">
-              {learnMore}
-              <span aria-hidden="true">→</span>
-            </BevelButton>
-          </div>
         </FadeIn>
       </div>
     </section>
