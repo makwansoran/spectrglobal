@@ -1,0 +1,52 @@
+# Spectr Global — Pitch Deck Notes
+# Status: collecting inputs (one at a time)
+# Updated: 2026-07-19
+
+## Meta
+- Format: chat-only delivery (no deck files yet)
+- Storage: this file
+
+## Company / Product
+- Name: Spectr
+- Tagline EN: Spectr builds collaborative multi-drone systems that autonomously run missions together.
+- Tagline NO: Spectr bygger samarbeidende multi-dronesystemer som autonomt utfører oppdrag sammen.
+- Focus: multi-drone (2+) collaborative autonomy; logistics, 3D scanning, inspection; software + hardware research
+
+## Problem
+(empty)
+
+## Solution
+(empty)
+
+## Market
+(empty)
+
+## Business Model
+(empty)
+
+## Traction
+(empty)
+
+## Competition
+Closest competitors (focus for deck).
+
+Spectr differentiator to check against:
+- Orchestrate multiple drones with different roles in one mission (e.g. one scans, one fills / delivers) so they complete a shared objective as one system — not just parallel same-task coverage.
+
+| Company | Founded | Value / capital | Stage | What they offer | Spectr-feature (role-based multi-drone)? |
+|---|---|---|---|---|---|
+| Skydio | 2014 | ~$4.4B (Series F Apr 2026); ~$825–850M+ raised | Late-stage / scaling; significant annual revenue | AI-autonomous drones + dock + Remote Ops: fleet control, inspection, public safety, defense | No — multi-drone = 1 operator oversees up to ~4 drones + deconfliction; parallel/fleet ops, not heterogeneous roles in one mission |
+| vHive | 2016 | ~$150M (reported at Series B 2022); ~$36–40M raised | Series B / growth; commercially active | Software for autonomous multi-drone orchestration + digital twins (solar, telecom, infra); off-the-shelf drones | Partial — yes multi-drone orchestration, but same role split across area (parallel inspection cells), not different roles (scan vs fill) |
+| Percepto | 2014 | ~$210M estimate (Dec 2025, unofficial); ~$120–160M raised | Series C+ / later-stage industrial scale-up | Drone-in-a-box + AIM software: autonomous inspection/monitoring, remote multi-site | No — primarily 1:1 autonomy per dock/site; scales fleets, not collaborative role split |
+| Azur Drones | 2012 | Not public; ~$36M raised (Series C ~2022) | Series C / commercial ops (EU, ME, APAC, SA) | Drone-in-a-box (Skeyetech): pilotless surveillance/inspection, often managed service | No — typically one autonomous unit for site security/inspection |
+
+Note: valuations for vHive/Percepto/Azur are reported or estimated; Skydio is company-disclosed.
+
+## Team
+(empty)
+
+## Ask / Fundraising
+(empty)
+
+## Other / Unsorted
+(empty)
