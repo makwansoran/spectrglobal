@@ -1,16 +1,13 @@
-import { BevelButton } from "@/components/bevel-button";
 import { LazyBackgroundVideo } from "@/components/lazy-background-video";
-import { Reveal } from "@/components/reveal";
 import { ScrollRevealHeading } from "@/components/scroll-reveal-heading";
 import { VideoBrandBadge } from "@/components/video-brand-badge";
 
 type AutonomousEngineSectionProps = {
   title: string;
-  cta: string;
   eager?: boolean;
 };
 
-export function AutonomousEngineSection({ title, cta, eager = false }: AutonomousEngineSectionProps) {
+export function AutonomousEngineSection({ title, eager = false }: AutonomousEngineSectionProps) {
   return (
     <section className="brand-font relative flex min-h-screen snap-start items-center overflow-hidden bg-black text-white">
       <LazyBackgroundVideo src="/autonomous-engine.mp4" eager={eager} />
@@ -24,12 +21,6 @@ export function AutonomousEngineSection({ title, cta, eager = false }: Autonomou
         >
           {title}
         </ScrollRevealHeading>
-        <Reveal delay={220}>
-          <BevelButton href="/contact" variant="inverse-primary" className="mt-10 tracking-[0.18em]">
-            {cta}
-            <span aria-hidden="true">→</span>
-          </BevelButton>
-        </Reveal>
       </div>
     </section>
   );
