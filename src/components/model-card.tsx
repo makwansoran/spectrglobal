@@ -49,15 +49,12 @@ export function ModelCard({
         {(primary || secondary) && (
           <div className="mt-1 flex flex-wrap items-center gap-2.5">
             {primary ? (
-              <Link href={primary.href} className="pill pill--primary text-sm">
+              <Link href={primary.href} className="pill pill--primary">
                 {primary.label}
               </Link>
             ) : null}
             {secondary ? (
-              <Link
-                href={secondary.href}
-                className="pill border border-white/20 bg-white/10 text-sm text-white hover:bg-white/16"
-              >
+              <Link href={secondary.href} className="pill pill--on-media">
                 {secondary.label}
               </Link>
             ) : null}

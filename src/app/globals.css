@@ -142,63 +142,9 @@ textarea {
   50% { transform: translate3d(4%, -6%, 0) scale(1.15); }
 }
 
-/* ---------------- Buttons (Odyssey-style pills) ---------------- */
+/* ---------------- Bevel buttons ---------------- */
+.bevel-button,
 .pill {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  border-radius: 999px;
-  padding: 0.7rem 1.35rem;
-  font-size: 0.9rem;
-  font-weight: 500;
-  line-height: 1;
-  white-space: nowrap;
-  border: 1px solid transparent;
-}
-
-.pill--primary {
-  background: var(--fg);
-  color: var(--bg);
-}
-
-.pill--primary:hover {
-  transform: translateY(-1px);
-  opacity: 0.9;
-}
-
-.pill--secondary {
-  background: rgba(255, 255, 255, 0.06);
-  color: var(--fg);
-  border-color: var(--border);
-  backdrop-filter: blur(8px);
-}
-
-.pill--secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(244, 245, 247, 0.28);
-}
-
-.pill--ghost {
-  background: transparent;
-  color: var(--fg);
-  border-color: var(--border);
-}
-
-.pill--ghost:hover {
-  border-color: rgba(244, 245, 247, 0.28);
-}
-
-/* ---------------- Cards ---------------- */
-.card {
-  border: 1px solid var(--border);
-  background: rgba(18, 20, 26, 0.72);
-  backdrop-filter: blur(12px);
-  border-radius: 22px;
-}
-
-/* ---------------- Bevel button (contact form / legal pages) ---------------- */
-.bevel-button {
   --bevel-cut: 10px;
   position: relative;
   display: inline-flex;
@@ -210,22 +156,42 @@ textarea {
   padding: 11px 20px;
   line-height: 1;
   font-weight: 600;
-  border-radius: 999px;
+  clip-path: polygon(
+    var(--bevel-cut) 0,
+    100% 0,
+    100% calc(100% - var(--bevel-cut)),
+    calc(100% - var(--bevel-cut)) 100%,
+    0 100%,
+    0 var(--bevel-cut)
+  );
 }
 
-.bevel-button-sm {
-  font-size: 0.8rem;
+.bevel-button:focus-visible,
+.pill:focus-visible {
+  clip-path: none;
+  border-radius: 8px;
+}
+
+.bevel-button-sm,
+.pill {
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
 .bevel-button-lg {
   padding: 16px 24px;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
 .bevel-button-form {
   padding: 15px 30px;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   font-weight: 500;
+  letter-spacing: normal;
+  text-transform: none;
 }
 
 .bevel-button-icon {
@@ -233,14 +199,17 @@ textarea {
   min-width: 2.75rem;
   height: 2.75rem;
   padding: 0;
+  font-size: 1.125rem;
 }
 
-.bevel-button-primary {
+.bevel-button-primary,
+.pill--primary {
   background-color: var(--fg);
   color: var(--bg);
 }
 
-.bevel-button-primary:hover {
+.bevel-button-primary:hover,
+.pill--primary:hover {
   opacity: 0.85;
 }
 
@@ -250,13 +219,15 @@ textarea {
   cursor: not-allowed;
 }
 
-.bevel-button-secondary {
+.bevel-button-secondary,
+.pill--secondary {
   background-color: var(--surface);
   color: var(--fg);
-  border-color: var(--border);
+  box-shadow: inset 0 0 0 1px var(--border);
 }
 
-.bevel-button-secondary:hover {
+.bevel-button-secondary:hover,
+.pill--secondary:hover {
   background-color: #1a1d26;
 }
 
@@ -269,10 +240,51 @@ textarea {
   opacity: 0.85;
 }
 
-.bevel-button-inverse-secondary {
+.bevel-button-inverse-secondary,
+.pill--ghost {
   background-color: transparent;
   color: #ffffff;
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+}
+
+.bevel-button-inverse-secondary:hover,
+.pill--ghost:hover {
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.65);
+}
+
+.pill--on-media {
+  background-color: transparent;
+  color: #ffffff;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+}
+
+.pill--on-media:hover {
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.65);
+}
+
+/* ---------------- Bevel cards / boxes ---------------- */
+.card,
+.bevel-card {
+  --bevel-cut: 16px;
+  border: 1px solid var(--border);
+  background: rgba(18, 20, 26, 0.72);
+  backdrop-filter: blur(12px);
+  clip-path: polygon(
+    var(--bevel-cut) 0,
+    100% 0,
+    100% calc(100% - var(--bevel-cut)),
+    calc(100% - var(--bevel-cut)) 100%,
+    0 100%,
+    0 var(--bevel-cut)
+  );
+}
+
+.card:focus-visible,
+.bevel-card:focus-visible {
+  clip-path: none;
+  border-radius: 8px;
+  outline: 2px solid var(--fg);
+  outline-offset: 3px;
 }
 
 /* ---------------- Animations ---------------- */
