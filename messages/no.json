@@ -35,12 +35,12 @@
         "image": "/spectr-rts.png"
       },
       {
-        "category": "Verdensmodell",
-        "name": "Spectr Core",
-        "description": "Et steg forbi verdensmodeller som kun lærer av visuell observasjon, mot systemer som lærer av rikere multimodal interaksjon med verden.",
+        "category": "Persepsjon",
+        "name": "Spectr Detection",
+        "description": "Sanntids objektdeteksjon for komplekse fysiske miljøer — identifiserer kjøretøy, utstyr og aktivitet i industri- og feltoperasjoner.",
         "learnMore": "Les mer",
-        "tryCta": "Prøv Spectr Core",
-        "image": "/spectr-model-2.png"
+        "tryCta": "Prøv Spectr Detection",
+        "image": "/spectr-detection.png"
       }
     ]
   },

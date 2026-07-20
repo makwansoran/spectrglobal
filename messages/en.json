@@ -35,12 +35,12 @@
         "image": "/spectr-rts.png"
       },
       {
-        "category": "World Model",
-        "name": "Spectr Core",
-        "description": "A step beyond world models that learn only from visual observation, toward systems that learn from richer multimodal interaction with the world.",
+        "category": "Perception",
+        "name": "Spectr Detection",
+        "description": "Real-time object detection for complex physical environments — identifying vehicles, equipment, and activity across industrial and field operations.",
         "learnMore": "Learn More",
-        "tryCta": "Try Spectr Core",
-        "image": "/spectr-model-2.png"
+        "tryCta": "Try Spectr Detection",
+        "image": "/spectr-detection.png"
       }
     ]
   },
