@@ -25,13 +25,24 @@
     "heroTitle": "Vi er pionerer innen verdensmodeller, forbi språkmodeller",
     "ourModels": "Våre modeller",
     "getInTouch": "Ta kontakt",
-    "model": {
-      "category": "Verdensmodell",
-      "name": "Spectr RTS",
-      "description": "Vår kraftigste generelle verdensmodell så langt, som løfter det fysiske presisjonsnivået i verdensmodeller vesentlig.",
-      "learnMore": "Les mer",
-      "tryCta": "Prøv Spectr RTS"
-    }
+    "models": [
+      {
+        "category": "Verdensmodell",
+        "name": "Spectr RTS",
+        "description": "Vår kraftigste generelle verdensmodell så langt, som løfter det fysiske presisjonsnivået i verdensmodeller vesentlig.",
+        "learnMore": "Les mer",
+        "tryCta": "Prøv Spectr RTS",
+        "image": "/spectr-rts.png"
+      },
+      {
+        "category": "Verdensmodell",
+        "name": "Spectr Core",
+        "description": "Et steg forbi verdensmodeller som kun lærer av visuell observasjon, mot systemer som lærer av rikere multimodal interaksjon med verden.",
+        "learnMore": "Les mer",
+        "tryCta": "Prøv Spectr Core",
+        "image": "/spectr-model-2.png"
+      }
+    ]
   },
   "About": {
     "eyebrow": "Om oss",

@@ -21,10 +21,20 @@ export async function generateMetadata({ params }: HomePageProps): Promise<Metad
   });
 }
 
+type HomeModel = {
+  category: string;
+  name: string;
+  description: string;
+  learnMore: string;
+  tryCta: string;
+  image: string;
+};
+
 export default async function HomePage({ params }: HomePageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "Home" });
+  const models = t.raw("models") as HomeModel[];
 
   return (
     <>
@@ -47,17 +57,21 @@ export default async function HomePage({ params }: HomePageProps) {
           </div>
         </section>
 
-        {/* Spectr RTS */}
+        {/* Models */}
         <section id="models" className="scroll-mt-24 px-5 pb-28 sm:px-8">
-          <div className="mx-auto max-w-6xl">
-            <ModelCard
-              category={t("model.category")}
-              name={t("model.name")}
-              description={t("model.description")}
-              image="/spectr-rts.png"
-              primary={{ label: t("model.learnMore"), href: "/research" }}
-              secondary={{ label: t("model.tryCta"), href: "/contact" }}
-            />
+          <div className="mx-auto grid max-w-6xl gap-5 md:grid-cols-2">
+            {models.map((model, index) => (
+              <ModelCard
+                key={model.name}
+                category={model.category}
+                name={model.name}
+                description={model.description}
+                image={model.image}
+                primary={{ label: model.learnMore, href: "/research" }}
+                secondary={{ label: model.tryCta, href: "/contact" }}
+                priority={index === 0}
+              />
+            ))}
           </div>
         </section>
       </main>

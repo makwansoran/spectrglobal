@@ -25,13 +25,24 @@
     "heroTitle": "We're pioneering world models, to go beyond language models",
     "ourModels": "Our Models",
     "getInTouch": "Get in Touch",
-    "model": {
-      "category": "World Model",
-      "name": "Spectr RTS",
-      "description": "Our most powerful general purpose world model yet, materially advancing the state-of-the-art in physical accuracy of world models.",
-      "learnMore": "Learn More",
-      "tryCta": "Try Spectr RTS"
-    }
+    "models": [
+      {
+        "category": "World Model",
+        "name": "Spectr RTS",
+        "description": "Our most powerful general purpose world model yet, materially advancing the state-of-the-art in physical accuracy of world models.",
+        "learnMore": "Learn More",
+        "tryCta": "Try Spectr RTS",
+        "image": "/spectr-rts.png"
+      },
+      {
+        "category": "World Model",
+        "name": "Spectr Core",
+        "description": "A step beyond world models that learn only from visual observation, toward systems that learn from richer multimodal interaction with the world.",
+        "learnMore": "Learn More",
+        "tryCta": "Try Spectr Core",
+        "image": "/spectr-model-2.png"
+      }
+    ]
   },
   "About": {
     "eyebrow": "About",
