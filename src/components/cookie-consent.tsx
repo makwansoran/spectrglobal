@@ -27,10 +27,10 @@ export function CookieConsent() {
   if (!visible) return null;
 
   return (
-    <div className="fixed inset-0 z-[80] flex items-center justify-center bg-black/20 px-4 py-6 sm:px-6">
-      <section className="brand-font w-full max-w-2xl border border-border bg-bg p-6 text-center text-fg shadow-2xl shadow-black/20 sm:p-8">
+    <div className="fixed inset-0 z-[80] flex items-center justify-center bg-black/60 px-4 py-6 sm:px-6">
+      <section className="brand-font w-full max-w-2xl border border-border bg-surface p-6 text-center text-fg shadow-2xl shadow-black/40 sm:p-8">
         <div className="flex flex-col items-center">
-          <Image src="/spectr-logo.png" alt="Spectr" width={44} height={44} className="h-11 w-auto" />
+          <Image src="/spectr-logo.png" alt="Spectr" width={44} height={44} className="h-11 w-auto invert" />
           <p className="mt-5 text-xs font-semibold uppercase tracking-[0.16em] text-muted">{t("label")}</p>
           <h2 className="mt-3 text-2xl font-semibold tracking-[-0.045em] sm:text-3xl">{t("title")}</h2>
           <p className="mt-4 max-w-xl text-sm leading-7 text-muted">

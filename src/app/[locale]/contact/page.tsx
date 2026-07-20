@@ -30,7 +30,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
     <>
       <Nav />
       <main id="main-content" className="flex-1">
-        <section className="brand-font bg-[#f8f8f8] px-5 pb-20 pt-36 sm:px-8 lg:pb-28 lg:pt-44">
+        <section className="brand-font px-5 pb-20 pt-36 sm:px-8 lg:pb-28 lg:pt-44">
           <div className="mx-auto max-w-[42rem]">
             <ScrollRevealHeading
               as="h1"
@@ -45,7 +45,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
               <ContactForm />
             </div>
 
-            <dl className="mt-12 grid gap-6 border-t border-[#d4d4d4] pt-10 sm:grid-cols-2">
+            <dl className="mt-12 grid gap-6 border-t border-border pt-10 sm:grid-cols-2">
               <div>
                 <dt className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted">{t("emailLabel")}</dt>
                 <dd className="mt-2">

@@ -46,8 +46,8 @@ export function Nav() {
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
           scrolled || open
-            ? "border-b border-border bg-white/80 backdrop-blur-xl"
-            : "border-b border-transparent bg-white/0"
+            ? "border-b border-border bg-bg/80 backdrop-blur-xl"
+            : "border-b border-transparent bg-transparent"
         }`}
       >
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-8">
@@ -56,7 +56,7 @@ export function Nav() {
             className="flex items-center gap-2.5 hover:opacity-70"
             onClick={() => setOpen(false)}
           >
-            <Image src="/spectr-logo.png" alt={t("brand")} width={30} height={30} className="h-7 w-auto" priority />
+            <Image src="/spectr-logo.png" alt={t("brand")} width={30} height={30} className="h-7 w-auto invert" priority />
             <span className="brand-font text-base font-semibold uppercase tracking-[0.3em]">{t("brand")}</span>
           </Link>
 
@@ -99,7 +99,7 @@ export function Nav() {
 
       <div
         aria-hidden={!open}
-        className={`fixed inset-0 z-40 bg-white transition-[opacity,visibility] duration-400 lg:hidden ${
+        className={`fixed inset-0 z-40 bg-bg transition-[opacity,visibility] duration-400 lg:hidden ${
           open ? "visible opacity-100" : "invisible opacity-0"
         }`}
       >

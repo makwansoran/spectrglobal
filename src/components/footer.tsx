@@ -32,12 +32,12 @@ export async function Footer() {
   ];
 
   return (
-    <footer className="border-t border-border bg-white/60 backdrop-blur-sm">
+    <footer className="border-t border-border bg-bg/60 backdrop-blur-sm">
       <div className="mx-auto w-full max-w-7xl px-5 py-16 sm:px-8 lg:py-20">
         <div className="grid gap-12 border-b border-border pb-14 lg:grid-cols-[1.6fr_2fr]">
           <div>
             <Link href="/" className="inline-flex items-center gap-2.5 hover:opacity-70">
-              <Image src="/spectr-logo.png" alt="Spectr" width={28} height={28} className="h-7 w-auto" />
+              <Image src="/spectr-logo.png" alt="Spectr" width={28} height={28} className="h-7 w-auto invert" />
               <span className="brand-font text-base font-semibold uppercase tracking-[0.3em]">Spectr</span>
             </Link>
             <p className="mt-6 max-w-sm text-sm leading-7 text-muted">{t("tagline")}</p>

@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #ffffff;
-  --fg: #0a0c12;
-  --muted: #5c6470;
-  --border: rgba(10, 12, 18, 0.1);
-  --surface: #f6f7f9;
-  --accent: #4f46e5;
+  --bg: #07080c;
+  --fg: #f4f5f7;
+  --muted: #8b929e;
+  --border: rgba(244, 245, 247, 0.12);
+  --surface: #12141a;
+  --accent: #818cf8;
 }
 
 @theme inline {
@@ -28,6 +28,7 @@
 html {
   background: var(--bg);
   scroll-behavior: smooth;
+  color-scheme: dark;
 }
 
 body {
@@ -84,8 +85,8 @@ textarea {
   position: absolute;
   inset: -2px;
   background-image:
-    linear-gradient(rgba(10, 12, 18, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(10, 12, 18, 0.045) 1px, transparent 1px);
+    linear-gradient(rgba(244, 245, 247, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(244, 245, 247, 0.04) 1px, transparent 1px);
   background-size: 64px 64px;
   mask-image: radial-gradient(ellipse 90% 80% at 50% 20%, black 10%, transparent 80%);
   -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 20%, black 10%, transparent 80%);
@@ -95,7 +96,7 @@ textarea {
   position: absolute;
   border-radius: 50%;
   filter: blur(90px);
-  opacity: 0.5;
+  opacity: 0.55;
   will-change: transform;
 }
 
@@ -104,7 +105,7 @@ textarea {
   left: -8%;
   width: 46vw;
   height: 46vw;
-  background: radial-gradient(circle at 30% 30%, rgba(99, 102, 241, 0.5), transparent 60%);
+  background: radial-gradient(circle at 30% 30%, rgba(99, 102, 241, 0.35), transparent 60%);
   animation: glow-drift-a 22s ease-in-out infinite;
 }
 
@@ -113,7 +114,7 @@ textarea {
   right: -10%;
   width: 42vw;
   height: 42vw;
-  background: radial-gradient(circle at 60% 40%, rgba(45, 212, 191, 0.42), transparent 60%);
+  background: radial-gradient(circle at 60% 40%, rgba(45, 212, 191, 0.22), transparent 60%);
   animation: glow-drift-b 26s ease-in-out infinite;
 }
 
@@ -122,7 +123,7 @@ textarea {
   left: 30%;
   width: 40vw;
   height: 40vw;
-  background: radial-gradient(circle at 50% 50%, rgba(217, 70, 239, 0.28), transparent 60%);
+  background: radial-gradient(circle at 50% 50%, rgba(217, 70, 239, 0.18), transparent 60%);
   animation: glow-drift-c 30s ease-in-out infinite;
 }
 
@@ -167,15 +168,15 @@ textarea {
 }
 
 .pill--secondary {
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.06);
   color: var(--fg);
   border-color: var(--border);
   backdrop-filter: blur(8px);
 }
 
 .pill--secondary:hover {
-  background: #ffffff;
-  border-color: rgba(10, 12, 18, 0.25);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(244, 245, 247, 0.28);
 }
 
 .pill--ghost {
@@ -185,14 +186,14 @@ textarea {
 }
 
 .pill--ghost:hover {
-  border-color: rgba(10, 12, 18, 0.28);
+  border-color: rgba(244, 245, 247, 0.28);
 }
 
 /* ---------------- Cards ---------------- */
 .card {
   border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
+  background: rgba(18, 20, 26, 0.72);
+  backdrop-filter: blur(12px);
   border-radius: 22px;
 }
 
@@ -256,12 +257,12 @@ textarea {
 }
 
 .bevel-button-secondary:hover {
-  background-color: #eceef1;
+  background-color: #1a1d26;
 }
 
 .bevel-button-inverse-primary {
   background-color: #ffffff;
-  color: #0a0c12;
+  color: #07080c;
 }
 
 .bevel-button-inverse-primary:hover {

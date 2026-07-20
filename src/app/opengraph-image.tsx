@@ -14,8 +14,8 @@ export default function OpenGraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#ffffff",
-          color: "#0a0c12",
+          background: "#07080c",
+          color: "#f4f5f7",
           padding: "72px",
           fontFamily: "ui-sans-serif, system-ui, sans-serif",
         }}
@@ -26,11 +26,11 @@ export default function OpenGraphImage() {
               width: "56px",
               height: "56px",
               borderRadius: "12px",
-              background: "#0a0c12",
+              background: "#f4f5f7",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              color: "#ffffff",
+              color: "#07080c",
               fontSize: "28px",
               fontWeight: 700,
             }}
@@ -51,7 +51,7 @@ export default function OpenGraphImage() {
           >
             Pioneering world models
           </div>
-          <div style={{ marginTop: "28px", fontSize: "28px", color: "rgba(10,12,18,0.55)" }}>
+          <div style={{ marginTop: "28px", fontSize: "28px", color: "rgba(244,245,247,0.55)" }}>
             Spectr RTS · General world model · Built in Norway
           </div>
         </div>

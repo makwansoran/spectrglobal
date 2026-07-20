@@ -14,16 +14,19 @@ export function ModelCard({ category, name, description, image, primary, seconda
   return (
     <article className="card overflow-hidden">
       <div className="grid gap-0 lg:grid-cols-2">
-        <div className="relative min-h-[240px] overflow-hidden bg-gradient-to-br from-indigo-50 via-white to-teal-50 lg:min-h-[360px]">
+        <div className="relative min-h-[260px] overflow-hidden bg-surface lg:min-h-[400px]">
           {image ? (
             <Image
               src={image}
               alt={name}
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover"
+              className="object-cover object-center"
+              priority
             />
-          ) : null}
+          ) : (
+            <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 via-transparent to-teal-400/10" />
+          )}
         </div>
         <div className="flex flex-col justify-center gap-5 p-8 sm:p-10 lg:p-12">
           <span className="label">{category}</span>
