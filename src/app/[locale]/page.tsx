@@ -31,9 +31,9 @@ type HomeModel = {
 };
 
 const TRY_STYLES: Array<{ neon: TryNeon; size?: "sm" | "md" }> = [
-  { neon: "yellow" },
+  { neon: "yellow", size: "sm" },
   { neon: "purple", size: "sm" },
-  { neon: "green" },
+  { neon: "green", size: "sm" },
 ];
 
 export default async function HomePage({ params }: HomePageProps) {
