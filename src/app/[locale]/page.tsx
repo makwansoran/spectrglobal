@@ -1,110 +1,77 @@
+import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { AutonomousEngineSection } from "@/components/autonomous-engine-section";
 import { Footer } from "@/components/footer";
-import { HomeApplications } from "@/components/home-applications";
-import { HomeBigPicture } from "@/components/home-big-picture";
-import { HomeCapabilityGrid } from "@/components/home-capability-grid";
-import { HomeExclusionBanner } from "@/components/home-exclusion-banner";
-import { HomeFaq } from "@/components/home-faq";
-import { HomeLaunchCta } from "@/components/home-launch-cta";
-import { HomeRoadmap } from "@/components/home-roadmap";
 import { Nav } from "@/components/nav";
-import { ScrubPhrase } from "@/components/scrub-phrase";
-import {
-  applicationCardHrefs,
-  applicationCardImages,
-  featuredApplicationSlugs,
-} from "@/lib/applications";
+import { ModelCard } from "@/components/model-card";
+import { Link } from "@/i18n/navigation";
+import { buildPageMetadata, localizedPath } from "@/lib/metadata";
 
 type HomePageProps = {
   params: Promise<{ locale: string }>;
 };
 
-const capabilityRows = [
-  ["agents", "command", "inspection"],
-  ["ondemand", "dynamic", "deploy"],
-] as const;
+export async function generateMetadata({ params }: HomePageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "Metadata" });
+  return buildPageMetadata({
+    title: t("siteName"),
+    description: t("description"),
+    path: localizedPath(locale, ""),
+    locale,
+  });
+}
 
-const capabilityKeysWithSecondary = new Set(["agents", "command", "inspection"]);
-
-export default async function Home({ params }: HomePageProps) {
+export default async function HomePage({ params }: HomePageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "Home" });
-  const tCommon = await getTranslations({ locale, namespace: "Common" });
-
-  const capabilities = capabilityRows.map((row) =>
-    row.map((key) => ({
-      key,
-      title: t(`capabilities.${key}.title`),
-      text: t(`capabilities.${key}.text`),
-      secondaryTitle: capabilityKeysWithSecondary.has(key)
-        ? t(`capabilities.${key}.secondaryTitle`)
-        : undefined,
-      secondaryText: capabilityKeysWithSecondary.has(key)
-        ? t(`capabilities.${key}.secondaryText`)
-        : undefined,
-      imageSrc: undefined as string | undefined,
-    })),
-  );
-
-  const applications = featuredApplicationSlugs.map((slug) => ({
-    slug,
-    title: t(`applications.${slug}.title`),
-    text: t(`applications.${slug}.text`),
-    imageSrc: applicationCardImages[slug],
-    href: applicationCardHrefs[slug],
-  }));
-
-  const bigPictureItems = t.raw("bigPictureItems") as {
-    text: string;
-    emphasis: boolean;
-  }[];
-  const faq = t.raw("faq") as { question: string; answer: string }[];
-  const milestones = t.raw("roadmapMilestones") as {
-    year: string;
-    scale: string;
-    summary: string;
-    autonomyTitle: string;
-    autonomy: string[];
-  }[];
 
   return (
     <>
       <Nav />
+      <main id="main-content" className="flex-1">
+        {/* Hero */}
+        <section className="relative px-5 pb-24 pt-40 sm:px-8 lg:pb-32 lg:pt-52">
+          <div className="mx-auto max-w-4xl text-center">
+            <span className="label fade-up inline-block">{t("eyebrow")}</span>
+            <h1 className="brand-font fade-up fade-up-2 mt-6 text-5xl font-semibold leading-[0.98] tracking-[-0.05em] sm:text-7xl lg:text-[5.5rem]">
+              {t("heroTitle")}
+            </h1>
+            <p className="fade-up fade-up-3 mx-auto mt-8 max-w-2xl text-lg leading-8 text-muted">
+              {t("heroSubtitle")}
+            </p>
+            <div className="fade-up fade-up-4 mt-10 flex flex-wrap items-center justify-center gap-3">
+              <a href="#models" className="pill pill--primary">
+                {t("ourModels")}
+              </a>
+              <Link href="/contact" className="pill pill--secondary">
+                {t("getInTouch")}
+              </Link>
+            </div>
+          </div>
+        </section>
 
-      <main id="main-content" data-scroll-root className="flex-1">
-        <AutonomousEngineSection
-          title={t("autonomousEngineTitle")}
-          eager
-        />
-
-        <ScrubPhrase text={t("statementPhrase")} />
-
-        <HomeCapabilityGrid rows={capabilities} />
-
-        <HomeApplications title={t("applicationsTitle")} items={applications} />
-
-        <HomeBigPicture
-          title={t("bigPictureTitle")}
-          imageAlt={t("bigPictureImageAlt")}
-          imageSrc="/big-picture.png"
-          items={bigPictureItems}
-        />
-
-        <HomeRoadmap title={t("roadmapTitle")} milestones={milestones} />
-
-        <HomeExclusionBanner text={t("exclusionBanner")} cta={tCommon("learnMore")} />
-
-        <HomeFaq title={t("faqTitle")} items={faq} contactLabel={t("contactUs")} />
-
-        <HomeLaunchCta
-          title={t("launchTitle")}
-          contactLabel={t("contactUs")}
-        />
-
-        <Footer />
+        {/* The model we offer */}
+        <section id="models" className="scroll-mt-24 px-5 pb-28 sm:px-8">
+          <div className="mx-auto max-w-6xl">
+            <div className="mb-8 flex flex-col gap-3">
+              <span className="label">{t("modelsLabel")}</span>
+              <h2 className="brand-font max-w-2xl text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">
+                {t("modelsTitle")}
+              </h2>
+            </div>
+            <ModelCard
+              category={t("model.category")}
+              name={t("model.name")}
+              description={t("model.description")}
+              image="/spectr-rts.png"
+              primary={{ label: t("model.learnMore"), href: "/research" }}
+              secondary={{ label: t("model.tryCta"), href: "/contact" }}
+            />
+          </div>
+        </section>
       </main>
+      <Footer />
     </>
   );
 }

@@ -2,29 +2,35 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
-import { Link } from "@/i18n/navigation";
+import { ModelCard } from "@/components/model-card";
 import { buildPageMetadata, localizedPath } from "@/lib/metadata";
 
-type AboutPageProps = {
+type ResearchPageProps = {
   params: Promise<{ locale: string }>;
 };
 
-export async function generateMetadata({ params }: AboutPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: ResearchPageProps): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "About" });
+  const t = await getTranslations({ locale, namespace: "Research" });
   return buildPageMetadata({
     title: t("title"),
     description: t("intro"),
-    path: localizedPath(locale, "/about"),
+    path: localizedPath(locale, "/research"),
     locale,
   });
 }
 
-export default async function AboutPage({ params }: AboutPageProps) {
+type ResearchModel = {
+  category: string;
+  name: string;
+  description: string;
+};
+
+export default async function ResearchPage({ params }: ResearchPageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations({ locale, namespace: "About" });
-  const paragraphs = t.raw("paragraphs") as string[];
+  const t = await getTranslations({ locale, namespace: "Research" });
+  const models = t.raw("models") as ResearchModel[];
 
   return (
     <>
@@ -40,18 +46,18 @@ export default async function AboutPage({ params }: AboutPageProps) {
           </div>
         </section>
 
-        <section className="px-5 pb-24 sm:px-8">
-          <div className="mx-auto max-w-3xl space-y-6">
-            {paragraphs.map((paragraph) => (
-              <p key={paragraph} className="text-base leading-8 text-fg/80">
-                {paragraph}
-              </p>
+        <section className="px-5 pb-28 sm:px-8">
+          <div className="mx-auto max-w-6xl space-y-6">
+            {models.map((model, index) => (
+              <ModelCard
+                key={model.name}
+                category={model.category}
+                name={model.name}
+                description={model.description}
+                image={index === 0 ? "/spectr-rts.png" : undefined}
+                secondary={{ label: t("contactCta"), href: "/contact" }}
+              />
             ))}
-            <div className="pt-4">
-              <Link href="/contact" className="pill pill--primary">
-                {t("cta")}
-              </Link>
-            </div>
           </div>
         </section>
       </main>

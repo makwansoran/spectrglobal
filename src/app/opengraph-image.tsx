@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "Spectr — autonomous drone software from Norway";
+export const alt = "Spectr — pioneering world models";
 
 export default function OpenGraphImage() {
   return new ImageResponse(
@@ -14,8 +14,8 @@ export default function OpenGraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#0b0c0d",
-          color: "#ffffff",
+          background: "#ffffff",
+          color: "#0a0c12",
           padding: "72px",
           fontFamily: "ui-sans-serif, system-ui, sans-serif",
         }}
@@ -26,11 +26,11 @@ export default function OpenGraphImage() {
               width: "56px",
               height: "56px",
               borderRadius: "12px",
-              background: "#ffffff",
+              background: "#0a0c12",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              color: "#0b0c0d",
+              color: "#ffffff",
               fontSize: "28px",
               fontWeight: 700,
             }}
@@ -49,10 +49,10 @@ export default function OpenGraphImage() {
               maxWidth: "900px",
             }}
           >
-            Autonomous drone software from Norway
+            Pioneering world models
           </div>
-          <div style={{ marginTop: "28px", fontSize: "28px", color: "rgba(255,255,255,0.62)" }}>
-            CENTURION · Sovereign · EW-resilient
+          <div style={{ marginTop: "28px", fontSize: "28px", color: "rgba(10,12,18,0.55)" }}>
+            Spectr RTS · General world model · Built in Norway
           </div>
         </div>
       </div>

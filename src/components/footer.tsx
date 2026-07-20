@@ -5,56 +5,62 @@ import { Link } from "@/i18n/navigation";
 export async function Footer() {
   const t = await getTranslations("Footer");
   const nav = await getTranslations("Nav.links");
-  const sections = await getTranslations("Footer.sections");
+
+  const columns = [
+    {
+      title: t("sections.company"),
+      links: [
+        { label: nav("about"), href: "/about" },
+        { label: nav("careers"), href: "/careers" },
+        { label: nav("contact"), href: "/contact" },
+      ],
+    },
+    {
+      title: t("sections.explore"),
+      links: [
+        { label: nav("research"), href: "/research" },
+        { label: nav("news"), href: "/news" },
+      ],
+    },
+    {
+      title: t("sections.legal"),
+      links: [
+        { label: t("privacy"), href: "/privacy" },
+        { label: t("terms"), href: "/terms" },
+      ],
+    },
+  ];
 
   return (
-    <footer className="brand-font flex flex-col justify-end border-t border-border bg-bg text-fg">
+    <footer className="border-t border-border bg-white/60 backdrop-blur-sm">
       <div className="mx-auto w-full max-w-7xl px-5 py-16 sm:px-8 lg:py-20">
-        <div className="grid gap-14 border-b border-border pb-14 lg:grid-cols-[1fr_2.4fr]">
+        <div className="grid gap-12 border-b border-border pb-14 lg:grid-cols-[1.6fr_2fr]">
           <div>
-            <Link href="/" className="inline-flex items-center gap-3 hover:opacity-70">
+            <Link href="/" className="inline-flex items-center gap-2.5 hover:opacity-70">
               <Image src="/spectr-logo.png" alt="Spectr" width={28} height={28} className="h-7 w-auto" />
-              <span className="text-sm font-semibold uppercase tracking-[0.34em]">Spectr</span>
+              <span className="brand-font text-base font-semibold uppercase tracking-[0.3em]">Spectr</span>
             </Link>
-            <p className="mt-6 max-w-xs text-sm leading-7 text-muted">{t("tagline")}</p>
+            <p className="mt-6 max-w-sm text-sm leading-7 text-muted">{t("tagline")}</p>
             <p className="mt-4 text-xs leading-6 text-muted">
               {t("orgNumber")} · {t("location")}
             </p>
           </div>
 
-          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-            <div>
-              <h3 className="font-mono text-xs uppercase tracking-[0.16em] text-muted">{sections("products")}</h3>
-              <ul className="mt-6 space-y-4 text-sm">
-                <li><Link href="/autonomous-engine" className="transition-opacity hover:opacity-50">{nav("autonomousEngine")}</Link></li>
-                <li><Link href="/centurion" className="transition-opacity hover:opacity-50">{nav("centurion")}</Link></li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="font-mono text-xs uppercase tracking-[0.16em] text-muted">{sections("company")}</h3>
-              <ul className="mt-6 space-y-4 text-sm">
-                <li><Link href="/about" className="transition-opacity hover:opacity-50">{nav("about")}</Link></li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="font-mono text-xs uppercase tracking-[0.16em] text-muted">{sections("updates")}</h3>
-              <ul className="mt-6 space-y-4 text-sm">
-                <li><Link href="/newsroom" className="transition-opacity hover:opacity-50">{nav("newsroom")}</Link></li>
-                <li><Link href="/newsroom/press-releases" className="transition-opacity hover:opacity-50">{nav("press")}</Link></li>
-                <li><Link href="/newsroom/media-coverage" className="transition-opacity hover:opacity-50">{nav("media")}</Link></li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="font-mono text-xs uppercase tracking-[0.16em] text-muted">{sections("support")}</h3>
-              <ul className="mt-6 space-y-4 text-sm">
-                <li><Link href="/contact" className="transition-opacity hover:opacity-50">{nav("contact")}</Link></li>
-                <li><Link href="/privacy" className="transition-opacity hover:opacity-50">{nav("privacy")}</Link></li>
-                <li><Link href="/terms" className="transition-opacity hover:opacity-50">{nav("terms")}</Link></li>
-              </ul>
-            </div>
+          <div className="grid gap-10 sm:grid-cols-3">
+            {columns.map((col) => (
+              <div key={col.title}>
+                <h3 className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted">{col.title}</h3>
+                <ul className="mt-5 space-y-3 text-sm">
+                  {col.links.map((link) => (
+                    <li key={link.href}>
+                      <Link href={link.href} className="text-fg/80 transition-opacity hover:opacity-50">
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -73,7 +79,7 @@ export async function Footer() {
               <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814ZM9.545 15.568V8.432L15.818 12l-6.273 3.568Z" />
             </SocialLink>
           </div>
-          <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">{t("copyright")}</p>
+          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted">{t("copyright")}</p>
         </div>
       </div>
     </footer>

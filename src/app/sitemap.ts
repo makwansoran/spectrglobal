@@ -1,17 +1,15 @@
 import type { MetadataRoute } from "next";
 import { routing } from "@/i18n/routing";
-import { articles } from "@/lib/articles";
-import { newsroomCards } from "@/lib/newsroom";
 
 const baseUrl = "https://www.spectr.no";
 
 const staticPaths = [
   "",
   "/about",
-  "/autonomous-engine",
-  "/centurion",
+  "/research",
+  "/news",
+  "/careers",
   "/contact",
-  "/newsroom",
   "/privacy",
   "/terms",
 ];
@@ -31,17 +29,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       entries.push({
         url: localizedUrl(locale, path),
         lastModified: new Date(),
-      });
-    }
-
-    for (const card of newsroomCards) {
-      entries.push({ url: localizedUrl(locale, `/newsroom/${card.slug}`), lastModified: new Date() });
-    }
-
-    for (const article of articles) {
-      entries.push({
-        url: localizedUrl(locale, `/newsroom/${article.category}/${article.slug}`),
-        lastModified: new Date(article.date),
       });
     }
   }

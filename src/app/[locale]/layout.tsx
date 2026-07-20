@@ -3,20 +3,21 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { hasLocale } from "next-intl";
-import { Geist, Geist_Mono, Syne } from "next/font/google";
+import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
 import { CookieConsentLazy } from "@/components/cookie-consent-lazy";
 import { OrganizationJsonLd } from "@/components/json-ld";
 import { ScrollToTop } from "@/components/scroll-to-top";
+import { SiteBackground } from "@/components/site-background";
 import { defaultOgImage, localeAlternates } from "@/lib/metadata";
 import { routing, type Locale } from "@/i18n/routing";
 import "../globals.css";
 
 const geist = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
-const syne = Syne({
-  variable: "--font-syne",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
-  weight: ["600", "700"],
+  weight: ["400", "500", "600", "700"],
 });
 
 type LocaleLayoutProps = {
@@ -74,8 +75,9 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={`${geist.variable} ${geistMono.variable} ${syne.variable} h-full`}>
+    <html lang={locale} className={`${geist.variable} ${geistMono.variable} ${spaceGrotesk.variable} h-full`}>
       <body className="flex min-h-full flex-col bg-bg text-fg">
+        <SiteBackground />
         <OrganizationJsonLd />
         <NextIntlClientProvider messages={messages}>
           <ScrollToTop />

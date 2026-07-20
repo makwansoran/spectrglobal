@@ -1,556 +1,173 @@
 {
   "Metadata": {
     "siteName": "Spectr",
-    "description": "Spectr utvikler suverent norsk autonom droneprogramvare — oppdragskommando, AI-assistert beslutningsstøtte og EW-motstandsdyktige operasjoner for alle typer luftfartøy."
+    "description": "Spectr er et AI-lab som er pionerer innen generelle verdensmodeller — kausale, multimodale systemer som lærer å forstå og simulere verden."
   },
   "Nav": {
     "brand": "Spectr",
-    "getStarted": "Kom i gang",
+    "getInTouch": "Ta kontakt",
     "openMenu": "Åpne meny",
     "closeMenu": "Lukk meny",
-    "sections": {
-      "products": "Produkter",
-      "applications": "Anvendelser",
-      "company": "Selskap",
-      "updates": "Oppdateringer",
-      "support": "Support"
-    },
     "links": {
-      "contact": "Kontakt",
-      "about": "Team",
-      "newsroom": "Newsroom",
-      "documentation": "Dokumentasjon",
-      "security": "Sikkerhet",
-      "privacy": "Personvern",
-      "terms": "Vilkår",
-      "investor": "Investor Relations",
-      "autonomousEngine": "Autonomous Engine",
-      "centurion": "Centurion",
-      "defense": "Forsvar",
-      "deniedEnvironments": "Nektede miljøer",
-      "isr": "ISR",
-      "fleet": "Flåtekoordinering",
-      "missionCommand": "Offshore",
-      "fieldOps": "Feltoperasjoner",
-      "press": "Presse",
-      "media": "Media"
+      "about": "Om oss",
+      "research": "Forskning",
+      "news": "Nyheter",
+      "careers": "Karriere",
+      "contact": "Kontakt"
     }
-  },
-  "Footer": {
-    "tagline": "For operasjoner i virkeligheten.",
-    "sections": {
-      "products": "Produkter",
-      "company": "Selskap",
-      "updates": "Oppdateringer",
-      "support": "Support"
-    },
-    "copyright": "© 2026 Spectr",
-    "orgNumber": "Org.nr 936 961 967",
-    "location": "Norge"
   },
   "LocaleSwitcher": {
-    "label": "Språk",
-    "en": "English",
-    "no": "Norsk"
-  },
-  "Common": {
-    "learnMore": "Les mer",
-    "contactSpectr": "Kontakt Spectr",
-    "requestAccess": "Be om tilgang",
-    "contactUs": "Kontakt oss",
-    "seeMore": "Se mer",
-    "readMore": "Les mer",
-    "backToNewsroom": "Tilbake til newsroom",
-    "backToCategory": "Tilbake til {category}",
-    "specs": "Spesifikasjoner",
-    "overview": "Oversikt",
-    "specifications": "Spesifikasjoner",
-    "recommendedEquipment": "Anbefalt utstyr",
-    "skipToContent": "Hopp til hovedinnhold",
-    "viewProduct": "Se produkt"
+    "label": "Velg språk",
+    "en": "EN",
+    "no": "NO"
   },
   "Home": {
-    "hero": "For operasjoner i virkeligheten.",
-    "autonomousEngineTitle": "For autonome operasjoner",
-    "tryNow": "Prøv nå",
-    "statementPhrase": "Spectr bygger samarbeidende multi-dronesystemer som autonomt utfører oppdrag sammen.",
-    "capabilities": {
-      "agents": {
-        "title": "AI-agenter",
-        "text": "Hver drone kjører sin egen AI-agent.",
-        "secondaryTitle": "Samarbeidende",
-        "secondaryText": "Multi-dronesystemer som flyr oppdrag sammen."
-      },
-      "command": {
-        "title": "Kommando og kontroll",
-        "text": "Programvare for oppdragskommando og kontroll.",
-        "secondaryTitle": "Konfigurerbar",
-        "secondaryText": "Juster oppdragsprofiler etter behov."
-      },
-      "inspection": {
-        "title": "Inspeksjon",
-        "text": "Autonom inspeksjon på tvers av enheter.",
-        "secondaryTitle": "Logistikk",
-        "secondaryText": "Koordinert logistikk for flåten."
-      },
-      "ondemand": {
-        "title": "On demand",
-        "text": "Start godkjente oppdrag når du trenger dem."
-      },
-      "dynamic": {
-        "title": "Dynamisk",
-        "text": "Omfordel droner når situasjonen endrer seg."
-      },
-      "deploy": {
-        "title": "Enkel å deployere",
-        "text": "Enkel oppsett med flåtene du allerede flyr."
-      }
-    },
-    "applicationsTitle": "Hva er mulig med suveren autonomi?",
-    "applications": {
-      "defense": {
-        "title": "Forsvar",
-        "text": "Hold kritiske oppdrag i gang når konvensjonelle lenker svikter."
-      },
-      "denied-environments": {
-        "title": "Nektede miljøer",
-        "text": "Operer gjennom jamming, GPS-nekt og omstridt spektrum."
-      },
-      "isr": {
-        "title": "ISR",
-        "text": "Oppretthold rekognosering og innsamling under press."
-      },
-      "fleet": {
-        "title": "Flåtekoordinering",
-        "text": "Planlegg og koordiner blandede droneflåter fra ett oppdragslag."
-      },
-      "offshore": {
-        "title": "Offshore",
-        "text": "Inspiser og støtt offshoreplattformer når lenker svikter og forholdene blir krevende."
-      },
-      "construction": {
-        "title": "Bygg og anlegg",
-        "text": "Kartlegg tomter, følg fremdrift og gjør arbeidsplassen tryggere med autonom dekning."
-      },
-      "field-ops": {
-        "title": "Feltoperasjoner",
-        "text": "Utvid rekkevidde for remote steder og tidskritiske oppgaver."
-      }
-    },
-    "bigPictureTitle": "Det store bildet",
-    "bigPictureImageAlt": "Formasjon av autonome systemer i skala",
-    "bigPictureItems": [
-      {
-        "text": "Samarbeidende autonomi blir forskjellen mellom oppdrag som fullføres og oppdrag som stopper. Omstridte miljøer presser konvensjonell kontroll forbi grensen.",
-        "emphasis": true
-      },
-      {
-        "text": "Operatører flyr allerede kapable luftfartøy. Det de fortsatt trenger er multi-dronesystemer som utfører oppdrag sammen, hver med sin egen AI-agent.",
-        "emphasis": true
-      },
-      {
-        "text": "Spectr bygger det suverene autonomilaget i Norge for kommando, inspeksjon og logistikk.",
-        "emphasis": false
-      }
-    ],
-    "roadmapTitle": "Kapabilitet og markeder vil kontinuerlig ekspandere",
-    "exclusionBanner": "Vi opprettholder strenge kontroller for eksportcompliance, konfidensialitet og suveren deployering.",
-    "launchTitle": "Vi lanserer fremtiden for autonomi",
-    "contactUs": "Kontakt oss",
-    "roadmapMilestones": [
-      {
-        "year": "2026",
-        "scale": "Pilotflåter",
-        "summary": "Etabler evalueringsflåter og bevis samarbeidende multi-drone oppdrag under kontrollerte feltforhold.",
-        "autonomyTitle": "Autonomous Engine",
-        "autonomy": [
-          "Oppdragskjøretid over Betaflight for godkjente planer.",
-          "Fortsettelse ved nektet lenke for evaluerte profiler.",
-          "Tidlig multi-drone-koordinering på luftfartøyet."
-        ]
-      },
-      {
-        "year": "2027",
-        "scale": "Flersite-flåter",
-        "summary": "Utvid fra enkeltsted-piloter til flersite-flåteoperasjoner med sterkere autonomi og bredere luftfartøydekning.",
-        "autonomyTitle": "Autonomous Engine",
-        "autonomy": [
-          "Utvidet navigasjonsmotstand under GPS-stress.",
-          "Bredere luftfartøy-integrasjonsprofiler.",
-          "Herdet multi-drone-utførelse på tvers av steder."
-        ]
-      },
-      {
-        "year": "2028",
-        "scale": "100k droner",
-        "summary": "Operer i skala — samarbeidende autonomi på tvers av flåter totalt 100 000 droner i felt.",
-        "autonomyTitle": "Autonomous Engine",
-        "autonomy": [
-          "Styrkeomfattende autonom utførelse i 100 000-drone skala.",
-          "Vedvarende multi-drone oppdragsfortsettelse.",
-          "Ende-til-ende inspeksjons- og logistikkorchestrering."
-        ]
-      }
-    ],
-    "faqTitle": "Ofte stilte spørsmål",
-    "faq": [
-      {
-        "question": "Hva er samarbeidende multi-drone autonomi?",
-        "answer": "Det er oppdragsprogramvare som lar flere droner kjøre godkjente planer sammen — hver med sin egen AI-agent — slik at flåter fortsetter når lenker degraderes, GPS er nektet, eller operatører ikke kan gi konstant manuell kontroll."
-      },
-      {
-        "question": "Hvordan skiller dette seg fra en flykontroller?",
-        "answer": "Flykontrollere stabiliserer og flyr luftfartøyet. Spectr-programvare ligger over den stacken og håndterer oppdragslogikk, samarbeid mellom droner og utførelse av godkjente planer — særlig når miljøet blir fiendtlig."
-      },
-      {
-        "question": "Hvilke miljøer kan den operere i?",
-        "answer": "Spectr er bygget for omstridte og nektede miljøer: jamming, GPS-stress og degraderte datalenker. Oppdrag holdes innenfor godkjente mål og begrensninger."
-      },
-      {
-        "question": "Kan oppdrag justeres?",
-        "answer": "Ja. Operatører kan omfordele enheter, oppdatere planer, gripe inn eller stoppe utførelse. Autonomi utvider rekkevidde; den fjerner ikke myndighet."
-      },
-      {
-        "question": "Hvem har nytte av denne teknologien?",
-        "answer": "Forsvars- og sikkerhetsoperatører som trenger samarbeidende flåter for inspeksjon, logistikk, ISR og omstridte operasjoner — med norsk eierskap og nasjonal kontroll over kritisk kode."
-      },
-      {
-        "question": "Er det trygt og kontrollerbart?",
-        "answer": "Ja. Planer er operatørgodkjente, avgrenset av oppdragsbegrensninger, og kan stoppes umiddelbart. Spectr designer for ansvarlig autonomi, ikke ukontrollert atferd."
-      },
-      {
-        "question": "Kan operasjoner begrenses eller unngås?",
-        "answer": "Ja. Deployering følger kvalifikasjon, eksportkontroller og kundens regler. Spectr støtter kun godkjent bruk under nasjonale og allierte compliance-rammeverk."
-      },
-      {
-        "question": "Hvordan vil operasjoner se ut i felt?",
-        "answer": "Operatører definerer mål, godkjenner planer, og lar Autonomous Engine utføre på tvers av flåten. Hver drone kjører sin egen AI-agent mens oppdragsgjennomføring forblir sammenhengende under operatørens autoritet."
-      },
-      {
-        "question": "Hvordan kan jeg be om denne tjenesten?",
-        "answer": "Kontakt Spectr med operasjonell kontekst og kvalifikasjonsbehov. Start med å prøve Autonomous Engine, og be deretter om tilgang for evaluering."
-      }
-    ],
-    "ctaTitle": "Klar når oppdraget er."
-  },
-  "AutonomousEngine": {
-    "title": "Autonomous Engine",
-    "tagline": "Presis autonomi, akkurat der oppdraget trenger det.",
-    "heroIntro": "Se for deg oppdragsgjennomføring som ikke er begrenset av perfekte lenker eller konstant manuell kontroll. Autonomous Engine holder godkjente planer i gang når GPS er nektet, datalenker degraderes, eller operatører trenger at flåter fortsetter uten å håndfly hver enhet. Flykontroll ligger på Betaflight — Spectr leverer ikke egen flash-programvare for flykontrollere.",
-    "overviewTitle": "Bygget for slagfeltet, ikke labben",
-    "overviewText": "Autonomous Engine håndterer oppdragslogikk, navigasjon og gjennomføring over flystacken. Betaflight styrer stabilisering og manuelle flymodus på luftfartøyet, mens Spectr-programvaren koordinerer godkjente planer når miljøet blir fiendtlig.",
-    "possibilitiesTitle": "Hva er mulig med autonom gjennomføring?",
-    "possibilities": {
-      "denied": {
-        "title": "Nektede miljøer",
-        "text": "Hold godkjente planer i gang gjennom jamming, GPS-stress og omstridt spektrum."
-      },
-      "fleet": {
-        "title": "Samarbeidende flåter",
-        "text": "Hver drone kjører sin egen AI-agent slik at multi-droneoppdrag holder seg sammenhengende under press."
-      },
-      "inspection": {
-        "title": "Inspeksjon og logistikk",
-        "text": "Utvid rekkevidden for tidskritisk inspeksjon og koordinert logistikk."
-      },
-      "defense": {
-        "title": "Forsvarsoperasjoner",
-        "text": "Oppretthold kritiske oppdrag når konvensjonelle kontrollmodeller svikter."
-      }
-    },
-    "benefitsTitle": "Feltklar autonomi uten å bytte ut luftfartøyene dine.",
-    "benefitsLabel": "Fordeler",
-    "benefits": [
-      "Operatørgodkjente planer som kan stoppes når som helst",
-      "Oppdragslogikk over flystacken du allerede bruker",
-      "Fortsettelse under degraderte lenker og GPS-stress",
-      "Fungerer med Betaflight — ingen egen FC-firmware",
-      "Utviklet i Norge under nasjonal kontroll"
-    ],
-    "ctaTitle": "Klar til å evaluere Autonomous Engine?",
-    "flyLabel": "Fly",
-    "configureLabel": "Konfigurer",
-    "flyTitle": "Fly oppdraget",
-    "flyDescription": "Kjør godkjente oppdragsplaner gjennom Autonomous Engine mens Betaflight håndterer stabilisering og manuell flykontroll på luftfartøyet.",
-    "configureTitle": "Konfigurer i Betaflight",
-    "configureDescription": "Juster rates, moduser og flykontroller-innstillinger i Betaflight. Spectr leverer ikke egen flykontroller-firmware — konfigurer stacken du allerede bruker, og koble deretter Autonomous Engine på oppdragslaget."
-  },
-  "Centurion": {
-    "title": "Centurion",
-    "tagline": "Suveren oppdragskommando for blandede droneflåter.",
-    "heroIntro": "Se for deg oppdragskommando som holder seg sammenhengende når miljøet blir fiendtlig. Operatører definerer mål og begrensninger; Centurion planlegger, koordinerer og rapporterer på tvers av blandede flåter — med AI-assistert beslutningsstøtte bygget for reelle operasjoner, ikke labdemoer.",
-    "possibilitiesTitle": "Hva er mulig med Centurion?",
-    "possibilities": {
-      "staging": {
-        "title": "Oppdragsklargjøring",
-        "text": "Forbered og frigi godkjente planer med klar operatørmyndighet."
-      },
-      "coordination": {
-        "title": "Flåtekoordinering",
-        "text": "Koordiner flere enheter uten å miste operasjonell kontekst."
-      },
-      "decision": {
-        "title": "Beslutningsstøtte",
-        "text": "Hold operatører orientert med AI-assistert støtte under press."
-      },
-      "reporting": {
-        "title": "Oppdragsrapportering",
-        "text": "Oppretthold situasjonsforståelse mens planer kjøres og forhold endres."
-      }
-    },
-    "benefitsTitle": "Rene kommandoarbeidsflyter uten å bytte flåte.",
-    "benefitsLabel": "Fordeler",
-    "benefits": [
-      "Operatørdefinerte mål og begrensninger",
-      "Flerkjøretøy-koordinering på tvers av blandede flåter",
-      "AI-assistert beslutningsstøtte i loopen",
-      "Bygget for omstridte og nektede miljøer",
-      "Utviklet i Norge under nasjonal kontroll"
-    ],
-    "ctaTitle": "Klar til å evaluere Centurion?"
-  },
-  "Applications": {
-    "learnMore": "Les mer",
-    "backHome": "Tilbake til forsiden",
-    "ctaTitle": "Snakk med Spectr om dette brukstilfellet.",
-    "defense": {
-      "title": "Forsvar",
-      "headline": "Oppdragsprogramvare for omstridte operasjoner",
-      "intro": "Forsvarsoppdrag feiler når lenker feiler. Spectr holder godkjente planer i gang — og kommandoarbeidsflyter sammenhengende — når konvensjonelle kontrollmodeller bryter sammen.",
-      "body": "Fra autonom fortsettelse på luftfartøyet til oppdragskommando på tvers av flåter er Spectr-programvare bygget for operatører som trenger kapabilitet som holder i reelle omstridte miljøer.",
-      "benefits": [
-        "Autonom utførelse av godkjente planer",
-        "Operatørmyndighet beholdt i hvert steg",
-        "Suveren norsk utvikling og kontroll",
-        "Integrasjon med plattformer allerede i felt"
-      ]
-    },
-    "denied-environments": {
-      "title": "Nektede miljøer",
-      "headline": "Operer når GPS og datalenker degraderes",
-      "intro": "Jamming og nekt er driftsvilkåret, ikke et unntak. Spectr-programvare er designet slik at oppdrag kan fortsette når tilkobling og posisjonering er under angrep.",
-      "body": "Autonomous Engine bærer oppdragslogikk over flystacken. Centurion holder operatører orientert når forhold endres. Sammen reduserer de avhengighet av perfekte lenker.",
-      "benefits": [
-        "Fortsettelse under degraderte lenker",
-        "Navigasjonsmotstand under GPS-stress",
-        "Klare stopp- og inngrepskontroller",
-        "Feltorienterte evalueringsløp"
-      ]
-    },
-    "isr": {
-      "title": "ISR",
-      "headline": "Oppretthold innsamling under press",
-      "intro": "ISR betyr bare noe hvis enheten kan fortsette å samle inn og operatøren kan beholde kontekst. Spectr støtter motstandsdyktig utførelse og kommando for rekognoseringsoppdrag.",
-      "body": "Bruk Autonomous Engine til å holde ISR-profiler i gang når lenker degraderes, og Centurion til å klargjøre, koordinere og rapportere på tvers av innsamlingsenheter.",
-      "benefits": [
-        "Motstandsdyktig oppdragsfortsettelse",
-        "ISR-koordinering for flere enheter",
-        "Operatørgodkjent omfordeling",
-        "Plattformagnostisk integrasjon"
-      ]
-    },
-    "fleet": {
-      "title": "Flåtekoordinering",
-      "headline": "Koordiner blandede flåter fra ett oppdragslag",
-      "intro": "Operatører flyr ulike luftfartøy. Spectr tvinger ikke én plattform — vi legger til et oppdragslag som planlegger og koordinerer på tvers av flåten du allerede har.",
-      "body": "Centurion klargjør mål og begrensninger på tvers av enheter. Autonomous Engine utfører godkjente planer på luftfartøyet når miljøet krever autonomi.",
-      "benefits": [
-        "Oppdragsplanlegging for blandede flåter",
-        "Delt operasjonell kontekst",
-        "Luftfartøy-agnostisk programvarelag",
-        "Skalerer fra evaluering til deployering"
-      ]
-    },
-    "offshore": {
-      "title": "Offshore",
-      "headline": "Autonomi for offshoreplattformer og remote eiendeler",
-      "intro": "Offshoreoperasjoner trenger flåter som fortsetter å inspisere og støtte eiendeler når lenker degraderes og forholdene blir krevende.",
-      "body": "Autonomous Engine holder godkjente planer i gang rundt plattformer og remote steder, slik at operatører dekker mer uten konstant manuell kontroll.",
-      "benefits": [
-        "Plattform- og eiendelsinspeksjon under press",
-        "Fortsettelse når lenker degraderes",
-        "Fungerer med eksisterende luftfartøy",
-        "Norsk nasjonal kontroll"
-      ]
-    },
-    "construction": {
-      "title": "Bygg og anlegg",
-      "headline": "Autonom dekning for aktive byggeplasser",
-      "intro": "Byggeplasser endrer seg raskt. Spectr hjelper flåter med kartlegging, fremdriftsovervåking og jevn dekning uten konstant manuell flyging.",
-      "body": "Bruk Autonomous Engine til å kjøre godkjente inspeksjons- og kartleggingsplaner på tvers av tomten, slik at mannskapet får klarere situasjonsforståelse når forholdene skifter.",
-      "benefits": [
-        "Tomtekartlegging og fremdriftsovervåking",
-        "Tryggere dekning av risikoområder",
-        "Fungerer med eksisterende luftfartøy",
-        "Norsk nasjonal kontroll"
-      ]
-    },
-    "field-ops": {
-      "title": "Feltoperasjoner",
-      "headline": "Utvid rekkevidde for tidskritisk feltarbeid",
-      "intro": "Remote steder, korte vinduer og fiendtlige miljøer krever programvare som fungerer utenfor labben. Spectr fokuserer på feltklarhet fra dag én.",
-      "body": "Enten behovet er autonom fortsettelse, klarere kommando, eller begge, hjelper Spectr operatører å dekke mer med flåtene de allerede stoler på.",
-      "benefits": [
-        "Praktisk feltevaluering",
-        "Raske operatørarbeidsflyter",
-        "Fungerer med eksisterende luftfartøy",
-        "Supportvia gjennom Spectr-kontakt"
-      ]
+    "eyebrow": "AI-verdensmodeller",
+    "heroTitle": "Vi er pionerer innen verdensmodeller, forbi språkmodeller",
+    "heroSubtitle": "Spectr er et AI-lab som bygger generelle verdensmodeller: kausale, multimodale systemer som lærer å forstå og simulere verden.",
+    "ourModels": "Våre modeller",
+    "getInTouch": "Ta kontakt",
+    "modelsLabel": "Modellen vi tilbyr",
+    "modelsTitle": "Én generell verdensmodell, bygget for å simulere virkeligheten.",
+    "model": {
+      "category": "Verdensmodell",
+      "name": "Spectr RTS",
+      "description": "Vår kraftigste generelle verdensmodell så langt, som løfter det fysiske presisjonsnivået i verdensmodeller vesentlig.",
+      "learnMore": "Les mer",
+      "tryCta": "Prøv Spectr RTS"
     }
   },
-  "Contact": {
-    "title": "Kontakt",
-    "name": "Navn",
-    "organization": "Organisasjon",
-    "email": "E-post",
-    "phone": "Telefonnummer",
-    "product": "Produkt",
-    "message": "Melding",
-    "selectProduct": "Velg et produkt",
-    "general": "Generell henvendelse",
-    "submit": "Send",
-    "submitting": "Sender…",
-    "success": "Forespørselen er mottatt. Vi svarer snart.",
-    "errorGeneric": "Noe gikk galt. Prøv igjen eller send e-post direkte.",
-    "errorName": "Navn er påkrevd.",
-    "errorEmail": "Gyldig e-post er påkrevd.",
-    "errorProduct": "Velg et produkt.",
-    "errorMessage": "Melding er påkrevd.",
-    "trustTitle": "Direkte kontakt",
-    "trustIntro": "For innkjøp, sikkerhetsfølsomme eller operative henvendelser, kontakt Spectr direkte.",
-    "emailLabel": "E-post",
-    "locationLabel": "Sted",
-    "locationValue": "Norge",
-    "orgLabel": "Organisasjon",
-    "orgValue": "spectr as",
-    "phoneLabel": "Telefon",
-    "phoneValue": "+47 465 03 934",
-    "securityNote": "Ikke send klassifisert eller begrenset materiale via dette skjemaet. For sikkerhetsfølsomme henvendelser, oppgi organisasjon og klareringskontekst i meldingen."
-  },
   "About": {
-    "title": "Vårt team",
-    "eyebrow": "Vårt team",
-    "heroIntro": "Spectr bygger samarbeidende multi-dronesystemer som autonomt utfører oppdrag sammen — utviklet i Norge for autonome operasjoner i virkeligheten.",
-    "ctaTitle": "Vil du samarbeide med Spectr?",
-    "teamNarrative": [
-      "Spectr eksisterer fordi pålitelig autonomi blir grunnlaget for operasjoner i virkeligheten. Vi bygger samarbeidende multi-dronesystemer der hver drone kjører sin egen AI-agent, koordinert gjennom suveren kommando- og kontrollprogramvare.",
-      "Teknologien vår holder oppdrag i gang for inspeksjon, logistikk, ISR og omstridte miljøer — når lenker degraderes, GPS er nektet, eller operatører trenger at flåter fortsetter uten konstant manuell kontroll.",
-      "Vi produserer ikke droner. Vi bygger oppdragslaget over stackene operatører allerede flyr, utviklet i Norge under nasjonal kontroll. Menneskeheten flyr allerede kapable luftfartøy. Det operatører fortsatt trenger er programvare som lar flåtene jobbe sammen."
+    "eyebrow": "Om oss",
+    "title": "Vi bygger verdensmodeller forbi språk",
+    "intro": "Spectr er et AI-lab grunnlagt i Norge, som er pionerer innen generelle verdensmodeller — systemer som lærer å forstå, forutsi og simulere den fysiske verden.",
+    "paragraphs": [
+      "Språkmodeller lærte å resonnere om tekst. Verdensmodeller lærer å resonnere om virkeligheten — hvordan scener utvikler seg, hvordan objekter samhandler, og hvordan verden reagerer på handling.",
+      "Vi tror generelle verdensmodeller er den neste store grunnmodellen: kausale, multimodale systemer som kan forstå og simulere verden for mennesker, AI-er og roboter.",
+      "Spectr RTS er vårt steg mot den fremtiden — en generell verdensmodell trent for å løfte det fysiske presisjonsnivået, utviklet i Norge under nasjonal kontroll."
     ],
-    "teamMembers": [
+    "cta": "Ta kontakt"
+  },
+  "Research": {
+    "eyebrow": "Forskning",
+    "title": "Mot generelle verdensmodeller",
+    "intro": "Vi bygger kausale, multimodale systemer som lærer å simulere den fysiske verden. Her er det vi jobber med.",
+    "contactCta": "Ta kontakt",
+    "models": [
       {
-        "name": "Makwan Soran",
-        "role": "CEO & Head Engineer"
+        "category": "Verdensmodell",
+        "name": "Spectr RTS",
+        "description": "Vår kraftigste generelle verdensmodell så langt, som løfter det fysiske presisjonsnivået i verdensmodeller vesentlig."
+      },
+      {
+        "category": "Forskningsretning",
+        "name": "Multimodal interaksjon",
+        "description": "Vi beveger oss forbi systemer som kun lærer av visuell observasjon, mot modeller som lærer av rikere multimodal interaksjon med verden."
+      },
+      {
+        "category": "Forskningsretning",
+        "name": "Sanntidssimulering",
+        "description": "Langvarige, interaktive simuleringer som starter strømming umiddelbart og fortsetter i minutter, ikke sekunder."
       }
     ]
   },
-  "Documentation": {
-    "title": "Dokumentasjon",
-    "browseTitle": "Bla i dokumentasjon",
-    "browseDescription": "Start med programvareoversikt, deretter operatørplanlegging, deployeringsklarhet og støtte.",
-    "needDocumentTitle": "Trenger du et spesifikt dokument?",
-    "needDocumentText": "Kontakt Spectr med operasjonsmiljø, flåtekontekst og kvalifiseringsbehov slik at riktig dokumentasjon kan forberedes.",
-    "requestDocumentation": "Be om dokumentasjon",
-    "quickStart": {
-      "evaluate": {
-        "title": "Evaluer programvaren",
-        "description": "Gjennomgå Centurion etter oppdragsprofil, operasjonsmiljø, flåtesammensetning og deployeringsklarhet.",
-        "action": "Kontakt Spectr"
-      },
-      "prepare": {
-        "title": "Forbered en forespørsel",
-        "description": "Samle operasjonell kontekst, kvalifiseringskrav og støttedetaljer Spectr trenger før en deployeringssamtale.",
-        "action": "Kontakt Spectr"
-      },
-      "updates": {
-        "title": "Les siste oppdateringer",
-        "description": "Følg programvareversjonsnotater, deployeringsoppdateringer og selskapsinformasjon fra Spectr-teamet.",
-        "action": "Åpne newsroom"
+  "News": {
+    "eyebrow": "Nyheter",
+    "title": "Siste fra Spectr",
+    "intro": "Kunngjøringer, forskningsoppdateringer og milepæler fra laben vår.",
+    "empty": "Ingen kunngjøringer ennå. Følg med, eller ta kontakt for å høre hva vi bygger.",
+    "contactCta": "Ta kontakt",
+    "items": [
+      {
+        "date": "2026",
+        "title": "Spectr starter treningen av Spectr RTS",
+        "summary": "Vi startet treningen av vår første generelle verdensmodell, med fokus på å løfte den fysiske presisjonen i verdenssimulering."
       }
-    },
-    "sections": {
-      "product": {
-        "title": "Programvaredokumentasjon",
-        "description": "Referanser for team som evaluerer Spectrs oppdragsprogramvare."
+    ]
+  },
+  "Careers": {
+    "eyebrow": "Karriere",
+    "title": "Hjelp oss å bygge verdensmodeller",
+    "intro": "Vi er et lite, ambisiøst team i Norge som jobber med et av de vanskeligste og viktigste problemene i AI. Hvis det trigger deg, vil vi gjerne høre fra deg.",
+    "values": [
+      {
+        "title": "Forskningsfront",
+        "text": "Jobb med generelle verdensmodeller — en genuint åpen forskningsfront med rom til å sette spor."
       },
-      "operator": {
-        "title": "Operatørguider",
-        "description": "Feltveiledning for forberedelse, klarhet og overlevering."
+      {
+        "title": "Lite team, stort omfang",
+        "text": "Høyt eierskap og reell påvirkning. Alle her former hva vi bygger og hvordan vi bygger det."
       },
-      "deployment": {
-        "title": "Deployeringsklarhet",
-        "description": "Kvalifiserings- og planleggingsmateriell for operasjonell bruk."
-      },
-      "support": {
-        "title": "Støtte",
-        "description": "Hjelpeveier for team som allerede koordinerer med Spectr."
+      {
+        "title": "Bygget i Norge",
+        "text": "Suveren teknologi utviklet under nasjonal kontroll, med et globalt perspektiv."
       }
-    }
+    ],
+    "openTitle": "Finner du ikke rollen din?",
+    "openText": "Vi ansetter for talent og drivkraft fremfor titler. Vil du jobbe med verdensmodeller, ta kontakt og fortell oss hva du vil bygge.",
+    "cta": "Ta kontakt"
   },
-  "Newsroom": {
-    "title": "Newsroom",
-    "seeMore": "Se mer",
-    "mediaCta": "For media og kvalifiserte operative henvendelser.",
-    "contact": "Kontakt",
-    "noArticles": "Ingen artikler publisert i denne kategorien ennå.",
-    "readArticle": "Les artikkel"
-  },
-  "Security": {
-    "title": "Sikkerhet",
-    "learnMore": "Les mer",
-    "description": "Spectrs sikkerhet, konfidensialitet, norsk eierskap og kontrollert infrastruktur.",
-    "scrollToVerify": "Rull for å bekrefte",
-    "principlesHeadline": "Bekreft suverenitet, fra eierskap til juridisk etterlevelse.",
-    "criticalLocal": "Kritisk teknologi bør forbli lokalt.",
-    "legalCompliance": "Juridisk etterlevelse",
-    "legalText1": "Driften vår er strukturert i tråd med sikkerhetsloven og virksomhetsikkerhetsforskriften § 83. Vi opprettholder organisatoriske og tekniske sikringstiltak for klassifisert informasjon og kritisk infrastruktur under norsk lov.",
-    "legalText2": "Vi mener kritisk teknologi skal utvikles, eies og kontrolleres lokalt — for å sikre norske interesser på lang sikt.",
-    "lovdataCta": "Les mer: sikkerhetsloven § 9-3 (Lovdata)",
-    "nationalControl": "Vi mener kritisk teknologi skal utvikles under full nasjonal kontroll."
+  "Contact": {
+    "title": "Ta kontakt",
+    "trustIntro": "Fortell oss om arbeidet ditt og hva du bygger. Vi leser hver melding og svarer personlig.",
+    "name": "Navn",
+    "organization": "Organisasjon",
+    "email": "E-post",
+    "phone": "Telefon",
+    "product": "Tema",
+    "selectProduct": "Velg et tema",
+    "general": "Generell henvendelse",
+    "partnership": "Samarbeid",
+    "message": "Melding",
+    "submit": "Send melding",
+    "submitting": "Sender…",
+    "success": "Takk — meldingen din er på vei. Vi tar kontakt snart.",
+    "errorName": "Vennligst skriv inn navnet ditt.",
+    "errorEmail": "Vennligst skriv inn en gyldig e-postadresse.",
+    "errorProduct": "Vennligst velg et tema.",
+    "errorMessage": "Vennligst skriv en melding.",
+    "errorGeneric": "Noe gikk galt. Prøv igjen, eller send oss en e-post direkte.",
+    "emailLabel": "E-post",
+    "phoneLabel": "Telefon",
+    "phoneValue": "+47 465 03 934",
+    "orgLabel": "Selskap",
+    "orgValue": "spectr as · Org. 936 961 967",
+    "locationLabel": "Sted",
+    "locationValue": "Norge",
+    "securityNote": "Vi bruker kun opplysningene dine til å svare på henvendelsen din. Se personvernerklæringen for hvordan vi håndterer data."
   },
   "Legal": {
     "privacyTitle": "Personvernerklæring",
     "termsTitle": "Vilkår for bruk",
-    "lastUpdated": "Sist oppdatert: 25. juni 2026",
+    "lastUpdated": "Sist oppdatert: juli 2026",
     "contactCta": "Kontakt Spectr",
-    "cookieTitle": "Erklæring om informasjonskapsler",
-    "cookieIntro": "Denne erklæringen forklarer hvordan Spectr bruker informasjonskapsler og lignende teknologier på dette nettstedet, og hvordan du kan styre valgene dine."
+    "cookieTitle": "Informasjonskapsler",
+    "cookieIntro": "Denne delen forklarer informasjonskapslene og lignende teknologier vi bruker, og hvorfor."
   },
-  "Investor": {
-    "title": "Investor Relations",
-    "intro": "Følg Spectrs selskapsoppdateringer, operative milepæler og langsiktige programvareveikart.",
-    "headline": "Suveren autonom droneprogramvare fra Norge.",
-    "paragraph1": "Spectr utvikler Centurion — en suveren oppdragskommandoplattform for multi-enhet-koordinering, AI-assistert beslutningsstøtte og autonome operasjoner på tvers av ulike droneflåter.",
-    "paragraph2": "Investor Relations-henvendelser håndteres direkte av Spectr-teamet. Vi deler selskapsmateriell, milepæler og strategisk kontekst med kvalifiserte interessenter.",
-    "quote": "Operatører trenger oppdragsprogramvare som fortsetter å fungere når alt annet svikter.",
-    "quoteAttribution": "Makwan Soran, daglig leder og head engineer",
-    "ctaTitle": "Be om investorinformasjon.",
-    "focus": {
-      "updates": {
-        "title": "Selskapsoppdateringer",
-        "text": "Følg Spectrs fremgang mens vi bygger autonom droneprogramvare fra Norge for operasjoner i virkeligheten."
-      },
-      "milestones": {
-        "title": "Operative milepæler",
-        "text": "Følg programvareversjoner, deployeringsmilepæler og feltklarhetsfremgang for Centurion og støttesystemer."
-      },
-      "roadmap": {
-        "title": "Langsiktig veikart",
-        "text": "Forstå den strategiske retningen bak Spectrs oppdragsprogramvare og nasjonalt kontrollert teknologi."
-      }
+  "Footer": {
+    "tagline": "Et AI-lab som er pionerer innen generelle verdensmodeller — kausale, multimodale systemer som lærer å forstå og simulere verden.",
+    "orgNumber": "Org. 936 961 967",
+    "location": "Norge",
+    "copyright": "© 2026 Spectr",
+    "privacy": "Personvern",
+    "terms": "Vilkår",
+    "sections": {
+      "company": "Selskap",
+      "explore": "Utforsk",
+      "legal": "Juridisk"
     }
   },
   "NotFound": {
     "title": "Siden finnes ikke",
-    "description": "Siden du ba om finnes ikke, eller kan ha blitt flyttet.",
+    "description": "Siden du leter etter finnes ikke eller er flyttet.",
     "home": "Tilbake til forsiden"
   },
   "CookieConsent": {
-    "label": "Informasjonskapsler",
-    "title": "Spectr bruker informasjonskapsler for å drive og forbedre nettstedet.",
-    "description": "Vi bruker nødvendige informasjonskapsler for å huske valgene dine og holde nettstedet i gang. Med ditt samtykke kan vi også bruke analyse eller lignende verktøy for å forstå nettstedsbruk. Les mer i personvernerklæringen.",
+    "label": "Personvern",
+    "title": "Vi verdsetter personvernet ditt",
+    "description": "Vi bruker informasjonskapsler for å forbedre opplevelsen din og analysere trafikk. Les mer i vår",
+    "privacyLink": "personvernerklæring",
     "essential": "Kun nødvendige",
-    "accept": "Godta informasjonskapsler",
-    "privacyLink": "Personvernerklæring"
+    "accept": "Godta alle"
   }
 }

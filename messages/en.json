@@ -1,556 +1,173 @@
 {
   "Metadata": {
     "siteName": "Spectr",
-    "description": "Spectr develops sovereign Norwegian autonomous drone software — mission command, AI-assisted decision support, and EW-resilient operations for any airframe."
+    "description": "Spectr is an AI lab pioneering general world models — causal, multimodal systems that learn to understand and simulate the world."
   },
   "Nav": {
     "brand": "Spectr",
-    "getStarted": "Get Started",
+    "getInTouch": "Get in Touch",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
-    "sections": {
-      "products": "Products",
-      "applications": "Applications",
-      "company": "Company",
-      "updates": "Updates",
-      "support": "Support"
-    },
     "links": {
-      "contact": "Contact",
-      "about": "Team",
-      "newsroom": "Newsroom",
-      "documentation": "Documentation",
-      "security": "Security",
-      "privacy": "Privacy Policy",
-      "terms": "Terms of Service",
-      "investor": "Investor Relations",
-      "autonomousEngine": "Autonomous Engine",
-      "centurion": "Centurion",
-      "defense": "Defense",
-      "deniedEnvironments": "Denied Environments",
-      "isr": "ISR",
-      "fleet": "Fleet Coordination",
-      "missionCommand": "Offshore",
-      "fieldOps": "Field Operations",
-      "press": "Press",
-      "media": "Media"
+      "about": "About",
+      "research": "Research",
+      "news": "News",
+      "careers": "Careers",
+      "contact": "Contact"
     }
-  },
-  "Footer": {
-    "tagline": "For real world operations.",
-    "sections": {
-      "products": "Products",
-      "company": "Company",
-      "updates": "Updates",
-      "support": "Support"
-    },
-    "copyright": "© 2026 Spectr",
-    "orgNumber": "Org.nr 936 961 967",
-    "location": "Norway"
   },
   "LocaleSwitcher": {
-    "label": "Language",
-    "en": "English",
-    "no": "Norsk"
-  },
-  "Common": {
-    "learnMore": "Learn More",
-    "contactSpectr": "Contact Spectr",
-    "requestAccess": "Request Access",
-    "contactUs": "Contact us",
-    "seeMore": "See More",
-    "readMore": "Read More",
-    "backToNewsroom": "Back to newsroom",
-    "backToCategory": "Back to {category}",
-    "specs": "Specs",
-    "overview": "Overview",
-    "specifications": "Specifications",
-    "recommendedEquipment": "Recommended Equipment",
-    "skipToContent": "Skip to main content",
-    "viewProduct": "View product"
+    "label": "Select language",
+    "en": "EN",
+    "no": "NO"
   },
   "Home": {
-    "hero": "For real world operations.",
-    "autonomousEngineTitle": "For autonomous operations",
-    "tryNow": "Try Now",
-    "statementPhrase": "Spectr builds collaborative multi-drone systems that autonomously run missions together.",
-    "capabilities": {
-      "agents": {
-        "title": "AI Agents",
-        "text": "Each drone runs its own AI agent.",
-        "secondaryTitle": "Collaborative",
-        "secondaryText": "Multi-drone systems that fly missions together."
-      },
-      "command": {
-        "title": "Command & Control",
-        "text": "Software for mission command and control.",
-        "secondaryTitle": "Configurable",
-        "secondaryText": "Adjust mission profiles as needed."
-      },
-      "inspection": {
-        "title": "Inspection",
-        "text": "Autonomous inspection across assets.",
-        "secondaryTitle": "Logistics",
-        "secondaryText": "Coordinated logistics for the fleet."
-      },
-      "ondemand": {
-        "title": "On Demand",
-        "text": "Launch approved missions when you need them."
-      },
-      "dynamic": {
-        "title": "Dynamic",
-        "text": "Retask drones as the situation changes."
-      },
-      "deploy": {
-        "title": "Easy to deploy",
-        "text": "Simple set-up with the fleets you already fly."
-      }
-    },
-    "applicationsTitle": "What's possible with sovereign autonomy?",
-    "applications": {
-      "defense": {
-        "title": "Defense",
-        "text": "Keep critical missions executing when conventional links fail."
-      },
-      "denied-environments": {
-        "title": "Denied Environments",
-        "text": "Operate through jamming, GPS denial, and contested spectrum."
-      },
-      "isr": {
-        "title": "ISR",
-        "text": "Sustain reconnaissance and collection under pressure."
-      },
-      "fleet": {
-        "title": "Fleet Coordination",
-        "text": "Plan and coordinate mixed drone fleets from one mission layer."
-      },
-      "offshore": {
-        "title": "Offshore",
-        "text": "Inspect and support offshore platforms when links fail and conditions turn hostile."
-      },
-      "construction": {
-        "title": "Construction",
-        "text": "Survey sites, track progress, and keep crews safer with autonomous coverage."
-      },
-      "field-ops": {
-        "title": "Field Operations",
-        "text": "Extend working reach for remote sites and time-critical tasks."
-      }
-    },
-    "bigPictureTitle": "The Big Picture",
-    "bigPictureImageAlt": "Formation of autonomous systems at scale",
-    "bigPictureItems": [
-      {
-        "text": "Collaborative autonomy is becoming the difference between missions that finish and missions that stall. Contested environments push conventional control past its limits.",
-        "emphasis": true
-      },
-      {
-        "text": "Operators already fly capable airframes. What they still need is multi-drone systems that run missions together, each with its own AI agent.",
-        "emphasis": true
-      },
-      {
-        "text": "Spectr builds that sovereign autonomy layer in Norway for command, inspection, and logistics.",
-        "emphasis": false
-      }
-    ],
-    "roadmapTitle": "Our capability and markets will continuously expand",
-    "exclusionBanner": "We maintain strict controls for export compliance, confidentiality, and sovereign deployment.",
-    "launchTitle": "We're launching the future of autonomy",
-    "contactUs": "Contact Us",
-    "roadmapMilestones": [
-      {
-        "year": "2026",
-        "scale": "Pilot fleets",
-        "summary": "Stand up evaluation fleets and prove collaborative multi-drone missions in controlled field conditions.",
-        "autonomyTitle": "Autonomous Engine",
-        "autonomy": [
-          "Mission runtime above Betaflight for approved plans.",
-          "Denied-link continuation for evaluated profiles.",
-          "Early multi-drone coordination on the airframe."
-        ]
-      },
-      {
-        "year": "2027",
-        "scale": "Multi-site fleets",
-        "summary": "Expand from single-site pilots to multi-site fleet operations with stronger autonomy and broader airframe coverage.",
-        "autonomyTitle": "Autonomous Engine",
-        "autonomy": [
-          "Expanded navigation resilience under GPS stress.",
-          "Broader airframe integration profiles.",
-          "Hardened multi-drone execution across sites."
-        ]
-      },
-      {
-        "year": "2028",
-        "scale": "100k drones",
-        "summary": "Operate at scale — collaborative autonomy across fleets totaling 100,000 drones in the field.",
-        "autonomyTitle": "Autonomous Engine",
-        "autonomy": [
-          "Force-wide autonomous execution at 100,000-drone scale.",
-          "Persistent multi-drone mission continuity.",
-          "End-to-end inspection and logistics orchestration."
-        ]
-      }
-    ],
-    "faqTitle": "Frequently Asked Questions",
-    "faq": [
-      {
-        "question": "What is collaborative multi-drone autonomy?",
-        "answer": "It is mission software that lets multiple drones run approved plans together — each with its own AI agent — so fleets keep executing when links degrade, GPS is denied, or operators cannot provide constant manual control."
-      },
-      {
-        "question": "How is this different from a flight controller?",
-        "answer": "Flight controllers stabilize and fly the airframe. Spectr software sits above that stack and handles mission logic, collaboration between drones, and execution of approved plans — especially when the environment turns hostile."
-      },
-      {
-        "question": "What environments can it operate in?",
-        "answer": "Spectr is built for contested and denied environments: jamming, GPS stress, and degraded datalinks. Missions stay scoped to approved objectives and constraints."
-      },
-      {
-        "question": "Can missions be adjusted?",
-        "answer": "Yes. Operators can retask assets, update plans, intervene, or stop execution. Autonomy extends reach; it does not remove authority."
-      },
-      {
-        "question": "Who benefits from this technology?",
-        "answer": "Defense and security operators who need collaborative fleets for inspection, logistics, ISR, and contested operations — with Norwegian ownership and national control over critical code."
-      },
-      {
-        "question": "Is it safe and controllable?",
-        "answer": "Yes. Plans are operator-approved, scoped to mission constraints, and can be stopped instantly. Spectr designs for accountable autonomy, not uncontrolled behavior."
-      },
-      {
-        "question": "Can operations be limited or avoided?",
-        "answer": "Yes. Deployment follows qualification, export controls, and customer rules of engagement. Spectr only supports approved use under national and allied compliance frameworks."
-      },
-      {
-        "question": "What will operations look like on the ground?",
-        "answer": "Operators define goals, approve plans, and let Autonomous Engine execute across the fleet. Each drone runs its own AI agent while mission execution stays coherent under operator authority."
-      },
-      {
-        "question": "How can I request this service?",
-        "answer": "Contact Spectr with your operational context and qualification needs. Start by trying Autonomous Engine, then request access for evaluation."
-      }
-    ],
-    "ctaTitle": "Ready when the mission is."
-  },
-  "AutonomousEngine": {
-    "title": "Autonomous Engine",
-    "tagline": "Precise autonomy, exactly where the mission needs it.",
-    "heroIntro": "Imagine mission execution that is not limited by perfect links or constant manual control. Autonomous Engine keeps approved plans running when GPS is denied, datalinks degrade, or operators need fleets to continue without hand-flying every asset. Flight control stays on Betaflight — Spectr does not ship custom flight-controller firmware.",
-    "overviewTitle": "Built for the battlefield, not the lab",
-    "overviewText": "Autonomous Engine handles mission logic, navigation, and execution above the flight stack. Betaflight manages stabilization and manual flight modes on the airframe, while Spectr software coordinates approved plans when the environment turns hostile.",
-    "possibilitiesTitle": "What's possible with autonomous execution?",
-    "possibilities": {
-      "denied": {
-        "title": "Denied environments",
-        "text": "Keep approved plans executing through jamming, GPS stress, and contested spectrum."
-      },
-      "fleet": {
-        "title": "Collaborative fleets",
-        "text": "Each drone runs its own AI agent so multi-drone missions stay coherent under pressure."
-      },
-      "inspection": {
-        "title": "Inspection & logistics",
-        "text": "Extend reach for time-critical inspection and coordinated logistics work."
-      },
-      "defense": {
-        "title": "Defense operations",
-        "text": "Sustain critical missions when conventional control models break down."
-      }
-    },
-    "benefitsTitle": "Field-ready autonomy without replacing your airframes.",
-    "benefitsLabel": "Benefits",
-    "benefits": [
-      "Operator-approved plans that can be stopped at any time",
-      "Mission logic above the flight stack you already fly",
-      "Continuation under degraded links and GPS stress",
-      "Works with Betaflight — no custom FC firmware",
-      "Developed in Norway under national control"
-    ],
-    "ctaTitle": "Ready to evaluate Autonomous Engine?",
-    "flyLabel": "Fly",
-    "configureLabel": "Configure",
-    "flyTitle": "Fly the mission",
-    "flyDescription": "Run approved mission plans through Autonomous Engine while Betaflight handles stabilization and manual flight control on the airframe.",
-    "configureTitle": "Configure in Betaflight",
-    "configureDescription": "Tune rates, modes, and flight-controller settings in Betaflight. Spectr does not ship custom flight-controller firmware — configure the stack you already use, then connect Autonomous Engine at the mission layer."
-  },
-  "Centurion": {
-    "title": "Centurion",
-    "tagline": "Sovereign mission command for mixed drone fleets.",
-    "heroIntro": "Imagine mission command that stays coherent when the environment turns hostile. Operators define goals and constraints; Centurion plans, coordinates, and reports across mixed fleets — with AI-assisted decision support built for real operations, not lab demos.",
-    "possibilitiesTitle": "What's possible with Centurion?",
-    "possibilities": {
-      "staging": {
-        "title": "Mission staging",
-        "text": "Prepare and release approved plans with clear operator authority."
-      },
-      "coordination": {
-        "title": "Fleet coordination",
-        "text": "Coordinate multiple assets without losing operational context."
-      },
-      "decision": {
-        "title": "Decision support",
-        "text": "Keep operators oriented with AI-assisted support under pressure."
-      },
-      "reporting": {
-        "title": "Mission reporting",
-        "text": "Maintain situational awareness as plans execute and conditions change."
-      }
-    },
-    "benefitsTitle": "Clean command workflows without replacing your fleet.",
-    "benefitsLabel": "Benefits",
-    "benefits": [
-      "Operator-defined goals and constraints",
-      "Multi-asset coordination across mixed fleets",
-      "AI-assisted decision support in the loop",
-      "Built for contested and denied environments",
-      "Developed in Norway under national control"
-    ],
-    "ctaTitle": "Ready to evaluate Centurion?"
-  },
-  "Applications": {
-    "learnMore": "Learn More",
-    "backHome": "Back to home",
-    "ctaTitle": "Talk to Spectr about this use case.",
-    "defense": {
-      "title": "Defense",
-      "headline": "Mission software for contested operations",
-      "intro": "Defense missions fail when links fail. Spectr keeps approved plans executing — and command workflows coherent — when conventional control models break down.",
-      "body": "From autonomous continuation on the airframe to mission command across fleets, Spectr software is built for operators who need capability that holds up in real contested environments.",
-      "benefits": [
-        "Autonomous execution of approved plans",
-        "Operator authority retained at every step",
-        "Sovereign Norwegian development and control",
-        "Integration with platforms already in the field"
-      ]
-    },
-    "denied-environments": {
-      "title": "Denied Environments",
-      "headline": "Operate when GPS and datalinks degrade",
-      "intro": "Jamming and denial are the operating condition, not an edge case. Spectr software is designed so missions can continue when connectivity and positioning are under attack.",
-      "body": "Autonomous Engine carries mission logic above the flight stack. Centurion keeps operators oriented as conditions change. Together they reduce dependence on perfect links.",
-      "benefits": [
-        "Continuation under degraded links",
-        "Navigation resilience under GPS stress",
-        "Clear stop and intervene controls",
-        "Field-oriented evaluation paths"
-      ]
-    },
-    "isr": {
-      "title": "ISR",
-      "headline": "Sustain collection under pressure",
-      "intro": "ISR only matters if the asset can keep collecting and the operator can keep context. Spectr supports resilient execution and command for reconnaissance missions.",
-      "body": "Use Autonomous Engine to keep ISR profiles executing when links degrade, and Centurion to stage, coordinate, and report across collection assets.",
-      "benefits": [
-        "Resilient mission continuation",
-        "Multi-asset ISR coordination",
-        "Operator-approved retasking",
-        "Platform-agnostic integration"
-      ]
-    },
-    "fleet": {
-      "title": "Fleet Coordination",
-      "headline": "Coordinate mixed fleets from one mission layer",
-      "intro": "Operators fly diverse airframes. Spectr does not force a single platform — it adds a mission layer that plans and coordinates across the fleet you already have.",
-      "body": "Centurion stages goals and constraints across assets. Autonomous Engine executes approved plans on the airframe when the environment demands autonomy.",
-      "benefits": [
-        "Mixed-fleet mission planning",
-        "Shared operational context",
-        "Airframe-agnostic software layer",
-        "Scales from evaluation to deployment"
-      ]
-    },
-    "offshore": {
-      "title": "Offshore",
-      "headline": "Autonomy for offshore platforms and remote assets",
-      "intro": "Offshore operations need fleets that keep inspecting and supporting assets when links degrade and conditions turn hostile.",
-      "body": "Autonomous Engine keeps approved plans executing around platforms and remote sites, so operators cover more ground without constant manual control.",
-      "benefits": [
-        "Platform and asset inspection under pressure",
-        "Continuation when links degrade",
-        "Works with existing airframes",
-        "Norwegian national control"
-      ]
-    },
-    "construction": {
-      "title": "Construction",
-      "headline": "Autonomous coverage for active construction sites",
-      "intro": "Construction sites change fast. Spectr helps fleets survey, monitor progress, and keep coverage consistent without constant manual flying.",
-      "body": "Use Autonomous Engine to run approved inspection and survey plans across the site so crews get clearer situational awareness as conditions shift.",
-      "benefits": [
-        "Site survey and progress monitoring",
-        "Safer coverage of hazardous zones",
-        "Works with existing airframes",
-        "Norwegian national control"
-      ]
-    },
-    "field-ops": {
-      "title": "Field Operations",
-      "headline": "Extend reach for time-critical field work",
-      "intro": "Remote sites, short windows, and hostile environments demand software that works outside the lab. Spectr focuses on field readiness from day one.",
-      "body": "Whether the need is autonomous continuation, clearer command, or both, Spectr helps operators cover more ground with the fleets they already trust.",
-      "benefits": [
-        "Practical field evaluation",
-        "Fast operator workflows",
-        "Works with existing airframes",
-        "Support path through Spectr contact"
-      ]
+    "eyebrow": "AI world models",
+    "heroTitle": "We're pioneering world models, to go beyond language models",
+    "heroSubtitle": "Spectr is an AI lab building general world models: causal, multimodal systems that learn to understand and simulate the world.",
+    "ourModels": "Our Models",
+    "getInTouch": "Get in Touch",
+    "modelsLabel": "The model we offer",
+    "modelsTitle": "One general world model, built to simulate reality.",
+    "model": {
+      "category": "World Model",
+      "name": "Spectr RTS",
+      "description": "Our most powerful general purpose world model yet, materially advancing the state-of-the-art in physical accuracy of world models.",
+      "learnMore": "Learn More",
+      "tryCta": "Try Spectr RTS"
     }
   },
-  "Contact": {
-    "title": "Contact",
-    "name": "Name",
-    "organization": "Organization",
-    "email": "Email",
-    "phone": "Phone Number",
-    "product": "Product",
-    "message": "Message",
-    "selectProduct": "Select a product",
-    "general": "General inquiry",
-    "submit": "Submit",
-    "submitting": "Sending…",
-    "success": "Request received. We will respond shortly.",
-    "errorGeneric": "Something went wrong. Please try again or email us directly.",
-    "errorName": "Name is required.",
-    "errorEmail": "A valid email is required.",
-    "errorProduct": "Please select a product.",
-    "errorMessage": "Message is required.",
-    "trustTitle": "Direct contact",
-    "trustIntro": "For procurement, security-sensitive, or operational inquiries, contact Spectr directly.",
-    "emailLabel": "Email",
-    "locationLabel": "Location",
-    "locationValue": "Norway",
-    "orgLabel": "Organization",
-    "orgValue": "spectr as",
-    "phoneLabel": "Phone",
-    "phoneValue": "+47 465 03 934",
-    "securityNote": "Do not send classified or restricted material through this form. For security-sensitive inquiries, state your organization and clearance context in the message."
-  },
   "About": {
-    "title": "Our Team",
-    "eyebrow": "Our team",
-    "heroIntro": "Spectr builds collaborative multi-drone systems that autonomously run missions together — developed in Norway for real-world autonomous operations.",
-    "ctaTitle": "Want to work with Spectr?",
-    "teamNarrative": [
-      "Spectr exists because reliable autonomy is becoming the foundation of real-world operations. We are building collaborative multi-drone systems where each drone runs its own AI agent, coordinated through sovereign command and control software.",
-      "Our technology keeps missions running for inspection, logistics, ISR, and contested environments — when links degrade, GPS is denied, or operators need fleets to continue without constant manual control.",
-      "We do not manufacture drones. We build the mission layer above the stacks operators already fly, developed in Norway under national control. Humanity already flies capable airframes. What operators still need is software that lets those fleets work together."
+    "eyebrow": "About",
+    "title": "Building world models to go beyond language",
+    "intro": "Spectr is an AI lab founded in Norway, pioneering general world models — systems that learn to understand, predict, and simulate the physical world.",
+    "paragraphs": [
+      "Language models learned to reason about text. World models learn to reason about reality — how scenes evolve, how objects interact, and how the world responds to action.",
+      "We believe general world models are the next great foundation model: causal, multimodal systems capable of understanding and simulating the world for humans, AIs, and robots.",
+      "Spectr RTS is our step toward that future — a general world model trained to advance the state-of-the-art in physical accuracy, developed in Norway under national control."
     ],
-    "teamMembers": [
+    "cta": "Get in Touch"
+  },
+  "Research": {
+    "eyebrow": "Research",
+    "title": "Toward general world models",
+    "intro": "We build causal, multimodal systems that learn to simulate the physical world. Here is what we're working on.",
+    "contactCta": "Get in Touch",
+    "models": [
       {
-        "name": "Makwan Soran",
-        "role": "CEO & Head Engineer"
+        "category": "World Model",
+        "name": "Spectr RTS",
+        "description": "Our most powerful general purpose world model yet, materially advancing the state-of-the-art in physical accuracy of world models."
+      },
+      {
+        "category": "Research Direction",
+        "name": "Multimodal interaction",
+        "description": "Moving beyond systems that learn only from visual observation, toward models that learn from richer multimodal interaction with the world."
+      },
+      {
+        "category": "Research Direction",
+        "name": "Real-time simulation",
+        "description": "Long-running, interactive simulations that begin streaming instantly and continue for minutes, not seconds."
       }
     ]
   },
-  "Documentation": {
-    "title": "Documentation",
-    "browseTitle": "Browse documentation",
-    "browseDescription": "Start with software overview, then move through operator planning, deployment readiness, and support.",
-    "needDocumentTitle": "Need a specific document?",
-    "needDocumentText": "Contact Spectr with your operational environment, fleet context, and qualification needs so the right documentation can be prepared.",
-    "requestDocumentation": "Request documentation",
-    "quickStart": {
-      "evaluate": {
-        "title": "Evaluate the software",
-        "description": "Review Centurion by mission profile, operating environment, fleet mix, and deployment readiness.",
-        "action": "Contact Spectr"
-      },
-      "prepare": {
-        "title": "Prepare a request",
-        "description": "Collect the operational context, qualification requirements, and support details Spectr needs before a deployment conversation.",
-        "action": "Contact Spectr"
-      },
-      "updates": {
-        "title": "Read the latest updates",
-        "description": "Follow software release notes, deployment updates, and company information from the Spectr team.",
-        "action": "Open newsroom"
+  "News": {
+    "eyebrow": "News",
+    "title": "Latest from Spectr",
+    "intro": "Announcements, research updates, and milestones from our lab.",
+    "empty": "No announcements yet. Follow along or reach out to hear what we're building.",
+    "contactCta": "Get in Touch",
+    "items": [
+      {
+        "date": "2026",
+        "title": "Spectr begins training Spectr RTS",
+        "summary": "We kicked off training of our first general world model, focused on advancing the physical accuracy of world simulation."
       }
-    },
-    "sections": {
-      "product": {
-        "title": "Software Documentation",
-        "description": "References for teams evaluating Spectr mission software."
+    ]
+  },
+  "Careers": {
+    "eyebrow": "Careers",
+    "title": "Help us build world models",
+    "intro": "We're a small, ambitious team in Norway working on one of the hardest and most important problems in AI. If that excites you, we'd like to hear from you.",
+    "values": [
+      {
+        "title": "Frontier research",
+        "text": "Work on general world models — a genuinely open research frontier with room to make a mark."
       },
-      "operator": {
-        "title": "Operator Guides",
-        "description": "Field guidance for preparation, readiness, and handoff."
+      {
+        "title": "Small team, big scope",
+        "text": "High ownership and real impact. Everyone here shapes what we build and how we build it."
       },
-      "deployment": {
-        "title": "Deployment Readiness",
-        "description": "Qualification and planning material for operational use."
-      },
-      "support": {
-        "title": "Support",
-        "description": "Help paths for teams already coordinating with Spectr."
+      {
+        "title": "Built in Norway",
+        "text": "Sovereign technology developed under national control, with a global outlook."
       }
-    }
+    ],
+    "openTitle": "Don't see your role?",
+    "openText": "We hire for talent and drive over titles. If you want to work on world models, get in touch and tell us what you'd want to build.",
+    "cta": "Get in Touch"
   },
-  "Newsroom": {
-    "title": "Newsroom",
-    "seeMore": "See More",
-    "mediaCta": "For media and qualified operational inquiries.",
-    "contact": "Contact",
-    "noArticles": "No articles published in this category yet.",
-    "readArticle": "Read article"
-  },
-  "Security": {
-    "title": "Security",
-    "learnMore": "Learn more",
-    "description": "Spectr security, confidentiality, Norwegian ownership, and controlled infrastructure commitments.",
-    "scrollToVerify": "Scroll to verify",
-    "principlesHeadline": "Verify sovereignty, from ownership to legal compliance.",
-    "criticalLocal": "Critical technology should stay local.",
-    "legalCompliance": "Legal compliance",
-    "legalText1": "Our operations are structured in accordance with the Norwegian Security Act (sikkerhetsloven) and the Business Security Regulation (virksomhetsikkerhetsforskriften § 83). We maintain organisational and technical safeguards for classified information and critical infrastructure under Norwegian law.",
-    "legalText2": "We believe critical technology should be developed, owned, and controlled locally — to safeguard Norwegian interests for the long term.",
-    "lovdataCta": "Read more: sikkerhetsloven § 9-3 (Lovdata)",
-    "nationalControl": "We believe critical technology should be developed under full national control."
+  "Contact": {
+    "title": "Get in Touch",
+    "trustIntro": "Tell us about your work and what you're building. We read every message and reply personally.",
+    "name": "Name",
+    "organization": "Organization",
+    "email": "Email",
+    "phone": "Phone",
+    "product": "Topic",
+    "selectProduct": "Select a topic",
+    "general": "General inquiry",
+    "partnership": "Partnership",
+    "message": "Message",
+    "submit": "Send message",
+    "submitting": "Sending…",
+    "success": "Thanks — your message is on its way. We'll be in touch shortly.",
+    "errorName": "Please enter your name.",
+    "errorEmail": "Please enter a valid email address.",
+    "errorProduct": "Please select a topic.",
+    "errorMessage": "Please enter a message.",
+    "errorGeneric": "Something went wrong. Please try again or email us directly.",
+    "emailLabel": "Email",
+    "phoneLabel": "Phone",
+    "phoneValue": "+47 465 03 934",
+    "orgLabel": "Company",
+    "orgValue": "spectr as · Org. 936 961 967",
+    "locationLabel": "Location",
+    "locationValue": "Norway",
+    "securityNote": "We only use your details to respond to your inquiry. See our privacy policy for how we handle data."
   },
   "Legal": {
     "privacyTitle": "Privacy Policy",
     "termsTitle": "Terms of Service",
-    "lastUpdated": "Last updated: June 25, 2026",
+    "lastUpdated": "Last updated: July 2026",
     "contactCta": "Contact Spectr",
     "cookieTitle": "Cookie Policy",
-    "cookieIntro": "This Cookie Policy explains how Spectr uses cookies and similar technologies on this website, and how you can manage your preferences."
+    "cookieIntro": "This section explains the cookies and similar technologies we use and why."
   },
-  "Investor": {
-    "title": "Investor Relations",
-    "intro": "Follow Spectr's company updates, operating milestones, and long-term software roadmap.",
-    "headline": "Sovereign autonomous drone software from Norway.",
-    "paragraph1": "Spectr is developing Centurion — a sovereign mission command platform for multi-asset coordination, AI-assisted decision support, and autonomous operations across diverse drone fleets.",
-    "paragraph2": "Investor relations inquiries are handled directly by the Spectr team. We share company materials, milestone updates, and strategic context with qualified stakeholders.",
-    "quote": "Operators need mission software that keeps working when everything else fails.",
-    "quoteAttribution": "Makwan Soran, CEO & Head Engineer",
-    "ctaTitle": "Request investor information.",
-    "focus": {
-      "updates": {
-        "title": "Company updates",
-        "text": "Follow Spectr's progress as we build Norway-based autonomous drone software for real-world operational use."
-      },
-      "milestones": {
-        "title": "Operating milestones",
-        "text": "Track software releases, deployment milestones, and field-readiness progress across Centurion and supporting systems."
-      },
-      "roadmap": {
-        "title": "Long-term roadmap",
-        "text": "Understand the strategic direction behind Spectr's mission software and national-control technology."
-      }
+  "Footer": {
+    "tagline": "An AI lab pioneering general world models — causal, multimodal systems that learn to understand and simulate the world.",
+    "orgNumber": "Org. 936 961 967",
+    "location": "Norway",
+    "copyright": "© 2026 Spectr",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "sections": {
+      "company": "Company",
+      "explore": "Explore",
+      "legal": "Legal"
     }
   },
   "NotFound": {
     "title": "Page not found",
-    "description": "The page you requested does not exist or may have moved.",
+    "description": "The page you're looking for doesn't exist or has moved.",
     "home": "Back to home"
   },
   "CookieConsent": {
-    "label": "Cookie notice",
-    "title": "Spectr uses cookies to run and improve this website.",
-    "description": "We use essential cookies to remember your choices and keep the site working. With your permission, we may also use analytics or similar tools to understand website usage. You can read more in our Privacy Policy.",
-    "essential": "Essential Only",
-    "accept": "Accept Cookies",
-    "privacyLink": "Privacy Policy"
+    "label": "Privacy",
+    "title": "We value your privacy",
+    "description": "We use cookies to improve your experience and analyze site traffic. Read more in our",
+    "privacyLink": "privacy policy",
+    "essential": "Essential only",
+    "accept": "Accept all"
   }
 }
