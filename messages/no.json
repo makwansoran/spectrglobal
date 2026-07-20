@@ -22,13 +22,9 @@
     "no": "NO"
   },
   "Home": {
-    "eyebrow": "AI-verdensmodeller",
     "heroTitle": "Vi er pionerer innen verdensmodeller, forbi språkmodeller",
-    "heroSubtitle": "Spectr er et AI-lab som bygger generelle verdensmodeller: kausale, multimodale systemer som lærer å forstå og simulere verden.",
     "ourModels": "Våre modeller",
     "getInTouch": "Ta kontakt",
-    "modelsLabel": "Modellen vi tilbyr",
-    "modelsTitle": "Én generell verdensmodell, bygget for å simulere virkeligheten.",
     "model": {
       "category": "Verdensmodell",
       "name": "Spectr RTS",

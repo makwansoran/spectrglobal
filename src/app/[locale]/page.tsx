@@ -31,16 +31,12 @@ export default async function HomePage({ params }: HomePageProps) {
       <Nav />
       <main id="main-content" className="flex-1">
         {/* Hero */}
-        <section className="relative px-5 pb-24 pt-40 sm:px-8 lg:pb-32 lg:pt-52">
+        <section className="relative px-5 pb-16 pt-40 sm:px-8 lg:pb-20 lg:pt-52">
           <div className="mx-auto max-w-4xl text-center">
-            <span className="label fade-up inline-block">{t("eyebrow")}</span>
-            <h1 className="brand-font fade-up fade-up-2 mt-6 text-5xl font-semibold leading-[0.98] tracking-[-0.05em] sm:text-7xl lg:text-[5.5rem]">
+            <h1 className="brand-font fade-up text-5xl font-semibold leading-[0.98] tracking-[-0.05em] sm:text-7xl lg:text-[5.5rem]">
               {t("heroTitle")}
             </h1>
-            <p className="fade-up fade-up-3 mx-auto mt-8 max-w-2xl text-lg leading-8 text-muted">
-              {t("heroSubtitle")}
-            </p>
-            <div className="fade-up fade-up-4 mt-10 flex flex-wrap items-center justify-center gap-3">
+            <div className="fade-up fade-up-2 mt-10 flex flex-wrap items-center justify-center gap-3">
               <a href="#models" className="pill pill--primary">
                 {t("ourModels")}
               </a>
@@ -51,15 +47,9 @@ export default async function HomePage({ params }: HomePageProps) {
           </div>
         </section>
 
-        {/* The model we offer */}
+        {/* Spectr RTS */}
         <section id="models" className="scroll-mt-24 px-5 pb-28 sm:px-8">
           <div className="mx-auto max-w-6xl">
-            <div className="mb-8 flex flex-col gap-3">
-              <span className="label">{t("modelsLabel")}</span>
-              <h2 className="brand-font max-w-2xl text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">
-                {t("modelsTitle")}
-              </h2>
-            </div>
             <ModelCard
               category={t("model.category")}
               name={t("model.name")}

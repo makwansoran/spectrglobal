@@ -22,13 +22,9 @@
     "no": "NO"
   },
   "Home": {
-    "eyebrow": "AI world models",
     "heroTitle": "We're pioneering world models, to go beyond language models",
-    "heroSubtitle": "Spectr is an AI lab building general world models: causal, multimodal systems that learn to understand and simulate the world.",
     "ourModels": "Our Models",
     "getInTouch": "Get in Touch",
-    "modelsLabel": "The model we offer",
-    "modelsTitle": "One general world model, built to simulate reality.",
     "model": {
       "category": "World Model",
       "name": "Spectr RTS",
