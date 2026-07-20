@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
-import { ModelCard } from "@/components/model-card";
+import { ModelCard, type TryNeon } from "@/components/model-card";
 import { Link } from "@/i18n/navigation";
 import { buildPageMetadata, localizedPath } from "@/lib/metadata";
 
@@ -30,6 +30,12 @@ type HomeModel = {
   image: string;
 };
 
+const TRY_STYLES: Array<{ neon: TryNeon; size?: "sm" | "md" }> = [
+  { neon: "yellow" },
+  { neon: "purple", size: "sm" },
+  { neon: "green" },
+];
+
 export default async function HomePage({ params }: HomePageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
@@ -40,7 +46,6 @@ export default async function HomePage({ params }: HomePageProps) {
     <>
       <Nav />
       <main id="main-content" className="flex-1">
-        {/* Hero */}
         <section className="relative px-5 pb-16 pt-40 sm:px-8 lg:pb-20 lg:pt-52">
           <div className="mx-auto max-w-4xl text-center">
             <h1 className="brand-font fade-up text-5xl font-semibold leading-[0.98] tracking-[-0.05em] sm:text-7xl lg:text-[5.5rem]">
@@ -57,21 +62,28 @@ export default async function HomePage({ params }: HomePageProps) {
           </div>
         </section>
 
-        {/* Models */}
         <section id="models" className="scroll-mt-24 px-5 pb-28 sm:px-8">
           <div className="mx-auto grid max-w-7xl gap-4 sm:gap-5 lg:grid-cols-3">
-            {models.map((model, index) => (
-              <ModelCard
-                key={model.name}
-                category={model.category}
-                name={model.name}
-                description={model.description}
-                image={model.image}
-                primary={{ label: model.learnMore, href: "/research" }}
-                secondary={{ label: model.tryCta, href: "/contact" }}
-                priority={index === 0}
-              />
-            ))}
+            {models.map((model, index) => {
+              const tryStyle = TRY_STYLES[index] ?? { neon: "yellow" as const };
+              return (
+                <ModelCard
+                  key={model.name}
+                  category={model.category}
+                  name={model.name}
+                  description={model.description}
+                  image={model.image}
+                  primary={{ label: model.learnMore, href: "/research" }}
+                  secondary={{
+                    label: model.tryCta,
+                    href: "/contact",
+                    neon: tryStyle.neon,
+                    size: tryStyle.size,
+                  }}
+                  priority={index === 0}
+                />
+              );
+            })}
           </div>
         </section>
       </main>
