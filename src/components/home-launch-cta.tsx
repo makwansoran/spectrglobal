@@ -3,10 +3,9 @@ import { BevelButton } from "@/components/bevel-button";
 type HomeLaunchCtaProps = {
   title: string;
   contactLabel: string;
-  joinLabel: string;
 };
 
-export function HomeLaunchCta({ title, contactLabel, joinLabel }: HomeLaunchCtaProps) {
+export function HomeLaunchCta({ title, contactLabel }: HomeLaunchCtaProps) {
   return (
     <section className="brand-font bg-white px-5 py-16 sm:px-8 lg:px-12 lg:py-20">
       <div className="mx-auto w-full max-w-[90rem]">
@@ -19,17 +18,9 @@ export function HomeLaunchCta({ title, contactLabel, joinLabel }: HomeLaunchCtaP
             <h2 className="text-4xl font-semibold leading-[1.05] tracking-[-0.05em] sm:text-5xl lg:text-7xl lg:leading-[0.95]">
               {title}
             </h2>
-            <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
+            <div className="mt-10">
               <BevelButton href="/contact" variant="primary" className="w-fit tracking-[0.16em]">
                 {contactLabel}
-                <span aria-hidden="true">→</span>
-              </BevelButton>
-              <BevelButton
-                href="/careers"
-                variant="inverse-primary"
-                className="w-fit tracking-[0.16em]"
-              >
-                {joinLabel}
                 <span aria-hidden="true">→</span>
               </BevelButton>
             </div>

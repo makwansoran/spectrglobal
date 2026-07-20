@@ -27,7 +27,6 @@ export function Nav({ variant = "dark" }: NavProps) {
       title: t("sections.company"),
       links: [
         { label: t("links.about"), href: "/about" },
-        { label: t("links.careers"), href: "/careers" },
       ],
     },
     {

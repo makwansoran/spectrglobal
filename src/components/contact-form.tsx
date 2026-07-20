@@ -1,7 +1,6 @@
 "use client";
 
-import { useActionState, useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useActionState, useState } from "react";
 import { useTranslations } from "next-intl";
 import { BevelButton } from "@/components/bevel-button";
 import { submitContactForm, type ContactFormState } from "@/app/actions/contact";
@@ -10,15 +9,8 @@ const initialState: ContactFormState = { ok: false };
 
 export function ContactForm() {
   const t = useTranslations("Contact");
-  const searchParams = useSearchParams();
-  const role = searchParams.get("role");
   const [state, formAction, pending] = useActionState(submitContactForm, initialState);
   const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    if (!role) return;
-    setMessage(t("rolePrefill", { role: role.replace(/-/g, " ") }));
-  }, [role, t]);
 
   const errorMessage = state.error
     ? ({

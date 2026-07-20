@@ -18,7 +18,6 @@
     "links": {
       "contact": "Contact",
       "about": "Team",
-      "careers": "Careers",
       "newsroom": "Newsroom",
       "documentation": "Documentation",
       "security": "Security",
@@ -158,7 +157,6 @@
     "exclusionBanner": "We maintain strict controls for export compliance, confidentiality, and sovereign deployment.",
     "launchTitle": "We're launching the future of autonomy",
     "contactUs": "Contact Us",
-    "joinUs": "Join Us",
     "roadmapMilestones": [
       {
         "year": "2026",
@@ -427,14 +425,12 @@
     "orgValue": "spectr as",
     "phoneLabel": "Phone",
     "phoneValue": "+47 465 03 934",
-    "securityNote": "Do not send classified or restricted material through this form. For security-sensitive inquiries, state your organization and clearance context in the message.",
-    "rolePrefill": "Application for role: {role}"
+    "securityNote": "Do not send classified or restricted material through this form. For security-sensitive inquiries, state your organization and clearance context in the message."
   },
   "About": {
     "title": "Our Team",
     "eyebrow": "Our team",
     "heroIntro": "Spectr builds collaborative multi-drone systems that autonomously run missions together — developed in Norway for real-world autonomous operations.",
-    "joinCta": "Join Us",
     "ctaTitle": "Want to work with Spectr?",
     "teamNarrative": [
       "Spectr exists because reliable autonomy is becoming the foundation of real-world operations. We are building collaborative multi-drone systems where each drone runs its own AI agent, coordinated through sovereign command and control software.",
@@ -447,31 +443,6 @@
         "role": "CEO & Head Engineer"
       }
     ]
-  },
-  "Careers": {
-    "title": "Careers at Spectr",
-    "intro": "Spectr is building collaborative multi-drone systems that autonomously run missions together. Our ambitions are significant, our timelines are aggressive, and the constraints are unforgiving.",
-    "buildTitle": "Build software for real-world operations.",
-    "paragraph1": "We are looking for builders motivated by extreme ownership, moving fast, and learning in reality — people who care about practical engineering for autonomous operations.",
-    "paragraph2": "If you want to work across autonomous systems, operator workflow, and secure software, we want to hear from you.",
-    "seeOpenRoles": "See Open Roles",
-    "openRoles": "Open Positions",
-    "applyCta": "Apply via contact",
-    "ctaTitle": "Interested in joining Spectr?",
-    "focus": {
-      "autonomy": {
-        "title": "Autonomous systems",
-        "text": "Work on mission logic, fleet coordination, and software that keeps drones operating in denied environments."
-      },
-      "software": {
-        "title": "Operational software",
-        "text": "Build command interfaces, mission workflows, and tools that help operators keep context when decisions matter."
-      },
-      "norway": {
-        "title": "Norwegian capability",
-        "text": "Help develop critical technology under national control, with a focus on reliability, security, and real deployment needs."
-      }
-    }
   },
   "Documentation": {
     "title": "Documentation",

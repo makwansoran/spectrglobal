@@ -31,11 +31,11 @@ export const privacySections: LegalSection[] = [
     },
     bullets: {
       en: [
-        "Information you provide: name, email address, telephone number, company name, job title, messages submitted through contact forms, recruitment and employment information, and newsletter subscription details.",
+        "Information you provide: name, email address, telephone number, company name, job title, messages submitted through contact forms, and newsletter subscription details.",
         "Automatically collected information: IP address, browser type, operating system, device information, referral URLs, website usage data, and security logs.",
       ],
       no: [
-        "Informasjon du oppgir: navn, e-postadresse, telefonnummer, firmanavn, stillingstittel, meldinger sendt via kontaktskjema, rekrutterings- og ansettelsesinformasjon og opplysninger om nyhetsbrevabonnement.",
+        "Informasjon du oppgir: navn, e-postadresse, telefonnummer, firmanavn, stillingstittel, meldinger sendt via kontaktskjema og opplysninger om nyhetsbrevabonnement.",
         "Automatisk innsamlet informasjon: IP-adresse, nettlesertype, operativsystem, enhetsinformasjon, henvisnings-URL-er, bruksdata og sikkerhetslogger.",
       ],
     },
@@ -64,8 +64,8 @@ export const privacySections: LegalSection[] = [
   {
     title: { en: "5. Purposes of processing", no: "5. Formål med behandlingen" },
     text: {
-      en: "We process personal data to respond to inquiries, provide requested information, manage recruitment activities, improve website performance, maintain cybersecurity, prevent fraud and unauthorized access, comply with legal and regulatory obligations, and support our business operations.",
-      no: "Vi behandler personopplysninger for å svare på henvendelser, gi forespurt informasjon, håndtere rekruttering, forbedre nettstedets ytelse, opprettholde cybersikkerhet, forhindre svindel og uautorisert tilgang, overholde juridiske og regulatoriske forpliktelser og støtte forretningsdriften.",
+      en: "We process personal data to respond to inquiries, provide requested information, improve website performance, maintain cybersecurity, prevent fraud and unauthorized access, comply with legal and regulatory obligations, and support our business operations.",
+      no: "Vi behandler personopplysninger for å svare på henvendelser, gi forespurt informasjon, forbedre nettstedets ytelse, opprettholde cybersikkerhet, forhindre svindel og uautorisert tilgang, overholde juridiske og regulatoriske forpliktelser og støtte forretningsdriften.",
     },
   },
   {
@@ -85,8 +85,8 @@ export const privacySections: LegalSection[] = [
   {
     title: { en: "8. Data sharing", no: "8. Deling av data" },
     text: {
-      en: "We may share personal data with hosting providers, IT service providers, recruitment platforms, analytics providers, legal and compliance advisors, and government authorities where legally required. We do not sell personal information.",
-      no: "Vi kan dele personopplysninger med hostingleverandører, IT-leverandører, rekrutteringsplattformer, analyseleverandører, juridiske og etterlevelsesrådgivere og offentlige myndigheter der loven krever det. Vi selger ikke personopplysninger.",
+      en: "We may share personal data with hosting providers, IT service providers, analytics providers, legal and compliance advisors, and government authorities where legally required. We do not sell personal information.",
+      no: "Vi kan dele personopplysninger med hostingleverandører, IT-leverandører, analyseleverandører, juridiske og etterlevelsesrådgivere og offentlige myndigheter der loven krever det. Vi selger ikke personopplysninger.",
     },
   },
   {
@@ -99,8 +99,8 @@ export const privacySections: LegalSection[] = [
   {
     title: { en: "10. Data retention", no: "10. Lagringstid" },
     text: {
-      en: "We retain personal data only for as long as necessary. Typical retention periods are: contact inquiries — 24 months; recruitment applications — 12 months unless consent is obtained for longer; security logs — 12 months; analytics data — 26 months; legal records — as required by law.",
-      no: "Vi oppbevarer personopplysninger kun så lenge det er nødvendig. Typiske lagringstider er: kontakthenvendelser — 24 måneder; jobbsøknader — 12 måneder med mindre samtykke gis for lengre tid; sikkerhetslogger — 12 måneder; analysedata — 26 måneder; juridiske dokumenter — så lenge loven krever det.",
+      en: "We retain personal data only for as long as necessary. Typical retention periods are: contact inquiries — 24 months; security logs — 12 months; analytics data — 26 months; legal records — as required by law.",
+      no: "Vi oppbevarer personopplysninger kun så lenge det er nødvendig. Typiske lagringstider er: kontakthenvendelser — 24 måneder; sikkerhetslogger — 12 måneder; analysedata — 26 måneder; juridiske dokumenter — så lenge loven krever det.",
     },
   },
   {

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ContactForm } from "@/components/contact-form";
 import { Footer } from "@/components/footer";
@@ -43,9 +42,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
             <p className="mt-6 text-base leading-7 text-muted sm:text-lg">{t("trustIntro")}</p>
 
             <div className="mt-12">
-              <Suspense fallback={null}>
-                <ContactForm />
-              </Suspense>
+              <ContactForm />
             </div>
 
             <dl className="mt-12 grid gap-6 border-t border-[#d4d4d4] pt-10 sm:grid-cols-2">

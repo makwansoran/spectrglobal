@@ -18,7 +18,6 @@
     "links": {
       "contact": "Kontakt",
       "about": "Team",
-      "careers": "Karriere",
       "newsroom": "Newsroom",
       "documentation": "Dokumentasjon",
       "security": "Sikkerhet",
@@ -158,7 +157,6 @@
     "exclusionBanner": "Vi opprettholder strenge kontroller for eksportcompliance, konfidensialitet og suveren deployering.",
     "launchTitle": "Vi lanserer fremtiden for autonomi",
     "contactUs": "Kontakt oss",
-    "joinUs": "Bli med oss",
     "roadmapMilestones": [
       {
         "year": "2026",
@@ -427,14 +425,12 @@
     "orgValue": "spectr as",
     "phoneLabel": "Telefon",
     "phoneValue": "+47 465 03 934",
-    "securityNote": "Ikke send klassifisert eller begrenset materiale via dette skjemaet. For sikkerhetsfølsomme henvendelser, oppgi organisasjon og klareringskontekst i meldingen.",
-    "rolePrefill": "Søknad om stilling: {role}"
+    "securityNote": "Ikke send klassifisert eller begrenset materiale via dette skjemaet. For sikkerhetsfølsomme henvendelser, oppgi organisasjon og klareringskontekst i meldingen."
   },
   "About": {
     "title": "Vårt team",
     "eyebrow": "Vårt team",
     "heroIntro": "Spectr bygger samarbeidende multi-dronesystemer som autonomt utfører oppdrag sammen — utviklet i Norge for autonome operasjoner i virkeligheten.",
-    "joinCta": "Bli med oss",
     "ctaTitle": "Vil du samarbeide med Spectr?",
     "teamNarrative": [
       "Spectr eksisterer fordi pålitelig autonomi blir grunnlaget for operasjoner i virkeligheten. Vi bygger samarbeidende multi-dronesystemer der hver drone kjører sin egen AI-agent, koordinert gjennom suveren kommando- og kontrollprogramvare.",
@@ -447,31 +443,6 @@
         "role": "CEO & Head Engineer"
       }
     ]
-  },
-  "Careers": {
-    "title": "Karriere i Spectr",
-    "intro": "Spectr bygger samarbeidende multi-dronesystemer som autonomt utfører oppdrag sammen. Ambisjonene er store, tidslinjene er aggressive, og begrensningene er uforsonlige.",
-    "buildTitle": "Bygg programvare for operasjoner i virkeligheten.",
-    "paragraph1": "Vi ser etter byggere motivert av ekstremt eierskap, tempo og læring i virkeligheten — folk som bryr seg om praktisk ingeniørarbeid for autonome operasjoner.",
-    "paragraph2": "Hvis du vil jobbe på tvers av autonome systemer, operatørarbeidsflyt og sikker programvare, vil vi høre fra deg.",
-    "seeOpenRoles": "Se ledige stillinger",
-    "openRoles": "Ledige stillinger",
-    "applyCta": "Søk via kontakt",
-    "ctaTitle": "Interessert i å bli med i Spectr?",
-    "focus": {
-      "autonomy": {
-        "title": "Autonome systemer",
-        "text": "Jobb med oppdragslogikk, flåtekoordinering og programvare som holder droner i drift i nektede miljøer."
-      },
-      "software": {
-        "title": "Operativ programvare",
-        "text": "Bygg kommando­grensesnitt, oppdragsarbeidsflyter og verktøy som hjelper operatører å beholde kontekst."
-      },
-      "norway": {
-        "title": "Norsk kapabilitet",
-        "text": "Bidra til kritisk teknologi under nasjonal kontroll, med fokus på pålitelighet, sikkerhet og reell deployering."
-      }
-    }
   },
   "Documentation": {
     "title": "Dokumentasjon",

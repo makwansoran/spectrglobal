@@ -10,7 +10,6 @@ const staticPaths = [
   "/about",
   "/autonomous-engine",
   "/centurion",
-  "/careers",
   "/contact",
   "/newsroom",
   "/privacy",

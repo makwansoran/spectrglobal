@@ -101,7 +101,6 @@ export default async function Home({ params }: HomePageProps) {
         <HomeLaunchCta
           title={t("launchTitle")}
           contactLabel={t("contactUs")}
-          joinLabel={t("joinUs")}
         />
 
         <Footer />

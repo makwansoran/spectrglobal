@@ -73,10 +73,6 @@ export default async function AboutPage({ params }: AboutPageProps) {
                 {tCommon("contactUs")}
                 <span aria-hidden="true">→</span>
               </BevelButton>
-              <BevelButton href="/careers" variant="secondary" className="w-fit tracking-[0.16em]">
-                {t("joinCta")}
-                <span aria-hidden="true">→</span>
-              </BevelButton>
             </div>
           </div>
         </section>
