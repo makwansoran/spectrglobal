@@ -9,36 +9,13 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      {
-        source: "/drones",
-        destination: "/",
-        permanent: true,
-      },
-      {
-        source: "/products/:path*",
-        destination: "/",
-        permanent: true,
-      },
-      {
-        source: "/centurion",
-        destination: "/",
-        permanent: true,
-      },
-      {
-        source: "/newsroom/:category/recon-field-readiness-2026",
-        destination: "/newsroom",
-        permanent: true,
-      },
-      {
-        source: "/documentation/recon-sensing-configuration",
-        destination: "/documentation/centurion-mission-software-overview",
-        permanent: true,
-      },
-      {
-        source: "/documentation/valkyrie-sensing-configuration",
-        destination: "/documentation/centurion-mission-software-overview",
-        permanent: true,
-      },
+      { source: "/drones", destination: "/", permanent: true },
+      { source: "/products/:path*", destination: "/", permanent: true },
+      { source: "/centurion", destination: "/", permanent: true },
+      { source: "/autonomous-engine", destination: "/", permanent: true },
+      { source: "/newsroom", destination: "/news", permanent: true },
+      { source: "/newsroom/:path*", destination: "/news", permanent: true },
+      { source: "/documentation/:path*", destination: "/", permanent: true },
     ];
   },
 };
