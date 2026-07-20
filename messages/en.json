@@ -31,7 +31,7 @@
       "deniedEnvironments": "Denied Environments",
       "isr": "ISR",
       "fleet": "Fleet Coordination",
-      "missionCommand": "Mission Command",
+      "missionCommand": "Offshore",
       "fieldOps": "Field Operations",
       "press": "Press",
       "media": "Media"
@@ -125,9 +125,9 @@
         "title": "Fleet Coordination",
         "text": "Plan and coordinate mixed drone fleets from one mission layer."
       },
-      "mission-command": {
-        "title": "Mission Command",
-        "text": "Define goals and constraints; let software stage and report."
+      "offshore": {
+        "title": "Offshore",
+        "text": "Inspect and support offshore platforms when links fail and conditions turn hostile."
       },
       "field-ops": {
         "title": "Field Operations",
@@ -138,15 +138,15 @@
     "bigPictureImageAlt": "Formation of autonomous systems at scale",
     "bigPictureItems": [
       {
-        "text": "Collaborative autonomy is becoming the difference between missions that finish and missions that stall. Every contested environment — jammed links, denied GPS, overloaded operators — pushes conventional control models past their limits.",
+        "text": "Collaborative autonomy is becoming the difference between missions that finish and missions that stall. Contested environments push conventional control past its limits.",
         "emphasis": true
       },
       {
-        "text": "Humanity already flies capable airframes. What operators still need is multi-drone systems that run missions together — each drone with its own AI agent, commanded through software built for real operations, not lab demos.",
+        "text": "Operators already fly capable airframes. What they still need is multi-drone systems that run missions together, each with its own AI agent.",
         "emphasis": true
       },
       {
-        "text": "Spectr is creating that layer of sovereign autonomy — command and control, inspection, and logistics — developed in Norway to unlock what fleets can do together.",
+        "text": "Spectr builds that sovereign autonomy layer in Norway for command, inspection, and logistics.",
         "emphasis": false
       }
     ],
@@ -359,15 +359,15 @@
         "Scales from evaluation to deployment"
       ]
     },
-    "mission-command": {
-      "title": "Mission Command",
-      "headline": "Define goals. Keep the mission coherent.",
-      "intro": "Centurion is Spectr's sovereign mission command platform. Operators set objectives and constraints; the software stages, coordinates, and reports.",
-      "body": "Built for pressure: contested links, multi-asset complexity, and the need for decision support that does not invent authority the operator never gave.",
+    "offshore": {
+      "title": "Offshore",
+      "headline": "Autonomy for offshore platforms and remote assets",
+      "intro": "Offshore operations need fleets that keep inspecting and supporting assets when links degrade and conditions turn hostile.",
+      "body": "Autonomous Engine keeps approved plans executing around platforms and remote sites, so operators cover more ground without constant manual control.",
       "benefits": [
-        "Goal and constraint driven workflows",
-        "AI-assisted decision support",
-        "Mission staging and reporting",
+        "Platform and asset inspection under pressure",
+        "Continuation when links degrade",
+        "Works with existing airframes",
         "Norwegian national control"
       ]
     },

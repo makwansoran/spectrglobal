@@ -31,7 +31,7 @@
       "deniedEnvironments": "Nektede miljøer",
       "isr": "ISR",
       "fleet": "Flåtekoordinering",
-      "missionCommand": "Oppdragskommando",
+      "missionCommand": "Offshore",
       "fieldOps": "Feltoperasjoner",
       "press": "Presse",
       "media": "Media"
@@ -125,9 +125,9 @@
         "title": "Flåtekoordinering",
         "text": "Planlegg og koordiner blandede droneflåter fra ett oppdragslag."
       },
-      "mission-command": {
-        "title": "Oppdragskommando",
-        "text": "Definer mål og begrensninger; la programvaren klargjøre og rapportere."
+      "offshore": {
+        "title": "Offshore",
+        "text": "Inspiser og støtt offshoreplattformer når lenker svikter og forholdene blir krevende."
       },
       "field-ops": {
         "title": "Feltoperasjoner",
@@ -138,15 +138,15 @@
     "bigPictureImageAlt": "Formasjon av autonome systemer i skala",
     "bigPictureItems": [
       {
-        "text": "Samarbeidende autonomi blir forskjellen mellom oppdrag som fullføres og oppdrag som stopper. Hvert omstridte miljø — jammede lenker, nektet GPS, overbelastede operatører — presser konvensjonelle kontrollmodeller forbi grensen.",
+        "text": "Samarbeidende autonomi blir forskjellen mellom oppdrag som fullføres og oppdrag som stopper. Omstridte miljøer presser konvensjonell kontroll forbi grensen.",
         "emphasis": true
       },
       {
-        "text": "Menneskeheten flyr allerede kapable luftfartøy. Det operatører fortsatt trenger er multi-dronesystemer som utfører oppdrag sammen — hver drone med sin egen AI-agent, styrt gjennom programvare bygget for reelle operasjoner, ikke labdemoer.",
+        "text": "Operatører flyr allerede kapable luftfartøy. Det de fortsatt trenger er multi-dronesystemer som utfører oppdrag sammen, hver med sin egen AI-agent.",
         "emphasis": true
       },
       {
-        "text": "Spectr bygger det laget av suveren autonomi — kommando og kontroll, inspeksjon og logistikk — utviklet i Norge for å låse opp det flåter kan gjøre sammen.",
+        "text": "Spectr bygger det suverene autonomilaget i Norge for kommando, inspeksjon og logistikk.",
         "emphasis": false
       }
     ],
@@ -359,15 +359,15 @@
         "Skalerer fra evaluering til deployering"
       ]
     },
-    "mission-command": {
-      "title": "Oppdragskommando",
-      "headline": "Definer mål. Hold oppdraget sammenhengende.",
-      "intro": "Centurion er Spectrs suverene oppdragskommandoplattform. Operatører setter mål og begrensninger; programvaren klargjør, koordinerer og rapporterer.",
-      "body": "Bygget for press: omstridte lenker, flerkjøretøy-kompleksitet, og behov for beslutningsstøtte som ikke oppfinner myndighet operatøren aldri ga.",
+    "offshore": {
+      "title": "Offshore",
+      "headline": "Autonomi for offshoreplattformer og remote eiendeler",
+      "intro": "Offshoreoperasjoner trenger flåter som fortsetter å inspisere og støtte eiendeler når lenker degraderes og forholdene blir krevende.",
+      "body": "Autonomous Engine holder godkjente planer i gang rundt plattformer og remote steder, slik at operatører dekker mer uten konstant manuell kontroll.",
       "benefits": [
-        "Mål- og begrensningsdrevne arbeidsflyter",
-        "AI-assistert beslutningsstøtte",
-        "Oppdragsklargjøring og rapportering",
+        "Plattform- og eiendelsinspeksjon under press",
+        "Fortsettelse når lenker degraderes",
+        "Fungerer med eksisterende luftfartøy",
         "Norsk nasjonal kontroll"
       ]
     },
