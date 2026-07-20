@@ -170,7 +170,7 @@
       {
         "year": "2027",
         "scale": "Multi-site fleets",
-        "summary": "Expand from single-site pilots to multi-site fleet operations with stronger autonomy and airframe coverage.",
+        "summary": "Expand from single-site pilots to multi-site fleet operations with stronger autonomy and broader airframe coverage.",
         "autonomyTitle": "Autonomous Engine",
         "autonomy": [
           "Expanded navigation resilience under GPS stress.",
@@ -180,33 +180,11 @@
       },
       {
         "year": "2028",
-        "scale": "1k+ drones",
-        "summary": "Scale collaborative autonomy across larger allied deployments with faster retasking and sovereign deployment packages.",
+        "scale": "100k drones",
+        "summary": "Operate at scale — collaborative autonomy across fleets totaling 100,000 drones in the field.",
         "autonomyTitle": "Autonomous Engine",
         "autonomy": [
-          "Scaled onboard execution for contested operations.",
-          "Faster retasking under operator approval.",
-          "Deployment packages for sovereign environments."
-        ]
-      },
-      {
-        "year": "2030",
-        "scale": "5k+ drones",
-        "summary": "Move to program-scale operations where high-tempo autonomy works across large force packages.",
-        "autonomyTitle": "Autonomous Engine",
-        "autonomy": [
-          "High-tempo autonomy across larger force packages.",
-          "Continuous improvement from field feedback.",
-          "Extended integration with allied systems."
-        ]
-      },
-      {
-        "year": "2035",
-        "scale": "50k+ drones",
-        "summary": "Deliver force-wide collaborative autonomy — persistent multi-drone execution with end-to-end inspection and logistics orchestration.",
-        "autonomyTitle": "Autonomous Engine",
-        "autonomy": [
-          "Force-wide autonomous execution at scale.",
+          "Force-wide autonomous execution at 100,000-drone scale.",
           "Persistent multi-drone mission continuity.",
           "End-to-end inspection and logistics orchestration."
         ]

@@ -67,8 +67,6 @@ export default async function Home({ params }: HomePageProps) {
     summary: string;
     autonomyTitle: string;
     autonomy: string[];
-    commandTitle: string;
-    command: string[];
   }[];
 
   return (
