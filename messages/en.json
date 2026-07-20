@@ -163,27 +163,19 @@
         "autonomyTitle": "Autonomous Engine",
         "autonomy": [
           "Mission runtime above Betaflight for approved plans.",
-          "Denied-link continuation for evaluated profiles."
-        ],
-        "commandTitle": "Centurion",
-        "command": [
-          "Mission staging and operator workflow.",
-          "Early multi-asset coordination."
+          "Denied-link continuation for evaluated profiles.",
+          "Early multi-drone coordination on the airframe."
         ]
       },
       {
         "year": "2027",
         "scale": "Multi-site fleets",
-        "summary": "Expand from single-site pilots to multi-site fleet operations with stronger decision support and airframe coverage.",
+        "summary": "Expand from single-site pilots to multi-site fleet operations with stronger autonomy and airframe coverage.",
         "autonomyTitle": "Autonomous Engine",
         "autonomy": [
           "Expanded navigation resilience under GPS stress.",
-          "Broader airframe integration profiles."
-        ],
-        "commandTitle": "Centurion",
-        "command": [
-          "AI-assisted decision support in the loop.",
-          "Hardened reporting across mixed fleets."
+          "Broader airframe integration profiles.",
+          "Hardened multi-drone execution across sites."
         ]
       },
       {
@@ -193,26 +185,18 @@
         "autonomyTitle": "Autonomous Engine",
         "autonomy": [
           "Scaled onboard execution for contested operations.",
-          "Faster retasking under operator approval."
-        ],
-        "commandTitle": "Centurion",
-        "command": [
-          "Deeper fleet coordination and mission rehearsal.",
+          "Faster retasking under operator approval.",
           "Deployment packages for sovereign environments."
         ]
       },
       {
         "year": "2030",
         "scale": "5k+ drones",
-        "summary": "Move to program-scale operations where high-tempo autonomy and theater-level command work across large force packages.",
+        "summary": "Move to program-scale operations where high-tempo autonomy works across large force packages.",
         "autonomyTitle": "Autonomous Engine",
         "autonomy": [
           "High-tempo autonomy across larger force packages.",
-          "Continuous improvement from field feedback."
-        ],
-        "commandTitle": "Centurion",
-        "command": [
-          "Theater-level coordination workflows.",
+          "Continuous improvement from field feedback.",
           "Extended integration with allied systems."
         ]
       },
@@ -223,11 +207,7 @@
         "autonomyTitle": "Autonomous Engine",
         "autonomy": [
           "Force-wide autonomous execution at scale.",
-          "Persistent multi-drone mission continuity."
-        ],
-        "commandTitle": "Centurion",
-        "command": [
-          "Large-scale collaborative command across fleets.",
+          "Persistent multi-drone mission continuity.",
           "End-to-end inspection and logistics orchestration."
         ]
       }
@@ -264,7 +244,7 @@
       },
       {
         "question": "What will operations look like on the ground?",
-        "answer": "Operators define goals in Centurion, approve plans, and let Autonomous Engine execute across the fleet. Each drone runs its own AI agent while command and control stays coherent."
+        "answer": "Operators define goals, approve plans, and let Autonomous Engine execute across the fleet. Each drone runs its own AI agent while mission execution stays coherent under operator authority."
       },
       {
         "question": "How can I request this service?",

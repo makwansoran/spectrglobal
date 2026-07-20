@@ -27,8 +27,8 @@ export const applicationCardImages: Record<(typeof featuredApplicationSlugs)[num
 export const applicationCardHrefs: Record<(typeof featuredApplicationSlugs)[number], string> = {
   defense: "/autonomous-engine",
   "denied-environments": "/autonomous-engine",
-  fleet: "/centurion",
-  "mission-command": "/centurion",
+  fleet: "/autonomous-engine",
+  "mission-command": "/autonomous-engine",
 };
 
 export function isApplicationSlug(value: string): value is ApplicationSlug {

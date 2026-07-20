@@ -10,8 +10,6 @@ export type RoadmapMilestone = {
   summary: string;
   autonomyTitle: string;
   autonomy: string[];
-  commandTitle: string;
-  command: string[];
 };
 
 type HomeRoadmapProps = {
@@ -66,39 +64,26 @@ export function HomeRoadmap({ title, milestones }: HomeRoadmapProps) {
                 animate={{ opacity: 1, y: 0 }}
                 exit={reducedMotion ? undefined : { opacity: 0, y: -8 }}
                 transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                className="mx-auto max-w-3xl"
               >
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#f44200]">
                   {active.scale} · {active.year}
                 </p>
-                <p className="mt-4 max-w-3xl text-xl leading-8 text-fg sm:text-2xl sm:leading-9">
+                <p className="mt-4 text-xl leading-8 text-fg sm:text-2xl sm:leading-9">
                   {active.summary}
                 </p>
 
-                <div className="mt-10 grid gap-10 sm:grid-cols-2">
-                  <div>
-                    <h3 className="text-lg font-semibold tracking-[-0.03em] text-fg">
-                      {active.autonomyTitle}
-                    </h3>
-                    <ul className="mt-4 list-none space-y-3 p-0 text-base leading-7 text-muted">
-                      {active.autonomy.map((line) => (
-                        <li key={line} className="border-b border-[#d4d4d4] pb-3 last:border-b-0">
-                          {line}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold tracking-[-0.03em] text-fg">
-                      {active.commandTitle}
-                    </h3>
-                    <ul className="mt-4 list-none space-y-3 p-0 text-base leading-7 text-muted">
-                      {active.command.map((line) => (
-                        <li key={line} className="border-b border-[#d4d4d4] pb-3 last:border-b-0">
-                          {line}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                <div className="mt-10">
+                  <h3 className="text-lg font-semibold tracking-[-0.03em] text-fg">
+                    {active.autonomyTitle}
+                  </h3>
+                  <ul className="mt-4 list-none space-y-3 p-0 text-base leading-7 text-muted">
+                    {active.autonomy.map((line) => (
+                      <li key={line} className="border-b border-[#d4d4d4] pb-3 last:border-b-0">
+                        {line}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </motion.div>
             ) : null}

@@ -163,27 +163,19 @@
         "autonomyTitle": "Autonomous Engine",
         "autonomy": [
           "Oppdragskjøretid over Betaflight for godkjente planer.",
-          "Fortsettelse ved nektet lenke for evaluerte profiler."
-        ],
-        "commandTitle": "Centurion",
-        "command": [
-          "Oppdragsklargjøring og operatørarbeidsflyt.",
-          "Tidlig flerkjøretøy-koordinering."
+          "Fortsettelse ved nektet lenke for evaluerte profiler.",
+          "Tidlig multi-drone-koordinering på luftfartøyet."
         ]
       },
       {
         "year": "2027",
         "scale": "Flersite-flåter",
-        "summary": "Utvid fra enkeltsted-piloter til flersite-flåteoperasjoner med sterkere beslutningsstøtte og bredere luftfartøydekning.",
+        "summary": "Utvid fra enkeltsted-piloter til flersite-flåteoperasjoner med sterkere autonomi og bredere luftfartøydekning.",
         "autonomyTitle": "Autonomous Engine",
         "autonomy": [
           "Utvidet navigasjonsmotstand under GPS-stress.",
-          "Bredere luftfartøy-integrasjonsprofiler."
-        ],
-        "commandTitle": "Centurion",
-        "command": [
-          "AI-assistert beslutningsstøtte i loopen.",
-          "Herdet rapportering på tvers av blandede flåter."
+          "Bredere luftfartøy-integrasjonsprofiler.",
+          "Herdet multi-drone-utførelse på tvers av steder."
         ]
       },
       {
@@ -193,26 +185,18 @@
         "autonomyTitle": "Autonomous Engine",
         "autonomy": [
           "Skalert utførelse om bord for omstridte operasjoner.",
-          "Raskere omfordeling under operatørgodkjenning."
-        ],
-        "commandTitle": "Centurion",
-        "command": [
-          "Dypere flåtekoordinering og oppdragsøving.",
+          "Raskere omfordeling under operatørgodkjenning.",
           "Deployeringspakker for suverene miljøer."
         ]
       },
       {
         "year": "2030",
         "scale": "5k+ droner",
-        "summary": "Gå til programskala der høytempo-autonomi og teaternivå-kommando fungerer på tvers av store styrkepakker.",
+        "summary": "Gå til programskala der høytempo-autonomi fungerer på tvers av store styrkepakker.",
         "autonomyTitle": "Autonomous Engine",
         "autonomy": [
           "Høytempo-autonomi på tvers av større styrkepakker.",
-          "Kontinuerlig forbedring fra tilbakemelding i felt."
-        ],
-        "commandTitle": "Centurion",
-        "command": [
-          "Teaternivå-koordineringsarbeidsflyter.",
+          "Kontinuerlig forbedring fra tilbakemelding i felt.",
           "Utvidet integrasjon med allierte systemer."
         ]
       },
@@ -223,11 +207,7 @@
         "autonomyTitle": "Autonomous Engine",
         "autonomy": [
           "Styrkeomfattende autonom utførelse i skala.",
-          "Vedvarende multi-drone oppdragsfortsettelse."
-        ],
-        "commandTitle": "Centurion",
-        "command": [
-          "Storskala samarbeidende kommando på tvers av flåter.",
+          "Vedvarende multi-drone oppdragsfortsettelse.",
           "Ende-til-ende inspeksjons- og logistikkorchestrering."
         ]
       }
@@ -264,7 +244,7 @@
       },
       {
         "question": "Hvordan vil operasjoner se ut i felt?",
-        "answer": "Operatører definerer mål i Centurion, godkjenner planer, og lar Autonomous Engine utføre på tvers av flåten. Hver drone kjører sin egen AI-agent mens kommando og kontroll forblir sammenhengende."
+        "answer": "Operatører definerer mål, godkjenner planer, og lar Autonomous Engine utføre på tvers av flåten. Hver drone kjører sin egen AI-agent mens oppdragsgjennomføring forblir sammenhengende under operatørens autoritet."
       },
       {
         "question": "Hvordan kan jeg be om denne tjenesten?",
