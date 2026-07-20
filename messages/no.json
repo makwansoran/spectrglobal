@@ -22,7 +22,8 @@
     "no": "NO"
   },
   "Home": {
-    "heroTitle": "Vi er pionerer innen verdensmodeller, forbi språkmodeller",
+    "heroTitleLine1": "Vi er pionerer innen verdensmodeller,",
+    "heroTitleLine2": "forbi språkmodeller",
     "ourModels": "Våre modeller",
     "getInTouch": "Ta kontakt",
     "models": [

@@ -48,8 +48,9 @@ export default async function HomePage({ params }: HomePageProps) {
       <main id="main-content" className="flex-1">
         <section className="relative px-5 pb-16 pt-40 sm:px-8 lg:pb-20 lg:pt-52">
           <div className="mx-auto max-w-4xl text-center">
-            <h1 className="brand-font fade-up text-5xl font-semibold leading-[0.98] tracking-[-0.05em] sm:text-7xl lg:text-[5.5rem]">
-              {t("heroTitle")}
+            <h1 className="brand-font fade-up text-3xl font-semibold leading-[1.15] tracking-[-0.04em] sm:text-4xl lg:text-5xl">
+              <span className="block">{t("heroTitleLine1")}</span>
+              <span className="block">{t("heroTitleLine2")}</span>
             </h1>
             <div className="fade-up fade-up-2 mt-10 flex flex-wrap items-center justify-center gap-3">
               <a href="#models" className="pill pill--primary">

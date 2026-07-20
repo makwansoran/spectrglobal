@@ -22,7 +22,8 @@
     "no": "NO"
   },
   "Home": {
-    "heroTitle": "We're pioneering world models, to go beyond language models",
+    "heroTitleLine1": "We're pioneering world models,",
+    "heroTitleLine2": "to go beyond language models",
     "ourModels": "Our Models",
     "getInTouch": "Get in Touch",
     "models": [
