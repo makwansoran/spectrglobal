@@ -31,8 +31,16 @@ export default async function HomePage({ params }: HomePageProps) {
       <Nav />
       <main id="main-content" className="flex-1">
         {/* Hero */}
-        <section className="relative px-5 pb-24 pt-40 sm:px-8 lg:pb-32 lg:pt-52">
-          <div className="mx-auto max-w-4xl text-center">
+        <section className="relative isolate flex min-h-[100svh] flex-col overflow-hidden px-5 pb-28 pt-36 sm:px-8 lg:pt-44">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 -z-10 bg-white bg-[url('/hero-robot.png')] bg-[length:auto_72%] bg-bottom bg-no-repeat sm:bg-[length:auto_78%] lg:bg-[length:min(1080px,78vh)]"
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[48%] bg-gradient-to-b from-white via-white/85 to-transparent"
+          />
+          <div className="mx-auto w-full max-w-4xl text-center">
             <span className="label fade-up inline-block">{t("eyebrow")}</span>
             <h1 className="brand-font fade-up fade-up-2 mt-6 text-5xl font-semibold leading-[0.98] tracking-[-0.05em] sm:text-7xl lg:text-[5.5rem]">
               {t("heroTitle")}
