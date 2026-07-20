@@ -36,11 +36,19 @@
       },
       {
         "category": "Perception",
-        "name": "Spectr Detection",
+        "name": "Metaphysics",
         "description": "Real-time object detection for complex physical environments — identifying vehicles, equipment, and activity across industrial and field operations.",
         "learnMore": "Learn More",
-        "tryCta": "Try Spectr Detection",
+        "tryCta": "Try Metaphysics",
         "image": "/spectr-detection.png"
+      },
+      {
+        "category": "Language Model",
+        "name": "Spectr LLM",
+        "description": "A language model built for reasoning, generation, and dialogue — designed to work alongside Spectr world models in real systems.",
+        "learnMore": "Learn More",
+        "tryCta": "Try Spectr LLM",
+        "image": "/spectr-llm.png"
       }
     ]
   },

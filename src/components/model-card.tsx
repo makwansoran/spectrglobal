@@ -21,13 +21,13 @@ export function ModelCard({
   priority = false,
 }: ModelCardProps) {
   return (
-    <article className="card relative isolate min-h-[420px] overflow-hidden sm:min-h-[460px]">
+    <article className="card relative isolate min-h-[380px] overflow-hidden sm:min-h-[420px]">
       {image ? (
         <Image
           src={image}
           alt={name}
           fill
-          sizes="(max-width: 768px) 100vw, 50vw"
+          sizes="(max-width: 1024px) 100vw, 33vw"
           className="object-cover object-center"
           priority={priority}
         />
@@ -40,12 +40,12 @@ export function ModelCard({
         className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/10"
       />
 
-      <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col gap-3 p-6 sm:p-7">
+      <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col gap-2.5 p-5 sm:p-6">
         <span className="label text-white/55">{category}</span>
-        <h3 className="brand-font text-3xl font-semibold tracking-[-0.04em] text-white sm:text-4xl">
+        <h3 className="brand-font text-2xl font-semibold tracking-[-0.04em] text-white sm:text-3xl">
           {name}
         </h3>
-        <p className="text-sm leading-6 text-white/70 sm:text-[0.95rem] sm:leading-7">{description}</p>
+        <p className="text-sm leading-6 text-white/70">{description}</p>
         {(primary || secondary) && (
           <div className="mt-1 flex flex-wrap items-center gap-2.5">
             {primary ? (

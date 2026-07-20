@@ -59,7 +59,7 @@ export default async function HomePage({ params }: HomePageProps) {
 
         {/* Models */}
         <section id="models" className="scroll-mt-24 px-5 pb-28 sm:px-8">
-          <div className="mx-auto grid max-w-6xl gap-5 md:grid-cols-2">
+          <div className="mx-auto grid max-w-7xl gap-4 sm:gap-5 lg:grid-cols-3">
             {models.map((model, index) => (
               <ModelCard
                 key={model.name}

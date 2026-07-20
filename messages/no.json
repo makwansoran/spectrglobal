@@ -36,11 +36,19 @@
       },
       {
         "category": "Persepsjon",
-        "name": "Spectr Detection",
+        "name": "Metaphysics",
         "description": "Sanntids objektdeteksjon for komplekse fysiske miljøer — identifiserer kjøretøy, utstyr og aktivitet i industri- og feltoperasjoner.",
         "learnMore": "Les mer",
-        "tryCta": "Prøv Spectr Detection",
+        "tryCta": "Prøv Metaphysics",
         "image": "/spectr-detection.png"
+      },
+      {
+        "category": "Språkmodell",
+        "name": "Spectr LLM",
+        "description": "En språkmodell bygget for resonnering, generering og dialog — designet for å jobbe sammen med Spectr verdensmodeller i reelle systemer.",
+        "learnMore": "Les mer",
+        "tryCta": "Prøv Spectr LLM",
+        "image": "/spectr-llm.png"
       }
     ]
   },
