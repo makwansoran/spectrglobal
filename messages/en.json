@@ -129,6 +129,10 @@
         "title": "Offshore",
         "text": "Inspect and support offshore platforms when links fail and conditions turn hostile."
       },
+      "construction": {
+        "title": "Construction",
+        "text": "Survey sites, track progress, and keep crews safer with autonomous coverage."
+      },
       "field-ops": {
         "title": "Field Operations",
         "text": "Extend working reach for remote sites and time-critical tasks."
@@ -367,6 +371,18 @@
       "benefits": [
         "Platform and asset inspection under pressure",
         "Continuation when links degrade",
+        "Works with existing airframes",
+        "Norwegian national control"
+      ]
+    },
+    "construction": {
+      "title": "Construction",
+      "headline": "Autonomous coverage for active construction sites",
+      "intro": "Construction sites change fast. Spectr helps fleets survey, monitor progress, and keep coverage consistent without constant manual flying.",
+      "body": "Use Autonomous Engine to run approved inspection and survey plans across the site so crews get clearer situational awareness as conditions shift.",
+      "benefits": [
+        "Site survey and progress monitoring",
+        "Safer coverage of hazardous zones",
         "Works with existing airframes",
         "Norwegian national control"
       ]

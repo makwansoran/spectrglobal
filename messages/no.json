@@ -129,6 +129,10 @@
         "title": "Offshore",
         "text": "Inspiser og støtt offshoreplattformer når lenker svikter og forholdene blir krevende."
       },
+      "construction": {
+        "title": "Bygg og anlegg",
+        "text": "Kartlegg tomter, følg fremdrift og gjør arbeidsplassen tryggere med autonom dekning."
+      },
       "field-ops": {
         "title": "Feltoperasjoner",
         "text": "Utvid rekkevidde for remote steder og tidskritiske oppgaver."
@@ -367,6 +371,18 @@
       "benefits": [
         "Plattform- og eiendelsinspeksjon under press",
         "Fortsettelse når lenker degraderes",
+        "Fungerer med eksisterende luftfartøy",
+        "Norsk nasjonal kontroll"
+      ]
+    },
+    "construction": {
+      "title": "Bygg og anlegg",
+      "headline": "Autonom dekning for aktive byggeplasser",
+      "intro": "Byggeplasser endrer seg raskt. Spectr hjelper flåter med kartlegging, fremdriftsovervåking og jevn dekning uten konstant manuell flyging.",
+      "body": "Bruk Autonomous Engine til å kjøre godkjente inspeksjons- og kartleggingsplaner på tvers av tomten, slik at mannskapet får klarere situasjonsforståelse når forholdene skifter.",
+      "benefits": [
+        "Tomtekartlegging og fremdriftsovervåking",
+        "Tryggere dekning av risikoområder",
         "Fungerer med eksisterende luftfartøy",
         "Norsk nasjonal kontroll"
       ]
