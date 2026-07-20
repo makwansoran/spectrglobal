@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Footer } from "@/components/footer";
-import { HalftoneBackground } from "@/components/halftone-background";
 import { Nav } from "@/components/nav";
 import { ModelCard, type TryNeon } from "@/components/model-card";
 import { Link } from "@/i18n/navigation";
@@ -47,13 +46,8 @@ export default async function HomePage({ params }: HomePageProps) {
     <>
       <Nav />
       <main id="main-content" className="flex-1">
-        <section className="relative isolate overflow-hidden px-5 pb-20 pt-40 sm:px-8 lg:pb-24 lg:pt-52">
-          <HalftoneBackground className="-z-10 opacity-90" />
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-bg/40 via-transparent to-bg"
-          />
-          <div className="relative z-10 mx-auto max-w-4xl text-center">
+        <section className="relative px-5 pb-16 pt-40 sm:px-8 lg:pb-20 lg:pt-52">
+          <div className="mx-auto max-w-4xl text-center">
             <h1 className="brand-font fade-up text-3xl font-semibold leading-[1.15] tracking-[-0.04em] sm:text-4xl lg:text-5xl">
               {t("heroTitle")}
             </h1>
