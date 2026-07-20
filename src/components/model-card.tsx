@@ -1,14 +1,22 @@
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 
+export type TryNeon = "yellow" | "purple" | "green";
+
 type ModelCardProps = {
   category: string;
   name: string;
   description: string;
   image?: string;
   primary?: { label: string; href: string };
-  secondary?: { label: string; href: string };
+  secondary?: { label: string; href: string; neon?: TryNeon; size?: "sm" | "md" };
   priority?: boolean;
+};
+
+const neonClass: Record<TryNeon, string> = {
+  yellow: "pill--neon-yellow",
+  purple: "pill--neon-purple",
+  green: "pill--neon-green",
 };
 
 export function ModelCard({
@@ -54,7 +62,16 @@ export function ModelCard({
               </Link>
             ) : null}
             {secondary ? (
-              <Link href={secondary.href} className="pill pill--on-media">
+              <Link
+                href={secondary.href}
+                className={[
+                  "pill",
+                  secondary.neon ? neonClass[secondary.neon] : "pill--on-media",
+                  secondary.size === "sm" ? "pill--sm" : "",
+                ]
+                  .filter(Boolean)
+                  .join(" ")}
+              >
                 {secondary.label}
               </Link>
             ) : null}

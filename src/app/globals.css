@@ -262,6 +262,58 @@ textarea {
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.65);
 }
 
+.pill--neon-yellow {
+  background: #f5ff3d;
+  color: #07080c;
+  box-shadow:
+    0 0 12px rgba(245, 255, 61, 0.55),
+    0 0 28px rgba(245, 255, 61, 0.28);
+}
+
+.pill--neon-yellow:hover {
+  opacity: 0.92;
+  box-shadow:
+    0 0 16px rgba(245, 255, 61, 0.75),
+    0 0 36px rgba(245, 255, 61, 0.4);
+}
+
+.pill--neon-purple {
+  background: #c84bff;
+  color: #07080c;
+  box-shadow:
+    0 0 12px rgba(200, 75, 255, 0.55),
+    0 0 28px rgba(200, 75, 255, 0.28);
+}
+
+.pill--neon-purple:hover {
+  opacity: 0.92;
+  box-shadow:
+    0 0 16px rgba(200, 75, 255, 0.75),
+    0 0 36px rgba(200, 75, 255, 0.4);
+}
+
+.pill--neon-green {
+  background: #39ff8a;
+  color: #07080c;
+  box-shadow:
+    0 0 12px rgba(57, 255, 138, 0.55),
+    0 0 28px rgba(57, 255, 138, 0.28);
+}
+
+.pill--neon-green:hover {
+  opacity: 0.92;
+  box-shadow:
+    0 0 16px rgba(57, 255, 138, 0.75),
+    0 0 36px rgba(57, 255, 138, 0.4);
+}
+
+.pill--sm {
+  padding: 8px 14px;
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  --bevel-cut: 8px;
+}
+
 /* ---------------- Bevel cards / boxes ---------------- */
 .card,
 .bevel-card {
