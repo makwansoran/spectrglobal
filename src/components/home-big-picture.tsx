@@ -16,14 +16,15 @@ export function HomeBigPicture({ title, items, imageAlt, imageSrc }: HomeBigPict
   return (
     <section className="brand-font bg-[#efefef] px-5 py-16 sm:px-8 lg:px-12 lg:py-24">
       <div className="mx-auto grid w-full max-w-[90rem] items-center gap-12 lg:grid-cols-2 lg:gap-16">
-        <div className="bevel-card relative aspect-[4/5] w-full max-w-xl overflow-hidden bg-black lg:max-w-none">
+        <div className="bevel-card relative aspect-[4/3] w-full max-w-xl overflow-hidden bg-black lg:max-w-none">
           {imageSrc ? (
             <Image
               src={imageSrc}
               alt={imageAlt}
               fill
-              className="object-cover"
+              className="object-cover object-center"
               sizes="(max-width: 1024px) 100vw, 45vw"
+              priority={false}
             />
           ) : (
             <div

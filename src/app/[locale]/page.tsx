@@ -91,6 +91,7 @@ export default async function Home({ params }: HomePageProps) {
         <HomeBigPicture
           title={t("bigPictureTitle")}
           imageAlt={t("bigPictureImageAlt")}
+          imageSrc="/big-picture.png"
           items={bigPictureItems}
         />
 
