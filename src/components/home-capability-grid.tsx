@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { CapabilityIcon } from "@/components/capability-icons";
 
 export type CapabilityCard = {
   key: string;
@@ -34,9 +34,10 @@ export function HomeCapabilityGrid({ rows }: HomeCapabilityGridProps) {
                         : "border-b md:border-b-0 md:border-r"
                     }`}
                   >
-                    <div className="mb-9 flex h-[90px] w-full items-start justify-center overflow-hidden">
+                    <div className="mb-9 flex h-[90px] w-full items-center justify-center overflow-hidden">
                       {item.imageSrc ? (
-                        <Image
+                        // eslint-disable-next-line @next/next/no-img-element -- optional raster override
+                        <img
                           src={item.imageSrc}
                           alt=""
                           width={153}
@@ -44,14 +45,7 @@ export function HomeCapabilityGrid({ rows }: HomeCapabilityGridProps) {
                           className="h-auto max-h-[90px] w-auto object-contain"
                         />
                       ) : (
-                        <div
-                          aria-hidden="true"
-                          className="flex h-full w-full max-w-[153px] items-center justify-center border border-dashed border-white/20 bg-white/[0.03]"
-                        >
-                          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/25">
-                            Image
-                          </span>
-                        </div>
+                        <CapabilityIcon name={item.key} />
                       )}
                     </div>
 
