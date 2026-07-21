@@ -59,26 +59,238 @@
     "cta": "Ta kontakt"
   },
   "SpectrRts": {
+    "eyebrow": "Embodied AI",
     "title": "Spectr RTS",
-    "tagline": "En frontier embodied AI-stack.",
-    "paragraphs": [
-      "Spectr RTS er Spectrs embodied AI-stack — en frontiermodell bygget for å oppfatte, simulere og handle i den fysiske verden.",
-      "Den samler persepsjon, verdenssimulering og sanntidskontroll, slik at systemer kan lese live sensorstrømmer, forutsi hvordan scener utvikler seg, og fortsette å utføre når forholdene endrer seg.",
-      "RTS bygger en kausal modell av verden rundt seg: hva som er i scenen, hvordan objekter samhandler, og hva som skjer videre. Det gjør at maskiner kan operere på tvers av inspeksjon, logistikk, robotikk og feltarbeid — ikke i isolerte demoer, men i reelle miljøer.",
-      "Dette er tidlig frontier-arbeid. Spectr RTS utvikles i Norge for bruk i felt."
-    ],
-    "cta": "Ta kontakt"
+    "tagline": "En frontier embodied AI-stack bygget for å oppfatte, simulere og handle i den fysiske verden.",
+    "learnMore": "Les mer",
+    "nav": {
+      "capabilities": "Kapabiliteter",
+      "architecture": "Arkitektur",
+      "applications": "Anvendelser",
+      "faqs": "Ofte stilte spørsmål",
+      "getStarted": "Kom i gang"
+    },
+    "capabilities": {
+      "title": "Kapabiliteter",
+      "items": [
+        {
+          "title": "Verdenssimulering",
+          "description": "RTS bygger en kausal modell av hvordan scener utvikler seg — og forutsier objektbevegelse, samhandling og utfall før handling tas."
+        },
+        {
+          "title": "Live persepsjon",
+          "description": "Leser kontinuerlige sensorstrømmer for å forstå hva som er i scenen akkurat nå, også når lys, vær og rot endrer seg."
+        },
+        {
+          "title": "Sanntidskontroll",
+          "description": "Fortsetter å utføre når forholdene skifter. Persepsjon, prediksjon og kontroll holdes koblet, slik at systemer kan operere gjennom usikkerhet."
+        },
+        {
+          "title": "Fysisk presisjon",
+          "description": "Trent for å løfte hvor troverdig verdensmodeller fanger reell fysikk — ikke bare visuell plausibilitet."
+        }
+      ]
+    },
+    "architecture": {
+      "title": "Arkitektur",
+      "items": [
+        {
+          "title": "Samlet stack",
+          "description": "Persepsjon, verdenssimulering og kontroll deler én modell — slik at systemet som ser verden er det samme som resonnerer om hva som skjer videre."
+        },
+        {
+          "title": "Kausal scenemodell",
+          "description": "RTS modellerer hva som er til stede, hvordan objekter samhandler, og hva som følger av handling — et grunnlag for pålitelig atferd utenfor laben."
+        },
+        {
+          "title": "Sensornativ runtime",
+          "description": "Bygget for live driftsdata: kameraer, telemetri og feltsignaler som flyter inn i en kontinuerlig forståelse av miljøet."
+        },
+        {
+          "title": "Suveren utvikling",
+          "description": "Utviklet i Norge under nasjonal kontroll, med en klar vei fra forskningstrening til feltutrulling."
+        }
+      ]
+    },
+    "applications": {
+      "title": "Anvendelser",
+      "items": [
+        {
+          "title": "Inspeksjon og overvåking",
+          "description": "Forstå komplekse anlegg over tid — oppdag endring, forutse risiko, og støtt operatører med et prediktivt bilde av miljøet."
+        },
+        {
+          "title": "Logistikk og terminaler",
+          "description": "Modeller kjøretøy- og utstyrsbevegelse i travle industrielle rom der planlegging og sikkerhet avhenger av hva som skjer neste."
+        },
+        {
+          "title": "Robotikk og autonomi",
+          "description": "Gi embodied systemer en verdensmodell de kan bruke til å planlegge, tilpasse seg og fortsette å jobbe når scenen ikke matcher treningsdemoen."
+        },
+        {
+          "title": "Feltoperasjoner",
+          "description": "Ta frontier verdensmodell-kapabilitet ut i reelle miljøer — utendørs anlegg, industrianlegg og oppdrag der forholdene aldri står stille."
+        }
+      ]
+    },
+    "banner": {
+      "title": "Bygget for den fysiske verden",
+      "description": "Språkmodeller resonnerer om tekst. Spectr RTS er bygget for å resonnere om virkeligheten — hvordan scener utvikler seg, hvordan objekter samhandler, og hvordan verden reagerer på handling.",
+      "cta": "Snakk med Spectr"
+    },
+    "faqs": {
+      "title": "Ofte stilte spørsmål",
+      "items": [
+        {
+          "question": "Hva er Spectr RTS?",
+          "answer": "Spectr RTS er Spectrs embodied AI-stack — en frontier verdensmodell som samler persepsjon, simulering og sanntidskontroll for maskiner som opererer i den fysiske verden."
+        },
+        {
+          "question": "Hvordan skiller RTS seg fra en språkmodell?",
+          "answer": "Språkmodeller lærer av tekst. RTS lærer en kausal modell av fysiske scener: hva som er til stede, hvordan ting samhandler, og hva som skjer videre — slik at systemer kan handle, ikke bare beskrive."
+        },
+        {
+          "question": "Hvor utvikles Spectr RTS?",
+          "answer": "Spectr RTS utvikles i Norge. Det er tidlig frontier-arbeid rettet mot feltutrulling innen inspeksjon, logistikk, robotikk og utendørs operasjoner."
+        },
+        {
+          "question": "Hvem bør ta kontakt om RTS?",
+          "answer": "Operatører, partnere og forskere som jobber med embodied AI, autonomi eller fysisk verdenssimulering, og som vil utforske samarbeid eller tidlig tilgang."
+        }
+      ]
+    },
+    "getStarted": {
+      "title": "Kom i gang",
+      "primary": {
+        "title": "Klar til å komme i gang?",
+        "description": "Fortell oss om miljøet ditt og hva du vil at maskiner skal forstå og gjøre. Vi leser hver melding.",
+        "cta": "Ta kontakt",
+        "href": "/contact"
+      },
+      "secondary": {
+        "title": "Følg forskningen",
+        "description": "Hold deg nær milepælene mens vi trener og herder Spectr RTS for utrulling i den virkelige verden.",
+        "cta": "Se nyheter",
+        "href": "/news"
+      }
+    }
   },
   "SpectrObjectIntelligence": {
+    "eyebrow": "Persepsjon",
     "title": "Spectr Object Intelligence",
-    "tagline": "Sanntidspersepsjon for komplekse fysiske miljøer.",
-    "paragraphs": [
-      "Spectr Object Intelligence er Spectrs persepsjonsstack for live operasjoner — bygget for å detektere og følge det som betyr noe i rotete, virkelige scener.",
-      "Den identifiserer kjøretøy, utstyr, mennesker og aktivitet mens de beveger seg gjennom industriområder, terminaler og feltmiljøer, og gjør rå sensorstrømmer om til strukturert situasjonsforståelse.",
-      "Designet for komplekse fysiske omgivelser der lys, vær, rot og bevegelse gjør vanlig deteksjon skjør, holder Object Intelligence et klart bilde av scenen slik at operatører og nedstrømssystemer kan handle med trygghet.",
-      "Dette er produksjonsrettet persepsjonsarbeid. Spectr Object Intelligence utvikles i Norge for bruk der pålitelighet i felt kommer først."
-    ],
-    "cta": "Ta kontakt"
+    "tagline": "Sanntids objektdeteksjon for komplekse fysiske miljøer — kjøretøy, utstyr og aktivitet i industri- og feltoperasjoner.",
+    "learnMore": "Les mer",
+    "nav": {
+      "capabilities": "Kapabiliteter",
+      "architecture": "Arkitektur",
+      "applications": "Anvendelser",
+      "faqs": "Ofte stilte spørsmål",
+      "getStarted": "Kom i gang"
+    },
+    "capabilities": {
+      "title": "Kapabiliteter",
+      "items": [
+        {
+          "title": "Sanntidsdeteksjon",
+          "description": "Identifiser kjøretøy, utstyr, mennesker og aktivitet når de dukker opp i live sensorstrømmer — med latenstid tilpasset operative beslutninger."
+        },
+        {
+          "title": "Multiobjektsporing",
+          "description": "Følg mål gjennom okklusjoner, kamerabevegelse og travle scener, slik at operatører beholder kontinuitet på det som betyr noe."
+        },
+        {
+          "title": "Industriell robusthet",
+          "description": "Bygget for anlegg der lys, vær, støv og rot knuser skjøre detektorer — og holder en stabil lesning av scenen."
+        },
+        {
+          "title": "Strukturert situasjonsforståelse",
+          "description": "Gjør rå piksler om til handlingsklar scenestatus: hva som er til stede, hvor det er, og hvordan aktivitet utfolder seg på anlegget."
+        }
+      ]
+    },
+    "architecture": {
+      "title": "Arkitektur",
+      "items": [
+        {
+          "title": "Persepsjonsstack",
+          "description": "En produksjonsrettet pipeline fra sensorinndata til sporede objekter og aktivitetssignaler klare for dashbord, varsler og nedstrømssystemer."
+        },
+        {
+          "title": "Sceneforståelse",
+          "description": "Går lenger enn bokser — modellerer aktivitet og kontekst slik at deteksjoner speiler hvordan industri- og feltmiljøer faktisk fungerer."
+        },
+        {
+          "title": "Edge-klar inferens",
+          "description": "Designet for utrulling nær kameraene og sensorene som ser arbeidet, ikke bare i et fjernt datasenter."
+        },
+        {
+          "title": "Bygget i Norge",
+          "description": "Utviklet for pålitelighet i felt, med suveren kontroll over hvordan persepsjonsteknologi trenes og rulles ut."
+        }
+      ]
+    },
+    "applications": {
+      "title": "Anvendelser",
+      "items": [
+        {
+          "title": "Terminaler og gårder",
+          "description": "Detekter og spor kjøretøy og utstyr over store utendørsarealer der gjennomstrømning og sikkerhet avhenger av å vite hva som beveger seg hvor."
+        },
+        {
+          "title": "Industrianlegg",
+          "description": "Overvåk gulv, korridorer og arbeidssoner for utstyrstilstedeværelse, personellaktivitet og operative avvik."
+        },
+        {
+          "title": "Feltoperasjoner",
+          "description": "Ta pålitelig objektintelligens ut i remote og utendørs oppdrag der forholdene endrer seg raskere enn regelbaserte systemer klarer å følge."
+        },
+        {
+          "title": "Nedstrøms autonomi",
+          "description": "Mat ren, strukturert persepsjon inn i planlegging, varsling og embodied systemer — inkludert Spectr RTS verdensmodell-stacks."
+        }
+      ]
+    },
+    "banner": {
+      "title": "Persepsjon som holder i felt",
+      "description": "Standarddeteksjon svikter når miljøet blir rotete. Spectr Object Intelligence er bygget for lyset, været, roten og bevegelsen i reelle industri- og feltoperasjoner.",
+      "cta": "Snakk med Spectr"
+    },
+    "faqs": {
+      "title": "Ofte stilte spørsmål",
+      "items": [
+        {
+          "question": "Hva er Spectr Object Intelligence?",
+          "answer": "Spectr Object Intelligence er Spectrs persepsjonsstack for live operasjoner — sanntidsdeteksjon og sporing av kjøretøy, utstyr, mennesker og aktivitet i komplekse fysiske miljøer."
+        },
+        {
+          "question": "Hvordan skiller den seg fra hyllevarendetektorer?",
+          "answer": "Den er tilpasset industri- og feltforhold der lys, vær, rot og bevegelse gjør generiske modeller skjøre, og den leverer strukturert situasjonsforståelse til operatører og nedstrømssystemer."
+        },
+        {
+          "question": "Kan den brukes sammen med Spectr RTS?",
+          "answer": "Ja. Object Intelligence kan levere persepsjon til embodied stacks som Spectr RTS, eller kjøre som et frittstående awareness-lag for overvåking og drift."
+        },
+        {
+          "question": "Hvem er den for?",
+          "answer": "Team som driver terminaler, industrianlegg og feltoperasjoner og trenger pålitelig sanntidsforståelse av hva som er i scenen — og partnere som utforsker persepsjon for autonomi."
+        }
+      ]
+    },
+    "getStarted": {
+      "title": "Kom i gang",
+      "primary": {
+        "title": "Klar til å komme i gang?",
+        "description": "Del anlegget, sensorene og hva du trenger å detektere. Vi følger opp personlig.",
+        "cta": "Ta kontakt",
+        "href": "/contact"
+      },
+      "secondary": {
+        "title": "Utforsk Spectr RTS",
+        "description": "Se hvordan vår embodied verdensmodell bygger på persepsjon for å simulere og handle i den fysiske verden.",
+        "cta": "Se Spectr RTS",
+        "href": "/research"
+      }
+    }
   },
 
   "News": {

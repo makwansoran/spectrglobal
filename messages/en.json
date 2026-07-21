@@ -59,26 +59,238 @@
     "cta": "Get in Touch"
   },
   "SpectrRts": {
+    "eyebrow": "Embodied AI",
     "title": "Spectr RTS",
-    "tagline": "A frontier embodied AI stack.",
-    "paragraphs": [
-      "Spectr RTS is Spectr's embodied AI stack — a frontier model built to perceive, simulate, and act in the physical world.",
-      "It unifies perception, world simulation, and real-time control so systems can read live sensor streams, predict how scenes evolve, and keep executing when conditions change.",
-      "RTS builds a causal model of the world around it: what is in the scene, how objects interact, and what happens next. That lets machines operate across inspection, logistics, robotics, and field work — not in isolated demos, but in real environments.",
-      "This is early frontier work. Spectr RTS is developed in Norway for deployment in the field."
-    ],
-    "cta": "Get in Touch"
+    "tagline": "A frontier embodied AI stack built to perceive, simulate, and act in the physical world.",
+    "learnMore": "Learn More",
+    "nav": {
+      "capabilities": "Capabilities",
+      "architecture": "Architecture",
+      "applications": "Applications",
+      "faqs": "FAQs",
+      "getStarted": "Get Started"
+    },
+    "capabilities": {
+      "title": "Capabilities",
+      "items": [
+        {
+          "title": "World simulation",
+          "description": "RTS builds a causal model of how scenes evolve — predicting object motion, interactions, and outcomes before action is taken."
+        },
+        {
+          "title": "Live perception",
+          "description": "Reads continuous sensor streams to understand what is in the scene right now, even as lighting, weather, and clutter change."
+        },
+        {
+          "title": "Real-time control",
+          "description": "Keeps executing when conditions shift. Perception, prediction, and control stay coupled so systems can operate through uncertainty."
+        },
+        {
+          "title": "Physical accuracy",
+          "description": "Trained to advance the state of the art in how faithfully world models capture real physics — not just visual plausibility."
+        }
+      ]
+    },
+    "architecture": {
+      "title": "Architecture",
+      "items": [
+        {
+          "title": "Unified stack",
+          "description": "Perception, world simulation, and control share one model — so the system that sees the world is the same system that reasons about what happens next."
+        },
+        {
+          "title": "Causal scene model",
+          "description": "RTS models what is present, how objects interact, and what follows from action — a foundation for reliable behavior outside the lab."
+        },
+        {
+          "title": "Sensor-native runtime",
+          "description": "Built for live operational data: cameras, telemetry, and field signals flowing into a continuous understanding of the environment."
+        },
+        {
+          "title": "Sovereign development",
+          "description": "Developed in Norway under national control, with a clear path from research training runs to field deployment."
+        }
+      ]
+    },
+    "applications": {
+      "title": "Applications",
+      "items": [
+        {
+          "title": "Inspection & monitoring",
+          "description": "Understand complex sites over time — detect change, anticipate risk, and support operators with a predictive picture of the environment."
+        },
+        {
+          "title": "Logistics & yards",
+          "description": "Model vehicle and equipment movement across busy industrial spaces where planning and safety depend on what happens next."
+        },
+        {
+          "title": "Robotics & autonomy",
+          "description": "Give embodied systems a world model they can use to plan, adapt, and keep working when the scene does not match the training demo."
+        },
+        {
+          "title": "Field operations",
+          "description": "Bring frontier world-model capability into real environments — outdoor sites, industrial floors, and missions where conditions never stay fixed."
+        }
+      ]
+    },
+    "banner": {
+      "title": "Built for the physical world",
+      "description": "Language models reason about text. Spectr RTS is built to reason about reality — how scenes evolve, how objects interact, and how the world responds to action.",
+      "cta": "Talk to Spectr"
+    },
+    "faqs": {
+      "title": "FAQs",
+      "items": [
+        {
+          "question": "What is Spectr RTS?",
+          "answer": "Spectr RTS is Spectr's embodied AI stack — a frontier world model that unifies perception, simulation, and real-time control for machines operating in the physical world."
+        },
+        {
+          "question": "How is RTS different from a language model?",
+          "answer": "Language models learn from text. RTS learns a causal model of physical scenes: what is present, how things interact, and what happens next — so systems can act, not just describe."
+        },
+        {
+          "question": "Where is Spectr RTS being developed?",
+          "answer": "Spectr RTS is developed in Norway. It is early frontier work aimed at field deployment across inspection, logistics, robotics, and outdoor operations."
+        },
+        {
+          "question": "Who should get in touch about RTS?",
+          "answer": "Operators, partners, and researchers working on embodied AI, autonomy, or physical-world simulation who want to explore collaboration or early access."
+        }
+      ]
+    },
+    "getStarted": {
+      "title": "Get Started",
+      "primary": {
+        "title": "Ready to get started?",
+        "description": "Tell us about your environment and what you want machines to understand and do. We read every message.",
+        "cta": "Get in Touch",
+        "href": "/contact"
+      },
+      "secondary": {
+        "title": "Follow the research",
+        "description": "Stay close to milestones as we train and harden Spectr RTS for real-world deployment.",
+        "cta": "View News",
+        "href": "/news"
+      }
+    }
   },
   "SpectrObjectIntelligence": {
+    "eyebrow": "Perception",
     "title": "Spectr Object Intelligence",
-    "tagline": "Real-time perception for complex physical environments.",
-    "paragraphs": [
-      "Spectr Object Intelligence is Spectr's perception stack for live operations — built to detect and track what matters in messy, real-world scenes.",
-      "It identifies vehicles, equipment, people, and activity as they move through industrial sites, yards, and field environments, turning raw sensor streams into structured situational awareness.",
-      "Designed for complex physical settings where lighting, weather, clutter, and motion make standard detection brittle, Object Intelligence keeps a clear picture of the scene so operators and downstream systems can act with confidence.",
-      "This is production-minded perception work. Spectr Object Intelligence is developed in Norway for deployment where reliability in the field comes first."
-    ],
-    "cta": "Get in Touch"
+    "tagline": "Real-time object detection for complex physical environments — vehicles, equipment, and activity across industrial and field operations.",
+    "learnMore": "Learn More",
+    "nav": {
+      "capabilities": "Capabilities",
+      "architecture": "Architecture",
+      "applications": "Applications",
+      "faqs": "FAQs",
+      "getStarted": "Get Started"
+    },
+    "capabilities": {
+      "title": "Capabilities",
+      "items": [
+        {
+          "title": "Real-time detection",
+          "description": "Identify vehicles, equipment, people, and activity as they appear in live sensor streams — with latency suited to operational decision-making."
+        },
+        {
+          "title": "Multi-object tracking",
+          "description": "Follow targets through occlusions, camera motion, and crowded scenes so operators keep continuity on what matters."
+        },
+        {
+          "title": "Industrial robustness",
+          "description": "Built for sites where lighting, weather, dust, and clutter break brittle detectors — keeping a stable read on the scene."
+        },
+        {
+          "title": "Structured awareness",
+          "description": "Turn raw pixels into actionable scene state: what is present, where it is, and how activity is unfolding across the site."
+        }
+      ]
+    },
+    "architecture": {
+      "title": "Architecture",
+      "items": [
+        {
+          "title": "Perception stack",
+          "description": "A production-minded pipeline from sensor input to tracked objects and activity signals ready for dashboards, alerts, and downstream systems."
+        },
+        {
+          "title": "Scene understanding",
+          "description": "Goes beyond boxes — models activity and context so detections map to how industrial and field environments actually operate."
+        },
+        {
+          "title": "Edge-ready inference",
+          "description": "Designed for deployment close to the cameras and sensors that see the work, not only in a distant data center."
+        },
+        {
+          "title": "Built in Norway",
+          "description": "Developed for reliability in the field, with sovereign control over how perception technology is trained and deployed."
+        }
+      ]
+    },
+    "applications": {
+      "title": "Applications",
+      "items": [
+        {
+          "title": "Yards & terminals",
+          "description": "Detect and track vehicles and equipment across large outdoor spaces where throughput and safety depend on knowing what is moving where."
+        },
+        {
+          "title": "Industrial sites",
+          "description": "Monitor floors, corridors, and work zones for equipment presence, personnel activity, and operational anomalies."
+        },
+        {
+          "title": "Field operations",
+          "description": "Bring reliable object intelligence to remote and outdoor missions where conditions change faster than rule-based systems can keep up."
+        },
+        {
+          "title": "Downstream autonomy",
+          "description": "Feed clean, structured perception into planning, alerting, and embodied systems — including Spectr RTS world-model stacks."
+        }
+      ]
+    },
+    "banner": {
+      "title": "Perception that holds up in the field",
+      "description": "Standard detection fails when the environment gets messy. Spectr Object Intelligence is built for the lighting, weather, clutter, and motion of real industrial and field operations.",
+      "cta": "Talk to Spectr"
+    },
+    "faqs": {
+      "title": "FAQs",
+      "items": [
+        {
+          "question": "What is Spectr Object Intelligence?",
+          "answer": "Spectr Object Intelligence is Spectr's perception stack for live operations — real-time detection and tracking of vehicles, equipment, people, and activity in complex physical environments."
+        },
+        {
+          "question": "How is it different from off-the-shelf detectors?",
+          "answer": "It is tuned for industrial and field conditions where lighting, weather, clutter, and motion make generic models brittle, and it outputs structured situational awareness for operators and downstream systems."
+        },
+        {
+          "question": "Can it work with Spectr RTS?",
+          "answer": "Yes. Object Intelligence can supply perception to embodied stacks like Spectr RTS, or run as a standalone awareness layer for monitoring and operations."
+        },
+        {
+          "question": "Who is it for?",
+          "answer": "Teams running yards, industrial sites, and field operations who need reliable real-time understanding of what is in the scene — and partners exploring perception for autonomy."
+        }
+      ]
+    },
+    "getStarted": {
+      "title": "Get Started",
+      "primary": {
+        "title": "Ready to get started?",
+        "description": "Share your site, sensors, and what you need to detect. We will follow up personally.",
+        "cta": "Get in Touch",
+        "href": "/contact"
+      },
+      "secondary": {
+        "title": "Explore Spectr RTS",
+        "description": "See how our embodied world model builds on perception to simulate and act in the physical world.",
+        "cta": "View Spectr RTS",
+        "href": "/research"
+      }
+    }
   },
 
   "News": {

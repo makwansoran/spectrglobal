@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { Footer } from "@/components/footer";
-import { Nav } from "@/components/nav";
-import { Link } from "@/i18n/navigation";
+import {
+  ProductInfoPage,
+  type ProductInfoContent,
+} from "@/components/product-info-page";
 import { buildPageMetadata, localizedPath } from "@/lib/metadata";
 
 type SpectrRtsPageProps = {
@@ -24,34 +25,46 @@ export default async function SpectrRtsPage({ params }: SpectrRtsPageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "SpectrRts" });
-  const paragraphs = t.raw("paragraphs") as string[];
 
-  return (
-    <>
-      <Nav />
-      <main id="main-content" className="flex-1">
-        <section className="px-5 pb-24 pt-40 sm:px-8 lg:pt-48">
-          <div className="mx-auto max-w-3xl">
-            <h1 className="brand-font text-5xl font-semibold leading-[0.98] tracking-[-0.05em] sm:text-7xl">
-              {t("title")}
-            </h1>
-            <p className="mt-8 text-lg leading-8 text-muted">{t("tagline")}</p>
-            <div className="mt-12 space-y-6">
-              {paragraphs.map((paragraph) => (
-                <p key={paragraph} className="text-base leading-8 text-fg/85">
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-            <div className="mt-12">
-              <Link href="/contact" className="pill pill--primary">
-                {t("cta")}
-              </Link>
-            </div>
-          </div>
-        </section>
-      </main>
-      <Footer />
-    </>
-  );
+  const content: ProductInfoContent = {
+    eyebrow: t("eyebrow"),
+    title: t("title"),
+    tagline: t("tagline"),
+    learnMore: t("learnMore"),
+    nav: {
+      capabilities: t("nav.capabilities"),
+      architecture: t("nav.architecture"),
+      applications: t("nav.applications"),
+      faqs: t("nav.faqs"),
+      getStarted: t("nav.getStarted"),
+    },
+    capabilities: {
+      title: t("capabilities.title"),
+      items: t.raw("capabilities.items") as ProductInfoContent["capabilities"]["items"],
+    },
+    architecture: {
+      title: t("architecture.title"),
+      items: t.raw("architecture.items") as ProductInfoContent["architecture"]["items"],
+    },
+    applications: {
+      title: t("applications.title"),
+      items: t.raw("applications.items") as ProductInfoContent["applications"]["items"],
+    },
+    banner: {
+      title: t("banner.title"),
+      description: t("banner.description"),
+      cta: t("banner.cta"),
+    },
+    faqs: {
+      title: t("faqs.title"),
+      items: t.raw("faqs.items") as ProductInfoContent["faqs"]["items"],
+    },
+    getStarted: {
+      title: t("getStarted.title"),
+      primary: t.raw("getStarted.primary") as ProductInfoContent["getStarted"]["primary"],
+      secondary: t.raw("getStarted.secondary") as ProductInfoContent["getStarted"]["secondary"],
+    },
+  };
+
+  return <ProductInfoPage content={content} />;
 }
