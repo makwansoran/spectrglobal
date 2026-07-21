@@ -46,7 +46,7 @@ export default async function HomePage({ params }: HomePageProps) {
     <>
       <Nav />
       <main id="main-content" className="flex-1">
-        <section className="relative px-5 pb-16 pt-40 sm:px-8 lg:pb-20 lg:pt-52">
+        <section className="relative flex min-h-[100svh] items-center justify-center px-5 pt-16 sm:px-8">
           <div className="mx-auto max-w-4xl text-center">
             <h1 className="brand-font fade-up text-3xl font-semibold leading-[1.15] tracking-[-0.04em] sm:text-4xl lg:text-5xl">
               {t("heroTitle")}
