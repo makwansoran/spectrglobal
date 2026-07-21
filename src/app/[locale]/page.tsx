@@ -62,7 +62,7 @@ export default async function HomePage({ params }: HomePageProps) {
           </div>
         </section>
 
-        <section id="models" className="scroll-mt-24 px-5 pb-28 sm:px-8">
+        <section id="models" className="scroll-mt-24 px-5 pb-16 sm:px-8">
           <div className="mx-auto grid max-w-6xl gap-4 sm:gap-5 md:grid-cols-2">
             {models.map((model, index) => {
               const tryStyle = TRY_STYLES[index] ?? { neon: "yellow" as const };
@@ -85,6 +85,14 @@ export default async function HomePage({ params }: HomePageProps) {
               );
             })}
           </div>
+        </section>
+
+        <section className="px-5 pb-28 sm:px-8">
+          <blockquote className="mx-auto max-w-3xl text-center">
+            <p className="brand-font text-2xl font-semibold leading-snug tracking-[-0.03em] text-fg sm:text-3xl lg:text-4xl">
+              {t("quote")}
+            </p>
+          </blockquote>
         </section>
       </main>
       <Footer />
