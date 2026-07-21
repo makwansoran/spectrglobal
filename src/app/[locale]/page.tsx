@@ -56,8 +56,11 @@ export default async function HomePage({ params }: HomePageProps) {
           </div>
         </section>
 
-        <section id="models" className="scroll-mt-24 px-5 pb-16 sm:px-8">
-          <div className="mx-auto grid max-w-6xl gap-4 sm:gap-5 md:grid-cols-2">
+        <section
+          id="models"
+          className="relative flex min-h-[100svh] scroll-mt-0 items-center px-5 py-24 sm:px-8"
+        >
+          <div className="mx-auto w-full max-w-6xl grid gap-4 sm:gap-5 md:grid-cols-2">
             {models.map((model, index) => (
               <ModelCard
                 key={model.name}
@@ -72,7 +75,7 @@ export default async function HomePage({ params }: HomePageProps) {
           </div>
         </section>
 
-        <section className="px-5 pb-28 sm:px-8">
+        <section className="relative flex min-h-[100svh] items-center justify-center px-5 sm:px-8">
           <blockquote className="mx-auto max-w-3xl text-center">
             <p className="brand-font text-2xl font-semibold leading-snug tracking-[-0.03em] text-fg sm:text-3xl lg:text-4xl">
               {t("quote")}
