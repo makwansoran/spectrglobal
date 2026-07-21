@@ -50,6 +50,7 @@ export function ContactForm() {
           </option>
           <option value="general">{t("general")}</option>
           <option value="Spectr RTS">Spectr RTS</option>
+          <option value="Spectr Object Intelligence">Spectr Object Intelligence</option>
           <option value="Partnership">{t("partnership")}</option>
         </select>
       </Field>

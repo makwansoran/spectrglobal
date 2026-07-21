@@ -19,6 +19,7 @@ export async function Footer() {
       title: t("sections.explore"),
       links: [
         { label: nav("research"), href: "/research" },
+        { label: nav("objectIntelligence"), href: "/object-intelligence" },
         { label: nav("news"), href: "/news" },
       ],
     },

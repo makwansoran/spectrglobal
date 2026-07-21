@@ -11,6 +11,7 @@
     "links": {
       "about": "About",
       "research": "Research",
+      "objectIntelligence": "Object Intelligence",
       "news": "News",
       "careers": "Careers",
       "contact": "Contact"
@@ -40,7 +41,7 @@
         "name": "Spectr Object Intelligence",
         "description": "Real-time object detection for complex physical environments — identifying vehicles, equipment, and activity across industrial and field operations.",
         "learnMore": "Learn More",
-        "learnMoreHref": "/contact",
+        "learnMoreHref": "/object-intelligence",
         "tryCta": "Try",
         "image": "/spectr-detection.png"
       }
@@ -68,6 +69,18 @@
     ],
     "cta": "Get in Touch"
   },
+  "SpectrObjectIntelligence": {
+    "title": "Spectr Object Intelligence",
+    "tagline": "Real-time perception for complex physical environments.",
+    "paragraphs": [
+      "Spectr Object Intelligence is Spectr's perception stack for live operations — built to detect and track what matters in messy, real-world scenes.",
+      "It identifies vehicles, equipment, people, and activity as they move through industrial sites, yards, and field environments, turning raw sensor streams into structured situational awareness.",
+      "Designed for complex physical settings where lighting, weather, clutter, and motion make standard detection brittle, Object Intelligence keeps a clear picture of the scene so operators and downstream systems can act with confidence.",
+      "This is production-minded perception work. Spectr Object Intelligence is developed in Norway for deployment where reliability in the field comes first."
+    ],
+    "cta": "Get in Touch"
+  },
+
   "News": {
     "eyebrow": "News",
     "title": "Latest from Spectr",

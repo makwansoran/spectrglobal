@@ -11,6 +11,7 @@
     "links": {
       "about": "Om oss",
       "research": "Forskning",
+      "objectIntelligence": "Object Intelligence",
       "news": "Nyheter",
       "careers": "Karriere",
       "contact": "Kontakt"
@@ -40,7 +41,7 @@
         "name": "Spectr Object Intelligence",
         "description": "Sanntids objektdeteksjon for komplekse fysiske miljøer — identifiserer kjøretøy, utstyr og aktivitet i industri- og feltoperasjoner.",
         "learnMore": "Les mer",
-        "learnMoreHref": "/contact",
+        "learnMoreHref": "/object-intelligence",
         "tryCta": "Prøv",
         "image": "/spectr-detection.png"
       }
@@ -68,6 +69,18 @@
     ],
     "cta": "Ta kontakt"
   },
+  "SpectrObjectIntelligence": {
+    "title": "Spectr Object Intelligence",
+    "tagline": "Sanntidspersepsjon for komplekse fysiske miljøer.",
+    "paragraphs": [
+      "Spectr Object Intelligence er Spectrs persepsjonsstack for live operasjoner — bygget for å detektere og følge det som betyr noe i rotete, virkelige scener.",
+      "Den identifiserer kjøretøy, utstyr, mennesker og aktivitet mens de beveger seg gjennom industriområder, terminaler og feltmiljøer, og gjør rå sensorstrømmer om til strukturert situasjonsforståelse.",
+      "Designet for komplekse fysiske omgivelser der lys, vær, rot og bevegelse gjør vanlig deteksjon skjør, holder Object Intelligence et klart bilde av scenen slik at operatører og nedstrømssystemer kan handle med trygghet.",
+      "Dette er produksjonsrettet persepsjonsarbeid. Spectr Object Intelligence utvikles i Norge for bruk der pålitelighet i felt kommer først."
+    ],
+    "cta": "Ta kontakt"
+  },
+
   "News": {
     "eyebrow": "Nyheter",
     "title": "Siste fra Spectr",
