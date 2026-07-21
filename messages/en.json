@@ -27,10 +27,11 @@
     "getInTouch": "Get in Touch",
     "models": [
       {
-        "category": "World Model",
+        "category": "Embodied AI",
         "name": "Spectr RTS",
         "description": "Our most powerful general purpose world model yet, materially advancing the state-of-the-art in physical accuracy of world models.",
         "learnMore": "Learn More",
+        "learnMoreHref": "/research",
         "tryCta": "RTS",
         "image": "/spectr-rts.png"
       },
@@ -39,6 +40,7 @@
         "name": "Metaphysics",
         "description": "Real-time object detection for complex physical environments — identifying vehicles, equipment, and activity across industrial and field operations.",
         "learnMore": "Learn More",
+        "learnMoreHref": "/contact",
         "tryCta": "Try Metaphysics",
         "image": "/spectr-detection.png"
       },
@@ -47,6 +49,7 @@
         "name": "Spectr LLM",
         "description": "A language model built for reasoning, generation, and dialogue — designed to work alongside Spectr world models in real systems.",
         "learnMore": "Learn More",
+        "learnMoreHref": "/contact",
         "tryCta": "Try Spectr LLM",
         "image": "/spectr-llm.png"
       }
@@ -63,28 +66,16 @@
     ],
     "cta": "Get in Touch"
   },
-  "Research": {
-    "eyebrow": "Research",
-    "title": "Toward general world models",
-    "intro": "We build causal, multimodal systems that learn to simulate the physical world. Here is what we're working on.",
-    "contactCta": "Get in Touch",
-    "models": [
-      {
-        "category": "World Model",
-        "name": "Spectr RTS",
-        "description": "Our most powerful general purpose world model yet, materially advancing the state-of-the-art in physical accuracy of world models."
-      },
-      {
-        "category": "Research Direction",
-        "name": "Multimodal interaction",
-        "description": "Moving beyond systems that learn only from visual observation, toward models that learn from richer multimodal interaction with the world."
-      },
-      {
-        "category": "Research Direction",
-        "name": "Real-time simulation",
-        "description": "Long-running, interactive simulations that begin streaming instantly and continue for minutes, not seconds."
-      }
-    ]
+  "SpectrRts": {
+    "title": "Spectr RTS",
+    "tagline": "A frontier embodied AI stack.",
+    "paragraphs": [
+      "Spectr RTS is Spectr's embodied AI stack — a frontier model built to perceive, simulate, and act in the physical world.",
+      "It unifies perception, world simulation, and real-time control so systems can read live sensor streams, predict how scenes evolve, and keep executing when conditions change.",
+      "RTS builds a causal model of the world around it: what is in the scene, how objects interact, and what happens next. That lets machines operate across inspection, logistics, robotics, and field work — not in isolated demos, but in real environments.",
+      "This is early frontier work. Spectr RTS is developed in Norway for deployment in the field."
+    ],
+    "cta": "Get in Touch"
   },
   "News": {
     "eyebrow": "News",

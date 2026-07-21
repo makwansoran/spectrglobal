@@ -27,10 +27,11 @@
     "getInTouch": "Ta kontakt",
     "models": [
       {
-        "category": "Verdensmodell",
+        "category": "Embodied AI",
         "name": "Spectr RTS",
         "description": "Vår kraftigste generelle verdensmodell så langt, som løfter det fysiske presisjonsnivået i verdensmodeller vesentlig.",
         "learnMore": "Les mer",
+        "learnMoreHref": "/research",
         "tryCta": "RTS",
         "image": "/spectr-rts.png"
       },
@@ -39,6 +40,7 @@
         "name": "Metaphysics",
         "description": "Sanntids objektdeteksjon for komplekse fysiske miljøer — identifiserer kjøretøy, utstyr og aktivitet i industri- og feltoperasjoner.",
         "learnMore": "Les mer",
+        "learnMoreHref": "/contact",
         "tryCta": "Prøv Metaphysics",
         "image": "/spectr-detection.png"
       },
@@ -47,6 +49,7 @@
         "name": "Spectr LLM",
         "description": "En språkmodell bygget for resonnering, generering og dialog — designet for å jobbe sammen med Spectr verdensmodeller i reelle systemer.",
         "learnMore": "Les mer",
+        "learnMoreHref": "/contact",
         "tryCta": "Prøv Spectr LLM",
         "image": "/spectr-llm.png"
       }
@@ -63,28 +66,16 @@
     ],
     "cta": "Ta kontakt"
   },
-  "Research": {
-    "eyebrow": "Forskning",
-    "title": "Mot generelle verdensmodeller",
-    "intro": "Vi bygger kausale, multimodale systemer som lærer å simulere den fysiske verden. Her er det vi jobber med.",
-    "contactCta": "Ta kontakt",
-    "models": [
-      {
-        "category": "Verdensmodell",
-        "name": "Spectr RTS",
-        "description": "Vår kraftigste generelle verdensmodell så langt, som løfter det fysiske presisjonsnivået i verdensmodeller vesentlig."
-      },
-      {
-        "category": "Forskningsretning",
-        "name": "Multimodal interaksjon",
-        "description": "Vi beveger oss forbi systemer som kun lærer av visuell observasjon, mot modeller som lærer av rikere multimodal interaksjon med verden."
-      },
-      {
-        "category": "Forskningsretning",
-        "name": "Sanntidssimulering",
-        "description": "Langvarige, interaktive simuleringer som starter strømming umiddelbart og fortsetter i minutter, ikke sekunder."
-      }
-    ]
+  "SpectrRts": {
+    "title": "Spectr RTS",
+    "tagline": "En frontier embodied AI-stack.",
+    "paragraphs": [
+      "Spectr RTS er Spectrs embodied AI-stack — en frontiermodell bygget for å oppfatte, simulere og handle i den fysiske verden.",
+      "Den samler persepsjon, verdenssimulering og sanntidskontroll, slik at systemer kan lese live sensorstrømmer, forutsi hvordan scener utvikler seg, og fortsette å utføre når forholdene endrer seg.",
+      "RTS bygger en kausal modell av verden rundt seg: hva som er i scenen, hvordan objekter samhandler, og hva som skjer videre. Det gjør at maskiner kan operere på tvers av inspeksjon, logistikk, robotikk og feltarbeid — ikke i isolerte demoer, men i reelle miljøer.",
+      "Dette er tidlig frontier-arbeid. Spectr RTS utvikles i Norge for bruk i felt."
+    ],
+    "cta": "Ta kontakt"
   },
   "News": {
     "eyebrow": "Nyheter",

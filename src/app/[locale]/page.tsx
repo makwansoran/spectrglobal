@@ -26,6 +26,7 @@ type HomeModel = {
   name: string;
   description: string;
   learnMore: string;
+  learnMoreHref: string;
   tryCta: string;
   image: string;
 };
@@ -73,7 +74,7 @@ export default async function HomePage({ params }: HomePageProps) {
                   name={model.name}
                   description={model.description}
                   image={model.image}
-                  primary={{ label: model.learnMore, href: "/research" }}
+                  primary={{ label: model.learnMore, href: model.learnMoreHref }}
                   secondary={{
                     label: model.tryCta,
                     href: "/contact",
