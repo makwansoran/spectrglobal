@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
-import { ModelCard, type TryNeon } from "@/components/model-card";
+import { ModelCard } from "@/components/model-card";
 import { Link } from "@/i18n/navigation";
 import { buildPageMetadata, localizedPath } from "@/lib/metadata";
 
@@ -27,14 +27,8 @@ type HomeModel = {
   description: string;
   learnMore: string;
   learnMoreHref: string;
-  tryCta: string;
   image: string;
 };
-
-const TRY_STYLES: Array<{ neon: TryNeon; size?: "sm" | "md" }> = [
-  { neon: "yellow", size: "sm" },
-  { neon: "purple", size: "sm" },
-];
 
 export default async function HomePage({ params }: HomePageProps) {
   const { locale } = await params;
@@ -64,26 +58,17 @@ export default async function HomePage({ params }: HomePageProps) {
 
         <section id="models" className="scroll-mt-24 px-5 pb-16 sm:px-8">
           <div className="mx-auto grid max-w-6xl gap-4 sm:gap-5 md:grid-cols-2">
-            {models.map((model, index) => {
-              const tryStyle = TRY_STYLES[index] ?? { neon: "yellow" as const };
-              return (
-                <ModelCard
-                  key={model.name}
-                  category={model.category}
-                  name={model.name}
-                  description={model.description}
-                  image={model.image}
-                  primary={{ label: model.learnMore, href: model.learnMoreHref }}
-                  secondary={{
-                    label: model.tryCta,
-                    href: "/contact",
-                    neon: tryStyle.neon,
-                    size: tryStyle.size,
-                  }}
-                  priority={index === 0}
-                />
-              );
-            })}
+            {models.map((model, index) => (
+              <ModelCard
+                key={model.name}
+                category={model.category}
+                name={model.name}
+                description={model.description}
+                image={model.image}
+                primary={{ label: model.learnMore, href: model.learnMoreHref }}
+                priority={index === 0}
+              />
+            ))}
           </div>
         </section>
 
