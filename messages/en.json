@@ -43,15 +43,6 @@
         "learnMoreHref": "/contact",
         "tryCta": "Try Metaphysics",
         "image": "/spectr-detection.png"
-      },
-      {
-        "category": "Language Model",
-        "name": "Spectr LLM",
-        "description": "A language model built for reasoning, generation, and dialogue — designed to work alongside Spectr world models in real systems.",
-        "learnMore": "Learn More",
-        "learnMoreHref": "/contact",
-        "tryCta": "Try Spectr LLM",
-        "image": "/spectr-llm.png"
       }
     ]
   },

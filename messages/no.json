@@ -43,15 +43,6 @@
         "learnMoreHref": "/contact",
         "tryCta": "Prøv Metaphysics",
         "image": "/spectr-detection.png"
-      },
-      {
-        "category": "Språkmodell",
-        "name": "Spectr LLM",
-        "description": "En språkmodell bygget for resonnering, generering og dialog — designet for å jobbe sammen med Spectr verdensmodeller i reelle systemer.",
-        "learnMore": "Les mer",
-        "learnMoreHref": "/contact",
-        "tryCta": "Prøv Spectr LLM",
-        "image": "/spectr-llm.png"
       }
     ]
   },

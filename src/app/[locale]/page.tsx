@@ -34,7 +34,6 @@ type HomeModel = {
 const TRY_STYLES: Array<{ neon: TryNeon; size?: "sm" | "md" }> = [
   { neon: "yellow", size: "sm" },
   { neon: "purple", size: "sm" },
-  { neon: "green", size: "sm" },
 ];
 
 export default async function HomePage({ params }: HomePageProps) {
@@ -64,7 +63,7 @@ export default async function HomePage({ params }: HomePageProps) {
         </section>
 
         <section id="models" className="scroll-mt-24 px-5 pb-28 sm:px-8">
-          <div className="mx-auto grid max-w-7xl gap-4 sm:gap-5 lg:grid-cols-3">
+          <div className="mx-auto grid max-w-6xl gap-4 sm:gap-5 md:grid-cols-2">
             {models.map((model, index) => {
               const tryStyle = TRY_STYLES[index] ?? { neon: "yellow" as const };
               return (
