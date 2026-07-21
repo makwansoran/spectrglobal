@@ -25,7 +25,13 @@
   "Home": {
     "heroTitle": "Pionerer innen verdensmodeller",
     "ourModels": "Våre modeller",
-    "getInTouch": "Ta kontakt",
+    "getInTouch": "Spectr D1",
+    "modelsHeading": "Our Frontier Models",
+    "d1": {
+      "title": "Spectr D1",
+      "text": "Droid-1 er vår feltrobot — bygget for å kjøre Spectr verdensmodeller i reelle miljøer, der persepsjon og handling må holde utenfor laben.",
+      "image": "/spectr-d1.png"
+    },
     "models": [
       {
         "category": "Embodied AI",
@@ -59,7 +65,6 @@
     "cta": "Ta kontakt"
   },
   "SpectrRts": {
-    "eyebrow": "Embodied AI",
     "title": "Spectr RTS",
     "tagline": "En frontier embodied AI-stack bygget for å oppfatte, simulere og handle i den fysiske verden.",
     "learnMore": "Les mer",
@@ -176,7 +181,6 @@
     }
   },
   "SpectrObjectIntelligence": {
-    "eyebrow": "Persepsjon",
     "title": "Spectr Object Intelligence",
     "tagline": "Sanntids objektdeteksjon for komplekse fysiske miljøer — kjøretøy, utstyr og aktivitet i industri- og feltoperasjoner.",
     "learnMore": "Les mer",

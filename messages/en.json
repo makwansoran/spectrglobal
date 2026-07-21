@@ -25,7 +25,13 @@
   "Home": {
     "heroTitle": "Pioneering world models",
     "ourModels": "Our Models",
-    "getInTouch": "Get in Touch",
+    "getInTouch": "Spectr D1",
+    "modelsHeading": "Our Frontier Models",
+    "d1": {
+      "title": "Spectr D1",
+      "text": "Droid-1 is our field robot — built to run Spectr world models in real environments, where perception and action have to hold up outside the lab.",
+      "image": "/spectr-d1.png"
+    },
     "models": [
       {
         "category": "Embodied AI",
@@ -59,7 +65,6 @@
     "cta": "Get in Touch"
   },
   "SpectrRts": {
-    "eyebrow": "Embodied AI",
     "title": "Spectr RTS",
     "tagline": "A frontier embodied AI stack built to perceive, simulate, and act in the physical world.",
     "learnMore": "Learn More",
@@ -176,7 +181,6 @@
     }
   },
   "SpectrObjectIntelligence": {
-    "eyebrow": "Perception",
     "title": "Spectr Object Intelligence",
     "tagline": "Real-time object detection for complex physical environments — vehicles, equipment, and activity across industrial and field operations.",
     "learnMore": "Learn More",

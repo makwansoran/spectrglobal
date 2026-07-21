@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import { existsSync } from "node:fs";
+import path from "node:path";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
 import { ModelCard } from "@/components/model-card";
-import { Link } from "@/i18n/navigation";
 import { buildPageMetadata, localizedPath } from "@/lib/metadata";
 
 type HomePageProps = {
@@ -35,6 +37,8 @@ export default async function HomePage({ params }: HomePageProps) {
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "Home" });
   const models = t.raw("models") as HomeModel[];
+  const d1Image = t("d1.image");
+  const d1ImageExists = existsSync(path.join(process.cwd(), "public", d1Image.replace(/^\//, "")));
 
   return (
     <>
@@ -49,9 +53,31 @@ export default async function HomePage({ params }: HomePageProps) {
               <a href="#models" className="pill pill--primary">
                 {t("ourModels")}
               </a>
-              <Link href="/contact" className="pill pill--secondary">
+              <a href="#d1" className="pill pill--secondary">
                 {t("getInTouch")}
-              </Link>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section id="d1" className="relative scroll-mt-20 px-5 py-24 sm:px-8 lg:py-32">
+          <div className="mx-auto grid w-full max-w-6xl items-center gap-10 lg:grid-cols-2 lg:gap-16">
+            <div className="relative aspect-[4/5] w-full overflow-hidden border border-border bg-surface">
+              {d1ImageExists ? (
+                <Image
+                  src={d1Image}
+                  alt={t("d1.title")}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover object-center"
+                />
+              ) : null}
+            </div>
+            <div className="max-w-md">
+              <h2 className="brand-font text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">
+                {t("d1.title")}
+              </h2>
+              <p className="mt-6 text-base leading-8 text-muted sm:text-lg">{t("d1.text")}</p>
             </div>
           </div>
         </section>
@@ -60,18 +86,23 @@ export default async function HomePage({ params }: HomePageProps) {
           id="models"
           className="relative flex min-h-[100svh] scroll-mt-0 items-center px-5 py-24 sm:px-8"
         >
-          <div className="mx-auto w-full max-w-6xl grid gap-4 sm:gap-5 md:grid-cols-2">
-            {models.map((model, index) => (
-              <ModelCard
-                key={model.name}
-                category={model.category}
-                name={model.name}
-                description={model.description}
-                image={model.image}
-                primary={{ label: model.learnMore, href: model.learnMoreHref }}
-                priority={index === 0}
-              />
-            ))}
+          <div className="mx-auto w-full max-w-6xl">
+            <h2 className="brand-font mb-10 text-center text-3xl font-semibold tracking-[-0.04em] sm:mb-14 sm:text-4xl lg:text-5xl">
+              {t("modelsHeading")}
+            </h2>
+            <div className="grid gap-4 sm:gap-5 md:grid-cols-2">
+              {models.map((model, index) => (
+                <ModelCard
+                  key={model.name}
+                  category={model.category}
+                  name={model.name}
+                  description={model.description}
+                  image={model.image}
+                  primary={{ label: model.learnMore, href: model.learnMoreHref }}
+                  priority={index === 0}
+                />
+              ))}
+            </div>
           </div>
         </section>
       </main>

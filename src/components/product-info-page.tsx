@@ -22,7 +22,6 @@ type CtaBlock = {
 };
 
 export type ProductInfoContent = {
-  eyebrow: string;
   title: string;
   tagline: string;
   learnMore: string;
@@ -60,8 +59,7 @@ export function ProductInfoPage({ content }: { content: ProductInfoContent }) {
       <main id="main-content" className="flex-1">
         <section className="px-5 pb-12 pt-36 sm:px-8 lg:pb-16 lg:pt-44">
           <div className="mx-auto max-w-7xl">
-            <p className="label">{content.eyebrow}</p>
-            <h1 className="brand-font mt-5 max-w-4xl text-5xl font-semibold leading-[0.98] tracking-[-0.05em] sm:text-7xl lg:text-8xl">
+            <h1 className="brand-font max-w-4xl text-5xl font-semibold leading-[0.98] tracking-[-0.05em] sm:text-7xl lg:text-8xl">
               {content.title}
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-muted sm:text-xl">

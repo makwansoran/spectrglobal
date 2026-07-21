@@ -31,7 +31,6 @@ export default async function ObjectIntelligencePage({
   const t = await getTranslations({ locale, namespace: "SpectrObjectIntelligence" });
 
   const content: ProductInfoContent = {
-    eyebrow: t("eyebrow"),
     title: t("title"),
     tagline: t("tagline"),
     learnMore: t("learnMore"),

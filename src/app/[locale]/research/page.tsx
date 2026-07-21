@@ -27,7 +27,6 @@ export default async function SpectrRtsPage({ params }: SpectrRtsPageProps) {
   const t = await getTranslations({ locale, namespace: "SpectrRts" });
 
   const content: ProductInfoContent = {
-    eyebrow: t("eyebrow"),
     title: t("title"),
     tagline: t("tagline"),
     learnMore: t("learnMore"),
