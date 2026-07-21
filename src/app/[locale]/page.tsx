@@ -74,14 +74,6 @@ export default async function HomePage({ params }: HomePageProps) {
             ))}
           </div>
         </section>
-
-        <section className="relative flex min-h-[100svh] items-center justify-center px-5 sm:px-8">
-          <blockquote className="mx-auto max-w-3xl text-center">
-            <p className="brand-font text-2xl font-semibold leading-snug tracking-[-0.03em] text-fg sm:text-3xl lg:text-4xl">
-              {t("quote")}
-            </p>
-          </blockquote>
-        </section>
       </main>
       <Footer />
     </>
