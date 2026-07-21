@@ -49,7 +49,6 @@ export function ModelCard({
       />
 
       <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col gap-2.5 p-5 sm:p-6">
-        <span className="label text-white/55">{category}</span>
         <h3 className="brand-font text-2xl font-semibold tracking-[-0.04em] text-white sm:text-3xl">
           {name}
         </h3>

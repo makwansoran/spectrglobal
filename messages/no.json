@@ -37,11 +37,11 @@
       },
       {
         "category": "Persepsjon",
-        "name": "Metaphysics",
+        "name": "Spectr Object Intelligence",
         "description": "Sanntids objektdeteksjon for komplekse fysiske miljøer — identifiserer kjøretøy, utstyr og aktivitet i industri- og feltoperasjoner.",
         "learnMore": "Les mer",
         "learnMoreHref": "/contact",
-        "tryCta": "Prøv Metaphysics",
+        "tryCta": "Prøv",
         "image": "/spectr-detection.png"
       }
     ]

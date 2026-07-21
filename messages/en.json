@@ -37,11 +37,11 @@
       },
       {
         "category": "Perception",
-        "name": "Metaphysics",
+        "name": "Spectr Object Intelligence",
         "description": "Real-time object detection for complex physical environments — identifying vehicles, equipment, and activity across industrial and field operations.",
         "learnMore": "Learn More",
         "learnMoreHref": "/contact",
-        "tryCta": "Try Metaphysics",
+        "tryCta": "Try",
         "image": "/spectr-detection.png"
       }
     ]
