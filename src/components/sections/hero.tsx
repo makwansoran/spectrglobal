@@ -28,78 +28,7 @@ export function Hero() {
             {hero.note}
           </p>
         </div>
-
-        <div className="fade-up fade-up-5 mx-auto mt-20 max-w-5xl">
-          <HeroPanel />
-        </div>
       </div>
     </section>
-  );
-}
-
-const panelRows = [
-  { code: "A-14-03", task: "Putaway · 24 cartons", status: "Complete", tone: "done" },
-  { code: "B-07-11", task: "Pick wave · 186 lines", status: "Running", tone: "live" },
-  { code: "C-02-08", task: "Cycle count · zone C", status: "Running", tone: "live" },
-  { code: "D-11-02", task: "Slotting review · 42 SKUs", status: "Queued", tone: "idle" },
-];
-
-function HeroPanel() {
-  return (
-    <div className="card card-glow p-1.5">
-      <div className="rounded-[13px] bg-surface p-5 sm:p-7">
-        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border pb-5">
-          <div className="flex items-center gap-2.5">
-            <span className="pulse-dot h-2 w-2 rounded-full bg-emerald-500" aria-hidden="true" />
-            <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted">
-              Live floor
-            </span>
-          </div>
-          <div className="flex items-center gap-6">
-            <Metric label="Stock accuracy" value="99.4%" />
-            <Metric label="Open exceptions" value="3" />
-            <Metric label="Units active" value="12" />
-          </div>
-        </div>
-
-        <ul className="mt-2 divide-y divide-border">
-          {panelRows.map((row) => (
-            <li key={row.code} className="flex items-center justify-between gap-4 py-3.5">
-              <div className="flex min-w-0 items-center gap-4">
-                <span className="font-mono text-[11px] tracking-[0.1em] text-muted">{row.code}</span>
-                <span className="truncate text-sm text-fg/85">{row.task}</span>
-              </div>
-              <StatusPill status={row.status} tone={row.tone} />
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  );
-}
-
-function Metric({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="text-right">
-      <div className="brand-font text-base font-semibold tracking-tight text-fg">{value}</div>
-      <div className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">{label}</div>
-    </div>
-  );
-}
-
-function StatusPill({ status, tone }: { status: string; tone: string }) {
-  const styles =
-    tone === "done"
-      ? "border-emerald-600/25 bg-emerald-500/10 text-emerald-700"
-      : tone === "live"
-        ? "border-accent/30 bg-accent/10 text-accent"
-        : "border-border bg-surface-2 text-muted";
-
-  return (
-    <span
-      className={`shrink-0 rounded-full border px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.12em] ${styles}`}
-    >
-      {status}
-    </span>
   );
 }

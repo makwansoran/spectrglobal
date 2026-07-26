@@ -217,7 +217,7 @@ export const principles = [
 
 export const pricingSection = {
   title: "The software is free. The ambition is not small.",
-  subtitle: "One price for Spectr C2: nothing. Everything beyond it is a conversation about your operation.",
+  subtitle: "One plan. Everything included. Spectr C2 costs nothing — forever.",
 };
 
 export type Plan = {
@@ -238,9 +238,9 @@ export const plans: Plan[] = [
     price: "Free",
     period: "forever",
     description:
-      "The complete AI warehouse management system for enterprises, with no licence fee and no user cap.",
+      "The complete AI warehouse management system for enterprises — migration, self-hosting, integrations, governance, and Droid pilot access included. No licence fee. No user cap.",
     featured: true,
-    badge: "Most teams start here",
+    badge: "Everything included",
     cta: { label: "Get started free", href: "/contact" },
     featuresTitle: "Included",
     features: [
@@ -249,33 +249,13 @@ export const plans: Plan[] = [
       "AI slotting, forecasting and natural-language reporting",
       "Open REST API and webhooks",
       "EU-hosted, GDPR-aligned",
-    ],
-  },
-  {
-    name: "Enterprise deployment",
-    price: "Custom",
-    description:
-      "For sites that need migration support, self-hosting, integration work and a named team behind the rollout.",
-    cta: { label: "Talk to us", href: "/contact" },
-    featuresTitle: "Everything in free, plus",
-    features: [
       "Guided migration from your current WMS",
       "Self-hosted or private-cloud deployment",
       "Custom ERP, TMS and automation integrations",
       "SSO, audit logging and role governance",
       "Contracted SLA and named support",
-    ],
-  },
-  {
-    name: "Droid pilot",
-    price: "Partner",
-    description:
-      "A limited programme for operators who want Droid units on their floor early and will work with us on the hard parts.",
-    cta: { label: "Apply to pilot", href: "/contact" },
-    featuresTitle: "Programme includes",
-    features: [
-      "Site assessment and task selection",
-      "On-site deployment with our engineers",
+      "Droid site assessment and task selection",
+      "On-site Droid deployment with our engineers",
       "Direct input into the hardware roadmap",
       "Preferential terms at commercial release",
       "Joint publication rights on results",
@@ -291,7 +271,7 @@ export const faqs = [
   {
     question: "Is Spectr C2 actually free, or free for a while?",
     answer:
-      "Actually free. Enterprises can run Spectr C2 with unlimited users, locations and volume at no licence cost, with no expiry date. We charge for enterprise deployment work — migration, self-hosting, custom integrations, contracted support — and eventually for Droid. The software itself is not a revenue line.",
+      "Actually free. Enterprises can run Spectr C2 with unlimited users, locations and volume at no licence cost, with no expiry date. Migration, self-hosting, integrations, governance, support, and the Droid pilot programme are all included. There is nothing to upgrade into.",
   },
   {
     question: "Why would a robotics company give away warehouse software?",

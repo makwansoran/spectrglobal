@@ -12,12 +12,12 @@ export function Pricing() {
           subtitle={pricingSection.subtitle}
         />
 
-        <div className="mt-14 grid items-start gap-5 lg:grid-cols-3">
+        <div className="mx-auto mt-14 max-w-xl">
           {plans.map((plan, index) => (
             <Reveal key={plan.name} delay={index * 90}>
               <article
                 className={`card flex h-full flex-col p-8 ${
-                  plan.featured ? "border-accent/35 shadow-[0_0_60px_-20px_rgba(109,124,255,0.5)]" : ""
+                  plan.featured ? "border-accent/35 shadow-[0_0_60px_-20px_rgba(61,77,255,0.35)]" : ""
                 }`}
               >
                 <div className="flex items-start justify-between gap-4">

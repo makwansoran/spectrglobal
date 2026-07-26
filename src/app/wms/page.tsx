@@ -76,12 +76,12 @@ const faqs = [
   {
     question: "What is the catch?",
     answer:
-      "There is no licence fee and no usage cap. We charge for enterprise deployment work — migration, self-hosting, custom integrations and contracted support — and in future for Droid. If you never buy either of those, Spectr C2 still costs you nothing.",
+      "There is no licence fee and no usage cap. Migration, self-hosting, integrations, governance, support, and the Droid pilot programme are all included in Spectr C2 free. There is nothing to upgrade into.",
   },
   {
     question: "Can we self-host it?",
     answer:
-      "Yes. Self-hosted and private-cloud deployments are supported. The deployment work itself is a paid engagement, but the software licence remains free.",
+      "Yes. Self-hosted and private-cloud deployments are included in the free Spectr C2 tier.",
   },
   {
     question: "How does migration from our current WMS work?",
