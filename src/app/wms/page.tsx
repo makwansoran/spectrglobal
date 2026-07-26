@@ -8,10 +8,10 @@ import { SectionHeading } from "@/components/section-heading";
 import { buildPageMetadata } from "@/lib/metadata";
 
 const intro =
-  "Spectr WMS is a complete, AI-native warehouse management system. Enterprises run it with unlimited users, locations and volume at no licence cost — permanently.";
+  "Spectr C2 is a complete, AI-native warehouse management system. Enterprises run it with unlimited users, locations and volume at no licence cost — permanently.";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Spectr WMS — free for enterprises",
+  title: "Spectr C2 — free for enterprises",
   description: intro,
   path: "/wms",
 });
@@ -65,7 +65,7 @@ const whyFree = [
     points: [
       "Real operations running real software",
       "Ground truth on how warehouses actually behave",
-      "The data foundation our robots are trained on",
+      "The data foundation Droid is trained on",
       "Partners who know their floor better than we do",
       "A shot at the hardest problem in robotics",
     ],
@@ -76,7 +76,7 @@ const faqs = [
   {
     question: "What is the catch?",
     answer:
-      "There is no licence fee and no usage cap. We charge for enterprise deployment work — migration, self-hosting, custom integrations and contracted support — and in future for robots. If you never buy either of those, the software still costs you nothing.",
+      "There is no licence fee and no usage cap. We charge for enterprise deployment work — migration, self-hosting, custom integrations and contracted support — and in future for Droid. If you never buy either of those, Spectr C2 still costs you nothing.",
   },
   {
     question: "Can we self-host it?",
@@ -110,7 +110,7 @@ export default function WmsPage() {
               <ArrowIcon />
             </Button>
             <Button href="/robotics" size="lg">
-              See where this leads
+              See Droid
             </Button>
           </div>
         </PageHeader>
@@ -192,11 +192,11 @@ export default function WmsPage() {
                   There is no procurement cycle for free.
                 </h2>
                 <p className="mx-auto mt-6 max-w-xl text-sm leading-7 text-muted">
-                  Send us the shape of your operation and we will show you Spectr WMS running on your
+                  Send us the shape of your operation and we will show you Spectr C2 running on your
                   own data. If it does not fit, we will tell you that too.
                 </p>
                 <Button href="/contact" size="lg" className="mt-9">
-                  Get the free WMS
+                  Get Spectr C2 free
                   <ArrowIcon />
                 </Button>
               </div>

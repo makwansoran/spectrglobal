@@ -1,9 +1,9 @@
 export const hero = {
   title: "Robots that work the floor. Software that runs it.",
   subtitle:
-    "Spectr is building general-purpose humanoid robots for warehouses and industrial sites. The AI warehouse management system that trains them is free for enterprises — today, and permanently.",
-  primaryCta: { label: "Get the free WMS", href: "/contact" },
-  secondaryCta: { label: "See the robotics program", href: "/robotics" },
+    "Spectr is building Droid, a general-purpose humanoid for warehouses and industrial sites. Spectr C2 — the AI warehouse management system that trains it — is free for enterprises, today and permanently.",
+  primaryCta: { label: "Get Spectr C2 free", href: "/contact" },
+  secondaryCta: { label: "See Droid", href: "/robotics" },
   note: "No licence fee. No seat count. No expiry.",
 };
 
@@ -31,12 +31,12 @@ export type Feature = {
 
 export const features: Feature[] = [
   {
-    id: "spectr-one",
-    tab: "Spectr One",
+    id: "droid",
+    tab: "Droid",
     kicker: "The robot",
     title: "A humanoid built for floors that already exist.",
     description:
-      "Most automation asks you to rebuild the building around it. Spectr One is designed for the aisles, racking, totes and doorways you already have — bipedal, tool-agnostic, and able to work a shift alongside people.",
+      "Most automation asks you to rebuild the building around it. Droid is designed for the aisles, racking, totes and doorways you already have — bipedal, tool-agnostic, and able to work a shift alongside people.",
     bullets: [
       "Human-scale reach and footprint, so no re-racking or fixed conveyors",
       "Two-handed manipulation for picking, totes, cartons and irregular items",
@@ -50,7 +50,7 @@ export const features: Feature[] = [
     kicker: "The intelligence",
     title: "One model of your operation, shared by every unit.",
     description:
-      "Spectr Mind is the world model behind the fleet. It learns the layout, the inventory, the exceptions and the habits of a specific site, then transfers what it learns to every robot and every recommendation the WMS makes.",
+      "Spectr Mind is the world model behind the fleet. It learns the layout, the inventory, the exceptions and the habits of a specific site, then transfers what it learns to every Droid and every recommendation Spectr C2 makes.",
     bullets: [
       "Learns site-specific layout, SKUs and edge cases from day one",
       "Turns warehouse telemetry into training signal for manipulation",
@@ -59,12 +59,12 @@ export const features: Feature[] = [
     ],
   },
   {
-    id: "spectr-wms",
-    tab: "Spectr WMS",
+    id: "spectr-c2",
+    tab: "Spectr C2",
     kicker: "The free system",
     title: "A complete AI warehouse management system, at no cost.",
     description:
-      "Inbound, putaway, slotting, picking, packing, dispatch and stock accuracy — the full loop, AI-native from the ground up. We give it away because a well-instrumented warehouse is what makes useful robots possible.",
+      "Inbound, putaway, slotting, picking, packing, dispatch and stock accuracy — the full loop, AI-native from the ground up. We give Spectr C2 away because a well-instrumented warehouse is what makes useful robots possible.",
     bullets: [
       "Full WMS feature set with no paid tier gating the essentials",
       "Natural-language querying and reporting over live stock data",
@@ -77,7 +77,7 @@ export const features: Feature[] = [
 export const featuresSection = {
   title: "One stack, from the shelf to the hand.",
   subtitle:
-    "The software runs your warehouse today. The same intelligence drives the hardware when you are ready for it.",
+    "Spectr C2 runs your warehouse today. The same intelligence drives Droid when you are ready for it.",
 };
 
 export type UseCase = {
@@ -88,7 +88,7 @@ export type UseCase = {
 
 export const useCasesSection = {
   title: "Every operation where goods have to move.",
-  subtitle: "Start with the software. Add embodiment where the labour is hardest to fill.",
+  subtitle: "Start with Spectr C2. Add Droid where the labour is hardest to fill.",
 };
 
 export const useCases: UseCase[] = [
@@ -107,7 +107,7 @@ export const useCases: UseCase[] = [
   {
     title: "Manufacturing & parts",
     description:
-      "Keep line-side inventory correct, feed kitting and assembly on time, and put humanoid units on the repetitive transfer work first.",
+      "Keep line-side inventory correct, feed kitting and assembly on time, and put Droid units on the repetitive transfer work first.",
     points: ["Line-side supply", "Kitting", "Robot-assisted transfer"],
   },
 ];
@@ -115,14 +115,14 @@ export const useCases: UseCase[] = [
 export const benefitsSection = {
   title: "Serious capability. No licence conversation.",
   subtitle:
-    "We are a robotics company that happens to give away excellent warehouse software. That shapes every decision below.",
+    "We build Droid, and we give away Spectr C2. That shapes every decision below.",
 };
 
 export const benefits = [
   {
     title: "Genuinely free",
     description:
-      "The WMS costs nothing for enterprises. Not a trial, not a capped tier — the working system, indefinitely.",
+      "Spectr C2 costs nothing for enterprises. Not a trial, not a capped tier — the working system, indefinitely.",
   },
   {
     title: "Built for real floors",
@@ -135,9 +135,9 @@ export const benefits = [
       "Every scan, exception and correction improves the model of your specific site rather than a generic average.",
   },
   {
-    title: "Robot-ready from day one",
+    title: "Droid-ready from day one",
     description:
-      "The data model already describes the world the way a robot needs it, so adding hardware is a deployment, not a migration.",
+      "The data model already describes the world the way Droid needs it, so adding hardware is a deployment, not a migration.",
   },
   {
     title: "Open and API-first",
@@ -164,15 +164,15 @@ export const howItWorks = [
   },
   {
     step: "02",
-    title: "Run the WMS free",
+    title: "Run Spectr C2 free",
     description:
-      "Your team works the floor on Spectr WMS. Accuracy climbs, exceptions get logged properly, and the model starts learning the site.",
+      "Your team works the floor on Spectr C2. Accuracy climbs, exceptions get logged properly, and the model starts learning the site.",
   },
   {
     step: "03",
-    title: "Add robots when ready",
+    title: "Add Droid when ready",
     description:
-      "When a task is well understood by the system, a Spectr unit can take it. You choose the pace, task by task, aisle by aisle.",
+      "When a task is well understood by the system, a Droid unit can take it. You choose the pace, task by task, aisle by aisle.",
   },
 ];
 
@@ -186,17 +186,17 @@ export const principles = [
   {
     quote:
       "The bottleneck in humanoid robotics is not actuators or compute. It is not having a truthful, continuously updated model of a real working environment.",
-    attribution: "On why the WMS comes first",
+    attribution: "On why Spectr C2 comes first",
   },
   {
     quote:
       "Software that charges per seat gets deployed to the fewest possible seats. That is exactly the wrong incentive when you need coverage of the whole floor.",
-    attribution: "On pricing the WMS at zero",
+    attribution: "On pricing Spectr C2 at zero",
   },
   {
     quote:
       "A robot that requires you to rebuild your warehouse has moved the cost, not removed it. Human-shaped spaces call for human-shaped machines.",
-    attribution: "On the humanoid form factor",
+    attribution: "On the Droid form factor",
   },
   {
     quote:
@@ -217,7 +217,7 @@ export const principles = [
 
 export const pricingSection = {
   title: "The software is free. The ambition is not small.",
-  subtitle: "One price for the WMS: nothing. Everything beyond it is a conversation about your operation.",
+  subtitle: "One price for Spectr C2: nothing. Everything beyond it is a conversation about your operation.",
 };
 
 export type Plan = {
@@ -234,7 +234,7 @@ export type Plan = {
 
 export const plans: Plan[] = [
   {
-    name: "Spectr WMS",
+    name: "Spectr C2",
     price: "Free",
     period: "forever",
     description:
@@ -267,10 +267,10 @@ export const plans: Plan[] = [
     ],
   },
   {
-    name: "Robotics pilot",
+    name: "Droid pilot",
     price: "Partner",
     description:
-      "A limited programme for operators who want Spectr units on their floor early and will work with us on the hard parts.",
+      "A limited programme for operators who want Droid units on their floor early and will work with us on the hard parts.",
     cta: { label: "Apply to pilot", href: "/contact" },
     featuresTitle: "Programme includes",
     features: [
@@ -289,14 +289,14 @@ export const faqSection = {
 
 export const faqs = [
   {
-    question: "Is the WMS actually free, or free for a while?",
+    question: "Is Spectr C2 actually free, or free for a while?",
     answer:
-      "Actually free. Enterprises can run Spectr WMS with unlimited users, locations and volume at no licence cost, with no expiry date. We charge for enterprise deployment work — migration, self-hosting, custom integrations, contracted support — and eventually for robots. The software itself is not a revenue line.",
+      "Actually free. Enterprises can run Spectr C2 with unlimited users, locations and volume at no licence cost, with no expiry date. We charge for enterprise deployment work — migration, self-hosting, custom integrations, contracted support — and eventually for Droid. The software itself is not a revenue line.",
   },
   {
     question: "Why would a robotics company give away warehouse software?",
     answer:
-      "Because useful humanoid robots need an accurate, continuously updated model of a real working environment, and that is precisely what a WMS produces. Every warehouse running Spectr WMS makes the robots better. The exchange is honest: you get a serious system for free, we get to build toward embodiment on real operational ground.",
+      "Because useful humanoid robots need an accurate, continuously updated model of a real working environment, and that is precisely what Spectr C2 produces. Every warehouse running it makes Droid better. The exchange is honest: you get a serious system for free, we get to build toward embodiment on real operational ground.",
   },
   {
     question: "What happens to our data?",
@@ -304,17 +304,17 @@ export const faqs = [
       "Your operational data stays yours. It is hosted in the EU or in your own environment, governed under GDPR, and never sold or shared with third parties. Where we use aggregate patterns to improve our models, it is covered explicitly in the agreement and you can decline without losing any functionality.",
   },
   {
-    question: "Do we have to take the robots to use the WMS?",
+    question: "Do we have to take Droid to use Spectr C2?",
     answer:
-      "No. The WMS is a complete product on its own and many customers will never deploy a robot. There is no bundling requirement and no pressure to move to hardware.",
+      "No. Spectr C2 is a complete product on its own and many customers will never deploy a robot. There is no bundling requirement and no pressure to move to hardware.",
   },
   {
-    question: "When will the humanoid robots be available?",
+    question: "When will Droid be available?",
     answer:
       "We are in active development and running a limited pilot programme with partner sites rather than taking general orders. If you operate a warehouse or industrial floor and want to be part of early deployment, apply to the pilot and we will talk about whether your site is a fit.",
   },
   {
-    question: "How long does it take to get the WMS running?",
+    question: "How long does it take to get Spectr C2 running?",
     answer:
       "A single-site operation with clean master data can be live in days. Complex multi-site rollouts with ERP integration and historical migration typically run a few weeks. We scope it honestly before you commit anything.",
   },
@@ -326,9 +326,9 @@ export const faqs = [
 ];
 
 export const closingCta = {
-  title: "Start with free software. Finish with a robot on the floor.",
+  title: "Start with Spectr C2. Finish with Droid on the floor.",
   subtitle:
-    "Tell us about your operation and we will show you what Spectr WMS looks like running on your data — at no cost, with no procurement cycle.",
-  primary: { label: "Get the free WMS", href: "/contact" },
-  secondary: { label: "Explore robotics", href: "/robotics" },
+    "Tell us about your operation and we will show you what Spectr C2 looks like running on your data — at no cost, with no procurement cycle.",
+  primary: { label: "Get Spectr C2 free", href: "/contact" },
+  secondary: { label: "Explore Droid", href: "/robotics" },
 };

@@ -52,7 +52,7 @@ export function Nav() {
 
         <div className="hidden items-center gap-2 md:flex">
           <Button href="/contact" className="btn-on-dark">
-            Get the free WMS
+            Get Spectr C2
           </Button>
         </div>
 
@@ -92,7 +92,7 @@ export function Nav() {
               </Link>
             ))}
             <Button href="/contact" className="btn-on-dark mt-3 w-full">
-              Get the free WMS
+              Get Spectr C2
             </Button>
           </nav>
         </div>

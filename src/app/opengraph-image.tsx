@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "Spectr — humanoid robotics and a free AI WMS";
+export const alt = "Spectr — Droid and Spectr C2";
 
 export default function OpenGraphImage() {
   return new ImageResponse(
@@ -53,7 +53,7 @@ export default function OpenGraphImage() {
             Robots that work the floor. Software that runs it.
           </div>
           <div style={{ marginTop: "30px", fontSize: "26px", color: "rgba(10,10,11,0.5)" }}>
-            Humanoid robotics · A free AI WMS for enterprises · Norway
+            Droid · Spectr C2 · Norway
           </div>
         </div>
       </div>

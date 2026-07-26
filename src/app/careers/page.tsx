@@ -7,7 +7,7 @@ import { Reveal } from "@/components/reveal";
 import { buildPageMetadata } from "@/lib/metadata";
 
 const intro =
-  "We are a small team in Norway working on humanoid robotics and the software layer underneath it. We hire slowly, for people who want to stay with a hard problem for years rather than quarters.";
+  "We are a small team in Norway working on Droid and Spectr C2. We hire slowly, for people who want to stay with a hard problem for years rather than quarters.";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Careers",
@@ -31,10 +31,10 @@ const values = [
 ];
 
 const areas = [
-  "Robotics — manipulation, control, perception",
+  "Droid — manipulation, control, perception",
   "Machine learning — world models, imitation learning",
   "Backend — distributed systems, real-time data",
-  "Product engineering — full-stack, operator tooling",
+  "Product engineering — full-stack, Spectr C2 tooling",
   "Deployment — on-site integration and field engineering",
 ];
 

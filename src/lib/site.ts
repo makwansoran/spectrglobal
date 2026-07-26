@@ -7,9 +7,9 @@ export const site = {
   phone: "+47 465 03 934",
   phoneHref: "tel:+4746503934",
   location: "Norway",
-  tagline: "Humanoid robots for the physical economy, and the AI warehouse system that gets you there.",
+  tagline: "Droid for the physical economy, and Spectr C2 — the free AI warehouse system that gets you there.",
   description:
-    "Spectr builds general-purpose humanoid robots for warehouses and industrial floors, and gives enterprises a free AI-native warehouse management system today.",
+    "Spectr builds Droid, a general-purpose humanoid for warehouses and industrial floors, and gives enterprises Spectr C2 — a free AI-native warehouse management system.",
   social: {
     x: "https://x.com/spectrnorway",
     linkedin: "https://www.linkedin.com/company/spectr-norway/",
@@ -19,8 +19,8 @@ export const site = {
 } as const;
 
 export const navLinks = [
-  { label: "Robotics", href: "/robotics" },
-  { label: "Free WMS", href: "/wms" },
+  { label: "Droid", href: "/robotics" },
+  { label: "Spectr C2", href: "/wms" },
   { label: "Company", href: "/about" },
   { label: "News", href: "/news" },
 ] as const;
@@ -29,8 +29,8 @@ export const footerColumns = [
   {
     title: "Platform",
     links: [
-      { label: "Humanoid robotics", href: "/robotics" },
-      { label: "Spectr WMS", href: "/wms" },
+      { label: "Droid", href: "/robotics" },
+      { label: "Spectr C2", href: "/wms" },
       { label: "How it works", href: "/#how-it-works" },
       { label: "Pricing", href: "/#pricing" },
     ],

@@ -8,10 +8,10 @@ import { SectionHeading } from "@/components/section-heading";
 import { buildPageMetadata } from "@/lib/metadata";
 
 const intro =
-  "Spectr One is a general-purpose humanoid designed for warehouses and industrial floors as they are built today — no re-racking, no fixed conveyors, no dedicated cage.";
+  "Droid is a general-purpose humanoid designed for warehouses and industrial floors as they are built today — no re-racking, no fixed conveyors, no dedicated cage.";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Humanoid robotics",
+  title: "Droid",
   description: intro,
   path: "/robotics",
 });
@@ -30,12 +30,12 @@ const capabilities = [
   {
     title: "Perception",
     description:
-      "Onboard sensing fused with the live warehouse model, so the robot knows what should be in a location as well as what it can see there — and flags the difference.",
+      "Onboard sensing fused with the live warehouse model, so Droid knows what should be in a location as well as what it can see there — and flags the difference.",
   },
   {
     title: "Safety",
     description:
-      "Continuous awareness of people in the workspace, with conservative behaviour by default. Every action is logged in the WMS and legible to a supervisor.",
+      "Continuous awareness of people in the workspace, with conservative behaviour by default. Every action is logged in Spectr C2 and legible to a supervisor.",
   },
 ];
 
@@ -44,13 +44,13 @@ const approach = [
     step: "01",
     title: "The software comes first",
     description:
-      "Before a robot arrives, the site is already running Spectr WMS. The system knows the layout, the SKUs, the exceptions and the rhythm of the operation.",
+      "Before a robot arrives, the site is already running Spectr C2. The system knows the layout, the SKUs, the exceptions and the rhythm of the operation.",
   },
   {
     step: "02",
     title: "Tasks transfer, not jobs",
     description:
-      "We do not replace a role. We identify a specific task the system already understands well and hand that one task to a unit, under supervision.",
+      "We do not replace a role. We identify a specific task the system already understands well and hand that one task to a Droid unit, under supervision.",
   },
   {
     step: "03",
@@ -76,7 +76,7 @@ export default function RoboticsPage() {
               <ArrowIcon />
             </Button>
             <Button href="/wms" size="lg">
-              Start with the free WMS
+              Start with Spectr C2
             </Button>
           </div>
         </PageHeader>
@@ -135,7 +135,7 @@ export default function RoboticsPage() {
                 </h2>
                 <p className="mx-auto mt-6 max-w-xl text-sm leading-7 text-muted">
                   The programme is small and deliberately hands-on. If you run a warehouse or
-                  industrial floor and want Spectr units on it early, tell us about the site and the
+                  industrial floor and want Droid units on it early, tell us about the site and the
                   task you would hand over first.
                 </p>
                 <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">

@@ -51,9 +51,9 @@ export function ContactForm() {
           <option value="" disabled>
             Select a topic
           </option>
-          <option value="Free WMS">Getting the free WMS</option>
+          <option value="Spectr C2">Getting Spectr C2</option>
           <option value="Enterprise deployment">Enterprise deployment</option>
-          <option value="Robotics pilot">Robotics pilot programme</option>
+          <option value="Droid pilot">Droid pilot programme</option>
           <option value="Partnership">Partnership</option>
           <option value="Press">Press</option>
           <option value="General">Something else</option>
