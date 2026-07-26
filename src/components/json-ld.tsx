@@ -1,31 +1,26 @@
+import { site } from "@/lib/site";
+
 export function OrganizationJsonLd() {
   const data = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "Spectr",
-    legalName: "spectr as",
-    url: "https://www.spectr.no",
-    logo: "https://www.spectr.no/spectr-logo.png",
-    email: "makwan@spectr.no",
-    telephone: "+4746503934",
-    taxID: "936961967",
+    name: site.name,
+    legalName: site.legalName,
+    url: site.url,
+    logo: `${site.url}/spectr-logo.png`,
+    description: site.description,
+    email: site.email,
+    telephone: site.phone.replace(/\s/g, ""),
+    taxID: site.orgNumber.replace(/\s/g, ""),
     address: {
       "@type": "PostalAddress",
       addressCountry: "NO",
-      addressLocality: "Norway",
+      addressLocality: site.location,
     },
-    sameAs: [
-      "https://x.com/spectrnorway",
-      "https://www.linkedin.com/company/spectr-norway/",
-      "https://www.instagram.com/spectr.no/",
-      "https://www.youtube.com/@SpectrNorway",
-    ],
+    sameAs: Object.values(site.social),
   };
 
   return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
-    />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />
   );
 }

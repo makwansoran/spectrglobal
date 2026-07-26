@@ -1,90 +1,111 @@
 "use client";
 
-import { useActionState, useState } from "react";
-import { useTranslations } from "next-intl";
-import { BevelButton } from "@/components/bevel-button";
+import { useActionState } from "react";
+import { Button } from "@/components/button";
 import { submitContactForm, type ContactFormState } from "@/app/actions/contact";
 
 const initialState: ContactFormState = { ok: false };
 
-export function ContactForm() {
-  const t = useTranslations("Contact");
-  const [state, formAction, pending] = useActionState(submitContactForm, initialState);
-  const [message, setMessage] = useState("");
+const errorMessages: Record<string, string> = {
+  name: "Please tell us your name.",
+  email: "Please enter a valid email address.",
+  product: "Please choose what this is about.",
+  message: "Please add a short message.",
+  generic: "Something went wrong sending that. Email makwan@spectr.no and we will pick it up.",
+};
 
-  const errorMessage = state.error
-    ? ({
-        name: t("errorName"),
-        email: t("errorEmail"),
-        product: t("errorProduct"),
-        message: t("errorMessage"),
-        generic: t("errorGeneric"),
-      }[state.error] ?? t("errorGeneric"))
-    : null;
+export function ContactForm() {
+  const [state, formAction, pending] = useActionState(submitContactForm, initialState);
 
   return (
     <form action={formAction} className="space-y-6">
-      <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
-
-      <Field label={t("name")}>
-        <input name="name" type="text" required autoComplete="name" />
-      </Field>
-
-      <Field label={t("organization")}>
-        <input name="organization" type="text" autoComplete="organization" />
-      </Field>
+      <input
+        type="text"
+        name="website"
+        tabIndex={-1}
+        autoComplete="off"
+        className="hidden"
+        aria-hidden="true"
+      />
 
       <div className="grid gap-6 sm:grid-cols-2">
-        <Field label={t("email")}>
-          <input name="email" type="email" required autoComplete="email" />
+        <Field label="Name" htmlFor="name">
+          <input id="name" name="name" type="text" required autoComplete="name" />
         </Field>
-        <Field label={t("phone")}>
-          <input name="phone" type="tel" autoComplete="tel" />
+        <Field label="Company" htmlFor="organization">
+          <input id="organization" name="organization" type="text" autoComplete="organization" />
         </Field>
       </div>
 
-      <Field label={t("product")}>
-        <select name="product" required defaultValue="">
+      <div className="grid gap-6 sm:grid-cols-2">
+        <Field label="Email" htmlFor="email">
+          <input id="email" name="email" type="email" required autoComplete="email" />
+        </Field>
+        <Field label="Phone" htmlFor="phone">
+          <input id="phone" name="phone" type="tel" autoComplete="tel" />
+        </Field>
+      </div>
+
+      <Field label="What is this about?" htmlFor="product">
+        <select id="product" name="product" required defaultValue="">
           <option value="" disabled>
-            {t("selectProduct")}
+            Select a topic
           </option>
-          <option value="general">{t("general")}</option>
-          <option value="Spectr RTS">Spectr RTS</option>
-          <option value="Spectr Object Intelligence">Spectr Object Intelligence</option>
-          <option value="Partnership">{t("partnership")}</option>
+          <option value="Free WMS">Getting the free WMS</option>
+          <option value="Enterprise deployment">Enterprise deployment</option>
+          <option value="Robotics pilot">Robotics pilot programme</option>
+          <option value="Partnership">Partnership</option>
+          <option value="Press">Press</option>
+          <option value="General">Something else</option>
         </select>
       </Field>
 
-      <Field label={t("message")}>
-        <textarea name="message" required rows={6} value={message} onChange={(event) => setMessage(event.target.value)} />
+      <Field label="Message" htmlFor="message">
+        <textarea
+          id="message"
+          name="message"
+          required
+          rows={6}
+          placeholder="Tell us about your operation — sites, order volume, what you run today."
+        />
       </Field>
 
       {state.ok ? (
-        <p role="status" className="text-sm text-fg">
-          {t("success")}
+        <p role="status" className="rounded-xl border border-emerald-400/25 bg-emerald-400/10 px-4 py-3 text-sm text-emerald-300">
+          Thanks — that is with us. We reply to everything within one working day.
         </p>
       ) : null}
 
-      {errorMessage ? (
-        <p role="alert" className="text-sm text-red-700">
-          {errorMessage}
+      {state.error ? (
+        <p role="alert" className="rounded-xl border border-red-400/25 bg-red-400/10 px-4 py-3 text-sm text-red-300">
+          {errorMessages[state.error] ?? errorMessages.generic}
         </p>
       ) : null}
 
-      <BevelButton type="submit" size="form" disabled={pending}>
-        {pending ? t("submitting") : t("submit")}
-      </BevelButton>
+      <Button type="submit" size="lg" disabled={pending}>
+        {pending ? "Sending…" : "Send message"}
+      </Button>
     </form>
   );
 }
 
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
+function Field({
+  label,
+  htmlFor,
+  children,
+}: {
+  label: string;
+  htmlFor: string;
+  children: React.ReactNode;
+}) {
   return (
-    <label className="block">
-      <span className="label block">{label}</span>
-      <div className="mt-3 [&_input]:w-full [&_input]:border [&_input]:border-border [&_input]:bg-bg [&_input]:px-4 [&_input]:py-3 [&_input]:text-base [&_input]:outline-none [&_input]:focus:border-fg [&_select]:w-full [&_select]:appearance-none [&_select]:border [&_select]:border-border [&_select]:bg-bg [&_select]:px-4 [&_select]:py-3 [&_select]:text-base [&_select]:outline-none [&_select]:focus:border-fg [&_textarea]:w-full [&_textarea]:resize-none [&_textarea]:border [&_textarea]:border-border [&_textarea]:bg-bg [&_textarea]:px-4 [&_textarea]:py-3 [&_textarea]:text-base [&_textarea]:outline-none [&_textarea]:focus:border-fg">
+    <div>
+      <label htmlFor={htmlFor} className="label">
+        {label}
+      </label>
+      <div className="mt-3 [&_input]:w-full [&_input]:rounded-xl [&_input]:border [&_input]:border-border [&_input]:bg-white/[0.03] [&_input]:px-4 [&_input]:py-3 [&_input]:text-[15px] [&_input]:outline-none [&_input]:focus:border-accent [&_select]:w-full [&_select]:appearance-none [&_select]:rounded-xl [&_select]:border [&_select]:border-border [&_select]:bg-white/[0.03] [&_select]:px-4 [&_select]:py-3 [&_select]:text-[15px] [&_select]:outline-none [&_select]:focus:border-accent [&_textarea]:w-full [&_textarea]:resize-none [&_textarea]:rounded-xl [&_textarea]:border [&_textarea]:border-border [&_textarea]:bg-white/[0.03] [&_textarea]:px-4 [&_textarea]:py-3 [&_textarea]:text-[15px] [&_textarea]:outline-none [&_textarea]:focus:border-accent">
         {children}
       </div>
-    </label>
+    </div>
   );
 }

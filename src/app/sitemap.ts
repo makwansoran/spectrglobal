@@ -1,38 +1,15 @@
 import type { MetadataRoute } from "next";
-import { routing } from "@/i18n/routing";
+import { site } from "@/lib/site";
 
-const baseUrl = "https://www.spectr.no";
-
-const staticPaths = [
-  "",
-  "/about",
-  "/research",
-  "/object-intelligence",
-  "/news",
-  "/careers",
-  "/contact",
-  "/privacy",
-  "/terms",
-];
-
-function localizedUrl(locale: string, path: string) {
-  if (locale === routing.defaultLocale) {
-    return `${baseUrl}${path}`;
-  }
-  return `${baseUrl}/${locale}${path}`;
-}
+const paths = ["", "/robotics", "/wms", "/about", "/careers", "/news", "/contact", "/privacy", "/terms"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const entries: MetadataRoute.Sitemap = [];
+  const lastModified = new Date();
 
-  for (const locale of routing.locales) {
-    for (const path of staticPaths) {
-      entries.push({
-        url: localizedUrl(locale, path),
-        lastModified: new Date(),
-      });
-    }
-  }
-
-  return entries;
+  return paths.map((path) => ({
+    url: `${site.url}${path}`,
+    lastModified,
+    changeFrequency: path === "" ? "weekly" : "monthly",
+    priority: path === "" ? 1 : 0.7,
+  }));
 }

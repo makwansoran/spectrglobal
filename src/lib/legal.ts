@@ -1,4 +1,3 @@
-import type { Locale } from "@/i18n/routing";
 import { pick, type Localized } from "@/lib/locale";
 
 export type LegalSection = {
@@ -295,6 +294,6 @@ export const cookieSections: LegalSection[] = [
   },
 ];
 
-export function pickLegalField<T>(value: Localized<T>, locale: Locale): T {
-  return pick(value, locale);
+export function pickLegalField<T>(value: Localized<T>): T {
+  return pick(value);
 }

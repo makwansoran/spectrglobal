@@ -1,20 +1,19 @@
 "use client";
 
-import Image from "next/image";
-import { useTranslations } from "next-intl";
-import { BevelButton } from "@/components/bevel-button";
-import { Link } from "@/i18n/navigation";
-import { useEffect, useState } from "react";
+import Link from "next/link";
+import { useState } from "react";
+import { Button } from "@/components/button";
+import { LogoMark } from "@/components/logo";
 
 const STORAGE_KEY = "spectr-cookie-consent";
 
 export function CookieConsent() {
-  const t = useTranslations("CookieConsent");
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    setVisible(!window.localStorage.getItem(STORAGE_KEY));
-  }, []);
+  // This component is loaded with `ssr: false`, so reading storage during
+  // initialisation is safe and avoids a flash of the banner for users who
+  // have already answered.
+  const [visible, setVisible] = useState(
+    () => typeof window !== "undefined" && !window.localStorage.getItem(STORAGE_KEY),
+  );
 
   function saveConsent(value: "accepted" | "essential") {
     window.localStorage.setItem(
@@ -27,27 +26,32 @@ export function CookieConsent() {
   if (!visible) return null;
 
   return (
-    <div className="fixed inset-0 z-[80] flex items-center justify-center bg-black/60 px-4 py-6 sm:px-6">
-      <section className="brand-font w-full max-w-2xl border border-border bg-surface p-6 text-center text-fg shadow-2xl shadow-black/40 sm:p-8">
-        <div className="flex flex-col items-center">
-          <Image src="/spectr-logo.png" alt="Spectr" width={44} height={44} className="h-11 w-auto invert" />
-          <p className="mt-5 text-xs font-semibold uppercase tracking-[0.16em] text-muted">{t("label")}</p>
-          <h2 className="mt-3 text-2xl font-semibold tracking-[-0.045em] sm:text-3xl">{t("title")}</h2>
-          <p className="mt-4 max-w-xl text-sm leading-7 text-muted">
-            {t("description")}{" "}
-            <Link href="/privacy" className="text-fg underline underline-offset-4">
-              {t("privacyLink")}
-            </Link>
-            .
-          </p>
-        </div>
-        <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
-          <BevelButton type="button" variant="secondary" className="justify-center" onClick={() => saveConsent("essential")}>
-            {t("essential")}
-          </BevelButton>
-          <BevelButton type="button" className="justify-center" onClick={() => saveConsent("accepted")}>
-            {t("accept")}
-          </BevelButton>
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="cookie-title"
+      className="fixed inset-0 z-[80] flex items-end justify-center bg-black/70 p-4 backdrop-blur-sm sm:items-center sm:p-6"
+    >
+      <section className="panel w-full max-w-lg p-7 sm:p-8">
+        <LogoMark className="h-8 w-8 text-fg/60" />
+        <h2 id="cookie-title" className="brand-font mt-5 text-xl font-semibold tracking-tight">
+          Cookies on spectr.no
+        </h2>
+        <p className="mt-3.5 text-sm leading-7 text-muted">
+          We use essential cookies to run this site, and optional ones to understand how it is used.
+          You can choose. Read the{" "}
+          <Link href="/privacy" className="text-fg underline underline-offset-4">
+            privacy policy
+          </Link>{" "}
+          for the detail.
+        </p>
+        <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+          <Button type="button" className="flex-1" onClick={() => saveConsent("essential")}>
+            Essential only
+          </Button>
+          <Button type="button" className="flex-1" onClick={() => saveConsent("accepted")}>
+            Accept all
+          </Button>
         </div>
       </section>
     </div>

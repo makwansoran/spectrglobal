@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "Spectr — pioneering world models";
+export const alt = "Spectr — humanoid robotics and a free AI WMS";
 
 export default function OpenGraphImage() {
   return new ImageResponse(
@@ -14,45 +14,34 @@ export default function OpenGraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#07080c",
-          color: "#f4f5f7",
+          background: "linear-gradient(140deg, #050609 0%, #0d1020 55%, #050609 100%)",
+          color: "#f2f4f8",
           padding: "72px",
           fontFamily: "ui-sans-serif, system-ui, sans-serif",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-          <div
-            style={{
-              width: "56px",
-              height: "56px",
-              borderRadius: "12px",
-              background: "#f4f5f7",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "#07080c",
-              fontSize: "28px",
-              fontWeight: 700,
-            }}
-          >
-            S
-          </div>
-          <div style={{ fontSize: "28px", letterSpacing: "0.34em", fontWeight: 600 }}>SPECTR</div>
+        <div style={{ display: "flex", alignItems: "center", gap: "18px" }}>
+          <svg width="48" height="48" viewBox="0 0 100 100" fill="none" stroke="#f2f4f8">
+            <ellipse cx="45" cy="50" rx="40" ry="45" strokeWidth="9" />
+            <ellipse cx="62" cy="50" rx="26" ry="38" strokeWidth="8" />
+          </svg>
+          <div style={{ fontSize: "26px", letterSpacing: "0.34em", fontWeight: 600 }}>SPECTR</div>
         </div>
+
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div
             style={{
-              fontSize: "72px",
+              fontSize: "68px",
               fontWeight: 600,
-              lineHeight: 0.95,
-              letterSpacing: "-0.06em",
-              maxWidth: "900px",
+              lineHeight: 1.04,
+              letterSpacing: "-0.045em",
+              maxWidth: "920px",
             }}
           >
-            Pioneering world models
+            Robots that work the floor. Software that runs it.
           </div>
-          <div style={{ marginTop: "28px", fontSize: "28px", color: "rgba(244,245,247,0.55)" }}>
-            Spectr RTS · General world model · Built in Norway
+          <div style={{ marginTop: "30px", fontSize: "26px", color: "rgba(242,244,248,0.55)" }}>
+            Humanoid robotics · A free AI WMS for enterprises · Norway
           </div>
         </div>
       </div>
