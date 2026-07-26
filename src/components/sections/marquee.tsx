@@ -12,7 +12,7 @@ export function Marquee() {
             {marqueeItems.map((item) => (
               <span
                 key={item}
-                className="brand-font whitespace-nowrap text-xl font-medium tracking-tight text-fg/30 sm:text-2xl"
+                className={`brand-font whitespace-nowrap text-xl font-medium tracking-tight text-fg/25 sm:text-2xl`}
               >
                 {item}
               </span>

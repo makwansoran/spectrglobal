@@ -20,7 +20,7 @@ export default function ContactPage() {
     <>
       <Nav />
       <main id="main-content" className="flex-1">
-        <PageHeader eyebrow="Contact" title="Tell us about your operation." intro={intro} />
+        <PageHeader title="Tell us about your operation." intro={intro} />
 
         <section className="pb-28">
           <div className="container-x">

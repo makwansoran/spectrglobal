@@ -16,13 +16,6 @@ export const metadata: Metadata = buildPageMetadata({
   path: "/robotics",
 });
 
-const specs = [
-  { label: "Form factor", value: "Bipedal humanoid" },
-  { label: "Reach", value: "Human-scale, two-handed" },
-  { label: "Environment", value: "Existing racking and aisles" },
-  { label: "Status", value: "Pilot programme" },
-];
-
 const capabilities = [
   {
     title: "Manipulation",
@@ -73,11 +66,11 @@ export default function RoboticsPage() {
       <Nav />
       <main id="main-content" className="flex-1">
         <PageHeader
-          eyebrow="Spectr One · In development"
+          align="center"
           title="A humanoid for the warehouse you already have."
           intro={intro}
         >
-          <div className="flex flex-col gap-3 sm:flex-row">
+          <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button href="/contact" size="lg">
               Apply to the pilot programme
               <ArrowIcon />
@@ -88,27 +81,9 @@ export default function RoboticsPage() {
           </div>
         </PageHeader>
 
-        <section className="pb-20">
-          <div className="container-x">
-            <dl className="grid gap-px overflow-hidden rounded-[22px] border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
-              {specs.map((spec) => (
-                <div key={spec.label} className="bg-bg p-7">
-                  <dt className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
-                    {spec.label}
-                  </dt>
-                  <dd className="brand-font mt-3 text-base font-semibold tracking-tight text-fg">
-                    {spec.value}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        </section>
-
         <section className="section pt-0">
           <div className="container-x">
             <SectionHeading
-              eyebrow="Capabilities"
               title="Designed around the constraints of a working site."
               subtitle="Every decision below follows from one rule: the building does not change to accommodate the robot."
             />
@@ -131,7 +106,6 @@ export default function RoboticsPage() {
         <section className="section pt-0">
           <div className="container-x">
             <SectionHeading
-              eyebrow="Approach"
               title="Deployment is gradual by design."
               subtitle="Nobody should bet an operation on a robot arriving and working. We deliberately made the path incremental."
             />
@@ -139,7 +113,7 @@ export default function RoboticsPage() {
             <ol className="mt-14 grid gap-10 md:grid-cols-3 md:gap-8">
               {approach.map((item, index) => (
                 <Reveal key={item.step} as="li" delay={index * 110}>
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-bg font-mono text-xs tracking-[0.1em] text-accent">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-surface font-mono text-xs tracking-[0.1em] text-accent">
                     {item.step}
                   </div>
                   <h3 className="brand-font mt-6 text-lg font-semibold tracking-tight text-fg">

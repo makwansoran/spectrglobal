@@ -7,7 +7,6 @@ export function UseCases() {
     <section id="use-cases" className="section scroll-mt-20">
       <div className="container-x">
         <SectionHeading
-          eyebrow={useCasesSection.eyebrow}
           title={useCasesSection.title}
           subtitle={useCasesSection.subtitle}
         />
@@ -27,7 +26,7 @@ export function UseCases() {
                   {useCase.points.map((point) => (
                     <li
                       key={point}
-                      className="rounded-full border border-border bg-white/[0.03] px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-muted"
+                      className="rounded-full border border-border bg-surface-2 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-muted"
                     >
                       {point}
                     </li>

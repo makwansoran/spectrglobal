@@ -1,15 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #050609;
-  --fg: #f2f4f8;
-  --muted: #878e9c;
-  --border: rgba(242, 244, 248, 0.1);
-  --border-strong: rgba(242, 244, 248, 0.2);
-  --surface: #0c0e14;
-  --surface-2: #12151d;
-  --accent: #6d7cff;
-  --accent-soft: rgba(109, 124, 255, 0.16);
+  --bg: #f7f7f5;
+  --fg: #0a0a0b;
+  --muted: #5c6370;
+  --border: rgba(10, 10, 11, 0.1);
+  --border-strong: rgba(10, 10, 11, 0.18);
+  --surface: #ffffff;
+  --surface-2: #efefec;
+  --nav: #050609;
+  --nav-fg: #f2f4f8;
+  --accent: #3d4dff;
+  --accent-soft: rgba(61, 77, 255, 0.12);
 }
 
 @theme inline {
@@ -20,13 +22,14 @@
   --color-border-strong: var(--border-strong);
   --color-surface: var(--surface);
   --color-surface-2: var(--surface-2);
+  --color-nav: var(--nav);
+  --color-nav-fg: var(--nav-fg);
   --color-accent: var(--accent);
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
   --font-display: var(--font-space-grotesk), var(--font-geist-sans), sans-serif;
 }
 
-/* Element defaults live in the base layer so Tailwind utilities still win. */
 @layer base {
 
 * {
@@ -36,7 +39,7 @@
 html {
   background: var(--bg);
   scroll-behavior: smooth;
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
@@ -65,7 +68,7 @@ textarea {
 
 ::selection {
   background: var(--accent);
-  color: #050609;
+  color: #ffffff;
 }
 
 :focus-visible {
@@ -75,14 +78,8 @@ textarea {
 
 }
 
-/*
- * Component classes must sit in the components layer. Unlayered rules beat
- * layered ones in the cascade, which would let `.btn` override utilities
- * such as `md:hidden`.
- */
 @layer components {
 
-/* ---------------- Typography helpers ---------------- */
 .display {
   font-family: var(--font-display);
   letter-spacing: -0.045em;
@@ -103,38 +100,10 @@ textarea {
   color: var(--muted);
 }
 
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: rgba(242, 244, 248, 0.03);
-  padding: 6px 14px;
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.eyebrow::before {
-  content: "";
-  width: 5px;
-  height: 5px;
-  border-radius: 999px;
-  background: var(--accent);
-  box-shadow: 0 0 10px var(--accent);
-}
-
 .text-gradient {
-  background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.62) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--fg);
 }
 
-/* ---------------- Site background ---------------- */
 .site-bg {
   position: fixed;
   inset: 0;
@@ -148,8 +117,8 @@ textarea {
   position: absolute;
   inset: -2px;
   background-image:
-    linear-gradient(rgba(242, 244, 248, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(242, 244, 248, 0.035) 1px, transparent 1px);
+    linear-gradient(rgba(10, 10, 11, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(10, 10, 11, 0.045) 1px, transparent 1px);
   background-size: 72px 72px;
   mask-image: radial-gradient(ellipse 85% 70% at 50% 12%, black 5%, transparent 78%);
   -webkit-mask-image: radial-gradient(ellipse 85% 70% at 50% 12%, black 5%, transparent 78%);
@@ -159,7 +128,7 @@ textarea {
   position: absolute;
   border-radius: 50%;
   filter: blur(110px);
-  opacity: 0.5;
+  opacity: 0.45;
   will-change: transform;
 }
 
@@ -168,7 +137,7 @@ textarea {
   left: 8%;
   width: 44vw;
   height: 44vw;
-  background: radial-gradient(circle at 40% 40%, rgba(109, 124, 255, 0.4), transparent 62%);
+  background: radial-gradient(circle at 40% 40%, rgba(61, 77, 255, 0.18), transparent 62%);
   animation: glow-drift-a 24s ease-in-out infinite;
 }
 
@@ -177,7 +146,7 @@ textarea {
   right: -6%;
   width: 38vw;
   height: 38vw;
-  background: radial-gradient(circle at 60% 40%, rgba(56, 189, 248, 0.18), transparent 62%);
+  background: radial-gradient(circle at 60% 40%, rgba(14, 165, 233, 0.12), transparent 62%);
   animation: glow-drift-b 28s ease-in-out infinite;
 }
 
@@ -186,14 +155,14 @@ textarea {
   left: 26%;
   width: 40vw;
   height: 40vw;
-  background: radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.14), transparent 62%);
+  background: radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.08), transparent 62%);
   animation: glow-drift-c 32s ease-in-out infinite;
 }
 
 .site-bg__vignette {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 120% 80% at 50% 0%, transparent 30%, rgba(5, 6, 9, 0.9) 100%);
+  background: radial-gradient(ellipse 120% 80% at 50% 0%, transparent 40%, rgba(247, 247, 245, 0.85) 100%);
 }
 
 @keyframes glow-drift-a {
@@ -211,8 +180,6 @@ textarea {
   50% { transform: translate3d(4%, -6%, 0) scale(1.15); }
 }
 
-/* ---------------- Buttons ---------------- */
-/* One pill language site-wide: solid white face, same radius/padding. */
 .btn {
   position: relative;
   display: inline-flex;
@@ -228,12 +195,12 @@ textarea {
   font-weight: 500;
   line-height: 1.2;
   background: var(--fg);
-  color: #050609;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset, 0 8px 24px rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+  box-shadow: 0 8px 24px rgba(10, 10, 11, 0.12);
 }
 
 .btn:hover {
-  background: #ffffff;
+  background: #1a1a1d;
   transform: translateY(-1px);
 }
 
@@ -264,39 +231,36 @@ textarea {
   padding: 0;
 }
 
-.btn-primary {
-  background: var(--fg);
-  color: #050609;
-}
-
-.btn-secondary {
-  background: var(--fg);
-  color: #050609;
-}
-
-.btn-accent {
-  background: var(--fg);
-  color: #050609;
-}
-
+.btn-primary,
+.btn-secondary,
+.btn-accent,
 .btn-ghost {
   background: var(--fg);
-  color: #050609;
+  color: #ffffff;
 }
 
-/* ---------------- Cards ---------------- */
+.btn-on-dark {
+  background: #ffffff;
+  color: #050609;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.btn-on-dark:hover {
+  background: #f2f4f8;
+}
+
 .card {
   position: relative;
   border: 1px solid var(--border);
   border-radius: 18px;
-  background: linear-gradient(180deg, rgba(242, 244, 248, 0.045) 0%, rgba(242, 244, 248, 0.014) 100%);
-  backdrop-filter: blur(14px);
+  background: var(--surface);
   overflow: hidden;
+  box-shadow: 0 1px 2px rgba(10, 10, 11, 0.03);
 }
 
 .card-hover:hover {
   border-color: var(--border-strong);
-  background: linear-gradient(180deg, rgba(242, 244, 248, 0.07) 0%, rgba(242, 244, 248, 0.02) 100%);
+  box-shadow: 0 12px 32px rgba(10, 10, 11, 0.06);
 }
 
 .card-glow::before {
@@ -305,7 +269,7 @@ textarea {
   inset-inline: 12%;
   top: -1px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(242, 244, 248, 0.5), transparent);
+  background: linear-gradient(90deg, transparent, rgba(10, 10, 11, 0.18), transparent);
 }
 
 .panel {
@@ -314,7 +278,6 @@ textarea {
   background: var(--surface);
 }
 
-/* ---------------- Section rhythm ---------------- */
 .section {
   padding-block: 6rem;
 }
@@ -342,7 +305,6 @@ textarea {
   border-top: 1px solid var(--border);
 }
 
-/* ---------------- Marquee ---------------- */
 .marquee {
   display: flex;
   overflow: hidden;
@@ -364,7 +326,6 @@ textarea {
   to { transform: translateX(-100%); }
 }
 
-/* ---------------- Animations ---------------- */
 @keyframes fade-up {
   from { opacity: 0; transform: translateY(16px); }
   to { opacity: 1; transform: translateY(0); }

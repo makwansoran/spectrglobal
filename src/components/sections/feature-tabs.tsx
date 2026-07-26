@@ -13,7 +13,6 @@ export function FeatureTabs() {
     <section id="features" className="section scroll-mt-20">
       <div className="container-x">
         <SectionHeading
-          eyebrow={featuresSection.eyebrow}
           title={featuresSection.title}
           subtitle={featuresSection.subtitle}
         />
@@ -22,7 +21,7 @@ export function FeatureTabs() {
           <div
             role="tablist"
             aria-label="Platform capabilities"
-            className="mx-auto flex w-fit max-w-full flex-wrap justify-center gap-1 rounded-full border border-border bg-white/[0.03] p-1.5 backdrop-blur-sm"
+            className="mx-auto flex w-fit max-w-full flex-wrap justify-center gap-1 rounded-full border border-border bg-surface p-1.5 shadow-sm"
           >
             {features.map((feature) => {
               const selected = feature.id === active;
@@ -36,7 +35,7 @@ export function FeatureTabs() {
                   aria-controls={`panel-${feature.id}`}
                   onClick={() => setActive(feature.id)}
                   className={`rounded-full px-5 py-2.5 text-sm font-medium transition-colors ${
-                    selected ? "bg-fg text-bg" : "text-muted hover:text-fg"
+                    selected ? "bg-fg text-white" : "text-muted hover:text-fg"
                   }`}
                 >
                   {feature.tab}

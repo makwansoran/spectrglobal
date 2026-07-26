@@ -101,7 +101,6 @@ export default function WmsPage() {
       <Nav />
       <main id="main-content" className="flex-1">
         <PageHeader
-          eyebrow="Spectr WMS · Free forever"
           title="A serious warehouse system, at no cost."
           intro={intro}
         >
@@ -119,7 +118,6 @@ export default function WmsPage() {
         <section className="section pt-4">
           <div className="container-x">
             <SectionHeading
-              eyebrow="Modules"
               title="The whole loop, from dock to dispatch."
               subtitle="No module is held back behind a paid tier. What follows is what you get on day one."
             />
@@ -127,7 +125,7 @@ export default function WmsPage() {
             <div className="mt-14 grid gap-px overflow-hidden rounded-[22px] border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
               {modules.map((module, index) => (
                 <Reveal key={module.title} delay={(index % 3) * 80}>
-                  <div className="h-full bg-bg p-8 transition-colors hover:bg-surface">
+                  <div className="h-full bg-surface p-8 transition-colors hover:bg-surface-2">
                     <h3 className="brand-font text-lg font-semibold tracking-tight text-fg">
                       {module.title}
                     </h3>
@@ -142,7 +140,6 @@ export default function WmsPage() {
         <section className="section pt-0">
           <div className="container-x">
             <SectionHeading
-              eyebrow="The exchange"
               title="Why we give it away, stated plainly."
               subtitle="Free software with a hidden agenda is worse than paid software. So here is the agenda."
             />
@@ -170,7 +167,7 @@ export default function WmsPage() {
 
         <section className="section pt-0">
           <div className="container-x">
-            <SectionHeading eyebrow="Questions" title="Before you commit anything." />
+            <SectionHeading title="Before you commit anything." />
 
             <div className="mx-auto mt-14 max-w-3xl space-y-4">
               {faqs.map((faq, index) => (

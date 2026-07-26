@@ -9,8 +9,7 @@ export default function NotFound() {
       <main id="main-content" className="flex flex-1 items-center py-40">
         <div className="container-x">
           <div className="mx-auto max-w-xl text-center">
-            <span className="eyebrow">Error 404</span>
-            <h1 className="display mt-7 text-4xl text-gradient sm:text-6xl">
+            <h1 className="display text-4xl text-gradient sm:text-6xl">
               This page is not on the map.
             </h1>
             <p className="mt-6 text-base leading-8 text-muted">

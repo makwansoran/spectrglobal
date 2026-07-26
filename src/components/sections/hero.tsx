@@ -6,17 +6,15 @@ export function Hero() {
     <section className="relative flex min-h-[92svh] items-center overflow-hidden pt-28 pb-20 sm:pt-32">
       <div className="container-x">
         <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
-          <span className="eyebrow fade-up">{hero.eyebrow}</span>
-
-          <h1 className="display fade-up fade-up-2 mt-8 text-4xl text-gradient sm:text-6xl lg:text-[4.25rem]">
+          <h1 className="display fade-up text-4xl text-gradient sm:text-6xl lg:text-[4.25rem]">
             {hero.title}
           </h1>
 
-          <p className="fade-up fade-up-3 mt-7 max-w-2xl text-base leading-8 text-muted sm:text-lg">
+          <p className="fade-up fade-up-2 mt-7 max-w-2xl text-base leading-8 text-muted sm:text-lg">
             {hero.subtitle}
           </p>
 
-          <div className="fade-up fade-up-4 mt-10 flex flex-col items-center gap-3 sm:flex-row">
+          <div className="fade-up fade-up-3 mt-10 flex flex-col items-center gap-3 sm:flex-row">
             <Button href={hero.primaryCta.href} size="lg">
               {hero.primaryCta.label}
               <ArrowIcon />
@@ -26,7 +24,7 @@ export function Hero() {
             </Button>
           </div>
 
-          <p className="fade-up fade-up-5 mt-6 font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
+          <p className="fade-up fade-up-4 mt-6 font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
             {hero.note}
           </p>
         </div>
@@ -49,12 +47,12 @@ const panelRows = [
 function HeroPanel() {
   return (
     <div className="card card-glow p-1.5">
-      <div className="rounded-[13px] bg-[#07080d] p-5 sm:p-7">
+      <div className="rounded-[13px] bg-surface p-5 sm:p-7">
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border pb-5">
           <div className="flex items-center gap-2.5">
-            <span className="pulse-dot h-2 w-2 rounded-full bg-emerald-400" aria-hidden="true" />
+            <span className="pulse-dot h-2 w-2 rounded-full bg-emerald-500" aria-hidden="true" />
             <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted">
-              Spectr WMS · live floor
+              Live floor
             </span>
           </div>
           <div className="flex items-center gap-6">
@@ -92,10 +90,10 @@ function Metric({ label, value }: { label: string; value: string }) {
 function StatusPill({ status, tone }: { status: string; tone: string }) {
   const styles =
     tone === "done"
-      ? "border-emerald-400/25 bg-emerald-400/10 text-emerald-300"
+      ? "border-emerald-600/25 bg-emerald-500/10 text-emerald-700"
       : tone === "live"
         ? "border-accent/30 bg-accent/10 text-accent"
-        : "border-border bg-white/[0.03] text-muted";
+        : "border-border bg-surface-2 text-muted";
 
   return (
     <span

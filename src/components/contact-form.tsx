@@ -71,7 +71,7 @@ export function ContactForm() {
       </Field>
 
       {state.ok ? (
-        <p role="status" className="rounded-xl border border-emerald-400/25 bg-emerald-400/10 px-4 py-3 text-sm text-emerald-300">
+        <p role="status" className="rounded-xl border border-emerald-600/25 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-800">
           Thanks — that is with us. We reply to everything within one working day.
         </p>
       ) : null}
@@ -103,7 +103,7 @@ function Field({
       <label htmlFor={htmlFor} className="label">
         {label}
       </label>
-      <div className="mt-3 [&_input]:w-full [&_input]:rounded-xl [&_input]:border [&_input]:border-border [&_input]:bg-white/[0.03] [&_input]:px-4 [&_input]:py-3 [&_input]:text-[15px] [&_input]:outline-none [&_input]:focus:border-accent [&_select]:w-full [&_select]:appearance-none [&_select]:rounded-xl [&_select]:border [&_select]:border-border [&_select]:bg-white/[0.03] [&_select]:px-4 [&_select]:py-3 [&_select]:text-[15px] [&_select]:outline-none [&_select]:focus:border-accent [&_textarea]:w-full [&_textarea]:resize-none [&_textarea]:rounded-xl [&_textarea]:border [&_textarea]:border-border [&_textarea]:bg-white/[0.03] [&_textarea]:px-4 [&_textarea]:py-3 [&_textarea]:text-[15px] [&_textarea]:outline-none [&_textarea]:focus:border-accent">
+      <div className="mt-3 [&_input]:w-full [&_input]:rounded-xl [&_input]:border [&_input]:border-border [&_input]:bg-surface [&_input]:px-4 [&_input]:py-3 [&_input]:text-[15px] [&_input]:outline-none [&_input]:focus:border-accent [&_select]:w-full [&_select]:appearance-none [&_select]:rounded-xl [&_select]:border [&_select]:border-border [&_select]:bg-surface [&_select]:px-4 [&_select]:py-3 [&_select]:text-[15px] [&_select]:outline-none [&_select]:focus:border-accent [&_textarea]:w-full [&_textarea]:resize-none [&_textarea]:rounded-xl [&_textarea]:border [&_textarea]:border-border [&_textarea]:bg-surface [&_textarea]:px-4 [&_textarea]:py-3 [&_textarea]:text-[15px] [&_textarea]:outline-none [&_textarea]:focus:border-accent">
         {children}
       </div>
     </div>

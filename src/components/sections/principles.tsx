@@ -7,7 +7,6 @@ export function Principles() {
     <section id="principles" className="section scroll-mt-20">
       <div className="container-x">
         <SectionHeading
-          eyebrow={principlesSection.eyebrow}
           title={principlesSection.title}
           subtitle={principlesSection.subtitle}
         />

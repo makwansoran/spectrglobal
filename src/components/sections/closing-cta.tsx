@@ -10,7 +10,7 @@ export function ClosingCta() {
         <Reveal>
           <div className="card card-glow relative overflow-hidden px-6 py-20 text-center sm:px-12 lg:py-28">
             <div
-              className="pointer-events-none absolute inset-x-0 -top-1/2 h-full bg-[radial-gradient(ellipse_at_center,rgba(109,124,255,0.22),transparent_65%)]"
+              className="pointer-events-none absolute inset-x-0 -top-1/2 h-full bg-[radial-gradient(ellipse_at_center,rgba(61,77,255,0.12),transparent_65%)]"
               aria-hidden="true"
             />
 

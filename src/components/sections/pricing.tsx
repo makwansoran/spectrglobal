@@ -8,7 +8,6 @@ export function Pricing() {
     <section id="pricing" className="section scroll-mt-20">
       <div className="container-x">
         <SectionHeading
-          eyebrow={pricingSection.eyebrow}
           title={pricingSection.title}
           subtitle={pricingSection.subtitle}
         />

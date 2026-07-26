@@ -11,21 +11,21 @@ export function Faq() {
   return (
     <section id="faq" className="section scroll-mt-20">
       <div className="container-x">
-        <SectionHeading eyebrow={faqSection.eyebrow} title={faqSection.title} />
+        <SectionHeading title={faqSection.title} />
 
         <Reveal className="mx-auto mt-14 max-w-3xl">
           <dl className="divide-y divide-border overflow-hidden rounded-[22px] border border-border">
             {faqs.map((faq, index) => {
               const expanded = open === index;
               return (
-                <div key={faq.question} className="bg-white/[0.015]">
+                <div key={faq.question} className="bg-surface">
                   <dt>
                     <button
                       type="button"
                       onClick={() => setOpen(expanded ? null : index)}
                       aria-expanded={expanded}
                       aria-controls={`faq-answer-${index}`}
-                      className="flex w-full items-center justify-between gap-6 px-6 py-6 text-left hover:bg-white/[0.03] sm:px-8"
+                      className="flex w-full items-center justify-between gap-6 px-6 py-6 text-left hover:bg-surface-2 sm:px-8"
                     >
                       <span className="brand-font text-base font-medium tracking-tight text-fg">
                         {faq.question}

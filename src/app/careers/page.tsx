@@ -43,7 +43,7 @@ export default function CareersPage() {
     <>
       <Nav />
       <main id="main-content" className="flex-1">
-        <PageHeader eyebrow="Careers" title="A decade-long problem needs people who want one." intro={intro} />
+        <PageHeader title="A decade-long problem needs people who want one." intro={intro} />
 
         <section className="pb-16">
           <div className="container-x">

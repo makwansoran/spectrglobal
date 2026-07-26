@@ -28,7 +28,7 @@ export default function NewsPage() {
     <>
       <Nav />
       <main id="main-content" className="flex-1">
-        <PageHeader eyebrow="Newsroom" title="What we are shipping and why." intro={intro} />
+        <PageHeader title="What we are shipping and why." intro={intro} />
 
         <section className="pb-28">
           <div className="container-x">

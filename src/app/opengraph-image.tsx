@@ -14,17 +14,29 @@ export default function OpenGraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "linear-gradient(140deg, #050609 0%, #0d1020 55%, #050609 100%)",
-          color: "#f2f4f8",
+          background: "#f7f7f5",
+          color: "#0a0a0b",
           padding: "72px",
           fontFamily: "ui-sans-serif, system-ui, sans-serif",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: "18px" }}>
-          <svg width="48" height="48" viewBox="0 0 100 100" fill="none" stroke="#f2f4f8">
-            <ellipse cx="45" cy="50" rx="40" ry="45" strokeWidth="9" />
-            <ellipse cx="62" cy="50" rx="26" ry="38" strokeWidth="8" />
-          </svg>
+          <div
+            style={{
+              width: 56,
+              height: 56,
+              borderRadius: 999,
+              background: "#050609",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "#ffffff",
+              fontSize: 22,
+              fontWeight: 700,
+            }}
+          >
+            S
+          </div>
           <div style={{ fontSize: "26px", letterSpacing: "0.34em", fontWeight: 600 }}>SPECTR</div>
         </div>
 
@@ -40,7 +52,7 @@ export default function OpenGraphImage() {
           >
             Robots that work the floor. Software that runs it.
           </div>
-          <div style={{ marginTop: "30px", fontSize: "26px", color: "rgba(242,244,248,0.55)" }}>
+          <div style={{ marginTop: "30px", fontSize: "26px", color: "rgba(10,10,11,0.5)" }}>
             Humanoid robotics · A free AI WMS for enterprises · Norway
           </div>
         </div>

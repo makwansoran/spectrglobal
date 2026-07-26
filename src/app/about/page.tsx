@@ -35,13 +35,13 @@ export default function AboutPage() {
     <>
       <Nav />
       <main id="main-content" className="flex-1">
-        <PageHeader eyebrow="Company" title="Building for the work that cannot be done remotely." intro={intro} />
+        <PageHeader title="Building for the work that cannot be done remotely." intro={intro} />
 
         <section className="pb-16">
           <div className="container-x">
             <dl className="grid gap-px overflow-hidden rounded-[22px] border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
               {facts.map((fact) => (
-                <div key={fact.label} className="bg-bg p-7">
+                <div key={fact.label} className="bg-surface p-7">
                   <dt className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
                     {fact.label}
                   </dt>

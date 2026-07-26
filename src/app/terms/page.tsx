@@ -18,7 +18,7 @@ export default function TermsPage() {
     <>
       <Nav />
       <main id="main-content" className="flex-1">
-        <PageHeader eyebrow="Legal" title="Terms & conditions" intro={lastUpdated} />
+        <PageHeader title="Terms & conditions" intro={lastUpdated} />
 
         <section className="pb-28">
           <div className="container-x">

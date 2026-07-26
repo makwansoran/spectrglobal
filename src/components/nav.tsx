@@ -9,23 +9,13 @@ import { navLinks, site } from "@/lib/site";
 
 export function Nav() {
   const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [renderedPathname, setRenderedPathname] = useState(pathname);
 
-  // Close the mobile menu on navigation by adjusting state during render
-  // rather than in an effect, which avoids a cascading re-render.
   if (pathname !== renderedPathname) {
     setRenderedPathname(pathname);
     setOpen(false);
   }
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -35,17 +25,11 @@ export function Nav() {
   }, [open]);
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-        scrolled || open
-          ? "border-b border-border bg-bg/85 backdrop-blur-xl"
-          : "border-b border-transparent"
-      }`}
-    >
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-nav text-nav-fg">
       <div className="container-x flex h-16 items-center justify-between gap-6">
         <Link href="/" className="flex items-center gap-2.5 hover:opacity-70" aria-label={site.name}>
-          <LogoMark className="h-6 w-6" />
-          <Wordmark />
+          <LogoMark invert className="h-7 w-7" />
+          <Wordmark className="text-nav-fg" />
         </Link>
 
         <nav aria-label="Primary" className="hidden items-center gap-1 md:flex">
@@ -57,7 +41,7 @@ export function Nav() {
                 href={link.href}
                 aria-current={active ? "page" : undefined}
                 className={`rounded-full px-3.5 py-2 text-sm transition-colors ${
-                  active ? "text-fg" : "text-muted hover:text-fg"
+                  active ? "text-white" : "text-white/60 hover:text-white"
                 }`}
               >
                 {link.label}
@@ -67,7 +51,7 @@ export function Nav() {
         </nav>
 
         <div className="hidden items-center gap-2 md:flex">
-          <Button href="/contact">
+          <Button href="/contact" className="btn-on-dark">
             Get the free WMS
           </Button>
         </div>
@@ -78,7 +62,7 @@ export function Nav() {
           aria-expanded={open}
           aria-controls="mobile-nav"
           aria-label={open ? "Close menu" : "Open menu"}
-          className="btn btn-icon md:hidden"
+          className="btn btn-icon btn-on-dark md:hidden"
         >
           <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none" aria-hidden="true">
             {open ? (
@@ -96,18 +80,18 @@ export function Nav() {
       </div>
 
       {open ? (
-        <div id="mobile-nav" className="border-t border-border bg-bg/95 backdrop-blur-xl md:hidden">
+        <div id="mobile-nav" className="border-t border-white/10 bg-nav md:hidden">
           <nav aria-label="Mobile" className="container-x flex flex-col gap-1 py-5">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-xl px-3 py-3 text-base text-fg/85 hover:bg-white/5"
+                className="rounded-xl px-3 py-3 text-base text-white/80 hover:bg-white/5 hover:text-white"
               >
                 {link.label}
               </Link>
             ))}
-            <Button href="/contact" className="mt-3 w-full">
+            <Button href="/contact" className="btn-on-dark mt-3 w-full">
               Get the free WMS
             </Button>
           </nav>

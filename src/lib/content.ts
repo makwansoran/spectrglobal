@@ -1,5 +1,4 @@
 export const hero = {
-  eyebrow: "Humanoid robotics · Norway",
   title: "Robots that work the floor. Software that runs it.",
   subtitle:
     "Spectr is building general-purpose humanoid robots for warehouses and industrial sites. The AI warehouse management system that trains them is free for enterprises — today, and permanently.",
@@ -76,7 +75,6 @@ export const features: Feature[] = [
 ];
 
 export const featuresSection = {
-  eyebrow: "Platform",
   title: "One stack, from the shelf to the hand.",
   subtitle:
     "The software runs your warehouse today. The same intelligence drives the hardware when you are ready for it.",
@@ -89,7 +87,6 @@ export type UseCase = {
 };
 
 export const useCasesSection = {
-  eyebrow: "Use cases",
   title: "Every operation where goods have to move.",
   subtitle: "Start with the software. Add embodiment where the labour is hardest to fill.",
 };
@@ -116,7 +113,6 @@ export const useCases: UseCase[] = [
 ];
 
 export const benefitsSection = {
-  eyebrow: "Why Spectr",
   title: "Serious capability. No licence conversation.",
   subtitle:
     "We are a robotics company that happens to give away excellent warehouse software. That shapes every decision below.",
@@ -156,7 +152,6 @@ export const benefits = [
 ];
 
 export const howItWorksSection = {
-  eyebrow: "How it works",
   title: "Three steps to a warehouse that improves itself.",
 };
 
@@ -182,7 +177,6 @@ export const howItWorks = [
 ];
 
 export const principlesSection = {
-  eyebrow: "Principles",
   title: "What we believe about physical work.",
   subtitle:
     "Testimonials arrive once customers are live. In the meantime, here is the thinking the company is built on.",
@@ -222,7 +216,6 @@ export const principles = [
 ];
 
 export const pricingSection = {
-  eyebrow: "Pricing",
   title: "The software is free. The ambition is not small.",
   subtitle: "One price for the WMS: nothing. Everything beyond it is a conversation about your operation.",
 };
@@ -291,7 +284,6 @@ export const plans: Plan[] = [
 ];
 
 export const faqSection = {
-  eyebrow: "FAQ",
   title: "The questions we get asked first.",
 };
 

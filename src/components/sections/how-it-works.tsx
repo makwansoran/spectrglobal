@@ -6,7 +6,7 @@ export function HowItWorks() {
   return (
     <section id="how-it-works" className="section scroll-mt-20">
       <div className="container-x">
-        <SectionHeading eyebrow={howItWorksSection.eyebrow} title={howItWorksSection.title} />
+        <SectionHeading title={howItWorksSection.title} />
 
         <div className="relative mt-16">
           <div
@@ -16,7 +16,7 @@ export function HowItWorks() {
           <ol className="relative grid gap-10 md:grid-cols-3 md:gap-8">
             {howItWorks.map((item, index) => (
               <Reveal key={item.step} as="li" delay={index * 110} className="relative">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-bg font-mono text-xs tracking-[0.1em] text-accent">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-surface font-mono text-xs tracking-[0.1em] text-accent">
                   {item.step}
                 </div>
                 <h3 className="brand-font mt-6 text-xl font-semibold tracking-tight text-fg">
