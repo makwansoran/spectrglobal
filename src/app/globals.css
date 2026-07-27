@@ -437,6 +437,14 @@ textarea {
   .solution-row__cta > div > div {
     opacity: 1;
   }
+
+  .industry-row__detail {
+    grid-template-rows: 1fr;
+  }
+
+  .industry-row__detail > div > p {
+    opacity: 1;
+  }
 }
 
 .partner-marquee {

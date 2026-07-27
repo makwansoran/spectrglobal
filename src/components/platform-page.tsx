@@ -173,13 +173,28 @@ export function PlatformPageView({ platform }: { platform: Platform }) {
           <Reveal>
             <p className="max-w-xl text-[13px] leading-6 text-muted">{platform.industriesIntro}</p>
           </Reveal>
-          <ul className="mt-7 columns-1 gap-x-10 sm:columns-2 lg:columns-3">
-            {platform.industries.map((industry) => (
-              <li
-                key={industry}
-                className="mb-1.5 break-inside-avoid border-b border-border py-2 font-mono text-[10px] uppercase tracking-[0.12em] text-fg/70"
-              >
-                {industry}
+          <ul className="mt-8 border-t border-border">
+            {platform.industries.map((industry, index) => (
+              <li key={industry.name} className="border-b border-border">
+                <Reveal delay={index * 40}>
+                  <article className="industry-row group">
+                    <div className="flex items-baseline justify-between gap-4 py-4 transition-[padding] duration-300 ease-out group-hover:py-5 group-focus-within:py-5 sm:py-5 sm:group-hover:py-6">
+                      <h3 className="brand-font text-[clamp(1.35rem,3.5vw,2.25rem)] leading-none tracking-tight text-fg transition-transform duration-300 group-hover:translate-x-1">
+                        {industry.name}
+                      </h3>
+                      <span className="shrink-0 font-mono text-[10px] tracking-[0.12em] text-muted">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                    </div>
+                    <div className="industry-row__detail grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-out group-hover:grid-rows-[1fr] group-focus-within:grid-rows-[1fr]">
+                      <div className="overflow-hidden">
+                        <p className="max-w-2xl pb-4 text-[13px] leading-6 text-muted opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100 sm:pb-5">
+                          {industry.description}
+                        </p>
+                      </div>
+                    </div>
+                  </article>
+                </Reveal>
               </li>
             ))}
           </ul>

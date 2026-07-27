@@ -11,6 +11,11 @@ export type PlatformFeature = {
   imageAlt: string;
 };
 
+export type PlatformIndustry = {
+  name: string;
+  description: string;
+};
+
 export type Platform = {
   slug: string;
   name: string;
@@ -27,7 +32,7 @@ export type Platform = {
   capabilities: PlatformCapability[];
   features: PlatformFeature[];
   industriesIntro: string;
-  industries: string[];
+  industries: PlatformIndustry[];
   ctaTitle: string;
   ctaBody: string;
 };
@@ -131,18 +136,54 @@ export const platforms: Platform[] = [
     ],
     industriesIntro: "One OS across every enterprise domain.",
     industries: [
-      "Logistics & Supply Chain",
-      "Manufacturing",
-      "Energy & Industrials",
-      "Defence & Security",
-      "Healthcare Operations",
-      "Retail & Distribution",
-      "Financial Operations",
-      "Government",
-      "Infrastructure",
-      "Ports & Terminals",
-      "Aerospace",
-      "Pharmaceuticals",
+      {
+        name: "Logistics & Supply Chain",
+        description: "Fuse carriers, inventory, and demand into one decision runtime.",
+      },
+      {
+        name: "Manufacturing",
+        description: "Orchestrate lines, parts, and labour as a live operational model.",
+      },
+      {
+        name: "Energy & Industrials",
+        description: "Turn plant signals into governed actions across sites.",
+      },
+      {
+        name: "Defence & Security",
+        description: "Human-in-the-loop decisions with full auditability.",
+      },
+      {
+        name: "Healthcare Operations",
+        description: "Coordinate capacity, assets, and exceptions in real time.",
+      },
+      {
+        name: "Retail & Distribution",
+        description: "Connect stores, DCs, and fulfilment into one OS.",
+      },
+      {
+        name: "Financial Operations",
+        description: "Agentic workflows over fused operational and financial truth.",
+      },
+      {
+        name: "Government",
+        description: "Deploy decision systems with European data posture.",
+      },
+      {
+        name: "Infrastructure",
+        description: "Monitor, decide, and act across critical physical systems.",
+      },
+      {
+        name: "Ports & Terminals",
+        description: "Unify yard, berth, and cargo flows into executable decisions.",
+      },
+      {
+        name: "Aerospace",
+        description: "Keep complex programmes coherent across partners and sites.",
+      },
+      {
+        name: "Pharmaceuticals",
+        description: "Trace every unit and exception through a governed runtime.",
+      },
     ],
     ctaTitle: "Run your enterprise on Spectr OS",
     ctaBody: "Free for enterprise customers — permanently.",
@@ -247,16 +288,40 @@ export const platforms: Platform[] = [
         imageAlt: "Argus detection feeding AIM",
       },
     ],
-    industriesIntro: "Solving complex problems across industries in days, not years.",
+    industriesIntro: "Solving complex problems across warehouse and industrial floors in days, not years.",
     industries: [
-      "Warehousing & Fulfilment",
-      "3PL & Logistics",
-      "Manufacturing & Parts",
-      "Retail Distribution",
-      "Cold Chain",
-      "Ports & Terminals",
-      "Spare Parts",
-      "Pharmaceutical Distribution",
+      {
+        name: "Warehousing & Fulfilment",
+        description: "Live decisions from dock to dispatch — fused inventory, labour, and exceptions.",
+      },
+      {
+        name: "3PL & Logistics",
+        description: "One runtime across clients, carriers, and sites without rebuilding each warehouse.",
+      },
+      {
+        name: "Manufacturing & Parts",
+        description: "Keep lines, spare parts, and material flows coherent under one model.",
+      },
+      {
+        name: "Retail Distribution",
+        description: "Connect DC operations to store demand with agentic replenishment workflows.",
+      },
+      {
+        name: "Cold Chain",
+        description: "Govern temperature, dwell, and exceptions as first-class operational objects.",
+      },
+      {
+        name: "Ports & Terminals",
+        description: "Unify yard, berth, and cargo events into executable next actions.",
+      },
+      {
+        name: "Spare Parts",
+        description: "See every unit, locate every shortage, and close the loop in minutes.",
+      },
+      {
+        name: "Pharmaceutical Distribution",
+        description: "Traceability and exception handling with audit-ready decision history.",
+      },
     ],
     ctaTitle: "Build now with AIM",
     ctaBody: "Put an AI model on your operation that proposes real actions — with humans still in command.",
@@ -361,16 +426,40 @@ export const platforms: Platform[] = [
         imageAlt: "Spectr OS and Metaphysics",
       },
     ],
-    industriesIntro: "Solving complex problems across industries in days, not years.",
+    industriesIntro: "Solving complex problems across warehouse and industrial floors in days, not years.",
     industries: [
-      "Warehousing & Fulfilment",
-      "3PL & Logistics",
-      "Manufacturing & Parts",
-      "Retail Distribution",
-      "Cold Chain",
-      "Ports & Terminals",
-      "Spare Parts",
-      "Pharmaceutical Distribution",
+      {
+        name: "Warehousing & Fulfilment",
+        description: "Model every location, SKU, and process as one operational ontology.",
+      },
+      {
+        name: "3PL & Logistics",
+        description: "Share one semantic layer across clients and sites without duplicating truth.",
+      },
+      {
+        name: "Manufacturing & Parts",
+        description: "Encode parts, lines, and constraints where AIM and Argus can act on them.",
+      },
+      {
+        name: "Retail Distribution",
+        description: "Keep DC and store objects coherent across every system that touches inventory.",
+      },
+      {
+        name: "Cold Chain",
+        description: "Bind temperature, dwell, and compliance rules into the ontology itself.",
+      },
+      {
+        name: "Ports & Terminals",
+        description: "Map yard, berth, and cargo relationships into a single executable model.",
+      },
+      {
+        name: "Spare Parts",
+        description: "Make every unit and bin first-class — not a spreadsheet row.",
+      },
+      {
+        name: "Pharmaceutical Distribution",
+        description: "Full provenance and change history for every object that moves.",
+      },
     ],
     ctaTitle: "Build now with Metaphysics",
     ctaBody: "Give every model and every operator one coherent map of the operation.",
@@ -475,16 +564,40 @@ export const platforms: Platform[] = [
         imageAlt: "Floor deployment of Argus",
       },
     ],
-    industriesIntro: "Solving complex problems across industries in days, not years.",
+    industriesIntro: "Solving complex problems across warehouse and industrial floors in days, not years.",
     industries: [
-      "Warehousing & Fulfilment",
-      "3PL & Logistics",
-      "Manufacturing & Parts",
-      "Retail Distribution",
-      "Cold Chain",
-      "Ports & Terminals",
-      "Spare Parts",
-      "Pharmaceutical Distribution",
+      {
+        name: "Warehousing & Fulfilment",
+        description: "Detect units, pallets, and aisle exceptions as work happens.",
+      },
+      {
+        name: "3PL & Logistics",
+        description: "Give every site eyes on physical reality — not yesterday’s count.",
+      },
+      {
+        name: "Manufacturing & Parts",
+        description: "Bind detections to parts and stations Metaphysics already knows.",
+      },
+      {
+        name: "Retail Distribution",
+        description: "Catch mis-slots and missing inventory before the next wave fails.",
+      },
+      {
+        name: "Cold Chain",
+        description: "Sense door, dwell, and handling exceptions in temperature-critical lanes.",
+      },
+      {
+        name: "Ports & Terminals",
+        description: "See containers and yard moves, then write them into the ontology.",
+      },
+      {
+        name: "Spare Parts",
+        description: "Find every unit on the floor and map it to the live inventory model.",
+      },
+      {
+        name: "Pharmaceutical Distribution",
+        description: "Evidence-backed sightings for every regulated movement.",
+      },
     ],
     ctaTitle: "Build now with Argus",
     ctaBody: "Put industrial object detection on the floor — and connect it to every decision system you run.",
