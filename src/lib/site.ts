@@ -7,9 +7,9 @@ export const site = {
   phone: "+47 465 03 934",
   phoneHref: "tel:+4746503934",
   location: "Norway",
-  tagline: "Spectr OS — the operating system for the physical economy.",
+  tagline: "Spectr OS — the operating system for the enterprise.",
   description:
-    "Spectr builds Spectr OS, an operating system for warehouses and industrial floors — with AIM, Metaphysics, and Argus.",
+    "Spectr builds Spectr OS, an operating system for the enterprise — with AIM, Metaphysics, and Argus.",
   social: {
     x: "https://x.com/spectrnorway",
     linkedin: "https://www.linkedin.com/company/spectr-norway/",
