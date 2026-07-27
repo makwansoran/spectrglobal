@@ -63,6 +63,7 @@ export function PlatformPageView({ platform }: { platform: Platform }) {
         </div>
       </section>
 
+      <div className="theme-light">
       <section className="border-t border-border py-12 sm:py-16">
         <div className="container-x">
           <Reveal>
@@ -81,8 +82,8 @@ export function PlatformPageView({ platform }: { platform: Platform }) {
                 onClick={() => setActiveCapability(item.id)}
                 className={`border px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.14em] transition-colors ${
                   activeCapability === item.id
-                    ? "border-white bg-white text-black"
-                    : "border-border text-muted hover:text-fg"
+                    ? "border-fg bg-fg text-bg"
+                    : "border-border text-muted hover:border-border-strong hover:text-fg"
                 }`}
               >
                 {item.label}
@@ -94,7 +95,7 @@ export function PlatformPageView({ platform }: { platform: Platform }) {
             <div className="mt-6 grid gap-3 md:grid-cols-3">
               {capability.steps.map((step, index) => (
                 <Reveal key={step.title} delay={index * 50}>
-                  <article className="border border-border p-4 sm:p-5">
+                  <article className="border border-border bg-surface p-4 sm:p-5">
                     <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-muted">
                       {String.fromCharCode(65 + index)}
                     </p>
@@ -136,14 +137,14 @@ export function PlatformPageView({ platform }: { platform: Platform }) {
           ) : null}
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid border-t border-border bg-surface sm:grid-cols-2 lg:grid-cols-4">
           {platform.features.map((item, index) => (
             <button
               key={item.title}
               type="button"
               onClick={() => setActiveFeature(index)}
               className={`group relative aspect-[5/4] overflow-hidden border-b border-border text-left sm:border-r sm:last:border-r-0 ${
-                activeFeature === index ? "ring-1 ring-inset ring-white" : ""
+                activeFeature === index ? "ring-1 ring-inset ring-fg" : ""
               }`}
             >
               <Image
@@ -210,7 +211,7 @@ export function PlatformPageView({ platform }: { platform: Platform }) {
           </Reveal>
           <div className="mt-7 grid gap-3 lg:grid-cols-2">
             <Reveal>
-              <article className="flex h-full flex-col border border-border p-5 sm:p-6">
+              <article className="flex h-full flex-col border border-border bg-surface p-5 sm:p-6">
                 <h3 className="brand-font text-base tracking-tight text-fg">
                   Build with {platform.name}
                 </h3>
@@ -224,7 +225,7 @@ export function PlatformPageView({ platform }: { platform: Platform }) {
               </article>
             </Reveal>
             <Reveal delay={50}>
-              <article className="flex h-full flex-col border border-border p-5 sm:p-6">
+              <article className="flex h-full flex-col border border-border bg-surface p-5 sm:p-6">
                 <h3 className="brand-font text-base tracking-tight text-fg">Talk to Spectr</h3>
                 <p className="mt-2 flex-1 text-[12px] leading-5 text-muted">
                   Map where {platform.name} fits — in days, not quarters.
@@ -240,6 +241,7 @@ export function PlatformPageView({ platform }: { platform: Platform }) {
           </div>
         </div>
       </section>
+      </div>
     </main>
   );
 }
