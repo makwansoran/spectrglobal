@@ -486,6 +486,18 @@ textarea {
   .industry-row__detail > div > div {
     opacity: 1;
   }
+
+  .nav-item__dropdown {
+    grid-template-rows: 1fr;
+  }
+
+  .nav-item__dropdown ul {
+    opacity: 1;
+  }
+
+  .nav-item span {
+    transform: rotate(90deg);
+  }
 }
 
 .partner-marquee {
