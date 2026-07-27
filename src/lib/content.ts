@@ -12,9 +12,7 @@ export type SoftwareProduct = {
 };
 
 export const softwareSection = {
-  title: "Spectr OS",
-  subtitle: "The operating system for the physical economy",
-  eyebrow: "Our operating system",
+  title: "Solutions",
 };
 
 export const offeringsCeoQuote = {
