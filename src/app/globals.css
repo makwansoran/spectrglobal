@@ -404,12 +404,11 @@ textarea {
 
 .offerings-slideshow__track {
   display: flex;
-  gap: 1rem;
+  gap: 0;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   scrollbar-width: none;
-  padding-inline: 1.25rem;
 }
 
 .offerings-slideshow__track::-webkit-scrollbar {
@@ -417,25 +416,8 @@ textarea {
 }
 
 .offering-slide {
-  flex: 0 0 min(88vw, 34rem);
+  flex: 0 0 100%;
   scroll-snap-align: start;
-}
-
-@media (min-width: 640px) {
-  .offerings-slideshow__track {
-    gap: 1.25rem;
-    padding-inline: 2rem;
-  }
-
-  .offering-slide {
-    flex-basis: min(72vw, 36rem);
-  }
-}
-
-@media (min-width: 1024px) {
-  .offering-slide {
-    flex-basis: 38rem;
-  }
 }
 
 .partner-marquee {

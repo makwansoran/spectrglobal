@@ -2,72 +2,35 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { offerings } from "@/lib/content";
 
 export function Offerings() {
-  const railRef = useRef<HTMLDivElement>(null);
-  const activeIdRef = useRef(offerings[0]?.id ?? "");
-  const [activeId, setActiveId] = useState(offerings[0]?.id ?? "");
+  const [activeIndex, setActiveIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const active = offerings[activeIndex] ?? offerings[0];
 
   useEffect(() => {
-    activeIdRef.current = activeId;
-  }, [activeId]);
-
-  useEffect(() => {
-    const rail = railRef.current;
-    if (!rail) return;
-
-    const cards = Array.from(rail.querySelectorAll<HTMLElement>("[data-offering-id]"));
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        const id = visible?.target.getAttribute("data-offering-id");
-        if (id) setActiveId(id);
-      },
-      { root: rail, threshold: [0.55, 0.75] },
-    );
-
-    cards.forEach((card) => observer.observe(card));
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (paused) return;
+    if (paused || offerings.length < 2) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const timer = window.setInterval(() => {
-      const index = Math.max(
-        0,
-        offerings.findIndex((item) => item.id === activeIdRef.current),
-      );
-      const next = offerings[(index + 1) % offerings.length];
-      if (next) scrollToOffering(next.id);
+      setActiveIndex((index) => (index + 1) % offerings.length);
     }, 4500);
 
     return () => window.clearInterval(timer);
   }, [paused]);
 
-  function scrollToOffering(id: string) {
-    const rail = railRef.current;
-    if (!rail) return;
-    const target = rail.querySelector<HTMLElement>(`[data-offering-id="${id}"]`);
-    if (!target) return;
-    rail.scrollTo({ left: target.offsetLeft - 8, behavior: "smooth" });
-    setActiveId(id);
+  function goTo(id: string) {
+    const index = offerings.findIndex((item) => item.id === id);
+    if (index >= 0) setActiveIndex(index);
   }
 
   function step(direction: -1 | 1) {
-    const index = Math.max(
-      0,
-      offerings.findIndex((item) => item.id === activeIdRef.current),
-    );
-    const next = offerings[(index + direction + offerings.length) % offerings.length];
-    if (next) scrollToOffering(next.id);
+    setActiveIndex((index) => (index + direction + offerings.length) % offerings.length);
   }
+
+  if (!active) return null;
 
   return (
     <section
@@ -88,9 +51,9 @@ export function Offerings() {
             <button
               key={item.id}
               type="button"
-              onClick={() => scrollToOffering(item.id)}
+              onClick={() => goTo(item.id)}
               className={`rounded-full border px-3.5 py-1.5 font-mono text-[11px] uppercase tracking-[0.14em] transition-colors ${
-                activeId === item.id
+                active.id === item.id
                   ? "border-white bg-white text-black"
                   : "border-border bg-transparent text-muted hover:border-border-strong hover:text-fg"
               }`}
@@ -105,59 +68,59 @@ export function Offerings() {
             See All
           </Link>
         </div>
-      </div>
 
-      <div className="offerings-slideshow mt-6" aria-label="Offerings slideshow">
-        <div ref={railRef} className="offerings-slideshow__track">
-          {offerings.map((item, index) => (
-            <article key={item.id} data-offering-id={item.id} className="offering-slide">
-              <Link href={item.href} className="group block h-full">
-                <div className="relative aspect-[16/10] overflow-hidden border border-border bg-surface">
-                  <Image
-                    src={item.image}
-                    alt={item.imageAlt}
-                    fill
-                    sizes="(max-width: 768px) 88vw, 34rem"
-                    className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                    priority={index < 2}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
-                    <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-white/70">
-                      {item.label}
-                    </p>
-                    <h3 className="brand-font mt-3 max-w-md text-xl leading-snug tracking-tight text-white sm:text-2xl">
-                      {item.title}
-                    </h3>
-                    <span className="mt-4 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.14em] text-white/80">
-                      Learn more
-                      <span aria-hidden="true">→</span>
-                    </span>
-                  </div>
-                </div>
-              </Link>
-            </article>
-          ))}
+        <div className="relative mt-6" aria-label="Offerings slideshow" aria-live="polite">
+          <Link href={active.href} className="group block">
+            <div className="relative aspect-[16/9] overflow-hidden border border-border bg-surface sm:aspect-[21/9]">
+              <Image
+                key={active.id}
+                src={active.image}
+                alt={active.imageAlt}
+                fill
+                sizes="(max-width: 1280px) 100vw, 80rem"
+                className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8 lg:p-10">
+                <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-white/70">
+                  {active.label}
+                </p>
+                <h3 className="brand-font mt-3 max-w-2xl text-2xl leading-snug tracking-tight text-white sm:text-3xl lg:text-4xl">
+                  {active.title}
+                </h3>
+                <span className="mt-5 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.14em] text-white/80">
+                  Learn more
+                  <span aria-hidden="true">→</span>
+                </span>
+              </div>
+            </div>
+          </Link>
         </div>
-      </div>
 
-      <div className="container-x mt-5 flex items-center justify-end gap-2">
-        <button
-          type="button"
-          onClick={() => step(-1)}
-          aria-label="Previous offering"
-          className="inline-flex h-10 w-10 items-center justify-center border border-border text-fg hover:bg-white/5"
-        >
-          ←
-        </button>
-        <button
-          type="button"
-          onClick={() => step(1)}
-          aria-label="Next offering"
-          className="inline-flex h-10 w-10 items-center justify-center border border-border text-fg hover:bg-white/5"
-        >
-          →
-        </button>
+        <div className="mt-5 flex items-center justify-between gap-4">
+          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
+            {String(activeIndex + 1).padStart(2, "0")} / {String(offerings.length).padStart(2, "0")}
+          </p>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => step(-1)}
+              aria-label="Previous offering"
+              className="inline-flex h-10 w-10 items-center justify-center border border-border text-fg hover:bg-white/5"
+            >
+              ←
+            </button>
+            <button
+              type="button"
+              onClick={() => step(1)}
+              aria-label="Next offering"
+              className="inline-flex h-10 w-10 items-center justify-center border border-border text-fg hover:bg-white/5"
+            >
+              →
+            </button>
+          </div>
+        </div>
       </div>
     </section>
   );
