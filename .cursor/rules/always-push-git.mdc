@@ -1,0 +1,10 @@
+---
+description: Always commit and push completed work to git
+alwaysApply: true
+---
+
+# Always push to git
+
+After finishing implementation work in this repo, commit the relevant changes and push to `origin` on the current branch without waiting to be asked.
+
+Follow the existing commit protocol (status/diff/log, HEREDOC message, no secrets, no force-push to main/master). Do not create empty commits.

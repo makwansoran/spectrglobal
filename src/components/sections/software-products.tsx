@@ -9,11 +9,10 @@ export function SoftwareProducts() {
       <div className="container-x">
         <Reveal>
           <p className="label">{softwareSection.eyebrow}</p>
-          <p className="mt-6 max-w-3xl text-base leading-8 text-muted sm:text-lg">{softwareSection.intro}</p>
         </Reveal>
 
         <Reveal delay={80}>
-          <h2 className="brand-font mt-14 text-[clamp(3rem,12vw,8rem)] font-normal leading-[0.9] tracking-[-0.05em] text-fg">
+          <h2 className="brand-font mt-6 text-[clamp(3rem,12vw,8rem)] font-normal leading-[0.9] tracking-[-0.05em] text-fg">
             {softwareSection.title}
           </h2>
           <p className="mt-5 max-w-xl text-sm leading-7 text-muted sm:text-base">{softwareSection.subtitle}</p>

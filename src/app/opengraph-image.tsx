@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "Spectr — Droid and Spectr C2";
+export const alt = "Spectr — Spectr OS";
 
 export default function OpenGraphImage() {
   return new ImageResponse(
@@ -50,10 +50,10 @@ export default function OpenGraphImage() {
               maxWidth: "920px",
             }}
           >
-            Robots that work the floor. Software that runs it.
+            Enterprise Intelligence Solutions. for every Decision.
           </div>
           <div style={{ marginTop: "30px", fontSize: "26px", color: "rgba(10,10,11,0.5)" }}>
-            Droid · Spectr C2 · Norway
+            Spectr OS · AIM · Metaphysics · Argus
           </div>
         </div>
       </div>

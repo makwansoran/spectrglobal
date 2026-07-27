@@ -7,9 +7,9 @@ export const site = {
   phone: "+47 465 03 934",
   phoneHref: "tel:+4746503934",
   location: "Norway",
-  tagline: "Droid for the physical economy, and Spectr C2 — the free AI warehouse system that gets you there.",
+  tagline: "Spectr OS — the operating system for the physical economy.",
   description:
-    "Spectr builds Droid, a general-purpose humanoid for warehouses and industrial floors, and gives enterprises Spectr C2 — a free AI-native warehouse management system.",
+    "Spectr builds Spectr OS, an operating system for warehouses and industrial floors — with AIM, Metaphysics, and Argus.",
   social: {
     x: "https://x.com/spectrnorway",
     linkedin: "https://www.linkedin.com/company/spectr-norway/",
@@ -23,7 +23,6 @@ export const navPrimary = [
     label: "Spectr OS",
     href: "/#features",
     children: [
-      { label: "Droid", href: "/robotics" },
       { label: "AIM", href: "/#features" },
       { label: "Metaphysics", href: "/wms" },
       { label: "Argus", href: "/#features" },
@@ -48,7 +47,6 @@ export const footerColumns = [
   {
     title: "Spectr OS",
     links: [
-      { label: "Droid", href: "/robotics" },
       { label: "AIM", href: "/#features" },
       { label: "Metaphysics", href: "/wms" },
       { label: "Argus", href: "/#features" },

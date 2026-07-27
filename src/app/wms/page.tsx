@@ -65,9 +65,9 @@ const whyFree = [
     points: [
       "Real operations running real software",
       "Ground truth on how warehouses actually behave",
-      "The data foundation Droid is trained on",
+      "The data foundation Spectr OS learns from",
       "Partners who know their floor better than we do",
-      "A shot at the hardest problem in robotics",
+      "A shot at the hardest problems in warehouse intelligence",
     ],
   },
 ];
@@ -76,7 +76,7 @@ const faqs = [
   {
     question: "What is the catch?",
     answer:
-      "There is no licence fee and no usage cap. Migration, self-hosting, integrations, governance, support, and the Droid pilot programme are all included in Spectr C2 free. There is nothing to upgrade into.",
+      "There is no licence fee and no usage cap. Migration, self-hosting, integrations, governance, and support are all included. There is nothing to upgrade into.",
   },
   {
     question: "Can we self-host it?",
@@ -109,8 +109,8 @@ export default function WmsPage() {
               Get started free
               <ArrowIcon />
             </Button>
-            <Button href="/robotics" size="lg">
-              See Droid
+            <Button href="/#features" size="lg">
+              See Spectr OS
             </Button>
           </div>
         </PageHeader>

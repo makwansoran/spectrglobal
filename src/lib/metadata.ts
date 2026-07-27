@@ -5,7 +5,7 @@ export const defaultOgImage = {
   url: `${site.url}/opengraph-image`,
   width: 1200,
   height: 630,
-  alt: `${site.name} — Droid and Spectr C2`,
+  alt: `${site.name} — Spectr OS`,
 };
 
 export function buildPageMetadata({

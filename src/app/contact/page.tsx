@@ -7,7 +7,7 @@ import { buildPageMetadata } from "@/lib/metadata";
 import { site } from "@/lib/site";
 
 const intro =
-  "Whether you want Spectr C2 running on your floor, a Droid pilot, or just a straight answer about whether we can help — this reaches us directly.";
+  "Whether you want Spectr OS on your floor, Metaphysics running your operation, or just a straight answer about whether we can help — this reaches us directly.";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Contact",
@@ -61,7 +61,7 @@ export default function ContactPage() {
                     Response times
                   </h2>
                   <p className="mt-4 text-sm leading-7 text-muted">
-                    We reply to everything within one working day. Requests for Spectr C2 get a
+                    We reply to everything within one working day. Requests for Spectr OS get a
                     scoping call, not a sales sequence — there is nothing to sell you.
                   </p>
                 </div>

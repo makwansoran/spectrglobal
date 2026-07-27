@@ -12,21 +12,26 @@ export type SoftwareProduct = {
 };
 
 export const softwareSection = {
-  intro:
-    "Spectr OS powers real-time, AI-driven decisions on warehouse and industrial floors — from receiving docks to dispatch lanes.",
   title: "Spectr OS",
   subtitle: "The operating system for the physical economy",
   eyebrow: "Our operating system",
 };
 
+export const offeringsCeoQuote = {
+  quote:
+    "Spectr OS powers real-time, AI-driven decisions on warehouse and industrial floors — from receiving docks to dispatch lanes.",
+  attribution: "Makwan Hassan",
+  role: "CEO, Spectr",
+};
+
 export const softwareProducts: SoftwareProduct[] = [
   {
-    id: "droid",
+    id: "spectr-os",
     index: "/0.1",
-    name: "Droid",
+    name: "Spectr OS",
     description:
-      "Embodiment layer — a humanoid that runs on Spectr OS, built for floors that already exist.",
-    href: "/robotics",
+      "The operating system for warehouse and industrial floors — real-time decisions from dock to dispatch.",
+    href: "/#features",
   },
   {
     id: "aim",
@@ -65,12 +70,12 @@ export type Offering = {
 
 export const offerings: Offering[] = [
   {
-    id: "droid",
-    label: "Droid",
-    title: "Humanoid labour for warehouses that already exist",
-    href: "/robotics",
+    id: "spectr-os",
+    label: "Spectr OS",
+    title: "The operating system for the physical economy",
+    href: "/#features",
     image: "/images/offerings/droid.jpg",
-    imageAlt: "Industrial robotics on a warehouse floor",
+    imageAlt: "Spectr OS running industrial operations",
   },
   {
     id: "metaphysics",
@@ -150,7 +155,7 @@ export const partnerQuotes: PartnerQuote[] = [
   {
     company: "EU RETAIL DC",
     quote:
-      "We piloted Droid on tote transfer first. Same aisles, same racking — no rebuild. The WMS already knew the work, so the robot was a deployment, not a science project.",
+      "We rolled Spectr OS across the DC without rebuilding a single aisle. Argus and Metaphysics already knew the work — deployment was configuration, not a science project.",
     person: "Automation Lead",
     role: "National retail distribution",
   },
@@ -164,7 +169,7 @@ export const partnerQuotes: PartnerQuote[] = [
   {
     company: "LINE-SIDE SUPPLY",
     quote:
-      "Kitting used to burn a full shift of chase-downs. With Metaphysics the shortages show up before the line stops — and we can hand the repetitive transfer work to Droid when we are ready.",
+      "Kitting used to burn a full shift of chase-downs. With Metaphysics the shortages show up before the line stops — and AIM keeps the plan current as the day changes.",
     person: "Plant Logistics Manager",
     role: "Manufacturing",
   },
@@ -186,7 +191,7 @@ export const partnerQuotes: PartnerQuote[] = [
 
 export const ceoQuote = {
   quote:
-    "The bottleneck in humanoid robotics is not actuators or compute. It is not having a truthful, continuously updated model of a real working environment.",
+    "The bottleneck in warehouse intelligence is not dashboards or compute. It is not having a truthful, continuously updated model of a real working environment.",
   attribution: "Makwan Hassan",
   role: "CEO, Spectr",
 };
@@ -219,13 +224,13 @@ export const newsItems: NewsItem[] = [
     cta: "Read More",
   },
   {
-    id: "droid-pilots",
+    id: "spectr-os",
     source: "Spectr",
     date: "February 2026",
-    title: "Droid pilot programme opens for Nordic warehouse partners",
+    title: "Spectr OS opens to Nordic warehouse partners",
     summary:
-      "Limited early deployments on existing floors — same aisles, same racking, no rebuild required.",
-    href: "/robotics",
+      "AIM, Metaphysics, and Argus on existing floors — same aisles, same racking, no rebuild required.",
+    href: "/#features",
     cta: "Read More",
   },
 ];

@@ -7,7 +7,7 @@ import { Reveal } from "@/components/reveal";
 import { buildPageMetadata } from "@/lib/metadata";
 
 const intro =
-  "We are a small team in Norway working on Droid and Spectr C2. We hire slowly, for people who want to stay with a hard problem for years rather than quarters.";
+  "We are a small team in Norway working on Spectr OS. We hire slowly, for people who want to stay with a hard problem for years rather than quarters.";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Careers",
@@ -26,15 +26,16 @@ const values = [
   },
   {
     title: "Own the whole problem",
-    text: "Small team, wide scope. You will cross from model to interface to hardware more often than a job title suggests.",
+    text: "Small team, wide scope. You will cross from model to interface to deployment more often than a job title suggests.",
   },
 ];
 
 const areas = [
-  "Droid — manipulation, control, perception",
-  "Machine learning — world models, imitation learning",
+  "AIM — models, planning, decision systems",
+  "Argus — perception and object detection",
+  "Metaphysics — ontology and warehouse data",
   "Backend — distributed systems, real-time data",
-  "Product engineering — full-stack, Spectr C2 tooling",
+  "Product engineering — full-stack Spectr OS tooling",
   "Deployment — on-site integration and field engineering",
 ];
 
