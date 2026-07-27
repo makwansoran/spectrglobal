@@ -74,7 +74,7 @@ export function PlatformPageView({ platform }: { platform: Platform }) {
             <p className="mt-4 max-w-lg text-[13px] leading-6 text-muted">{platform.statementBody}</p>
           </Reveal>
 
-          <div className="mt-8 flex flex-wrap gap-2 border-b border-border pb-3">
+          <div className="mt-8 flex flex-wrap justify-center gap-2 border-b border-border pb-3">
             {platform.capabilities.map((item) => (
               <button
                 key={item.id}
