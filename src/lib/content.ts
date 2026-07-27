@@ -203,6 +203,8 @@ export type NewsItem = {
   summary: string;
   href: string;
   cta: string;
+  image: string;
+  imageAlt: string;
 };
 
 export const newsSection = {
@@ -221,6 +223,8 @@ export const newsItems: NewsItem[] = [
       "No licence fee, no user cap, no expiry date. AIM, Metaphysics, and Argus included for every enterprise running Spectr OS.",
     href: "/news",
     cta: "Read More",
+    image: "/images/offerings/spectr-os.jpg",
+    imageAlt: "Spectr OS running enterprise operations",
   },
   {
     id: "argus-benchmarks",
@@ -231,5 +235,7 @@ export const newsItems: NewsItem[] = [
       "Spectr’s object detection model sets a new bar for real-time accuracy on industrial SKUs, pallets, and exceptions — where generic vision models fall short.",
     href: "/news",
     cta: "Read More",
+    image: "/spectr-detection.png",
+    imageAlt: "Argus object detection on warehouse assets",
   },
 ];

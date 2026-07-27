@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { ArrowIcon, Button } from "@/components/button";
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
@@ -28,11 +29,20 @@ export default function NewsPage() {
               {newsItems.length > 0 ? (
                 <ul className="divide-y divide-border border-t border-border">
                   {newsItems.map((item) => (
-                    <li key={item.id} className="grid gap-3 py-9 sm:grid-cols-[150px_1fr] sm:gap-8">
+                    <li key={item.id} className="grid gap-5 py-9 sm:grid-cols-[150px_1fr] sm:gap-8">
                       <time className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
                         {item.date}
                       </time>
                       <div>
+                        <div className="bevel-panel-image relative mb-5 aspect-[16/9] overflow-hidden bg-surface">
+                          <Image
+                            src={item.image}
+                            alt={item.imageAlt}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 768px) 100vw, 40rem"
+                          />
+                        </div>
                         <h2 className="brand-font text-xl font-semibold tracking-tight text-fg">
                           <a href={item.href} className="hover:opacity-70">
                             {item.title}

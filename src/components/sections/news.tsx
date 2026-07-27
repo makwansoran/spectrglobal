@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/reveal";
 import { newsItems, newsSection } from "@/lib/content";
@@ -20,25 +21,34 @@ export function News() {
           </div>
         </Reveal>
 
-        <ul className="mt-12 grid gap-0 border border-border md:grid-cols-2">
+        <ul className="mt-12 grid gap-4 md:grid-cols-2">
           {newsItems.map((item, index) => (
-            <li
-              key={item.id}
-              className={`border-border p-7 sm:p-9 ${index > 0 ? "border-t md:border-t-0 md:border-l" : ""}`}
-            >
+            <li key={item.id}>
               <Reveal delay={index * 80}>
-                <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
-                  {item.source}, {item.date}
-                </p>
-                <h3 className="brand-font mt-4 text-xl tracking-tight text-fg sm:text-2xl">
-                  <Link href={item.href} className="hover:opacity-70">
-                    {item.title}
+                <article className="bevel-panel bevel-panel-muted overflow-hidden">
+                  <Link href={item.href} className="group block">
+                    <div className="bevel-panel-image relative aspect-[16/10] overflow-hidden">
+                      <Image
+                        src={item.image}
+                        alt={item.imageAlt}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                        sizes="(max-width: 768px) 100vw, 40rem"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                    </div>
+                    <div className="p-6 sm:p-7">
+                      <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
+                        {item.source}, {item.date}
+                      </p>
+                      <h3 className="brand-font mt-3 text-xl tracking-tight text-fg transition-opacity group-hover:opacity-70 sm:text-2xl">
+                        {item.title}
+                      </h3>
+                      <p className="mt-3 text-sm leading-7 text-muted">{item.summary}</p>
+                      <span className="mt-5 inline-block text-sm text-fg/80">↳ {item.cta}</span>
+                    </div>
                   </Link>
-                </h3>
-                <p className="mt-4 text-sm leading-7 text-muted">{item.summary}</p>
-                <Link href={item.href} className="mt-6 inline-block text-sm text-fg/80 hover:text-fg">
-                  ↳ {item.cta}
-                </Link>
+                </article>
               </Reveal>
             </li>
           ))}
