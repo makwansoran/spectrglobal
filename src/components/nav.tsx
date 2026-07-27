@@ -55,7 +55,7 @@ export function Nav() {
                   aria-expanded={open}
                   aria-controls="site-nav-overlay"
                   aria-label={open ? "Close menu" : "Open menu"}
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-nav-fg hover:bg-white/10"
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/0 text-nav-fg hover:bg-white/10"
                 >
                   <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none" aria-hidden="true">
                     {open ? (
@@ -212,7 +212,7 @@ export function Nav() {
                       onClick={() => setOpen(false)}
                       className="mt-4 inline-block text-sm text-fg/80 hover:text-fg"
                     >
-                      ↳ Learn more about Spectr C2
+                      ↳ Learn more about Metaphysics
                     </Link>
                   </section>
 

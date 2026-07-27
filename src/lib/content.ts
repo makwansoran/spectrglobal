@@ -13,9 +13,10 @@ export type SoftwareProduct = {
 
 export const softwareSection = {
   intro:
-    "Our software powers real-time, AI-driven decisions on warehouse and industrial floors — from receiving docks to dispatch lanes.",
-  title: "Our Software",
-  subtitle: "Automate operations, from the factory floor to the fulfilment lane",
+    "Spectr OS powers real-time, AI-driven decisions on warehouse and industrial floors — from receiving docks to dispatch lanes.",
+  title: "Spectr OS",
+  subtitle: "The operating system for the physical economy",
+  eyebrow: "Our operating system",
 };
 
 export const softwareProducts: SoftwareProduct[] = [
@@ -23,22 +24,33 @@ export const softwareProducts: SoftwareProduct[] = [
     id: "droid",
     index: "/0.1",
     name: "Droid",
-    description: "A humanoid built for floors that already exist — aisles, racking, and shifts as they are.",
+    description:
+      "Embodiment layer — a humanoid that runs on Spectr OS, built for floors that already exist.",
     href: "/robotics",
   },
   {
-    id: "spectr-mind",
+    id: "aim",
     index: "/0.2",
-    name: "Spectr Mind",
-    description: "One model of your operation, shared by every unit and every decision on the floor.",
+    name: "AIM",
+    description:
+      "Artificial Intelligence Model — one model of your operation, shared by every unit and every decision on the floor.",
     href: "/#features",
   },
   {
-    id: "spectr-c2",
+    id: "metaphysics",
     index: "/0.3",
-    name: "Spectr C2",
-    description: "A complete AI warehouse management system — free for enterprises, permanently.",
+    name: "Metaphysics",
+    description:
+      "Ontology layer — the semantic model of your operation that makes Spectr OS coherent across every decision.",
     href: "/wms",
+  },
+  {
+    id: "argus",
+    index: "/0.4",
+    name: "Argus",
+    description:
+      "Object detection model — sees every unit, pallet, and exception on the floor in real time.",
+    href: "/#features",
   },
 ];
 
@@ -47,6 +59,8 @@ export type Offering = {
   label: string;
   title: string;
   href: string;
+  image: string;
+  imageAlt: string;
 };
 
 export const offerings: Offering[] = [
@@ -55,30 +69,48 @@ export const offerings: Offering[] = [
     label: "Droid",
     title: "Humanoid labour for warehouses that already exist",
     href: "/robotics",
+    image: "/images/offerings/droid.jpg",
+    imageAlt: "Industrial robotics on a warehouse floor",
   },
   {
-    id: "spectr-c2",
-    label: "Spectr C2",
-    title: "The free AI warehouse management system",
+    id: "metaphysics",
+    label: "Metaphysics",
+    title: "Ontology layer for every object, action, and decision on the floor",
     href: "/wms",
+    image: "/images/offerings/spectr-c2.jpg",
+    imageAlt: "Warehouse operations powered by the Metaphysics ontology",
   },
   {
-    id: "spectr-mind",
-    label: "Spectr Mind",
-    title: "One operational model for every decision on the floor",
+    id: "aim",
+    label: "AIM",
+    title: "Artificial Intelligence Model for every decision on the floor",
     href: "/#features",
+    image: "/images/offerings/spectr-mind.jpg",
+    imageAlt: "Circuit board representing the Artificial Intelligence Model",
+  },
+  {
+    id: "argus",
+    label: "Argus",
+    title: "Object detection model for every unit on the floor",
+    href: "/#features",
+    image: "/spectr-detection.png",
+    imageAlt: "Argus object detection on warehouse assets",
   },
   {
     id: "pilots",
     label: "Pilot Programme",
     title: "Deploy with partner sites before general availability",
     href: "/contact",
+    image: "/images/offerings/pilots.jpg",
+    imageAlt: "Warehouse operations and logistics",
   },
   {
     id: "careers",
     label: "Careers",
     title: "There is so much left to build",
     href: "/careers",
+    image: "/images/offerings/careers.jpg",
+    imageAlt: "Team collaborating on product work",
   },
 ];
 
@@ -97,7 +129,7 @@ export const partnerQuotes: PartnerQuote[] = [
   {
     company: "NORDIC 3PL",
     quote:
-      "We went live on Spectr C2 across two sites in under a fortnight. Stock accuracy stopped being a weekly argument and started being a morning number we trust.",
+      "We went live on Metaphysics across two sites in under a fortnight. Stock accuracy stopped being a weekly argument and started being a morning number we trust.",
     person: "Operations Director",
     role: "Multi-client fulfilment, Nordics",
   },
@@ -111,7 +143,7 @@ export const partnerQuotes: PartnerQuote[] = [
   {
     company: "SPARE PARTS HUB",
     quote:
-      "Spectr Mind learned our SKU chaos faster than any consultant we have paid. Slotting recommendations that used to take a quarterly project now land as the day changes.",
+      "AIM learned our SKU chaos faster than any consultant we have paid. Slotting recommendations that used to take a quarterly project now land as the day changes.",
     person: "Head of Warehouse",
     role: "Industrial spare parts",
   },
@@ -125,14 +157,14 @@ export const partnerQuotes: PartnerQuote[] = [
   {
     company: "PORT SIDE LOGISTICS",
     quote:
-      "I did not need another dashboard telling me we were behind. I needed the system to surface the next decision. Spectr C2 does that without a seat count conversation.",
+      "I did not need another dashboard telling me we were behind. I needed the system to surface the next decision. Metaphysics does that without a seat count conversation.",
     person: "VP Operations",
     role: "Ports and terminals",
   },
   {
     company: "LINE-SIDE SUPPLY",
     quote:
-      "Kitting used to burn a full shift of chase-downs. With Spectr C2 the shortages show up before the line stops — and we can hand the repetitive transfer work to Droid when we are ready.",
+      "Kitting used to burn a full shift of chase-downs. With Metaphysics the shortages show up before the line stops — and we can hand the repetitive transfer work to Droid when we are ready.",
     person: "Plant Logistics Manager",
     role: "Manufacturing",
   },
@@ -146,7 +178,7 @@ export const partnerQuotes: PartnerQuote[] = [
   {
     company: "PHARMA DISTRIBUTOR",
     quote:
-      "Audit trails and cycle counts that hold up under inspection mattered more than flashy AI. Spectr C2 gave us both — and it cost nothing to put the whole team on it.",
+      "Audit trails and cycle counts that hold up under inspection mattered more than flashy AI. Metaphysics gave us both — and it cost nothing to put the whole team on it.",
     person: "Quality & Compliance Lead",
     role: "Regulated distribution",
   },
@@ -177,12 +209,12 @@ export const newsSection = {
 
 export const newsItems: NewsItem[] = [
   {
-    id: "spectr-c2-free",
+    id: "metaphysics-free",
     source: "Spectr",
     date: "March 2026",
-    title: "Spectr C2 is free for enterprises — permanently",
+    title: "Metaphysics is free for enterprises — permanently",
     summary:
-      "A complete AI-native warehouse management system with no licence fee, no user cap, and no expiry date.",
+      "Spectr OS ontology layer with no licence fee, no user cap, and no expiry date.",
     href: "/wms",
     cta: "Read More",
   },

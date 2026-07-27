@@ -8,14 +8,15 @@ export function SoftwareProducts() {
     <section id="features" className="section scroll-mt-24 border-t border-border">
       <div className="container-x">
         <Reveal>
-          <p className="max-w-3xl text-base leading-8 text-muted sm:text-lg">{softwareSection.intro}</p>
+          <p className="label">{softwareSection.eyebrow}</p>
+          <p className="mt-6 max-w-3xl text-base leading-8 text-muted sm:text-lg">{softwareSection.intro}</p>
         </Reveal>
 
         <Reveal delay={80}>
-          <h2 className="brand-font mt-14 text-[2rem] font-normal tracking-tight text-fg sm:text-[2.75rem] lg:text-[2.875rem]">
+          <h2 className="brand-font mt-14 text-[clamp(3rem,12vw,8rem)] font-normal leading-[0.9] tracking-[-0.05em] text-fg">
             {softwareSection.title}
           </h2>
-          <p className="mt-4 max-w-xl text-sm leading-7 text-muted sm:text-base">{softwareSection.subtitle}</p>
+          <p className="mt-5 max-w-xl text-sm leading-7 text-muted sm:text-base">{softwareSection.subtitle}</p>
         </Reveal>
 
         <ul className="mt-16 border-t border-border">

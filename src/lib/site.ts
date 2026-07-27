@@ -20,12 +20,13 @@ export const site = {
 
 export const navPrimary = [
   {
-    label: "Generate Alpha",
+    label: "Spectr OS",
     href: "/#features",
     children: [
       { label: "Droid", href: "/robotics" },
-      { label: "Spectr Mind", href: "/#features" },
-      { label: "Spectr C2", href: "/wms" },
+      { label: "AIM", href: "/#features" },
+      { label: "Metaphysics", href: "/wms" },
+      { label: "Argus", href: "/#features" },
     ],
   },
   { label: "Offerings", href: "/#offerings" },
@@ -45,11 +46,12 @@ export const navQuickLinks = [
 
 export const footerColumns = [
   {
-    title: "Platform",
+    title: "Spectr OS",
     links: [
       { label: "Droid", href: "/robotics" },
-      { label: "Spectr Mind", href: "/#features" },
-      { label: "Spectr C2", href: "/wms" },
+      { label: "AIM", href: "/#features" },
+      { label: "Metaphysics", href: "/wms" },
+      { label: "Argus", href: "/#features" },
       { label: "Get started", href: "/contact" },
     ],
   },

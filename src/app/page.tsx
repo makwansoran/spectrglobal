@@ -17,7 +17,9 @@ export default function HomePage() {
         <SoftwareProducts />
         <News />
         <PartnerQuotes />
-        <CeoQuote />
+        <div className="theme-light">
+          <CeoQuote />
+        </div>
       </main>
       <Footer />
     </>
