@@ -209,11 +209,11 @@ export function Nav() {
                       problems they face.
                     </p>
                     <Link
-                      href="/wms"
+                      href="/platforms/spectr-os"
                       onClick={() => setOpen(false)}
                       className="mt-4 inline-block text-sm text-fg/80 hover:text-fg"
                     >
-                      ↳ Learn more about Metaphysics
+                      ↳ Learn more about Spectr OS
                     </Link>
                   </section>
 

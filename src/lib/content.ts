@@ -30,7 +30,7 @@ export const softwareProducts: SoftwareProduct[] = [
     name: "Spectr OS",
     description:
       "The operating system for warehouse and industrial floors — real-time decisions from dock to dispatch.",
-    href: "/#features",
+    href: "/platforms/spectr-os",
   },
   {
     id: "aim",
@@ -38,7 +38,7 @@ export const softwareProducts: SoftwareProduct[] = [
     name: "AIM",
     description:
       "Artificial Intelligence Model — one model of your operation, shared by every unit and every decision on the floor.",
-    href: "/#features",
+    href: "/platforms/aim",
   },
   {
     id: "metaphysics",
@@ -46,7 +46,7 @@ export const softwareProducts: SoftwareProduct[] = [
     name: "Metaphysics",
     description:
       "Ontology layer — the semantic model of your operation that makes Spectr OS coherent across every decision.",
-    href: "/wms",
+    href: "/platforms/metaphysics",
   },
   {
     id: "argus",
@@ -54,7 +54,7 @@ export const softwareProducts: SoftwareProduct[] = [
     name: "Argus",
     description:
       "Object detection model — sees every unit, pallet, and exception on the floor in real time.",
-    href: "/#features",
+    href: "/platforms/argus",
   },
 ];
 
@@ -72,7 +72,7 @@ export const offerings: Offering[] = [
     id: "spectr-os",
     label: "Spectr OS",
     title: "The operating system for the physical economy",
-    href: "/#features",
+    href: "/platforms/spectr-os",
     image: "/images/offerings/spectr-os.jpg",
     imageAlt: "Spectr OS running industrial operations",
   },
@@ -80,7 +80,7 @@ export const offerings: Offering[] = [
     id: "metaphysics",
     label: "Metaphysics",
     title: "Ontology layer for every object, action, and decision on the floor",
-    href: "/wms",
+    href: "/platforms/metaphysics",
     image: "/images/offerings/spectr-c2.jpg",
     imageAlt: "Warehouse operations powered by the Metaphysics ontology",
   },
@@ -88,7 +88,7 @@ export const offerings: Offering[] = [
     id: "aim",
     label: "AIM",
     title: "Artificial Intelligence Model for every decision on the floor",
-    href: "/#features",
+    href: "/platforms/aim",
     image: "/images/offerings/spectr-mind.jpg",
     imageAlt: "Circuit board representing the Artificial Intelligence Model",
   },
@@ -96,7 +96,7 @@ export const offerings: Offering[] = [
     id: "argus",
     label: "Argus",
     title: "Object detection model for every unit on the floor",
-    href: "/#features",
+    href: "/platforms/argus",
     image: "/spectr-detection.png",
     imageAlt: "Argus object detection on warehouse assets",
   },

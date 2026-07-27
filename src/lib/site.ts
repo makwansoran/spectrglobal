@@ -23,9 +23,10 @@ export const navPrimary = [
     label: "Spectr OS",
     href: "/#features",
     children: [
-      { label: "AIM", href: "/#features" },
-      { label: "Metaphysics", href: "/wms" },
-      { label: "Argus", href: "/#features" },
+      { label: "Spectr OS", href: "/platforms/spectr-os" },
+      { label: "AIM", href: "/platforms/aim" },
+      { label: "Metaphysics", href: "/platforms/metaphysics" },
+      { label: "Argus", href: "/platforms/argus" },
     ],
   },
   { label: "Offerings", href: "/#offerings" },
@@ -47,9 +48,10 @@ export const footerColumns = [
   {
     title: "Spectr OS",
     links: [
-      { label: "AIM", href: "/#features" },
-      { label: "Metaphysics", href: "/wms" },
-      { label: "Argus", href: "/#features" },
+      { label: "Spectr OS", href: "/platforms/spectr-os" },
+      { label: "AIM", href: "/platforms/aim" },
+      { label: "Metaphysics", href: "/platforms/metaphysics" },
+      { label: "Argus", href: "/platforms/argus" },
       { label: "Get started", href: "/contact" },
     ],
   },
