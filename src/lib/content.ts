@@ -74,7 +74,7 @@ export const offerings: Offering[] = [
     label: "Spectr OS",
     title: "The operating system for the physical economy",
     href: "/#features",
-    image: "/images/offerings/droid.jpg",
+    image: "/images/offerings/spectr-os.jpg",
     imageAlt: "Spectr OS running industrial operations",
   },
   {
