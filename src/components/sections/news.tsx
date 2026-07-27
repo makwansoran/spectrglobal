@@ -21,21 +21,21 @@ export function News() {
           </div>
         </Reveal>
 
-        <ul className="mt-12 grid gap-4 md:grid-cols-2">
+        <ul className="mt-12 grid gap-6 md:grid-cols-2">
           {newsItems.map((item, index) => (
             <li key={item.id}>
               <Reveal delay={index * 80}>
-                <article className="bevel-panel bevel-panel-muted overflow-hidden">
+                <article className="overflow-hidden border border-border bg-surface">
                   <Link href={item.href} className="group block">
-                    <div className="bevel-panel-image relative aspect-[16/10] overflow-hidden">
+                    <div className="relative h-56 w-full overflow-hidden bg-surface-2 sm:h-64">
                       <Image
                         src={item.image}
                         alt={item.imageAlt}
                         fill
+                        priority={index === 0}
                         className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                        sizes="(max-width: 768px) 100vw, 40rem"
+                        sizes="(max-width: 768px) 100vw, 50vw"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
                     </div>
                     <div className="p-6 sm:p-7">
                       <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
