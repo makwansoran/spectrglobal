@@ -5,21 +5,17 @@ import { softwareProducts, softwareSection } from "@/lib/content";
 
 export function SoftwareProducts() {
   return (
-    <section id="features" className="section scroll-mt-20">
+    <section id="features" className="section scroll-mt-24 border-t border-border">
       <div className="container-x">
         <Reveal>
-          <p className="max-w-3xl text-base leading-8 text-muted sm:text-lg">
-            {softwareSection.intro}
-          </p>
+          <p className="max-w-3xl text-base leading-8 text-muted sm:text-lg">{softwareSection.intro}</p>
         </Reveal>
 
         <Reveal delay={80}>
-          <h2 className="brand-font mt-16 text-[2rem] font-normal tracking-tight text-fg sm:text-[2.75rem] lg:text-[2.875rem]">
+          <h2 className="brand-font mt-14 text-[2rem] font-normal tracking-tight text-fg sm:text-[2.75rem] lg:text-[2.875rem]">
             {softwareSection.title}
           </h2>
-          <p className="mt-4 max-w-xl text-sm leading-7 text-muted sm:text-base">
-            {softwareSection.subtitle}
-          </p>
+          <p className="mt-4 max-w-xl text-sm leading-7 text-muted sm:text-base">{softwareSection.subtitle}</p>
         </Reveal>
 
         <ul className="mt-16 border-t border-border">
@@ -35,16 +31,14 @@ export function SoftwareProducts() {
                     <p className="max-w-sm text-sm leading-7 text-fg/80 transition-colors group-hover:text-fg sm:text-[0.95rem]">
                       {product.description}
                     </p>
-                    <p className="mt-3 font-mono text-[13px] tracking-[0.08em] text-muted">
-                      {product.index}
-                    </p>
+                    <p className="mt-3 font-mono text-[13px] tracking-[0.08em] text-muted">{product.index}</p>
                   </div>
 
                   <div
-                    className="order-1 flex justify-start opacity-[0.12] transition-opacity group-hover:opacity-25 sm:order-2 sm:justify-center"
+                    className="order-1 flex justify-start opacity-[0.18] transition-opacity group-hover:opacity-35 sm:order-2 sm:justify-center"
                     aria-hidden="true"
                   >
-                    <LogoMark className="h-16 w-16 sm:h-24 sm:w-24 lg:h-28 lg:w-28" />
+                    <LogoMark invert className="h-16 w-16 sm:h-24 sm:w-24 lg:h-28 lg:w-28" />
                   </div>
 
                   <div className="order-3 flex items-baseline justify-between gap-4 sm:justify-end">

@@ -6,13 +6,13 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="mt-auto border-t border-border bg-bg/70 backdrop-blur-sm">
+    <footer className="mt-auto border-t border-border bg-bg">
       <div className="container-x py-16 lg:py-20">
-        <div className="grid gap-12 border-b border-border pb-14 lg:grid-cols-[1.4fr_2fr]">
+        <div className="grid gap-12 border-b border-border pb-14 lg:grid-cols-[1.2fr_2fr]">
           <div>
             <Link href="/" className="inline-flex items-center gap-2.5 hover:opacity-70">
-              <LogoMark className="h-6 w-6" />
-              <Wordmark />
+              <LogoMark invert className="h-6 w-6" />
+              <Wordmark className="text-fg" />
             </Link>
             <p className="mt-6 max-w-sm text-sm leading-7 text-muted">{site.tagline}</p>
             <p className="mt-5 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
@@ -23,13 +23,11 @@ export function Footer() {
           <div className="grid gap-10 sm:grid-cols-3">
             {footerColumns.map((column) => (
               <div key={column.title}>
-                <h2 className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted">
-                  {column.title}
-                </h2>
+                <h2 className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted">{column.title}</h2>
                 <ul className="mt-5 space-y-3 text-sm">
                   {column.links.map((link) => (
                     <li key={link.href}>
-                      <Link href={link.href} className="text-fg/75 hover:text-fg">
+                      <Link href={link.href} className="text-fg/70 hover:text-fg">
                         {link.label}
                       </Link>
                     </li>

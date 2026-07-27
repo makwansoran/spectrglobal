@@ -18,16 +18,39 @@ export const site = {
   },
 } as const;
 
-export const navLinks = [] as const;
+export const navPrimary = [
+  {
+    label: "Generate Alpha",
+    href: "/#features",
+    children: [
+      { label: "Droid", href: "/robotics" },
+      { label: "Spectr Mind", href: "/#features" },
+      { label: "Spectr C2", href: "/wms" },
+    ],
+  },
+  { label: "Offerings", href: "/#offerings" },
+  { label: "Careers", href: "/careers" },
+  { label: "Newsroom", href: "/news" },
+  { label: "Spectr Explained", href: "/about" },
+] as const;
+
+export const navQuickLinks = [
+  { label: "About Spectr", href: "/about" },
+  { label: "Careers", href: "/careers" },
+  { label: "Newsroom", href: "/news" },
+  { label: "Contact", href: "/contact" },
+  { label: "Privacy policy", href: "/privacy" },
+  { label: "Terms of use", href: "/terms" },
+] as const;
 
 export const footerColumns = [
   {
     title: "Platform",
     links: [
       { label: "Droid", href: "/robotics" },
+      { label: "Spectr Mind", href: "/#features" },
       { label: "Spectr C2", href: "/wms" },
-      { label: "How it works", href: "/#how-it-works" },
-      { label: "Get started", href: "/#pricing" },
+      { label: "Get started", href: "/contact" },
     ],
   },
   {

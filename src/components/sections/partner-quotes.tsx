@@ -5,7 +5,7 @@ export function PartnerQuotes() {
   const loop = [...partnerQuotes, ...partnerQuotes];
 
   return (
-    <section id="partners" className="section scroll-mt-20 overflow-hidden">
+    <section id="partners" className="section scroll-mt-24 overflow-hidden border-t border-border">
       <div className="container-x">
         <Reveal>
           <h2 className="brand-font max-w-3xl text-[2rem] font-normal tracking-tight text-fg sm:text-[2.75rem] lg:text-[2.875rem]">
@@ -22,9 +22,7 @@ export function PartnerQuotes() {
               className="partner-card group"
               aria-hidden={index >= partnerQuotes.length}
             >
-              <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted">
-                {item.company}
-              </p>
+              <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted">{item.company}</p>
               <blockquote className="mt-6 flex-1 text-[1.05rem] leading-8 text-fg sm:text-[1.125rem] sm:leading-8">
                 “{item.quote}”
               </blockquote>

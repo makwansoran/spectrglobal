@@ -33,7 +33,7 @@ export function CookieConsent() {
       className="fixed inset-0 z-[80] flex items-end justify-center bg-black/70 p-4 backdrop-blur-sm sm:items-center sm:p-6"
     >
       <section className="panel w-full max-w-lg p-7 sm:p-8">
-        <LogoMark className="h-8 w-8 text-fg/60" />
+        <LogoMark invert className="h-8 w-8" />
         <h2 id="cookie-title" className="brand-font mt-5 text-xl font-semibold tracking-tight">
           Cookies on spectr.no
         </h2>

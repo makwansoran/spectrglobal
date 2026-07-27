@@ -3,6 +3,7 @@ import { ArrowIcon, Button } from "@/components/button";
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
 import { PageHeader } from "@/components/page-header";
+import { newsItems } from "@/lib/content";
 import { buildPageMetadata } from "@/lib/metadata";
 import { site } from "@/lib/site";
 
@@ -14,15 +15,6 @@ export const metadata: Metadata = buildPageMetadata({
   path: "/news",
 });
 
-type NewsItem = {
-  date: string;
-  title: string;
-  summary: string;
-};
-
-/** Add entries here as they are published. Newest first. */
-const items: NewsItem[] = [];
-
 export default function NewsPage() {
   return (
     <>
@@ -33,16 +25,18 @@ export default function NewsPage() {
         <section className="pb-28">
           <div className="container-x">
             <div className="mx-auto max-w-3xl">
-              {items.length > 0 ? (
+              {newsItems.length > 0 ? (
                 <ul className="divide-y divide-border border-t border-border">
-                  {items.map((item) => (
-                    <li key={item.title} className="grid gap-3 py-9 sm:grid-cols-[150px_1fr] sm:gap-8">
+                  {newsItems.map((item) => (
+                    <li key={item.id} className="grid gap-3 py-9 sm:grid-cols-[150px_1fr] sm:gap-8">
                       <time className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
                         {item.date}
                       </time>
                       <div>
                         <h2 className="brand-font text-xl font-semibold tracking-tight text-fg">
-                          {item.title}
+                          <a href={item.href} className="hover:opacity-70">
+                            {item.title}
+                          </a>
                         </h2>
                         <p className="mt-3 text-sm leading-7 text-muted">{item.summary}</p>
                       </div>
