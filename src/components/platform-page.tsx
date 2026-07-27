@@ -64,17 +64,19 @@ export function PlatformPageView({ platform }: { platform: Platform }) {
       </section>
 
       <div className="theme-light">
-      <section className="border-t border-border py-12 sm:py-16">
-        <div className="container-x">
+      <section className="flex min-h-[100svh] flex-col justify-center border-t border-border py-16 sm:py-20">
+        <div className="container-x flex flex-col items-center text-center">
           <Reveal>
-            <h2 className="brand-font max-w-3xl text-[clamp(1.4rem,3vw,2.25rem)] leading-[1.2] tracking-tight text-fg">
+            <h2 className="brand-font mx-auto max-w-3xl text-[clamp(1.4rem,3vw,2.25rem)] leading-[1.2] tracking-tight text-fg">
               {platform.statementTitle}{" "}
               <span className="text-muted">{platform.statementHighlight}</span>
             </h2>
-            <p className="mt-4 max-w-lg text-[13px] leading-6 text-muted">{platform.statementBody}</p>
+            <p className="mx-auto mt-4 max-w-lg text-[13px] leading-6 text-muted">
+              {platform.statementBody}
+            </p>
           </Reveal>
 
-          <div className="mt-8 flex flex-wrap justify-center gap-2 border-b border-border pb-3">
+          <div className="mt-10 flex flex-wrap justify-center gap-2 border-b border-border pb-3">
             {platform.capabilities.map((item) => (
               <button
                 key={item.id}
@@ -92,10 +94,10 @@ export function PlatformPageView({ platform }: { platform: Platform }) {
           </div>
 
           {capability ? (
-            <div className="mt-6 grid gap-3 md:grid-cols-3">
+            <div className="mt-8 grid w-full gap-3 md:grid-cols-3">
               {capability.steps.map((step, index) => (
                 <Reveal key={step.title} delay={index * 50}>
-                  <article className="border border-border bg-surface p-4 sm:p-5">
+                  <article className="h-full border border-border bg-surface p-4 text-left sm:p-5">
                     <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-muted">
                       {String.fromCharCode(65 + index)}
                     </p>
