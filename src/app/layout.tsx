@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
 import { CookieConsentLazy } from "@/components/cookie-consent-lazy";
+import { GetStartedShell } from "@/components/get-started-shell";
 import { OrganizationJsonLd } from "@/components/json-ld";
 import { ScrollToTop } from "@/components/scroll-to-top";
 import { SiteBackground } from "@/components/site-background";
@@ -65,8 +66,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SiteBackground />
         <OrganizationJsonLd />
         <ScrollToTop />
-        {children}
-        <CookieConsentLazy />
+        <GetStartedShell>
+          {children}
+          <CookieConsentLazy />
+        </GetStartedShell>
       </body>
     </html>
   );

@@ -8,10 +8,13 @@ export type ContactFormState = {
 };
 
 type ContactPayload = {
-  name: string;
+  firstName: string;
+  lastName: string;
   organization?: string;
   email: string;
   phone?: string;
+  jobTitle?: string;
+  country?: string;
   product: string;
   message: string;
   website?: string;
@@ -19,7 +22,7 @@ type ContactPayload = {
 
 function validate(payload: ContactPayload): ContactErrorCode | null {
   if (payload.website) return null;
-  if (!payload.name.trim()) return "name";
+  if (!payload.firstName.trim() || !payload.lastName.trim()) return "name";
   if (!payload.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)) {
     return "email";
   }
@@ -32,11 +35,18 @@ export async function submitContactForm(
   _prev: ContactFormState,
   formData: FormData,
 ): Promise<ContactFormState> {
+  const firstName = String(formData.get("firstName") ?? "");
+  const lastName = String(formData.get("lastName") ?? "");
+  const legacyName = String(formData.get("name") ?? "");
+
   const payload: ContactPayload = {
-    name: String(formData.get("name") ?? ""),
+    firstName: firstName || legacyName.split(" ")[0] || "",
+    lastName: lastName || legacyName.split(" ").slice(1).join(" ") || legacyName,
     organization: String(formData.get("organization") ?? ""),
     email: String(formData.get("email") ?? ""),
     phone: String(formData.get("phone") ?? ""),
+    jobTitle: String(formData.get("jobTitle") ?? ""),
+    country: String(formData.get("country") ?? ""),
     product: String(formData.get("product") ?? ""),
     message: String(formData.get("message") ?? ""),
     website: String(formData.get("website") ?? ""),
@@ -51,13 +61,16 @@ export async function submitContactForm(
   const from = process.env.CONTACT_FROM_EMAIL ?? "Spectr Website <onboarding@resend.dev>";
   const apiKey = process.env.RESEND_API_KEY;
 
+  const name = `${payload.firstName} ${payload.lastName}`.trim();
   const subject = `Spectr inquiry — ${payload.product}`;
   const body = [
-    `Name: ${payload.name}`,
-    payload.organization ? `Organization: ${payload.organization}` : null,
+    `Name: ${name}`,
+    payload.jobTitle ? `Job title: ${payload.jobTitle}` : null,
+    payload.organization ? `Company / Institution: ${payload.organization}` : null,
+    payload.country ? `Country: ${payload.country}` : null,
     `Email: ${payload.email}`,
     payload.phone ? `Phone: ${payload.phone}` : null,
-    `Product: ${payload.product}`,
+    `Inquiry: ${payload.product}`,
     "",
     payload.message,
   ]

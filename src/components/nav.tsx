@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Button } from "@/components/button";
+import { GetStartedButton } from "@/components/get-started-button";
 import { LogoMark, Wordmark } from "@/components/logo";
 import { newsItems } from "@/lib/content";
 import { navPrimary, navQuickLinks, site } from "@/lib/site";
@@ -46,9 +46,7 @@ export function Nav() {
               </Link>
 
               <div className="flex items-center gap-2 sm:gap-3">
-                <Button href="/contact" className="btn-on-dark hidden sm:inline-flex">
-                  Get Started
-                </Button>
+                <GetStartedButton className="btn-on-dark hidden sm:inline-flex" />
                 <button
                   type="button"
                   onClick={() => setOpen((value) => !value)}
@@ -98,9 +96,12 @@ export function Nav() {
                   <Wordmark className="text-fg" />
                 </Link>
                 <div className="flex items-center gap-2 sm:gap-3">
-                  <Button href="/contact" className="btn-on-dark hidden sm:inline-flex" onClick={() => setOpen(false)}>
-                    Get Started
-                  </Button>
+                  <GetStartedButton
+                    className="btn-on-dark hidden sm:inline-flex"
+                    onClick={() => {
+                      setOpen(false);
+                    }}
+                  />
                   <button
                     type="button"
                     onClick={() => setOpen(false)}

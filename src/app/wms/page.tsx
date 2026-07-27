@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ArrowIcon, Button } from "@/components/button";
 import { Footer } from "@/components/footer";
+import { GetStartedButton } from "@/components/get-started-button";
 import { Nav } from "@/components/nav";
 import { PageHeader } from "@/components/page-header";
 import { Reveal } from "@/components/reveal";
@@ -105,10 +106,10 @@ export default function WmsPage() {
           intro={intro}
         >
           <div className="flex flex-col gap-3 sm:flex-row">
-            <Button href="/contact" size="lg">
+            <GetStartedButton size="lg" label="Get started free">
               Get started free
               <ArrowIcon />
-            </Button>
+            </GetStartedButton>
             <Button href="/#features" size="lg">
               See Spectr OS
             </Button>
@@ -195,10 +196,10 @@ export default function WmsPage() {
                   Send us the shape of your operation and we will show you Spectr C2 running on your
                   own data. If it does not fit, we will tell you that too.
                 </p>
-                <Button href="/contact" size="lg" className="mt-9">
-                  Get Spectr C2 free
+                <GetStartedButton size="lg" className="mt-9" label="Get Spectr OS free">
+                  Get Spectr OS free
                   <ArrowIcon />
-                </Button>
+                </GetStartedButton>
               </div>
             </Reveal>
           </div>
