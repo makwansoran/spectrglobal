@@ -14,12 +14,12 @@ export default function HomePage() {
       <Nav />
       <main id="main-content" className="flex-1">
         <Hero />
-        <Offerings />
-        <OfferingsCeoQuote />
-        <SoftwareProducts />
-        <News />
-        <PartnerQuotes />
         <div className="theme-light">
+          <Offerings />
+          <OfferingsCeoQuote />
+          <SoftwareProducts />
+          <News />
+          <PartnerQuotes />
           <CeoQuote />
         </div>
       </main>

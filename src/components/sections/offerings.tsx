@@ -54,7 +54,7 @@ export function Offerings() {
               onClick={() => goTo(item.id)}
               className={`rounded-full border px-3.5 py-1.5 font-mono text-[11px] uppercase tracking-[0.14em] transition-colors ${
                 active.id === item.id
-                  ? "border-white bg-white text-black"
+                  ? "border-fg bg-fg text-bg"
                   : "border-border bg-transparent text-muted hover:border-border-strong hover:text-fg"
               }`}
             >
@@ -107,7 +107,7 @@ export function Offerings() {
               type="button"
               onClick={() => step(-1)}
               aria-label="Previous offering"
-              className="inline-flex h-10 w-10 items-center justify-center border border-border text-fg hover:bg-white/5"
+              className="inline-flex h-10 w-10 items-center justify-center border border-border text-fg hover:bg-surface-2"
             >
               ←
             </button>
@@ -115,7 +115,7 @@ export function Offerings() {
               type="button"
               onClick={() => step(1)}
               aria-label="Next offering"
-              className="inline-flex h-10 w-10 items-center justify-center border border-border text-fg hover:bg-white/5"
+              className="inline-flex h-10 w-10 items-center justify-center border border-border text-fg hover:bg-surface-2"
             >
               →
             </button>
