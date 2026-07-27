@@ -27,7 +27,7 @@ export default function NewsPage() {
           <div className="container-x">
             <div className="mx-auto max-w-3xl">
               {newsItems.length > 0 ? (
-                <ul className="divide-y divide-border border-t border-border">
+                <ul>
                   {newsItems.map((item) => (
                     <li key={item.id} className="grid gap-5 py-9 sm:grid-cols-[150px_1fr] sm:gap-8">
                       <time className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted">

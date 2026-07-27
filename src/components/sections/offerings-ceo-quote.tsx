@@ -3,7 +3,7 @@ import { offeringsCeoQuote } from "@/lib/content";
 
 export function OfferingsCeoQuote() {
   return (
-    <section className="border-t border-border py-20 sm:py-28" aria-label="Spectr Philosophy">
+    <section className="py-20 sm:py-28" aria-label="Spectr Philosophy">
       <div className="container-x">
         <Reveal>
           <blockquote className="mx-auto max-w-4xl text-center">

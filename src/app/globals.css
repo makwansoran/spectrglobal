@@ -435,10 +435,6 @@ textarea {
   }
 }
 
-.hairline {
-  border-top: 1px solid var(--border);
-}
-
 .offerings-slideshow {
   overflow: hidden;
 }

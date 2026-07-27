@@ -3,7 +3,7 @@ import { ceoQuote } from "@/lib/content";
 
 export function CeoQuote() {
   return (
-    <section id="ceo" className="section scroll-mt-24 border-t border-border bg-bg">
+    <section id="ceo" className="section scroll-mt-24 bg-bg">
       <div className="container-x">
         <Reveal>
           <blockquote className="mx-auto max-w-4xl text-center">

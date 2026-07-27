@@ -6,9 +6,9 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="theme-light mt-auto border-t border-border">
+    <footer className="theme-light mt-auto">
       <div className="container-x py-16 lg:py-20">
-        <div className="grid gap-12 border-b border-border pb-14 lg:grid-cols-[1.2fr_2fr]">
+        <div className="grid gap-12 pb-14 lg:grid-cols-[1.2fr_2fr]">
           <div>
             <Link href="/" className="inline-flex items-center gap-2.5 hover:opacity-70">
               <LogoMark className="h-6 w-6" />

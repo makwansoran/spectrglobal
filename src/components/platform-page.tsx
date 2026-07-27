@@ -64,7 +64,7 @@ export function PlatformPageView({ platform }: { platform: Platform }) {
       </section>
 
       <div className="theme-light">
-        <section className="flex min-h-[100svh] flex-col justify-center border-t border-border py-16 sm:py-20">
+        <section className="flex min-h-[100svh] flex-col justify-center py-16 sm:py-20">
           <div className="container-x flex flex-col items-center text-center">
             <Reveal>
               <h2 className="brand-font mx-auto max-w-3xl text-[clamp(1.4rem,3vw,2.25rem)] leading-[1.2] tracking-tight text-fg">
@@ -111,7 +111,7 @@ export function PlatformPageView({ platform }: { platform: Platform }) {
           </div>
         </section>
 
-        <section className="border-t border-border">
+        <section>
           <div className="relative min-h-[80svh] overflow-hidden bg-black">
             {feature ? (
               <>
@@ -174,7 +174,7 @@ export function PlatformPageView({ platform }: { platform: Platform }) {
           </div>
         </section>
 
-        <section className="border-t border-border py-12 sm:py-16">
+        <section className="py-12 sm:py-16">
           <div className="container-x">
             <Reveal>
               <p className="brand-font max-w-3xl text-[clamp(1.5rem,4vw,2.75rem)] leading-[1.15] tracking-tight text-fg">
@@ -225,7 +225,7 @@ export function PlatformPageView({ platform }: { platform: Platform }) {
           </div>
         </section>
 
-        <section className="border-t border-border py-12 sm:py-16">
+        <section className="py-12 sm:py-16">
           <div className="container-x">
             <Reveal>
               <h2 className="brand-font text-[clamp(1.35rem,3vw,2rem)] tracking-tight text-fg">

@@ -84,11 +84,11 @@ export default function CareersPage() {
                     </Button>
                   </div>
 
-                  <div className="lg:border-l lg:border-border lg:pl-20">
+                  <div className="lg:pl-20">
                     <h3 className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
                       Areas we hire into
                     </h3>
-                    <ul className="mt-6 divide-y divide-border">
+                    <ul className="mt-6 space-y-1">
                       {areas.map((area) => (
                         <li key={area} className="py-4 text-sm leading-6 text-fg/80">
                           {area}

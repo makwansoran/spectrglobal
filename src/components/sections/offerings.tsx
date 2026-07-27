@@ -35,7 +35,7 @@ export function Offerings() {
   return (
     <section
       id="offerings"
-      className="scroll-mt-24 border-t border-border py-10 sm:py-12"
+      className="scroll-mt-24 py-10 sm:py-12"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
@@ -46,7 +46,7 @@ export function Offerings() {
       }}
     >
       <div className="container-x">
-        <div className="flex flex-wrap items-center gap-2 border-b border-border pb-4">
+        <div className="flex flex-wrap items-center gap-2 pb-4">
           {offerings.map((item) => (
             <button
               key={item.id}
@@ -71,7 +71,7 @@ export function Offerings() {
 
         <div className="relative mt-6" aria-label="Offerings slideshow" aria-live="polite">
           <Link href={active.href} className="group block">
-            <div className="relative aspect-[16/9] overflow-hidden border border-border bg-surface sm:aspect-[21/9]">
+            <div className="relative aspect-[16/9] overflow-hidden bg-surface sm:aspect-[21/9]">
               <Image
                 key={active.id}
                 src={active.image}

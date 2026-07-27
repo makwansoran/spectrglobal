@@ -38,9 +38,9 @@ export default function AboutPage() {
 
         <section className="pb-16">
           <div className="container-x">
-            <dl className="grid gap-px overflow-hidden border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+            <dl className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
               {facts.map((fact) => (
-                <div key={fact.label} className="bg-surface p-7">
+                <div key={fact.label}>
                   <dt className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
                     {fact.label}
                   </dt>

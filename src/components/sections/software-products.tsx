@@ -12,7 +12,7 @@ function SolutionRow({
   index: number;
 }) {
   return (
-    <li className="border-b border-border">
+    <li>
       <article className="solution-row group">
         <div className="grid items-center gap-6 py-8 transition-[padding] duration-300 ease-out group-hover:py-11 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] sm:gap-10 sm:py-10 sm:group-hover:py-14 lg:py-12 lg:group-hover:py-16">
           <div>
@@ -57,7 +57,7 @@ function SolutionRow({
 
 export function SoftwareProducts() {
   return (
-    <section id="features" className="section scroll-mt-24 border-t border-border">
+    <section id="features" className="section scroll-mt-24">
       <div className="container-x">
         <TypeInOnView
           as="h2"
@@ -66,7 +66,7 @@ export function SoftwareProducts() {
           className="brand-font text-[clamp(3rem,12vw,8rem)] font-normal leading-[0.9] tracking-[-0.05em] text-fg"
         />
 
-        <ul className="mt-16 border-t border-border">
+        <ul className="mt-16">
           {softwareProducts.map((product, index) => (
             <SolutionRow key={product.id} product={product} index={index} />
           ))}

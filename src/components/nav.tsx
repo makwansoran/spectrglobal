@@ -121,8 +121,8 @@ export function Nav() {
               </div>
             </div>
 
-            <div className="container-x grid gap-0 border-t border-border pb-16 pt-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.4fr)_minmax(0,1fr)] lg:pt-0">
-              <nav className="border-border lg:border-r lg:pr-8 lg:pt-10" aria-label="Main">
+            <div className="container-x grid gap-0 pb-16 pt-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.4fr)_minmax(0,1fr)] lg:pt-0">
+              <nav className="lg:pr-8 lg:pt-10" aria-label="Main">
                 <p className="label mb-6">Navigation</p>
                 <ul className="space-y-1">
                   {navPrimary.map((item) => {
@@ -173,8 +173,8 @@ export function Nav() {
                 </ul>
               </nav>
 
-              <div className="grid border-border sm:grid-cols-2 lg:col-span-2 lg:grid-cols-2 lg:border-l-0">
-                <section className="border-t border-border py-10 sm:border-r lg:border-t-0 lg:px-8 lg:pt-10">
+              <div className="grid sm:grid-cols-2 lg:col-span-2 lg:grid-cols-2">
+                <section className="py-10 lg:px-8 lg:pt-10">
                   <div className="mb-6 flex items-center justify-between gap-4">
                     <h2 className="label">Latest News</h2>
                     <Link
@@ -211,8 +211,8 @@ export function Nav() {
                   </ul>
                 </section>
 
-                <div className="grid border-t border-border sm:border-t-0 lg:border-l lg:border-border">
-                  <section className="border-b border-border px-0 py-10 lg:px-8 lg:pt-10">
+                <div className="grid">
+                  <section className="px-0 py-10 lg:px-8 lg:pt-10">
                     <div className="mb-6 flex items-center justify-between gap-4">
                       <h2 className="label">Offerings</h2>
                       <Link

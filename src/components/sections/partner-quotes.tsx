@@ -5,7 +5,7 @@ export function PartnerQuotes() {
   const loop = [...partnerQuotes, ...partnerQuotes];
 
   return (
-    <section id="partners" className="section scroll-mt-24 overflow-hidden border-t border-border">
+    <section id="partners" className="section scroll-mt-24 overflow-hidden">
       <div className="container-x">
         <Reveal>
           <h2 className="brand-font max-w-3xl text-[2rem] font-normal tracking-tight text-fg sm:text-[2.75rem] lg:text-[2.875rem]">
@@ -26,7 +26,7 @@ export function PartnerQuotes() {
               <blockquote className="mt-6 flex-1 text-[1.05rem] leading-8 text-fg sm:text-[1.125rem] sm:leading-8">
                 “{item.quote}”
               </blockquote>
-              <div className="mt-8 border-t border-border pt-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+              <div className="mt-8 pt-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                 <p className="text-sm font-medium text-fg">{item.person}</p>
                 <p className="mt-1 text-sm text-muted">{item.role}</p>
               </div>
