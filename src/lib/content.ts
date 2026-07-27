@@ -17,65 +17,44 @@ export const marqueeItems = [
 
 export const marqueeCaption = "Built for the operations that move physical goods";
 
-export type Feature = {
+export type SoftwareProduct = {
   id: string;
-  tab: string;
-  kicker: string;
-  title: string;
+  index: string;
+  name: string;
   description: string;
-  bullets: string[];
+  href: string;
 };
 
-export const features: Feature[] = [
+export const softwareSection = {
+  intro:
+    "Our software powers real-time, AI-driven decisions on warehouse and industrial floors — from receiving docks to dispatch lanes.",
+  title: "Our Software",
+  subtitle: "Run the floor today. Add embodiment when you are ready.",
+};
+
+export const softwareProducts: SoftwareProduct[] = [
   {
     id: "droid",
-    tab: "Droid",
-    kicker: "The robot",
-    title: "A humanoid built for floors that already exist.",
-    description:
-      "Most automation asks you to rebuild the building around it. Droid is designed for the aisles, racking, totes and doorways you already have — bipedal, tool-agnostic, and able to work a shift alongside people.",
-    bullets: [
-      "Human-scale reach and footprint, so no re-racking or fixed conveyors",
-      "Two-handed manipulation for picking, totes, cartons and irregular items",
-      "Onboard perception and planning, with safe operation around staff",
-      "Charges and hands off between shifts without a dedicated operator",
-    ],
+    index: "/0.1",
+    name: "Droid",
+    description: "A humanoid built for floors that already exist — aisles, racking, and shifts as they are.",
+    href: "/robotics",
   },
   {
     id: "spectr-mind",
-    tab: "Spectr Mind",
-    kicker: "The intelligence",
-    title: "One model of your operation, shared by every unit.",
-    description:
-      "Spectr Mind is the world model behind the fleet. It learns the layout, the inventory, the exceptions and the habits of a specific site, then transfers what it learns to every Droid and every recommendation Spectr C2 makes.",
-    bullets: [
-      "Learns site-specific layout, SKUs and edge cases from day one",
-      "Turns warehouse telemetry into training signal for manipulation",
-      "Improves routing and slotting decisions as the operation changes",
-      "Runs the same model on the floor and in the planning layer",
-    ],
+    index: "/0.2",
+    name: "Spectr Mind",
+    description: "One model of your operation, shared by every unit and every decision on the floor.",
+    href: "/#features",
   },
   {
     id: "spectr-c2",
-    tab: "Spectr C2",
-    kicker: "The free system",
-    title: "A complete AI warehouse management system, at no cost.",
-    description:
-      "Inbound, putaway, slotting, picking, packing, dispatch and stock accuracy — the full loop, AI-native from the ground up. We give Spectr C2 away because a well-instrumented warehouse is what makes useful robots possible.",
-    bullets: [
-      "Full WMS feature set with no paid tier gating the essentials",
-      "Natural-language querying and reporting over live stock data",
-      "Integrates with your ERP, TMS and carriers through an open API",
-      "Deploys in the cloud or in your own environment",
-    ],
+    index: "/0.3",
+    name: "Spectr C2",
+    description: "A complete AI warehouse management system — free for enterprises, permanently.",
+    href: "/wms",
   },
 ];
-
-export const featuresSection = {
-  title: "One stack, from the shelf to the hand.",
-  subtitle:
-    "Spectr C2 runs your warehouse today. The same intelligence drives Droid when you are ready for it.",
-};
 
 export type UseCase = {
   title: string;
@@ -173,6 +152,76 @@ export const howItWorks = [
   },
 ];
 
+export const partnersSection = {
+  title: "What our partners say about us",
+};
+
+export type PartnerQuote = {
+  company: string;
+  quote: string;
+  person: string;
+  role: string;
+};
+
+export const partnerQuotes: PartnerQuote[] = [
+  {
+    company: "NORDIC 3PL",
+    quote:
+      "We went live on Spectr C2 across two sites in under a fortnight. Stock accuracy stopped being a weekly argument and started being a morning number we trust.",
+    person: "Operations Director",
+    role: "Multi-client fulfilment, Nordics",
+  },
+  {
+    company: "COLD CHAIN NETWORK",
+    quote:
+      "The free licence meant we could put every shift lead on the system, not just the planners. Exceptions get closed on the floor instead of sitting in a spreadsheet for three days.",
+    person: "Site Manager",
+    role: "Temperature-controlled distribution",
+  },
+  {
+    company: "SPARE PARTS HUB",
+    quote:
+      "Spectr Mind learned our SKU chaos faster than any consultant we have paid. Slotting recommendations that used to take a quarterly project now land as the day changes.",
+    person: "Head of Warehouse",
+    role: "Industrial spare parts",
+  },
+  {
+    company: "EU RETAIL DC",
+    quote:
+      "We piloted Droid on tote transfer first. Same aisles, same racking — no rebuild. The WMS already knew the work, so the robot was a deployment, not a science project.",
+    person: "Automation Lead",
+    role: "National retail distribution",
+  },
+  {
+    company: "PORT SIDE LOGISTICS",
+    quote:
+      "I did not need another dashboard telling me we were behind. I needed the system to surface the next decision. Spectr C2 does that without a seat count conversation.",
+    person: "VP Operations",
+    role: "Ports and terminals",
+  },
+  {
+    company: "LINE-SIDE SUPPLY",
+    quote:
+      "Kitting used to burn a full shift of chase-downs. With Spectr C2 the shortages show up before the line stops — and we can hand the repetitive transfer work to Droid when we are ready.",
+    person: "Plant Logistics Manager",
+    role: "Manufacturing",
+  },
+  {
+    company: "REGIONAL FULFILMENT",
+    quote:
+      "Migration from our legacy WMS was the part we feared. Their team mapped locations and open orders in days, then ran both systems in parallel until we cut over clean.",
+    person: "IT & Operations",
+    role: "Regional e-commerce fulfilment",
+  },
+  {
+    company: "PHARMA DISTRIBUTOR",
+    quote:
+      "Audit trails and cycle counts that hold up under inspection mattered more than flashy AI. Spectr C2 gave us both — and it cost nothing to put the whole team on it.",
+    person: "Quality & Compliance Lead",
+    role: "Regulated distribution",
+  },
+];
+
 export const principlesSection = {
   title: "What we believe about physical work.",
   subtitle:
@@ -212,52 +261,9 @@ export const principles = [
   },
 ];
 
-export const pricingSection = {
-  title: "The software is free. The ambition is not small.",
-  subtitle: "One plan. Everything included. Spectr C2 costs nothing — forever.",
-};
-
-export type Plan = {
-  name: string;
-  price: string;
-  period?: string;
-  description: string;
-  featured?: boolean;
-  badge?: string;
-  cta: { label: string; href: string };
-  featuresTitle: string;
-  features: string[];
-};
-
-export const plans: Plan[] = [
-  {
-    name: "Spectr C2",
-    price: "Free",
-    period: "forever",
-    description:
-      "The complete AI warehouse management system for enterprises — migration, self-hosting, integrations, governance, and Droid pilot access included. No licence fee. No user cap.",
-    featured: true,
-    badge: "Everything included",
-    cta: { label: "Get started free", href: "/contact" },
-    featuresTitle: "Included",
-    features: [
-      "Unlimited users and locations",
-      "Inbound, putaway, picking, packing, dispatch",
-      "AI slotting, forecasting and natural-language reporting",
-      "Open REST API and webhooks",
-      "EU-hosted, GDPR-aligned",
-      "Guided migration from your current WMS",
-      "Self-hosted or private-cloud deployment",
-      "Custom ERP, TMS and automation integrations",
-      "SSO, audit logging and role governance",
-      "Contracted SLA and named support",
-      "Droid site assessment and task selection",
-      "On-site Droid deployment with our engineers",
-      "Direct input into the hardware roadmap",
-      "Preferential terms at commercial release",
-      "Joint publication rights on results",
-    ],
-  },
+export const getStartedCtas = [
+  { label: "Request a Demo", href: "/contact", tone: "light" as const },
+  { label: "Start Building", href: "/wms", tone: "dark" as const },
 ];
 
 export const faqSection = {

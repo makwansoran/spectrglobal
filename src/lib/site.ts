@@ -27,7 +27,7 @@ export const footerColumns = [
       { label: "Droid", href: "/robotics" },
       { label: "Spectr C2", href: "/wms" },
       { label: "How it works", href: "/#how-it-works" },
-      { label: "Pricing", href: "/#pricing" },
+      { label: "Get started", href: "/#pricing" },
     ],
   },
   {

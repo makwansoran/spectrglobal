@@ -293,6 +293,62 @@ textarea {
   opacity: 0.85;
 }
 
+.cta-panel {
+  --bevel-cut: 14px;
+  position: relative;
+  display: flex;
+  flex: 1 1 50%;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  min-height: 11.75rem;
+  padding: 1rem 1.15rem 6.5rem;
+  border: 1px solid transparent;
+  border-radius: 0;
+  font-size: 1.125rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+  clip-path: polygon(
+    var(--bevel-cut) 0,
+    100% 0,
+    100% calc(100% - var(--bevel-cut)),
+    calc(100% - var(--bevel-cut)) 100%,
+    0 100%,
+    0 var(--bevel-cut)
+  );
+}
+
+.cta-panel:hover {
+  opacity: 0.88;
+}
+
+.cta-panel:focus-visible {
+  clip-path: none;
+  border-radius: 8px;
+  outline: 2px solid var(--fg);
+  outline-offset: 3px;
+}
+
+.cta-panel-light {
+  background: #dcdcdc;
+  color: var(--fg);
+}
+
+.cta-panel-dark {
+  background: var(--fg);
+  color: #ffffff;
+}
+
+@media (max-width: 639px) {
+  .cta-panel {
+    min-height: 9.5rem;
+    padding-bottom: 4.5rem;
+  }
+}
+
 .card {
   position: relative;
   border: 1px solid var(--border);
@@ -370,6 +426,51 @@ textarea {
   to { transform: translateX(-100%); }
 }
 
+/* ---------------- Partner quote marquee ---------------- */
+.partner-marquee {
+  display: flex;
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, black 4%, black 96%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 4%, black 96%, transparent);
+}
+
+.partner-marquee__track {
+  display: flex;
+  flex-shrink: 0;
+  gap: 1rem;
+  padding-inline: 1rem;
+  width: max-content;
+  animation: partner-marquee-scroll 90s linear infinite;
+}
+
+.partner-marquee:hover .partner-marquee__track {
+  animation-play-state: paused;
+}
+
+.partner-card {
+  display: flex;
+  flex-direction: column;
+  width: min(22rem, 82vw);
+  min-height: 22rem;
+  flex-shrink: 0;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  padding: 1.75rem 1.75rem 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .partner-card {
+    width: 24rem;
+    min-height: 24rem;
+    padding: 2rem;
+  }
+}
+
+@keyframes partner-marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
 @keyframes fade-up {
   from { opacity: 0; transform: translateY(16px); }
   to { opacity: 1; transform: translateY(0); }
@@ -409,6 +510,7 @@ textarea {
   .site-bg__glow,
   .fade-up,
   .marquee__track,
+  .partner-marquee__track,
   .pulse-dot { animation: none; }
   .fade-up { opacity: 1; transform: none; }
   .reveal { opacity: 1; transform: none; transition: none; }
