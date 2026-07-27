@@ -14,8 +14,7 @@ export function Footer() {
               <LogoMark className="h-6 w-6" />
               <Wordmark className="text-fg" />
             </Link>
-            <p className="mt-6 max-w-sm text-sm leading-7 text-muted">{site.tagline}</p>
-            <p className="mt-5 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
+            <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
               {site.legalName} · Org. {site.orgNumber} · {site.location}
             </p>
           </div>
