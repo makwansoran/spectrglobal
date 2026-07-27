@@ -29,7 +29,7 @@ export const softwareProducts: SoftwareProduct[] = [
     index: "/0.1",
     name: "Spectr OS",
     description:
-      "The operating system for warehouse and industrial floors — real-time decisions from dock to dispatch.",
+      "The operating system for the enterprise — data fusion, decision making, and agentic workflows in one runtime.",
     href: "/platforms/spectr-os",
   },
   {
@@ -71,7 +71,7 @@ export const offerings: Offering[] = [
   {
     id: "spectr-os",
     label: "Spectr OS",
-    title: "The operating system for the physical economy",
+    title: "The operating system for the enterprise",
     href: "/platforms/spectr-os",
     image: "/images/offerings/spectr-os.jpg",
     imageAlt: "Spectr OS running industrial operations",

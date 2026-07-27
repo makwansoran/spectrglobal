@@ -26,6 +26,7 @@ export type Platform = {
   statementBody: string;
   capabilities: PlatformCapability[];
   features: PlatformFeature[];
+  industriesIntro: string;
   industries: string[];
   ctaTitle: string;
   ctaBody: string;
@@ -36,115 +37,115 @@ export const platforms: Platform[] = [
     slug: "spectr-os",
     name: "Spectr OS",
     index: "/0.1",
-    heroTagline: "The operating system for the physical economy",
-    exploreLabel: "Explore our warehouse operating system",
-    timeLabel: "Time: 3 mins to explore",
-    valueProp: "Run every decision on the floor from one system",
+    heroTagline: "The operating system for the enterprise",
+    exploreLabel: "Explore Spectr OS",
+    timeLabel: "Time: 2 mins",
+    valueProp: "Fuse data. Decide. Act.",
     heroImage: "/images/offerings/spectr-os.jpg",
-    heroImageAlt: "Spectr OS on an industrial floor",
-    statementTitle: "Go beyond dashboards.",
-    statementHighlight: "Enterprise Operations",
+    heroImageAlt: "Spectr OS running enterprise operations",
+    statementTitle: "Go beyond applications.",
+    statementHighlight: "One OS",
     statementBody:
-      "Turn warehouse software into a live operating system — where AIM, Metaphysics, and Argus share one truth of the floor.",
+      "Data fusion. Decision making. Agentic workflows. One runtime for every operation.",
     capabilities: [
+      {
+        id: "fuse",
+        label: "Fuse",
+        steps: [
+          {
+            title: "Unify every signal",
+            body: "ERP, sensors, feeds, and people — one live model.",
+          },
+          {
+            title: "One operational truth",
+            body: "Metaphysics keeps every system coherent.",
+          },
+          {
+            title: "See reality",
+            body: "Argus binds perception to objects that matter.",
+          },
+        ],
+      },
       {
         id: "decide",
         label: "Decide",
         steps: [
           {
-            title: "Surface the next action",
-            body: "Spectr OS ranks exceptions, shortages, and opportunities as the shift unfolds — not in a morning report.",
+            title: "Rank the next move",
+            body: "Exceptions become actions — not reports.",
           },
           {
-            title: "Keep humans in the loop",
-            body: "Operators approve, override, or escalate with full context on why the system proposed the move.",
+            title: "Human in the loop",
+            body: "Approve, override, escalate with full context.",
           },
           {
             title: "Close the loop",
-            body: "Every decision writes back into Metaphysics so the next hour is smarter than the last.",
+            body: "Every outcome writes back into the OS.",
           },
         ],
       },
       {
-        id: "orchestrate",
-        label: "Orchestrate",
+        id: "act",
+        label: "Act",
         steps: [
           {
-            title: "One model of the floor",
-            body: "Locations, SKUs, labour, and equipment share a single operational map across every site.",
+            title: "Agentic workflows",
+            body: "AIM proposes and executes with guardrails.",
           },
           {
-            title: "Coordinate people and systems",
-            body: "WMS tasks, carrier events, and floor signals land in one queue instead of five tools.",
+            title: "Real tools",
+            body: "Agents touch systems — not just chat.",
           },
           {
-            title: "Deploy without rebuilds",
-            body: "Spectr OS runs on aisles and racking as they already exist — configuration, not construction.",
-          },
-        ],
-      },
-      {
-        id: "govern",
-        label: "Govern",
-        steps: [
-          {
-            title: "Audit every decision",
-            body: "Who approved what, when, and on which evidence — available for supervisors and auditors alike.",
-          },
-          {
-            title: "European data posture",
-            body: "Host in the EU or on your infrastructure. Your operational data stays yours.",
-          },
-          {
-            title: "Free for enterprises",
-            body: "No licence fee, no user cap, no expiry. Advancement is the standard — not an upsell.",
+            title: "Governed autonomy",
+            body: "Audit every decision. Scale trust over time.",
           },
         ],
       },
     ],
     features: [
       {
-        title: "Designed for floor operators",
-        description:
-          "Build and run workflows where work actually happens — docks, aisles, and packing lanes — with interfaces that survive a twelve-hour shift.",
-        image: "/images/offerings/pilots.jpg",
-        imageAlt: "Warehouse operators on the floor",
-      },
-      {
-        title: "Evaluate and ship with confidence",
-        description:
-          "Pilot on one site, measure accuracy and cycle time, then roll out with the same ontology and the same decision logic.",
-        image: "/images/offerings/spectr-c2.jpg",
-        imageAlt: "Warehouse racking and operations",
-      },
-      {
-        title: "Anchored in operational truth",
-        description:
-          "Metaphysics keeps software development tied to what is actually on the floor — not a stale spreadsheet of locations.",
+        title: "Data Fusion",
+        description: "Every system. One runtime.",
         image: "/images/offerings/spectr-mind.jpg",
-        imageAlt: "Systems and intelligence infrastructure",
+        imageAlt: "Enterprise data fusion on Spectr OS",
       },
       {
-        title: "See what the floor sees",
-        description:
-          "Argus feeds live object detection into Spectr OS so inventory, exceptions, and safety issues are visible as they happen.",
+        title: "Decision Making",
+        description: "From signal to action.",
+        image: "/images/offerings/spectr-c2.jpg",
+        imageAlt: "Operational decision making",
+      },
+      {
+        title: "Agentic Workflows",
+        description: "Agents that operate.",
+        image: "/images/offerings/pilots.jpg",
+        imageAlt: "Agentic workflows in operations",
+      },
+      {
+        title: "Enterprise Runtime",
+        description: "Any domain. Any site.",
         image: "/spectr-detection.png",
-        imageAlt: "Object detection on warehouse assets",
+        imageAlt: "Spectr OS across the enterprise",
       },
     ],
+    industriesIntro: "One OS across every enterprise domain.",
     industries: [
-      "Warehousing & Fulfilment",
-      "3PL & Logistics",
-      "Manufacturing & Parts",
-      "Retail Distribution",
-      "Cold Chain",
+      "Logistics & Supply Chain",
+      "Manufacturing",
+      "Energy & Industrials",
+      "Defence & Security",
+      "Healthcare Operations",
+      "Retail & Distribution",
+      "Financial Operations",
+      "Government",
+      "Infrastructure",
       "Ports & Terminals",
-      "Spare Parts",
-      "Pharmaceutical Distribution",
+      "Aerospace",
+      "Pharmaceuticals",
     ],
-    ctaTitle: "Build now with Spectr OS",
-    ctaBody:
-      "Request access and start on your own data. Free for enterprise customers — permanently.",
+    ctaTitle: "Run your enterprise on Spectr OS",
+    ctaBody: "Free for enterprise customers — permanently.",
   },
   {
     slug: "aim",
@@ -246,6 +247,7 @@ export const platforms: Platform[] = [
         imageAlt: "Argus detection feeding AIM",
       },
     ],
+    industriesIntro: "Solving complex problems across industries in days, not years.",
     industries: [
       "Warehousing & Fulfilment",
       "3PL & Logistics",
@@ -359,6 +361,7 @@ export const platforms: Platform[] = [
         imageAlt: "Spectr OS and Metaphysics",
       },
     ],
+    industriesIntro: "Solving complex problems across industries in days, not years.",
     industries: [
       "Warehousing & Fulfilment",
       "3PL & Logistics",
@@ -472,6 +475,7 @@ export const platforms: Platform[] = [
         imageAlt: "Floor deployment of Argus",
       },
     ],
+    industriesIntro: "Solving complex problems across industries in days, not years.",
     industries: [
       "Warehousing & Fulfilment",
       "3PL & Logistics",
