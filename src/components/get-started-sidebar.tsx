@@ -75,13 +75,13 @@ export function GetStartedSidebar() {
       />
 
       <aside className="get-started-panel absolute inset-y-0 right-0 flex w-full max-w-xl flex-col border-l border-border bg-bg text-fg shadow-2xl">
-        <div className="flex items-center justify-between border-b border-border px-5 py-4 sm:px-6">
+        <div className="flex items-center justify-between px-5 py-4 sm:px-6">
           <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted">Get Started</p>
           <button
             type="button"
             onClick={closeGetStarted}
             aria-label="Close"
-            className="inline-flex h-9 w-9 items-center justify-center border border-border text-fg hover:bg-white/5"
+            className="btn bevel-button btn-icon btn-on-dark"
           >
             <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none" aria-hidden="true">
               <path
@@ -94,21 +94,21 @@ export function GetStartedSidebar() {
           </button>
         </div>
 
-        <div className="flex gap-2 overflow-x-auto border-b border-border px-5 py-3 sm:px-6">
-          {tabs.map((item) => (
-            <button
-              key={item.id}
-              type="button"
-              onClick={() => setTab(item.id)}
-              className={`shrink-0 border px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.12em] transition-colors ${
-                tab === item.id
-                  ? "border-white bg-white text-black"
-                  : "border-border text-muted hover:text-fg"
-              }`}
-            >
-              {item.label}
-            </button>
-          ))}
+        <div className="flex flex-wrap gap-2 px-5 pb-2 sm:px-6">
+          {tabs.map((item) => {
+            const active = tab === item.id;
+            return (
+              <Button
+                key={item.id}
+                type="button"
+                size="sm"
+                onClick={() => setTab(item.id)}
+                className={active ? "btn-on-dark" : "bevel-button-muted"}
+              >
+                {item.label}
+              </Button>
+            );
+          })}
         </div>
 
         <div className="flex-1 overflow-y-auto px-5 py-6 sm:px-6">
