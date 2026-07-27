@@ -231,6 +231,47 @@ textarea {
   color: var(--btn-fg);
 }
 
+.bevel-button-muted {
+  background: var(--surface-2);
+  color: var(--fg);
+}
+
+.bevel-button-muted:hover {
+  background: var(--surface-2);
+  opacity: 0.85;
+}
+
+.bevel-panel {
+  --bevel-cut: 12px;
+  position: relative;
+  background: var(--surface);
+  clip-path: polygon(
+    var(--bevel-cut) 0,
+    100% 0,
+    100% calc(100% - var(--bevel-cut)),
+    calc(100% - var(--bevel-cut)) 100%,
+    0 100%,
+    0 var(--bevel-cut)
+  );
+}
+
+.bevel-panel-muted {
+  background: var(--surface-2);
+}
+
+.bevel-panel-image {
+  --bevel-cut: 12px;
+  overflow: hidden;
+  clip-path: polygon(
+    var(--bevel-cut) 0,
+    100% 0,
+    100% calc(100% - var(--bevel-cut)),
+    calc(100% - var(--bevel-cut)) 100%,
+    0 100%,
+    0 var(--bevel-cut)
+  );
+}
+
 .btn-on-dark,
 .bevel-button-inverse-primary {
   background: #ffffff;
