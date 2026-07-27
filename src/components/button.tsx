@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
 
 type Variant = "primary" | "secondary" | "accent" | "ghost";
-type Size = "sm" | "md" | "lg" | "icon";
+type Size = "sm" | "md" | "lg" | "icon" | "form";
 
 type BaseProps = {
   variant?: Variant;
@@ -27,9 +27,21 @@ export type ButtonProps = AsLink | AsButton;
 
 export function buttonClassName({ variant = "primary", size = "md", className = "" }: BaseProps) {
   const sizeClass =
-    size === "lg" ? "btn-lg" : size === "sm" ? "btn-sm" : size === "icon" ? "btn-icon" : "";
+    size === "lg"
+      ? "btn-lg"
+      : size === "sm"
+        ? "btn-sm"
+        : size === "icon"
+          ? "btn-icon"
+          : size === "form"
+            ? "bevel-button-form"
+            : "btn-sm";
 
-  return ["btn", `btn-${variant}`, sizeClass, className].filter(Boolean).join(" ");
+  const onDark = className.includes("btn-on-dark");
+
+  return ["btn", "bevel-button", `btn-${variant}`, sizeClass, onDark ? "bevel-button-inverse-primary" : "", className]
+    .filter(Boolean)
+    .join(" ");
 }
 
 export function Button({

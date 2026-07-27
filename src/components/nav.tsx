@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/button";
 import { LogoMark, Wordmark } from "@/components/logo";
-import { navLinks, site } from "@/lib/site";
+import { site } from "@/lib/site";
 
 export function Nav() {
   const pathname = usePathname();
@@ -32,25 +32,7 @@ export function Nav() {
           <Wordmark className="text-nav-fg" />
         </Link>
 
-        <nav aria-label="Primary" className="hidden items-center gap-1 md:flex">
-          {navLinks.map((link) => {
-            const active = pathname === link.href;
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                aria-current={active ? "page" : undefined}
-                className={`rounded-full px-3.5 py-2 text-sm transition-colors ${
-                  active ? "text-white" : "text-white/60 hover:text-white"
-                }`}
-              >
-                {link.label}
-              </Link>
-            );
-          })}
-        </nav>
-
-        <div className="hidden items-center gap-2 md:flex">
+        <div className="hidden md:block">
           <Button href="/contact" className="btn-on-dark">
             Get Spectr C2
           </Button>
@@ -81,20 +63,11 @@ export function Nav() {
 
       {open ? (
         <div id="mobile-nav" className="border-t border-white/10 bg-nav md:hidden">
-          <nav aria-label="Mobile" className="container-x flex flex-col gap-1 py-5">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="rounded-xl px-3 py-3 text-base text-white/80 hover:bg-white/5 hover:text-white"
-              >
-                {link.label}
-              </Link>
-            ))}
-            <Button href="/contact" className="btn-on-dark mt-3 w-full">
+          <div className="container-x py-5">
+            <Button href="/contact" className="btn-on-dark w-full">
               Get Spectr C2
             </Button>
-          </nav>
+          </div>
         </div>
       ) : null}
     </header>

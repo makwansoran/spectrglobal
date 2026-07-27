@@ -1,10 +1,7 @@
 export const hero = {
   title: "Robots that work the floor. Software that runs it.",
-  subtitle:
-    "Spectr is building Droid, a general-purpose humanoid for warehouses and industrial sites. Spectr C2 — the AI warehouse management system that trains it — is free for enterprises, today and permanently.",
   primaryCta: { label: "Get Spectr C2 free", href: "/contact" },
   secondaryCta: { label: "See Droid", href: "/robotics" },
-  note: "No licence fee. No seat count. No expiry.",
 };
 
 export const marqueeItems = [

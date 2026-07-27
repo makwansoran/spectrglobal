@@ -2,6 +2,7 @@ import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
 import { Benefits } from "@/components/sections/benefits";
 import { ClosingCta } from "@/components/sections/closing-cta";
+import { Destinations } from "@/components/sections/destinations";
 import { Faq } from "@/components/sections/faq";
 import { FeatureTabs } from "@/components/sections/feature-tabs";
 import { Hero } from "@/components/sections/hero";
@@ -18,6 +19,7 @@ export default function HomePage() {
       <main id="main-content" className="flex-1">
         <Hero />
         <Marquee />
+        <Destinations />
         <FeatureTabs />
         <UseCases />
         <Benefits />

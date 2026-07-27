@@ -18,12 +18,7 @@ export const site = {
   },
 } as const;
 
-export const navLinks = [
-  { label: "Droid", href: "/robotics" },
-  { label: "Spectr C2", href: "/wms" },
-  { label: "Company", href: "/about" },
-  { label: "News", href: "/news" },
-] as const;
+export const navLinks = [] as const;
 
 export const footerColumns = [
   {

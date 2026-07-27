@@ -10,11 +10,7 @@ export function Hero() {
             {hero.title}
           </h1>
 
-          <p className="fade-up fade-up-2 mt-7 max-w-2xl text-base leading-8 text-muted sm:text-lg">
-            {hero.subtitle}
-          </p>
-
-          <div className="fade-up fade-up-3 mt-10 flex flex-col items-center gap-3 sm:flex-row">
+          <div className="fade-up fade-up-2 mt-10 flex flex-col items-center gap-3 sm:flex-row">
             <Button href={hero.primaryCta.href} size="lg">
               {hero.primaryCta.label}
               <ArrowIcon />
@@ -23,10 +19,6 @@ export function Hero() {
               {hero.secondaryCta.label}
             </Button>
           </div>
-
-          <p className="fade-up fade-up-4 mt-6 font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
-            {hero.note}
-          </p>
         </div>
       </div>
     </section>
