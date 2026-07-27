@@ -32,7 +32,6 @@ export const navPrimary = [
   { label: "Offerings", href: "/#offerings" },
   { label: "Careers", href: "/careers" },
   { label: "Newsroom", href: "/news" },
-  { label: "Spectr Explained", href: "/about" },
 ] as const;
 
 export const navQuickLinks = [
