@@ -193,19 +193,24 @@ export function PlatformPageView({ platform }: { platform: Platform }) {
                     </div>
                     <div className="industry-row__detail grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-out group-hover:grid-rows-[1fr] group-focus-within:grid-rows-[1fr]">
                       <div className="overflow-hidden">
-                        <div className="grid gap-5 pb-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100 sm:grid-cols-[minmax(0,16rem)_minmax(0,1fr)] sm:gap-8 sm:pb-6 lg:grid-cols-[minmax(0,20rem)_minmax(0,1fr)]">
+                        <div className="grid gap-5 pb-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100 sm:grid-cols-[minmax(0,18rem)_minmax(0,1fr)] sm:gap-8 sm:pb-6 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)]">
                           <div className="relative aspect-[16/10] overflow-hidden border border-border bg-surface">
                             <Image
                               src={industry.image}
                               alt={industry.imageAlt}
                               fill
                               className="object-cover"
-                              sizes="(max-width: 640px) 100vw, 20rem"
+                              sizes="(max-width: 640px) 100vw, 22rem"
                             />
                           </div>
-                          <p className="max-w-2xl self-end text-[13px] leading-6 text-muted sm:pb-1">
-                            {industry.description}
-                          </p>
+                          <div className="flex max-w-2xl flex-col justify-end gap-2 sm:pb-1">
+                            <p className="brand-font text-[clamp(1.1rem,2.2vw,1.5rem)] leading-snug tracking-tight text-fg">
+                              {industry.imageAlt}
+                            </p>
+                            <p className="text-[15px] leading-7 text-muted sm:text-base sm:leading-8">
+                              {industry.description}
+                            </p>
+                          </div>
                         </div>
                       </div>
                     </div>
