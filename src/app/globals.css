@@ -420,6 +420,16 @@ textarea {
   scroll-snap-align: start;
 }
 
+@media (hover: none) {
+  .solution-row__cta {
+    grid-template-rows: 1fr;
+  }
+
+  .solution-row__cta > div > div {
+    opacity: 1;
+  }
+}
+
 .partner-marquee {
   display: flex;
   overflow: hidden;
