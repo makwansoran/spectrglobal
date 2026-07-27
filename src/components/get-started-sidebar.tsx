@@ -8,26 +8,11 @@ import { useGetStarted, type GetStartedTab } from "@/components/get-started-cont
 
 const initialState: ContactFormState = { ok: false };
 
-const tabs: { id: GetStartedTab; label: string }[] = [
+const inquiryOptions: { id: GetStartedTab; label: string }[] = [
   { id: "contact", label: "Contact / Demo Request" },
   { id: "partnership", label: "Partnership Inquiry" },
   { id: "investor", label: "Investor Relations" },
 ];
-
-const tabCopy: Record<GetStartedTab, { heading: string; product: string }> = {
-  contact: {
-    heading: "Interested in solving your problems with Spectr software?",
-    product: "Contact / Demo Request",
-  },
-  partnership: {
-    heading: "Interested in partnering with Spectr?",
-    product: "Partnership Inquiry",
-  },
-  investor: {
-    heading: "Interested in investing in Spectr?",
-    product: "Investor Relations",
-  },
-};
 
 const countries = [
   "Norway",
@@ -52,9 +37,8 @@ const errorMessages: Record<string, string> = {
 };
 
 export function GetStartedSidebar() {
-  const { open, tab, setTab, closeGetStarted } = useGetStarted();
+  const { open, tab, closeGetStarted } = useGetStarted();
   const [state, formAction, pending] = useActionState(submitContactForm, initialState);
-  const copy = tabCopy[tab];
 
   useEffect(() => {
     if (state.ok) {
@@ -94,28 +78,12 @@ export function GetStartedSidebar() {
           </button>
         </div>
 
-        <div className="flex flex-wrap gap-2 px-5 pb-2 sm:px-6">
-          {tabs.map((item) => {
-            const active = tab === item.id;
-            return (
-              <Button
-                key={item.id}
-                type="button"
-                size="sm"
-                onClick={() => setTab(item.id)}
-                className={active ? "btn-on-dark" : "bevel-button-muted"}
-              >
-                {item.label}
-              </Button>
-            );
-          })}
-        </div>
-
         <div className="flex-1 overflow-y-auto px-5 py-6 sm:px-6">
-          <h2 className="brand-font text-2xl tracking-tight text-fg sm:text-3xl">{copy.heading}</h2>
+          <h2 className="brand-font text-2xl tracking-tight text-fg sm:text-3xl">
+            Interested in solving your problems with Spectr software?
+          </h2>
 
           <form action={formAction} className="mt-8 space-y-5" key={tab}>
-            <input type="hidden" name="product" value={copy.product} />
             <input
               type="text"
               name="website"
@@ -124,6 +92,19 @@ export function GetStartedSidebar() {
               className="hidden"
               aria-hidden="true"
             />
+
+            <Field label="Inquiry type" htmlFor="product" required>
+              <select id="product" name="product" required defaultValue={inquiryOptions.find((o) => o.id === tab)?.label ?? ""}>
+                <option value="" disabled>
+                  Select...
+                </option>
+                {inquiryOptions.map((option) => (
+                  <option key={option.id} value={option.label}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </Field>
 
             <div className="grid gap-5 sm:grid-cols-2">
               <Field label="First Name" htmlFor="firstName" required>
