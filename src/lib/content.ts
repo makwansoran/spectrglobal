@@ -213,23 +213,23 @@ export const newsSection = {
 
 export const newsItems: NewsItem[] = [
   {
-    id: "metaphysics-free",
+    id: "spectr-os-free",
     source: "Spectr",
     date: "March 2026",
-    title: "Metaphysics is free for enterprises — permanently",
+    title: "Spectr OS is free for all enterprise customers — permanently",
     summary:
-      "Spectr OS ontology layer with no licence fee, no user cap, and no expiry date.",
-    href: "/wms",
+      "No licence fee, no user cap, no expiry date. AIM, Metaphysics, and Argus included for every enterprise running Spectr OS.",
+    href: "/news",
     cta: "Read More",
   },
   {
-    id: "spectr-os",
+    id: "argus-benchmarks",
     source: "Spectr",
     date: "February 2026",
-    title: "Spectr OS opens to Nordic warehouse partners",
+    title: "Argus surpasses YOLOv11 and leading detection models on warehouse floors",
     summary:
-      "AIM, Metaphysics, and Argus on existing floors — same aisles, same racking, no rebuild required.",
-    href: "/#features",
+      "Spectr’s object detection model sets a new bar for real-time accuracy on industrial SKUs, pallets, and exceptions — where generic vision models fall short.",
+    href: "/news",
     cta: "Read More",
   },
 ];
