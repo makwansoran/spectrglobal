@@ -172,7 +172,9 @@ export function PlatformPageView({ platform }: { platform: Platform }) {
       <section className="border-t border-border py-12 sm:py-16">
         <div className="container-x">
           <Reveal>
-            <p className="max-w-xl text-[13px] leading-6 text-muted">{platform.industriesIntro}</p>
+            <p className="brand-font max-w-3xl text-[clamp(1.5rem,4vw,2.75rem)] leading-[1.15] tracking-tight text-fg">
+              {platform.industriesIntro}
+            </p>
           </Reveal>
           <ul className="mt-8 border-t border-border">
             {platform.industries.map((industry, index) => (
