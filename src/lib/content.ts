@@ -18,7 +18,7 @@ export const softwareSection = {
 export const offeringsCeoQuote = {
   quote:
     "Spectr OS powers real-time, AI-driven decisions on warehouse and industrial floors — from receiving docks to dispatch lanes.",
-  attribution: "Makwan Hassan",
+  attribution: "Makwan Soran Ismail",
   role: "CEO, Spectr",
 };
 
@@ -190,7 +190,7 @@ export const partnerQuotes: PartnerQuote[] = [
 export const ceoQuote = {
   quote:
     "The bottleneck in warehouse intelligence is not dashboards or compute. It is not having a truthful, continuously updated model of a real working environment.",
-  attribution: "Makwan Hassan",
+  attribution: "Makwan Soran Ismail",
   role: "CEO, Spectr",
 };
 
