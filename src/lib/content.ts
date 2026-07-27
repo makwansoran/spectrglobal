@@ -224,7 +224,7 @@ export const newsItems: NewsItem[] = [
     href: "/news",
     cta: "Read More",
     image: "/images/news/spectr-os-free.jpg",
-    imageAlt: "Spectr OS free for enterprise customers",
+    imageAlt: "Enterprise warehouse floor running on Spectr OS",
   },
   {
     id: "argus-benchmarks",
@@ -235,7 +235,7 @@ export const newsItems: NewsItem[] = [
       "Spectr’s object detection model sets a new bar for real-time accuracy on industrial SKUs, pallets, and exceptions — where generic vision models fall short.",
     href: "/news",
     cta: "Read More",
-    image: "/images/news/argus-vs-yolo.jpg",
-    imageAlt: "Argus outperforming Ultralytics YOLOv11 on industrial detection",
+    image: "/images/news/argus-detection.jpg",
+    imageAlt: "Argus object detection bounding boxes on industrial equipment",
   },
 ];
