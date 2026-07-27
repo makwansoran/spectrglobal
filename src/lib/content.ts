@@ -223,8 +223,8 @@ export const newsItems: NewsItem[] = [
       "No licence fee, no user cap, no expiry date. AIM, Metaphysics, and Argus included for every enterprise running Spectr OS.",
     href: "/news",
     cta: "Read More",
-    image: "/images/offerings/spectr-os.jpg",
-    imageAlt: "Spectr OS running enterprise operations",
+    image: "/images/news/spectr-os-free.jpg",
+    imageAlt: "Spectr OS free for enterprise customers",
   },
   {
     id: "argus-benchmarks",
@@ -235,7 +235,7 @@ export const newsItems: NewsItem[] = [
       "Spectr’s object detection model sets a new bar for real-time accuracy on industrial SKUs, pallets, and exceptions — where generic vision models fall short.",
     href: "/news",
     cta: "Read More",
-    image: "/spectr-detection.png",
-    imageAlt: "Argus object detection on warehouse assets",
+    image: "/images/news/argus-vs-yolo.jpg",
+    imageAlt: "Argus outperforming Ultralytics YOLOv11 on industrial detection",
   },
 ];
