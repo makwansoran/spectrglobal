@@ -14,6 +14,8 @@ export type PlatformFeature = {
 export type PlatformIndustry = {
   name: string;
   description: string;
+  image: string;
+  imageAlt: string;
 };
 
 export type Platform = {
@@ -138,51 +140,87 @@ export const platforms: Platform[] = [
     industries: [
       {
         name: "Logistics & Supply Chain",
-        description: "Fuse carriers, inventory, and demand into one decision runtime.",
+        description:
+          "Fuse carriers, inventory, yards, and demand into one decision runtime. Spectr OS ranks the next move across the network — not in a morning report.",
+        image: "/images/industries/logistics.jpg",
+        imageAlt: "Warehouse logistics and pallet operations",
       },
       {
         name: "Manufacturing",
-        description: "Orchestrate lines, parts, and labour as a live operational model.",
+        description:
+          "Orchestrate lines, parts, labour, and quality as a live operational model. Exceptions become agentic workflows with humans still in command.",
+        image: "/images/industries/manufacturing.jpg",
+        imageAlt: "Manufacturing production line",
       },
       {
         name: "Energy & Industrials",
-        description: "Turn plant signals into governed actions across sites.",
+        description:
+          "Turn plant signals, maintenance, and site events into governed actions. One runtime across facilities — with full audit of every decision.",
+        image: "/images/industries/energy.jpg",
+        imageAlt: "Power infrastructure and industrial energy",
       },
       {
         name: "Defence & Security",
-        description: "Human-in-the-loop decisions with full auditability.",
+        description:
+          "Human-in-the-loop decisions with evidence, attribution, and European data posture. Fuse sensors, logistics, and command into executable workflows.",
+        image: "/images/industries/defence.jpg",
+        imageAlt: "Secure operations and systems coordination",
       },
       {
         name: "Healthcare Operations",
-        description: "Coordinate capacity, assets, and exceptions in real time.",
+        description:
+          "Coordinate capacity, assets, staff, and exceptions in real time. Spectr OS keeps clinical operations coherent without another dashboard silo.",
+        image: "/images/industries/healthcare.jpg",
+        imageAlt: "Hospital operations corridor",
       },
       {
         name: "Retail & Distribution",
-        description: "Connect stores, DCs, and fulfilment into one OS.",
+        description:
+          "Connect stores, DCs, and fulfilment into one OS. From shelf gap to dock door — fuse truth, decide fast, and close the loop.",
+        image: "/images/industries/retail.jpg",
+        imageAlt: "Retail store operations",
       },
       {
         name: "Financial Operations",
-        description: "Agentic workflows over fused operational and financial truth.",
+        description:
+          "Agentic workflows over fused operational and financial truth. Propose, approve, and execute with a complete history of every action.",
+        image: "/images/industries/financial.jpg",
+        imageAlt: "Financial district and enterprise operations",
       },
       {
         name: "Government",
-        description: "Deploy decision systems with European data posture.",
+        description:
+          "Deploy decision systems for public operations with auditability by default. Host in the EU or on your infrastructure — your data stays yours.",
+        image: "/images/industries/government.jpg",
+        imageAlt: "Government building and civic operations",
       },
       {
         name: "Infrastructure",
-        description: "Monitor, decide, and act across critical physical systems.",
+        description:
+          "Monitor, decide, and act across critical physical systems. Spectr OS binds field reality to the ontology so AI never invents the world.",
+        image: "/images/industries/infrastructure.jpg",
+        imageAlt: "Infrastructure and construction site",
       },
       {
         name: "Ports & Terminals",
-        description: "Unify yard, berth, and cargo flows into executable decisions.",
+        description:
+          "Unify yard, berth, and cargo flows into executable decisions. Argus sees the terminal; Metaphysics keeps every object coherent.",
+        image: "/images/industries/ports.jpg",
+        imageAlt: "Shipping containers at a port terminal",
       },
       {
         name: "Aerospace",
-        description: "Keep complex programmes coherent across partners and sites.",
+        description:
+          "Keep complex programmes coherent across partners, hangars, and sites. One operational truth for parts, people, and processes.",
+        image: "/images/industries/aerospace.jpg",
+        imageAlt: "Aircraft in flight",
       },
       {
         name: "Pharmaceuticals",
-        description: "Trace every unit and exception through a governed runtime.",
+        description:
+          "Trace every unit and exception through a governed runtime. From batch to bay — fusion, decision, and audit in one OS.",
+        image: "/images/industries/pharma.jpg",
+        imageAlt: "Pharmaceutical products and packaging",
       },
     ],
     ctaTitle: "Run your enterprise on Spectr OS",
@@ -293,34 +331,50 @@ export const platforms: Platform[] = [
       {
         name: "Warehousing & Fulfilment",
         description: "Live decisions from dock to dispatch — fused inventory, labour, and exceptions.",
+        image: "/images/industries/warehousing.jpg",
+        imageAlt: "Warehouse fulfilment operations",
       },
       {
         name: "3PL & Logistics",
         description: "One runtime across clients, carriers, and sites without rebuilding each warehouse.",
+        image: "/images/industries/3pl.jpg",
+        imageAlt: "Logistics truck and freight operations",
       },
       {
         name: "Manufacturing & Parts",
         description: "Keep lines, spare parts, and material flows coherent under one model.",
+        image: "/images/industries/parts.jpg",
+        imageAlt: "Manufacturing and parts production",
       },
       {
         name: "Retail Distribution",
         description: "Connect DC operations to store demand with agentic replenishment workflows.",
+        image: "/images/industries/retail.jpg",
+        imageAlt: "Retail distribution operations",
       },
       {
         name: "Cold Chain",
         description: "Govern temperature, dwell, and exceptions as first-class operational objects.",
+        image: "/images/industries/cold-chain.jpg",
+        imageAlt: "Cold chain storage and handling",
       },
       {
         name: "Ports & Terminals",
         description: "Unify yard, berth, and cargo events into executable next actions.",
+        image: "/images/industries/ports.jpg",
+        imageAlt: "Port terminal containers",
       },
       {
         name: "Spare Parts",
         description: "See every unit, locate every shortage, and close the loop in minutes.",
+        image: "/images/industries/spare-parts.jpg",
+        imageAlt: "Industrial spare parts and equipment",
       },
       {
         name: "Pharmaceutical Distribution",
         description: "Traceability and exception handling with audit-ready decision history.",
+        image: "/images/industries/pharma.jpg",
+        imageAlt: "Pharmaceutical distribution",
       },
     ],
     ctaTitle: "Build now with AIM",
@@ -431,34 +485,50 @@ export const platforms: Platform[] = [
       {
         name: "Warehousing & Fulfilment",
         description: "Model every location, SKU, and process as one operational ontology.",
+        image: "/images/industries/warehousing.jpg",
+        imageAlt: "Warehouse fulfilment operations",
       },
       {
         name: "3PL & Logistics",
         description: "Share one semantic layer across clients and sites without duplicating truth.",
+        image: "/images/industries/3pl.jpg",
+        imageAlt: "Logistics truck and freight operations",
       },
       {
         name: "Manufacturing & Parts",
         description: "Encode parts, lines, and constraints where AIM and Argus can act on them.",
+        image: "/images/industries/parts.jpg",
+        imageAlt: "Manufacturing and parts production",
       },
       {
         name: "Retail Distribution",
         description: "Keep DC and store objects coherent across every system that touches inventory.",
+        image: "/images/industries/retail.jpg",
+        imageAlt: "Retail distribution operations",
       },
       {
         name: "Cold Chain",
         description: "Bind temperature, dwell, and compliance rules into the ontology itself.",
+        image: "/images/industries/cold-chain.jpg",
+        imageAlt: "Cold chain storage and handling",
       },
       {
         name: "Ports & Terminals",
         description: "Map yard, berth, and cargo relationships into a single executable model.",
+        image: "/images/industries/ports.jpg",
+        imageAlt: "Port terminal containers",
       },
       {
         name: "Spare Parts",
         description: "Make every unit and bin first-class — not a spreadsheet row.",
+        image: "/images/industries/spare-parts.jpg",
+        imageAlt: "Industrial spare parts and equipment",
       },
       {
         name: "Pharmaceutical Distribution",
         description: "Full provenance and change history for every object that moves.",
+        image: "/images/industries/pharma.jpg",
+        imageAlt: "Pharmaceutical distribution",
       },
     ],
     ctaTitle: "Build now with Metaphysics",
@@ -569,34 +639,50 @@ export const platforms: Platform[] = [
       {
         name: "Warehousing & Fulfilment",
         description: "Detect units, pallets, and aisle exceptions as work happens.",
+        image: "/images/industries/warehousing.jpg",
+        imageAlt: "Warehouse fulfilment operations",
       },
       {
         name: "3PL & Logistics",
         description: "Give every site eyes on physical reality — not yesterday’s count.",
+        image: "/images/industries/3pl.jpg",
+        imageAlt: "Logistics truck and freight operations",
       },
       {
         name: "Manufacturing & Parts",
         description: "Bind detections to parts and stations Metaphysics already knows.",
+        image: "/images/industries/parts.jpg",
+        imageAlt: "Manufacturing and parts production",
       },
       {
         name: "Retail Distribution",
         description: "Catch mis-slots and missing inventory before the next wave fails.",
+        image: "/images/industries/retail.jpg",
+        imageAlt: "Retail distribution operations",
       },
       {
         name: "Cold Chain",
         description: "Sense door, dwell, and handling exceptions in temperature-critical lanes.",
+        image: "/images/industries/cold-chain.jpg",
+        imageAlt: "Cold chain storage and handling",
       },
       {
         name: "Ports & Terminals",
         description: "See containers and yard moves, then write them into the ontology.",
+        image: "/images/industries/ports.jpg",
+        imageAlt: "Port terminal containers",
       },
       {
         name: "Spare Parts",
         description: "Find every unit on the floor and map it to the live inventory model.",
+        image: "/images/industries/spare-parts.jpg",
+        imageAlt: "Industrial spare parts and equipment",
       },
       {
         name: "Pharmaceutical Distribution",
         description: "Evidence-backed sightings for every regulated movement.",
+        image: "/images/industries/pharma.jpg",
+        imageAlt: "Pharmaceutical distribution",
       },
     ],
     ctaTitle: "Build now with Argus",

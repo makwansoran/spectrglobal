@@ -191,9 +191,20 @@ export function PlatformPageView({ platform }: { platform: Platform }) {
                     </div>
                     <div className="industry-row__detail grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-out group-hover:grid-rows-[1fr] group-focus-within:grid-rows-[1fr]">
                       <div className="overflow-hidden">
-                        <p className="max-w-2xl pb-4 text-[13px] leading-6 text-muted opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100 sm:pb-5">
-                          {industry.description}
-                        </p>
+                        <div className="grid gap-5 pb-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100 sm:grid-cols-[minmax(0,16rem)_minmax(0,1fr)] sm:gap-8 sm:pb-6 lg:grid-cols-[minmax(0,20rem)_minmax(0,1fr)]">
+                          <div className="relative aspect-[16/10] overflow-hidden border border-border bg-surface">
+                            <Image
+                              src={industry.image}
+                              alt={industry.imageAlt}
+                              fill
+                              className="object-cover"
+                              sizes="(max-width: 640px) 100vw, 20rem"
+                            />
+                          </div>
+                          <p className="max-w-2xl self-end text-[13px] leading-6 text-muted sm:pb-1">
+                            {industry.description}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </article>

@@ -442,7 +442,7 @@ textarea {
     grid-template-rows: 1fr;
   }
 
-  .industry-row__detail > div > p {
+  .industry-row__detail > div > div {
     opacity: 1;
   }
 }
