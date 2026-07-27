@@ -16,8 +16,9 @@ export const softwareSection = {
 };
 
 export const offeringsCeoQuote = {
+  eyebrow: "Spectr Philosophy",
   quote:
-    "Spectr OS powers real-time, AI-driven decisions on warehouse and industrial floors — from receiving docks to dispatch lanes.",
+    "Forbidding is forbidden to us. Technological advancement is a must for our customers — not a feature we ship, but the standard we hold.",
   attribution: "Makwan Soran Ismail",
   role: "CEO, Spectr",
 };
