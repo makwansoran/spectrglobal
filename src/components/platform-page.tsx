@@ -1,19 +1,94 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowIcon, Button } from "@/components/button";
 import { GetStartedButton } from "@/components/get-started-button";
 import { Reveal } from "@/components/reveal";
-import type { Platform } from "@/lib/platforms";
+import type { Platform, PlatformFeature } from "@/lib/platforms";
 import { site } from "@/lib/site";
+
+function FeatureTimeline({ features }: { features: PlatformFeature[] }) {
+  const [activeFeature, setActiveFeature] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    if (paused || features.length < 2) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const timer = window.setInterval(() => {
+      setActiveFeature((index) => (index + 1) % features.length);
+    }, 2000);
+
+    return () => window.clearInterval(timer);
+  }, [paused, features.length]);
+
+  return (
+    <section className="py-12 sm:py-16">
+      <div className="container-x">
+        <div
+          className="feature-timeline flex gap-2 overflow-x-auto pb-1 sm:gap-3"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          onFocusCapture={() => setPaused(true)}
+          onBlurCapture={(event) => {
+            if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+              setPaused(false);
+            }
+          }}
+        >
+          {features.map((item, index) => {
+            const active = activeFeature === index;
+
+            return (
+              <button
+                key={item.title}
+                type="button"
+                onClick={() => setActiveFeature(index)}
+                aria-pressed={active}
+                aria-label={`${item.title}: ${item.description}`}
+                className={`feature-timeline__item bevel-panel-image group relative aspect-[4/5] min-w-[9.5rem] shrink-0 overflow-hidden text-left sm:aspect-[5/6] sm:min-w-0 ${
+                  active ? "feature-timeline__item--active" : ""
+                }`}
+              >
+                <Image
+                  src={item.image}
+                  alt=""
+                  fill
+                  className={`object-cover transition-opacity duration-500 ${
+                    active ? "opacity-85" : "opacity-45 group-hover:opacity-65"
+                  }`}
+                  sizes="(max-width: 640px) 42vw, 22vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-3.5 sm:p-4">
+                  <p className="font-mono text-[9px] uppercase tracking-[0.14em] text-white/45">
+                    {String(index + 1).padStart(2, "0")} / {String(features.length).padStart(2, "0")}
+                  </p>
+                  <p className="brand-font mt-1 text-[15px] tracking-tight text-white sm:text-[17px]">
+                    {item.title}
+                  </p>
+                  <p
+                    className={`mt-1 text-[11px] leading-4 text-white/65 transition-opacity duration-500 sm:text-[12px] sm:leading-5 ${
+                      active ? "opacity-100" : "opacity-0 sm:opacity-70"
+                    }`}
+                  >
+                    {item.description}
+                  </p>
+                </div>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export function PlatformPageView({ platform }: { platform: Platform }) {
   const [activeCapability, setActiveCapability] = useState(platform.capabilities[0]?.id ?? "");
-  const [activeFeature, setActiveFeature] = useState(0);
   const capability =
     platform.capabilities.find((item) => item.id === activeCapability) ?? platform.capabilities[0];
-  const feature = platform.features[activeFeature] ?? platform.features[0];
 
   return (
     <main id="main-content" className="flex-1">
@@ -111,68 +186,7 @@ export function PlatformPageView({ platform }: { platform: Platform }) {
           </div>
         </section>
 
-        <section>
-          <div className="relative min-h-[80svh] overflow-hidden bg-black">
-            {feature ? (
-              <>
-                <Image
-                  key={feature.title}
-                  src={feature.image}
-                  alt={feature.imageAlt}
-                  fill
-                  className="object-cover opacity-65"
-                  sizes="100vw"
-                  priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-black/25" />
-                <div className="relative z-10 flex min-h-[80svh] flex-col justify-end px-5 pb-8 pt-24 sm:px-8 lg:px-12">
-                  <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-white/50">
-                    {String(activeFeature + 1).padStart(2, "0")} /{" "}
-                    {String(platform.features.length).padStart(2, "0")}
-                  </p>
-                  <h3 className="brand-font mt-2 text-[clamp(1.75rem,4vw,3rem)] leading-none tracking-tight text-white">
-                    {feature.title}
-                  </h3>
-                  <p className="mt-2 text-[13px] text-white/70">{feature.description}</p>
-                </div>
-              </>
-            ) : null}
-          </div>
-
-          <div className="container-x grid gap-3 py-6 sm:grid-cols-2 lg:grid-cols-4">
-            {platform.features.map((item, index) => {
-              const active = activeFeature === index;
-              return (
-                <button
-                  key={item.title}
-                  type="button"
-                  onClick={() => setActiveFeature(index)}
-                  className={`bevel-panel-image group relative aspect-[5/4] text-left ${
-                    active ? "ring-2 ring-fg ring-offset-2 ring-offset-[var(--bg)]" : ""
-                  }`}
-                >
-                  <Image
-                    src={item.image}
-                    alt=""
-                    fill
-                    className={`object-cover transition-opacity duration-300 ${
-                      active ? "opacity-80" : "opacity-50 group-hover:opacity-70"
-                    }`}
-                    sizes="(max-width: 640px) 100vw, 25vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 p-3.5 sm:p-4">
-                    <p className="font-mono text-[9px] uppercase tracking-[0.14em] text-white/45">
-                      {String(index + 1).padStart(2, "0")}
-                    </p>
-                    <p className="brand-font mt-0.5 text-[15px] tracking-tight text-white">{item.title}</p>
-                    <p className="mt-0.5 text-[11px] leading-4 text-white/60">{item.description}</p>
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-        </section>
+        <FeatureTimeline features={platform.features} />
 
         <section className="py-12 sm:py-16">
           <div className="container-x">

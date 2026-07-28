@@ -332,6 +332,31 @@ textarea {
   );
 }
 
+.feature-timeline {
+  scrollbar-width: none;
+}
+
+.feature-timeline::-webkit-scrollbar {
+  display: none;
+}
+
+.feature-timeline__item {
+  flex: 1 1 0;
+  transition:
+    flex-grow 500ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.feature-timeline__item--active {
+  flex-grow: 1.55;
+}
+
+@media (min-width: 640px) {
+  .feature-timeline__item--active {
+    flex-grow: 1.7;
+  }
+}
+
 .btn-on-dark,
 .bevel-button-inverse-primary {
   background: #ffffff;
