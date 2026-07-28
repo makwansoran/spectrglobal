@@ -61,6 +61,8 @@ export const softwareProducts: SoftwareProduct[] = [
     description:
       "Object detection model — sees every unit, pallet, and exception on the floor in real time.",
     href: "/platforms/argus",
+    previewImage: "/spectr-detection.png",
+    previewImageAlt: "Argus object detection on warehouse assets",
   },
 ];
 
