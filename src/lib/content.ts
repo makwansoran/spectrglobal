@@ -43,6 +43,8 @@ export const softwareProducts: SoftwareProduct[] = [
     description:
       "Artificial Intelligence Model — one model of your operation, shared by every unit and every decision on the floor.",
     href: "/platforms/aim",
+    previewImage: "/images/products/aim-ui.png",
+    previewImageAlt: "AIM artificial intelligence model",
   },
   {
     id: "metaphysics",
