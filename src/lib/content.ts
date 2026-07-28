@@ -205,10 +205,14 @@ export const ceoQuote = {
   role: "CEO, Spectr",
 };
 
-export const demoRequest = {
-  title: "Request a Demo",
-  body: "Interested in solving your problems with Spectr software? Tell us about your operation and we will set up a walkthrough.",
-  submitLabel: "Submit",
+export const homeCta = {
+  title: "Run your enterprise on Spectr OS",
+  primaryTitle: "Build with Spectr OS",
+  primaryBody: "Free for enterprise customers — permanently.",
+  primaryCta: "Get Started",
+  secondaryTitle: "Talk to Spectr",
+  secondaryBody: "Map where Spectr OS fits — in days, not quarters.",
+  secondaryCta: "Request a demo",
 };
 
 export type NewsItem = {
