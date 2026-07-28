@@ -259,6 +259,66 @@ textarea {
   background: var(--surface-2);
 }
 
+.solution-card {
+  transition: background-color 220ms ease;
+}
+
+.solution-card__body,
+.solution-card__title,
+.solution-card__meta {
+  transition: color 220ms ease;
+}
+
+.solution-card--blue:hover,
+.solution-card--blue:focus-visible {
+  background: #2f6fed;
+}
+
+.solution-card--purple:hover,
+.solution-card--purple:focus-visible {
+  background: #7c3aed;
+}
+
+.solution-card--orange:hover,
+.solution-card--orange:focus-visible {
+  background: #ea580c;
+}
+
+.solution-card--green:hover,
+.solution-card--green:focus-visible {
+  background: #16a34a;
+}
+
+.solution-card--blue:hover .solution-card__title,
+.solution-card--blue:focus-visible .solution-card__title,
+.solution-card--purple:hover .solution-card__title,
+.solution-card--purple:focus-visible .solution-card__title,
+.solution-card--orange:hover .solution-card__title,
+.solution-card--orange:focus-visible .solution-card__title,
+.solution-card--green:hover .solution-card__title,
+.solution-card--green:focus-visible .solution-card__title,
+.solution-card--blue:hover .solution-card__body,
+.solution-card--blue:focus-visible .solution-card__body,
+.solution-card--purple:hover .solution-card__body,
+.solution-card--purple:focus-visible .solution-card__body,
+.solution-card--orange:hover .solution-card__body,
+.solution-card--orange:focus-visible .solution-card__body,
+.solution-card--green:hover .solution-card__body,
+.solution-card--green:focus-visible .solution-card__body {
+  color: #ffffff;
+}
+
+.solution-card--blue:hover .solution-card__meta,
+.solution-card--blue:focus-visible .solution-card__meta,
+.solution-card--purple:hover .solution-card__meta,
+.solution-card--purple:focus-visible .solution-card__meta,
+.solution-card--orange:hover .solution-card__meta,
+.solution-card--orange:focus-visible .solution-card__meta,
+.solution-card--green:hover .solution-card__meta,
+.solution-card--green:focus-visible .solution-card__meta {
+  color: rgba(255, 255, 255, 0.72);
+}
+
 .bevel-panel-image {
   --bevel-cut: 12px;
   overflow: hidden;
