@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { ArrowIcon, Button } from "@/components/button";
+import { ArrowIcon } from "@/components/button";
 import { GetStartedButton } from "@/components/get-started-button";
 import { Reveal } from "@/components/reveal";
 import type { Platform, PlatformFeature } from "@/lib/platforms";
@@ -156,10 +156,6 @@ function FeatureTimeline({
 }
 
 export function PlatformPageView({ platform }: { platform: Platform }) {
-  const [activeCapability, setActiveCapability] = useState(platform.capabilities[0]?.id ?? "");
-  const capability =
-    platform.capabilities.find((item) => item.id === activeCapability) ?? platform.capabilities[0];
-
   return (
     <main id="main-content" className="flex-1">
       <section className="relative min-h-[100svh] overflow-hidden bg-black">
@@ -209,72 +205,6 @@ export function PlatformPageView({ platform }: { platform: Platform }) {
       </section>
 
       <div className="theme-light">
-        <section className="flex min-h-[100svh] flex-col justify-center py-16 sm:py-20">
-          <div className="container-x flex flex-col items-center text-center">
-            <Reveal>
-              <h2 className="brand-font mx-auto max-w-3xl text-[clamp(1.4rem,3vw,2.25rem)] leading-[1.2] tracking-tight text-fg">
-                {platform.statementTitle}{" "}
-                <span className="text-muted">{platform.statementHighlight}</span>
-              </h2>
-              <p className="mx-auto mt-4 max-w-lg text-[13px] leading-6 text-muted">
-                {platform.statementBody}
-              </p>
-            </Reveal>
-
-            <div className="mt-10 flex flex-wrap justify-center gap-2">
-              {platform.capabilities.map((item) => {
-                const active = activeCapability === item.id;
-                return (
-                  <Button
-                    key={item.id}
-                    type="button"
-                    size="sm"
-                    onClick={() => setActiveCapability(item.id)}
-                    className={active ? "" : "bevel-button-muted"}
-                  >
-                    {item.label}
-                  </Button>
-                );
-              })}
-            </div>
-
-            {capability ? (
-              <div className="mt-8 grid w-full items-start gap-3 md:grid-cols-3">
-                {capability.steps.map((step, index) => (
-                  <Reveal key={`${capability.id}-${step.title}`} delay={index * 50}>
-                    <article className="capability-step bevel-panel bevel-panel-muted overflow-hidden text-left">
-                      <div
-                        className="capability-step__media px-3 pt-3 sm:px-4 sm:pt-4"
-                        tabIndex={0}
-                        aria-label={`${step.title} image`}
-                      >
-                        <div className="capability-step__frame bevel-panel-image relative overflow-hidden bg-surface">
-                          <Image
-                            src={step.image}
-                            alt={step.imageAlt}
-                            fill
-                            className="object-cover"
-                            sizes="(max-width: 768px) 100vw, 33vw"
-                          />
-                        </div>
-                      </div>
-                      <div className="p-5 sm:p-6">
-                        <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-muted">
-                          {String.fromCharCode(65 + index)}
-                        </p>
-                        <h3 className="brand-font mt-2 text-[15px] tracking-tight text-fg">
-                          {step.title}
-                        </h3>
-                        <p className="mt-1.5 text-[12px] leading-5 text-muted">{step.body}</p>
-                      </div>
-                    </article>
-                  </Reveal>
-                ))}
-              </div>
-            ) : null}
-          </div>
-        </section>
-
         <FeatureTimeline features={platform.features} title={platform.featuresTitle} />
 
         <section className="py-12 sm:py-16">
