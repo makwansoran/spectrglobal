@@ -336,6 +336,27 @@ textarea {
   --feature-gap: 0.75rem;
 }
 
+.capability-step__frame {
+  height: 9.5rem;
+  transition: height 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.capability-step__media:hover .capability-step__frame,
+.capability-step__media:focus-within .capability-step__frame {
+  height: 16.5rem;
+}
+
+@media (min-width: 768px) {
+  .capability-step__frame {
+    height: 10.5rem;
+  }
+
+  .capability-step__media:hover .capability-step__frame,
+  .capability-step__media:focus-within .capability-step__frame {
+    height: 18rem;
+  }
+}
+
 .feature-timeline__track {
   display: grid;
   gap: var(--feature-gap);

@@ -1,7 +1,14 @@
+export type PlatformCapabilityStep = {
+  title: string;
+  body: string;
+  image: string;
+  imageAlt: string;
+};
+
 export type PlatformCapability = {
   id: string;
   label: string;
-  steps: { title: string; body: string }[];
+  steps: PlatformCapabilityStep[];
 };
 
 export type PlatformFeature = {
@@ -63,14 +70,20 @@ export const platforms: Platform[] = [
           {
             title: "Unify every signal",
             body: "ERP, sensors, feeds, and people — one live model.",
+            image: "/images/offerings/spectr-os.jpg",
+            imageAlt: "Unify every signal",
           },
           {
             title: "One operational truth",
             body: "Metaphysics keeps every system coherent.",
+            image: "/images/offerings/spectr-mind.jpg",
+            imageAlt: "One operational truth",
           },
           {
             title: "See reality",
             body: "Argus binds perception to objects that matter.",
+            image: "/images/offerings/spectr-c2.jpg",
+            imageAlt: "See reality",
           },
         ],
       },
@@ -81,14 +94,20 @@ export const platforms: Platform[] = [
           {
             title: "Rank the next move",
             body: "Exceptions become actions — not reports.",
+            image: "/images/offerings/pilots.jpg",
+            imageAlt: "Rank the next move",
           },
           {
             title: "Human in the loop",
             body: "Approve, override, escalate with full context.",
+            image: "/spectr-detection.png",
+            imageAlt: "Human in the loop",
           },
           {
             title: "Close the loop",
             body: "Every outcome writes back into the OS.",
+            image: "/images/industries/warehousing.jpg",
+            imageAlt: "Close the loop",
           },
         ],
       },
@@ -99,14 +118,20 @@ export const platforms: Platform[] = [
           {
             title: "Agentic workflows",
             body: "AIM proposes and executes with guardrails.",
+            image: "/images/industries/logistics.jpg",
+            imageAlt: "Agentic workflows",
           },
           {
             title: "Real tools",
             body: "Agents touch systems — not just chat.",
+            image: "/images/industries/manufacturing.jpg",
+            imageAlt: "Real tools",
           },
           {
             title: "Governed autonomy",
             body: "Audit every decision. Scale trust over time.",
+            image: "/images/industries/ports.jpg",
+            imageAlt: "Governed autonomy",
           },
         ],
       },
@@ -250,14 +275,20 @@ export const platforms: Platform[] = [
           {
             title: "Read the live state",
             body: "AIM watches Metaphysics and Argus for shortages, bottlenecks, and exceptions as they appear.",
+            image: "/images/offerings/spectr-os.jpg",
+            imageAlt: "Read the live state",
           },
           {
             title: "Propose the next move",
             body: "Slotting changes, wave adjustments, and reassignments arrive as concrete proposals — not vague insights.",
+            image: "/images/offerings/spectr-mind.jpg",
+            imageAlt: "Propose the next move",
           },
           {
             title: "Show the reasoning",
             body: "Operators see why AIM suggested the action before they approve it.",
+            image: "/images/offerings/spectr-c2.jpg",
+            imageAlt: "Show the reasoning",
           },
         ],
       },
@@ -268,14 +299,20 @@ export const platforms: Platform[] = [
           {
             title: "Give AI real tools",
             body: "AIM can draft tasks, holds, and reallocations inside Spectr OS — subject to policy and approval.",
+            image: "/images/offerings/pilots.jpg",
+            imageAlt: "Give AI real tools",
           },
           {
             title: "Stay inside the ontology",
             body: "Actions only touch objects Metaphysics knows, so the model never invents a fake aisle.",
+            image: "/spectr-detection.png",
+            imageAlt: "Stay inside the ontology",
           },
           {
             title: "Learn from outcomes",
             body: "Accepted and rejected proposals improve the next decision cycle on that specific site.",
+            image: "/images/industries/warehousing.jpg",
+            imageAlt: "Learn from outcomes",
           },
         ],
       },
@@ -286,14 +323,20 @@ export const platforms: Platform[] = [
           {
             title: "Human-in-the-loop by default",
             body: "Critical moves require operator confirmation. Autonomy expands only where trust is earned.",
+            image: "/images/industries/logistics.jpg",
+            imageAlt: "Human-in-the-loop by default",
           },
           {
             title: "Full execution history",
             body: "Every proposal, approval, and outcome is logged for supervisors and continuous improvement.",
+            image: "/images/industries/manufacturing.jpg",
+            imageAlt: "Full execution history",
           },
           {
             title: "Site-specific intelligence",
             body: "AIM learns your floor — not a generic warehouse average.",
+            image: "/images/industries/ports.jpg",
+            imageAlt: "Site-specific intelligence",
           },
         ],
       },
@@ -405,14 +448,20 @@ export const platforms: Platform[] = [
           {
             title: "Objects that match the floor",
             body: "Bins, pallets, waves, carriers, and constraints become first-class objects — not spreadsheet rows.",
+            image: "/images/offerings/spectr-os.jpg",
+            imageAlt: "Objects that match the floor",
           },
           {
             title: "Actions with consequences",
             body: "Moves, holds, and approvals update the ontology immediately so nothing drifts out of sync.",
+            image: "/images/offerings/spectr-mind.jpg",
+            imageAlt: "Actions with consequences",
           },
           {
             title: "Relationships that matter",
             body: "Affinity, velocity, and adjacency are encoded where slotting and AI can actually use them.",
+            image: "/images/offerings/spectr-c2.jpg",
+            imageAlt: "Relationships that matter",
           },
         ],
       },
@@ -423,14 +472,20 @@ export const platforms: Platform[] = [
           {
             title: "Connect without duplication",
             body: "Bring ERP, TMS, and carrier feeds into Metaphysics without fracturing your source of truth.",
+            image: "/images/offerings/pilots.jpg",
+            imageAlt: "Connect without duplication",
           },
           {
             title: "Keep history legible",
             body: "Every change is attributable — for audits, disputes, and continuous improvement.",
+            image: "/spectr-detection.png",
+            imageAlt: "Keep history legible",
           },
           {
             title: "Multi-site by design",
             body: "One ontology language across sites, with local configuration where each floor differs.",
+            image: "/images/industries/warehousing.jpg",
+            imageAlt: "Multi-site by design",
           },
         ],
       },
@@ -441,14 +496,20 @@ export const platforms: Platform[] = [
           {
             title: "Fuel AIM",
             body: "Decision models only work when the world model is truthful. Metaphysics is that world.",
+            image: "/images/industries/logistics.jpg",
+            imageAlt: "Fuel AIM",
           },
           {
             title: "Ground Argus",
             body: "Detections map onto known objects — so a seen tote becomes inventory, not a mystery blob.",
+            image: "/images/industries/manufacturing.jpg",
+            imageAlt: "Ground Argus",
           },
           {
             title: "Power Spectr OS",
             body: "The operating system runs on Metaphysics. Without it, you are back to disconnected tools.",
+            image: "/images/industries/ports.jpg",
+            imageAlt: "Power Spectr OS",
           },
         ],
       },
@@ -560,14 +621,20 @@ export const platforms: Platform[] = [
           {
             title: "Industrial-grade detection",
             body: "Argus is trained for warehouse reality — occlusion, mixed lighting, and dense SKUs included.",
+            image: "/images/offerings/spectr-os.jpg",
+            imageAlt: "Industrial-grade detection",
           },
           {
             title: "Beat generic baselines",
             body: "On floor workloads, Argus outperforms general models like YOLOv11 where industrial accuracy matters.",
+            image: "/images/offerings/spectr-mind.jpg",
+            imageAlt: "Beat generic baselines",
           },
           {
             title: "Edge-ready",
             body: "Run close to the camera so latency stays low enough for live operations.",
+            image: "/images/offerings/spectr-c2.jpg",
+            imageAlt: "Edge-ready",
           },
         ],
       },
@@ -578,14 +645,20 @@ export const platforms: Platform[] = [
           {
             title: "Map detections to objects",
             body: "A seen pallet becomes a Metaphysics object with location, status, and history — not a floating box.",
+            image: "/images/offerings/pilots.jpg",
+            imageAlt: "Map detections to objects",
           },
           {
             title: "Flag exceptions early",
             body: "Mis-slots, missing units, and unsafe conditions surface before the next pick wave fails.",
+            image: "/spectr-detection.png",
+            imageAlt: "Flag exceptions early",
           },
           {
             title: "Feed AIM",
             body: "Live perception is what lets AIM propose actions that match the floor right now.",
+            image: "/images/industries/warehousing.jpg",
+            imageAlt: "Feed AIM",
           },
         ],
       },
@@ -596,14 +669,20 @@ export const platforms: Platform[] = [
           {
             title: "Site by site",
             body: "Calibrate to your racking and lighting, then expand coverage aisle by aisle.",
+            image: "/images/industries/logistics.jpg",
+            imageAlt: "Site by site",
           },
           {
             title: "Human-readable evidence",
             body: "Supervisors can review what Argus saw when a decision was made.",
+            image: "/images/industries/manufacturing.jpg",
+            imageAlt: "Human-readable evidence",
           },
           {
             title: "Part of Spectr OS",
             body: "Argus is not a bolt-on camera toy — it is a native layer of the operating system.",
+            image: "/images/industries/ports.jpg",
+            imageAlt: "Part of Spectr OS",
           },
         ],
       },

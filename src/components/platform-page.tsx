@@ -239,15 +239,34 @@ export function PlatformPageView({ platform }: { platform: Platform }) {
             </div>
 
             {capability ? (
-              <div className="mt-8 grid w-full gap-3 md:grid-cols-3">
+              <div className="mt-8 grid w-full items-start gap-3 md:grid-cols-3">
                 {capability.steps.map((step, index) => (
-                  <Reveal key={step.title} delay={index * 50}>
-                    <article className="bevel-panel bevel-panel-muted h-full p-5 text-left sm:p-6">
-                      <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-muted">
-                        {String.fromCharCode(65 + index)}
-                      </p>
-                      <h3 className="brand-font mt-2 text-[15px] tracking-tight text-fg">{step.title}</h3>
-                      <p className="mt-1.5 text-[12px] leading-5 text-muted">{step.body}</p>
+                  <Reveal key={`${capability.id}-${step.title}`} delay={index * 50}>
+                    <article className="capability-step bevel-panel bevel-panel-muted overflow-hidden text-left">
+                      <div
+                        className="capability-step__media px-3 pt-3 sm:px-4 sm:pt-4"
+                        tabIndex={0}
+                        aria-label={`${step.title} image`}
+                      >
+                        <div className="capability-step__frame bevel-panel-image relative overflow-hidden bg-surface">
+                          <Image
+                            src={step.image}
+                            alt={step.imageAlt}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 768px) 100vw, 33vw"
+                          />
+                        </div>
+                      </div>
+                      <div className="p-5 sm:p-6">
+                        <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-muted">
+                          {String.fromCharCode(65 + index)}
+                        </p>
+                        <h3 className="brand-font mt-2 text-[15px] tracking-tight text-fg">
+                          {step.title}
+                        </h3>
+                        <p className="mt-1.5 text-[12px] leading-5 text-muted">{step.body}</p>
+                      </div>
                     </article>
                   </Reveal>
                 ))}
