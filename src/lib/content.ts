@@ -53,6 +53,8 @@ export const softwareProducts: SoftwareProduct[] = [
     description:
       "Ontology layer — the semantic model of your operation that makes Spectr OS coherent across every decision.",
     href: "/platforms/metaphysics",
+    previewImage: "/images/products/metaphysics-ui.png",
+    previewImageAlt: "Metaphysics ontology graph",
   },
   {
     id: "argus",
