@@ -195,6 +195,12 @@ export const ceoQuote = {
   role: "CEO, Spectr",
 };
 
+export const demoRequest = {
+  title: "Request a Demo",
+  body: "Interested in solving your problems with Spectr software? Tell us about your operation and we will set up a walkthrough.",
+  submitLabel: "Submit",
+};
+
 export type NewsItem = {
   id: string;
   source: string;

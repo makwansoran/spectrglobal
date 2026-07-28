@@ -1,3 +1,4 @@
+import { DemoRequestBox } from "@/components/demo-request-box";
 import { Reveal } from "@/components/reveal";
 import { ceoQuote } from "@/lib/content";
 
@@ -17,6 +18,10 @@ export function CeoQuote() {
               </p>
             </footer>
           </blockquote>
+        </Reveal>
+
+        <Reveal delay={80}>
+          <DemoRequestBox />
         </Reveal>
       </div>
     </section>
