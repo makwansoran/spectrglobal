@@ -28,7 +28,7 @@ export function SoftwareProducts() {
                   </div>
 
                   <div className="flex items-baseline justify-between gap-4 sm:justify-end">
-                    <h3 className="brand-font text-[clamp(2.75rem,10vw,7.5rem)] font-normal leading-[0.9] tracking-[-0.04em] text-fg">
+                    <h3 className="brand-font text-[clamp(1.75rem,4.5vw,3rem)] font-normal leading-[0.95] tracking-[-0.03em] text-fg">
                       {product.name}
                     </h3>
                     <span className="hidden font-mono text-[13px] tracking-[0.08em] text-muted lg:inline">
