@@ -9,6 +9,8 @@ export type SoftwareProduct = {
   name: string;
   description: string;
   href: string;
+  previewImage?: string;
+  previewImageAlt?: string;
 };
 
 export const softwareSection = {
@@ -31,6 +33,8 @@ export const softwareProducts: SoftwareProduct[] = [
     description:
       "The operating system for the enterprise — data fusion, decision making, and agentic workflows in one runtime.",
     href: "/platforms/spectr-os",
+    previewImage: "/images/products/spectr-os-ui.png",
+    previewImageAlt: "Spectr OS warehouse intelligence interface",
   },
   {
     id: "aim",
