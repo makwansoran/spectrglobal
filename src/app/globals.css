@@ -467,14 +467,6 @@ textarea {
 }
 
 @media (hover: none) {
-  .solution-row__cta {
-    grid-template-rows: 1fr;
-  }
-
-  .solution-row__cta > div > div {
-    opacity: 1;
-  }
-
   .industry-row__detail {
     grid-template-rows: 1fr;
   }
