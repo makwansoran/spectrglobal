@@ -32,6 +32,7 @@ export type Platform = {
   statementHighlight: string;
   statementBody: string;
   capabilities: PlatformCapability[];
+  featuresTitle: string;
   features: PlatformFeature[];
   industriesIntro: string;
   industries: PlatformIndustry[];
@@ -110,6 +111,7 @@ export const platforms: Platform[] = [
         ],
       },
     ],
+    featuresTitle: "Enterprise data fusion on Spectr OS",
     features: [
       {
         title: "Data Fusion",
@@ -296,6 +298,7 @@ export const platforms: Platform[] = [
         ],
       },
     ],
+    featuresTitle: "How AIM runs decisions on the floor",
     features: [
       {
         title: "Designed for AI workflow builders",
@@ -450,6 +453,7 @@ export const platforms: Platform[] = [
         ],
       },
     ],
+    featuresTitle: "How Metaphysics holds the operation together",
     features: [
       {
         title: "Semantic model of the floor",
@@ -604,6 +608,7 @@ export const platforms: Platform[] = [
         ],
       },
     ],
+    featuresTitle: "How Argus sees every unit on the floor",
     features: [
       {
         title: "Built for warehouse vision",

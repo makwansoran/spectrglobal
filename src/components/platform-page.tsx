@@ -8,26 +8,54 @@ import { Reveal } from "@/components/reveal";
 import type { Platform, PlatformFeature } from "@/lib/platforms";
 import { site } from "@/lib/site";
 
-function FeatureTimeline({ features }: { features: PlatformFeature[] }) {
+function FeatureTimeline({
+  features,
+  title,
+}: {
+  features: PlatformFeature[];
+  title: string;
+}) {
   const [activeFeature, setActiveFeature] = useState(0);
+  const [cycleKey, setCycleKey] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [reduceMotion, setReduceMotion] = useState(false);
 
   useEffect(() => {
-    if (paused || features.length < 2) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    setReduceMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  }, []);
+
+  useEffect(() => {
+    if (!reduceMotion || paused || features.length < 2) return;
 
     const timer = window.setInterval(() => {
       setActiveFeature((index) => (index + 1) % features.length);
+      setCycleKey((key) => key + 1);
     }, 2000);
 
     return () => window.clearInterval(timer);
-  }, [paused, features.length]);
+  }, [reduceMotion, paused, features.length]);
+
+  function goTo(index: number) {
+    setActiveFeature(index);
+    setCycleKey((key) => key + 1);
+  }
+
+  function advance() {
+    setActiveFeature((index) => (index + 1) % features.length);
+    setCycleKey((key) => key + 1);
+  }
 
   return (
     <section className="py-12 sm:py-16">
       <div className="container-x">
+        <Reveal>
+          <h2 className="brand-font max-w-3xl text-[clamp(1.5rem,4vw,2.75rem)] leading-[1.15] tracking-tight text-fg">
+            {title}
+          </h2>
+        </Reveal>
+
         <div
-          className="feature-timeline flex gap-2 overflow-x-auto pb-1 sm:gap-3"
+          className="feature-timeline mt-8"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
           onFocusCapture={() => setPaused(true)}
@@ -37,48 +65,90 @@ function FeatureTimeline({ features }: { features: PlatformFeature[] }) {
             }
           }}
         >
-          {features.map((item, index) => {
-            const active = activeFeature === index;
+          <div
+            className="feature-timeline__track"
+            style={{ gridTemplateColumns: `repeat(${features.length}, minmax(0, 1fr))` }}
+          >
+            {features.map((item, index) => {
+              const active = activeFeature === index;
 
-            return (
-              <button
-                key={item.title}
-                type="button"
-                onClick={() => setActiveFeature(index)}
-                aria-pressed={active}
-                aria-label={`${item.title}: ${item.description}`}
-                className={`feature-timeline__item bevel-panel-image group relative aspect-[4/5] min-w-[9.5rem] shrink-0 overflow-hidden text-left sm:aspect-[5/6] sm:min-w-0 ${
-                  active ? "feature-timeline__item--active" : ""
-                }`}
-              >
-                <Image
-                  src={item.image}
-                  alt=""
-                  fill
-                  className={`object-cover transition-opacity duration-500 ${
-                    active ? "opacity-85" : "opacity-45 group-hover:opacity-65"
-                  }`}
-                  sizes="(max-width: 640px) 42vw, 22vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-3.5 sm:p-4">
-                  <p className="font-mono text-[9px] uppercase tracking-[0.14em] text-white/45">
-                    {String(index + 1).padStart(2, "0")} / {String(features.length).padStart(2, "0")}
-                  </p>
-                  <p className="brand-font mt-1 text-[15px] tracking-tight text-white sm:text-[17px]">
-                    {item.title}
-                  </p>
-                  <p
-                    className={`mt-1 text-[11px] leading-4 text-white/65 transition-opacity duration-500 sm:text-[12px] sm:leading-5 ${
-                      active ? "opacity-100" : "opacity-0 sm:opacity-70"
+              return (
+                <div key={item.title} className="feature-timeline__slot">
+                  <button
+                    type="button"
+                    onClick={() => goTo(index)}
+                    aria-pressed={active}
+                    aria-label={`${item.title}: ${item.description}`}
+                    className={`feature-timeline__item bevel-panel-image group relative aspect-[4/5] w-full overflow-hidden text-left sm:aspect-[5/6] ${
+                      active ? "feature-timeline__item--active" : ""
                     }`}
                   >
-                    {item.description}
-                  </p>
+                    <Image
+                      src={item.image}
+                      alt=""
+                      fill
+                      className={`object-cover transition-opacity duration-500 ${
+                        active ? "opacity-85" : "opacity-45 group-hover:opacity-65"
+                      }`}
+                      sizes="(max-width: 640px) 42vw, 22vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent" />
+                    <div className="absolute inset-x-0 bottom-0 p-3.5 sm:p-4">
+                      <p className="font-mono text-[9px] uppercase tracking-[0.14em] text-white/45">
+                        {String(index + 1).padStart(2, "0")} /{" "}
+                        {String(features.length).padStart(2, "0")}
+                      </p>
+                      <p className="brand-font mt-1 text-[15px] tracking-tight text-white sm:text-[17px]">
+                        {item.title}
+                      </p>
+                      <p className="mt-1 text-[11px] leading-4 text-white/65 sm:text-[12px] sm:leading-5">
+                        {item.description}
+                      </p>
+                    </div>
+                  </button>
                 </div>
-              </button>
-            );
-          })}
+              );
+            })}
+          </div>
+
+          <div
+            className="feature-timeline__bars mt-5"
+            style={{ gridTemplateColumns: `repeat(${features.length}, minmax(0, 1fr))` }}
+            role="tablist"
+            aria-label="Feature progress"
+          >
+            {features.map((item, index) => {
+              const active = activeFeature === index;
+              const complete = index < activeFeature;
+
+              return (
+                <button
+                  key={item.title}
+                  type="button"
+                  role="tab"
+                  aria-selected={active}
+                  aria-label={`Go to ${item.title}`}
+                  onClick={() => goTo(index)}
+                  className="feature-timeline__bar"
+                >
+                  <span className="feature-timeline__bar-track">
+                    {complete ? <span className="feature-timeline__bar-fill is-complete" /> : null}
+                    {active ? (
+                      <span
+                        key={cycleKey}
+                        className={`feature-timeline__bar-fill ${
+                          reduceMotion ? "is-complete" : ""
+                        } ${paused && !reduceMotion ? "is-paused" : ""}`}
+                        onAnimationEnd={() => {
+                          if (!paused && !reduceMotion) advance();
+                        }}
+                      />
+                    ) : null}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
@@ -186,7 +256,7 @@ export function PlatformPageView({ platform }: { platform: Platform }) {
           </div>
         </section>
 
-        <FeatureTimeline features={platform.features} />
+        <FeatureTimeline features={platform.features} title={platform.featuresTitle} />
 
         <section className="py-12 sm:py-16">
           <div className="container-x">
