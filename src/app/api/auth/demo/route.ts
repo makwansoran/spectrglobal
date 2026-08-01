@@ -26,10 +26,11 @@ export async function POST(request: Request) {
 
   const token = await signDemoSession(email);
   const res = NextResponse.json({ ok: true });
+  const secure = process.env.NODE_ENV === "production";
   res.cookies.set(DEMO_COOKIE, token, {
     httpOnly: true,
     sameSite: "lax",
-    secure: true,
+    secure,
     path: "/",
     maxAge: 60 * 60 * 24 * 7,
   });
@@ -38,10 +39,11 @@ export async function POST(request: Request) {
 
 export async function DELETE() {
   const res = NextResponse.json({ ok: true });
+  const secure = process.env.NODE_ENV === "production";
   res.cookies.set(DEMO_COOKIE, "", {
     httpOnly: true,
     sameSite: "lax",
-    secure: true,
+    secure,
     path: "/",
     maxAge: 0,
   });

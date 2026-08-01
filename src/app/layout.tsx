@@ -16,7 +16,7 @@ const spaceGrotesk = Space_Grotesk({
   weight: ["400", "500", "600", "700"],
 });
 const ibmPlex = IBM_Plex_Sans({
-  variable: "--font-palantir",
+  variable: "--font-ibm-plex",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });

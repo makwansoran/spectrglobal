@@ -23,7 +23,7 @@ export default function ContactPage() {
       <OpenGetStartedOnMount />
       <main id="main-content" className="flex-1">
         <PageHeader title="Get in touch." intro={intro}>
-          <GetStartedButton size="lg" label="Open form" />
+          <GetStartedButton size="lg" label="Open form" openSidebar />
         </PageHeader>
 
         <section className="pb-28">

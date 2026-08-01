@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Button } from "@/components/button";
 import { GetStartedButton } from "@/components/get-started-button";
 import { LogoMark, Wordmark } from "@/components/logo";
 import { newsItems } from "@/lib/content";
@@ -172,16 +171,6 @@ export function Nav() {
                     );
                   })}
                 </ul>
-
-                <div className="mt-8">
-                  <Button
-                    href="/login"
-                    className="btn-login"
-                    onClick={() => setOpen(false)}
-                  >
-                    Login
-                  </Button>
-                </div>
               </nav>
 
               <div className="grid sm:grid-cols-2 lg:col-span-2 lg:grid-cols-2">
