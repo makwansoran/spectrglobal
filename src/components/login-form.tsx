@@ -88,13 +88,13 @@ export function LoginForm() {
           value={email}
           onChange={(event) => setEmail(event.target.value)}
           disabled={step === "password"}
-          className="w-full rounded-md border border-[#e3e8ee] bg-white px-3.5 py-2.5 text-[15px] text-[#30313d] outline-none transition-[border-color,box-shadow] placeholder:text-[#a3acb9] focus:border-[#16a34a] focus:shadow-[0_0_0_1px_#16a34a] disabled:bg-[#f6f9fc] disabled:text-[#697386]"
+          className="w-full rounded-md border border-[#e3e8ee] bg-white px-3.5 py-2.5 text-[15px] text-[#30313d] outline-none transition-[border-color,box-shadow] placeholder:text-[#a3acb9] focus:border-[#2563eb] focus:shadow-[0_0_0_1px_#2563eb] disabled:bg-[#f6f9fc] disabled:text-[#697386]"
           placeholder="you@company.com"
         />
         {step === "password" ? (
           <button
             type="button"
-            className="mt-2 text-[13px] font-medium text-[#16a34a] hover:text-[#15803d]"
+            className="mt-2 text-[13px] font-medium text-[#2563eb] hover:text-[#1d4ed8]"
             onClick={() => {
               setStep("email");
               setPassword("");
@@ -112,7 +112,7 @@ export function LoginForm() {
             <label htmlFor="login-password" className="text-[13px] font-medium text-[#30313d]">
               Password
             </label>
-            <Link href="/contact" className="text-[13px] font-medium text-[#16a34a] hover:text-[#15803d]">
+            <Link href="/contact" className="text-[13px] font-medium text-[#2563eb] hover:text-[#1d4ed8]">
               Forgot password?
             </Link>
           </div>
@@ -124,7 +124,7 @@ export function LoginForm() {
             value={password}
             onChange={(event) => setPassword(event.target.value)}
             autoFocus
-            className="w-full rounded-md border border-[#e3e8ee] bg-white px-3.5 py-2.5 text-[15px] text-[#30313d] outline-none transition-[border-color,box-shadow] placeholder:text-[#a3acb9] focus:border-[#16a34a] focus:shadow-[0_0_0_1px_#16a34a]"
+            className="w-full rounded-md border border-[#e3e8ee] bg-white px-3.5 py-2.5 text-[15px] text-[#30313d] outline-none transition-[border-color,box-shadow] placeholder:text-[#a3acb9] focus:border-[#2563eb] focus:shadow-[0_0_0_1px_#2563eb]"
             placeholder="Enter your password"
           />
         </div>
@@ -142,7 +142,7 @@ export function LoginForm() {
       <button
         type="submit"
         disabled={pending}
-        className="inline-flex w-full items-center justify-center rounded-md bg-[#16a34a] px-4 py-2.5 text-[15px] font-medium text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+        className="inline-flex w-full items-center justify-center rounded-md bg-[#2563eb] px-4 py-2.5 text-[15px] font-medium text-white transition-opacity hover:bg-[#1d4ed8] disabled:cursor-not-allowed disabled:opacity-60"
       >
         {pending ? "Signing in…" : step === "email" ? "Continue" : "Sign in"}
       </button>
