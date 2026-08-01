@@ -9,7 +9,7 @@ export async function updateSession(request: NextRequest) {
   const isApp = path === "/app" || path.startsWith("/app/");
   const isLogin = path === "/login";
 
-  const demoUser = readDemoSession(request.cookies.get(DEMO_COOKIE)?.value);
+  const demoUser = await readDemoSession(request.cookies.get(DEMO_COOKIE)?.value);
 
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;

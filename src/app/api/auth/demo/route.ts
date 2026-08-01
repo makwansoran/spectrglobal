@@ -24,12 +24,12 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Incorrect email or password." }, { status: 401 });
   }
 
-  const token = signDemoSession(email);
+  const token = await signDemoSession(email);
   const res = NextResponse.json({ ok: true });
   res.cookies.set(DEMO_COOKIE, token, {
     httpOnly: true,
     sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
+    secure: true,
     path: "/",
     maxAge: 60 * 60 * 24 * 7,
   });
@@ -41,7 +41,7 @@ export async function DELETE() {
   res.cookies.set(DEMO_COOKIE, "", {
     httpOnly: true,
     sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
+    secure: true,
     path: "/",
     maxAge: 0,
   });
