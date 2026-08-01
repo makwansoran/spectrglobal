@@ -43,7 +43,7 @@ export function LoginShell({ form }: { form: ReactNode }) {
                 Sign in to your account
               </h1>
               <p className="mt-2 text-center text-[14px] leading-6 text-[#697386]">
-                Enter your work email to continue to Spectr.
+                Enter your email and password to continue.
               </p>
 
               <Suspense fallback={<div className="mt-8 h-40 animate-pulse rounded-md bg-[#f6f9fc]" />}>

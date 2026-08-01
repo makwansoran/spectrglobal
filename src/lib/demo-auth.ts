@@ -1,7 +1,14 @@
 export const DEMO_COOKIE = "spectr_demo_session";
 
 function secret(): string | null {
-  return process.env.SPECTR_DEMO_SECRET || process.env.SPECTR_BOOTSTRAP_SECRET || null;
+  return (
+    process.env.SPECTR_DEMO_SECRET ||
+    process.env.SPECTR_BOOTSTRAP_SECRET ||
+    // Local/dev fallback so a single email+password always works when configured.
+    (process.env.SPECTR_DEMO_EMAIL && process.env.SPECTR_DEMO_PASSWORD
+      ? "spectr-dev-session-secret"
+      : null)
+  );
 }
 
 export function demoCredentialsConfigured(): boolean {
