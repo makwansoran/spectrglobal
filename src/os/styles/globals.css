@@ -1,0 +1,292 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+    margin: 0;
+  }
+
+  body {
+    @apply bg-base-900 text-ink font-sans antialiased;
+    overflow: hidden;
+    /* Text is selectable/copyable everywhere... */
+    user-select: text;
+  }
+
+  /* ...except interactive chrome, so labels aren't grabbed by accident. */
+  button,
+  nav {
+    user-select: none;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-edge-soft rounded-full;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-edge-bright;
+  }
+}
+
+/* Frameless window drag regions (Electron) */
+.titlebar-drag {
+  -webkit-app-region: drag;
+  app-region: drag;
+}
+.titlebar-no-drag {
+  -webkit-app-region: no-drag;
+  app-region: no-drag;
+}
+
+@layer components {
+  .panel {
+    @apply bg-base-700/80 backdrop-blur-sm;
+  }
+
+  .panel-header {
+    @apply flex items-center justify-between px-3 py-2 text-[11px] font-mono uppercase tracking-[0.12em] text-ink-dim;
+  }
+
+  .island {
+    @apply bg-[#f4f5f7] shadow-panel;
+  }
+
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Keep overflow scrollable but hide the scrollbar chrome. */
+  .scrollbar-invisible {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scrollbar-invisible::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  /*
+   * Spectr bevel buttons — chamfered opposite corners via clip-path.
+   * Matches https://www.spectr.no (pill / bevel-button).
+   */
+  .bevel {
+    --bevel-cut: 10px;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 11px 20px;
+    border: none;
+    white-space: nowrap;
+    font-weight: 600;
+    font-size: 0.75rem;
+    line-height: 1;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    clip-path: polygon(
+      var(--bevel-cut) 0,
+      100% 0,
+      100% calc(100% - var(--bevel-cut)),
+      calc(100% - var(--bevel-cut)) 100%,
+      0 100%,
+      0 var(--bevel-cut)
+    );
+    transition: opacity 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .bevel:focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+  }
+
+  .bevel:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  .bevel-sm {
+    --bevel-cut: 8px;
+    padding: 8px 14px;
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+  }
+
+  .bevel-icon {
+    --bevel-cut: 8px;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    gap: 0;
+  }
+
+  /* Filled — dark on light surfaces (Spectr primary inverted for white UI) */
+  .bevel-primary {
+    background-color: #07080c;
+    color: #f4f5f7;
+  }
+  .bevel-primary:hover:not(:disabled) {
+    opacity: 0.85;
+  }
+
+  /* Soft fill — no outline */
+  .bevel-secondary {
+    background-color: #f4f5f7;
+    color: #07080c;
+  }
+  .bevel-secondary:hover:not(:disabled) {
+    opacity: 0.85;
+  }
+
+  /* Soft fill for suggestion / quiet actions */
+  .bevel-quiet {
+    background-color: #f4f5f7;
+    color: #07080c;
+  }
+  .bevel-quiet:hover:not(:disabled) {
+    opacity: 0.85;
+  }
+
+  .bevel-active {
+    background-color: #07080c;
+    color: #f4f5f7;
+  }
+
+  /* Larger bevel surface for model nodes / panels */
+  .bevel-panel {
+    --bevel-cut: 12px;
+    position: relative;
+    clip-path: polygon(
+      var(--bevel-cut) 0,
+      100% 0,
+      100% calc(100% - var(--bevel-cut)),
+      calc(100% - var(--bevel-cut)) 100%,
+      0 100%,
+      0 var(--bevel-cut)
+    );
+  }
+}
+
+/* Keep hover chrome (e.g. Command Chat +) visible outside the node box */
+.react-flow__node {
+  overflow: visible;
+}
+
+/* Drag-box multi-select */
+.react-flow__selection {
+  background: rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(15, 23, 42, 0.55);
+}
+
+.react-flow__nodesselection-rect {
+  background: rgba(15, 23, 42, 0.04);
+  border: 1px solid rgba(15, 23, 42, 0.35);
+}
+@keyframes spectr-edge-flow {
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+
+@keyframes chat-tab-in {
+  from {
+    opacity: 0;
+    transform: translateX(-10px) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes chat-pane-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chat-tab-enter {
+  animation: chat-tab-in 240ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.chat-pane-enter {
+  animation: chat-pane-in 280ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.react-flow__edge.spectr-edge-ok .react-flow__edge-path {
+  stroke: #16a34a !important;
+  stroke-width: 2;
+  stroke-dasharray: 6 6;
+  animation: spectr-edge-flow 0.7s linear infinite;
+}
+
+.react-flow__edge.spectr-edge-stale .react-flow__edge-path {
+  stroke: #ca8a04 !important;
+  stroke-width: 2;
+  stroke-dasharray: 6 6;
+  animation: spectr-edge-flow 1.4s linear infinite;
+}
+
+.react-flow__edge.spectr-edge-error .react-flow__edge-path {
+  stroke: #dc2626 !important;
+  stroke-width: 2.25;
+  stroke-dasharray: none;
+  animation: none;
+}
+
+.react-flow__edge.spectr-edge-ok .react-flow__arrowhead,
+.react-flow__edge.spectr-edge-ok marker path {
+  fill: #16a34a;
+}
+
+.react-flow__edge.spectr-edge-error .react-flow__arrowhead,
+.react-flow__edge.spectr-edge-error marker path {
+  fill: #dc2626;
+}
+
+/* Map — dark blue chrome for Mapbox controls */
+.map-dark-blue .mapboxgl-ctrl-group {
+  background: #0f2139;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.map-dark-blue .mapboxgl-ctrl-group button {
+  background-color: transparent;
+}
+
+.map-dark-blue .mapboxgl-ctrl-group button + button {
+  border-top-color: rgba(255, 255, 255, 0.12);
+}
+
+.map-dark-blue .mapboxgl-ctrl-icon {
+  filter: invert(1) brightness(1.1);
+}
+
+.map-dark-blue .mapboxgl-ctrl-logo,
+.map-dark-blue .mapboxgl-ctrl-attrib,
+.map-dark-blue .mapboxgl-ctrl-attrib-inner {
+  display: none !important;
+}

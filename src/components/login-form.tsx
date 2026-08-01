@@ -1,16 +1,22 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState, type FormEvent } from "react";
+import { createClient } from "@/lib/supabase/client";
 
 export function LoginForm() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const next = searchParams.get("next") || "/app";
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [step, setStep] = useState<"email" | "password">("email");
   const [error, setError] = useState<string | null>(null);
   const [pending, setPending] = useState(false);
 
-  function onContinue(event: FormEvent) {
+  async function onContinue(event: FormEvent) {
     event.preventDefault();
     setError(null);
 
@@ -29,10 +35,43 @@ export function LoginForm() {
     }
 
     setPending(true);
-    window.setTimeout(() => {
+    try {
+      const trimmed = email.trim();
+      let signedIn = false;
+
+      if (process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+        try {
+          const supabase = createClient();
+          const { error: signError } = await supabase.auth.signInWithPassword({
+            email: trimmed,
+            password,
+          });
+          if (!signError) signedIn = true;
+        } catch {
+          // fall through to demo auth
+        }
+      }
+
+      if (!signedIn) {
+        const demoRes = await fetch("/api/auth/demo", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: trimmed, password }),
+        });
+        if (!demoRes.ok) {
+          const body = (await demoRes.json().catch(() => null)) as { error?: string } | null;
+          setError(body?.error || "Incorrect email or password.");
+          return;
+        }
+      }
+
+      router.replace(next.startsWith("/") ? next : "/app");
+      router.refresh();
+    } catch {
+      setError("Could not sign in. Try again.");
+    } finally {
       setPending(false);
-      setError("Incorrect email or password.");
-    }, 700);
+    }
   }
 
   return (
@@ -92,7 +131,10 @@ export function LoginForm() {
       ) : null}
 
       {error ? (
-        <p role="alert" className="rounded-md border border-[#f5c2c7] bg-[#fff5f5] px-3.5 py-2.5 text-[13px] text-[#b42318]">
+        <p
+          role="alert"
+          className="rounded-md border border-[#f5c2c7] bg-[#fff5f5] px-3.5 py-2.5 text-[13px] text-[#b42318]"
+        >
           {error}
         </p>
       ) : null}

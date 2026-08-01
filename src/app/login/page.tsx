@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 import { LoginForm } from "@/components/login-form";
 import { LogoMark, Wordmark } from "@/components/logo";
 import { buildPageMetadata } from "@/lib/metadata";
@@ -28,7 +29,9 @@ export default function LoginPage() {
               Enter your work email to continue to Spectr.
             </p>
 
-            <LoginForm />
+            <Suspense fallback={<div className="mt-8 h-40 animate-pulse rounded-md bg-[#f6f9fc]" />}>
+              <LoginForm />
+            </Suspense>
           </div>
 
           <p className="mt-6 text-center text-[13px] leading-6 text-[#697386]">

@@ -1,0 +1,278 @@
+/* Spectr OS design tokens + components (ported from Electron renderer) */
+
+.spectr-os {
+  --accent: #2563eb;
+  --accent-dim: #1d4ed8;
+  --accent-glow: #3b82f6;
+  color-scheme: light;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.spectr-os,
+.spectr-os * {
+  box-sizing: border-box;
+}
+
+.spectr-os button,
+.spectr-os nav {
+  user-select: none;
+}
+
+.spectr-os ::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.spectr-os ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.spectr-os ::-webkit-scrollbar-thumb {
+  background: #eef0f3;
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.spectr-os ::-webkit-scrollbar-thumb:hover {
+  background: #d3d8df;
+  background-clip: padding-box;
+  border: 2px solid transparent;
+}
+
+.spectr-os .panel {
+  background-color: rgb(245 246 248 / 0.8);
+  backdrop-filter: blur(4px);
+}
+
+.spectr-os .panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #5b6470;
+}
+
+.spectr-os .island {
+  background-color: #f4f5f7;
+  box-shadow: 0 8px 28px rgba(15, 23, 42, 0.08);
+}
+
+.spectr-os .tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+.spectr-os .scrollbar-invisible {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.spectr-os .scrollbar-invisible::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.spectr-os .bevel {
+  --bevel-cut: 10px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 11px 20px;
+  border: none;
+  white-space: nowrap;
+  font-weight: 600;
+  font-size: 0.75rem;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  clip-path: polygon(
+    var(--bevel-cut) 0,
+    100% 0,
+    100% calc(100% - var(--bevel-cut)),
+    calc(100% - var(--bevel-cut)) 100%,
+    0 100%,
+    0 var(--bevel-cut)
+  );
+  transition: opacity 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+  cursor: pointer;
+}
+
+.spectr-os .bevel:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+.spectr-os .bevel:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.spectr-os .bevel-sm {
+  --bevel-cut: 8px;
+  padding: 8px 14px;
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+}
+
+.spectr-os .bevel-icon {
+  --bevel-cut: 8px;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  gap: 0;
+}
+
+.spectr-os .bevel-primary {
+  background-color: #07080c;
+  color: #f4f5f7;
+}
+
+.spectr-os .bevel-primary:hover:not(:disabled) {
+  opacity: 0.85;
+}
+
+.spectr-os .bevel-secondary,
+.spectr-os .bevel-quiet {
+  background-color: #f4f5f7;
+  color: #07080c;
+}
+
+.spectr-os .bevel-secondary:hover:not(:disabled),
+.spectr-os .bevel-quiet:hover:not(:disabled) {
+  opacity: 0.85;
+}
+
+.spectr-os .bevel-active {
+  background-color: #07080c;
+  color: #f4f5f7;
+}
+
+.spectr-os .bevel-panel {
+  --bevel-cut: 12px;
+  position: relative;
+  clip-path: polygon(
+    var(--bevel-cut) 0,
+    100% 0,
+    100% calc(100% - var(--bevel-cut)),
+    calc(100% - var(--bevel-cut)) 100%,
+    0 100%,
+    0 var(--bevel-cut)
+  );
+}
+
+.spectr-os .react-flow__node {
+  overflow: visible;
+}
+
+.spectr-os .react-flow__selection {
+  background: rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(15, 23, 42, 0.55);
+}
+
+.spectr-os .react-flow__nodesselection-rect {
+  background: rgba(15, 23, 42, 0.04);
+  border: 1px solid rgba(15, 23, 42, 0.35);
+}
+
+@keyframes spectr-edge-flow {
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+
+@keyframes chat-tab-in {
+  from {
+    opacity: 0;
+    transform: translateX(-10px) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes chat-pane-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.spectr-os .chat-tab-enter {
+  animation: chat-tab-in 240ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.spectr-os .chat-pane-enter {
+  animation: chat-pane-in 280ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.spectr-os .react-flow__edge.spectr-edge-ok .react-flow__edge-path {
+  stroke: #16a34a !important;
+  stroke-width: 2;
+  stroke-dasharray: 6 6;
+  animation: spectr-edge-flow 0.7s linear infinite;
+}
+
+.spectr-os .react-flow__edge.spectr-edge-stale .react-flow__edge-path {
+  stroke: #ca8a04 !important;
+  stroke-width: 2;
+  stroke-dasharray: 6 6;
+  animation: spectr-edge-flow 1.4s linear infinite;
+}
+
+.spectr-os .react-flow__edge.spectr-edge-error .react-flow__edge-path {
+  stroke: #dc2626 !important;
+  stroke-width: 2.25;
+  stroke-dasharray: none;
+  animation: none;
+}
+
+.spectr-os .react-flow__edge.spectr-edge-ok .react-flow__arrowhead,
+.spectr-os .react-flow__edge.spectr-edge-ok marker path {
+  fill: #16a34a;
+}
+
+.spectr-os .react-flow__edge.spectr-edge-error .react-flow__arrowhead,
+.spectr-os .react-flow__edge.spectr-edge-error marker path {
+  fill: #dc2626;
+}
+
+.spectr-os .map-dark-blue .mapboxgl-ctrl-group {
+  background: #0f2139;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.spectr-os .map-dark-blue .mapboxgl-ctrl-group button {
+  background-color: transparent;
+}
+
+.spectr-os .map-dark-blue .mapboxgl-ctrl-group button + button {
+  border-top-color: rgba(255, 255, 255, 0.12);
+}
+
+.spectr-os .map-dark-blue .mapboxgl-ctrl-icon {
+  filter: invert(1) brightness(1.1);
+}
+
+.spectr-os .map-dark-blue .mapboxgl-ctrl-logo,
+.spectr-os .map-dark-blue .mapboxgl-ctrl-attrib,
+.spectr-os .map-dark-blue .mapboxgl-ctrl-attrib-inner {
+  display: none !important;
+}
+
+.spectr-os .font-palantir {
+  font-family: var(--font-palantir), "IBM Plex Sans", Helvetica Neue, Helvetica, Arial, sans-serif;
+}

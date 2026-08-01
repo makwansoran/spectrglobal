@@ -4,6 +4,7 @@ const nextConfig: NextConfig = {
   images: {
     qualities: [75, 90, 92, 95],
   },
+  transpilePackages: ["mapbox-gl"],
   async redirects() {
     return [
       { source: "/no", destination: "/", permanent: true },

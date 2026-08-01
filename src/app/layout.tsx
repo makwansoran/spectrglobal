@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
-import { CookieConsentLazy } from "@/components/cookie-consent-lazy";
+import { Geist, Geist_Mono, Space_Grotesk, IBM_Plex_Sans } from "next/font/google";
 import { GetStartedShell } from "@/components/get-started-shell";
+import { MarketingChrome } from "@/components/marketing-chrome";
 import { OrganizationJsonLd } from "@/components/json-ld";
 import { ScrollToTop } from "@/components/scroll-to-top";
-import { SiteBackground } from "@/components/site-background";
 import { defaultOgImage } from "@/lib/metadata";
 import { site } from "@/lib/site";
 import "./globals.css";
@@ -13,6 +12,11 @@ const geist = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+const ibmPlex = IBM_Plex_Sans({
+  variable: "--font-palantir",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
@@ -54,7 +58,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${geist.variable} ${geistMono.variable} ${spaceGrotesk.variable} h-full`}
+      className={`${geist.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${ibmPlex.variable} h-full`}
     >
       <body className="flex min-h-full flex-col bg-bg text-fg">
         <a
@@ -63,13 +67,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to content
         </a>
-        <SiteBackground />
         <OrganizationJsonLd />
         <ScrollToTop />
-        <GetStartedShell>
-          {children}
-          <CookieConsentLazy />
-        </GetStartedShell>
+        <MarketingChrome>
+          <GetStartedShell>{children}</GetStartedShell>
+        </MarketingChrome>
       </body>
     </html>
   );
