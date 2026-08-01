@@ -123,42 +123,47 @@ export default function ChatInterface({
 
             <div className="flex items-center gap-2">
               <div
-                className="bevel min-h-[2.75rem] min-w-0 flex-1 !h-auto !justify-start !gap-0 !bg-white !px-0 !py-0 !normal-case !tracking-normal !font-normal hover:!opacity-100"
+                className="bevel min-h-[2.75rem] min-w-0 flex-1 !h-auto !bg-black !p-px !normal-case !tracking-normal !font-normal hover:!opacity-100"
                 style={{ ['--bevel-cut' as string]: '8px' }}
               >
-                {attachedObjects.length > 0 && (
-                  <div className="mb-1 flex flex-wrap gap-1.5 px-3 pt-2">
-                    {attachedObjects.map((o) => (
-                      <span key={o.ref} className="group relative inline-flex" title={o.title}>
-                        <span
-                          className="bevel bevel-sm bevel-secondary !gap-0 !normal-case !tracking-normal !font-medium max-w-[200px] truncate px-2.5 py-1.5 font-mono text-[11px]"
-                          style={{ ['--bevel-cut' as string]: '6px' }}
-                        >
-                          {o.ref}
+                <div
+                  className="bevel flex min-h-[calc(2.75rem-2px)] w-full flex-col !h-auto !justify-start !gap-0 !bg-white !px-0 !py-0 !normal-case !tracking-normal !font-normal hover:!opacity-100"
+                  style={{ ['--bevel-cut' as string]: '7px' }}
+                >
+                  {attachedObjects.length > 0 && (
+                    <div className="mb-1 flex flex-wrap gap-1.5 px-3 pt-2">
+                      {attachedObjects.map((o) => (
+                        <span key={o.ref} className="group relative inline-flex" title={o.title}>
+                          <span
+                            className="bevel bevel-sm bevel-secondary !gap-0 !normal-case !tracking-normal !font-medium max-w-[200px] truncate px-2.5 py-1.5 font-mono text-[11px]"
+                            style={{ ['--bevel-cut' as string]: '6px' }}
+                          >
+                            {o.ref}
+                          </span>
+                          <button
+                            type="button"
+                            title="Remove"
+                            onClick={() => onRemoveObject(o.ref)}
+                            className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-ink text-white opacity-0 shadow-panel transition-opacity group-hover:opacity-100"
+                          >
+                            <X className="h-2.5 w-2.5" strokeWidth={3} />
+                          </button>
                         </span>
-                        <button
-                          type="button"
-                          title="Remove"
-                          onClick={() => onRemoveObject(o.ref)}
-                          className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-ink text-white opacity-0 shadow-panel transition-opacity group-hover:opacity-100"
-                        >
-                          <X className="h-2.5 w-2.5" strokeWidth={3} />
-                        </button>
-                      </span>
-                    ))}
-                  </div>
-                )}
+                      ))}
+                    </div>
+                  )}
 
-                <textarea
-                  ref={taRef}
-                  rows={1}
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  onKeyDown={onKeyDown}
-                  placeholder="Tell Spectr what data you need"
-                  className="scrollbar-invisible max-h-[160px] min-h-[2.75rem] w-full resize-none overflow-y-auto bg-transparent px-4 py-3 text-[15px] font-normal leading-[1.4] tracking-normal text-ink placeholder:text-ink-faint focus:outline-none"
-                  style={{ userSelect: 'text', height: '2.75rem' }}
-                />
+                  <textarea
+                    ref={taRef}
+                    rows={1}
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    onKeyDown={onKeyDown}
+                    placeholder="Tell Spectr what data you need"
+                    className="scrollbar-invisible max-h-[160px] min-h-[2.75rem] w-full resize-none overflow-y-auto bg-transparent px-4 py-3 text-[15px] font-normal leading-[1.4] tracking-normal text-ink placeholder:text-ink-faint focus:outline-none"
+                    style={{ userSelect: 'text', height: '2.75rem' }}
+                  />
+                </div>
               </div>
 
               {busy ? (

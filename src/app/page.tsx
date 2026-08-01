@@ -6,6 +6,7 @@ import { Offerings } from "@/components/sections/offerings";
 import { OfferingsCeoQuote } from "@/components/sections/offerings-ceo-quote";
 import { PartnerQuotes } from "@/components/sections/partner-quotes";
 import { SoftwareProducts } from "@/components/sections/software-products";
+import { TrySpectr } from "@/components/sections/try-spectr";
 
 export default function HomePage() {
   return (
@@ -14,6 +15,7 @@ export default function HomePage() {
       <main id="main-content" className="flex-1">
         <Hero />
         <div className="theme-light">
+          <TrySpectr />
           <Offerings />
           <OfferingsCeoQuote />
           <SoftwareProducts />
