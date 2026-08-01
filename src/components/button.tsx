@@ -38,8 +38,17 @@ export function buttonClassName({ variant = "primary", size = "md", className = 
             : "btn-sm";
 
   const onDark = className.includes("btn-on-dark");
+  const login = className.includes("btn-login");
 
-  return ["btn", "bevel-button", `btn-${variant}`, sizeClass, onDark ? "bevel-button-inverse-primary" : "", className]
+  return [
+    "btn",
+    "bevel-button",
+    `btn-${variant}`,
+    sizeClass,
+    onDark ? "bevel-button-inverse-primary" : "",
+    login ? "bevel-button-login" : "",
+    className,
+  ]
     .filter(Boolean)
     .join(" ");
 }

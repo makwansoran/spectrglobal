@@ -454,6 +454,19 @@ textarea {
   opacity: 0.85;
 }
 
+.bevel-button-login,
+.btn-login {
+  background: #16a34a;
+  color: #ffffff;
+}
+
+.bevel-button-login:hover,
+.btn-login:hover {
+  background: #16a34a;
+  color: #ffffff;
+  opacity: 0.88;
+}
+
 .nav-island {
   background: #000000;
   color: var(--nav-fg);
