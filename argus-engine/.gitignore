@@ -1,0 +1,10 @@
+.env
+evidence/
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+*.pt
+*.engine
+.DS_Store
