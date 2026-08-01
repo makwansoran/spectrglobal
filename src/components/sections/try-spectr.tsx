@@ -5,13 +5,16 @@ export function TrySpectr() {
   return (
     <section className="scroll-mt-24 py-10 sm:py-12">
       <div className="container-x">
-        <div className="relative aspect-[16/9] overflow-hidden bg-black sm:aspect-[21/9]">
+        <div
+          className="bevel-panel-image relative aspect-[16/9] bg-surface sm:aspect-[21/9]"
+          style={{ ["--bevel-cut" as string]: "16px" }}
+        >
           <Image
-            src="/images/products/spectr-os-laptop.png"
-            alt="Spectr warehouse intelligence on a laptop"
+            src="/images/products/spectr-os-ui-home.png"
+            alt="Spectr warehouse intelligence interface"
             fill
             sizes="(max-width: 1280px) 100vw, 80rem"
-            className="object-cover object-center"
+            className="object-cover object-top"
             priority
           />
         </div>
