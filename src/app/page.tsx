@@ -1,10 +1,8 @@
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
-import { CeoQuote } from "@/components/sections/ceo-quote";
 import { Hero } from "@/components/sections/hero";
 import { Offerings } from "@/components/sections/offerings";
 import { OfferingsCeoQuote } from "@/components/sections/offerings-ceo-quote";
-import { PartnerQuotes } from "@/components/sections/partner-quotes";
 import { SoftwareProducts } from "@/components/sections/software-products";
 
 export default function HomePage() {
@@ -17,8 +15,6 @@ export default function HomePage() {
           <Offerings />
           <OfferingsCeoQuote />
           <SoftwareProducts />
-          <PartnerQuotes />
-          <CeoQuote />
         </div>
       </main>
       <Footer />
