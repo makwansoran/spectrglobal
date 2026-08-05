@@ -51,7 +51,7 @@ export const footerColumns = [
       { label: "AIM", href: "/platforms/aim" },
       { label: "Metaphysics", href: "/platforms/metaphysics" },
       { label: "Argus", href: "/platforms/argus" },
-      { label: "Get started", href: "/login" },
+      { label: "Login", href: "/login" },
     ],
   },
   {

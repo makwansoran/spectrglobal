@@ -12,7 +12,7 @@ type GetStartedButtonProps = {
   className?: string;
   size?: "sm" | "md" | "lg" | "icon" | "form";
   variant?: "primary" | "secondary" | "accent" | "ghost";
-  /** When true, opens the Get Started sidebar instead of going to /login. */
+  /** When true, opens the contact sidebar instead of navigating. Default true. */
   openSidebar?: boolean;
   href?: string;
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "children" | "type">;
@@ -24,8 +24,8 @@ export function GetStartedButton({
   className = "",
   size = "md",
   variant = "primary",
-  openSidebar = false,
-  href = "/login",
+  openSidebar = true,
+  href = "/contact",
   onClick,
   ...props
 }: GetStartedButtonProps) {

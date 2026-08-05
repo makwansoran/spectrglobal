@@ -178,9 +178,14 @@ export function GetStartedSidebar() {
               </p>
             ) : null}
 
-            <Button type="submit" size="lg" disabled={pending || state.ok}>
-              {pending ? "Submitting…" : "Submit"}
-            </Button>
+            <div className="flex flex-wrap items-center gap-3">
+              <Button type="submit" size="lg" disabled={pending || state.ok}>
+                {pending ? "Submitting…" : "Submit"}
+              </Button>
+              <Button href="/login" variant="secondary" size="lg" onClick={closeGetStarted}>
+                Login
+              </Button>
+            </div>
 
             <p className="text-xs leading-6 text-muted">
               Please see our{" "}
