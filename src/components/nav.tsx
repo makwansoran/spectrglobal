@@ -125,51 +125,17 @@ export function Nav() {
               <nav className="lg:pr-8 lg:pt-10" aria-label="Main">
                 <p className="label mb-6">Navigation</p>
                 <ul className="space-y-1">
-                  {navPrimary.map((item) => {
-                    const hasChildren = "children" in item && Boolean(item.children?.length);
-
-                    return (
-                      <li key={item.label} className="nav-item group">
-                        <div className="flex items-baseline justify-between gap-3">
-                          <Link
-                            href={item.href}
-                            onClick={() => setOpen(false)}
-                            className="brand-font block flex-1 py-2 text-3xl tracking-tight text-fg hover:opacity-60 sm:text-4xl"
-                          >
-                            {item.label}
-                          </Link>
-                          {hasChildren ? (
-                            <span
-                              className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted transition-transform duration-300 group-hover:rotate-90 group-focus-within:rotate-90"
-                              aria-hidden="true"
-                            >
-                              →
-                            </span>
-                          ) : null}
-                        </div>
-
-                        {hasChildren ? (
-                          <div className="nav-item__dropdown grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-out group-hover:grid-rows-[1fr] group-focus-within:grid-rows-[1fr]">
-                            <div className="overflow-hidden">
-                              <ul className="mb-3 ml-1 space-y-1 border-l border-border pb-2 pl-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100">
-                                {item.children!.map((child) => (
-                                  <li key={child.label}>
-                                    <Link
-                                      href={child.href}
-                                      onClick={() => setOpen(false)}
-                                      className="block py-1.5 text-sm text-muted hover:text-fg"
-                                    >
-                                      ↳ {child.label}
-                                    </Link>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          </div>
-                        ) : null}
-                      </li>
-                    );
-                  })}
+                  {navPrimary.map((item) => (
+                    <li key={item.label} className="nav-item group">
+                      <Link
+                        href={item.href}
+                        onClick={() => setOpen(false)}
+                        className="brand-font block flex-1 py-2 text-3xl tracking-tight text-fg hover:opacity-60 sm:text-4xl"
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
               </nav>
 
