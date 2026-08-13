@@ -492,14 +492,13 @@ textarea {
 
 .spectr-os-expand {
   --bevel-cut: 10px;
-  position: absolute;
-  left: 50%;
-  top: 0;
-  z-index: 30;
+  position: relative;
+  z-index: 10;
   width: 9.5rem;
   height: 3.25rem;
-  transform: translateX(-50%);
-  transform-origin: top center;
+  flex-shrink: 0;
+  overflow: hidden;
+  transform-origin: top left;
   transition:
     width 320ms cubic-bezier(0.16, 1, 0.3, 1),
     height 320ms cubic-bezier(0.16, 1, 0.3, 1),
@@ -528,7 +527,6 @@ textarea {
     0 100%,
     0 var(--bevel-cut)
   );
-  transition: background-color 200ms ease;
 }
 
 .spectr-os-expand__shell:hover,

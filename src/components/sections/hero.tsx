@@ -16,8 +16,10 @@ export function Hero() {
           {hero.title}
         </h1>
 
-        <div className="relative z-10 flex flex-wrap items-center justify-center gap-3">
-          <GetStartedButton size="lg" />
+        <div className="relative z-10 flex flex-wrap items-start justify-center gap-3">
+          <div className="relative z-20 shrink-0">
+            <GetStartedButton size="lg" />
+          </div>
           <SpectrOsExpandButton />
         </div>
       </div>
