@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ContactUsExpandButton } from "@/components/sections/contact-us-expand-button";
+import { IndustriesExpandButton } from "@/components/sections/industries-expand-button";
 import { LogoMark, Wordmark } from "@/components/logo";
 import { SpectrOsExpandButton } from "@/components/sections/spectr-os-expand-button";
 import { hero } from "@/lib/content";
@@ -25,6 +26,7 @@ export function Hero() {
         <div className="relative z-10 flex flex-wrap items-start justify-center gap-3">
           <ContactUsExpandButton />
           <SpectrOsExpandButton />
+          <IndustriesExpandButton />
         </div>
       </div>
     </section>
