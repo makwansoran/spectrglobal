@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Footer } from "@/components/footer";
-import { Nav } from "@/components/nav";
 import { PageHeader } from "@/components/page-header";
 import { pickLegalField, termsSections } from "@/lib/legal";
 import { buildPageMetadata } from "@/lib/metadata";
@@ -16,7 +15,6 @@ export const metadata: Metadata = buildPageMetadata({
 export default function TermsPage() {
   return (
     <>
-      <Nav />
       <main id="main-content" className="flex-1">
         <PageHeader title="Terms & conditions" intro={lastUpdated} />
 

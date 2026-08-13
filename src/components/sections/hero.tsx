@@ -6,7 +6,7 @@ import { hero } from "@/lib/content";
 export function Hero() {
   return (
     <section className="theme-light relative flex min-h-[100svh] flex-col overflow-hidden bg-bg text-fg">
-      <div className="flex flex-1 flex-col items-center justify-center gap-8 px-5 pb-16 pt-28 sm:gap-10 sm:px-8">
+      <div className="flex flex-1 flex-col items-center justify-center gap-8 px-5 py-16 sm:gap-10 sm:px-8 sm:py-20">
         <div className="flex items-center gap-2.5">
           <LogoMark className="h-8 w-8" />
           <Wordmark className="text-fg" />

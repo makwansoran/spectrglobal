@@ -171,7 +171,7 @@ export function PlatformPageView({ platform }: { platform: Platform }) {
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/30" />
         </div>
 
-        <div className="relative z-10 flex min-h-[100svh] flex-col justify-end px-5 pb-10 pt-28 sm:px-8 lg:px-12 lg:pb-12">
+        <div className="relative z-10 flex min-h-[100svh] flex-col justify-end px-5 pb-10 pt-16 sm:px-8 lg:px-12 lg:pb-12">
           <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
             <div>
               <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/45">

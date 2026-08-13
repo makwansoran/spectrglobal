@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Footer } from "@/components/footer";
-import { Nav } from "@/components/nav";
 import { OpenGetStartedOnMount } from "@/components/open-get-started-on-mount";
 import { PageHeader } from "@/components/page-header";
 import { GetStartedButton } from "@/components/get-started-button";
@@ -19,7 +18,6 @@ export const metadata: Metadata = buildPageMetadata({
 export default function ContactPage() {
   return (
     <>
-      <Nav />
       <OpenGetStartedOnMount />
       <main id="main-content" className="flex-1">
         <PageHeader title="Get in touch." intro={intro}>

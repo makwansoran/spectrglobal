@@ -1,11 +1,9 @@
 import { ArrowIcon, Button } from "@/components/button";
 import { Footer } from "@/components/footer";
-import { Nav } from "@/components/nav";
 
 export default function NotFound() {
   return (
     <>
-      <Nav />
       <main id="main-content" className="flex flex-1 items-center py-40">
         <div className="container-x">
           <div className="mx-auto max-w-xl text-center">

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { ArrowIcon, Button } from "@/components/button";
 import { Footer } from "@/components/footer";
-import { Nav } from "@/components/nav";
 import { PageHeader } from "@/components/page-header";
 import { cookieSections, pickLegalField, privacySections } from "@/lib/legal";
 import { buildPageMetadata } from "@/lib/metadata";
@@ -17,7 +16,6 @@ export const metadata: Metadata = buildPageMetadata({
 export default function PrivacyPage() {
   return (
     <>
-      <Nav />
       <main id="main-content" className="flex-1">
         <PageHeader title="Privacy policy" intro={lastUpdated} />
 

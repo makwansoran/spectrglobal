@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/footer";
-import { Nav } from "@/components/nav";
 import { PlatformPageView } from "@/components/platform-page";
 import { buildPageMetadata } from "@/lib/metadata";
 import { getPlatform, getPlatformSlugs } from "@/lib/platforms";
@@ -33,7 +32,6 @@ export default async function PlatformPage({ params }: Props) {
 
   return (
     <>
-      <Nav />
       <PlatformPageView platform={platform} />
       <Footer />
     </>

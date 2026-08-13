@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { ArrowIcon, Button } from "@/components/button";
 import { Footer } from "@/components/footer";
-import { Nav } from "@/components/nav";
 import { PageHeader } from "@/components/page-header";
 import { newsItems } from "@/lib/content";
 import { buildPageMetadata } from "@/lib/metadata";
@@ -19,7 +18,6 @@ export const metadata: Metadata = buildPageMetadata({
 export default function NewsPage() {
   return (
     <>
-      <Nav />
       <main id="main-content" className="flex-1">
         <PageHeader title="What we are shipping and why." intro={intro} />
 

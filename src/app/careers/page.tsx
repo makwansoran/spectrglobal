@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { ArrowIcon, Button } from "@/components/button";
 import { Footer } from "@/components/footer";
-import { Nav } from "@/components/nav";
 import { PageHeader } from "@/components/page-header";
 import { Reveal } from "@/components/reveal";
 import { buildPageMetadata } from "@/lib/metadata";
@@ -40,7 +39,6 @@ const areas = [
 export default function CareersPage() {
   return (
     <>
-      <Nav />
       <main id="main-content" className="flex-1">
         <PageHeader title="A decade-long problem needs people who want one." intro={intro} />
 
