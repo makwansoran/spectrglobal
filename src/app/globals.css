@@ -804,12 +804,38 @@ textarea {
   animation: scroll-cue 1.8s ease-in-out infinite;
 }
 
+@keyframes hero-arrow-wave {
+  0%,
+  100% {
+    opacity: 0.28;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(3px);
+  }
+}
+
+.hero-scroll-arrows__item {
+  display: block;
+  animation: hero-arrow-wave 1.6s ease-in-out infinite;
+}
+
+.hero-scroll-arrows__item:nth-child(2) {
+  animation-delay: 0.18s;
+}
+
+.hero-scroll-arrows__item:nth-child(3) {
+  animation-delay: 0.36s;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .fade-up,
   .partner-marquee__track,
   .pulse-dot,
-  .scroll-cue { animation: none; }
+  .scroll-cue,
+  .hero-scroll-arrows__item { animation: none; }
   .fade-up { opacity: 1; transform: none; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .offerings-slideshow__track { scroll-behavior: auto; }
