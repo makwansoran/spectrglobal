@@ -1,7 +1,6 @@
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
 import { Hero } from "@/components/sections/hero";
-import { OfferingsCeoQuote } from "@/components/sections/offerings-ceo-quote";
 import { SpectrOsSection } from "@/components/sections/spectr-os-section";
 
 export default function HomePage() {
@@ -11,7 +10,6 @@ export default function HomePage() {
       <main id="main-content" className="flex-1">
         <Hero />
         <div className="theme-light">
-          <OfferingsCeoQuote />
           <SpectrOsSection />
         </div>
       </main>
