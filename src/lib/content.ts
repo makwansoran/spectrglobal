@@ -1,6 +1,5 @@
 export const hero = {
-  title: "AI Operating system.",
-  titleLine2: "for Industries.",
+  title: "AI Operating system for Industries.",
 };
 
 export type SoftwareProduct = {
@@ -124,7 +123,7 @@ export const partnerQuotes: PartnerQuote[] = [
   {
     company: "LINE-SIDE SUPPLY",
     quote:
-      "Kitting used to burn a full shift of chase-downs. With Metaphysics the shortages show up before the line stops — and AIM keeps the plan current as the day changes.",
+      "Kitting used to burn a full shift of chase-downs. With Spectr OS the shortages show up before the line stops — and the plan stays current as the day changes.",
     person: "Plant Logistics Manager",
     role: "Manufacturing",
   },
@@ -138,7 +137,7 @@ export const partnerQuotes: PartnerQuote[] = [
   {
     company: "PHARMA DISTRIBUTOR",
     quote:
-      "Audit trails and cycle counts that hold up under inspection mattered more than flashy AI. Metaphysics gave us both — and it cost nothing to put the whole team on it.",
+      "Audit trails and cycle counts that hold up under inspection mattered more than flashy AI. Spectr OS gave us both — and it cost nothing to put the whole team on it.",
     person: "Quality & Compliance Lead",
     role: "Regulated distribution",
   },
