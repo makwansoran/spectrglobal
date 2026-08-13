@@ -39,7 +39,6 @@ export const navQuickLinks = [
   { label: "Careers", href: "/careers" },
   { label: "Newsroom", href: "/news" },
   { label: "Contact", href: "/contact" },
-  { label: "Login", href: "/login" },
   { label: "Privacy policy", href: "/privacy" },
   { label: "Terms of use", href: "/terms" },
 ] as const;
@@ -52,7 +51,6 @@ export const footerColumns = [
       { label: "AIM", href: "/platforms/aim" },
       { label: "Metaphysics", href: "/platforms/metaphysics" },
       { label: "Argus", href: "/platforms/argus" },
-      { label: "Login", href: "/login" },
     ],
   },
   {

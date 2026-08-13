@@ -11,7 +11,6 @@ const paths = [
   "/careers",
   "/news",
   "/contact",
-  "/login",
   "/privacy",
   "/terms",
 ];

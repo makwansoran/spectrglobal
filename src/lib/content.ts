@@ -1,6 +1,6 @@
 export const hero = {
-  title: "Enterprise Intelligence Solutions.",
-  titleLine2: "for every Decision.",
+  title: "AI Operating system",
+  titleLine2: "for Industries.",
 };
 
 export type SoftwareProduct = {

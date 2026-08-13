@@ -50,7 +50,7 @@ export default function OpenGraphImage() {
               maxWidth: "920px",
             }}
           >
-            Enterprise Intelligence Solutions. for every Decision.
+            AI Operating system for Industries.
           </div>
           <div style={{ marginTop: "30px", fontSize: "26px", color: "rgba(10,10,11,0.5)" }}>
             Spectr OS · AIM · Metaphysics · Argus
