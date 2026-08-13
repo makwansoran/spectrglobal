@@ -4,9 +4,6 @@ import { site } from "@/lib/site";
 const paths = [
   "",
   "/platforms/spectr-os",
-  "/platforms/aim",
-  "/platforms/metaphysics",
-  "/platforms/argus",
   "/about",
   "/careers",
   "/news",

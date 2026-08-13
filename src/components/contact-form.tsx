@@ -52,7 +52,6 @@ export function ContactForm() {
             Select a topic
           </option>
           <option value="Spectr OS">Getting Spectr OS</option>
-          <option value="Metaphysics">Metaphysics</option>
           <option value="Partnership">Partnership</option>
           <option value="Press">Press</option>
           <option value="General">Something else</option>

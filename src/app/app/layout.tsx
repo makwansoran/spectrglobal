@@ -3,7 +3,7 @@ import "./os.css";
 
 export const metadata: Metadata = {
   title: "Spectr OS",
-  description: "Spectr OS — command, metaphysics, catalog, map, and Argus.",
+  description: "Spectr OS — warehouse intelligence.",
   robots: { index: false, follow: false },
 };
 

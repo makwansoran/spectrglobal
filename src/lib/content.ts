@@ -36,36 +36,6 @@ export const softwareProducts: SoftwareProduct[] = [
     previewImage: "/images/products/spectr-os-ui.png",
     previewImageAlt: "Spectr OS warehouse intelligence interface",
   },
-  {
-    id: "aim",
-    index: "/0.2",
-    name: "AIM",
-    description:
-      "Artificial Intelligence Model — one model of your operation, shared by every unit and every decision on the floor.",
-    href: "/platforms/aim",
-    previewImage: "/images/products/aim-ui.png",
-    previewImageAlt: "AIM artificial intelligence model",
-  },
-  {
-    id: "metaphysics",
-    index: "/0.3",
-    name: "Metaphysics",
-    description:
-      "Ontology layer — the semantic model of your operation that makes Spectr OS coherent across every decision.",
-    href: "/platforms/metaphysics",
-    previewImage: "/images/products/metaphysics-ui.png",
-    previewImageAlt: "Metaphysics ontology graph",
-  },
-  {
-    id: "argus",
-    index: "/0.4",
-    name: "Argus",
-    description:
-      "Object detection model — sees every unit, pallet, and exception on the floor in real time.",
-    href: "/platforms/argus",
-    previewImage: "/spectr-detection.png",
-    previewImageAlt: "Argus object detection on warehouse assets",
-  },
 ];
 
 export type Offering = {
@@ -85,30 +55,6 @@ export const offerings: Offering[] = [
     href: "/platforms/spectr-os",
     image: "/images/offerings/spectr-os.jpg",
     imageAlt: "Spectr OS running industrial operations",
-  },
-  {
-    id: "metaphysics",
-    label: "Metaphysics",
-    title: "Ontology layer for every object, action, and decision on the floor",
-    href: "/platforms/metaphysics",
-    image: "/images/offerings/spectr-c2.jpg",
-    imageAlt: "Warehouse operations powered by the Metaphysics ontology",
-  },
-  {
-    id: "aim",
-    label: "AIM",
-    title: "Artificial Intelligence Model for every decision on the floor",
-    href: "/platforms/aim",
-    image: "/images/offerings/spectr-mind.jpg",
-    imageAlt: "Circuit board representing the Artificial Intelligence Model",
-  },
-  {
-    id: "argus",
-    label: "Argus",
-    title: "Object detection model for every unit on the floor",
-    href: "/platforms/argus",
-    image: "/spectr-detection.png",
-    imageAlt: "Argus object detection on warehouse assets",
   },
   {
     id: "pilots",
@@ -143,7 +89,7 @@ export const partnerQuotes: PartnerQuote[] = [
   {
     company: "NORDIC 3PL",
     quote:
-      "We went live on Metaphysics across two sites in under a fortnight. Stock accuracy stopped being a weekly argument and started being a morning number we trust.",
+      "We went live on Spectr OS across two sites in under a fortnight. Stock accuracy stopped being a weekly argument and started being a morning number we trust.",
     person: "Operations Director",
     role: "Multi-client fulfilment, Nordics",
   },
@@ -157,21 +103,21 @@ export const partnerQuotes: PartnerQuote[] = [
   {
     company: "SPARE PARTS HUB",
     quote:
-      "AIM learned our SKU chaos faster than any consultant we have paid. Slotting recommendations that used to take a quarterly project now land as the day changes.",
+      "Spectr OS learned our SKU chaos faster than any consultant we have paid. Slotting recommendations that used to take a quarterly project now land as the day changes.",
     person: "Head of Warehouse",
     role: "Industrial spare parts",
   },
   {
     company: "EU RETAIL DC",
     quote:
-      "We rolled Spectr OS across the DC without rebuilding a single aisle. Argus and Metaphysics already knew the work — deployment was configuration, not a science project.",
+      "We rolled Spectr OS across the DC without rebuilding a single aisle. The runtime already knew the work — deployment was configuration, not a science project.",
     person: "Automation Lead",
     role: "National retail distribution",
   },
   {
     company: "PORT SIDE LOGISTICS",
     quote:
-      "I did not need another dashboard telling me we were behind. I needed the system to surface the next decision. Metaphysics does that without a seat count conversation.",
+      "I did not need another dashboard telling me we were behind. I needed the system to surface the next decision. Spectr OS does that without a seat count conversation.",
     person: "VP Operations",
     role: "Ports and terminals",
   },
@@ -240,22 +186,10 @@ export const newsItems: NewsItem[] = [
     date: "March 2026",
     title: "Spectr OS is free for all enterprise customers — permanently",
     summary:
-      "No licence fee, no user cap, no expiry date. AIM, Metaphysics, and Argus included for every enterprise running Spectr OS.",
+      "No licence fee, no user cap, no expiry date. Spectr OS is included for every enterprise customer — permanently.",
     href: "/news",
     cta: "Read More",
     image: "/images/news/spectr-os-free.jpg",
     imageAlt: "Enterprise warehouse floor running on Spectr OS",
-  },
-  {
-    id: "argus-benchmarks",
-    source: "Spectr",
-    date: "February 2026",
-    title: "Argus surpasses YOLOv11 and leading detection models on warehouse floors",
-    summary:
-      "Spectr’s object detection model sets a new bar for real-time accuracy on industrial SKUs, pallets, and exceptions — where generic vision models fall short.",
-    href: "/news",
-    cta: "Read More",
-    image: "/images/news/argus-detection.jpg",
-    imageAlt: "Argus object detection bounding boxes on industrial equipment",
   },
 ];

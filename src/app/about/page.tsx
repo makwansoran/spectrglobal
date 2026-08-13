@@ -7,7 +7,7 @@ import { Reveal } from "@/components/reveal";
 import { buildPageMetadata } from "@/lib/metadata";
 
 const intro =
-  "Spectr is a Norwegian software company. We build Spectr OS — the operating system for warehouses and industrial floors — with AIM, Metaphysics, and Argus.";
+  "Spectr is a Norwegian software company. We build Spectr OS — the operating system for warehouses and industrial floors.";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "About",
@@ -18,14 +18,14 @@ export const metadata: Metadata = buildPageMetadata({
 const paragraphs = [
   "Physical work is where the labour shortage bites hardest. Warehouses, distribution centres and factory floors run on shifts that are difficult to fill, on tasks that wear people down, and on systems that were designed for a slower decade. That is the problem we set out to work on.",
   "Our conviction is that the hard part of warehouse intelligence is not another dashboard. What is missing is a truthful, continuously updated model of a real working environment — where the stock is, how the aisles behave, what goes wrong on a Tuesday afternoon, and what a competent operator does about it.",
-  "That model does not come from a lab. It comes from software running a real warehouse. So we built Spectr OS: AIM for decisions, Metaphysics for ontology, and Argus for object detection — given to enterprises without a licence fee, without a user cap and without an expiry date.",
+  "That model does not come from a lab. It comes from software running a real warehouse. So we built Spectr OS — given to enterprises without a licence fee, without a user cap and without an expiry date.",
   "We are a small team working from Norway, deliberately close to the operators we build for. If that sounds like the kind of problem you want to spend a decade on, we would like to hear from you.",
 ];
 
 const facts = [
   { label: "Founded", value: "Norway" },
   { label: "Focus", value: "Spectr OS" },
-  { label: "Layers", value: "AIM · Metaphysics · Argus" },
+  { label: "Product", value: "Spectr OS" },
   { label: "Stage", value: "Pilot programme" },
 ];
 

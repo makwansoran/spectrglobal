@@ -53,7 +53,7 @@ export default function OpenGraphImage() {
             AI Operating system for Industries.
           </div>
           <div style={{ marginTop: "30px", fontSize: "26px", color: "rgba(10,10,11,0.5)" }}>
-            Spectr OS · AIM · Metaphysics · Argus
+            Spectr OS
           </div>
         </div>
       </div>

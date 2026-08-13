@@ -31,9 +31,7 @@ const values = [
 ];
 
 const areas = [
-  "AIM — models, planning, decision systems",
-  "Argus — perception and object detection",
-  "Metaphysics — ontology and warehouse data",
+  "Spectr OS — runtime, decision systems, and agentic workflows",
   "Backend — distributed systems, real-time data",
   "Product engineering — full-stack Spectr OS tooling",
   "Deployment — on-site integration and field engineering",

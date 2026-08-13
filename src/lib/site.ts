@@ -9,7 +9,7 @@ export const site = {
   location: "Norway",
   tagline: "Spectr OS — the operating system for the enterprise.",
   description:
-    "Spectr builds Spectr OS, an operating system for the enterprise — with AIM, Metaphysics, and Argus.",
+    "Spectr builds Spectr OS, an operating system for the enterprise.",
   social: {
     x: "https://x.com/spectrnorway",
     linkedin: "https://www.linkedin.com/company/spectr-norway/",
@@ -19,16 +19,7 @@ export const site = {
 } as const;
 
 export const navPrimary = [
-  {
-    label: "Spectr OS",
-    href: "/#features",
-    children: [
-      { label: "Spectr OS", href: "/platforms/spectr-os" },
-      { label: "AIM", href: "/platforms/aim" },
-      { label: "Metaphysics", href: "/platforms/metaphysics" },
-      { label: "Argus", href: "/platforms/argus" },
-    ],
-  },
+  { label: "Spectr OS", href: "/platforms/spectr-os" },
   { label: "Careers", href: "/careers" },
   { label: "Newsroom", href: "/news" },
 ] as const;
@@ -47,9 +38,6 @@ export const footerColumns = [
     title: "Spectr OS",
     links: [
       { label: "Spectr OS", href: "/platforms/spectr-os" },
-      { label: "AIM", href: "/platforms/aim" },
-      { label: "Metaphysics", href: "/platforms/metaphysics" },
-      { label: "Argus", href: "/platforms/argus" },
     ],
   },
   {

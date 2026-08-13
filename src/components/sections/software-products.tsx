@@ -2,13 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { softwareProducts, softwareSection } from "@/lib/content";
 
-const solutionHoverClass: Record<(typeof softwareProducts)[number]["id"], string> = {
-  "spectr-os": "solution-card--blue",
-  aim: "solution-card--purple",
-  metaphysics: "solution-card--orange",
-  argus: "solution-card--green",
-};
-
 export function SoftwareProducts() {
   return (
     <section id="features" className="section scroll-mt-24">
@@ -23,7 +16,7 @@ export function SoftwareProducts() {
               <Link
                 href={product.href}
                 aria-label={product.name}
-                className={`bevel-panel bevel-panel-muted solution-card group relative block overflow-hidden px-5 py-8 sm:px-6 sm:py-10 lg:py-12 ${solutionHoverClass[product.id]}`}
+                className="bevel-panel bevel-panel-muted solution-card solution-card--blue group relative block overflow-hidden px-5 py-8 sm:px-6 sm:py-10 lg:py-12"
               >
                 {product.previewImage ? (
                   <div className="solution-card__preview" aria-hidden="true">
