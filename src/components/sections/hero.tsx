@@ -1,4 +1,4 @@
-import { GetStartedButton } from "@/components/get-started-button";
+import { ContactUsExpandButton } from "@/components/sections/contact-us-expand-button";
 import { LogoMark, Wordmark } from "@/components/logo";
 import { SpectrOsExpandButton } from "@/components/sections/spectr-os-expand-button";
 import { hero } from "@/lib/content";
@@ -17,9 +17,7 @@ export function Hero() {
         </h1>
 
         <div className="relative z-10 flex flex-wrap items-start justify-center gap-3">
-          <div className="relative z-20 shrink-0">
-            <GetStartedButton size="lg" />
-          </div>
+          <ContactUsExpandButton />
           <SpectrOsExpandButton />
         </div>
       </div>
