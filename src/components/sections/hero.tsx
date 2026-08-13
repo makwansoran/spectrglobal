@@ -1,6 +1,6 @@
-import { Button } from "@/components/button";
 import { GetStartedButton } from "@/components/get-started-button";
 import { LogoMark, Wordmark } from "@/components/logo";
+import { SpectrOsExpandButton } from "@/components/sections/spectr-os-expand-button";
 import { hero } from "@/lib/content";
 
 export function Hero() {
@@ -16,11 +16,9 @@ export function Hero() {
           {hero.title}
         </h1>
 
-        <div className="flex flex-wrap items-center justify-center gap-3">
+        <div className="relative z-10 flex flex-wrap items-center justify-center gap-3">
           <GetStartedButton size="lg" />
-          <Button href="/platforms/spectr-os" size="lg" className="btn-login">
-            Spectr OS
-          </Button>
+          <SpectrOsExpandButton />
         </div>
       </div>
     </section>
