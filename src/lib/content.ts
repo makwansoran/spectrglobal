@@ -1,6 +1,9 @@
 export const hero = {
-  title: "AI Operating system",
+  title: "AI Operating system.",
   titleLine2: "for Industries.",
+  support:
+    "We help enterprises run tailored AI systems on the floor — where every object, action, and decision needs a truthful model.",
+  mosaicLabel: "FOR INDUSTRIES",
 };
 
 export type SoftwareProduct = {

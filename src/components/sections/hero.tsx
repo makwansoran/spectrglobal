@@ -1,43 +1,80 @@
 import { hero } from "@/lib/content";
 
+/** Deterministic mosaic cells — Spectr ink/slate palette (not a brand copy of Mistral orange). */
+const MOSAIC_COLORS = [
+  "#0a0a0b",
+  "#141416",
+  "#1c1c1f",
+  "#2a2a2e",
+  "#3a3a40",
+  "#4a4a52",
+  "#5c5c66",
+  "#6e6e78",
+  "#8a8a94",
+  "#a8a8b0",
+  "#c8c8ce",
+  "#e4e4e8",
+  "#f0f0f2",
+  "#ffffff",
+  "#0a0a0b",
+  "#252528",
+];
+
+const COLS = 48;
+const ROWS = 6;
+
+function mosaicColor(col: number, row: number) {
+  const n = (col * 17 + row * 31 + col * row * 3) % MOSAIC_COLORS.length;
+  return MOSAIC_COLORS[n]!;
+}
+
 export function Hero() {
   return (
-    <section className="relative flex min-h-[100svh] items-center justify-center overflow-hidden">
-      <div className="absolute inset-0" aria-hidden="true">
-        <video
-          className="h-full w-full object-cover"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-        >
-          <source src="/videos/hero-northern-lights.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-bg" />
+    <section className="theme-light relative flex min-h-[100svh] flex-col overflow-hidden bg-bg text-fg">
+      <div className="flex min-h-0 flex-1 flex-col pt-24 sm:pt-28 lg:grid lg:min-h-[calc(100svh-7.5rem)] lg:grid-cols-[minmax(0,1.55fr)_minmax(16rem,0.72fr)] lg:pt-28">
+        <div className="flex flex-1 items-end border-b border-border px-5 pb-10 pt-16 sm:px-8 sm:pb-12 lg:border-b-0 lg:border-r lg:px-12 lg:pb-14 xl:px-16">
+          <h1 className="brand-font max-w-[14ch] text-[clamp(2.75rem,8vw,6.75rem)] font-semibold leading-[0.95] tracking-[-0.045em] text-fg">
+            <span className="block">{hero.title}</span>
+            <span className="mt-1 block sm:mt-2">{hero.titleLine2}</span>
+          </h1>
+        </div>
+
+        <aside className="flex flex-col justify-end gap-10 border-b border-border bg-surface-2 px-5 py-10 sm:px-8 sm:py-12 lg:border-b-0 lg:px-10 lg:pb-14 lg:pt-28 xl:px-12">
+          <p className="max-w-sm text-[1.05rem] leading-8 text-fg/80 sm:text-[1.125rem] sm:leading-8">
+            {hero.support}
+          </p>
+          <div className="flex flex-col gap-0.5 text-fg/45" aria-hidden="true">
+            <span className="text-sm leading-none">↓</span>
+            <span className="text-sm leading-none">↓</span>
+            <span className="text-sm leading-none">↓</span>
+          </div>
+        </aside>
       </div>
 
-      <div className="container-x relative z-10 flex min-h-[100svh] flex-col items-center justify-center px-4 pb-24 pt-28">
-        <h1 className="display fade-up mx-auto max-w-5xl text-center text-[2.35rem] text-white sm:text-6xl lg:text-[4.5rem]">
-          <span className="block">{hero.title}</span>
-          <span className="mt-1 block font-normal opacity-90 sm:mt-2">{hero.titleLine2}</span>
-        </h1>
-
-        <div className="fade-up fade-up-3 absolute bottom-10 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-white/75">
-          <span className="font-mono text-[10px] uppercase tracking-[0.22em]">Scroll to Explore</span>
-          <span className="scroll-cue" aria-hidden="true">
-            <svg viewBox="0 0 16 16" className="h-4 w-4" fill="none">
-              <path
-                d="M8 3v10m0 0 4-4m-4 4L4 9"
-                stroke="currentColor"
-                strokeWidth="1.4"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+      <div className="hero-mosaic relative h-[5.5rem] shrink-0 border-t border-border sm:h-28 lg:h-32">
+        <div
+          className="absolute inset-0 grid"
+          style={{
+            gridTemplateColumns: `repeat(${COLS}, minmax(0, 1fr))`,
+            gridTemplateRows: `repeat(${ROWS}, minmax(0, 1fr))`,
+          }}
+          aria-hidden="true"
+        >
+          {Array.from({ length: COLS * ROWS }, (_, i) => {
+            const col = i % COLS;
+            const row = Math.floor(i / COLS);
+            return (
+              <span
+                key={i}
+                style={{ backgroundColor: mosaicColor(col, row) }}
+                className="block"
               />
-            </svg>
-          </span>
+            );
+          })}
         </div>
+        <p className="pointer-events-none absolute inset-y-0 right-[8%] flex items-center font-mono text-[10px] uppercase tracking-[0.28em] text-white mix-blend-difference sm:right-[12%] sm:text-[11px]">
+          {hero.mosaicLabel}
+        </p>
       </div>
     </section>
   );
