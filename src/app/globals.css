@@ -814,6 +814,11 @@ textarea {
   color-scheme: light;
 }
 
+/* Diagonal split: high on the left → lower on the right */
+.hero-split-top {
+  clip-path: polygon(0 0, 100% 0, 100% 72%, 0 100%);
+}
+
 .nav-overlay {
   position: fixed;
   inset: 0;
