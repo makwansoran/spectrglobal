@@ -2,7 +2,7 @@ import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
 import { Hero } from "@/components/sections/hero";
 import { OfferingsCeoQuote } from "@/components/sections/offerings-ceo-quote";
-import { SoftwareProducts } from "@/components/sections/software-products";
+import { SpectrOsSection } from "@/components/sections/spectr-os-section";
 
 export default function HomePage() {
   return (
@@ -12,7 +12,7 @@ export default function HomePage() {
         <Hero />
         <div className="theme-light">
           <OfferingsCeoQuote />
-          <SoftwareProducts />
+          <SpectrOsSection />
         </div>
       </main>
       <Footer />
