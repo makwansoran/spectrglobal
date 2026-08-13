@@ -29,7 +29,6 @@ export const navPrimary = [
       { label: "Argus", href: "/platforms/argus" },
     ],
   },
-  { label: "Offerings", href: "/#offerings" },
   { label: "Careers", href: "/careers" },
   { label: "Newsroom", href: "/news" },
 ] as const;

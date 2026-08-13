@@ -214,9 +214,9 @@ export function Nav() {
                 <div className="grid">
                   <section className="px-0 py-10 lg:px-8 lg:pt-10">
                     <div className="mb-6 flex items-center justify-between gap-4">
-                      <h2 className="label">Offerings</h2>
+                      <h2 className="label">Solutions</h2>
                       <Link
-                        href="/#offerings"
+                        href="/#features"
                         onClick={() => setOpen(false)}
                         className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted hover:text-fg"
                       >
