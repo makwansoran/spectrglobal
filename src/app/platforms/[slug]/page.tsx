@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/footer";
 import { PlatformPageView } from "@/components/platform-page";
+import { SpectrOsPageView } from "@/components/spectr-os-page";
 import { buildPageMetadata } from "@/lib/metadata";
 import { getPlatform, getPlatformSlugs } from "@/lib/platforms";
+import { spectrOsPage } from "@/lib/spectr-os-page";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -15,6 +17,15 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
+
+  if (slug === "spectr-os") {
+    return buildPageMetadata({
+      title: spectrOsPage.name,
+      description: spectrOsPage.intro,
+      path: "/platforms/spectr-os",
+    });
+  }
+
   const platform = getPlatform(slug);
   if (!platform) return {};
 
@@ -27,6 +38,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function PlatformPage({ params }: Props) {
   const { slug } = await params;
+
+  if (slug === "spectr-os") {
+    return (
+      <>
+        <SpectrOsPageView />
+        <Footer />
+      </>
+    );
+  }
+
   const platform = getPlatform(slug);
   if (!platform) notFound();
 
