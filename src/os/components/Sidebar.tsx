@@ -2,6 +2,7 @@ import { useState } from 'react'
 import type { JSX } from 'react'
 import clsx from 'clsx'
 import {
+  Boxes,
   Eye,
   Library,
   Map,
@@ -27,15 +28,17 @@ const PRIMARY_NAV: NavLeaf[] = [
 const APPLICATION_NAV: NavLeaf[] = [
   { id: 'map', label: 'Map', icon: Map },
   { id: 'catalog', label: 'Catalog', icon: Library },
-  { id: 'argus', label: 'Argus', icon: Eye }
+  { id: 'argus', label: 'Argus', icon: Eye },
+  { id: 'digitwin', label: 'Digi TWIN', icon: Boxes }
 ]
 
-type NavVariant = 'default' | 'purple' | 'yellow' | 'green'
+type NavVariant = 'default' | 'purple' | 'yellow' | 'green' | 'cyan'
 
 const APP_VARIANTS: Partial<Record<ViewId, NavVariant>> = {
   map: 'purple',
   catalog: 'yellow',
-  argus: 'green'
+  argus: 'green',
+  digitwin: 'cyan'
 }
 
 interface SidebarProps {
@@ -61,7 +64,8 @@ function NavButton({
   const isPurple = variant === 'purple'
   const isYellow = variant === 'yellow'
   const isGreen = variant === 'green'
-  const isFilled = isPurple || isYellow || isGreen
+  const isCyan = variant === 'cyan'
+  const isFilled = isPurple || isYellow || isGreen || isCyan
 
   return (
     <button
@@ -82,6 +86,11 @@ function NavButton({
             'bg-signal-green text-white hover:bg-[#15803d]',
             isActive && 'ring-1 ring-white/30'
           ),
+        isCyan &&
+          clsx(
+            'bg-[#0891b2] text-white hover:bg-[#0e7490]',
+            isActive && 'ring-1 ring-white/30'
+          ),
         !isFilled && (isActive ? 'text-white' : 'text-white/55 hover:text-white')
       )}
     >
@@ -93,7 +102,8 @@ function NavButton({
           'h-[18px] w-[18px] shrink-0',
           isPurple && 'text-white',
           isYellow && 'text-black',
-          isGreen && 'text-white'
+          isGreen && 'text-white',
+          isCyan && 'text-white'
         )}
       />
       {expanded && (
