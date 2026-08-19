@@ -39,21 +39,42 @@ export function Nav() {
       <header className="pointer-events-none fixed inset-x-0 top-0 z-50">
         <div className="container-x pointer-events-auto pt-4 sm:pt-5">
           <div className="nav-island">
-            <div className="flex h-14 items-center justify-between gap-4 px-4 sm:px-5">
+            <div className="flex h-16 items-center justify-between gap-4 px-3 sm:px-5">
               <Link href="/" className="flex items-center gap-2.5 hover:opacity-70" aria-label={site.name}>
-                <LogoMark invert className="h-7 w-7" />
+                <LogoMark className="h-7 w-7" />
                 <Wordmark className="text-nav-fg" />
               </Link>
 
+              <nav aria-label="Primary" className="hidden items-center gap-7 md:flex">
+                <Link href="/platforms/spectr-os" className="nav-link">
+                  Spectr OS
+                </Link>
+                <Link href="/about" className="nav-link">
+                  About
+                </Link>
+                <Link href="/news" className="nav-link">
+                  News
+                </Link>
+                <Link href="/careers" className="nav-link">
+                  Careers
+                </Link>
+              </nav>
+
               <div className="flex items-center gap-2 sm:gap-3">
-                <GetStartedButton className="btn-on-dark hidden sm:inline-flex" />
+                <Link
+                  href="/contact"
+                  className="hidden text-[11px] font-medium uppercase tracking-[0.15em] text-fg/75 transition hover:text-fg sm:inline-flex"
+                >
+                  Contact
+                </Link>
+                <GetStartedButton className="nav-cta hidden sm:inline-flex" />
                 <button
                   type="button"
                   onClick={() => setOpen((value) => !value)}
                   aria-expanded={open}
                   aria-controls="site-nav-overlay"
                   aria-label={open ? "Close menu" : "Open menu"}
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/0 text-nav-fg hover:bg-white/10"
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white/70 text-nav-fg hover:bg-white md:hidden"
                 >
                   <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none" aria-hidden="true">
                     {open ? (
@@ -97,7 +118,7 @@ export function Nav() {
                 </Link>
                 <div className="flex items-center gap-2 sm:gap-3">
                   <GetStartedButton
-                    className="btn-on-dark hidden sm:inline-flex"
+                    className="nav-cta hidden sm:inline-flex"
                     onClick={() => {
                       setOpen(false);
                     }}

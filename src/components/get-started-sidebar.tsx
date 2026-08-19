@@ -58,7 +58,7 @@ export function GetStartedSidebar() {
         onClick={closeGetStarted}
       />
 
-      <aside className="get-started-panel absolute inset-y-0 right-0 flex w-full max-w-xl flex-col border-l border-border bg-bg text-fg shadow-2xl">
+      <aside className="get-started-panel absolute inset-y-0 right-0 flex w-full max-w-[42rem] flex-col border-l border-border bg-bg text-fg shadow-2xl">
         <div className="flex items-center justify-between px-5 py-4 sm:px-6">
           <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted">Get Started</p>
           <button

@@ -1,28 +1,16 @@
-import Link from "next/link";
 import { ArrowIcon } from "@/components/button";
 import { GetStartedButton } from "@/components/get-started-button";
-import { LogoMark, Wordmark } from "@/components/logo";
 import { Reveal } from "@/components/reveal";
 import { spectrOsPage } from "@/lib/spectr-os-page";
-import { site } from "@/lib/site";
 
 export function SpectrOsPageView() {
   const page = spectrOsPage;
 
   return (
     <main id="main-content" className="theme-light relative flex-1 bg-bg text-fg">
-      <Link
-        href="/"
-        className="absolute left-5 top-5 z-20 flex items-center gap-2.5 hover:opacity-70 sm:left-8 sm:top-6"
-        aria-label={site.name}
-      >
-        <LogoMark className="h-7 w-7" />
-        <Wordmark className="text-fg" />
-      </Link>
-
       {/* Intro */}
       <section className="relative overflow-hidden border-b border-border">
-        <div className="container-x flex min-h-[70svh] flex-col justify-end pb-14 pt-28 sm:pb-20 sm:pt-32">
+        <div className="container-x flex min-h-[70svh] flex-col justify-end pb-14 pt-20 sm:pb-20 sm:pt-24">
           <Reveal>
             <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
               {page.eyebrow}
