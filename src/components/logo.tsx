@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 type LogoMarkProps = {
   className?: string;
@@ -27,5 +28,20 @@ export function Wordmark({ className = "" }: { className?: string }) {
     >
       Spectr
     </span>
+  );
+}
+
+export function BrandLink({
+  href = "/",
+  light = false,
+}: {
+  href?: string;
+  light?: boolean;
+}) {
+  return (
+    <Link href={href} className="inline-flex items-center gap-2.5 hover:opacity-80">
+      <LogoMark invert={light} className="h-8 w-8" />
+      <Wordmark className={light ? "text-white" : "text-[#0a2540]"} />
+    </Link>
   );
 }

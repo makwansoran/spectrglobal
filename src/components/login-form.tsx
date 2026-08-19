@@ -1,13 +1,12 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { businessEmailError, normalizeEmail } from "@/lib/email";
 
 export function LoginForm() {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const next = searchParams.get("next") || "/app";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,9 +17,9 @@ export function LoginForm() {
     event.preventDefault();
     setError(null);
 
-    const trimmed = email.trim();
-    if (!trimmed || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {
-      setError("Enter a valid email address.");
+    const emailError = businessEmailError(email);
+    if (emailError) {
+      setError(emailError);
       return;
     }
     if (!password.trim()) {
@@ -29,70 +28,41 @@ export function LoginForm() {
     }
 
     setPending(true);
-    try {
-      let signedIn = false;
+    const supabase = createClient();
+    const { error: signInError } = await supabase.auth.signInWithPassword({
+      email: normalizeEmail(email),
+      password,
+    });
 
-      // Dev / demo credentials first (simple single-user gate)
-      const demoRes = await fetch("/api/auth/demo", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: trimmed, password }),
-      });
-      if (demoRes.ok) {
-        signedIn = true;
-      }
-
-      if (
-        !signedIn &&
-        process.env.NEXT_PUBLIC_SUPABASE_URL &&
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-      ) {
-        try {
-          const supabase = createClient();
-          const { error: signError } = await supabase.auth.signInWithPassword({
-            email: trimmed,
-            password,
-          });
-          if (!signError) signedIn = true;
-        } catch {
-          // ignore
-        }
-      }
-
-      if (!signedIn) {
-        setError("Incorrect email or password.");
-        return;
-      }
-
-      router.replace(next.startsWith("/") ? next : "/app");
-      router.refresh();
-    } catch {
-      setError("Could not sign in. Try again.");
-    } finally {
+    if (signInError) {
       setPending(false);
+      setError(signInError.message);
+      return;
     }
+
+    router.replace("/dashboard");
+    router.refresh();
   }
 
   return (
     <form onSubmit={onSubmit} className="mt-8 space-y-5" noValidate>
       <div>
-        <label htmlFor="login-email" className="mb-2 block text-[13px] font-medium text-[#30313d]">
-          Email
+        <label htmlFor="login-email" className="mb-2 block text-[13px] font-medium text-fg">
+          Work email
         </label>
         <input
           id="login-email"
           name="email"
           type="email"
-          autoComplete="email"
+          autoComplete="username"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
-          className="w-full rounded-md border border-[#e3e8ee] bg-white px-3.5 py-2.5 text-[15px] text-[#30313d] outline-none transition-[border-color,box-shadow] placeholder:text-[#a3acb9] focus:border-[#2563eb] focus:shadow-[0_0_0_1px_#2563eb]"
-          placeholder="dev@spectr.no"
+          className="field"
+          placeholder="you@company.com"
         />
       </div>
-
       <div>
-        <label htmlFor="login-password" className="mb-2 block text-[13px] font-medium text-[#30313d]">
+        <label htmlFor="login-password" className="mb-2 block text-[13px] font-medium text-fg">
           Password
         </label>
         <input
@@ -102,25 +72,18 @@ export function LoginForm() {
           autoComplete="current-password"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
-          className="w-full rounded-md border border-[#e3e8ee] bg-white px-3.5 py-2.5 text-[15px] text-[#30313d] outline-none transition-[border-color,box-shadow] placeholder:text-[#a3acb9] focus:border-[#2563eb] focus:shadow-[0_0_0_1px_#2563eb]"
-          placeholder="••••••••"
+          className="field"
+          placeholder="Enter your password"
         />
       </div>
 
       {error ? (
-        <p
-          role="alert"
-          className="rounded-md border border-[#f5c2c7] bg-[#fff5f5] px-3.5 py-2.5 text-[13px] text-[#b42318]"
-        >
+        <p role="alert" className="alert-error">
           {error}
         </p>
       ) : null}
 
-      <button
-        type="submit"
-        disabled={pending}
-        className="inline-flex w-full items-center justify-center rounded-md bg-[#2563eb] px-4 py-2.5 text-[15px] font-medium text-white transition-opacity hover:bg-[#1d4ed8] disabled:cursor-not-allowed disabled:opacity-60"
-      >
+      <button type="submit" disabled={pending} className="auth-submit">
         {pending ? "Signing in…" : "Sign in"}
       </button>
     </form>

@@ -7,6 +7,7 @@ export const site = {
   phone: "+47 465 03 934",
   phoneHref: "tel:+4746503934",
   location: "Norway",
+  product: "Spectr OS",
   tagline: "Spectr OS — the operating system for the enterprise.",
   description:
     "Spectr builds Spectr OS, an operating system for the enterprise.",
@@ -116,3 +117,9 @@ export const footerColumns = [
     ],
   },
 ] as const;
+
+export const downloads = {
+  windows: process.env.NEXT_PUBLIC_DOWNLOAD_WINDOWS ?? "/downloads/Spectr-Setup-x64.exe",
+  mac: process.env.NEXT_PUBLIC_DOWNLOAD_MAC ?? "/downloads/Spectr-Setup.dmg",
+  linux: process.env.NEXT_PUBLIC_DOWNLOAD_LINUX ?? "/downloads/Spectr-Setup.AppImage",
+} as const;

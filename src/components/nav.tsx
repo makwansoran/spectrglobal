@@ -61,6 +61,9 @@ export function Nav() {
             </nav>
 
             <div className="ml-auto flex items-center gap-2 sm:gap-3">
+              <Link href="/login" className="btn btn-secondary btn-sm hidden sm:inline-flex">
+                Login
+              </Link>
               <Link href="/contact" className="btn btn-secondary btn-sm hidden sm:inline-flex">
                 Contact
               </Link>
@@ -131,6 +134,9 @@ export function Nav() {
               </div>
             ))}
             <div className="mt-8 flex flex-col gap-3">
+              <Link href="/login" className="btn btn-secondary" onClick={() => setOpen(false)}>
+                Login
+              </Link>
               <Link href="/contact" className="btn btn-secondary" onClick={() => setOpen(false)}>
                 Contact
               </Link>
