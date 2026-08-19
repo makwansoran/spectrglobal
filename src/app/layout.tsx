@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Space_Grotesk, IBM_Plex_Sans } from "next/font/google";
 import { GetStartedShell } from "@/components/get-started-shell";
 import { MarketingChrome } from "@/components/marketing-chrome";
-import { Nav } from "@/components/nav";
 import { OrganizationJsonLd } from "@/components/json-ld";
 import { ScrollToTop } from "@/components/scroll-to-top";
 import { defaultOgImage } from "@/lib/metadata";
@@ -71,10 +70,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <OrganizationJsonLd />
         <ScrollToTop />
         <MarketingChrome>
-          <GetStartedShell>
-            <Nav />
-            {children}
-          </GetStartedShell>
+          <GetStartedShell>{children}</GetStartedShell>
         </MarketingChrome>
       </body>
     </html>

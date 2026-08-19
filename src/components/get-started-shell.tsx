@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import { GetStartedProvider } from "@/components/get-started-context";
 import { GetStartedSidebar } from "@/components/get-started-sidebar";
+import { Nav } from "@/components/nav";
 
 export function GetStartedShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -17,6 +18,7 @@ export function GetStartedShell({ children }: { children: React.ReactNode }) {
 
   return (
     <GetStartedProvider>
+      <Nav />
       {children}
       <GetStartedSidebar />
     </GetStartedProvider>
