@@ -19,7 +19,7 @@ type GetStartedButtonProps = {
 
 export function GetStartedButton({
   tab = "contact",
-  label = "Get Started",
+  label = "Get started",
   children,
   className = "",
   size = "md",

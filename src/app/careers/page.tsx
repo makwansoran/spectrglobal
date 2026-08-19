@@ -48,7 +48,7 @@ export default function CareersPage() {
               {values.map((value, index) => (
                 <Reveal key={value.title} delay={index * 90}>
                   <div className="card card-hover h-full p-8">
-                    <h2 className="brand-font text-lg font-semibold tracking-tight text-fg">
+                    <h2 className="display text-3xl text-fg">
                       {value.title}
                     </h2>
                     <p className="mt-3.5 text-sm leading-7 text-muted">{value.text}</p>
@@ -65,7 +65,7 @@ export default function CareersPage() {
               <div className="card p-10 sm:p-14">
                 <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
                   <div>
-                    <h2 className="display text-2xl text-gradient sm:text-3xl">
+                    <h2 className="display text-[clamp(1.8rem,4vw,3rem)] text-fg">
                       No open listings right now.
                     </h2>
                     <p className="mt-5 text-sm leading-7 text-muted">
@@ -81,7 +81,7 @@ export default function CareersPage() {
                   </div>
 
                   <div className="lg:pl-20">
-                    <h3 className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
+                    <h3 className="text-sm font-medium text-muted">
                       Areas we hire into
                     </h3>
                     <ul className="mt-6 space-y-1">

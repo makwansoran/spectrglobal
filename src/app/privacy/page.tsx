@@ -24,7 +24,7 @@ export default function PrivacyPage() {
             <div className="mx-auto max-w-3xl space-y-4">
               {privacySections.map((section) => (
                 <article key={pickLegalField(section.title)} className="card p-7 sm:p-8">
-                  <h2 className="brand-font text-xl font-semibold tracking-tight text-fg">
+                  <h2 className="display text-2xl text-fg sm:text-3xl">
                     {pickLegalField(section.title)}
                   </h2>
                   <p className="mt-4 text-sm leading-7 text-muted">{pickLegalField(section.text)}</p>
@@ -50,7 +50,7 @@ export default function PrivacyPage() {
         <section className="pb-28">
           <div className="container-x">
             <div className="mx-auto max-w-3xl">
-              <h2 className="display text-2xl text-gradient sm:text-3xl">Cookies</h2>
+              <h2 className="display text-3xl text-fg sm:text-4xl">Cookies</h2>
               <p className="mt-5 text-sm leading-7 text-muted">
                 We keep cookie use to a minimum and ask before setting anything that is not strictly
                 necessary. The categories below describe what may be stored on your device.

@@ -1,4 +1,4 @@
-import { ArrowIcon } from "@/components/button";
+import Image from "next/image";
 import { GetStartedButton } from "@/components/get-started-button";
 import { Reveal } from "@/components/reveal";
 import { spectrOsPage } from "@/lib/spectr-os-page";
@@ -7,69 +7,54 @@ export function SpectrOsPageView() {
   const page = spectrOsPage;
 
   return (
-    <main id="main-content" className="theme-light relative flex-1 bg-bg text-fg">
-      {/* Intro */}
-      <section className="relative overflow-hidden border-b border-border">
-        <div className="container-x flex min-h-[70svh] flex-col justify-end pb-14 pt-20 sm:pb-20 sm:pt-24">
+    <main id="main-content" className="relative flex-1">
+      <section className="relative overflow-hidden">
+        <div className="container-x grid items-end gap-12 pb-16 pt-16 lg:grid-cols-[1.1fr_0.9fr] lg:pb-24 lg:pt-24">
           <Reveal>
-            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
-              {page.eyebrow}
-            </p>
-            <h1 className="brand-font mt-4 text-[clamp(2.75rem,10vw,6.5rem)] font-normal leading-[0.9] tracking-[-0.05em] text-fg">
-              {page.name}
-            </h1>
-            <p className="mt-6 max-w-2xl text-base leading-8 text-muted sm:text-lg sm:leading-8">
-              {page.heroBody}
-            </p>
+            <p className="text-sm font-medium text-muted">{page.eyebrow}</p>
+            <h1 className="display mt-4 text-[clamp(3.2rem,8vw,7rem)] text-fg">{page.name}</h1>
+            <p className="mt-6 max-w-xl text-lg leading-8 text-muted">{page.heroBody}</p>
             <div className="mt-8">
-              <GetStartedButton label="Contact us" size="lg">
-                Contact us
-                <ArrowIcon />
+              <GetStartedButton label="Get started" size="lg">
+                Get started
               </GetStartedButton>
+            </div>
+          </Reveal>
+          <Reveal delay={80}>
+            <div className="relative aspect-[16/11] overflow-hidden rounded-2xl bg-surface-2">
+              <Image
+                src="/images/products/spectr-os-ui.png"
+                alt="Spectr OS interface"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                priority
+              />
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* What it is */}
-      <section className="border-b border-border py-16 sm:py-24">
-        <div className="container-x">
-          <Reveal>
-            <h2 className="brand-font text-[clamp(1.75rem,4vw,3rem)] leading-[1.1] tracking-tight text-fg">
-              {page.introTitle}
-            </h2>
-            <p className="mt-6 max-w-3xl text-[1.05rem] leading-8 text-muted sm:text-[1.125rem] sm:leading-8">
-              {page.intro}
-            </p>
-          </Reveal>
+      <section className="py-16 sm:py-24">
+        <div className="container-x grid gap-8 lg:grid-cols-[1fr_1fr] lg:gap-20">
+          <h2 className="display text-[clamp(2.2rem,5vw,4.5rem)] text-fg">{page.introTitle}</h2>
+          <p className="text-lg leading-8 text-muted">{page.intro}</p>
         </div>
       </section>
 
-      {/* Features */}
-      <section className="py-16 sm:py-24">
+      <section className="pb-16 sm:pb-24">
         <div className="container-x">
-          <Reveal>
-            <h2 className="brand-font text-[clamp(1.75rem,4vw,3rem)] leading-[1.1] tracking-tight text-fg">
-              {page.featuresTitle}
-            </h2>
-          </Reveal>
-
-          <ul className="mt-12 space-y-3">
+          <h2 className="display max-w-3xl text-[clamp(2.2rem,5vw,4.5rem)] text-fg">{page.featuresTitle}</h2>
+          <ul className="mt-12 grid gap-3 md:grid-cols-2">
             {page.features.map((feature, index) => (
               <li key={feature.id}>
                 <Reveal delay={Math.min(index * 30, 180)}>
-                  <article className="bevel-panel bevel-panel-muted grid gap-4 px-5 py-6 sm:grid-cols-[minmax(0,0.35fr)_minmax(0,1fr)] sm:gap-10 sm:px-6 sm:py-8">
-                    <div className="flex items-baseline justify-between gap-4 sm:block">
-                      <h3 className="brand-font text-[clamp(1.35rem,3vw,2rem)] leading-none tracking-tight text-fg">
-                        {feature.title}
-                      </h3>
-                      <span className="font-mono text-[11px] tracking-[0.12em] text-muted">
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
-                    </div>
-                    <p className="max-w-2xl text-[15px] leading-7 text-muted sm:text-base sm:leading-8">
-                      {feature.body}
+                  <article className="h-full rounded-2xl border border-border bg-surface p-6 sm:p-8">
+                    <p className="text-xs font-medium uppercase tracking-[0.14em] text-muted">
+                      {String(index + 1).padStart(2, "0")}
                     </p>
+                    <h3 className="display mt-4 text-3xl text-fg sm:text-4xl">{feature.title}</h3>
+                    <p className="mt-4 text-[15px] leading-7 text-muted">{feature.body}</p>
                   </article>
                 </Reveal>
               </li>
@@ -78,27 +63,20 @@ export function SpectrOsPageView() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="border-t border-border py-16 sm:py-24">
+      <section className="pb-20 sm:pb-28">
         <div className="container-x">
-          <Reveal>
-            <h2 className="brand-font text-[clamp(1.5rem,3.5vw,2.5rem)] tracking-tight text-fg">
-              {page.ctaTitle}
-            </h2>
-            <p className="mt-4 max-w-2xl text-[15px] leading-7 text-muted sm:text-base sm:leading-8">
-              {page.ctaBody}
-            </p>
+          <div className="rounded-[1.75rem] bg-[#161513] px-8 py-12 text-white sm:px-12 sm:py-16">
+            <h2 className="display max-w-3xl text-[clamp(2rem,4vw,3.8rem)]">{page.ctaTitle}</h2>
+            <p className="mt-4 max-w-2xl text-base leading-7 text-white/70">{page.ctaBody}</p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <GetStartedButton label="Contact us" size="lg">
-                Contact us
-                <ArrowIcon />
+              <GetStartedButton label="Get started" size="lg">
+                Get started
               </GetStartedButton>
-              <GetStartedButton label="Request a demo" size="lg" variant="secondary">
+              <GetStartedButton label="Request a demo" size="lg" variant="secondary" className="border-white/25 bg-transparent text-white hover:bg-white/10">
                 Request a demo
-                <ArrowIcon />
               </GetStartedButton>
             </div>
-          </Reveal>
+          </div>
         </div>
       </section>
     </main>

@@ -11,18 +11,18 @@ export function PageHeader({ title, intro, align = "left", children }: PageHeade
   const centered = align === "center";
 
   return (
-    <section className="relative pt-36 pb-16 lg:pt-44">
+    <section className="relative pb-14 pt-16 lg:pb-20 lg:pt-24">
       <div className={`container-x ${centered ? "text-center" : ""}`}>
         <h1
-          className={`display fade-up text-4xl text-gradient sm:text-6xl ${
-            centered ? "mx-auto max-w-4xl" : "max-w-3xl"
+          className={`display fade-up text-[clamp(2.8rem,7vw,6.2rem)] text-fg ${
+            centered ? "mx-auto max-w-4xl" : "max-w-4xl"
           }`}
         >
           {title}
         </h1>
         {intro ? (
           <p
-            className={`fade-up fade-up-2 mt-7 text-base leading-8 text-muted sm:text-lg ${
+            className={`fade-up fade-up-2 mt-7 text-lg leading-8 text-muted ${
               centered ? "mx-auto max-w-2xl" : "max-w-2xl"
             }`}
           >
@@ -30,11 +30,7 @@ export function PageHeader({ title, intro, align = "left", children }: PageHeade
           </p>
         ) : null}
         {children ? (
-          <div
-            className={`fade-up fade-up-3 mt-10 ${
-              centered ? "flex flex-col items-center" : ""
-            }`}
-          >
+          <div className={`fade-up fade-up-3 mt-10 ${centered ? "flex flex-col items-center" : ""}`}>
             {children}
           </div>
         ) : null}

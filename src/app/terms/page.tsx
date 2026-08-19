@@ -23,7 +23,7 @@ export default function TermsPage() {
             <div className="mx-auto max-w-3xl space-y-4">
               {termsSections.map((section) => (
                 <article key={pickLegalField(section.title)} className="card p-7 sm:p-8">
-                  <h2 className="brand-font text-xl font-semibold tracking-tight text-fg">
+                  <h2 className="display text-2xl text-fg sm:text-3xl">
                     {pickLegalField(section.title)}
                   </h2>
                   <p className="mt-4 text-sm leading-7 text-muted">{pickLegalField(section.text)}</p>

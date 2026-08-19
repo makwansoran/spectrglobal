@@ -38,13 +38,9 @@ export default function AboutPage() {
           <div className="container-x">
             <dl className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
               {facts.map((fact) => (
-                <div key={fact.label}>
-                  <dt className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
-                    {fact.label}
-                  </dt>
-                  <dd className="brand-font mt-3 text-lg font-semibold tracking-tight text-fg">
-                    {fact.value}
-                  </dd>
+                <div key={fact.label} className="rounded-2xl border border-border bg-surface p-6">
+                  <dt className="text-sm text-muted">{fact.label}</dt>
+                  <dd className="display mt-3 text-3xl text-fg">{fact.value}</dd>
                 </div>
               ))}
             </dl>

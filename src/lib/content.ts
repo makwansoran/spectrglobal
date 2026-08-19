@@ -1,6 +1,26 @@
 export const hero = {
-  title: "AI Operating system for Industries.",
+  title: "Industrial intelligence.",
+  titleLine2: "In your hands.",
+  body: "We help organizations build tailored operational systems to solve the world’s hardest problems on the floor.",
 };
+
+export const featuredNews = [
+  {
+    category: "Product",
+    title: "Spectr OS is free for all enterprise customers — permanently",
+    href: "/news",
+  },
+  {
+    category: "Spectr OS",
+    title: "The operating system for industrial floors and enterprise sites",
+    href: "/platforms/spectr-os",
+  },
+  {
+    category: "Company",
+    title: "There is so much left to build",
+    href: "/careers",
+  },
+] as const;
 
 export type SoftwareProduct = {
   id: string;

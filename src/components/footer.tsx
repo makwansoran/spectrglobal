@@ -1,32 +1,32 @@
 import Link from "next/link";
-import { LogoMark, Wordmark } from "@/components/logo";
+import { LogoMark } from "@/components/logo";
 import { footerColumns, site } from "@/lib/site";
 
 export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="theme-light mt-auto">
+    <footer className="mt-auto border-t border-border">
       <div className="container-x py-16 lg:py-20">
-        <div className="grid gap-12 pb-14 lg:grid-cols-[1.2fr_2fr]">
+        <div className="grid gap-12 lg:grid-cols-[1fr_2.2fr]">
           <div>
-            <Link href="/" className="inline-flex items-center gap-2.5 hover:opacity-70">
-              <LogoMark className="h-6 w-6" />
-              <Wordmark className="text-fg" />
+            <Link href="/" className="inline-flex items-center gap-2.5">
+              <LogoMark className="h-7 w-7" />
+              <span className="text-[15px] font-medium tracking-[-0.02em] text-fg">Spectr</span>
             </Link>
-            <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
-              {site.legalName} · Org. {site.orgNumber} · {site.location}
+            <p className="mt-5 max-w-xs text-sm leading-6 text-muted">
+              {site.tagline}
             </p>
           </div>
 
-          <div className="grid gap-10 sm:grid-cols-3">
+          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
             {footerColumns.map((column) => (
               <div key={column.title}>
-                <h2 className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted">{column.title}</h2>
-                <ul className="mt-5 space-y-3 text-sm">
+                <h2 className="text-sm font-medium text-fg">{column.title}</h2>
+                <ul className="mt-4 space-y-2.5 text-sm">
                   {column.links.map((link) => (
-                    <li key={link.href}>
-                      <Link href={link.href} className="text-fg/70 hover:text-fg">
+                    <li key={link.href + link.label}>
+                      <Link href={link.href} className="text-muted hover:text-fg">
                         {link.label}
                       </Link>
                     </li>
@@ -37,7 +37,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-6 pt-8 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-16 flex flex-col gap-6 border-t border-border pt-8 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap items-center gap-5">
             <SocialLink href={site.social.x} label="X">
               <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.264 5.632L18.244 2.25Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z" />
@@ -52,7 +52,7 @@ export function Footer() {
               <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814ZM9.545 15.568V8.432L15.818 12l-6.273 3.568Z" />
             </SocialLink>
           </div>
-          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
+          <p className="text-sm text-muted">
             © {year} {site.legalName}. All rights reserved.
           </p>
         </div>

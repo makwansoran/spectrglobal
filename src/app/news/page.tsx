@@ -32,7 +32,7 @@ export default function NewsPage() {
                         {item.date}
                       </time>
                       <div>
-                        <div className="bevel-panel-image relative mb-5 aspect-[16/9] overflow-hidden bg-surface">
+                        <div className="relative mb-5 aspect-[16/9] overflow-hidden rounded-2xl bg-surface">
                           <Image
                             src={item.image}
                             alt={item.imageAlt}
@@ -41,7 +41,7 @@ export default function NewsPage() {
                             sizes="(max-width: 768px) 100vw, 40rem"
                           />
                         </div>
-                        <h2 className="brand-font text-xl font-semibold tracking-tight text-fg">
+                        <h2 className="display text-3xl text-fg sm:text-4xl">
                           <a href={item.href} className="hover:opacity-70">
                             {item.title}
                           </a>
