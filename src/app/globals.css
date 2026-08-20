@@ -1405,7 +1405,8 @@ textarea {
 .industry-preview {
   position: relative;
   width: 100%;
-  padding: 0 0 2.5rem;
+  padding: 0;
+  margin: 0;
 }
 
 .industry-preview__media {
@@ -1435,14 +1436,18 @@ textarea {
 
 .industry-preview__title {
   position: absolute;
-  top: clamp(1.5rem, 4vw, 4rem);
-  left: clamp(1.25rem, 5vw, 5rem);
-  max-width: 12ch;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 clamp(1.25rem, 5vw, 5rem);
+  margin: 0;
   color: #fff;
   font-size: clamp(2rem, 5vw, 5.5rem);
   font-weight: 500;
   letter-spacing: -0.04em;
   line-height: 0.98;
+  text-align: center;
 }
 
 @media (min-width: 768px) {
@@ -1551,6 +1556,18 @@ textarea {
 
 .reference-nav__action:hover {
   background: rgba(0, 0, 0, 0.04);
+}
+
+.reference-nav__action--contact {
+  background: #111111;
+  border-color: #111111;
+  color: #ffffff;
+}
+
+.reference-nav__action--contact:hover {
+  background: #111111;
+  border-color: #111111;
+  color: #ffffff;
 }
 
 .reference-nav__burger {

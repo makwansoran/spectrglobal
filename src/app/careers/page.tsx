@@ -102,3 +102,124 @@ export default function CareersPage() {
     </>
   );
 }
+
+export function CareersPageFrontPage() {
+  return (
+    <main id="main-content" className="flex-1 bg-[#F9F9F9]">
+      {/* Hero */}
+      <section className="px-6 pb-[100px] pt-[128px]">
+        <div className="mx-auto w-full max-w-[1100px]">
+          <div className="max-w-[760px]">
+            <h1 className="m-0 text-[clamp(42px,6vw,72px)] font-semibold leading-[1.05] tracking-[-0.035em] text-[#0A0A0A]">
+              A decade-long problem needs people who want one.
+            </h1>
+
+            <p className="mt-7 max-w-[620px] text-base leading-[1.7] text-[#6B6B72]">
+              {intro}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Values */}
+      <section className="px-6 pb-[128px]">
+        <div className="mx-auto w-full max-w-[1100px]">
+          <div className="mb-12">
+            <h2 className="m-0 text-[clamp(30px,4.4vw,46px)] font-semibold leading-[1.12] tracking-[-0.015em] text-[#0A0A0A]">
+              How we work
+            </h2>
+          </div>
+
+          <div className="grid border-t border-[#D2D2CE] md:grid-cols-3">
+            {values.map((value, index) => (
+              <div
+                key={value.title}
+                className={[
+                  "border-b border-[#D2D2CE] py-8 md:border-b-0 md:py-10",
+                  index > 0 ? "md:border-l md:pl-8" : "md:pr-8",
+                  index === 1 ? "md:px-8" : "",
+                  index === 2 ? "md:pl-8" : "",
+                ].join(" ")}
+              >
+                <span className="font-mono text-[11px] tracking-[0.08em] text-[#8A8A8F]">
+                  0{index + 1}
+                </span>
+
+                <h3 className="mt-5 text-2xl font-medium tracking-[-0.02em] text-[#0A0A0A]">
+                  {value.title}
+                </h3>
+
+                <p className="mt-3.5 max-w-[320px] text-sm leading-7 text-[#6B6B72]">
+                  {value.text}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Open positions */}
+      <section className="px-6 pb-[140px]">
+        <div className="mx-auto w-full max-w-[1100px]">
+          <div className="border-y border-[#D2D2CE]">
+            <div className="grid gap-12 py-12 lg:grid-cols-[1fr_1fr] lg:gap-20 lg:py-16">
+              <div>
+                <h2 className="m-0 text-[clamp(30px,4.4vw,46px)] font-semibold leading-[1.12] tracking-[-0.015em] text-[#0A0A0A]">
+                  No open listings right now.
+                </h2>
+
+                <p className="mt-6 max-w-[560px] text-sm leading-7 text-[#6B6B72]">
+                  We do not post roles we are not ready to fill. If your work
+                  overlaps with the areas listed here, write to us anyway —
+                  describe something you have built and why it was hard.
+                  Speculative applications from strong engineers get read
+                  properly, and several of our team joined that way.
+                </p>
+
+                <a
+                  href="/contact"
+                  className="mt-8 inline-flex items-center gap-2 rounded-full border border-[#0A0A0A] bg-[#0A0A0A] px-[22px] py-[11px] text-sm font-semibold text-white transition-colors duration-150 hover:bg-[#262626]"
+                >
+                  Send an application
+
+                  <svg
+                    width="14"
+                    height="10"
+                    viewBox="0 0 14 10"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M8.5 1L13 5.5M13 5.5L8.5 10M13 5.5H1"
+                      stroke="currentColor"
+                      strokeWidth="1.3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </a>
+              </div>
+
+              <div className="lg:border-l lg:border-[#D2D2CE] lg:pl-12">
+                <h3 className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#6B6B72]">
+                  Areas we hire into
+                </h3>
+
+                <ul className="mt-5 border-t border-[#D2D2CE]">
+                  {areas.map((area) => (
+                    <li
+                      key={area}
+                      className="border-b border-[#D2D2CE] py-4 text-sm text-[#0A0A0A]"
+                    >
+                      {area}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}

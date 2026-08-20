@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
+import { useGetStarted } from "@/components/get-started-context";
 import { LogoMark } from "@/components/logo";
 import { site, type NavSection } from "@/lib/site";
 
@@ -60,6 +61,7 @@ const referenceNavSections: NavSection[] = [
 
 export function Nav() {
   const pathname = usePathname();
+  const { openGetStarted } = useGetStarted();
   const [open, setOpen] = useState(false);
   const [menu, setMenu] = useState<string | null>(null);
   const [primaryNavOverflowing, setPrimaryNavOverflowing] = useState(false);
@@ -137,9 +139,13 @@ export function Nav() {
               >
                 Login
               </Link>
-              <Link href="/contact" className="reference-nav__action hidden sm:flex">
+              <button
+                type="button"
+                onClick={() => openGetStarted("contact")}
+                className="reference-nav__action reference-nav__action--contact hidden sm:flex"
+              >
                 Contact sales
-              </Link>
+              </button>
               <button
                 type="button"
                 onClick={() => setOpen((value) => !value)}
@@ -207,9 +213,16 @@ export function Nav() {
               <Link href="/login" className="btn btn-secondary" onClick={() => setOpen(false)}>
                 Login
               </Link>
-              <Link href="/contact" className="btn btn-secondary" onClick={() => setOpen(false)}>
+              <button
+                type="button"
+                onClick={() => {
+                  setOpen(false);
+                  openGetStarted("contact");
+                }}
+                className="btn btn-secondary reference-nav__action--contact"
+              >
                 Contact sales
-              </Link>
+              </button>
             </div>
           </nav>
         </div>
