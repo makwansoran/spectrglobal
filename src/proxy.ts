@@ -1,12 +1,19 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { supabaseAnonKey, supabaseUrl } from "@/lib/supabase/env";
+import { updateSession } from "@/lib/supabase/middleware";
 
 function isProtectedPath(pathname: string) {
   return pathname.startsWith("/dashboard") || pathname.startsWith("/mfa");
 }
 
 export async function proxy(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  if (pathname === "/app" || pathname.startsWith("/app/") || pathname === "/login") {
+    return updateSession(request);
+  }
+
   if (!supabaseUrl() || !supabaseAnonKey()) {
     return NextResponse.next({ request });
   }
@@ -35,8 +42,6 @@ export async function proxy(request: NextRequest) {
   const {
     data: { user },
   } = await supabase.auth.getUser();
-
-  const { pathname } = request.nextUrl;
 
   if (!user && isProtectedPath(pathname) && process.env.NODE_ENV !== "development") {
     const url = request.nextUrl.clone();
