@@ -8,6 +8,7 @@ type JoinTeamImageProps = {
   children?: ReactNode;
   minHeightClassName?: string;
   priority?: boolean;
+  sizes?: string;
 };
 
 export function JoinTeamImage({
@@ -15,6 +16,7 @@ export function JoinTeamImage({
   children,
   minHeightClassName = "min-h-[28rem] sm:min-h-[36rem]",
   priority = false,
+  sizes = "100vw",
 }: JoinTeamImageProps) {
   const frame = (
     <div className="rounded-[1.4rem] bg-white p-2 sm:rounded-[1.6rem] sm:p-3">
@@ -25,7 +27,7 @@ export function JoinTeamImage({
           fill
           priority={priority}
           className="object-cover"
-          sizes="100vw"
+          sizes={sizes}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-black/10" />
         {children ? (
