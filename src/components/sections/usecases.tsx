@@ -1,84 +1,80 @@
+"use client";
+
 import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
+import { useCases, useCasesSection } from "@/lib/content";
 
 export function UseCases() {
-  const useCases = [
-    {
-      number: "01",
-      title: "Defense",
-      description:
-        "Situational awareness, intelligence, and operational decision-making.",
-      image: "/images/industries/defence.jpg",
-    },
-    {
-      number: "02",
-      title: "Logistics",
-      description:
-        "Optimize complex supply chains, assets, and operational flows.",
-      image: "/images/industries/logistics.jpg",
-    },
-    {
-      number: "03",
-      title: "Energy",
-      description:
-        "Unify operational data across infrastructure, assets, and markets.",
-      image: "/images/industries/energy.jpg",
-    },
-    {
-      number: "04",
-      title: "Shipping",
-      description:
-        "Connect fleet, cargo, routes, and operational intelligence.",
-      image: "/images/industries/ports.jpg",
-    },
-    {
-      number: "05",
-      title: "Manufacturing",
-      description:
-        "Turn production data into real-time operational insight.",
-      image: "/images/industries/manufacturing.jpg",
-    },
-  ];
+  const [activeId, setActiveId] = useState(useCases[0]?.id ?? "");
+  const active = useCases.find((item) => item.id === activeId) ?? useCases[0];
+
+  if (!active) return null;
 
   return (
-    <section className="bg-[#F1F1F1] px-6 pb-[140px] pt-[128px]">
-      <div className="mx-auto w-full max-w-[1100px]">
-        <div className="mb-16">
-          <h2 className="m-0 text-[clamp(30px,4.4vw,46px)] font-semibold leading-[1.12] tracking-[-0.015em] text-[#0A0A0A]">
-            Use Cases
-          </h2>
-        </div>
+    <section id="use-cases" className="scroll-mt-24 bg-[#F1F1F1] px-6 pb-[140px] pt-[128px]">
+      <div className="mx-auto grid w-full max-w-[1400px] items-start gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(280px,0.8fr)] lg:gap-x-14">
+        <h2 className="m-0 font-normal text-[clamp(30px,4.4vw,46px)] leading-none tracking-[-0.02em] text-[#1E1F2B] lg:col-start-1">
+          {useCasesSection.title}
+        </h2>
 
-        <div className="border-t border-[#D2D2CE]">
-          {useCases.map((useCase) => (
-            <div
-              key={useCase.number}
-              className="group grid grid-cols-[48px_minmax(0,1fr)] gap-x-6 gap-y-6 border-b border-[#D2D2CE] py-8 sm:grid-cols-[64px_minmax(0,1fr)_220px] sm:gap-x-8 sm:gap-y-0"
-            >
-              <span className="pt-1 font-mono text-[11px] tracking-[0.08em] text-[#8A8A8F]">
-                {useCase.number}
-              </span>
-
-              <div>
-                <h3 className="m-0 text-2xl font-medium tracking-[-0.02em] text-[#0A0A0A] sm:text-3xl">
-                  {useCase.title}
-                </h3>
-                <p className="mt-3 m-0 max-w-[420px] text-sm leading-[1.6] text-[#6B6B72] sm:text-[15px]">
-                  {useCase.description}
-                </p>
-              </div>
-
-              <div className="relative col-start-2 aspect-[16/9] overflow-hidden bg-[#D8D8D3] sm:col-start-auto sm:row-span-2 sm:ml-4 sm:aspect-[16/10]">
-                <Image
-                  src={useCase.image}
-                  alt={`${useCase.title} operations`}
-                  fill
-                  sizes="(min-width: 640px) 220px, calc(100vw - 72px)"
-                  className="object-cover grayscale-[15%] transition duration-700 ease-out group-hover:scale-[1.04] group-hover:grayscale-0"
-                />
-              </div>
+        <aside className="min-w-0 lg:col-start-2 lg:row-span-2 lg:sticky lg:top-28" aria-hidden="true">
+          <div className="relative aspect-[4/5] overflow-hidden bg-[#D8D8D3] lg:aspect-auto lg:h-[min(42rem,calc(100vh-8rem))]">
+            {useCases.map((item) => (
+              <Image
+                key={item.id}
+                src={item.image}
+                alt=""
+                fill
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                className={`object-cover transition-opacity duration-500 ${
+                  item.id === active.id ? "opacity-100" : "opacity-0"
+                }`}
+                priority={item.id === useCases[0]?.id}
+              />
+            ))}
+            <div className="absolute inset-x-0 bottom-0 z-[1] bg-gradient-to-t from-black/70 to-transparent px-5 py-5">
+              <p className="m-0 text-[17px] leading-snug text-white">{active.cta}</p>
             </div>
-          ))}
-        </div>
+          </div>
+        </aside>
+
+        <ul className="m-0 list-none p-0 lg:col-start-1 lg:mt-8">
+          {useCases.map((item) => {
+            const isActive = item.id === active.id;
+
+            return (
+              <li key={item.id}>
+                <Link
+                  href={item.href}
+                  aria-label={`${item.name}. ${item.description}`}
+                  aria-current={isActive ? "true" : undefined}
+                  className="group grid items-start gap-3 py-4 no-underline sm:grid-cols-[minmax(11rem,0.4fr)_minmax(0,1fr)] sm:gap-8 sm:py-3 sm:pb-14"
+                  onMouseEnter={() => setActiveId(item.id)}
+                  onFocus={() => setActiveId(item.id)}
+                >
+                  <div className="max-w-[16.5rem]">
+                    <p className="m-0 text-[17px] leading-[1.4] text-[#1E1F2B]">{item.description}</p>
+                    <p className="mt-3 m-0 text-[15px] leading-snug text-[#AAAAAA]">{item.index}</p>
+                  </div>
+
+                  <div className="flex min-w-0 items-start justify-between gap-4">
+                    <h3
+                      className={`m-0 min-w-0 overflow-hidden text-[clamp(2.6rem,7vw,6.25rem)] font-normal leading-[0.86] tracking-[-0.055em] text-[#1E1F2B] whitespace-nowrap ${
+                        isActive ? "" : "sm:opacity-90"
+                      }`}
+                    >
+                      {item.name}
+                    </h3>
+                    <span className="mt-2 hidden shrink-0 text-[15px] leading-snug text-[#AAAAAA] sm:inline">
+                      {item.index}
+                    </span>
+                  </div>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </section>
   );

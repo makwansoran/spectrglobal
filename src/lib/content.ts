@@ -36,6 +36,74 @@ export const softwareSection = {
   title: "Solutions",
 };
 
+export type UseCase = {
+  id: string;
+  index: string;
+  name: string;
+  description: string;
+  cta: string;
+  href: string;
+  image: string;
+  imageAlt: string;
+};
+
+export const useCasesSection = {
+  title: "Use Cases",
+};
+
+export const useCases: UseCase[] = [
+  {
+    id: "defense",
+    index: "/0.1",
+    name: "Defense",
+    description: "Situational awareness, intelligence, and operational decision-making.",
+    cta: "Defense operations",
+    href: "/platforms/spectr-os",
+    image: "/images/industries/defence.jpg",
+    imageAlt: "Secure operations and systems coordination",
+  },
+  {
+    id: "logistics",
+    index: "/0.2",
+    name: "Logistics",
+    description: "Optimize complex supply chains, assets, and operational flows.",
+    cta: "Logistics operations",
+    href: "/platforms/spectr-os",
+    image: "/images/industries/logistics.jpg",
+    imageAlt: "Warehouse logistics and pallet operations",
+  },
+  {
+    id: "energy",
+    index: "/0.3",
+    name: "Energy",
+    description: "Unify operational data across infrastructure, assets, and markets.",
+    cta: "Energy operations",
+    href: "/platforms/spectr-os",
+    image: "/images/industries/energy.jpg",
+    imageAlt: "Power infrastructure and industrial energy",
+  },
+  {
+    id: "shipping",
+    index: "/0.4",
+    name: "Shipping",
+    description: "Connect fleet, cargo, routes, and operational intelligence.",
+    cta: "Shipping operations",
+    href: "/platforms/spectr-os",
+    image: "/images/industries/ports.jpg",
+    imageAlt: "Shipping containers at a port terminal",
+  },
+  {
+    id: "manufacturing",
+    index: "/0.5",
+    name: "Manufacturing",
+    description: "Turn production data into real-time operational insight.",
+    cta: "Manufacturing operations",
+    href: "/platforms/spectr-os",
+    image: "/images/industries/manufacturing.jpg",
+    imageAlt: "Manufacturing production line",
+  },
+];
+
 export const offeringsCeoQuote = {
   eyebrow: "Spectr Philosophy",
   quote:
