@@ -3,8 +3,33 @@
   isolation: isolate;
   overflow: hidden;
   min-height: calc(100dvh - 4.25rem);
-  background: #ffffff;
-  color: #0a0a0a;
+  background: #050505;
+  color: #ffffff;
+}
+
+.spectros-waitlist__stage {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+.spectros-waitlist__photo {
+  object-fit: cover;
+  object-position: center center;
+}
+
+.spectros-waitlist__stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.22) 42%,
+    rgba(0, 0, 0, 0.08) 100%
+  );
 }
 
 .spectros-waitlist__copy {
@@ -20,13 +45,14 @@
 
 .spectros-waitlist__title {
   margin: 0;
-  max-width: 11ch;
+  max-width: 12ch;
   font-family: var(--font-sans);
   font-size: clamp(2.35rem, 6.2vw, 3.85rem);
   font-weight: 700;
   letter-spacing: -0.045em;
   line-height: 1.05;
-  color: #0a0a0a;
+  color: #ffffff;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
 }
 
 .spectros-waitlist__cta {
@@ -42,7 +68,7 @@
   margin: 0;
   font-size: 0.95rem;
   line-height: 1.55;
-  color: #6b6b72;
+  color: rgba(255, 255, 255, 0.78);
 }
 
 .spectros-waitlist__join {
@@ -52,10 +78,10 @@
   gap: 0.55rem;
   min-height: 3.15rem;
   padding: 0.85rem 1.45rem;
-  border: 1px solid rgba(10, 10, 10, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 9999px;
   background: #ffffff;
-  box-shadow: 0 1px 2px rgba(10, 10, 10, 0.04);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
   color: #0a0a0a;
   font-size: 0.95rem;
   font-weight: 500;
@@ -63,23 +89,12 @@
 }
 
 .spectros-waitlist__join:hover {
-  background: #fafafa;
+  background: #f4f4f4;
 }
 
 .spectros-waitlist__join svg {
   width: 14px;
   height: 14px;
-}
-
-.spectros-waitlist__stage {
-  pointer-events: none;
-  user-select: none;
-}
-
-.spectros-waitlist__laptop {
-  display: block;
-  width: 100%;
-  height: auto;
 }
 
 .spectros-waitlist__dialog {
@@ -92,7 +107,7 @@
   position: absolute;
   inset: 0;
   border: 0;
-  background: rgba(10, 10, 10, 0.28);
+  background: rgba(10, 10, 10, 0.45);
 }
 
 .spectros-waitlist__panel {
@@ -109,7 +124,8 @@
   border-radius: 1.25rem;
   background: #ffffff;
   padding: 1.5rem 1.5rem 1.65rem;
-  box-shadow: 0 24px 60px rgba(10, 10, 10, 0.12);
+  box-shadow: 0 24px 60px rgba(10, 10, 10, 0.28);
+  color: #0a0a0a;
 }
 
 .spectros-waitlist__panel-head {
@@ -213,46 +229,16 @@
 }
 
 @media (min-width: 1024px) {
-  .spectros-waitlist {
+  .spectros-waitlist,
+  .spectros-waitlist__copy {
     min-height: calc(100dvh - 4.75rem);
   }
 
   .spectros-waitlist__copy {
-    min-height: calc(100dvh - 4.75rem);
     padding: 3.5rem 3rem 3.25rem;
   }
 
   .spectros-waitlist__title {
     font-size: clamp(3.1rem, 4.6vw, 4.35rem);
-  }
-
-  .spectros-waitlist__stage {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
-    width: min(62vw, 54rem);
-  }
-
-  .spectros-waitlist__laptop {
-    width: 112%;
-    max-width: none;
-    margin-right: -8%;
-    margin-bottom: -6%;
-    object-fit: contain;
-    object-position: right bottom;
-  }
-}
-
-@media (max-width: 1023px) {
-  .spectros-waitlist__copy {
-    padding-bottom: 1.5rem;
-  }
-
-  .spectros-waitlist__stage {
-    position: relative;
-    z-index: 1;
-    width: 118%;
-    margin: 0 0 -8% -4%;
   }
 }
