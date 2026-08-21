@@ -4,11 +4,10 @@ import { useRef, useState } from "react";
 
 type BootcampVideoProps = {
   src: string;
-  poster: string;
   title: string;
 };
 
-export function BootcampVideo({ src, poster, title }: BootcampVideoProps) {
+export function BootcampVideo({ src, title }: BootcampVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [started, setStarted] = useState(false);
 
@@ -23,10 +22,9 @@ export function BootcampVideo({ src, poster, title }: BootcampVideoProps) {
       <video
         ref={videoRef}
         className="bootcamp-video__media"
-        poster={poster}
         controls={started}
         playsInline
-        preload="metadata"
+        preload="none"
         title={title}
         onPlay={() => setStarted(true)}
       >

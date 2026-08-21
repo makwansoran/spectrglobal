@@ -18,11 +18,7 @@ export function SpectrBootcamp() {
           <p className="bootcamp__badge">{spectrBootcamp.courseLabel}</p>
         </div>
 
-        <BootcampVideo
-          src={spectrBootcamp.videoSrc}
-          poster={spectrBootcamp.videoPoster}
-          title={spectrBootcamp.videoTitle}
-        />
+        <BootcampVideo src={spectrBootcamp.videoSrc} title={spectrBootcamp.videoTitle} />
 
         <div className="bootcamp__plan">
           <p className="bootcamp__plan-eyebrow">{spectrBootcamp.planEyebrow}</p>

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { spectrBootcamp } from "@/lib/content";
 
@@ -28,18 +27,9 @@ export function SpectrBootcampTeaser() {
 
         <Link href={spectrBootcamp.href} className="group block focus-visible:outline-offset-4">
           <div className="rounded-[1.4rem] bg-[#F4F4F4] p-2 sm:rounded-[1.6rem] sm:bg-white sm:p-3">
-            <div className="relative aspect-[4/3] min-h-[14rem] overflow-hidden rounded-2xl bg-black">
-              <Image
-                src={spectrBootcamp.videoPoster}
-                alt={spectrBootcamp.videoTitle}
-                fill
-                className="object-cover object-center"
-                sizes="(max-width: 1024px) 100vw, 36rem"
-                quality={90}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-black/10" />
+            <div className="relative aspect-[4/3] min-h-[14rem] overflow-hidden rounded-2xl bg-[#E8E8E8]">
               <div className="absolute inset-0 z-10 flex flex-col justify-end p-6 sm:p-10">
-                <span className="inline-flex w-fit items-center justify-center border border-white bg-white px-[22px] py-[11px] text-sm font-semibold text-[#0A0A0A] transition-colors duration-150 group-hover:bg-white/90">
+                <span className="inline-flex w-fit items-center justify-center border border-[#0A0A0A] bg-white px-[22px] py-[11px] text-sm font-semibold text-[#0A0A0A] transition-colors duration-150 group-hover:bg-[#F4F4F4]">
                   {spectrBootcamp.cta}
                 </span>
               </div>

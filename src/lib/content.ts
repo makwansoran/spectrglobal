@@ -120,7 +120,6 @@ export const spectrBootcamp = {
   courseLabel: "1 video course",
   cta: "Open bootcamp →",
   videoSrc: "/videos/spectr-bootcamp.mp4",
-  videoPoster: "/images/bootcamp/video-poster.png",
   videoTitle: "Spectr Bootcamp — create, train, and run your own AI",
   planEyebrow: "Show plan",
   planTitle: "Five steps from your data to a local AI workflow",
