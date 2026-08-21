@@ -73,7 +73,7 @@ export default function MetaphysicsNodeCard({
         ) : null}
       </div>
       <div
-        className={`mt-1.5 truncate font-semibold leading-tight ${isCommand ? 'font-palantir text-xl tracking-tight' : 'text-sm'}`}
+        className={`mt-1.5 truncate font-semibold leading-tight ${isCommand ? 'font-spectr-os text-xl tracking-tight' : 'text-sm'}`}
       >
         {data.label}
       </div>

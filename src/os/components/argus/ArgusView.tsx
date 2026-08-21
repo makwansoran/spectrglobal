@@ -57,7 +57,7 @@ export default function ArgusView(): JSX.Element {
     <div className="flex h-full w-full flex-col bg-base-900">
       <header className="flex shrink-0 items-end justify-between gap-4 border-b border-edge px-8 py-6">
         <div>
-          <h1 className="font-palantir text-3xl font-semibold tracking-tight text-ink">Argus</h1>
+          <h1 className="font-spectr-os text-3xl font-semibold tracking-tight text-ink">Argus</h1>
           <p className="mt-1.5 max-w-xl text-sm text-ink-dim">
             Computer vision page — create camera dashboards and add vision models.
           </p>

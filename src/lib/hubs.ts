@@ -86,7 +86,7 @@ export const productsHub: HubPage = {
   heroImageAlt: "Spectr OS running industrial operations",
   headline: "Software that runs the work — not another layer of commentary on top of it.",
   columnOne:
-    "Palantir built a family of platforms so institutions could put AI into operational decision-making. Spectr is the same idea, aimed at the floor: one operating system, with surfaces for meaning, action, command, and how the software actually ships.",
+    "Spectr OS is a family of surfaces so institutions can put AI into operational decision-making. One operating system, aimed at the floor: meaning, action, command, and how the software actually ships.",
   columnTwo:
     "Spectr OS is the runtime. Ontology is the shared world. The agentic layer turns models into workflows. Command keeps people in the loop. Deploy puts it on your machines. Together they are how an enterprise stops experimenting and starts operating.",
   cardsTitle: "The stack",
@@ -182,7 +182,7 @@ export const developersHub: HubPage = {
   heroImageAlt: "Spectr OS interface",
   headline: "Start building against operational truth — not against a pile of tables.",
   columnOne:
-    "Palantir’s developer surface exists so builders can put AI into applications that take real actions. Spectr is the same invitation, on an OS you can host. The ontology is the SDK. Workflows are how agents get tools. APIs are how the rest of your estate joins in.",
+    "Spectr OS exists so builders can put AI into applications that take real actions — on a runtime you can host. The ontology is the SDK. Workflows are how agents get tools. APIs are how the rest of your estate joins in.",
   columnTwo:
     "Request access, stand the runtime up, and customise. Documentation grows with the product. Until the full docs ship, the bootcamp is the one-video path: your data, a model, a workflow, local.",
   cardsTitle: "Build",
@@ -362,7 +362,7 @@ export const productPages = [
     imageAlt: "Ontology canvas",
     headline: "A full-fidelity, dynamic representation of the business — shared by the whole organisation.",
     columnOne:
-      "Palantir calls this the ontology: data, models, and processes as a living picture of the enterprise. Spectr’s version is the same demand, on the floor. Units, locations, assets, and actions exist once. Every workflow reads that world.",
+      "Spectr OS calls this the ontology: data, models, and processes as a living picture of the enterprise, on the floor. Units, locations, assets, and actions exist once. Every workflow reads that world.",
     columnTwo:
       "Chain models across teams. Simulate a change before it hits the unit. Capture the output so the next engineer inherits the last experiment. If the software does not know the object, it does not get to act.",
     capabilities: [
@@ -381,7 +381,7 @@ export const productPages = [
     imageAlt: "Agentic workflows",
     headline: "Go beyond chat. Enterprise autonomy with a human still in the loop.",
     columnOne:
-      "Palantir’s AIP is the argument that AI belongs in operational decision-making: agents with tools, automations with history, builders who can ship a workflow. Spectr’s agentic runtime is that loop on Spectr OS.",
+      "Spectr OS is the argument that AI belongs in operational decision-making: agents with tools, automations with history, builders who can ship a workflow. The agentic runtime is that loop on your estate.",
     columnTwo:
       "Give the model tools and guidance. Let it propose a resolution. Let a person see the logic and approve. Iteratively evaluate before production. The chat window is optional. The action is not.",
     capabilities: [
@@ -400,7 +400,7 @@ export const productPages = [
     imageAlt: "Command and decisions",
     headline: "Decision advantage is a sequence of honest choices, not a prettier common operating picture.",
     columnOne:
-      "Gotham, in Palantir’s world, is software for decision dominance. Command, for Spectr, is the operational equivalent: fused feeds become ranked options with provenance, so staff act on what is known and see what is not.",
+      "Command, on Spectr OS, is software for decision advantage: fused feeds become ranked options with provenance, so staff act on what is known and see what is not.",
     columnTwo:
       "Humans stay in command. The runtime removes the chase-down. Every consequential act is a workflow with attribution — useful tonight, and useful when someone asks why.",
     capabilities: [
@@ -419,7 +419,7 @@ export const productPages = [
     imageAlt: "Deployment on site",
     headline: "Put the runtime where the work is — and keep it current without a travelling circus.",
     columnOne:
-      "Apollo, in Palantir’s stack, is how software is deployed and managed across any environment. Spectr’s deploy surface is the same requirement: factories do not pause for a region outage, and classified or sovereign estates do not send the floor to a public cloud by default.",
+      "Deploy, on Spectr OS, is how the runtime is stood up and managed across any environment. Factories do not pause for a region outage, and classified or sovereign estates do not send the floor to a public cloud by default.",
     columnTwo:
       "Self-host, edge, or cloud. Monitor the runtime. Push configuration, not a rebuild of the aisle. The OS should arrive as software you can operate, not as a six-month integration novel.",
     capabilities: [

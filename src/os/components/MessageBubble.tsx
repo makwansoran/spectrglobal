@@ -58,7 +58,7 @@ export default function MessageBubble({ message }: { message: ChatMessage }): JS
     return (
       <div className="flex select-none items-center justify-center gap-3.5">
         <img src={logo} alt="" className="h-11 w-11 shrink-0 object-contain invert" aria-hidden />
-        <span className="font-palantir text-3xl font-semibold tracking-tight text-ink">
+        <span className="font-spectr-os text-3xl font-semibold tracking-tight text-ink">
           {message.content}
         </span>
       </div>

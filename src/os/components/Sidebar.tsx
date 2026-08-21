@@ -133,7 +133,7 @@ export default function Sidebar({ active, onNavigate }: SidebarProps): JSX.Eleme
       >
         <img src={logo} alt="Spectr" className="h-8 w-8 shrink-0 object-contain" />
         {expanded && (
-          <span className="font-palantir truncate text-[22px] font-semibold tracking-[-0.02em] text-white">
+          <span className="font-spectr-os truncate text-[22px] font-semibold tracking-[-0.02em] text-white">
             Spectr
           </span>
         )}

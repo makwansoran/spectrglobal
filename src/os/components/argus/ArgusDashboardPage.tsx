@@ -68,7 +68,7 @@ export default function ArgusDashboardPage({
           <ArrowLeft className="h-4 w-4" strokeWidth={1.75} />
         </button>
         <div className="min-w-0">
-          <h1 className="font-palantir truncate text-2xl font-semibold tracking-tight text-ink">
+          <h1 className="font-spectr-os truncate text-2xl font-semibold tracking-tight text-ink">
             {dashboard.name}
           </h1>
           <p className="mt-0.5 text-[12px] text-ink-dim">
@@ -136,7 +136,7 @@ function DashboardApp({
           <div className="text-[10px] font-mono uppercase tracking-[0.12em] text-ink-faint">
             Video feeds
           </div>
-          <div className="mt-1 font-palantir text-2xl font-semibold tracking-tight text-ink">
+          <div className="mt-1 font-spectr-os text-2xl font-semibold tracking-tight text-ink">
             {feeds.length}
           </div>
         </div>
@@ -144,7 +144,7 @@ function DashboardApp({
           <div className="text-[10px] font-mono uppercase tracking-[0.12em] text-ink-faint">
             Vision models
           </div>
-          <div className="mt-1 font-palantir text-2xl font-semibold tracking-tight text-ink">
+          <div className="mt-1 font-spectr-os text-2xl font-semibold tracking-tight text-ink">
             0
           </div>
         </div>

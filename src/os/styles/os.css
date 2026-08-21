@@ -273,6 +273,6 @@
   display: none !important;
 }
 
-.spectr-os .font-palantir {
-  font-family: var(--font-palantir), "IBM Plex Sans", Helvetica Neue, Helvetica, Arial, sans-serif;
+.spectr-os .font-spectr-os {
+  font-family: var(--font-spectr-os), "IBM Plex Sans", Helvetica Neue, Helvetica, Arial, sans-serif;
 }

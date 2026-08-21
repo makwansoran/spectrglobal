@@ -48,7 +48,7 @@ export default function ContextPanel(): JSX.Element {
         className="flex w-72 shrink-0 flex-col border-l border-edge bg-base-900"
       >
         <header className="flex items-baseline justify-between gap-2 px-4 pb-3 pt-4">
-          <h2 className="font-palantir text-[11px] font-semibold uppercase tracking-[0.14em] text-ink">
+          <h2 className="font-spectr-os text-[11px] font-semibold uppercase tracking-[0.14em] text-ink">
             Decisions
           </h2>
           <span className="font-mono text-[11px] text-ink-faint">{pending.length}</span>
