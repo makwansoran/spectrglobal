@@ -43,15 +43,6 @@ export function WaitlistForm() {
   return (
     <>
       <button type="button" className="spectros-waitlist__join" onClick={() => setOpen(true)}>
-        <svg viewBox="0 0 14 14" fill="none" aria-hidden="true">
-          <path
-            d="M7 12.25V1.75M7 1.75 2.75 6M7 1.75 11.25 6"
-            stroke="currentColor"
-            strokeWidth="1.4"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
         Join waitlist
       </button>
 
