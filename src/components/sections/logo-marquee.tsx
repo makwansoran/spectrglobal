@@ -48,11 +48,11 @@ export function LogoMarquee() {
     >
       <h2
         id="integrations-heading"
-        className="m-0 mb-6 text-center text-[clamp(30px,4.4vw,46px)] font-semibold leading-[1.12] tracking-[-0.015em] text-[#0A0A0A]"
+        className="m-0 mb-6 text-center font-normal text-[clamp(30px,4.4vw,46px)] leading-none tracking-[-0.02em] text-[#1E1F2B]"
       >
         {integrationsSection.eyebrow}
       </h2>
-      <p className="mx-auto mb-16 max-w-2xl text-center text-[17px] leading-[1.4] text-[#1E1F2B]">
+      <p className="mx-auto mb-16 max-w-2xl text-center text-[17px] font-normal leading-[1.4] text-[#1E1F2B]">
         {integrationsSection.body}
       </p>
 
