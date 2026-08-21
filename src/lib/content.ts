@@ -112,6 +112,55 @@ export const offeringsCeoQuote = {
   role: "Chief Executive Officer",
 };
 
+export const spectrBootcamp = {
+  eyebrow: "SPECTR BOOTCAMP",
+  title: "Learn to create your own AI.",
+  body: "A one-video course on building a model with your own data, wiring it into a workflow, and running it locally — on your machines, not someone else’s cloud.",
+  courseLabel: "1 video course",
+  videoSrc: "/videos/spectr-bootcamp.mp4",
+  videoPoster: "/images/bootcamp/video-poster.png",
+  videoTitle: "Spectr Bootcamp — create, train, and run your own AI",
+  planEyebrow: "Show plan",
+  planTitle: "Five steps from your data to a local AI workflow",
+  steps: [
+    {
+      index: "01",
+      title: "Bring your data",
+      body: "Collect the logs, sensors, and operational records that already describe how your organisation works.",
+      image: "/images/bootcamp/step-1-data.png",
+      imageAlt: "Industrial datasets and sensor logs prepared for training",
+    },
+    {
+      index: "02",
+      title: "Train the model",
+      body: "Fit the model on your data so it learns your processes, constraints, and language — not a generic internet average.",
+      image: "/images/bootcamp/step-2-train.png",
+      imageAlt: "Local workstation training a neural network",
+    },
+    {
+      index: "03",
+      title: "Design the workflow",
+      body: "Connect ingest, inference, and action as a workflow: nodes, handoffs, and the decisions the system is allowed to take.",
+      image: "/images/bootcamp/step-3-workflow.png",
+      imageAlt: "Node-based workflow canvas connecting data, training, and output",
+    },
+    {
+      index: "04",
+      title: "Run it locally",
+      body: "Stand the runtime up on your own hardware so the model and the data never have to leave the site.",
+      image: "/images/bootcamp/step-4-local.png",
+      imageAlt: "On-premises server and laptop running a local AI runtime",
+    },
+    {
+      index: "05",
+      title: "Operate the loop",
+      body: "Put the workflow on the floor. Watch it, correct it, and retrain as the work changes.",
+      image: "/images/bootcamp/step-5-operate.png",
+      imageAlt: "Control room operating a live industrial AI workflow",
+    },
+  ],
+} as const;
+
 export const softwareProducts: SoftwareProduct[] = [
   {
     id: "spectr-os",

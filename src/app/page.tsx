@@ -3,6 +3,7 @@ import { IndustryPreview } from "@/components/sections/industry-preview";
 import { JoinTheTeam } from "@/components/sections/join-the-team";
 import { LogoMarquee } from "@/components/sections/logo-marquee";
 import { OfferingsCeoQuote } from "@/components/sections/offerings-ceo-quote";
+import { SpectrBootcamp } from "@/components/sections/spectr-bootcamp";
 import { UseCases } from "@/components/sections/usecases";
 import { WaitlistSection } from "@/components/sections/waitlist-section";
 
@@ -15,6 +16,7 @@ export default function HomePage() {
         <LogoMarquee />
         <UseCases />
         <OfferingsCeoQuote />
+        <SpectrBootcamp />
         <JoinTheTeam />
       </main>
       <Footer />
