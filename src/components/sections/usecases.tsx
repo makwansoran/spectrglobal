@@ -16,30 +16,24 @@ export function UseCases() {
               <Link
                 href={item.href}
                 aria-label={`${item.name}. ${item.description}`}
-                className="group grid items-start gap-3 py-4 no-underline sm:grid-cols-[minmax(11rem,0.4fr)_minmax(0,1fr)] sm:gap-8 sm:py-3 sm:pb-14"
+                className="group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-4 gap-y-3 py-4 no-underline sm:grid-cols-[minmax(11rem,0.4fr)_minmax(0,1fr)_auto] sm:gap-8 sm:py-3 sm:pb-14"
               >
-                <div className="max-w-[16.5rem]">
+                <div className="col-span-2 max-w-[16.5rem] sm:col-span-1">
                   <p className="m-0 text-[17px] leading-[1.4] text-[#1E1F2B]">{item.description}</p>
                   <p className="mt-3 m-0 text-[15px] leading-snug text-[#AAAAAA]">{item.index}</p>
                 </div>
 
-                <div className="flex min-w-0 items-center justify-between gap-4">
-                  <div className="flex min-w-0 items-center gap-3 sm:gap-5">
-                    <h3 className="m-0 min-w-0 overflow-hidden text-[clamp(2rem,10vw,6.25rem)] font-normal leading-[0.86] tracking-[-0.055em] text-[#1E1F2B] sm:whitespace-nowrap">
-                      {item.name}
-                    </h3>
-                    <Image
-                      src={item.image}
-                      alt={item.imageAlt}
-                      width={176}
-                      height={112}
-                      className="h-[4.5rem] w-[7rem] shrink-0 object-cover sm:h-[5.5rem] sm:w-[9rem]"
-                    />
-                  </div>
-                  <span className="mt-2 hidden shrink-0 text-[15px] leading-snug text-[#AAAAAA] sm:inline">
-                    {item.index}
-                  </span>
-                </div>
+                <h3 className="m-0 min-w-0 overflow-hidden text-[clamp(2rem,10vw,6.25rem)] font-normal leading-[0.86] tracking-[-0.055em] text-[#1E1F2B] sm:whitespace-nowrap">
+                  {item.name}
+                </h3>
+
+                <Image
+                  src={item.image}
+                  alt={item.imageAlt}
+                  width={176}
+                  height={112}
+                  className="h-[4.5rem] w-[7rem] shrink-0 justify-self-end object-cover sm:h-[5.5rem] sm:w-[9rem]"
+                />
               </Link>
             </li>
           ))}
