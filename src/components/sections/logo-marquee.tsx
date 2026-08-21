@@ -52,7 +52,7 @@ export function LogoMarquee() {
       >
         {integrationsSection.eyebrow}
       </h2>
-      <p className="mx-auto mb-16 max-w-2xl text-center text-[17px] leading-7 text-[#5B5B5B]">
+      <p className="mx-auto mb-16 max-w-2xl text-center text-[17px] leading-[1.4] text-[#1E1F2B]">
         {integrationsSection.body}
       </p>
 
