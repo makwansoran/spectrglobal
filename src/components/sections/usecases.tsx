@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export function UseCases() {
   const useCases = [
     {
@@ -5,30 +7,35 @@ export function UseCases() {
       title: "Defense",
       description:
         "Situational awareness, intelligence, and operational decision-making.",
+      image: "/images/industries/defence.jpg",
     },
     {
       number: "02",
       title: "Logistics",
       description:
         "Optimize complex supply chains, assets, and operational flows.",
+      image: "/images/industries/logistics.jpg",
     },
     {
       number: "03",
       title: "Energy",
       description:
         "Unify operational data across infrastructure, assets, and markets.",
+      image: "/images/industries/energy.jpg",
     },
     {
       number: "04",
       title: "Shipping",
       description:
         "Connect fleet, cargo, routes, and operational intelligence.",
+      image: "/images/industries/ports.jpg",
     },
     {
       number: "05",
       title: "Manufacturing",
       description:
         "Turn production data into real-time operational insight.",
+      image: "/images/industries/manufacturing.jpg",
     },
   ];
 
@@ -45,19 +52,30 @@ export function UseCases() {
           {useCases.map((useCase) => (
             <div
               key={useCase.number}
-              className="group grid grid-cols-[48px_1fr] gap-6 border-b border-[#D2D2CE] py-8 sm:grid-cols-[64px_1fr_1.2fr] sm:gap-8"
+              className="group grid grid-cols-[48px_minmax(0,1fr)] gap-x-6 gap-y-6 border-b border-[#D2D2CE] py-8 sm:grid-cols-[64px_minmax(0,1fr)_220px] sm:gap-x-8 sm:gap-y-0"
             >
               <span className="pt-1 font-mono text-[11px] tracking-[0.08em] text-[#8A8A8F]">
                 {useCase.number}
               </span>
 
-              <h3 className="m-0 text-2xl font-medium tracking-[-0.02em] text-[#0A0A0A] sm:text-3xl">
-                {useCase.title}
-              </h3>
+              <div>
+                <h3 className="m-0 text-2xl font-medium tracking-[-0.02em] text-[#0A0A0A] sm:text-3xl">
+                  {useCase.title}
+                </h3>
+                <p className="mt-3 m-0 max-w-[420px] text-sm leading-[1.6] text-[#6B6B72] sm:text-[15px]">
+                  {useCase.description}
+                </p>
+              </div>
 
-              <p className="col-start-2 m-0 max-w-[420px] text-sm leading-[1.6] text-[#6B6B72] sm:col-start-auto sm:text-[15px]">
-                {useCase.description}
-              </p>
+              <div className="relative col-start-2 aspect-[16/9] overflow-hidden bg-[#D8D8D3] sm:col-start-auto sm:row-span-2 sm:ml-4 sm:aspect-[16/10]">
+                <Image
+                  src={useCase.image}
+                  alt={`${useCase.title} operations`}
+                  fill
+                  sizes="(min-width: 640px) 220px, calc(100vw - 72px)"
+                  className="object-cover grayscale-[15%] transition duration-700 ease-out group-hover:scale-[1.04] group-hover:grayscale-0"
+                />
+              </div>
             </div>
           ))}
         </div>

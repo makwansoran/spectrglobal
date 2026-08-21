@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Geist_Mono, Instrument_Serif, IBM_Plex_Sans } from "next/font/google";
+import { Inter } from "next/font/google";
 import { GetStartedShell } from "@/components/get-started-shell";
 import { MarketingChrome } from "@/components/marketing-chrome";
 import { OrganizationJsonLd } from "@/components/json-ld";
@@ -9,18 +9,6 @@ import { site } from "@/lib/site";
 import "./globals.css";
 
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
-const instrument = Instrument_Serif({
-  variable: "--font-instrument",
-  subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
-});
-const ibmPlex = IBM_Plex_Sans({
-  variable: "--font-ibm-plex",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -59,7 +47,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${geistMono.variable} ${instrument.variable} ${ibmPlex.variable} h-full`}
+      className={`${inter.variable} h-full`}
     >
       <body className="flex min-h-full flex-col bg-bg text-fg">
         <a

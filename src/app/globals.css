@@ -28,8 +28,8 @@
   --color-nav-fg: var(--nav-fg);
   --color-accent: var(--accent);
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
-  --font-display: var(--font-instrument), ui-serif, Georgia, "Times New Roman", serif;
+  --font-mono: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
   /* Spectr OS (product UI) tokens */
   --color-base-900: #ffffff;
@@ -52,7 +52,7 @@
   --color-spectr-accent-dim: #1d4ed8;
   --shadow-panel: 0 8px 28px rgba(15, 23, 42, 0.08);
   --shadow-glow: 0 0 20px rgba(37, 99, 235, 0.15);
-  --font-palantir: var(--font-ibm-plex), "IBM Plex Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-palantir: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
 @layer base {
