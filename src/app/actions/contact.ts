@@ -18,6 +18,7 @@ type ContactPayload = {
   product: string;
   message: string;
   website?: string;
+  workUrl?: string;
 };
 
 function validate(payload: ContactPayload): ContactErrorCode | null {
@@ -50,6 +51,7 @@ export async function submitContactForm(
     product: String(formData.get("product") ?? ""),
     message: String(formData.get("message") ?? ""),
     website: String(formData.get("website") ?? ""),
+    workUrl: String(formData.get("workUrl") ?? ""),
   };
 
   const error = validate(payload);
@@ -62,11 +64,14 @@ export async function submitContactForm(
   const apiKey = process.env.RESEND_API_KEY;
 
   const name = `${payload.firstName} ${payload.lastName}`.trim();
-  const subject = `Spectr inquiry — ${payload.product}`;
+  const subject = payload.product.startsWith("Careers")
+    ? `Spectr careers — ${payload.product}`
+    : `Spectr inquiry — ${payload.product}`;
   const body = [
     `Name: ${name}`,
     payload.jobTitle ? `Job title: ${payload.jobTitle}` : null,
     payload.organization ? `Company / Institution: ${payload.organization}` : null,
+    payload.workUrl ? `Work link: ${payload.workUrl}` : null,
     payload.country ? `Country: ${payload.country}` : null,
     `Email: ${payload.email}`,
     payload.phone ? `Phone: ${payload.phone}` : null,

@@ -1,13 +1,9 @@
 import { Footer } from "@/components/footer";
-import { CapabilityStack } from "@/components/sections/capability-stack";
-import { ClosingCta } from "@/components/sections/closing-cta";
-import { IndustryStories } from "@/components/sections/industry-stories";
 import { IndustryPreview } from "@/components/sections/industry-preview";
+import { JoinTheTeam } from "@/components/sections/join-the-team";
 import { LogoMarquee } from "@/components/sections/logo-marquee";
-import { ProductSuite } from "@/components/sections/product-suite";
-import { WaitlistSection } from "@/components/sections/waitlist-section";
 import { UseCases } from "@/components/sections/usecases";
-import { CareersPageFrontPage } from "./careers/page";
+import { WaitlistSection } from "@/components/sections/waitlist-section";
 
 export default function HomePage() {
   return (
@@ -17,16 +13,9 @@ export default function HomePage() {
         <WaitlistSection />
         <LogoMarquee />
         <UseCases />
-        <CareersPageFrontPage />
+        <JoinTheTeam />
       </main>
       <Footer />
     </>
   );
 }
-
-/*
- <IndustryStories />
-  <ProductSuite />
-  <CapabilityStack />
-  <ClosingCta />
-*/
