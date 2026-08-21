@@ -20,9 +20,9 @@ export const site = {
 } as const;
 
 export const navPrimary = [
-  { label: "Products", href: "/platforms/spectr-os" },
-  { label: "Solutions", href: "/platforms/spectr-os" },
-  { label: "Company", href: "/about" },
+  { label: "Products", href: "/products" },
+  { label: "Solutions", href: "/solutions" },
+  { label: "Company", href: "/company" },
   { label: "News", href: "/news" },
   { label: "Careers", href: "/careers" },
 ] as const;
@@ -42,18 +42,20 @@ export type NavSection = {
 export const navSections: NavSection[] = [
   {
     label: "Products",
-    href: "/platforms/spectr-os",
+    href: "/products",
     items: [
       {
         label: "Spectr OS",
         href: "/platforms/spectr-os",
         description: "The operating system for the enterprise — fuse data, decide, and act.",
       },
+      { label: "Ontology", href: "/products/ontology", description: "A shared operational world." },
+      { label: "Agentic runtime", href: "/products/agents", description: "Agents that propose real work." },
     ],
   },
   {
     label: "Solutions",
-    href: "/platforms/spectr-os",
+    href: "/solutions",
     items: [
       { label: "Logistics", href: "/use-cases/logistics", description: "Planning and execution across the network." },
       { label: "Manufacturing", href: "/use-cases/manufacturing", description: "Strategy and the shop floor as one model." },
@@ -63,7 +65,7 @@ export const navSections: NavSection[] = [
   },
   {
     label: "Company",
-    href: "/about",
+    href: "/company",
     items: [
       { label: "About us", href: "/about", description: "A Norwegian team building Spectr OS." },
       { label: "SPECTR BOOTCAMP", href: "/bootcamp", description: "Learn to create your own AI and run it locally." },
@@ -89,7 +91,8 @@ export const footerColumns = [
     title: "Products",
     links: [
       { label: "Spectr OS", href: "/platforms/spectr-os" },
-      { label: "Integrations", href: "/#integrations" },
+      { label: "Products", href: "/products" },
+      { label: "Developers", href: "/developers" },
       { label: "Get started", href: "/contact" },
     ],
   },
@@ -106,7 +109,8 @@ export const footerColumns = [
     title: "Company",
     links: [
       { label: "About", href: "/about" },
-      { label: "SPECTR BOOTCAMP", href: "/bootcamp" },
+      { label: "Customers", href: "/customers" },
+      { label: "Blog", href: "/blog" },
       { label: "Careers", href: "/careers" },
       { label: "News", href: "/news" },
       { label: "Contact", href: "/contact" },

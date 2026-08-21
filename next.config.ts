@@ -9,13 +9,11 @@ const nextConfig: NextConfig = {
     return [
       { source: "/no", destination: "/", permanent: true },
       { source: "/no/:path*", destination: "/:path*", permanent: true },
-      { source: "/research", destination: "/", permanent: true },
       { source: "/object-intelligence", destination: "/platforms/spectr-os", permanent: true },
       { source: "/platforms/aim", destination: "/platforms/spectr-os", permanent: true },
       { source: "/platforms/metaphysics", destination: "/platforms/spectr-os", permanent: true },
       { source: "/platforms/argus", destination: "/platforms/spectr-os", permanent: true },
       { source: "/drones", destination: "/", permanent: true },
-      { source: "/products/:path*", destination: "/", permanent: true },
       { source: "/centurion", destination: "/", permanent: true },
       { source: "/autonomous-engine", destination: "/", permanent: true },
       { source: "/robotics", destination: "/", permanent: true },
@@ -24,7 +22,8 @@ const nextConfig: NextConfig = {
       { source: "/wms/:path*", destination: "/platforms/spectr-os", permanent: true },
       { source: "/newsroom", destination: "/news", permanent: true },
       { source: "/newsroom/:path*", destination: "/news", permanent: true },
-      { source: "/documentation/:path*", destination: "/", permanent: true },
+      { source: "/documentation", destination: "/developers", permanent: true },
+      { source: "/documentation/:path*", destination: "/developers", permanent: true },
     ];
   },
 };

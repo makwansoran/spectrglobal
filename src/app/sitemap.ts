@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { hubPaths } from "@/lib/hubs";
 import { site } from "@/lib/site";
 import { getIndustrySlugs } from "@/lib/use-cases";
 
@@ -17,6 +18,7 @@ const paths = [
   "/privacy",
   "/terms",
   "/bootcamp",
+  ...hubPaths,
   ...getIndustrySlugs().map((slug) => `/use-cases/${slug}`),
 ];
 
