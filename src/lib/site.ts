@@ -88,6 +88,7 @@ export const footerColumns = [
     title: "Products",
     links: [
       { label: "Spectr OS", href: "/platforms/spectr-os" },
+      { label: "Integrations", href: "/#integrations" },
       { label: "Get started", href: "/contact" },
     ],
   },

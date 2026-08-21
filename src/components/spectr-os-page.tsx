@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { GetStartedButton } from "@/components/get-started-button";
 import { Reveal } from "@/components/reveal";
+import { LogoMarquee } from "@/components/sections/logo-marquee";
 import { spectrOsPage } from "@/lib/spectr-os-page";
 
 export function SpectrOsPageView() {
@@ -62,6 +63,8 @@ export function SpectrOsPageView() {
           </ul>
         </div>
       </section>
+
+      <LogoMarquee />
 
       <section className="pb-20 sm:pb-28">
         <div className="container-x">
