@@ -52,6 +52,7 @@ const referenceNavSections: NavSection[] = [
     href: "/about",
     items: [
       { label: "About us", href: "/about" },
+      { label: "SPECTR BOOTCAMP", href: "/bootcamp" },
       { label: "Careers", href: "/careers" },
       { label: "News", href: "/news" },
       { label: "Contact", href: "/contact" },

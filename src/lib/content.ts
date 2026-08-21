@@ -113,10 +113,12 @@ export const offeringsCeoQuote = {
 };
 
 export const spectrBootcamp = {
+  href: "/bootcamp",
   eyebrow: "SPECTR BOOTCAMP",
   title: "Learn to create your own AI.",
   body: "A one-video course on building a model with your own data, wiring it into a workflow, and running it locally — on your machines, not someone else’s cloud.",
   courseLabel: "1 video course",
+  cta: "Open bootcamp →",
   videoSrc: "/videos/spectr-bootcamp.mp4",
   videoPoster: "/images/bootcamp/video-poster.png",
   videoTitle: "Spectr Bootcamp — create, train, and run your own AI",

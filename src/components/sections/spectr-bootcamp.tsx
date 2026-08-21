@@ -10,9 +10,9 @@ export function SpectrBootcamp() {
         <p className="bootcamp__eyebrow">{spectrBootcamp.eyebrow}</p>
         <div className="bootcamp__intro">
           <div>
-            <h2 id="bootcamp-heading" className="bootcamp__title">
+            <h1 id="bootcamp-heading" className="bootcamp__title">
               {spectrBootcamp.title}
-            </h2>
+            </h1>
             <p className="bootcamp__body">{spectrBootcamp.body}</p>
           </div>
           <p className="bootcamp__badge">{spectrBootcamp.courseLabel}</p>
@@ -26,7 +26,7 @@ export function SpectrBootcamp() {
 
         <div className="bootcamp__plan">
           <p className="bootcamp__plan-eyebrow">{spectrBootcamp.planEyebrow}</p>
-          <h3 className="bootcamp__plan-title">{spectrBootcamp.planTitle}</h3>
+          <h2 className="bootcamp__plan-title">{spectrBootcamp.planTitle}</h2>
         </div>
 
         <ol className="bootcamp__steps">
@@ -43,7 +43,7 @@ export function SpectrBootcamp() {
                 />
               </div>
               <p className="bootcamp__step-index">{step.index}</p>
-              <h4 className="bootcamp__step-title">{step.title}</h4>
+              <h3 className="bootcamp__step-title">{step.title}</h3>
               <p className="bootcamp__step-body">{step.body}</p>
             </li>
           ))}
