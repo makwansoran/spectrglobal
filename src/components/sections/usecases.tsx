@@ -25,16 +25,16 @@ export function UseCases() {
 
                 <div className="flex min-w-0 items-center justify-between gap-4">
                   <div className="flex min-w-0 items-center gap-3 sm:gap-5">
-                    <Image
-                      src={item.image}
-                      alt={item.imageAlt}
-                      width={80}
-                      height={100}
-                      className="h-14 w-11 shrink-0 object-cover sm:h-16 sm:w-[3.25rem]"
-                    />
                     <h3 className="m-0 min-w-0 overflow-hidden text-[clamp(2rem,10vw,6.25rem)] font-normal leading-[0.86] tracking-[-0.055em] text-[#1E1F2B] sm:whitespace-nowrap">
                       {item.name}
                     </h3>
+                    <Image
+                      src={item.image}
+                      alt={item.imageAlt}
+                      width={176}
+                      height={112}
+                      className="h-[4.5rem] w-[7rem] shrink-0 object-cover sm:h-[5.5rem] sm:w-[9rem]"
+                    />
                   </div>
                   <span className="mt-2 hidden shrink-0 text-[15px] leading-snug text-[#AAAAAA] sm:inline">
                     {item.index}
