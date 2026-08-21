@@ -55,10 +55,10 @@ export const navSections: NavSection[] = [
     label: "Solutions",
     href: "/platforms/spectr-os",
     items: [
-      { label: "Logistics & supply chain", href: "/platforms/spectr-os", description: "Network decisions from inventory to yard." },
-      { label: "Manufacturing", href: "/platforms/spectr-os", description: "Lines, parts, labour, and quality as one model." },
-      { label: "Energy & industrials", href: "/platforms/spectr-os", description: "Plant signals turned into governed action." },
-      { label: "Ports & terminals", href: "/platforms/spectr-os", description: "Yard, berth, and cargo in one runtime." },
+      { label: "Logistics", href: "/use-cases/logistics", description: "Planning and execution across the network." },
+      { label: "Manufacturing", href: "/use-cases/manufacturing", description: "Strategy and the shop floor as one model." },
+      { label: "Shipping", href: "/use-cases/shipping", description: "Fleet, cargo, berth, and inland in one picture." },
+      { label: "Energy", href: "/use-cases/energy", description: "Plant, asset, and market decisions in one runtime." },
     ],
   },
   {
@@ -96,10 +96,10 @@ export const footerColumns = [
   {
     title: "Solutions",
     links: [
-      { label: "Logistics", href: "/platforms/spectr-os" },
-      { label: "Manufacturing", href: "/platforms/spectr-os" },
-      { label: "Energy", href: "/platforms/spectr-os" },
-      { label: "Healthcare", href: "/platforms/spectr-os" },
+      { label: "Logistics", href: "/use-cases/logistics" },
+      { label: "Manufacturing", href: "/use-cases/manufacturing" },
+      { label: "Energy", href: "/use-cases/energy" },
+      { label: "Healthcare", href: "/use-cases/healthcare" },
     ],
   },
   {

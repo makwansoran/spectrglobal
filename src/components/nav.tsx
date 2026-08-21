@@ -21,10 +21,10 @@ const referenceNavSections: NavSection[] = [
     label: "Solutions",
     href: "/platforms/spectr-os",
     items: [
-      { label: "Overview", href: "/platforms/spectr-os", description: "Operational intelligence for complex enterprises." },
-      { label: "Logistics & supply chain", href: "/platforms/spectr-os" },
-      { label: "Manufacturing", href: "/platforms/spectr-os" },
-      { label: "Energy & industrials", href: "/platforms/spectr-os" },
+      { label: "Logistics", href: "/use-cases/logistics" },
+      { label: "Manufacturing", href: "/use-cases/manufacturing" },
+      { label: "Shipping", href: "/use-cases/shipping" },
+      { label: "Energy", href: "/use-cases/energy" },
     ],
   },
   {
