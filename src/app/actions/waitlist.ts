@@ -20,6 +20,7 @@ export async function submitWaitlistForm(
     return { ok: true };
   }
 
+  const name = String(formData.get("name") ?? "").trim();
   const email = String(formData.get("email") ?? "").trim();
   if (!email || !isValidEmail(email)) {
     return { ok: false, error: "email" };
@@ -29,7 +30,14 @@ export async function submitWaitlistForm(
   const from = process.env.CONTACT_FROM_EMAIL ?? "Spectr Website <onboarding@resend.dev>";
   const apiKey = process.env.RESEND_API_KEY;
   const subject = "spectrOs waitlist";
-  const body = [`Email: ${email}`, "", "Requested early access to spectrOs."].join("\n");
+  const body = [
+    name ? `Name: ${name}` : null,
+    `Email: ${email}`,
+    "",
+    "Requested early access to spectrOs.",
+  ]
+    .filter(Boolean)
+    .join("\n");
 
   if (!apiKey) {
     console.info("[waitlist]", subject, body);

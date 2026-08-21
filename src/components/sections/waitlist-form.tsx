@@ -1,8 +1,7 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect, useId, useRef, useState } from "react";
 import { submitWaitlistForm, type WaitlistFormState } from "@/app/actions/waitlist";
-import { Button } from "@/components/button";
 
 const initialState: WaitlistFormState = { ok: false };
 
@@ -12,46 +11,117 @@ const errorMessages: Record<string, string> = {
 };
 
 export function WaitlistForm() {
+  const [open, setOpen] = useState(false);
   const [state, formAction, pending] = useActionState(submitWaitlistForm, initialState);
+  const titleId = useId();
+  const emailId = useId();
+  const nameId = useId();
+  const closeRef = useRef<HTMLButtonElement>(null);
 
-  if (state.ok) {
-    return (
-      <p role="status" className="max-w-md text-[15px] leading-7 text-[#111111]">
-        You are on the list. We will email you when spectrOs is ready.
-      </p>
-    );
-  }
+  useEffect(() => {
+    if (!open) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    closeRef.current?.focus();
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = previous;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  useEffect(() => {
+    if (state.ok) {
+      const timer = window.setTimeout(() => setOpen(false), 1600);
+      return () => window.clearTimeout(timer);
+    }
+  }, [state.ok]);
 
   return (
-    <form action={formAction} className="spectros-waitlist__form">
-      <input
-        type="text"
-        name="website"
-        tabIndex={-1}
-        autoComplete="off"
-        className="hidden"
-        aria-hidden="true"
-      />
-      <label htmlFor="spectros-waitlist-email" className="sr-only">
-        Email address
-      </label>
-      <input
-        id="spectros-waitlist-email"
-        name="email"
-        type="email"
-        required
-        autoComplete="email"
-        placeholder="Work email"
-        disabled={pending}
-      />
-      <Button type="submit" size="lg" disabled={pending}>
-        {pending ? "Joining…" : "Join the waitlist"}
-      </Button>
-      {state.error ? (
-        <p role="alert" className="spectros-waitlist__error">
-          {errorMessages[state.error] ?? errorMessages.generic}
-        </p>
+    <>
+      <button type="button" className="spectros-waitlist__join" onClick={() => setOpen(true)}>
+        <svg viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path
+            d="M7 12.25V1.75M7 1.75 2.75 6M7 1.75 11.25 6"
+            stroke="currentColor"
+            strokeWidth="1.4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+        Join waitlist
+      </button>
+
+      {open ? (
+        <div className="spectros-waitlist__dialog" role="dialog" aria-modal="true" aria-labelledby={titleId}>
+          <button
+            type="button"
+            className="spectros-waitlist__backdrop"
+            aria-label="Close waitlist form"
+            onClick={() => setOpen(false)}
+          />
+          <div className="spectros-waitlist__panel">
+            <div className="spectros-waitlist__panel-head">
+              <div>
+                <h3 id={titleId}>Join the waitlist</h3>
+                <p>We&apos;ll email you when spectrOs is ready.</p>
+              </div>
+              <button
+                ref={closeRef}
+                type="button"
+                className="spectros-waitlist__close"
+                aria-label="Close"
+                onClick={() => setOpen(false)}
+              >
+                <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none" aria-hidden="true">
+                  <path
+                    d="m5 5 10 10M15 5 5 15"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </button>
+            </div>
+
+            {state.ok ? (
+              <p role="status" className="spectros-waitlist__status">
+                You are on the list.
+              </p>
+            ) : (
+              <form action={formAction}>
+                <input
+                  type="text"
+                  name="website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  className="hidden"
+                  aria-hidden="true"
+                />
+                <div>
+                  <label htmlFor={nameId}>Name</label>
+                  <input id={nameId} name="name" type="text" autoComplete="name" />
+                </div>
+                <div>
+                  <label htmlFor={emailId}>Email</label>
+                  <input id={emailId} name="email" type="email" required autoComplete="email" />
+                </div>
+                {state.error ? (
+                  <p role="alert" className="spectros-waitlist__error">
+                    {errorMessages[state.error] ?? errorMessages.generic}
+                  </p>
+                ) : null}
+                <button type="submit" className="spectros-waitlist__submit" disabled={pending}>
+                  {pending ? "Joining…" : "Join waitlist"}
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
       ) : null}
-    </form>
+    </>
   );
 }
