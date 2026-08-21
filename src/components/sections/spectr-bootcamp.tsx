@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { BootcampVideo } from "@/components/sections/bootcamp-video";
 import { spectrBootcamp } from "@/lib/content";
 import "./spectr-bootcamp.css";
@@ -28,15 +27,14 @@ export function SpectrBootcamp() {
         <ol className="bootcamp__steps">
           {spectrBootcamp.steps.map((step) => (
             <li key={step.index} className="bootcamp__step">
-              <div className="bootcamp__step-image">
-                <Image
-                  src={step.image}
-                  alt={step.imageAlt}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 80vw, 20vw"
-                  quality={90}
-                />
+              <div
+                className="bootcamp__step-image"
+                role="img"
+                aria-label={step.imageAlt}
+              >
+                <span className="bootcamp__step-image-mark" aria-hidden="true">
+                  Image
+                </span>
               </div>
               <p className="bootcamp__step-index">{step.index}</p>
               <h3 className="bootcamp__step-title">{step.title}</h3>
