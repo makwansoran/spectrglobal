@@ -105,11 +105,11 @@ export const useCases: UseCase[] = [
 ];
 
 export const offeringsCeoQuote = {
-  eyebrow: "Spectr Philosophy",
+  eyebrow: "From the CEO",
   quote:
-    "Forbidding is forbidden to us. Technological advancement is a must for our customers — not a feature we ship, but the standard we hold.",
+    "Technological advancement is a must for our customers. The organisations that run factories, warehouses, grids, and fronts cannot wait for software that is merely interesting — they need systems that make them more capable, year after year.",
   attribution: "Makwan Soran Ismail",
-  role: "CEO, Spectr",
+  role: "Chief Executive Officer",
 };
 
 export const softwareProducts: SoftwareProduct[] = [

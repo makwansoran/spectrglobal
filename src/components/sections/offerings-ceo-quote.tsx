@@ -1,24 +1,22 @@
-import { Reveal } from "@/components/reveal";
 import { offeringsCeoQuote } from "@/lib/content";
 
 export function OfferingsCeoQuote() {
   return (
-    <section className="py-20 sm:py-28" aria-label="Spectr Philosophy">
-      <div className="container-x">
-        <Reveal>
-          <blockquote className="mx-auto max-w-4xl text-center">
-            <p className="label">{offeringsCeoQuote.eyebrow}</p>
-            <p className="brand-font mt-8 text-[1.35rem] leading-snug tracking-tight text-fg sm:text-3xl sm:leading-[1.25] lg:text-[2.35rem]">
-              {offeringsCeoQuote.quote}
+    <section className="border-t border-[#D2D2CE] bg-white px-6 py-[128px]" aria-label="From the CEO">
+      <div className="mx-auto w-full max-w-[1400px]">
+        <p className="m-0 text-[15px] leading-snug tracking-[-0.01em] text-[#AAAAAA]">From the CEO</p>
+
+        <blockquote className="mt-10 m-0 max-w-[58rem]">
+          <p className="m-0 text-[clamp(28px,3.8vw,48px)] font-normal leading-[1.18] tracking-[-0.03em] text-[#1E1F2B]">
+            {offeringsCeoQuote.quote}
+          </p>
+          <footer className="mt-12">
+            <p className="m-0 text-[17px] font-medium leading-snug text-[#1E1F2B]">
+              {offeringsCeoQuote.attribution}
             </p>
-            <footer className="mt-10">
-              <p className="text-sm font-medium text-fg">{offeringsCeoQuote.attribution}</p>
-              <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.16em] text-muted">
-                {offeringsCeoQuote.role}
-              </p>
-            </footer>
-          </blockquote>
-        </Reveal>
+            <p className="mt-1 m-0 text-[15px] leading-snug text-[#AAAAAA]">{offeringsCeoQuote.role}</p>
+          </footer>
+        </blockquote>
       </div>
     </section>
   );
