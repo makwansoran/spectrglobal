@@ -2,16 +2,71 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useId, useState } from "react";
-import { GetStartedButton } from "@/components/get-started-button";
+import { useEffect, useId, useRef, useState } from "react";
+import { useGetStarted } from "@/components/get-started-context";
 import { LogoMark } from "@/components/logo";
-import { navSections, site, type NavSection } from "@/lib/site";
+import { site, type NavSection } from "@/lib/site";
+
+const referenceNavSections: NavSection[] = [
+  {
+    label: "Products",
+    href: "/platforms/spectr-os",
+    items: [
+      { label: "Spectr OS", href: "/platforms/spectr-os", description: "The operating system for the enterprise." },
+      { label: "Platform overview", href: "/platforms/spectr-os", description: "Fuse data, decide, and act in one runtime." },
+      { label: "Get started", href: "/contact", description: "Start a conversation with the Spectr team." },
+    ],
+  },
+  {
+    label: "Solutions",
+    href: "/platforms/spectr-os",
+    items: [
+      { label: "Overview", href: "/platforms/spectr-os", description: "Operational intelligence for complex enterprises." },
+      { label: "Logistics & supply chain", href: "/platforms/spectr-os" },
+      { label: "Manufacturing", href: "/platforms/spectr-os" },
+      { label: "Energy & industrials", href: "/platforms/spectr-os" },
+    ],
+  },
+  {
+    label: "Research",
+    href: "/news",
+    items: [
+      { label: "Latest updates", href: "/news", description: "See the latest releases and progress from Spectr." },
+      { label: "Systems intelligence", href: "/platforms/spectr-os" },
+      { label: "Autonomous operations", href: "/platforms/spectr-os" },
+    ],
+  },
+  {
+    label: "Developers",
+    href: "/platforms/spectr-os",
+    items: [
+      { label: "Spectr OS", href: "/platforms/spectr-os", description: "Explore the operating system and its capabilities." },
+      { label: "Integration", href: "/contact", description: "Connect your enterprise systems with Spectr." },
+      { label: "Contact engineering", href: "/contact" },
+    ],
+  },
+  { label: "Blog", href: "/news" },
+  { label: "Customers", href: "/platforms/spectr-os" },
+  {
+    label: "Company",
+    href: "/about",
+    items: [
+      { label: "About us", href: "/about" },
+      { label: "Careers", href: "/careers" },
+      { label: "News", href: "/news" },
+      { label: "Contact", href: "/contact" },
+    ],
+  },
+];
 
 export function Nav() {
   const pathname = usePathname();
+  const { openGetStarted } = useGetStarted();
   const [open, setOpen] = useState(false);
   const [menu, setMenu] = useState<string | null>(null);
+  const [primaryNavOverflowing, setPrimaryNavOverflowing] = useState(false);
   const [renderedPathname, setRenderedPathname] = useState(pathname);
+  const primaryNavRef = useRef<HTMLElement>(null);
 
   if (pathname !== renderedPathname) {
     setRenderedPathname(pathname);
@@ -38,18 +93,35 @@ export function Nav() {
     return () => window.removeEventListener("keydown", onKey);
   }, [open, menu]);
 
+  useEffect(() => {
+    const primaryNav = primaryNavRef.current;
+    if (!primaryNav) return;
+
+    const updateOverflow = () => {
+      setPrimaryNavOverflowing(primaryNav.scrollWidth > primaryNav.clientWidth);
+    };
+
+    updateOverflow();
+    const observer = new ResizeObserver(updateOverflow);
+    observer.observe(primaryNav);
+    window.addEventListener("resize", updateOverflow);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", updateOverflow);
+    };
+  }, []);
+
   return (
     <>
-      <header className="site-header">
-        <div className="container-x">
-          <div className="flex h-[4.25rem] items-center gap-6 lg:h-[4.75rem]">
-            <Link href="/" className="flex shrink-0 items-center gap-2.5" aria-label={site.name}>
-              <LogoMark className="h-8 w-8" />
-              <span className="text-[15px] font-medium tracking-[-0.02em] text-fg">Spectr</span>
+      <header className="site-header site-header--reference">
+        <div className="reference-nav-shell">
+          <div className="reference-nav">
+            <Link href="/" className="reference-nav__brand" aria-label={site.name}>
+              <LogoMark className="h-[34px] w-[34px]" />
             </Link>
 
-            <nav aria-label="Primary" className="hidden flex-1 items-center justify-center gap-1 lg:flex">
-              {navSections.map((section) => (
+            <nav ref={primaryNavRef} aria-label="Primary" className="reference-nav__links hidden lg:flex">
+              {referenceNavSections.map((section) => (
                 <NavDropdown
                   key={section.label}
                   section={section}
@@ -60,23 +132,27 @@ export function Nav() {
               ))}
             </nav>
 
-            <div className="ml-auto flex items-center gap-2 sm:gap-3">
-              <Link href="/login" className="btn btn-secondary btn-sm hidden sm:inline-flex">
+            <div className="reference-nav__actions">
+              <Link
+                href="/login"
+                className={`reference-nav__action hidden sm:flex ${primaryNavOverflowing ? "reference-nav__action--merged" : ""}`}
+              >
                 Login
               </Link>
-              <Link href="/contact" className="btn btn-secondary btn-sm hidden sm:inline-flex">
-                Contact
-              </Link>
-              <GetStartedButton className="nav-cta hidden sm:inline-flex" label="Get started" size="sm">
-                Get started
-              </GetStartedButton>
+              <button
+                type="button"
+                onClick={() => openGetStarted("contact")}
+                className="reference-nav__action reference-nav__action--contact hidden sm:flex"
+              >
+                Contact sales
+              </button>
               <button
                 type="button"
                 onClick={() => setOpen((value) => !value)}
                 aria-expanded={open}
                 aria-controls="site-nav-overlay"
                 aria-label={open ? "Close menu" : "Open menu"}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 text-fg lg:hidden"
+                className="reference-nav__burger inline-flex lg:hidden"
               >
                 <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none" aria-hidden="true">
                   {open ? (
@@ -111,7 +187,7 @@ export function Nav() {
           </div>
 
           <nav className="container-x flex flex-col gap-1 pb-10 pt-6" aria-label="Mobile">
-            {navSections.map((section) => (
+            {referenceNavSections.map((section) => (
               <div key={section.label} className="border-b border-border py-4">
                 <Link
                   href={section.href}
@@ -137,16 +213,16 @@ export function Nav() {
               <Link href="/login" className="btn btn-secondary" onClick={() => setOpen(false)}>
                 Login
               </Link>
-              <Link href="/contact" className="btn btn-secondary" onClick={() => setOpen(false)}>
-                Contact
-              </Link>
-              <GetStartedButton
-                className="nav-cta"
-                label="Get started"
-                onClick={() => setOpen(false)}
+              <button
+                type="button"
+                onClick={() => {
+                  setOpen(false);
+                  openGetStarted("contact");
+                }}
+                className="btn btn-secondary reference-nav__action--contact"
               >
-                Get started
-              </GetStartedButton>
+                Contact sales
+              </button>
             </div>
           </nav>
         </div>
@@ -170,47 +246,51 @@ function NavDropdown({
 
   if (!section.items?.length) {
     return (
-      <Link href={section.href} className="nav-link rounded-full px-3 py-2">
-        {section.label}
-      </Link>
+      <div className="reference-nav__item">
+        <Link href={section.href}>{section.label}</Link>
+      </div>
     );
   }
 
   return (
-    <div className="relative" onMouseEnter={onOpen} onMouseLeave={onClose}>
+    <div
+      className={`reference-nav__item ${section.label === "Company" ? "reference-nav__item--last" : ""} ${open ? "reference-nav__item--open" : ""}`}
+      onMouseEnter={onOpen}
+      onMouseLeave={onClose}
+    >
       <Link
         href={section.href}
-        className="nav-link inline-flex items-center gap-1 rounded-full px-3 py-2"
+        className="reference-nav__trigger"
         aria-expanded={open}
         aria-haspopup="true"
         aria-controls={menuId}
         onFocus={onOpen}
       >
         {section.label}
-        <svg viewBox="0 0 12 12" className="h-3 w-3 opacity-50" fill="none" aria-hidden="true">
-          <path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-        </svg>
       </Link>
       {open ? (
         <div
           id={menuId}
           role="menu"
-          className="absolute left-1/2 top-full z-50 w-[min(28rem,calc(100vw-2rem))] -translate-x-1/2 pt-3"
+          className="reference-nav__mega"
         >
-          <div className="rounded-2xl border border-border bg-surface p-2 shadow-[0_24px_60px_rgba(22,21,19,0.12)]">
-            {section.items.map((item) => (
-              <Link
-                key={item.href + item.label}
-                href={item.href}
-                role="menuitem"
-                className="block rounded-xl px-4 py-3 hover:bg-surface-2"
-                onClick={onClose}
-              >
-                <p className="text-[15px] font-medium tracking-[-0.01em] text-fg">{item.label}</p>
-                {item.description ? <p className="mt-1 text-sm leading-5 text-muted">{item.description}</p> : null}
-              </Link>
-            ))}
-          </div>
+          {section.items.map((item) => (
+            <Link
+              key={item.href + item.label}
+              href={item.href}
+              role="menuitem"
+              className="reference-nav__mega-item"
+              onClick={onClose}
+            >
+              <span>
+                <span className="reference-nav__mega-title">{item.label}</span>
+                {item.description ? <span className="reference-nav__mega-description">{item.description}</span> : null}
+              </span>
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="m6 4 4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </Link>
+          ))}
         </div>
       ) : null}
     </div>
