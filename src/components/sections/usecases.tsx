@@ -12,7 +12,7 @@ export function UseCases() {
   if (!active) return null;
 
   return (
-    <section id="use-cases" className="scroll-mt-24 bg-[#F1F1F1] px-6 pb-[140px] pt-[128px]">
+    <section id="use-cases" className="scroll-mt-24 bg-white px-6 pb-[140px] pt-[128px]">
       <div className="mx-auto grid w-full max-w-[1400px] items-start gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(280px,0.8fr)] lg:gap-x-14">
         <h2 className="m-0 font-normal text-[clamp(30px,4.4vw,46px)] leading-none tracking-[-0.02em] text-[#1E1F2B] lg:col-start-1">
           {useCasesSection.title}
