@@ -21,21 +21,21 @@ export default async function LoginPage({
 }) {
   const { next } = await searchParams;
   const afterLogin = safeNextPath(next);
-  const forBootcamp = afterLogin === "/bootcamp";
+  const forDashboard = afterLogin === "/dashboard";
 
   return (
     <AuthShell
       title="Sign in to your account"
       subtitle={
-        forBootcamp
-          ? "Every Spectr account includes SPECTR BOOTCAMP. Enter your work email to continue."
+        forDashboard
+          ? "Sign in to open your dashboard. SPECTR BOOTCAMP is included. Spectr OS download needs permission."
           : "Enter your work email and password, then the code we email you."
       }
       footer={
         <>
           New to Spectr?{" "}
           <Link
-            href={forBootcamp ? "/signup?next=%2Fbootcamp" : "/signup"}
+            href={forDashboard ? "/signup?next=%2Fdashboard" : "/signup"}
             className="font-medium text-[#635bff] hover:text-[#5851ea]"
           >
             Create an account

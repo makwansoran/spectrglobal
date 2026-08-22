@@ -7,7 +7,7 @@ export type ProfileAccess = {
 };
 
 export function defaultNextForKind(kind: AccountKind) {
-  return kind === "careers" ? "/careers/apply" : "/dashboard";
+  return kind === "careers" ? "/careers/dashboard" : "/dashboard";
 }
 
 export function loginPathForKind(kind: AccountKind) {

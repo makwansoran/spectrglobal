@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 
-export function SignOutButton({ dark = false }: { dark?: boolean }) {
+export function SignOutButton({ dark = false, href = "/login" }: { dark?: boolean; href?: string }) {
   const router = useRouter();
   const [pending, setPending] = useState(false);
 
@@ -12,7 +12,7 @@ export function SignOutButton({ dark = false }: { dark?: boolean }) {
     setPending(true);
     const supabase = createClient();
     await supabase.auth.signOut();
-    router.replace("/login");
+    router.replace(href);
     router.refresh();
   }
 

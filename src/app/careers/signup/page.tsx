@@ -19,7 +19,7 @@ export default async function CareersSignupPage({
 
   return (
     <AuthShell wide hideIntro homeHref="/careers">
-      <SignupWizard next={safeNextPath(next, "/careers/apply")} kind="careers" />
+      <SignupWizard next={safeNextPath(next, "/careers/dashboard")} kind="careers" />
     </AuthShell>
   );
 }

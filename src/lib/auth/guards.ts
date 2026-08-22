@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import { isAdminEmail } from "@/lib/auth/admin";
 import { createClient } from "@/lib/supabase/server";
 
 export async function getAuthUser() {
@@ -34,6 +35,12 @@ export async function requireCareersUser() {
   if (!user) redirect("/careers/login");
   const access = await getProfileAccess(user.id);
   if (!access.careersAccess) redirect("/careers/login");
+  return { supabase, user };
+}
+
+export async function requireAdminUser() {
+  const { supabase, user } = await getAuthUser();
+  if (!user || !isAdminEmail(user.email)) redirect("/login");
   return { supabase, user };
 }
 

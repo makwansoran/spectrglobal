@@ -3,18 +3,11 @@
 import { usePathname } from "next/navigation";
 import { SiteBackground } from "@/components/site-background";
 import { CookieConsentLazy } from "@/components/cookie-consent-lazy";
+import { isAppChromePath } from "@/lib/chrome";
 
 export function MarketingChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const bare =
-    pathname === "/app" ||
-    pathname.startsWith("/app/") ||
-    pathname === "/login" ||
-    pathname === "/signup" ||
-    pathname === "/careers/login" ||
-    pathname === "/careers/signup" ||
-    pathname === "/check-email" ||
-    pathname.startsWith("/mfa");
+  const bare = isAppChromePath(pathname);
   if (bare) {
     return <>{children}</>;
   }

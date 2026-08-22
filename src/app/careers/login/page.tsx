@@ -7,7 +7,7 @@ import { buildPageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Careers sign in",
-  description: "Sign in to your Spectr careers account to apply.",
+  description: "Sign in to your Spectr careers account.",
   path: "/careers/login",
 });
 
@@ -17,13 +17,13 @@ export default async function CareersLoginPage({
   searchParams: Promise<{ next?: string }>;
 }) {
   const { next } = await searchParams;
-  const afterLogin = safeNextPath(next, "/careers/apply");
+  const afterLogin = safeNextPath(next, "/careers/dashboard");
 
   return (
     <AuthShell
       homeHref="/careers"
       title="Careers sign in"
-      subtitle="This login is only for job applications. Spectr OS uses a separate account."
+      subtitle="This login is only for the careers dashboard. Spectr OS uses a separate account."
       footer={
         <>
           Need a careers account?{" "}

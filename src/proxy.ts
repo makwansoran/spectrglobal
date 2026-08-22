@@ -8,6 +8,10 @@ function isProtectedPath(pathname: string) {
   return (
     pathname.startsWith("/dashboard") ||
     pathname.startsWith("/mfa") ||
+    pathname.startsWith("/admin") ||
+    pathname === "/careers/dashboard" ||
+    pathname.startsWith("/careers/dashboard/") ||
+    pathname.startsWith("/careers/positions") ||
     pathname === "/careers/apply" ||
     pathname.startsWith("/careers/apply/")
   );
@@ -61,6 +65,20 @@ export async function proxy(request: NextRequest) {
     url.pathname = safeNextPath(request.nextUrl.searchParams.get("next"));
     url.search = "";
     return NextResponse.redirect(url);
+  }
+
+  if (user && (pathname === "/careers/login" || pathname === "/careers/signup")) {
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("careers_access")
+      .eq("id", user.id)
+      .maybeSingle();
+    if (profile?.careers_access) {
+      const url = request.nextUrl.clone();
+      url.pathname = safeNextPath(request.nextUrl.searchParams.get("next"), "/careers/dashboard");
+      url.search = "";
+      return NextResponse.redirect(url);
+    }
   }
 
   return supabaseResponse;

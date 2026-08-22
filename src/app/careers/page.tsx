@@ -31,6 +31,7 @@ export default function CareersPage() {
               Create an account
             </Button>
           </div>
+          <p className="mt-6 text-sm text-[#6B6B72]">After you sign in you land on the careers dashboard, then open a position to apply.</p>
         </div>
       </section>
     </main>

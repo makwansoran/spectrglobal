@@ -21,9 +21,17 @@ const areaOptions: { id: HiringAreaId | "students" | "other"; label: string }[] 
   { id: "other", label: "Another overlap — tell us in the letter" },
 ];
 
-export function CareerApplyForm({ defaultArea = "" }: { defaultArea?: string }) {
+export function CareerApplyForm({
+  defaultArea = "",
+  defaultRoleTitle,
+}: {
+  defaultArea?: string;
+  defaultRoleTitle?: string;
+}) {
   const [state, formAction, pending] = useActionState(submitContactForm, initialState);
   const matched = areaOptions.find((option) => option.id === defaultArea);
+  const roleValue = defaultRoleTitle ? `Careers — ${defaultRoleTitle}` : "";
+  const defaultProduct = roleValue || (matched ? `Careers — ${matched.label}` : "");
 
   return (
     <form action={formAction} className="space-y-6">
@@ -41,11 +49,12 @@ export function CareerApplyForm({ defaultArea = "" }: { defaultArea?: string }) 
           id="product"
           name="product"
           required
-          defaultValue={matched ? `Careers — ${matched.label}` : ""}
+          defaultValue={defaultProduct}
         >
           <option value="" disabled>
             Select an area
           </option>
+          {roleValue ? <option value={roleValue}>{defaultRoleTitle}</option> : null}
           {areaOptions.map((option) => (
             <option key={option.id} value={`Careers — ${option.label}`}>
               {option.label}

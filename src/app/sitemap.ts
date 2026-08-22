@@ -15,6 +15,7 @@ const paths = [
   "/careers/students",
   "/careers/life",
   "/careers/apply",
+  "/careers/dashboard",
   "/news",
   "/contact",
   "/privacy",

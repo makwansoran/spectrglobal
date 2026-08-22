@@ -92,10 +92,43 @@ export type CareerRole = {
   location: string;
   type: "Full-time" | "Internship" | "Contract";
   href: string;
+  areaId: HiringAreaId;
+  summary: string;
+  body: string;
 };
 
-/** Posted requisitions. Empty until we are ready to fill a role. */
-export const openRoles: CareerRole[] = [];
+export function careerPositionHref(id: string) {
+  return `/careers/positions/${id}`;
+}
+
+export function getOpenRole(id: string) {
+  return openRoles.find((role) => role.id === id);
+}
+
+export const openRoles: CareerRole[] = [
+  {
+    id: "runtime-engineer",
+    title: "Runtime engineer",
+    team: "Spectr OS",
+    location: "Norway",
+    type: "Full-time",
+    href: careerPositionHref("runtime-engineer"),
+    areaId: "spectr-os",
+    summary: "Build the Spectr OS runtime that has to hold under a live warehouse.",
+    body: "Spectr OS fuses data, decides, and runs agentic workflows in one runtime. You will work on systems design against messy, physical truth — latency, failure, and operators who cannot wait for a dashboard. We hire people who want to stay with a hard problem for years.",
+  },
+  {
+    id: "field-engineer",
+    title: "Field engineer",
+    team: "Deployment",
+    location: "Norway",
+    type: "Full-time",
+    href: careerPositionHref("field-engineer"),
+    areaId: "deployment",
+    summary: "On-site integration with partner warehouses in the Nordics.",
+    body: "Deployment is the product, not an afterthought. You stand next to the people running the shift and make the system true to the building. Travel in Norway and the Nordics is part of the work. You will cross from model to interface to the floor more often than a job title suggests.",
+  },
+];
 
 export const hiringLocations = ["Norway", "On-site / hybrid, Nordics"] as const;
 

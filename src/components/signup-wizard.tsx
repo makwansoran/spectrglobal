@@ -43,7 +43,7 @@ export function SignupWizard({
     [
       careers ? "Email" : "Work email",
       careers
-        ? "Create a careers account to apply for listings."
+        ? "Create a careers account to see open positions."
         : "Use a business email. Personal inboxes are not accepted.",
     ],
     ["Two-factor authentication", `Enter the 6-digit code we sent to ${email || "your email"}.`],
@@ -346,7 +346,7 @@ export function SignupWizard({
           </div>
           {error ? <p role="alert" className="alert-error">{error}</p> : null}
           <button type="submit" disabled={pending} className="auth-submit">
-            {pending ? "Finishing…" : careers ? "Continue to apply" : "Go to dashboard"}
+            {pending ? "Finishing…" : careers ? "Go to careers dashboard" : "Go to dashboard"}
           </button>
         </form>
       ) : null}

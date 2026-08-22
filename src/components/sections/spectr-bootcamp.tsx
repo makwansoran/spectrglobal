@@ -23,21 +23,25 @@ export function SpectrBootcamp({ signedIn }: SpectrBootcampProps) {
         </div>
 
         {signedIn ? (
-          <BootcampVideo src={spectrBootcamp.videoSrc} title={spectrBootcamp.videoTitle} />
+          <>
+            <BootcampVideo src={spectrBootcamp.videoSrc} title={spectrBootcamp.videoTitle} />
+            <div className="mt-6">
+              <Button href="/dashboard" variant="secondary">
+                Open dashboard
+              </Button>
+            </div>
+          </>
         ) : (
           <div className="bootcamp-gate">
             <p className="bootcamp-gate__eyebrow">Members only</p>
             <h2 className="bootcamp-gate__title">{spectrBootcamp.attendTitle}</h2>
             <p className="bootcamp-gate__body">{spectrBootcamp.attendBody}</p>
             <div className="bootcamp-gate__actions">
-              <Button href={`/login?next=${encodeURIComponent(spectrBootcamp.href)}`}>
+              <Button href="/login?next=%2Fdashboard">
                 {spectrBootcamp.attendCta}
                 <ArrowIcon />
               </Button>
-              <Button
-                href={`/signup?next=${encodeURIComponent(spectrBootcamp.href)}`}
-                variant="secondary"
-              >
+              <Button href="/signup?next=%2Fdashboard" variant="secondary">
                 {spectrBootcamp.attendSignup}
               </Button>
             </div>
