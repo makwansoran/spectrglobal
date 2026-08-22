@@ -1,6 +1,7 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { DEMO_COOKIE, readDemoSession } from "@/lib/demo-auth";
+import { safeNextPath } from "@/lib/auth/next-path";
 
 export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({ request });
@@ -49,7 +50,7 @@ export async function updateSession(request: NextRequest) {
 
   if (isLogin && signedIn) {
     const redirect = request.nextUrl.clone();
-    redirect.pathname = "/app";
+    redirect.pathname = safeNextPath(request.nextUrl.searchParams.get("next"), "/app");
     redirect.search = "";
     return NextResponse.redirect(redirect);
   }

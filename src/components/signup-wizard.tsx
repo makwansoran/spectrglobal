@@ -7,6 +7,7 @@ import { ProgressSteps } from "@/components/progress-steps";
 import { countries } from "@/lib/countries";
 import { businessEmailError, normalizeEmail } from "@/lib/email";
 import { createClient } from "@/lib/supabase/client";
+import { safeNextPath } from "@/lib/auth/next-path";
 
 type Step = 0 | 1 | 2 | 3;
 
@@ -14,8 +15,9 @@ function isUsername(value: string) {
   return /^[a-zA-Z][a-zA-Z0-9_]{2,19}$/.test(value);
 }
 
-export function SignupWizard() {
+export function SignupWizard({ next }: { next?: string }) {
   const router = useRouter();
+  const afterSignup = safeNextPath(next);
   const [step, setStep] = useState<Step>(0);
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
@@ -163,7 +165,7 @@ export function SignupWizard() {
       }
     }
 
-    router.replace("/dashboard");
+    router.replace(afterSignup);
     router.refresh();
   }
 

@@ -1,5 +1,6 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+import { safeNextPath } from "@/lib/auth/next-path";
 import { supabaseAnonKey, supabaseUrl } from "@/lib/supabase/env";
 import { updateSession } from "@/lib/supabase/middleware";
 
@@ -52,7 +53,7 @@ export async function proxy(request: NextRequest) {
 
   if (user && pathname.startsWith("/login")) {
     const url = request.nextUrl.clone();
-    url.pathname = "/dashboard";
+    url.pathname = safeNextPath(request.nextUrl.searchParams.get("next"));
     url.search = "";
     return NextResponse.redirect(url);
   }

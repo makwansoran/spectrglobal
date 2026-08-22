@@ -4,9 +4,11 @@ import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { businessEmailError, normalizeEmail } from "@/lib/email";
+import { safeNextPath } from "@/lib/auth/next-path";
 
-export function LoginForm() {
+export function LoginForm({ next }: { next?: string }) {
   const router = useRouter();
+  const afterLogin = safeNextPath(next);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -40,7 +42,7 @@ export function LoginForm() {
       return;
     }
 
-    router.replace("/dashboard");
+    router.replace(afterLogin);
     router.refresh();
   }
 

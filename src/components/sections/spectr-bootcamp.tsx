@@ -1,8 +1,13 @@
+import { ArrowIcon, Button } from "@/components/button";
 import { BootcampVideo } from "@/components/sections/bootcamp-video";
 import { spectrBootcamp } from "@/lib/content";
 import "./spectr-bootcamp.css";
 
-export function SpectrBootcamp() {
+type SpectrBootcampProps = {
+  signedIn: boolean;
+};
+
+export function SpectrBootcamp({ signedIn }: SpectrBootcampProps) {
   return (
     <section id="bootcamp" className="bootcamp" aria-labelledby="bootcamp-heading">
       <div className="bootcamp__inner">
@@ -17,7 +22,27 @@ export function SpectrBootcamp() {
           <p className="bootcamp__badge">{spectrBootcamp.courseLabel}</p>
         </div>
 
-        <BootcampVideo src={spectrBootcamp.videoSrc} title={spectrBootcamp.videoTitle} />
+        {signedIn ? (
+          <BootcampVideo src={spectrBootcamp.videoSrc} title={spectrBootcamp.videoTitle} />
+        ) : (
+          <div className="bootcamp-gate">
+            <p className="bootcamp-gate__eyebrow">Members only</p>
+            <h2 className="bootcamp-gate__title">{spectrBootcamp.attendTitle}</h2>
+            <p className="bootcamp-gate__body">{spectrBootcamp.attendBody}</p>
+            <div className="bootcamp-gate__actions">
+              <Button href={`/login?next=${encodeURIComponent(spectrBootcamp.href)}`}>
+                {spectrBootcamp.attendCta}
+                <ArrowIcon />
+              </Button>
+              <Button
+                href={`/signup?next=${encodeURIComponent(spectrBootcamp.href)}`}
+                variant="secondary"
+              >
+                {spectrBootcamp.attendSignup}
+              </Button>
+            </div>
+          </div>
+        )}
 
         <div className="bootcamp__plan">
           <p className="bootcamp__plan-eyebrow">{spectrBootcamp.planEyebrow}</p>
