@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { offeringsCeoQuote } from "@/lib/content";
+import { offeringsQuote } from "@/lib/content";
 import { blogPosts, researchEssays, type HubPost } from "@/lib/hubs";
 
 function InsightCards({
@@ -50,20 +50,12 @@ function InsightCards({
 
 export function OfferingsCeoQuote() {
   return (
-    <section className="border-t border-[#D2D2CE] bg-white px-6 py-[128px]" aria-label="From the CEO">
+    <section className="border-t border-[#D2D2CE] bg-white px-6 py-[128px]">
       <div className="mx-auto w-full max-w-[1400px]">
-        <h2 className="home-display">From the CEO</h2>
-
-        <blockquote className="mt-10 m-0 max-w-[58rem]">
+        <blockquote className="m-0 max-w-[58rem]">
           <p className="m-0 text-[clamp(28px,3.8vw,48px)] font-normal leading-[1.18] tracking-[-0.03em] text-[#1E1F2B]">
-            {offeringsCeoQuote.quote}
+            {offeringsQuote.quote}
           </p>
-          <footer className="mt-12">
-            <p className="m-0 text-[17px] font-medium leading-snug text-[#1E1F2B]">
-              {offeringsCeoQuote.attribution}
-            </p>
-            <p className="mt-1 m-0 text-[15px] leading-snug text-[#AAAAAA]">{offeringsCeoQuote.role}</p>
-          </footer>
         </blockquote>
 
         <InsightCards heading="Blog" posts={blogPosts} indexLabel="Post" />

@@ -1,18 +1,7 @@
 export const teamIntro =
-  "Three founders in Norway, working next to the operators Spectr OS is built for.";
+  "Two founders in Norway, working next to the operators Spectr OS is built for.";
 
 export const team = [
-  {
-    name: "Makwan Soran Ismail",
-    role: "Founder & Chief Executive Officer",
-    location: "Norway",
-    bio: "Founded Spectr to put an operating system on warehouse and industrial floors — not another dashboard. Sets product direction around a truthful, continuously updated model of a live site.",
-    experience: [
-      { label: "Software", value: "Five years building software, including ethical hacking, penetration testing, HackerOne, and automation systems" },
-      { label: "Role", value: "Founder, CEO, and board chair of Spectr AS" },
-      { label: "Practice", value: "Builds from Norway, on the floor with the people running the shift" },
-    ],
-  },
   {
     name: "Phillip Peter",
     role: "Co-founder",

@@ -59,7 +59,7 @@ export default function AboutPage() {
               <p className="mt-5 text-base leading-8 text-muted">{teamIntro}</p>
             </div>
 
-            <ul className="mt-14 grid gap-8 lg:grid-cols-3">
+            <ul className="mt-14 grid gap-8 lg:grid-cols-2">
               {team.map((member) => (
                 <li key={member.name}>
                   <article className="h-full rounded-2xl border border-border bg-white p-7 sm:p-8">

@@ -53,12 +53,9 @@ export const useCasesSection = {
 
 export { industryListings as useCases } from "@/lib/use-cases";
 
-export const offeringsCeoQuote = {
-  eyebrow: "From the CEO",
+export const offeringsQuote = {
   quote:
     "Technological advancement is a must for our customers. The organisations that run factories, warehouses, grids, and fronts cannot wait for software that is merely interesting — they need systems that make them more capable, year after year.",
-  attribution: "Makwan Soran Ismail",
-  role: "Chief Executive Officer",
 };
 
 export const spectrBootcamp = {
@@ -234,13 +231,6 @@ export const partnerQuotes: PartnerQuote[] = [
     role: "Regulated distribution",
   },
 ];
-
-export const ceoQuote = {
-  quote:
-    "The bottleneck in warehouse intelligence is not dashboards or compute. It is not having a truthful, continuously updated model of a real working environment.",
-  attribution: "Makwan Soran Ismail",
-  role: "CEO, Spectr",
-};
 
 export const homeCta = {
   title: "Run your enterprise on Spectr OS",
