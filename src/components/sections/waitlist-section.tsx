@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { WaitlistForm } from "@/components/sections/waitlist-form";
+import Link from "next/link";
 import "./waitlist-section.css";
 
 export function WaitlistSection() {
@@ -23,7 +23,9 @@ export function WaitlistSection() {
             We&apos;re soon releasing. Join the waitlist and we&apos;ll email you when it&apos;s ready.
           </p>
           <div className="mt-6 sm:mt-8">
-            <WaitlistForm />
+            <Link href="/waitlist" className="spectros-waitlist__join">
+              Join waitlist
+            </Link>
           </div>
         </div>
 

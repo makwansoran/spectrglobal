@@ -69,6 +69,7 @@ export const navSections: NavSection[] = [
     items: [
       { label: "About us", href: "/about", description: "A Norwegian team building Spectr OS." },
       { label: "SPECTR BOOTCAMP", href: "/bootcamp", description: "Learn to create your own AI and run it locally." },
+      { label: "Waitlist", href: "/waitlist", description: "Be among the first to use Spectr OS." },
       { label: "Careers", href: "/careers", description: "A decade-long problem needs people who want one." },
       { label: "News", href: "/news", description: "Product releases and progress from the team." },
     ],
@@ -113,6 +114,7 @@ export const footerColumns = [
       { label: "Blog", href: "/blog" },
       { label: "Careers", href: "/careers" },
       { label: "News", href: "/news" },
+      { label: "Waitlist", href: "/waitlist" },
       { label: "Contact", href: "/contact" },
     ],
   },

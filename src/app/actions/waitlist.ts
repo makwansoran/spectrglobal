@@ -1,6 +1,6 @@
 "use server";
 
-export type WaitlistErrorCode = "email" | "generic";
+export type WaitlistErrorCode = "name" | "email" | "country" | "company" | "purpose" | "generic";
 
 export type WaitlistFormState = {
   ok: boolean;
@@ -22,22 +22,29 @@ export async function submitWaitlistForm(
 
   const name = String(formData.get("name") ?? "").trim();
   const email = String(formData.get("email") ?? "").trim();
-  if (!email || !isValidEmail(email)) {
-    return { ok: false, error: "email" };
-  }
+  const country = String(formData.get("country") ?? "").trim();
+  const company = String(formData.get("company") ?? "").trim();
+  const purpose = String(formData.get("purpose") ?? "").trim();
+
+  if (!name) return { ok: false, error: "name" };
+  if (!email || !isValidEmail(email)) return { ok: false, error: "email" };
+  if (!country) return { ok: false, error: "country" };
+  if (!company) return { ok: false, error: "company" };
+  if (!purpose) return { ok: false, error: "purpose" };
 
   const to = process.env.CONTACT_TO_EMAIL ?? "makwan@spectr.no";
   const from = process.env.CONTACT_FROM_EMAIL ?? "Spectr Website <onboarding@resend.dev>";
   const apiKey = process.env.RESEND_API_KEY;
-  const subject = "spectrOs waitlist";
+  const subject = "Spectr OS waitlist";
   const body = [
-    name ? `Name: ${name}` : null,
+    `Name: ${name}`,
     `Email: ${email}`,
+    `Where from: ${country}`,
+    `Company: ${company}`,
     "",
-    "Requested early access to spectrOs.",
-  ]
-    .filter(Boolean)
-    .join("\n");
+    "What they will use it for:",
+    purpose,
+  ].join("\n");
 
   if (!apiKey) {
     console.info("[waitlist]", subject, body);
