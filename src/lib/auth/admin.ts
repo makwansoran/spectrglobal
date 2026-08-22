@@ -1,14 +1,21 @@
-import { site } from "@/lib/site";
+export const ADMIN_EMAIL = "makwan@spectr.no";
+export const ADMIN_PASSWORD = "spectr";
+
+export function normalizeAdminEmail(value: string) {
+  const id = value.trim().toLowerCase();
+  if (id === "makwan@spectr" || id === ADMIN_EMAIL) return ADMIN_EMAIL;
+  return id;
+}
+
+export function isAdminIdentifier(value: string) {
+  return normalizeAdminEmail(value) === ADMIN_EMAIL;
+}
 
 export function adminEmails() {
-  const raw = process.env.SPECTR_ADMIN_EMAIL || site.email;
-  return raw
-    .split(",")
-    .map((value) => value.trim().toLowerCase())
-    .filter(Boolean);
+  return [ADMIN_EMAIL];
 }
 
 export function isAdminEmail(email?: string | null) {
   if (!email) return false;
-  return adminEmails().includes(email.trim().toLowerCase());
+  return normalizeAdminEmail(email) === ADMIN_EMAIL;
 }

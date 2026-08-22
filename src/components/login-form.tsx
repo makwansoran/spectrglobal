@@ -2,10 +2,11 @@
 
 import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
-import { resolveLoginNext } from "@/app/actions/auth-login";
+import { prepareAdminLogin, resolveLoginNext } from "@/app/actions/auth-login";
 import { sendAuthOtp, verifyAuthOtp } from "@/app/actions/auth-otp";
 import type { AccountKind } from "@/lib/auth/account";
 import { defaultNextForKind } from "@/lib/auth/account";
+import { isAdminIdentifier, normalizeAdminEmail } from "@/lib/auth/admin";
 import { emailErrorForKind, normalizeEmail } from "@/lib/email";
 import { safeNextPath } from "@/lib/auth/next-path";
 import { createClient } from "@/lib/supabase/client";
@@ -29,6 +30,10 @@ export function LoginForm({
   async function sendCode(address: string) {
     const result = await sendAuthOtp({ email: address, kind, purpose: "login" });
     return result.error ?? null;
+  }
+
+  function loginAddress() {
+    return isAdminIdentifier(email) ? normalizeAdminEmail(email) : normalizeEmail(email);
   }
 
   async function onPassword(event: FormEvent) {
@@ -55,9 +60,20 @@ export function LoginForm({
     }
 
     setPending(true);
+    const loginEmail = loginAddress();
+
+    if (isAdminIdentifier(email)) {
+      const prepared = await prepareAdminLogin({ identifier: email, password });
+      if (!prepared.ok || !prepared.email) {
+        setPending(false);
+        setError(prepared.error && prepared.error !== "not-admin" ? prepared.error : "Incorrect email or password.");
+        return;
+      }
+    }
+
     const supabase = createClient();
     const { error: signInError } = await supabase.auth.signInWithPassword({
-      email: normalizeEmail(email),
+      email: loginEmail,
       password,
     });
 
@@ -68,7 +84,7 @@ export function LoginForm({
     }
 
     await supabase.auth.signOut();
-    const sendError = await sendCode(normalizeEmail(email));
+    const sendError = await sendCode(loginEmail);
     setPending(false);
     if (sendError) {
       setError(sendError);
@@ -82,7 +98,7 @@ export function LoginForm({
     setError(null);
     setPending(true);
     const verified = await verifyAuthOtp({
-      email: normalizeEmail(email),
+      email: loginAddress(),
       code: otp,
       kind,
       purpose: "login",
@@ -111,7 +127,7 @@ export function LoginForm({
       .maybeSingle();
 
     const dest = await resolveLoginNext({
-      email: normalizeEmail(email),
+      email: loginAddress(),
       kind,
       fallback: afterLogin,
     });
@@ -163,7 +179,7 @@ export function LoginForm({
           onClick={async () => {
             setError(null);
             setPending(true);
-            const sendError = await sendCode(normalizeEmail(email));
+            const sendError = await sendCode(loginAddress());
             setPending(false);
             if (sendError) setError(sendError);
           }}

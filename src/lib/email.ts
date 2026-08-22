@@ -1,3 +1,5 @@
+import { isAdminIdentifier } from "@/lib/auth/admin";
+
 const FREE_EMAIL_DOMAINS = new Set([
   "aol.com",
   "fastmail.com",
@@ -62,6 +64,7 @@ export function businessEmailError(email: string) {
 }
 
 export function emailErrorForKind(email: string, kind: "product" | "careers") {
+  if (isAdminIdentifier(email)) return null;
   if (kind === "careers") {
     const value = normalizeEmail(email);
     if (!value) return "Enter your email.";
