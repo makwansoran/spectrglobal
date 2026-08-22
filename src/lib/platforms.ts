@@ -92,18 +92,11 @@ export const platforms: Platform[] = [
         imageAlt: "Power infrastructure and industrial energy",
       },
       {
-        name: "Defence & Security",
+        name: "Mining",
         description:
-          "Human-in-the-loop decisions with evidence, attribution, and European data posture. Fuse sensors, logistics, and command into executable workflows.",
-        image: "/images/industries/defence.jpg",
-        imageAlt: "Secure operations and systems coordination",
-      },
-      {
-        name: "Healthcare Operations",
-        description:
-          "Coordinate capacity, assets, staff, and exceptions in real time. Spectr OS keeps clinical operations coherent without another dashboard silo.",
-        image: "/images/industries/healthcare.jpg",
-        imageAlt: "Hospital operations corridor",
+          "Fuse pit, plant, and haul into one live model. Spectr OS ranks the next shift decision against the ore that is actually there.",
+        image: "/images/industries/infrastructure.jpg",
+        imageAlt: "Mining and heavy industrial operations",
       },
       {
         name: "Retail & Distribution",
@@ -111,20 +104,6 @@ export const platforms: Platform[] = [
           "Connect stores, DCs, and fulfilment into one OS. From shelf gap to dock door — fuse truth, decide fast, and close the loop.",
         image: "/images/industries/retail.jpg",
         imageAlt: "Retail store operations",
-      },
-      {
-        name: "Financial Operations",
-        description:
-          "Agentic workflows over fused operational and financial truth. Propose, approve, and execute with a complete history of every action.",
-        image: "/images/industries/financial.jpg",
-        imageAlt: "Financial district and enterprise operations",
-      },
-      {
-        name: "Government",
-        description:
-          "Deploy decision systems for public operations with auditability by default. Host in the EU or on your infrastructure — your data stays yours.",
-        image: "/images/industries/government.jpg",
-        imageAlt: "Government building and civic operations",
       },
       {
         name: "Operations",
