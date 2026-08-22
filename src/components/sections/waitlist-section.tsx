@@ -13,7 +13,7 @@ export function WaitlistSection() {
         <div className="max-w-xl">
           <h2
             id="spectros-waitlist-heading"
-            className="m-0 text-[clamp(2rem,8.5vw,4.4rem)] font-semibold leading-[1.06] tracking-[-0.035em] text-[#0A0A0A]"
+            className="home-display"
           >
             Be one of the first
             <br />

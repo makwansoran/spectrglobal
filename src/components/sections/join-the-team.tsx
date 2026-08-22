@@ -6,7 +6,7 @@ export function JoinTheTeam() {
       <div className="mx-auto grid w-full max-w-[1400px] items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,36rem)] lg:gap-16">
         <h2
           id="join-the-team-heading"
-          className="m-0 max-w-xl text-[clamp(2.4rem,5vw,4.4rem)] font-semibold leading-[1.06] tracking-[-0.035em] text-[#0A0A0A]"
+          className="home-display max-w-xl"
         >
           Join the team.
           <br />

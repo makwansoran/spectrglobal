@@ -48,7 +48,7 @@ export function LogoMarquee() {
     >
       <h2
         id="integrations-heading"
-        className="m-0 mb-6 text-center font-normal text-[clamp(30px,4.4vw,46px)] leading-none tracking-[-0.02em] text-[#1E1F2B]"
+        className="home-display mb-6 text-center"
       >
         {integrationsSection.eyebrow}
       </h2>

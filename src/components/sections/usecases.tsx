@@ -6,7 +6,7 @@ export function UseCases() {
   return (
     <section id="use-cases" className="scroll-mt-24 bg-white px-4 pb-20 pt-16 sm:px-6 sm:pb-[140px] sm:pt-[128px]">
       <div className="mx-auto w-full max-w-[1400px]">
-        <h2 className="m-0 font-normal text-[clamp(30px,4.4vw,46px)] leading-none tracking-[-0.02em] text-[#1E1F2B]">
+        <h2 className="home-display overflow-hidden sm:whitespace-nowrap">
           {useCasesSection.title}
         </h2>
 
@@ -23,7 +23,7 @@ export function UseCases() {
                   <p className="mt-3 m-0 text-[15px] leading-snug text-[#AAAAAA]">{item.index}</p>
                 </div>
 
-                <h3 className="m-0 min-w-0 overflow-hidden text-[clamp(2rem,10vw,6.25rem)] font-normal leading-[0.86] tracking-[-0.055em] text-[#1E1F2B] sm:whitespace-nowrap">
+                <h3 className="home-display min-w-0 overflow-hidden sm:whitespace-nowrap">
                   {item.name}
                 </h3>
 

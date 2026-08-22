@@ -14,9 +14,7 @@ function InsightCards({
 }) {
   return (
     <div className="mt-24">
-      <h2 className="m-0 overflow-hidden text-[clamp(2rem,10vw,6.25rem)] font-normal leading-[0.86] tracking-[-0.055em] text-[#1E1F2B] sm:whitespace-nowrap">
-        {heading}
-      </h2>
+      <h2 className="home-display overflow-hidden sm:whitespace-nowrap">{heading}</h2>
       <ul className="mt-8 m-0 grid list-none grid-cols-1 gap-4 p-0 md:grid-cols-3">
         {posts.slice(0, 3).map((post, index) => (
           <li key={post.slug}>
@@ -37,7 +35,7 @@ function InsightCards({
                 <p className="m-0 font-mono text-[11px] uppercase tracking-[0.14em] text-[#AAAAAA]">
                   {indexLabel} {String(index + 1).padStart(2, "0")} · {post.date}
                 </p>
-                <h3 className="mt-3 m-0 text-[1.15rem] font-medium leading-snug tracking-[-0.03em] text-[#1E1F2B]">
+                <h3 className="mt-3 m-0 text-[clamp(1.35rem,2.2vw,1.85rem)] font-normal leading-[0.92] tracking-[-0.055em] text-[#1E1F2B]">
                   {post.title}
                 </h3>
                 <p className="mt-2 mb-0 flex-1 text-[14px] leading-6 text-[#6A6A72]">{post.dek}</p>
@@ -54,7 +52,7 @@ export function OfferingsCeoQuote() {
   return (
     <section className="border-t border-[#D2D2CE] bg-white px-6 py-[128px]" aria-label="From the CEO">
       <div className="mx-auto w-full max-w-[1400px]">
-        <p className="m-0 text-[15px] leading-snug tracking-[-0.01em] text-[#AAAAAA]">From the CEO</p>
+        <h2 className="home-display">From the CEO</h2>
 
         <blockquote className="mt-10 m-0 max-w-[58rem]">
           <p className="m-0 text-[clamp(28px,3.8vw,48px)] font-normal leading-[1.18] tracking-[-0.03em] text-[#1E1F2B]">
