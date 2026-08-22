@@ -23,7 +23,7 @@ export default async function CareersLoginPage({
     <AuthShell
       homeHref="/careers"
       title="Careers sign in"
-      subtitle="This login is only for the careers dashboard. Spectr OS uses a separate account."
+      subtitle="Enter your email and password, then the code we email you. Spectr OS uses a separate account."
       footer={
         <>
           Need a careers account?{" "}

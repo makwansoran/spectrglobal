@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
-import { finishPasswordLogin } from "@/app/actions/auth-login";
+import { resolveLoginNext } from "@/app/actions/auth-login";
 import { sendAuthOtp, verifyAuthOtp } from "@/app/actions/auth-otp";
 import type { AccountKind } from "@/lib/auth/account";
 import { defaultNextForKind } from "@/lib/auth/account";
@@ -67,17 +67,6 @@ export function LoginForm({
       return;
     }
 
-    const session = (await supabase.auth.getSession()).data.session;
-    const gate = await finishPasswordLogin({
-      accessToken: session?.access_token,
-      kind,
-    });
-    if (gate.skipOtp) {
-      router.replace(gate.next ?? afterLogin);
-      router.refresh();
-      return;
-    }
-
     await supabase.auth.signOut();
     const sendError = await sendCode(normalizeEmail(email));
     setPending(false);
@@ -121,7 +110,13 @@ export function LoginForm({
       .eq("id", (await supabase.auth.getUser()).data.user?.id ?? "")
       .maybeSingle();
 
-    if (kind === "product" && !profile?.product_access) {
+    const dest = await resolveLoginNext({
+      email: normalizeEmail(email),
+      kind,
+      fallback: afterLogin,
+    });
+
+    if (kind === "product" && dest !== "/admin" && !profile?.product_access) {
       await supabase.auth.signOut();
       setPending(false);
       setError("This email is not a Spectr account. Use Careers login, or create a Spectr account.");
@@ -136,7 +131,7 @@ export function LoginForm({
       return;
     }
 
-    router.replace(afterLogin);
+    router.replace(dest);
     router.refresh();
   }
 
@@ -219,7 +214,7 @@ export function LoginForm({
       ) : null}
 
       <button type="submit" disabled={pending} className="auth-submit">
-        {pending ? (step === "otp" ? "Verifying…" : "Signing in…") : "Continue"}
+        {pending ? "Sending code…" : "Continue"}
       </button>
     </form>
   );

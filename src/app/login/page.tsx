@@ -26,11 +26,7 @@ export default async function LoginPage({
   return (
     <AuthShell
       title="Sign in to your account"
-      subtitle={
-        forDashboard
-          ? "Sign in to open your dashboard. SPECTR BOOTCAMP is included. Spectr OS download needs permission."
-          : "Enter your work email and password, then the code we email you."
-      }
+      subtitle="Enter your work email and password, then the code we email you."
       footer={
         <>
           New to Spectr?{" "}
