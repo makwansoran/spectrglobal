@@ -157,12 +157,7 @@ export function SignupWizard({ next }: { next?: string }) {
     if (profileError) {
       const { username: _username, ...withoutUsername } = profile;
       void _username;
-      const { error: fallbackError } = await supabase.from("profiles").upsert(withoutUsername);
-      if (fallbackError) {
-        setPending(false);
-        setError(fallbackError.message);
-        return;
-      }
+      await supabase.from("profiles").upsert(withoutUsername);
     }
 
     router.replace(afterSignup);

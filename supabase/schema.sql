@@ -1,5 +1,5 @@
 -- Spectr installer: profiles for name, country, and business email.
--- Run this in the Supabase SQL editor for project apfztftonnhssdrgocuv.
+-- Run this in the Supabase SQL editor for project uhntpugwazcctllgpxax.
 --
 -- Also in Authentication settings:
 -- 1. Email provider: enable OTP / email codes (needed for the 2FA step)
