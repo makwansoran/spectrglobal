@@ -47,24 +47,6 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="pb-24">
-          <div className="container-x">
-            <div className="mx-auto max-w-2xl space-y-6">
-              {paragraphs.map((paragraph, index) => (
-                <Reveal key={paragraph} delay={index * 60}>
-                  <p className="text-base leading-8 text-fg/80">{paragraph}</p>
-                </Reveal>
-              ))}
-              <div className="pt-6">
-                <Button href="/contact">
-                  Get in touch
-                  <ArrowIcon />
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
-
         <section className="border-t border-border bg-white py-16 sm:py-24" aria-labelledby="founders-heading">
           <div className="container-x">
             <div className="max-w-2xl">
@@ -103,6 +85,24 @@ export default function AboutPage() {
                 </li>
               ))}
             </ul>
+          </div>
+        </section>
+
+        <section className="border-t border-border bg-white py-16 sm:py-24">
+          <div className="container-x">
+            <div className="mx-auto max-w-2xl space-y-6">
+              {paragraphs.map((paragraph, index) => (
+                <Reveal key={paragraph} delay={index * 60}>
+                  <p className="text-base leading-8 text-fg/80">{paragraph}</p>
+                </Reveal>
+              ))}
+              <div className="pt-6">
+                <Button href="/contact">
+                  Get in touch
+                  <ArrowIcon />
+                </Button>
+              </div>
+            </div>
           </div>
         </section>
 
