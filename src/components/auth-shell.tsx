@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { AuthMeshBackground } from "@/components/auth-mesh-background";
 import { BrandLink } from "@/components/logo";
 
 export function AuthShell({
@@ -18,15 +17,13 @@ export function AuthShell({
   hideIntro?: boolean;
 }) {
   return (
-    <main className="auth-page relative flex min-h-screen flex-col">
-      <AuthMeshBackground />
-      <div className="auth-cut" aria-hidden="true" />
+    <main className="auth-page relative flex min-h-screen flex-col bg-white">
       <header className="absolute left-0 top-0 z-20 flex w-full items-center justify-between px-6 py-5">
-        <BrandLink href="/" light />
+        <BrandLink href="/" />
         {process.env.NODE_ENV === "development" ? (
           <Link
             href="/dashboard"
-            className="rounded-md bg-black/50 px-3 py-1.5 text-[12px] font-medium text-white hover:bg-black/70"
+            className="rounded-md bg-black px-3 py-1.5 text-[12px] font-medium text-white hover:bg-black/80"
           >
             DEV: Dashboard
           </Link>

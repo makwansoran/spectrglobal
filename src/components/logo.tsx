@@ -24,7 +24,7 @@ export function LogoMark({ className = "h-7 w-7", invert = false, title }: LogoM
 export function Wordmark({ className = "" }: { className?: string }) {
   return (
     <span
-      className={`brand-font text-[0.95rem] font-semibold uppercase tracking-[0.32em] ${className}`}
+      className={`font-sans text-[15px] font-medium tracking-[-0.04em] ${className}`}
     >
       Spectr
     </span>
@@ -41,7 +41,7 @@ export function BrandLink({
   return (
     <Link href={href} className="inline-flex items-center gap-2.5 hover:opacity-80">
       <LogoMark invert={light} className="h-8 w-8" />
-      <Wordmark className={light ? "text-white" : "text-[#0a2540]"} />
+      <Wordmark className={light ? "text-white" : "text-[#1e2124]"} />
     </Link>
   );
 }
