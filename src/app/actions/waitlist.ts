@@ -1,5 +1,7 @@
 "use server";
 
+import { saveWaitlistSignup } from "@/lib/leads";
+
 export type WaitlistErrorCode = "name" | "email" | "country" | "company" | "purpose" | "generic";
 
 export type WaitlistFormState = {
@@ -31,6 +33,8 @@ export async function submitWaitlistForm(
   if (!country) return { ok: false, error: "country" };
   if (!company) return { ok: false, error: "company" };
   if (!purpose) return { ok: false, error: "purpose" };
+
+  await saveWaitlistSignup({ name, email, country, company, purpose });
 
   const to = process.env.CONTACT_TO_EMAIL ?? "makwan@spectr.no";
   const from = process.env.CONTACT_FROM_EMAIL ?? "Spectr Website <onboarding@resend.dev>";

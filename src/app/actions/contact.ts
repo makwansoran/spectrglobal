@@ -1,5 +1,7 @@
 "use server";
 
+import { saveInquiry } from "@/lib/leads";
+
 export type ContactErrorCode = "name" | "email" | "product" | "message" | "generic";
 
 export type ContactFormState = {
@@ -58,6 +60,8 @@ export async function submitContactForm(
   if (error) {
     return { ok: false, error };
   }
+
+  await saveInquiry(payload);
 
   const to = process.env.CONTACT_TO_EMAIL ?? "makwan@spectr.no";
   const from = process.env.CONTACT_FROM_EMAIL ?? "Spectr Website <onboarding@resend.dev>";

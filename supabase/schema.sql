@@ -106,3 +106,35 @@ create table if not exists public.email_otps (
 
 alter table public.email_otps enable row level security;
 revoke all on public.email_otps from anon, authenticated;
+
+create table if not exists public.waitlist_signups (
+  id uuid primary key default gen_random_uuid(),
+  name text not null default '',
+  email text not null unique,
+  country text not null default '',
+  company text not null default '',
+  purpose text not null default '',
+  created_at timestamptz not null default now()
+);
+
+alter table public.waitlist_signups enable row level security;
+revoke all on public.waitlist_signups from anon, authenticated;
+
+create table if not exists public.inquiries (
+  id uuid primary key default gen_random_uuid(),
+  kind text not null,
+  first_name text not null default '',
+  last_name text not null default '',
+  email text not null default '',
+  phone text not null default '',
+  organization text not null default '',
+  job_title text not null default '',
+  country text not null default '',
+  product text not null default '',
+  message text not null default '',
+  work_url text not null default '',
+  created_at timestamptz not null default now()
+);
+
+alter table public.inquiries enable row level security;
+revoke all on public.inquiries from anon, authenticated;

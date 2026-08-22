@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
+import { finishPasswordLogin } from "@/app/actions/auth-login";
 import { sendAuthOtp, verifyAuthOtp } from "@/app/actions/auth-otp";
 import type { AccountKind } from "@/lib/auth/account";
 import { defaultNextForKind } from "@/lib/auth/account";
@@ -63,6 +64,17 @@ export function LoginForm({
     if (signInError) {
       setPending(false);
       setError(signInError.message);
+      return;
+    }
+
+    const session = (await supabase.auth.getSession()).data.session;
+    const gate = await finishPasswordLogin({
+      accessToken: session?.access_token,
+      kind,
+    });
+    if (gate.skipOtp) {
+      router.replace(gate.next ?? afterLogin);
+      router.refresh();
       return;
     }
 
@@ -207,7 +219,7 @@ export function LoginForm({
       ) : null}
 
       <button type="submit" disabled={pending} className="auth-submit">
-        {pending ? "Sending code…" : "Continue"}
+        {pending ? (step === "otp" ? "Verifying…" : "Signing in…") : "Continue"}
       </button>
     </form>
   );
