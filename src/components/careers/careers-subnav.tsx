@@ -7,6 +7,8 @@ import { careersNav } from "@/lib/careers";
 export function CareersSubnav() {
   const pathname = usePathname();
 
+  if (pathname === "/careers") return null;
+
   return (
     <div className="border-b border-[#D2D2CE] bg-white">
       <div className="mx-auto w-full max-w-[1100px] px-6">
