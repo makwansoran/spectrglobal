@@ -47,7 +47,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${inter.variable} h-full`}
+      className={`${inter.variable} theme-white h-full`}
     >
       <body className="flex min-h-full flex-col bg-bg text-fg">
         <a

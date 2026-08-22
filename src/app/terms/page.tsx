@@ -15,7 +15,7 @@ export const metadata: Metadata = buildPageMetadata({
 export default function TermsPage() {
   return (
     <>
-      <main id="main-content" className="flex-1">
+      <main id="main-content" className="flex-1 bg-white">
         <PageHeader title="Terms & conditions" intro={lastUpdated} />
 
         <section className="pb-28">

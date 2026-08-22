@@ -8,7 +8,7 @@ export function CareersSubnav() {
   const pathname = usePathname();
 
   return (
-    <div className="border-b border-[#D2D2CE] bg-[#F9F9F9]">
+    <div className="border-b border-[#D2D2CE] bg-white">
       <div className="mx-auto w-full max-w-[1100px] px-6">
         <nav aria-label="Careers" className="flex gap-6 overflow-x-auto py-3 sm:gap-8">
           {careersNav.map((item) => {

@@ -16,7 +16,7 @@ export const metadata: Metadata = buildPageMetadata({
 export default function PrivacyPage() {
   return (
     <>
-      <main id="main-content" className="flex-1">
+      <main id="main-content" className="flex-1 bg-white">
         <PageHeader title="Privacy policy" intro={lastUpdated} />
 
         <section className="pb-24">

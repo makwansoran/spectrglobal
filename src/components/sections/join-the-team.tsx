@@ -2,7 +2,7 @@ import { JoinTeamImage } from "@/components/careers/join-team-image";
 
 export function JoinTheTeam() {
   return (
-    <section className="bg-[#F9F9F9] px-4 pb-[140px] pt-[80px] sm:px-6" aria-labelledby="join-the-team-heading">
+    <section className="bg-white px-4 pb-[140px] pt-[80px] sm:px-6" aria-labelledby="join-the-team-heading">
       <div className="mx-auto grid w-full max-w-[1400px] items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,36rem)] lg:gap-16">
         <h2
           id="join-the-team-heading"

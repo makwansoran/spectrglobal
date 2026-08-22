@@ -58,9 +58,9 @@ export function GetStartedSidebar() {
         onClick={closeGetStarted}
       />
 
-      <aside className="get-started-panel absolute inset-y-0 right-0 flex w-full max-w-[42rem] flex-col border-l border-border bg-bg text-fg shadow-2xl">
+      <aside className="get-started-panel absolute inset-y-0 right-0 flex w-full max-w-[42rem] flex-col border-l border-white/15 bg-black text-white shadow-2xl">
         <div className="flex items-center justify-between px-5 py-4 sm:px-6">
-          <p className="text-sm font-medium text-muted">Get started</p>
+          <p className="text-sm font-medium text-white/55">Get started</p>
           <button
             type="button"
             onClick={closeGetStarted}
@@ -79,7 +79,7 @@ export function GetStartedSidebar() {
         </div>
 
         <div className="flex-1 overflow-y-auto px-5 py-6 sm:px-6">
-          <h2 className="brand-font text-2xl tracking-tight text-fg sm:text-3xl">
+          <h2 className="brand-font text-2xl tracking-tight text-white sm:text-3xl">
             Interested in solving your problems with Spectr software?
           </h2>
 
@@ -178,13 +178,13 @@ export function GetStartedSidebar() {
               </p>
             ) : null}
 
-            <Button type="submit" size="lg" disabled={pending || state.ok}>
+            <Button type="submit" size="lg" disabled={pending || state.ok} className="btn-on-dark">
               {pending ? "Submitting…" : "Submit"}
             </Button>
 
-            <p className="text-xs leading-6 text-muted">
+            <p className="text-xs leading-6 text-white/55">
               Please see our{" "}
-              <Link href="/privacy" className="underline underline-offset-4 hover:text-fg" onClick={closeGetStarted}>
+              <Link href="/privacy" className="underline underline-offset-4 hover:text-white" onClick={closeGetStarted}>
                 Privacy Policy
               </Link>{" "}
               regarding how we will handle this information.
@@ -214,7 +214,7 @@ function Field({
         {label}
         {required ? ":" : null}
       </label>
-      <div className="mt-2 [&_input]:w-full [&_input]:border [&_input]:border-border [&_input]:bg-surface [&_input]:px-3.5 [&_input]:py-2.5 [&_input]:text-[15px] [&_input]:outline-none [&_input]:focus:border-white [&_select]:w-full [&_select]:appearance-none [&_select]:border [&_select]:border-border [&_select]:bg-surface [&_select]:px-3.5 [&_select]:py-2.5 [&_select]:text-[15px] [&_select]:outline-none [&_select]:focus:border-white [&_textarea]:w-full [&_textarea]:resize-y [&_textarea]:border [&_textarea]:border-border [&_textarea]:bg-surface [&_textarea]:px-3.5 [&_textarea]:py-2.5 [&_textarea]:text-[15px] [&_textarea]:outline-none [&_textarea]:focus:border-white">
+      <div className="mt-2 [&_input]:w-full [&_input]:border [&_input]:border-white/20 [&_input]:bg-white [&_input]:px-3.5 [&_input]:py-2.5 [&_input]:text-[15px] [&_input]:text-black [&_input]:outline-none [&_input]:focus:border-white [&_select]:w-full [&_select]:appearance-none [&_select]:border [&_select]:border-white/20 [&_select]:bg-white [&_select]:px-3.5 [&_select]:py-2.5 [&_select]:text-[15px] [&_select]:text-black [&_select]:outline-none [&_select]:focus:border-white [&_textarea]:w-full [&_textarea]:resize-y [&_textarea]:border [&_textarea]:border-white/20 [&_textarea]:bg-white [&_textarea]:px-3.5 [&_textarea]:py-2.5 [&_textarea]:text-[15px] [&_textarea]:text-black [&_textarea]:outline-none [&_textarea]:placeholder:text-black/40 [&_textarea]:focus:border-white">
         {children}
       </div>
     </div>

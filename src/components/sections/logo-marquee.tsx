@@ -43,7 +43,7 @@ export function LogoMarquee() {
   return (
     <section
       id="integrations"
-      className="scroll-mt-24 bg-[#F9F9F9] px-6 pb-[140px] pt-[128px]"
+      className="scroll-mt-24 bg-white px-6 pb-[140px] pt-[128px]"
       aria-labelledby="integrations-heading"
     >
       <h2
