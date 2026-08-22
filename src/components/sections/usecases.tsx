@@ -2,7 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCases, useCasesSection } from "@/lib/content";
 
+const hiddenUseCases = new Set(["defense", "government", "healthcare", "finance"]);
+
 export function UseCases() {
+  const items = useCases.filter((item) => !hiddenUseCases.has(item.id));
+
   return (
     <section id="use-cases" className="scroll-mt-24 bg-white px-4 pb-20 pt-16 sm:px-6 sm:pb-[140px] sm:pt-[128px]">
       <div className="mx-auto w-full max-w-[1400px]">
@@ -11,7 +15,7 @@ export function UseCases() {
         </h2>
 
         <ul className="m-0 mt-8 list-none p-0">
-          {useCases.map((item) => (
+          {items.map((item) => (
             <li key={item.id}>
               <Link
                 href={item.href}

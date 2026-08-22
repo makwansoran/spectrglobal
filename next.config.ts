@@ -24,6 +24,10 @@ const nextConfig: NextConfig = {
       { source: "/newsroom/:path*", destination: "/news", permanent: true },
       { source: "/documentation", destination: "/developers", permanent: true },
       { source: "/documentation/:path*", destination: "/developers", permanent: true },
+      { source: "/use-cases/defense", destination: "/", permanent: true },
+      { source: "/use-cases/government", destination: "/", permanent: true },
+      { source: "/use-cases/healthcare", destination: "/", permanent: true },
+      { source: "/use-cases/finance", destination: "/", permanent: true },
     ];
   },
 };

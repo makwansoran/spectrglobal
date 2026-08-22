@@ -477,7 +477,11 @@ export function getIndustrySlugs() {
   return industryPages.map((page) => page.slug);
 }
 
-export const industryListings = industryPages.map((page) => ({
+const removedUseCaseSlugs = new Set(["defense", "government", "healthcare", "finance"]);
+
+export const industryListings = industryPages
+  .filter((page) => !removedUseCaseSlugs.has(page.slug))
+  .map((page) => ({
   id: page.slug,
   index: page.index,
   name: page.name,
