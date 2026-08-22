@@ -446,6 +446,26 @@ textarea {
   );
 }
 
+/* Top-right and bottom-left chamfers — Spectr box used on homepage insight cards. */
+.bevel-panel-tr-bl {
+  --bevel-cut: 18px;
+  position: relative;
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--bevel-cut)) 0,
+    100% var(--bevel-cut),
+    100% 100%,
+    var(--bevel-cut) 100%,
+    0 calc(100% - var(--bevel-cut))
+  );
+}
+
+.bevel-panel-tr-bl:focus-visible {
+  clip-path: none;
+  outline: 2px solid #1e1f2b;
+  outline-offset: 3px;
+}
+
 .bevel-panel-muted {
   background: var(--surface-2);
 }
