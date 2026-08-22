@@ -8,8 +8,8 @@ export function SpectrOsPageView() {
   const page = spectrOsPage;
 
   return (
-    <main id="main-content" className="relative flex-1">
-      <section className="relative overflow-hidden">
+    <main id="main-content" className="relative flex-1 bg-white">
+      <section className="relative overflow-hidden bg-white">
         <div className="container-x grid items-end gap-12 pb-16 pt-16 lg:grid-cols-[1.1fr_0.9fr] lg:pb-24 lg:pt-24">
           <Reveal>
             <p className="text-sm font-medium text-muted">{page.eyebrow}</p>
@@ -22,7 +22,7 @@ export function SpectrOsPageView() {
             </div>
           </Reveal>
           <Reveal delay={80}>
-            <div className="relative aspect-[16/11] overflow-hidden rounded-2xl bg-surface-2">
+            <div className="relative aspect-[16/11] overflow-hidden rounded-2xl bg-white">
               <Image
                 src="/images/products/spectr-os-ui.png"
                 alt="Spectr OS interface"
@@ -36,21 +36,21 @@ export function SpectrOsPageView() {
         </div>
       </section>
 
-      <section className="py-16 sm:py-24">
+      <section className="bg-white py-16 sm:py-24">
         <div className="container-x grid gap-8 lg:grid-cols-[1fr_1fr] lg:gap-20">
           <h2 className="display text-[clamp(2.2rem,5vw,4.5rem)] text-fg">{page.introTitle}</h2>
           <p className="text-lg leading-8 text-muted">{page.intro}</p>
         </div>
       </section>
 
-      <section className="pb-16 sm:pb-24">
+      <section className="bg-white pb-16 sm:pb-24">
         <div className="container-x">
           <h2 className="display max-w-3xl text-[clamp(2.2rem,5vw,4.5rem)] text-fg">{page.featuresTitle}</h2>
           <ul className="mt-12 grid gap-3 md:grid-cols-2">
             {page.features.map((feature, index) => (
               <li key={feature.id}>
                 <Reveal delay={Math.min(index * 30, 180)}>
-                  <article className="h-full rounded-2xl border border-border bg-surface p-6 sm:p-8">
+                  <article className="h-full rounded-2xl border border-border bg-white p-6 sm:p-8">
                     <p className="text-xs font-medium uppercase tracking-[0.14em] text-muted">
                       {String(index + 1).padStart(2, "0")}
                     </p>
@@ -66,16 +66,16 @@ export function SpectrOsPageView() {
 
       <LogoMarquee />
 
-      <section className="pb-20 sm:pb-28">
+      <section className="bg-white pb-20 sm:pb-28">
         <div className="container-x">
-          <div className="rounded-[1.75rem] bg-[#161513] px-8 py-12 text-white sm:px-12 sm:py-16">
+          <div className="rounded-[1.75rem] border border-border bg-white px-8 py-12 text-fg sm:px-12 sm:py-16">
             <h2 className="display max-w-3xl text-[clamp(2rem,4vw,3.8rem)]">{page.ctaTitle}</h2>
-            <p className="mt-4 max-w-2xl text-base leading-7 text-white/70">{page.ctaBody}</p>
+            <p className="mt-4 max-w-2xl text-base leading-7 text-muted">{page.ctaBody}</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <GetStartedButton label="Get started" size="lg">
                 Get started
               </GetStartedButton>
-              <GetStartedButton label="Request a demo" size="lg" variant="secondary" className="border-white/25 bg-transparent text-white hover:bg-white/10">
+              <GetStartedButton label="Request a demo" size="lg" variant="secondary">
                 Request a demo
               </GetStartedButton>
             </div>
