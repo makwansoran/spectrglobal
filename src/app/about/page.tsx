@@ -4,6 +4,7 @@ import { Footer } from "@/components/footer";
 import { PageHeader } from "@/components/page-header";
 import { Reveal } from "@/components/reveal";
 import { buildPageMetadata } from "@/lib/metadata";
+import { team, teamExperience, teamIntro } from "@/lib/team";
 
 const intro =
   "Spectr is a Norwegian software company. We build Spectr OS — the operating system for warehouses and industrial floors.";
@@ -31,14 +32,14 @@ const facts = [
 export default function AboutPage() {
   return (
     <>
-      <main id="main-content" className="flex-1">
+      <main id="main-content" className="flex-1 bg-white">
         <PageHeader title="Building for the work that cannot be done remotely." intro={intro} />
 
         <section className="pb-16">
           <div className="container-x">
             <dl className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
               {facts.map((fact) => (
-                <div key={fact.label} className="rounded-2xl border border-border bg-surface p-6">
+                <div key={fact.label} className="rounded-2xl border border-border bg-white p-6">
                   <dt className="text-sm text-muted">{fact.label}</dt>
                   <dd className="display mt-3 text-3xl text-fg">{fact.value}</dd>
                 </div>
@@ -61,6 +62,90 @@ export default function AboutPage() {
                   <ArrowIcon />
                 </Button>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="border-t border-border bg-white py-16 sm:py-24" aria-labelledby="team-heading">
+          <div className="container-x">
+            <div className="max-w-2xl">
+              <h2
+                id="team-heading"
+                className="display text-[clamp(2rem,4vw,3.25rem)] text-fg"
+              >
+                The team
+              </h2>
+              <p className="mt-5 text-base leading-8 text-muted">{teamIntro}</p>
+            </div>
+
+            <ul className="mt-14 grid gap-8 lg:grid-cols-2">
+              {team.map((member) => (
+                <li key={member.name}>
+                  <article className="h-full rounded-2xl border border-border bg-white p-7 sm:p-8">
+                    <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
+                      {member.location}
+                    </p>
+                    <h3 className="mt-3 text-2xl font-medium tracking-[-0.03em] text-fg">
+                      {member.name}
+                    </h3>
+                    <p className="mt-1 text-sm text-muted">{member.role}</p>
+                    <p className="mt-5 text-[15px] leading-7 text-fg/80">{member.bio}</p>
+                    <dl className="mt-8 space-y-4 border-t border-border pt-6">
+                      {member.experience.map((item) => (
+                        <div key={item.label}>
+                          <dt className="text-xs font-medium uppercase tracking-[0.08em] text-muted">
+                            {item.label}
+                          </dt>
+                          <dd className="mt-1 text-sm leading-6 text-fg">{item.value}</dd>
+                        </div>
+                      ))}
+                    </dl>
+                  </article>
+                </li>
+              ))}
+              <li>
+                <article className="flex h-full flex-col justify-between rounded-2xl border border-dashed border-border bg-white p-7 sm:p-8">
+                  <div>
+                    <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
+                      Norway
+                    </p>
+                    <h3 className="mt-3 text-2xl font-medium tracking-[-0.03em] text-fg">
+                      This seat is open
+                    </h3>
+                    <p className="mt-1 text-sm text-muted">Engineers and operators</p>
+                    <p className="mt-5 text-[15px] leading-7 text-fg/80">
+                      We hire slowly, for people who want to spend a decade on warehouse intelligence.
+                      If you have built something hard — a system, a thesis, a floor that actually
+                      ran — we would like to read it.
+                    </p>
+                  </div>
+                  <div className="pt-8">
+                    <Button href="/careers">
+                      Careers
+                      <ArrowIcon />
+                    </Button>
+                  </div>
+                </article>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section className="border-t border-border bg-white py-16 sm:py-24" aria-labelledby="who-we-are-heading">
+          <div className="container-x">
+            <h2
+              id="who-we-are-heading"
+              className="display text-[clamp(2rem,4vw,3.25rem)] text-fg"
+            >
+              Who we are
+            </h2>
+            <div className="mt-12 grid gap-10 md:grid-cols-3">
+              {teamExperience.map((item) => (
+                <article key={item.id}>
+                  <h3 className="text-xl font-medium tracking-[-0.02em] text-fg">{item.title}</h3>
+                  <p className="mt-3 text-[15px] leading-7 text-muted">{item.text}</p>
+                </article>
+              ))}
             </div>
           </div>
         </section>

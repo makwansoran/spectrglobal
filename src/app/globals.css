@@ -1055,6 +1055,31 @@ textarea {
   color-scheme: light;
 }
 
+html.theme-white {
+  --bg: #ffffff;
+  --fg: #0a0a0a;
+  --muted: #5c5c62;
+  --border: rgba(10, 10, 10, 0.1);
+  --border-strong: rgba(10, 10, 10, 0.16);
+  --surface: #ffffff;
+  --surface-2: #f4f4f4;
+  --nav: rgba(255, 255, 255, 0.92);
+  --nav-fg: #0a0a0a;
+  --btn: #0a0a0a;
+  --btn-fg: #ffffff;
+}
+
+html.theme-white,
+html.theme-white body {
+  background: #ffffff;
+  color: var(--fg);
+  color-scheme: light;
+}
+
+html.theme-white footer {
+  background-color: #ffffff !important;
+}
+
 .nav-overlay {
   position: fixed;
   inset: 0;
