@@ -29,6 +29,15 @@ export function LoginForm({ next }: { next?: string }) {
       return;
     }
 
+    const supabaseReady = Boolean(
+      process.env.NEXT_PUBLIC_SUPABASE_URL &&
+        (process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY),
+    );
+    if (!supabaseReady) {
+      setError("Supabase is not configured. Add the project URL and publishable key, then restart the app.");
+      return;
+    }
+
     setPending(true);
     const supabase = createClient();
     const { error: signInError } = await supabase.auth.signInWithPassword({

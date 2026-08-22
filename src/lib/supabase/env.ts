@@ -1,5 +1,5 @@
 export function supabaseUrl() {
-  return process.env.NEXT_PUBLIC_SUPABASE_URL ?? "";
+  return process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || "";
 }
 
 export function supabaseAnonKey() {
@@ -8,4 +8,8 @@ export function supabaseAnonKey() {
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
     ""
   );
+}
+
+export function isSupabaseConfigured() {
+  return Boolean(supabaseUrl() && supabaseAnonKey());
 }

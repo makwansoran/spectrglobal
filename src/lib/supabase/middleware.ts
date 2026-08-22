@@ -1,5 +1,6 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+import { supabaseAnonKey, supabaseUrl } from "@/lib/supabase/env";
 import { DEMO_COOKIE, readDemoSession } from "@/lib/demo-auth";
 import { safeNextPath } from "@/lib/auth/next-path";
 
@@ -12,8 +13,8 @@ export async function updateSession(request: NextRequest) {
 
   const demoUser = await readDemoSession(request.cookies.get(DEMO_COOKIE)?.value);
 
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const url = supabaseUrl();
+  const key = supabaseAnonKey();
 
   let user: { id: string } | null = null;
 
@@ -50,7 +51,7 @@ export async function updateSession(request: NextRequest) {
 
   if (isLogin && signedIn) {
     const redirect = request.nextUrl.clone();
-    redirect.pathname = safeNextPath(request.nextUrl.searchParams.get("next"), "/app");
+    redirect.pathname = safeNextPath(request.nextUrl.searchParams.get("next"), "/dashboard");
     redirect.search = "";
     return NextResponse.redirect(redirect);
   }

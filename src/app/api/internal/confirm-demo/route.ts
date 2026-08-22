@@ -12,7 +12,7 @@ type Body = {
  */
 export async function POST(request: Request) {
   const bootstrap = process.env.SPECTR_BOOTSTRAP_SECRET;
-  const service = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const service = process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY;
   // Prefer the public URL (kept in sync with the live Auth project).
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL;
 
