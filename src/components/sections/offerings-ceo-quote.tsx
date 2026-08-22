@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { offeringsQuote } from "@/lib/content";
 import { blogPosts, researchEssays, type HubPost } from "@/lib/hubs";
 
 function InsightCards({
@@ -13,7 +12,7 @@ function InsightCards({
   indexLabel: string;
 }) {
   return (
-    <div className="mt-24">
+    <div className={heading === "Blog" ? "" : "mt-24"}>
       <h2 className="home-display overflow-hidden sm:whitespace-nowrap">{heading}</h2>
       <ul className="mt-8 m-0 grid list-none grid-cols-1 gap-4 p-0 md:grid-cols-3">
         {posts.slice(0, 3).map((post, index) => (
@@ -52,12 +51,6 @@ export function OfferingsCeoQuote() {
   return (
     <section className="border-t border-[#D2D2CE] bg-white px-6 py-[128px]">
       <div className="mx-auto w-full max-w-[1400px]">
-        <blockquote className="m-0 max-w-[58rem]">
-          <p className="m-0 text-[clamp(28px,3.8vw,48px)] font-normal leading-[1.18] tracking-[-0.03em] text-[#1E1F2B]">
-            {offeringsQuote.quote}
-          </p>
-        </blockquote>
-
         <InsightCards heading="Blog" posts={blogPosts} indexLabel="Post" />
         <InsightCards heading="Research" posts={researchEssays} indexLabel="Essay" />
       </div>

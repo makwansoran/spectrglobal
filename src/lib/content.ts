@@ -53,11 +53,6 @@ export const useCasesSection = {
 
 export { industryListings as useCases } from "@/lib/use-cases";
 
-export const offeringsQuote = {
-  quote:
-    "Technological advancement is a must for our customers. The organisations that run factories, warehouses, grids, and fronts cannot wait for software that is merely interesting — they need systems that make them more capable, year after year.",
-};
-
 export const spectrBootcamp = {
   href: "/bootcamp",
   eyebrow: "SPECTR BOOTCAMP",
