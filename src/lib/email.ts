@@ -60,3 +60,13 @@ export function businessEmailError(email: string) {
   }
   return null;
 }
+
+export function emailErrorForKind(email: string, kind: "product" | "careers") {
+  if (kind === "careers") {
+    const value = normalizeEmail(email);
+    if (!value) return "Enter your email.";
+    if (!isValidEmailShape(value)) return "Enter a valid email address.";
+    return null;
+  }
+  return businessEmailError(email);
+}

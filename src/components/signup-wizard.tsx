@@ -5,7 +5,10 @@ import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
 import { ProgressSteps } from "@/components/progress-steps";
 import { countries } from "@/lib/countries";
-import { businessEmailError, normalizeEmail } from "@/lib/email";
+import { sendAuthOtp, verifyAuthOtp } from "@/app/actions/auth-otp";
+import type { AccountKind } from "@/lib/auth/account";
+import { defaultNextForKind, loginPathForKind } from "@/lib/auth/account";
+import { emailErrorForKind, normalizeEmail } from "@/lib/email";
 import { createClient } from "@/lib/supabase/client";
 import { safeNextPath } from "@/lib/auth/next-path";
 
@@ -15,9 +18,15 @@ function isUsername(value: string) {
   return /^[a-zA-Z][a-zA-Z0-9_]{2,19}$/.test(value);
 }
 
-export function SignupWizard({ next }: { next?: string }) {
+export function SignupWizard({
+  next,
+  kind = "product",
+}: {
+  next?: string;
+  kind?: AccountKind;
+}) {
   const router = useRouter();
-  const afterSignup = safeNextPath(next);
+  const afterSignup = safeNextPath(next, defaultNextForKind(kind));
   const [step, setStep] = useState<Step>(0);
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
@@ -28,27 +37,29 @@ export function SignupWizard({ next }: { next?: string }) {
   const [country, setCountry] = useState("Norway");
   const [error, setError] = useState<string | null>(null);
   const [pending, setPending] = useState(false);
+  const careers = kind === "careers";
 
   const titles = [
-    ["Work email", "Use a business email. Personal inboxes are not accepted."],
-    ["Two-factor authentication", `Enter the 6-digit code we sent to ${email || "your work email"}.`],
-    ["Create a password", "Choose a password for your Spectr account."],
-    ["Username and profile", "This is how you will appear in Spectr."],
+    [
+      careers ? "Email" : "Work email",
+      careers
+        ? "Create a careers account to apply for listings."
+        : "Use a business email. Personal inboxes are not accepted.",
+    ],
+    ["Two-factor authentication", `Enter the 6-digit code we sent to ${email || "your email"}.`],
+    ["Create a password", careers ? "Choose a password for your careers account." : "Choose a password for your Spectr account."],
+    ["Username and profile", careers ? "This is how we will know you when you apply." : "This is how you will appear in Spectr."],
   ] as const;
 
   async function sendCode(address: string) {
-    const supabase = createClient();
-    const { error: otpError } = await supabase.auth.signInWithOtp({
-      email: address,
-      options: { shouldCreateUser: true },
-    });
-    return otpError?.message ?? null;
+    const result = await sendAuthOtp({ email: address, kind, purpose: "signup" });
+    return result.error ?? null;
   }
 
   async function onEmail(event: FormEvent) {
     event.preventDefault();
     setError(null);
-    const emailError = businessEmailError(email);
+    const emailError = emailErrorForKind(email, kind);
     if (emailError) {
       setError(emailError);
       return;
@@ -71,15 +82,25 @@ export function SignupWizard({ next }: { next?: string }) {
       return;
     }
     setPending(true);
-    const supabase = createClient();
-    const { error: verifyError } = await supabase.auth.verifyOtp({
+    const verified = await verifyAuthOtp({
       email: normalizeEmail(email),
-      token: otp.trim(),
-      type: "email",
+      code: otp.trim(),
+      kind,
+      purpose: "signup",
+    });
+    if (!verified.ok || !verified.tokenHash) {
+      setPending(false);
+      setError(verified.error ?? "Could not verify that code.");
+      return;
+    }
+    const supabase = createClient();
+    const { error: sessionError } = await supabase.auth.verifyOtp({
+      type: "magiclink",
+      token_hash: verified.tokenHash,
     });
     setPending(false);
-    if (verifyError) {
-      setError(verifyError.message);
+    if (sessionError) {
+      setError(sessionError.message);
       return;
     }
     setStep(2);
@@ -152,6 +173,7 @@ export function SignupWizard({ next }: { next?: string }) {
       country,
       email: user.email ?? normalizeEmail(email),
       username: handle,
+      ...(careers ? { careers_access: true } : { product_access: true }),
     };
     const { error: profileError } = await supabase.from("profiles").upsert(profile);
     if (profileError) {
@@ -176,7 +198,7 @@ export function SignupWizard({ next }: { next?: string }) {
         <form onSubmit={onEmail} className="mt-8 space-y-5" noValidate>
           <div>
             <label htmlFor="signup-email" className="mb-2 block text-[13px] font-medium text-fg">
-              Business email
+              {careers ? "Email" : "Business email"}
             </label>
             <input
               id="signup-email"
@@ -185,7 +207,7 @@ export function SignupWizard({ next }: { next?: string }) {
               value={email}
               onChange={(event) => setEmail(event.target.value)}
               className="field"
-              placeholder="you@company.com"
+              placeholder={careers ? "you@email.com" : "you@company.com"}
             />
           </div>
           {error ? <p role="alert" className="alert-error">{error}</p> : null}
@@ -194,7 +216,7 @@ export function SignupWizard({ next }: { next?: string }) {
           </button>
           <p className="text-center text-[13px] text-[#425466]">
             Already have an account?{" "}
-            <Link href="/login" className="font-medium text-[#635bff] hover:text-[#5851ea]">
+            <Link href={loginPathForKind(kind)} className="font-medium text-[#635bff] hover:text-[#5851ea]">
               Sign in
             </Link>
           </p>
@@ -324,7 +346,7 @@ export function SignupWizard({ next }: { next?: string }) {
           </div>
           {error ? <p role="alert" className="alert-error">{error}</p> : null}
           <button type="submit" disabled={pending} className="auth-submit">
-            {pending ? "Finishing…" : "Go to dashboard"}
+            {pending ? "Finishing…" : careers ? "Continue to apply" : "Go to dashboard"}
           </button>
         </form>
       ) : null}

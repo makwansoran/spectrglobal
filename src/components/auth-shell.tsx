@@ -8,6 +8,7 @@ export function AuthShell({
   footer,
   wide = false,
   hideIntro = false,
+  homeHref = "/",
 }: {
   title?: string;
   subtitle?: string;
@@ -15,11 +16,12 @@ export function AuthShell({
   footer?: React.ReactNode;
   wide?: boolean;
   hideIntro?: boolean;
+  homeHref?: string;
 }) {
   return (
     <main className="auth-page relative flex min-h-screen flex-col bg-white">
       <header className="absolute left-0 top-0 z-20 flex w-full items-center justify-between px-6 py-5">
-        <BrandLink href="/" />
+        <BrandLink href={homeHref} />
         {process.env.NODE_ENV === "development" ? (
           <Link
             href="/dashboard"

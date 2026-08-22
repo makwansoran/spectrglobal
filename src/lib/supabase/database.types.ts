@@ -4,6 +4,9 @@ export type Profile = {
   country: string;
   email: string;
   username?: string;
+  product_access?: boolean;
+  careers_access?: boolean;
+  os_download_granted?: boolean;
   created_at: string;
   updated_at: string;
 };
@@ -19,6 +22,9 @@ export type Database = {
           country: string;
           email: string;
           username?: string;
+          product_access?: boolean;
+          careers_access?: boolean;
+          os_download_granted?: boolean;
           created_at?: string;
           updated_at?: string;
         };
@@ -27,8 +33,31 @@ export type Database = {
           country?: string;
           email?: string;
           username?: string;
+          product_access?: boolean;
+          careers_access?: boolean;
+          os_download_granted?: boolean;
           updated_at?: string;
         };
+        Relationships: [];
+      };
+      email_otps: {
+        Row: {
+          id: string;
+          email: string;
+          code_hash: string;
+          kind: string;
+          purpose: string;
+          expires_at: string;
+          created_at: string;
+        };
+        Insert: {
+          email: string;
+          code_hash: string;
+          kind: string;
+          purpose: string;
+          expires_at: string;
+        };
+        Update: Record<string, never>;
         Relationships: [];
       };
     };

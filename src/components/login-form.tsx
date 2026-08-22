@@ -2,24 +2,39 @@
 
 import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
-import { createClient } from "@/lib/supabase/client";
-import { businessEmailError, normalizeEmail } from "@/lib/email";
+import { sendAuthOtp, verifyAuthOtp } from "@/app/actions/auth-otp";
+import type { AccountKind } from "@/lib/auth/account";
+import { defaultNextForKind } from "@/lib/auth/account";
+import { emailErrorForKind, normalizeEmail } from "@/lib/email";
 import { safeNextPath } from "@/lib/auth/next-path";
+import { createClient } from "@/lib/supabase/client";
 
-export function LoginForm({ next }: { next?: string }) {
+export function LoginForm({
+  next,
+  kind = "product",
+}: {
+  next?: string;
+  kind?: AccountKind;
+}) {
   const router = useRouter();
-  const afterLogin = safeNextPath(next);
-
+  const afterLogin = safeNextPath(next, defaultNextForKind(kind));
+  const [step, setStep] = useState<"password" | "otp">("password");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [otp, setOtp] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [pending, setPending] = useState(false);
 
-  async function onSubmit(event: FormEvent) {
+  async function sendCode(address: string) {
+    const result = await sendAuthOtp({ email: address, kind, purpose: "login" });
+    return result.error ?? null;
+  }
+
+  async function onPassword(event: FormEvent) {
     event.preventDefault();
     setError(null);
 
-    const emailError = businessEmailError(email);
+    const emailError = emailErrorForKind(email, kind);
     if (emailError) {
       setError(emailError);
       return;
@@ -51,15 +66,112 @@ export function LoginForm({ next }: { next?: string }) {
       return;
     }
 
+    await supabase.auth.signOut();
+    const sendError = await sendCode(normalizeEmail(email));
+    setPending(false);
+    if (sendError) {
+      setError(sendError);
+      return;
+    }
+    setStep("otp");
+  }
+
+  async function onOtp(event: FormEvent) {
+    event.preventDefault();
+    setError(null);
+    setPending(true);
+    const verified = await verifyAuthOtp({
+      email: normalizeEmail(email),
+      code: otp,
+      kind,
+      purpose: "login",
+    });
+    if (!verified.ok || !verified.tokenHash) {
+      setPending(false);
+      setError(verified.error ?? "Could not verify that code.");
+      return;
+    }
+
+    const supabase = createClient();
+    const { error: sessionError } = await supabase.auth.verifyOtp({
+      type: "magiclink",
+      token_hash: verified.tokenHash,
+    });
+    if (sessionError) {
+      setPending(false);
+      setError(sessionError.message);
+      return;
+    }
+
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("product_access, careers_access")
+      .eq("id", (await supabase.auth.getUser()).data.user?.id ?? "")
+      .maybeSingle();
+
+    if (kind === "product" && !profile?.product_access) {
+      await supabase.auth.signOut();
+      setPending(false);
+      setError("This email is not a Spectr account. Use Careers login, or create a Spectr account.");
+      setStep("password");
+      return;
+    }
+    if (kind === "careers" && !profile?.careers_access) {
+      await supabase.auth.signOut();
+      setPending(false);
+      setError("This email is not a careers account. Create a careers account to apply.");
+      setStep("password");
+      return;
+    }
+
     router.replace(afterLogin);
     router.refresh();
   }
 
+  if (step === "otp") {
+    return (
+      <form onSubmit={onOtp} className="mt-8 space-y-5" noValidate>
+        <div>
+          <label htmlFor="login-otp" className="mb-2 block text-[13px] font-medium text-fg">
+            Authentication code
+          </label>
+          <input
+            id="login-otp"
+            inputMode="numeric"
+            autoComplete="one-time-code"
+            value={otp}
+            onChange={(event) => setOtp(event.target.value.replace(/\D/g, "").slice(0, 6))}
+            className="field otp-input"
+            placeholder="000000"
+          />
+        </div>
+        {error ? <p role="alert" className="alert-error">{error}</p> : null}
+        <button type="submit" disabled={pending} className="auth-submit">
+          {pending ? "Verifying…" : "Verify and sign in"}
+        </button>
+        <button
+          type="button"
+          className="auth-submit auth-submit-secondary"
+          disabled={pending}
+          onClick={async () => {
+            setError(null);
+            setPending(true);
+            const sendError = await sendCode(normalizeEmail(email));
+            setPending(false);
+            if (sendError) setError(sendError);
+          }}
+        >
+          Resend code
+        </button>
+      </form>
+    );
+  }
+
   return (
-    <form onSubmit={onSubmit} className="mt-8 space-y-5" noValidate>
+    <form onSubmit={onPassword} className="mt-8 space-y-5" noValidate>
       <div>
         <label htmlFor="login-email" className="mb-2 block text-[13px] font-medium text-fg">
-          Work email
+          {kind === "careers" ? "Email" : "Work email"}
         </label>
         <input
           id="login-email"
@@ -69,7 +181,7 @@ export function LoginForm({ next }: { next?: string }) {
           value={email}
           onChange={(event) => setEmail(event.target.value)}
           className="field"
-          placeholder="you@company.com"
+          placeholder={kind === "careers" ? "you@email.com" : "you@company.com"}
         />
       </div>
       <div>
@@ -95,7 +207,7 @@ export function LoginForm({ next }: { next?: string }) {
       ) : null}
 
       <button type="submit" disabled={pending} className="auth-submit">
-        {pending ? "Signing in…" : "Sign in"}
+        {pending ? "Sending code…" : "Continue"}
       </button>
     </form>
   );

@@ -33,10 +33,16 @@ const apps = [
   },
 ];
 
-export function InstallerPanel() {
+export function InstallerPanel({ canDownload = false }: { canDownload?: boolean }) {
   return (
     <section>
       <p className="ops-kicker">Downloads</p>
+      {!canDownload ? (
+        <p className="mt-2 max-w-2xl text-sm leading-6 text-[#6b6b6b]">
+          SPECTR BOOTCAMP is included with every Spectr account. Spectr OS downloads stay locked until we grant your
+          account permission.
+        </p>
+      ) : null}
       <div className="mt-4 grid grid-cols-3 gap-3">
         {apps.map((app) => (
           <div
@@ -51,9 +57,13 @@ export function InstallerPanel() {
             </p>
             <p className="mt-1 font-mono text-[11px] text-[#6b6b6b]">{app.hint}</p>
             {app.available ? (
-              <a href={app.href} className="ops-get mt-6 w-fit">
-                Download
-              </a>
+              canDownload ? (
+                <a href={app.href} className="ops-get mt-6 w-fit">
+                  Download
+                </a>
+              ) : (
+                <span className="ops-unavailable mt-6">Needs Spectr permission</span>
+              )
             ) : (
               <span className="ops-unavailable mt-6">Unavailable</span>
             )}

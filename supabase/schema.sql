@@ -12,11 +12,17 @@ create table if not exists public.profiles (
   country text not null default '',
   email text not null,
   username text unique,
+  product_access boolean not null default false,
+  careers_access boolean not null default false,
+  os_download_granted boolean not null default false,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
 
 alter table public.profiles add column if not exists username text unique;
+alter table public.profiles add column if not exists product_access boolean not null default false;
+alter table public.profiles add column if not exists careers_access boolean not null default false;
+alter table public.profiles add column if not exists os_download_granted boolean not null default false;
 
 alter table public.profiles enable row level security;
 
@@ -61,13 +67,15 @@ security definer
 set search_path = public
 as $$
 begin
-  insert into public.profiles (id, full_name, country, email, username)
+  insert into public.profiles (id, full_name, country, email, username, product_access, careers_access)
   values (
     new.id,
     coalesce(new.raw_user_meta_data->>'full_name', ''),
     coalesce(new.raw_user_meta_data->>'country', ''),
     coalesce(new.email, ''),
-    coalesce(new.raw_user_meta_data->>'username', null)
+    coalesce(new.raw_user_meta_data->>'username', null),
+    coalesce((new.raw_user_meta_data->>'product_access')::boolean, false),
+    coalesce((new.raw_user_meta_data->>'careers_access')::boolean, false)
   )
   on conflict (id) do update
     set full_name = excluded.full_name,
@@ -82,3 +90,19 @@ drop trigger if exists on_auth_user_created on auth.users;
 create trigger on_auth_user_created
   after insert on auth.users
   for each row execute function public.handle_new_user();
+
+-- Grant Spectr OS download for a user:
+-- update public.profiles set os_download_granted = true where email = 'someone@company.com';
+
+create table if not exists public.email_otps (
+  id uuid primary key default gen_random_uuid(),
+  email text not null,
+  code_hash text not null,
+  kind text not null,
+  purpose text not null,
+  expires_at timestamptz not null,
+  created_at timestamptz not null default now()
+);
+
+alter table public.email_otps enable row level security;
+revoke all on public.email_otps from anon, authenticated;

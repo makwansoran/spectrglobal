@@ -5,7 +5,6 @@ import { buildPageMetadata } from "@/lib/metadata";
 
 const listingCount = openRoles.length;
 const listingWord = listingCount === 1 ? "listing" : "listings";
-const applyNext = encodeURIComponent("/careers/apply");
 const description = `We have ${listingCount} ${listingWord} open. Create an account or log in to apply.`;
 
 export const metadata: Metadata = buildPageMetadata({
@@ -24,11 +23,11 @@ export default function CareersPage() {
           </h1>
           <p className="mt-5 max-w-xl text-[15px] leading-7 text-[#6B6B72]">{description}</p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Button href={`/login?next=${applyNext}`}>
+            <Button href="/careers/login">
               Log in
               <ArrowIcon />
             </Button>
-            <Button href={`/signup?next=${applyNext}`} variant="secondary">
+            <Button href="/careers/signup" variant="secondary">
               Create an account
             </Button>
           </div>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CareerApplyForm } from "@/components/careers/career-apply-form";
+import { requireCareersUser } from "@/lib/auth/guards";
 import { emptyListingsCopy } from "@/lib/careers";
 import { buildPageMetadata } from "@/lib/metadata";
 
@@ -14,6 +15,7 @@ export default async function ApplyPage({
 }: {
   searchParams: Promise<{ area?: string }>;
 }) {
+  await requireCareersUser();
   const { area = "" } = await searchParams;
 
   return (

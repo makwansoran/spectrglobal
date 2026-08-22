@@ -5,7 +5,12 @@ import { supabaseAnonKey, supabaseUrl } from "@/lib/supabase/env";
 import { updateSession } from "@/lib/supabase/middleware";
 
 function isProtectedPath(pathname: string) {
-  return pathname.startsWith("/dashboard") || pathname.startsWith("/mfa");
+  return (
+    pathname.startsWith("/dashboard") ||
+    pathname.startsWith("/mfa") ||
+    pathname === "/careers/apply" ||
+    pathname.startsWith("/careers/apply/")
+  );
 }
 
 export async function proxy(request: NextRequest) {
@@ -46,7 +51,7 @@ export async function proxy(request: NextRequest) {
 
   if (!user && isProtectedPath(pathname) && process.env.NODE_ENV !== "development") {
     const url = request.nextUrl.clone();
-    url.pathname = "/login";
+    url.pathname = pathname.startsWith("/careers") ? "/careers/login" : "/login";
     url.searchParams.set("next", pathname);
     return NextResponse.redirect(url);
   }

@@ -28,8 +28,8 @@ export default async function LoginPage({
       title="Sign in to your account"
       subtitle={
         forBootcamp
-          ? "SPECTR BOOTCAMP is for signed-in accounts. Enter your work email to attend."
-          : "Enter your work email to continue to Spectr."
+          ? "Every Spectr account includes SPECTR BOOTCAMP. Enter your work email to continue."
+          : "Enter your work email and password, then the code we email you."
       }
       footer={
         <>
@@ -43,7 +43,7 @@ export default async function LoginPage({
         </>
       }
     >
-      <LoginForm next={afterLogin} />
+      <LoginForm next={afterLogin} kind="product" />
     </AuthShell>
   );
 }

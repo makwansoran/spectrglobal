@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Footer } from "@/components/footer";
 import { SpectrBootcamp } from "@/components/sections/spectr-bootcamp";
-import { getAuthUser } from "@/lib/auth/guards";
+import { getAuthUser, getProfileAccess } from "@/lib/auth/guards";
 import { spectrBootcamp } from "@/lib/content";
 import { buildPageMetadata } from "@/lib/metadata";
 import { supabaseAnonKey, supabaseUrl } from "@/lib/supabase/env";
@@ -28,5 +28,7 @@ export default async function BootcampPage() {
 async function isBootcampSignedIn() {
   if (!supabaseUrl() || !supabaseAnonKey()) return false;
   const { user } = await getAuthUser();
-  return Boolean(user);
+  if (!user) return false;
+  const access = await getProfileAccess(user.id);
+  return access.productAccess;
 }

@@ -16,7 +16,7 @@ export default async function SignupPage({
 
   return (
     <AuthShell wide hideIntro>
-      <SignupWizard next={safeNextPath(next)} />
+      <SignupWizard next={safeNextPath(next)} kind="product" />
     </AuthShell>
   );
 }

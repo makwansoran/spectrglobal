@@ -11,6 +11,8 @@ export function MarketingChrome({ children }: { children: React.ReactNode }) {
     pathname.startsWith("/app/") ||
     pathname === "/login" ||
     pathname === "/signup" ||
+    pathname === "/careers/login" ||
+    pathname === "/careers/signup" ||
     pathname === "/check-email" ||
     pathname.startsWith("/mfa");
   if (bare) {
