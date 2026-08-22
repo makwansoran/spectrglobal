@@ -24,7 +24,6 @@ const paragraphs = [
 
 const facts = [
   { label: "Founded", value: "Norway" },
-  { label: "Focus", value: "Spectr OS" },
   { label: "Product", value: "Spectr OS" },
   { label: "Stage", value: "Pilot programme" },
 ];
@@ -37,7 +36,7 @@ export default function AboutPage() {
 
         <section className="pb-16">
           <div className="container-x">
-            <dl className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            <dl className="grid gap-8 sm:grid-cols-3">
               {facts.map((fact) => (
                 <div key={fact.label} className="rounded-2xl border border-border bg-white p-6">
                   <dt className="text-sm text-muted">{fact.label}</dt>
