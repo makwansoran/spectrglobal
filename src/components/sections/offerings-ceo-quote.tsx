@@ -14,7 +14,9 @@ function InsightCards({
 }) {
   return (
     <div className="mt-24">
-      <h2 className="m-0 text-[15px] leading-snug tracking-[-0.01em] text-[#AAAAAA]">{heading}</h2>
+      <h2 className="m-0 overflow-hidden text-[clamp(2rem,10vw,6.25rem)] font-normal leading-[0.86] tracking-[-0.055em] text-[#1E1F2B] sm:whitespace-nowrap">
+        {heading}
+      </h2>
       <ul className="mt-8 m-0 grid list-none grid-cols-1 gap-4 p-0 md:grid-cols-3">
         {posts.slice(0, 3).map((post, index) => (
           <li key={post.slug}>
