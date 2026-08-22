@@ -10,7 +10,10 @@ export function GetStartedShell({ children }: { children: React.ReactNode }) {
   const bare =
     pathname === "/app" ||
     pathname.startsWith("/app/") ||
-    pathname === "/login";
+    pathname === "/login" ||
+    pathname === "/signup" ||
+    pathname === "/check-email" ||
+    pathname.startsWith("/mfa");
 
   if (bare) {
     return <>{children}</>;

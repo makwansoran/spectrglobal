@@ -66,19 +66,19 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="border-t border-border bg-white py-16 sm:py-24" aria-labelledby="team-heading">
+        <section className="border-t border-border bg-white py-16 sm:py-24" aria-labelledby="founders-heading">
           <div className="container-x">
             <div className="max-w-2xl">
               <h2
-                id="team-heading"
+                id="founders-heading"
                 className="display text-[clamp(2rem,4vw,3.25rem)] text-fg"
               >
-                The team
+                Founders
               </h2>
               <p className="mt-5 text-base leading-8 text-muted">{teamIntro}</p>
             </div>
 
-            <ul className="mt-14 grid gap-8 lg:grid-cols-2">
+            <ul className="mt-14 grid gap-8 lg:grid-cols-3">
               {team.map((member) => (
                 <li key={member.name}>
                   <article className="h-full rounded-2xl border border-border bg-white p-7 sm:p-8">
@@ -103,30 +103,6 @@ export default function AboutPage() {
                   </article>
                 </li>
               ))}
-              <li>
-                <article className="flex h-full flex-col justify-between rounded-2xl border border-dashed border-border bg-white p-7 sm:p-8">
-                  <div>
-                    <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
-                      Norway
-                    </p>
-                    <h3 className="mt-3 text-2xl font-medium tracking-[-0.03em] text-fg">
-                      This seat is open
-                    </h3>
-                    <p className="mt-1 text-sm text-muted">Engineers and operators</p>
-                    <p className="mt-5 text-[15px] leading-7 text-fg/80">
-                      We hire slowly, for people who want to spend a decade on warehouse intelligence.
-                      If you have built something hard — a system, a thesis, a floor that actually
-                      ran — we would like to read it.
-                    </p>
-                  </div>
-                  <div className="pt-8">
-                    <Button href="/careers">
-                      Careers
-                      <ArrowIcon />
-                    </Button>
-                  </div>
-                </article>
-              </li>
             </ul>
           </div>
         </section>
