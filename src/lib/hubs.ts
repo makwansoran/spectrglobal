@@ -96,7 +96,7 @@ export const productsHub: HubPage = {
 export const solutionsHub: HubPage = {
   path: "/solutions",
   bannerTitle: "Solutions",
-  description: "Spectr OS across manufacturing, logistics, shipping, energy, defense, government, healthcare, and finance.",
+  description: "Spectr OS across manufacturing, logistics, shipping, energy, defense, government, healthcare, finance, operations, and waste management.",
   heroImage: "/images/industries/manufacturing.jpg",
   heroImageAlt: "Industrial operations",
   headline: "The runtime is used wherever the work cannot wait for interesting software.",

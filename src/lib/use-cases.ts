@@ -526,6 +526,132 @@ export const industryPages: IndustryPage[] = [
       },
     ],
   },
+  {
+    slug: "operations",
+    index: "/0.9",
+    name: "Operations",
+    listingDescription:
+      "Sites, assets, and crews in one runtime — so the work on the floor is the same object as the plan.",
+    href: "/use-cases/operations",
+    image: "/images/industries/infrastructure.jpg",
+    imageAlt: "Industrial site operations",
+    bannerTitle: "Spectr for Operations",
+    headline: "Run the site as it is — not as last week’s plan said it would be.",
+    columnOne:
+      "Operations fail in the gap between the CMMS, the roster, and the radio. Spectr OS treats the asset, the work order, the crew, and the constraint as one live model, so a breakdown is a decision on the floor — not a ticket that waits for morning.",
+    columnTwo:
+      "See utilisation at the unit, not in a monthly pack. Rank the next legal job against parts, permits, and people who are actually on shift. Multi-site patterns flow back to the edge without taking the site down for a cloud round-trip.",
+    focuses: [
+      {
+        id: "site",
+        label: "The site as one object",
+        statement: "A facility is not a dashboard. It is assets, crews, and constraints under a permit.",
+        focus: "Facilities and plants",
+        change: "Work orders, sensors, and access sit together so supervisors act on the site they have — not last night’s schedule.",
+        image: "/images/industries/infrastructure.jpg",
+        imageAlt: "Industrial site operations",
+      },
+      {
+        id: "maintain",
+        label: "Maintenance that can move",
+        statement: "A job without parts is a delay wearing a work-order number.",
+        focus: "Assets and upkeep",
+        change: "Spares, skills, and downtime cost share one model, so expedite, defer, or substitute happens with the plant in view.",
+        image: "/images/industries/spare-parts.jpg",
+        imageAlt: "Spare parts and maintenance stores",
+      },
+      {
+        id: "crew",
+        label: "Crews against the work",
+        statement: "A roster that cannot see the backlog is already late.",
+        focus: "People and shift",
+        change: "Competences, fatigue, and open jobs sit in the same runtime so the next assignment is a ranked choice, not a radio pile-up.",
+        image: "/images/industries/manufacturing.jpg",
+        imageAlt: "Crews and production operations",
+      },
+    ],
+    capabilities: [
+      {
+        title: "One model of the estate",
+        body: "Sites, assets, and crews exist once. Downstream tools read the same objects the supervisor already uses.",
+      },
+      {
+        title: "Exception as a workflow",
+        body: "When a unit stops, the runtime re-ranks the next legal jobs and records who approved the change.",
+      },
+      {
+        title: "Governed action",
+        body: "Proposed work carries evidence and an audit trail. People stay in command; the system does not invent the floor.",
+      },
+      {
+        title: "From site to fleet",
+        body: "What only appears across facilities can flow back to the edge — without a weekly reconciliation meeting.",
+      },
+    ],
+  },
+  {
+    slug: "waste-management",
+    index: "/0.10",
+    name: "Waste Management",
+    listingDescription:
+      "Collection, plants, and materials as one loop — so a lift is an operational decision, not a route afterthought.",
+    href: "/use-cases/waste-management",
+    image: "/images/industries/logistics.jpg",
+    imageAlt: "Collection and materials recovery operations",
+    bannerTitle: "Spectr for Waste Management",
+    headline: "From the bin to the plant — one runtime for a loop that still lives in separate systems.",
+    columnOne:
+      "Waste is a chain of handoffs: collection, transfer, sorting, treatment, and the market for what comes out the other side. Spectr OS treats the lift, the vehicle, the bay, and the material stream as the same operational story, so a missed street is a decision — not a complaint the next morning.",
+    columnTwo:
+      "Re-sequence rounds against what actually filled. Keep plants honest about inbound composition. Rank contamination, downtime, and offtake against the contract, not a weekly average. The work is coherence from kerb to residue, at the speed of the round.",
+    focuses: [
+      {
+        id: "collect",
+        label: "Collection that can replan",
+        statement: "A round that cannot see the fill is already late.",
+        focus: "Routes and lifts",
+        change: "Bins, vehicles, and crews share one model so exceptions — a blocked street, a missed lift, a spill — become a sequence, not a radio pile-up.",
+        image: "/images/industries/logistics.jpg",
+        imageAlt: "Collection and route operations",
+      },
+      {
+        id: "plant",
+        label: "The plant as it is",
+        statement: "Throughput is a decision problem when inbound is a rumour.",
+        focus: "Treatment and recovery",
+        change: "Bays, lines, and residue sit with the inbound picture, so substitution, hold, or divert happens with cost and permit in view.",
+        image: "/images/industries/energy.jpg",
+        imageAlt: "Treatment plant and industrial processing",
+      },
+      {
+        id: "material",
+        label: "Materials that tell the truth",
+        statement: "You cannot sell a stream you cannot trust.",
+        focus: "Quality and offtake",
+        change: "Contamination, grade, and contracts accumulate on the same objects — from lift to bale — so offtake is a decision, not a guess.",
+        image: "/images/industries/3pl.jpg",
+        imageAlt: "Materials handling and recovery",
+      },
+    ],
+    capabilities: [
+      {
+        title: "A living round",
+        body: "Stops, fills, and vehicle work update as objects, not as a printed sheet. The next street is always ranked against the current world.",
+      },
+      {
+        title: "Handoffs with evidence",
+        body: "Each transfer carries who, when, and what was in the load — useful for the plant, the contract, and the night shift.",
+      },
+      {
+        title: "Network, not a depot silo",
+        body: "What happens on one round can inform the plant and the next depot without a new integration for each site.",
+      },
+      {
+        title: "People still in command",
+        body: "Proposed sequences are workflows with approval. The runtime does not drive the truck. It makes the options honest.",
+      },
+    ],
+  },
 ];
 
 export function getIndustryPage(slug: string) {

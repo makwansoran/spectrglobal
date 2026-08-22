@@ -127,6 +127,20 @@ export const platforms: Platform[] = [
         imageAlt: "Government building and civic operations",
       },
       {
+        name: "Operations",
+        description:
+          "Fuse sites, assets, crews, and work orders into one live model. Spectr OS ranks the next legal job against the floor you have — not last week’s plan.",
+        image: "/images/industries/infrastructure.jpg",
+        imageAlt: "Industrial site operations",
+      },
+      {
+        name: "Waste Management",
+        description:
+          "Collection, plants, and materials in one loop. Spectr OS turns a lift into an operational decision — from kerb to offtake.",
+        image: "/images/industries/logistics.jpg",
+        imageAlt: "Collection and materials recovery operations",
+      },
+      {
         name: "Infrastructure",
         description:
           "Monitor, decide, and act across critical physical systems. Spectr OS binds field reality to the ontology so AI never invents the world.",

@@ -61,6 +61,8 @@ export const navSections: NavSection[] = [
       { label: "Manufacturing", href: "/use-cases/manufacturing", description: "Strategy and the shop floor as one model." },
       { label: "Shipping", href: "/use-cases/shipping", description: "Fleet, cargo, berth, and inland in one picture." },
       { label: "Energy", href: "/use-cases/energy", description: "Plant, asset, and market decisions in one runtime." },
+      { label: "Operations", href: "/use-cases/operations", description: "Sites, assets, and crews as one model." },
+      { label: "Waste Management", href: "/use-cases/waste-management", description: "Collection, plants, and materials in one loop." },
     ],
   },
   {
@@ -104,6 +106,8 @@ export const footerColumns = [
       { label: "Manufacturing", href: "/use-cases/manufacturing" },
       { label: "Energy", href: "/use-cases/energy" },
       { label: "Healthcare", href: "/use-cases/healthcare" },
+      { label: "Operations", href: "/use-cases/operations" },
+      { label: "Waste Management", href: "/use-cases/waste-management" },
     ],
   },
   {

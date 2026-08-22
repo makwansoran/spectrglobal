@@ -31,6 +31,8 @@ const referenceNavSections: NavSection[] = [
       { label: "Government", href: "/use-cases/government" },
       { label: "Healthcare", href: "/use-cases/healthcare" },
       { label: "Finance", href: "/use-cases/finance" },
+      { label: "Operations", href: "/use-cases/operations" },
+      { label: "Waste Management", href: "/use-cases/waste-management" },
     ],
   },
   {
