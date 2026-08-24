@@ -33,9 +33,6 @@ export function WaitlistSection() {
               <br />
               to use spectrOs
             </h2>
-            <p className="spectros-waitlist__body">
-              We&apos;re soon releasing. Join the waitlist and we&apos;ll email you when it&apos;s ready.
-            </p>
             <div className="spectros-waitlist__cta">
               <Link href="/waitlist" className="spectros-waitlist__join spectros-waitlist__join--on-media">
                 Join waitlist

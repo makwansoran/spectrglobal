@@ -8,8 +8,10 @@
 }
 
 .spectros-waitlist__image {
-  object-fit: cover;
-  object-position: center;
+  object-fit: contain;
+  object-position: center 38%;
+  transform: scale(0.86);
+  transform-origin: center 38%;
 }
 
 .spectros-waitlist__scrim {
@@ -33,14 +35,6 @@
   color: #fff;
   font-size: clamp(1.85rem, 4.6vw, 3.4rem);
   line-height: 0.92;
-}
-
-.spectros-waitlist__body {
-  margin: 1rem 0 0;
-  max-width: 26rem;
-  color: rgba(255, 255, 255, 0.78);
-  font-size: 15px;
-  line-height: 1.7;
 }
 
 .spectros-waitlist__cta {
@@ -79,11 +73,6 @@
 @media (min-width: 640px) {
   .spectros-waitlist__content {
     padding: 2.25rem 2rem 2.25rem;
-  }
-
-  .spectros-waitlist__body {
-    margin-top: 1.25rem;
-    font-size: 1rem;
   }
 
   .spectros-waitlist__cta {
