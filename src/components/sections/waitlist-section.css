@@ -46,9 +46,14 @@
   padding: 1.75rem 1.5rem 1.75rem;
 }
 
+.spectros-waitlist__intro {
+  text-align: center;
+}
+
 .spectros-waitlist__logo {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   margin: 1.15rem 0 0;
   font-family: var(--font-sans);
