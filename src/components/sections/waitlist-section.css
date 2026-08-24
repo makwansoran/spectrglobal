@@ -124,8 +124,22 @@
   line-height: 1.6;
 }
 
+.spectros-waitlist__lede--product {
+  max-width: 36rem;
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
+  line-height: 1.55;
+}
+
+.spectros-waitlist__title--product {
+  font-size: clamp(2.6rem, 8vw, 6.25rem);
+}
+
+.spectros-waitlist__content--product {
+  padding: 2.25rem 1.75rem 2.25rem;
+}
+
 .spectros-waitlist__panel--product {
-  min-height: clamp(18rem, 38vw, 28rem);
+  min-height: min(86vh, 58rem);
   text-decoration: none;
   color: inherit;
 }
@@ -141,7 +155,7 @@
 
 .spectros-waitlist__panel--product .spectros-waitlist__scrim {
   background:
-    linear-gradient(180deg, rgba(0, 0, 0, 0.12) 20%, #000 92%);
+    linear-gradient(180deg, rgba(0, 0, 0, 0.08) 28%, #000 88%);
 }
 
 .spectros-waitlist__panel--product:hover .spectros-waitlist__join--on-media {
@@ -200,6 +214,14 @@
   .spectros-waitlist__lede {
     margin-top: 1.1rem;
     font-size: 1rem;
+  }
+
+  .spectros-waitlist__content--product {
+    padding: 3.25rem 3rem 3.25rem;
+  }
+
+  .spectros-waitlist__lede--product {
+    margin-top: 1.35rem;
   }
 }
 
