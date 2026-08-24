@@ -6,10 +6,10 @@ export function WaitlistSection() {
   return (
     <section
       id="spectros"
-      className="bg-white px-4 py-16 sm:px-6 sm:py-20 lg:pb-[140px] lg:pt-[100px]"
+      className="bg-white px-4 pb-16 pt-6 sm:px-6 sm:pb-20 sm:pt-8 lg:pb-[140px]"
       aria-labelledby="industry-preview-title"
     >
-      <div className="mx-auto grid w-full max-w-[1400px] items-start gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
+      <div className="mx-auto grid w-full max-w-[1400px] items-start gap-10 lg:grid-cols-2 lg:gap-16">
         <h1 id="industry-preview-title" className="home-display min-w-0">
           AI system
           <br />
