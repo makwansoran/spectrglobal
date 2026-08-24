@@ -25,10 +25,7 @@ const referenceNavSections: NavSection[] = [
     items: [
       { label: "Manufacturing", href: "/use-cases/manufacturing" },
       { label: "Logistics", href: "/use-cases/logistics" },
-      { label: "Shipping", href: "/use-cases/shipping" },
       { label: "Energy", href: "/use-cases/energy" },
-      { label: "Mining", href: "/use-cases/mining" },
-      { label: "Operations", href: "/use-cases/operations" },
       { label: "Waste Management", href: "/use-cases/waste-management" },
     ],
   },

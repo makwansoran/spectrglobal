@@ -68,7 +68,7 @@ export const platforms: Platform[] = [
         imageAlt: "Spectr OS across the enterprise",
       },
     ],
-    industriesIntro: "One OS across every enterprise domain.",
+    industriesIntro: "One OS across manufacturing, logistics, energy, and waste management.",
     industries: [
       {
         name: "Logistics & Supply Chain",
@@ -92,60 +92,11 @@ export const platforms: Platform[] = [
         imageAlt: "Power infrastructure and industrial energy",
       },
       {
-        name: "Mining",
-        description:
-          "Fuse pit, plant, and haul into one live model. Spectr OS ranks the next shift decision against the ore that is actually there.",
-        image: "/images/industries/infrastructure.jpg",
-        imageAlt: "Mining and heavy industrial operations",
-      },
-      {
-        name: "Retail & Distribution",
-        description:
-          "Connect stores, DCs, and fulfilment into one OS. From shelf gap to dock door — fuse truth, decide fast, and close the loop.",
-        image: "/images/industries/retail.jpg",
-        imageAlt: "Retail store operations",
-      },
-      {
-        name: "Operations",
-        description:
-          "Fuse sites, assets, crews, and work orders into one live model. Spectr OS ranks the next legal job against the floor you have — not last week’s plan.",
-        image: "/images/industries/infrastructure.jpg",
-        imageAlt: "Industrial site operations",
-      },
-      {
         name: "Waste Management",
         description:
           "Collection, plants, and materials in one loop. Spectr OS turns a lift into an operational decision — from kerb to offtake.",
         image: "/images/industries/logistics.jpg",
         imageAlt: "Collection and materials recovery operations",
-      },
-      {
-        name: "Infrastructure",
-        description:
-          "Monitor, decide, and act across critical physical systems. Spectr OS binds field reality to the ontology so AI never invents the world.",
-        image: "/images/industries/infrastructure.jpg",
-        imageAlt: "Infrastructure and construction site",
-      },
-      {
-        name: "Ports & Terminals",
-        description:
-          "Unify yard, berth, and cargo flows into executable decisions. Spectr OS keeps every object and movement coherent.",
-        image: "/images/industries/ports.jpg",
-        imageAlt: "Shipping containers at a port terminal",
-      },
-      {
-        name: "Aerospace",
-        description:
-          "Keep complex programmes coherent across partners, hangars, and sites. One operational truth for parts, people, and processes.",
-        image: "/images/industries/aerospace.jpg",
-        imageAlt: "Aircraft in flight",
-      },
-      {
-        name: "Pharmaceuticals",
-        description:
-          "Trace every unit and exception through a governed runtime. From batch to bay — fusion, decision, and audit in one OS.",
-        image: "/images/industries/pharma.jpg",
-        imageAlt: "Pharmaceutical products and packaging",
       },
     ],
     ctaTitle: "Run your enterprise on Spectr OS",

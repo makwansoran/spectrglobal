@@ -28,6 +28,9 @@ const nextConfig: NextConfig = {
       { source: "/use-cases/government", destination: "/", permanent: true },
       { source: "/use-cases/healthcare", destination: "/", permanent: true },
       { source: "/use-cases/finance", destination: "/", permanent: true },
+      { source: "/use-cases/shipping", destination: "/", permanent: true },
+      { source: "/use-cases/mining", destination: "/", permanent: true },
+      { source: "/use-cases/operations", destination: "/", permanent: true },
     ];
   },
 };

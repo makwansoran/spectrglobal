@@ -2,10 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCases, useCasesSection } from "@/lib/content";
 
-const hiddenUseCases = new Set(["defense", "government", "healthcare", "finance"]);
-
 export function UseCases() {
-  const items = useCases.filter((item) => !hiddenUseCases.has(item.id));
+  const items = useCases;
 
   return (
     <section id="use-cases" className="scroll-mt-24 bg-white px-4 pb-20 pt-16 sm:px-6 sm:pb-[140px] sm:pt-[128px]">

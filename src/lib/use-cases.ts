@@ -155,70 +155,8 @@ export const industryPages: IndustryPage[] = [
     ],
   },
   {
-    slug: "shipping",
-    index: "/0.3",
-    name: "Shipping",
-    listingDescription: "Fleet, cargo, berth, and route as one picture — so a vessel move is an operational decision.",
-    href: "/use-cases/shipping",
-    image: "/images/industries/ports.jpg",
-    imageAlt: "Shipping containers at a port terminal",
-    bannerTitle: "Spectr for Shipping",
-    headline: "Cargo, vessels, and terminals in one runtime — from the berth plan to the last mile on land.",
-    columnOne:
-      "Shipping is a chain of handoffs that still live in separate systems: fleet, terminal, customs, inland. Spectr OS treats the container, the vessel, the slot, and the truck as the same operational story, so a delay is visible as a decision — not a status email.",
-    columnTwo:
-      "Track movements as they happen. Re-sequence yards and berths against what actually arrived. Keep partners on a shared picture without waiting for a daily report. The work is coherence across water and land, at the speed of the terminal.",
-    focuses: [
-      {
-        id: "cargo",
-        label: "Cargo that can be found",
-        statement: "If the box is a rumour, the schedule is a hope.",
-        focus: "Shipments and containers",
-        change: "Bookings, units, and milestones update in one model so operations can replan while the vessel is still moving.",
-        image: "/images/industries/ports.jpg",
-        imageAlt: "Shipping containers at a port terminal",
-      },
-      {
-        id: "terminal",
-        label: "Berth, yard, gate",
-        statement: "The terminal only works when every object agrees on where it is.",
-        focus: "Ports and terminals",
-        change: "Yard positions, crane work, and gate moves sit with the vessel plan, so exceptions become a sequence — not a radio pile-up.",
-        image: "/images/industries/infrastructure.jpg",
-        imageAlt: "Port and infrastructure operations",
-      },
-      {
-        id: "fleet",
-        label: "Fleet and inland",
-        statement: "The sea leg is wasted if the land leg cannot take the cargo.",
-        focus: "Routes and assets",
-        change: "Telematics, schedules, and inland capacity feed the same runtime, so reroutes are chosen with dwell and cost in view.",
-        image: "/images/industries/logistics.jpg",
-        imageAlt: "Inland logistics connecting to shipping",
-      },
-    ],
-    capabilities: [
-      {
-        title: "A living schedule",
-        body: "ETA, berth, and yard work update as objects, not as slides. The next move is always ranked against the current world.",
-      },
-      {
-        title: "Handoffs with evidence",
-        body: "Each transfer carries who, when, and why — useful for partners, customs, and your own night shift.",
-      },
-      {
-        title: "Network, not a port silo",
-        body: "What happens at one terminal can inform the next port of call without rebuilding a new integration for each site.",
-      },
-      {
-        title: "People still in command",
-        body: "Proposed sequences are workflows with approval. The runtime does not sail the ship. It makes the options honest.",
-      },
-    ],
-  },
-  {
     slug: "energy",
-    index: "/0.4",
+    index: "/0.3",
     name: "Energy",
     listingDescription: "Assets, production, and markets in one model — so a plant decision is simulated before it is made.",
     href: "/use-cases/energy",
@@ -279,134 +217,8 @@ export const industryPages: IndustryPage[] = [
     ],
   },
   {
-    slug: "mining",
-    index: "/0.5",
-    name: "Mining",
-    listingDescription:
-      "Pit, plant, and haul as one model — so a shift decision is made against the ore that is actually there.",
-    href: "/use-cases/mining",
-    image: "/images/industries/infrastructure.jpg",
-    imageAlt: "Mining and heavy industrial operations",
-    bannerTitle: "Spectr for Mining",
-    headline: "The pit, the plant, and the haul road in one runtime — not three reports that disagree by shift change.",
-    columnOne:
-      "Mining fails in the seams: fleet, grade, processing, and maintenance living in different truths. Spectr OS binds those objects into one live model so a shovel delay, a wet road, or a mill constraint is something the shift can answer — not a morning reconciliation.",
-    columnTwo:
-      "See utilisation at the unit, not in a monthly pack. Rank the next legal move against payload, quality, and the plant that has to take it. What only appears across pits and concentrators can flow back to the edge without taking the site down for a cloud round-trip.",
-    focuses: [
-      {
-        id: "pit",
-        label: "The pit as it is",
-        statement: "A plan that cannot see the face is already late.",
-        focus: "Load and haul",
-        change: "Shovels, trucks, and benches share one model so exceptions — a breakdown, a weather hold, a blocked ramp — become a sequence, not a radio pile-up.",
-        image: "/images/industries/infrastructure.jpg",
-        imageAlt: "Open-pit and heavy equipment operations",
-      },
-      {
-        id: "grade",
-        label: "Grade that tells the truth",
-        statement: "You cannot feed a mill on a rumour of what is in the truck.",
-        focus: "Ore and quality",
-        change: "Samples, stockpiles, and plant constraints accumulate on the same objects, so blend, hold, or divert happens with recovery in view.",
-        image: "/images/industries/energy.jpg",
-        imageAlt: "Processing plant and industrial materials",
-      },
-      {
-        id: "maintain",
-        label: "Assets that have to move",
-        statement: "A truck without a part is a delay wearing a work-order number.",
-        focus: "Fleet and upkeep",
-        change: "Spares, skills, and downtime cost sit with the haul plan, so expedite, defer, or substitute is chosen against tonnes, not a workshop queue.",
-        image: "/images/industries/spare-parts.jpg",
-        imageAlt: "Industrial parts and maintenance stores",
-      },
-    ],
-    capabilities: [
-      {
-        title: "One model of the site",
-        body: "Faces, trucks, stockpiles, and the plant exist once. Downstream tools read the same objects the shift already uses.",
-      },
-      {
-        title: "Shock response",
-        body: "When a unit stops or a grade swings, the runtime re-ranks the next legal moves instead of waiting for the next meeting.",
-      },
-      {
-        title: "Governed action",
-        body: "Proposed changes carry evidence and an audit trail. People stay in command; the system does not invent the pit.",
-      },
-      {
-        title: "From pit to plant",
-        body: "What happens on the haul road informs the mill without a new integration for every site.",
-      },
-    ],
-  },
-  {
-    slug: "operations",
-    index: "/0.6",
-    name: "Operations",
-    listingDescription:
-      "Sites, assets, and crews in one runtime — so the work on the floor is the same object as the plan.",
-    href: "/use-cases/operations",
-    image: "/images/industries/infrastructure.jpg",
-    imageAlt: "Industrial site operations",
-    bannerTitle: "Spectr for Operations",
-    headline: "Run the site as it is — not as last week’s plan said it would be.",
-    columnOne:
-      "Operations fail in the gap between the CMMS, the roster, and the radio. Spectr OS treats the asset, the work order, the crew, and the constraint as one live model, so a breakdown is a decision on the floor — not a ticket that waits for morning.",
-    columnTwo:
-      "See utilisation at the unit, not in a monthly pack. Rank the next legal job against parts, permits, and people who are actually on shift. Multi-site patterns flow back to the edge without taking the site down for a cloud round-trip.",
-    focuses: [
-      {
-        id: "site",
-        label: "The site as one object",
-        statement: "A facility is not a dashboard. It is assets, crews, and constraints under a permit.",
-        focus: "Facilities and plants",
-        change: "Work orders, sensors, and access sit together so supervisors act on the site they have — not last night’s schedule.",
-        image: "/images/industries/infrastructure.jpg",
-        imageAlt: "Industrial site operations",
-      },
-      {
-        id: "maintain",
-        label: "Maintenance that can move",
-        statement: "A job without parts is a delay wearing a work-order number.",
-        focus: "Assets and upkeep",
-        change: "Spares, skills, and downtime cost share one model, so expedite, defer, or substitute happens with the plant in view.",
-        image: "/images/industries/spare-parts.jpg",
-        imageAlt: "Spare parts and maintenance stores",
-      },
-      {
-        id: "crew",
-        label: "Crews against the work",
-        statement: "A roster that cannot see the backlog is already late.",
-        focus: "People and shift",
-        change: "Competences, fatigue, and open jobs sit in the same runtime so the next assignment is a ranked choice, not a radio pile-up.",
-        image: "/images/industries/manufacturing.jpg",
-        imageAlt: "Crews and production operations",
-      },
-    ],
-    capabilities: [
-      {
-        title: "One model of the estate",
-        body: "Sites, assets, and crews exist once. Downstream tools read the same objects the supervisor already uses.",
-      },
-      {
-        title: "Exception as a workflow",
-        body: "When a unit stops, the runtime re-ranks the next legal jobs and records who approved the change.",
-      },
-      {
-        title: "Governed action",
-        body: "Proposed work carries evidence and an audit trail. People stay in command; the system does not invent the floor.",
-      },
-      {
-        title: "From site to fleet",
-        body: "What only appears across facilities can flow back to the edge — without a weekly reconciliation meeting.",
-      },
-    ],
-  },
-  {
     slug: "waste-management",
-    index: "/0.7",
+    index: "/0.4",
     name: "Waste Management",
     listingDescription:
       "Collection, plants, and materials as one loop — so a lift is an operational decision, not a route afterthought.",
@@ -477,7 +289,15 @@ export function getIndustrySlugs() {
   return industryPages.map((page) => page.slug);
 }
 
-const removedUseCaseSlugs = new Set(["defense", "government", "healthcare", "finance"]);
+const removedUseCaseSlugs = new Set([
+  "defense",
+  "government",
+  "healthcare",
+  "finance",
+  "shipping",
+  "mining",
+  "operations",
+]);
 
 export const industryListings = industryPages
   .filter((page) => !removedUseCaseSlugs.has(page.slug))
