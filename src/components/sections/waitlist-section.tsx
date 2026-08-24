@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { LogoMark } from "@/components/logo";
 import "./waitlist-section.css";
 
 export function WaitlistSection() {
@@ -10,11 +11,17 @@ export function WaitlistSection() {
       aria-labelledby="industry-preview-title"
     >
       <div className="mx-auto grid w-full max-w-[1400px] items-start gap-10 lg:grid-cols-2 lg:gap-16">
-        <h1 id="industry-preview-title" className="home-display min-w-0">
-          AI system
-          <br />
-          for Industry
-        </h1>
+        <div className="min-w-0">
+          <h1 id="industry-preview-title" className="home-display">
+            AI system
+            <br />
+            for materials
+          </h1>
+          <p className="spectros-waitlist__logo">
+            <LogoMark className="spectros-waitlist__logo-mark" title="" />
+            Spectr
+          </p>
+        </div>
 
         <div className="spectros-waitlist__panel min-w-0">
           <Image
