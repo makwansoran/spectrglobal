@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import "./waitlist-section.css";
 
@@ -6,15 +5,18 @@ export function WaitlistSection() {
   return (
     <section
       id="spectros"
-      className="bg-white px-4 py-16 sm:px-6 sm:py-20 lg:pb-[140px] lg:pt-[80px]"
-      aria-labelledby="spectros-waitlist-heading"
+      className="bg-white px-4 py-16 sm:px-6 sm:py-20 lg:pb-[140px] lg:pt-[100px]"
+      aria-labelledby="industry-preview-title"
     >
-      <div className="mx-auto grid w-full max-w-[1400px] items-center gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,36rem)] lg:gap-16">
-        <div className="max-w-xl">
-          <h2
-            id="spectros-waitlist-heading"
-            className="home-display"
-          >
+      <div className="mx-auto grid w-full max-w-[1400px] items-start gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
+        <h1 id="industry-preview-title" className="home-display min-w-0">
+          AI system
+          <br />
+          for Industry
+        </h1>
+
+        <div className="min-w-0 max-w-xl">
+          <h2 id="spectros-waitlist-heading" className="home-display">
             Be one of the first
             <br />
             to use spectrOs
@@ -26,19 +28,6 @@ export function WaitlistSection() {
             <Link href="/waitlist" className="spectros-waitlist__join">
               Join waitlist
             </Link>
-          </div>
-        </div>
-
-        <div className="rounded-[1.2rem] bg-[#F4F4F4] p-2 sm:rounded-[1.6rem] sm:bg-white sm:p-3">
-          <div className="relative aspect-[16/10] min-h-[12.5rem] overflow-hidden rounded-2xl bg-black sm:aspect-[4/3] sm:min-h-[14rem]">
-            <Image
-              src="/images/products/spectros-waitlist.png"
-              alt="spectrOs running on a laptop"
-              fill
-              className="object-cover object-center"
-              sizes="(max-width: 1024px) 100vw, 36rem"
-              quality={90}
-            />
           </div>
         </div>
       </div>
