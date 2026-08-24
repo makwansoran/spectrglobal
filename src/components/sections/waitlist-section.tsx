@@ -7,7 +7,7 @@ export function WaitlistSection() {
   return (
     <section
       id="spectros"
-      className="bg-white px-4 pb-16 pt-6 sm:px-6 sm:pb-20 sm:pt-8 lg:pb-[140px]"
+      className="bg-white px-4 pb-16 pt-6 sm:px-6 sm:pb-20 sm:pt-8 lg:pb-20"
       aria-labelledby="industry-preview-title"
     >
       <div className="mx-auto grid w-full max-w-[1400px] items-start gap-10 lg:grid-cols-2 lg:gap-16">
@@ -61,6 +61,35 @@ export function WaitlistSection() {
           </div>
         </div>
       </div>
+
+      <Link
+        href="/platforms/spectr-os"
+        className="spectros-waitlist__panel spectros-waitlist__panel--product mx-auto mt-10 block w-full max-w-[1400px] min-w-0 sm:mt-12 lg:mt-16"
+        aria-label="Explore Spectr OS"
+      >
+        <Image
+          src="/images/products/spectr-os-ui.png"
+          alt=""
+          fill
+          className="spectros-waitlist__image"
+          sizes="(max-width: 1400px) 100vw, 1400px"
+          quality={90}
+        />
+        <div className="spectros-waitlist__scrim" aria-hidden="true" />
+        <div className="spectros-waitlist__content">
+          <h2 className="home-display spectros-waitlist__title">
+            Spectr OS
+          </h2>
+          <p className="spectros-waitlist__lede">
+            The operating system for the enterprise. Fuse data, decide, and act in one runtime.
+          </p>
+          <div className="spectros-waitlist__cta">
+            <span className="spectros-waitlist__join spectros-waitlist__join--on-media">
+              Explore Spectr OS
+            </span>
+          </div>
+        </div>
+      </Link>
     </section>
   );
 }
