@@ -50,6 +50,45 @@
   text-align: center;
 }
 
+.spectros-waitlist__headline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.spectros-waitlist__line {
+  display: flex;
+  justify-content: center;
+  gap: 0.28em;
+}
+
+.spectros-waitlist__word {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+}
+
+.spectros-waitlist__word > span {
+  display: block;
+  animation: spectros-word-in 720ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.spectros-waitlist__word[data-i="1"] > span { animation-delay: 60ms; }
+.spectros-waitlist__word[data-i="2"] > span { animation-delay: 200ms; }
+.spectros-waitlist__word[data-i="3"] > span { animation-delay: 340ms; }
+.spectros-waitlist__word[data-i="4"] > span { animation-delay: 480ms; }
+
+@keyframes spectros-word-in {
+  from {
+    opacity: 0;
+    transform: translateY(110%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .spectros-waitlist__logo {
   display: flex;
   align-items: center;
@@ -62,6 +101,8 @@
   letter-spacing: -0.04em;
   line-height: 1;
   color: #1e1f2b;
+  animation: spectros-word-in 720ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 640ms;
 }
 
 .spectros-waitlist__logo-mark {
@@ -122,5 +163,14 @@
     min-height: 44px;
     padding: 11px 22px;
     font-size: 0.875rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spectros-waitlist__word > span,
+  .spectros-waitlist__logo {
+    animation: none;
+    opacity: 1;
+    transform: none;
   }
 }

@@ -12,10 +12,23 @@ export function WaitlistSection() {
     >
       <div className="mx-auto grid w-full max-w-[1400px] items-start gap-10 lg:grid-cols-2 lg:gap-16">
         <div className="spectros-waitlist__intro min-w-0 lg:self-center">
-          <h1 id="industry-preview-title" className="home-display">
-            AI system
-            <br />
-            for materials
+          <h1 id="industry-preview-title" className="home-display spectros-waitlist__headline">
+            <span className="spectros-waitlist__line">
+              <span className="spectros-waitlist__word" data-i="1">
+                <span>AI</span>
+              </span>
+              <span className="spectros-waitlist__word" data-i="2">
+                <span>system</span>
+              </span>
+            </span>
+            <span className="spectros-waitlist__line">
+              <span className="spectros-waitlist__word" data-i="3">
+                <span>for</span>
+              </span>
+              <span className="spectros-waitlist__word" data-i="4">
+                <span>materials</span>
+              </span>
+            </span>
           </h1>
           <p className="spectros-waitlist__logo">
             <LogoMark className="spectros-waitlist__logo-mark" title="" />
