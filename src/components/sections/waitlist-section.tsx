@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import "./waitlist-section.css";
 
@@ -15,19 +16,31 @@ export function WaitlistSection() {
           for Industry
         </h1>
 
-        <div className="min-w-0 max-w-xl">
-          <h2 id="spectros-waitlist-heading" className="home-display">
-            Be one of the first
-            <br />
-            to use spectrOs
-          </h2>
-          <p className="mt-4 max-w-md text-[15px] leading-7 text-[#6B6B72] sm:mt-5 sm:text-base">
-            We&apos;re soon releasing. Join the waitlist and we&apos;ll email you when it&apos;s ready.
-          </p>
-          <div className="mt-6 sm:mt-8">
-            <Link href="/waitlist" className="spectros-waitlist__join">
-              Join waitlist
-            </Link>
+        <div className="spectros-waitlist__panel min-w-0">
+          <Image
+            src="/images/products/spectros-waitlist.png"
+            alt="spectrOs running on a laptop"
+            fill
+            priority
+            className="spectros-waitlist__image"
+            sizes="(max-width: 1024px) 100vw, 44rem"
+            quality={90}
+          />
+          <div className="spectros-waitlist__scrim" aria-hidden="true" />
+          <div className="spectros-waitlist__content">
+            <h2 id="spectros-waitlist-heading" className="home-display spectros-waitlist__title">
+              Be one of the first
+              <br />
+              to use spectrOs
+            </h2>
+            <p className="spectros-waitlist__body">
+              We&apos;re soon releasing. Join the waitlist and we&apos;ll email you when it&apos;s ready.
+            </p>
+            <div className="spectros-waitlist__cta">
+              <Link href="/waitlist" className="spectros-waitlist__join spectros-waitlist__join--on-media">
+                Join waitlist
+              </Link>
+            </div>
           </div>
         </div>
       </div>
