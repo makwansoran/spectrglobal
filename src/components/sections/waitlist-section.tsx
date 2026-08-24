@@ -69,34 +69,32 @@ export function WaitlistSection() {
         className="bg-white px-4 pb-16 sm:px-6 sm:pb-20 lg:pb-[80px]"
         aria-labelledby="spectros-product-heading"
       >
-        <Link
-          href="/platforms/spectr-os"
-          className="spectros-waitlist__panel spectros-waitlist__panel--product mx-auto block w-full max-w-[1400px] min-w-0"
-          aria-label="Explore Spectr OS"
-        >
-          <Image
-            src="/images/products/spectr-os-ui.png"
-            alt=""
-            fill
-            className="spectros-waitlist__image"
-            sizes="(max-width: 1400px) 100vw, 1400px"
-            quality={90}
-          />
-          <div className="spectros-waitlist__scrim" aria-hidden="true" />
-          <div className="spectros-waitlist__content spectros-waitlist__content--product">
-            <h2 id="spectros-product-heading" className="home-display spectros-waitlist__title spectros-waitlist__title--product">
+        <div className="mx-auto grid w-full max-w-[1400px] items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          <div className="spectros-waitlist__panel spectros-waitlist__panel--product min-w-0">
+            <Image
+              src="/images/products/spectr-os-materials.jpg"
+              alt="Materials processing plant with conveyors and sorting equipment"
+              fill
+              className="spectros-waitlist__image"
+              sizes="(max-width: 1024px) 100vw, 44rem"
+              quality={90}
+            />
+          </div>
+
+          <div className="spectros-waitlist__product-copy min-w-0">
+            <h2 id="spectros-product-heading" className="home-display spectros-waitlist__title--product">
               Spectr OS
             </h2>
             <p className="spectros-waitlist__lede spectros-waitlist__lede--product">
               The operating system for the enterprise. Fuse data, decide, and act in one runtime.
             </p>
             <div className="spectros-waitlist__cta">
-              <span className="spectros-waitlist__join spectros-waitlist__join--on-media">
+              <Link href="/platforms/spectr-os" className="spectros-waitlist__join">
                 Explore Spectr OS
-              </span>
+              </Link>
             </div>
           </div>
-        </Link>
+        </div>
       </section>
     </>
   );
