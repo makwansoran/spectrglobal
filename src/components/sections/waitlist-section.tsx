@@ -11,7 +11,7 @@ export function WaitlistSection() {
       aria-labelledby="industry-preview-title"
     >
       <div className="mx-auto grid w-full max-w-[1400px] items-start gap-10 lg:grid-cols-2 lg:gap-16">
-        <div className="spectros-waitlist__intro min-w-0">
+        <div className="spectros-waitlist__intro min-w-0 lg:self-center">
           <h1 id="industry-preview-title" className="home-display">
             AI system
             <br />
