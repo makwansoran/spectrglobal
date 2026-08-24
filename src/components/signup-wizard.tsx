@@ -10,7 +10,10 @@ import type { AccountKind } from "@/lib/auth/account";
 import { defaultNextForKind, loginPathForKind } from "@/lib/auth/account";
 import { emailErrorForKind, normalizeEmail } from "@/lib/email";
 import { createClient } from "@/lib/supabase/client";
+import type { Database } from "@/lib/supabase/database.types";
 import { safeNextPath } from "@/lib/auth/next-path";
+
+type ProfileInsert = Database["public"]["Tables"]["profiles"]["Insert"];
 
 type Step = 0 | 1 | 2 | 3;
 
@@ -167,14 +170,18 @@ export function SignupWizard({
       return;
     }
 
-    const profile = {
+    const profile: ProfileInsert = {
       id: user.id,
       full_name: name,
       country,
       email: user.email ?? normalizeEmail(email),
       username: handle,
-      ...(careers ? { careers_access: true } : { product_access: true }),
     };
+    if (careers) {
+      profile.careers_access = true;
+    } else {
+      profile.product_access = true;
+    }
     const { error: profileError } = await supabase.from("profiles").upsert(profile);
     if (profileError) {
       const { username: _username, ...withoutUsername } = profile;
