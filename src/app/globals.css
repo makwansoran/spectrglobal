@@ -1468,57 +1468,23 @@ html.theme-white footer {
 .industry-preview {
   position: relative;
   width: 100%;
-  padding: 0;
+  padding: clamp(5rem, 14vw, 10rem) clamp(1.25rem, 5vw, 5rem);
   margin: 0;
-}
-
-.industry-preview__media {
-  position: relative;
-  overflow: hidden;
-  min-height: 24rem;
-  aspect-ratio: 16 / 7;
-  border-radius: 0;
-  background: #161513;
-}
-
-.industry-preview__video,
-.industry-preview__scrim {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.industry-preview__video {
-  object-fit: cover;
-}
-
-.industry-preview__scrim {
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.36), rgba(0, 0, 0, 0.08) 48%, rgba(0, 0, 0, 0.32));
+  background: #fff;
 }
 
 .industry-preview__title {
-  position: absolute;
-  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 clamp(1.25rem, 5vw, 5rem);
   margin: 0;
-  color: #fff;
+  color: #1e1f2b;
   font-family: var(--font-sans);
   font-size: clamp(2rem, 10vw, 6.25rem);
   font-weight: 400;
   letter-spacing: -0.055em;
   line-height: 0.86;
   text-align: center;
-}
-
-@media (min-width: 768px) {
-  .industry-preview {
-    padding-right: 0;
-    padding-left: 0;
-  }
 }
 
 .site-header--reference {
