@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { AuthShell } from "@/components/auth-shell";
 import { LoginForm } from "@/components/login-form";
 import { safeNextPath } from "@/lib/auth/next-path";
@@ -24,14 +23,6 @@ export default async function CareersLoginPage({
       homeHref="/careers"
       title="Careers sign in"
       subtitle="Enter your email and password, then the code we email you. Spectr OS uses a separate account."
-      footer={
-        <>
-          Need a careers account?{" "}
-          <Link href="/careers/signup" className="font-medium text-[#635bff] hover:text-[#5851ea]">
-            Create one
-          </Link>
-        </>
-      }
     >
       <LoginForm next={afterLogin} kind="careers" />
     </AuthShell>

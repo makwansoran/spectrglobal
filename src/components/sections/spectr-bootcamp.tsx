@@ -41,9 +41,6 @@ export function SpectrBootcamp({ signedIn }: SpectrBootcampProps) {
                 {spectrBootcamp.attendCta}
                 <ArrowIcon />
               </Button>
-              <Button href="/signup?next=%2Fdashboard" variant="secondary">
-                {spectrBootcamp.attendSignup}
-              </Button>
             </div>
           </div>
         )}

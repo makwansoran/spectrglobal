@@ -7,6 +7,10 @@ const nextConfig: NextConfig = {
   transpilePackages: ["mapbox-gl"],
   async redirects() {
     return [
+      { source: "/signup", destination: "/login", permanent: true },
+      { source: "/create-account.html", destination: "/login", permanent: true },
+      { source: "/create-account", destination: "/login", permanent: true },
+      { source: "/careers/signup", destination: "/careers/login", permanent: true },
       { source: "/no", destination: "/", permanent: true },
       { source: "/no/:path*", destination: "/:path*", permanent: true },
       { source: "/object-intelligence", destination: "/platforms/spectr-os", permanent: true },

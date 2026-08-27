@@ -3,7 +3,6 @@ export function isAppChromePath(pathname: string) {
     pathname === "/app" ||
     pathname.startsWith("/app/") ||
     pathname === "/login" ||
-    pathname === "/signup" ||
     pathname === "/check-email" ||
     pathname.startsWith("/mfa") ||
     pathname === "/dashboard" ||
@@ -11,7 +10,6 @@ export function isAppChromePath(pathname: string) {
     pathname === "/admin" ||
     pathname.startsWith("/admin/") ||
     pathname === "/careers/login" ||
-    pathname === "/careers/signup" ||
     pathname === "/careers/dashboard" ||
     pathname.startsWith("/careers/dashboard/") ||
     pathname.startsWith("/careers/positions") ||

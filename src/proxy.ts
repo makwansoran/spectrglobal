@@ -67,7 +67,7 @@ export async function proxy(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
-  if (user && (pathname === "/careers/login" || pathname === "/careers/signup")) {
+  if (user && pathname === "/careers/login") {
     const { data: profile } = await supabase
       .from("profiles")
       .select("careers_access")

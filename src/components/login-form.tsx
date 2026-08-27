@@ -135,14 +135,14 @@ export function LoginForm({
     if (kind === "product" && dest !== "/admin" && !profile?.product_access) {
       await supabase.auth.signOut();
       setPending(false);
-      setError("This email is not a Spectr account. Use Careers login, or create a Spectr account.");
+      setError("This email is not a Spectr account. Use Careers login if you have a careers account.");
       setStep("password");
       return;
     }
     if (kind === "careers" && !profile?.careers_access) {
       await supabase.auth.signOut();
       setPending(false);
-      setError("This email is not a careers account. Create a careers account to apply.");
+      setError("This email is not a careers account.");
       setStep("password");
       return;
     }

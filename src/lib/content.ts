@@ -64,7 +64,6 @@ export const spectrBootcamp = {
   attendBody:
     "Log in with your Spectr account. SPECTR BOOTCAMP is included for every Spectr user — Spectr OS downloads are granted separately.",
   attendCta: "Log in to attend",
-  attendSignup: "Create an account",
   videoSrc: "/videos/spectr-bootcamp.mp4",
   videoTitle: "Spectr Bootcamp — create, train, and run your own AI",
   planEyebrow: "Show plan",

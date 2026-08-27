@@ -5,7 +5,7 @@ import { buildPageMetadata } from "@/lib/metadata";
 
 const listingCount = openRoles.length;
 const listingWord = listingCount === 1 ? "listing" : "listings";
-const description = `We have ${listingCount} ${listingWord} open. Create an account or log in to apply.`;
+const description = `We have ${listingCount} ${listingWord} open. Log in to apply.`;
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Careers",
@@ -26,9 +26,6 @@ export default function CareersPage() {
             <Button href="/careers/login">
               Log in
               <ArrowIcon />
-            </Button>
-            <Button href="/careers/signup" variant="secondary">
-              Create an account
             </Button>
           </div>
           <p className="mt-6 text-sm text-[#6B6B72]">After you sign in you land on the careers dashboard, then open a position to apply.</p>

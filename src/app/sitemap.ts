@@ -9,7 +9,6 @@ const paths = [
   "/about",
   "/careers",
   "/careers/login",
-  "/careers/signup",
   "/careers/open-positions",
   "/careers/getting-hired",
   "/careers/students",

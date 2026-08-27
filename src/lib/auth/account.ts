@@ -13,7 +13,3 @@ export function defaultNextForKind(kind: AccountKind) {
 export function loginPathForKind(kind: AccountKind) {
   return kind === "careers" ? "/careers/login" : "/login";
 }
-
-export function signupPathForKind(kind: AccountKind) {
-  return kind === "careers" ? "/careers/signup" : "/signup";
-}
