@@ -153,7 +153,7 @@ export function LoginForm({
 
   if (step === "otp") {
     return (
-      <form onSubmit={onOtp} className="mt-8 space-y-5" noValidate>
+      <form onSubmit={onOtp} className="mt-6 space-y-5" noValidate>
         <div>
           <label htmlFor="login-otp" className="mb-2 block text-[13px] font-medium text-fg">
             Authentication code
@@ -191,7 +191,7 @@ export function LoginForm({
   }
 
   return (
-    <form onSubmit={onPassword} className="mt-8 space-y-5" noValidate>
+    <form onSubmit={onPassword} className="mt-6 space-y-5" noValidate>
       <div>
         <label htmlFor="login-email" className="mb-2 block text-[13px] font-medium text-fg">
           {kind === "careers" ? "Email" : "Work email"}

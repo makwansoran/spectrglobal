@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { AuthShell } from "@/components/auth-shell";
 import { LoginForm } from "@/components/login-form";
+import { LoginSplitShell } from "@/components/login-split-shell";
 import { safeNextPath } from "@/lib/auth/next-path";
 import { buildPageMetadata } from "@/lib/metadata";
 
@@ -22,11 +22,11 @@ export default async function LoginPage({
   const afterLogin = safeNextPath(next);
 
   return (
-    <AuthShell
+    <LoginSplitShell
       title="Sign in to your account"
       subtitle="Enter your work email and password, then the code we email you."
     >
       <LoginForm next={afterLogin} kind="product" />
-    </AuthShell>
+    </LoginSplitShell>
   );
 }
