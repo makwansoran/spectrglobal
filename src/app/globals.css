@@ -1914,7 +1914,6 @@ html.theme-white footer {
 
 .login-split {
   min-height: 100vh;
-  background: #f3f3f3;
 }
 
 .login-split__header {
@@ -1958,6 +1957,7 @@ html.theme-white footer {
   max-width: min(100%, 920px);
   height: auto;
   flex: 0 1 auto;
+  background: transparent;
 }
 
 @media (min-width: 1024px) {
