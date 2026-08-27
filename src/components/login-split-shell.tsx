@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { AimWorkspacePreview } from "@/components/aim-workspace-preview";
 import { BrandLink } from "@/components/logo";
 
 export function LoginSplitShell({
@@ -13,41 +12,45 @@ export function LoginSplitShell({
 }) {
   return (
     <main id="main-content" className="auth-page login-split">
-      <div className="login-split__frame">
-        <header className="mb-4 flex items-center justify-between px-1">
-          <BrandLink />
-          {process.env.NODE_ENV === "development" ? (
-            <Link
-              href="/dashboard"
-              className="rounded-md bg-black px-3 py-1.5 text-[12px] font-medium text-white hover:bg-black/80"
-            >
-              DEV: Dashboard
-            </Link>
-          ) : null}
-        </header>
+      <header className="login-split__header">
+        <BrandLink />
+        {process.env.NODE_ENV === "development" ? (
+          <Link
+            href="/dashboard"
+            className="rounded-md bg-black px-3 py-1.5 text-[12px] font-medium text-white hover:bg-black/80"
+          >
+            DEV: Dashboard
+          </Link>
+        ) : null}
+      </header>
 
-        <section className="login-split__card">
-          <div className="login-split__visual">
-            <AimWorkspacePreview />
-          </div>
-
-          <div className="login-split__form">
-            <h1 className="text-[28px] font-semibold tracking-[-0.03em] text-[#0a2540]">
+      <div className="login-split__body">
+        <div className="login-split__pane">
+          <div className="login-split__modal auth-glass">
+            <h1 className="text-center text-[22px] font-semibold tracking-[-0.01em] text-[#0a2540]">
               {title}
             </h1>
-            <p className="mt-2 max-w-[34ch] text-[15px] leading-6 text-[#697386]">{subtitle}</p>
+            <p className="mt-2 text-center text-[14px] leading-6 text-[#697386]">{subtitle}</p>
             {children}
-            <p className="mt-8 text-[12px] leading-5 text-[#8792a2]">
-              <Link href="/privacy" className="hover:text-[#0a2540]">
-                Privacy policy
-              </Link>
-              <span className="mx-2 text-[#c1c9d2]">·</span>
-              <Link href="/terms" className="hover:text-[#0a2540]">
-                Terms of service
-              </Link>
-            </p>
           </div>
-        </section>
+          <p className="login-split__legal">
+            <Link href="/privacy" className="hover:text-[#0a2540]">
+              Privacy policy
+            </Link>
+            <span className="mx-2 text-[#c1c9d2]">·</span>
+            <Link href="/terms" className="hover:text-[#0a2540]">
+              Terms of service
+            </Link>
+          </p>
+        </div>
+
+        <img
+          src="/images/login/spectr-aim-laptop.png"
+          alt="Spectr"
+          width={1024}
+          height={576}
+          className="login-split__image"
+        />
       </div>
     </main>
   );
