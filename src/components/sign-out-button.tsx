@@ -2,7 +2,6 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { createClient } from "@/lib/supabase/client";
 
 export function SignOutButton({ dark = false, href = "/login" }: { dark?: boolean; href?: string }) {
   const router = useRouter();
@@ -10,8 +9,7 @@ export function SignOutButton({ dark = false, href = "/login" }: { dark?: boolea
 
   async function signOut() {
     setPending(true);
-    const supabase = createClient();
-    await supabase.auth.signOut();
+    await fetch("/api/auth/demo", { method: "DELETE" });
     router.replace(href);
     router.refresh();
   }

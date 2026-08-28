@@ -24,9 +24,9 @@ export default async function LoginPage({
   return (
     <LoginSplitShell
       title="Sign in to your account"
-      subtitle="Enter your work email and password, then the code we email you."
+      subtitle="Enter your username and password."
     >
-      <LoginForm next={afterLogin} kind="product" />
+      <LoginForm next={afterLogin} />
     </LoginSplitShell>
   );
 }

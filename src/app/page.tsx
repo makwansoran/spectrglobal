@@ -1,5 +1,4 @@
 import { Footer } from "@/components/footer";
-import { JoinTheTeam } from "@/components/sections/join-the-team";
 import { LogoMarquee } from "@/components/sections/logo-marquee";
 import { OfferingsCeoQuote } from "@/components/sections/offerings-ceo-quote";
 import { UseCases } from "@/components/sections/usecases";
@@ -13,7 +12,6 @@ export default function HomePage() {
         <LogoMarquee />
         <UseCases />
         <OfferingsCeoQuote />
-        <JoinTheTeam />
       </main>
       <Footer />
     </>

@@ -1,29 +1,12 @@
 export const DEMO_COOKIE = "spectr_demo_session";
 
-function secret(): string | null {
-  return (
-    process.env.SPECTR_DEMO_SECRET ||
-    process.env.SPECTR_BOOTSTRAP_SECRET ||
-    // Local/dev fallback so a single email+password always works when configured.
-    (process.env.SPECTR_DEMO_EMAIL && process.env.SPECTR_DEMO_PASSWORD
-      ? "spectr-dev-session-secret"
-      : null)
-  );
-}
+export const LOCAL_USERNAME = "user 1";
+export const LOCAL_PASSWORD = "user 1";
 
-export function demoCredentialsConfigured(): boolean {
-  return Boolean(
-    process.env.SPECTR_DEMO_EMAIL?.trim() &&
-      process.env.SPECTR_DEMO_PASSWORD &&
-      secret(),
-  );
-}
+const SESSION_SECRET = "spectr-local-session";
 
-export function verifyDemoCredentials(email: string, password: string): boolean {
-  const expectedEmail = process.env.SPECTR_DEMO_EMAIL?.trim().toLowerCase();
-  const expectedPassword = process.env.SPECTR_DEMO_PASSWORD;
-  if (!expectedEmail || !expectedPassword || !secret()) return false;
-  return email.trim().toLowerCase() === expectedEmail && password === expectedPassword;
+export function verifyLocalCredentials(username: string, password: string): boolean {
+  return username.trim() === LOCAL_USERNAME && password === LOCAL_PASSWORD;
 }
 
 function toBase64Url(bytes: ArrayBuffer | Uint8Array): string {
@@ -43,11 +26,9 @@ function fromBase64Url(value: string): Uint8Array {
 }
 
 async function hmac(payload: string): Promise<string> {
-  const s = secret();
-  if (!s) throw new Error("Demo auth secret missing");
   const key = await crypto.subtle.importKey(
     "raw",
-    new TextEncoder().encode(s),
+    new TextEncoder().encode(SESSION_SECRET),
     { name: "HMAC", hash: "SHA-256" },
     false,
     ["sign"],
@@ -63,11 +44,11 @@ function timingSafeEqual(a: string, b: string): boolean {
   return out === 0;
 }
 
-export async function signDemoSession(email: string): Promise<string> {
+export async function signLocalSession(username: string): Promise<string> {
   const payload = toBase64Url(
     new TextEncoder().encode(
       JSON.stringify({
-        email: email.trim().toLowerCase(),
+        username: username.trim(),
         exp: Date.now() + 1000 * 60 * 60 * 24 * 7,
       }),
     ),
@@ -78,19 +59,21 @@ export async function signDemoSession(email: string): Promise<string> {
 
 export async function readDemoSession(
   token: string | undefined,
-): Promise<{ email: string } | null> {
-  if (!token || !secret()) return null;
+): Promise<{ username: string } | null> {
+  if (!token) return null;
   const [payload, sig] = token.split(".");
   if (!payload || !sig) return null;
   const expected = await hmac(payload);
   if (!timingSafeEqual(sig, expected)) return null;
   try {
     const data = JSON.parse(new TextDecoder().decode(fromBase64Url(payload))) as {
+      username?: string;
       email?: string;
       exp?: number;
     };
-    if (!data.email || !data.exp || data.exp < Date.now()) return null;
-    return { email: data.email };
+    const username = data.username?.trim() || data.email?.trim();
+    if (!username || !data.exp || data.exp < Date.now()) return null;
+    return { username };
   } catch {
     return null;
   }

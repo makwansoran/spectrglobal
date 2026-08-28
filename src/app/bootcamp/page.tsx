@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { Footer } from "@/components/footer";
 import { SpectrBootcamp } from "@/components/sections/spectr-bootcamp";
-import { getAuthUser, getProfileAccess } from "@/lib/auth/guards";
+import { getLocalSession } from "@/lib/auth/local-session";
 import { spectrBootcamp } from "@/lib/content";
 import { buildPageMetadata } from "@/lib/metadata";
-import { supabaseAnonKey, supabaseUrl } from "@/lib/supabase/env";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "SPECTR BOOTCAMP",
@@ -26,9 +25,5 @@ export default async function BootcampPage() {
 }
 
 async function isBootcampSignedIn() {
-  if (!supabaseUrl() || !supabaseAnonKey()) return false;
-  const { user } = await getAuthUser();
-  if (!user) return false;
-  const access = await getProfileAccess(user.id);
-  return access.productAccess;
+  return Boolean(await getLocalSession());
 }

@@ -1,87 +1,34 @@
-import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { safeNextPath } from "@/lib/auth/next-path";
-import { supabaseAnonKey, supabaseUrl } from "@/lib/supabase/env";
-import { updateSession } from "@/lib/supabase/middleware";
+import { DEMO_COOKIE, readDemoSession } from "@/lib/demo-auth";
 
-function isProtectedPath(pathname: string) {
+function needsLocalAuth(pathname: string) {
   return (
     pathname.startsWith("/dashboard") ||
-    pathname.startsWith("/mfa") ||
-    pathname.startsWith("/admin") ||
-    pathname === "/careers/dashboard" ||
-    pathname.startsWith("/careers/dashboard/") ||
-    pathname.startsWith("/careers/positions") ||
-    pathname === "/careers/apply" ||
-    pathname.startsWith("/careers/apply/")
+    pathname === "/app" ||
+    pathname.startsWith("/app/")
   );
 }
 
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  const session = await readDemoSession(request.cookies.get(DEMO_COOKIE)?.value);
 
-  if (pathname === "/app" || pathname.startsWith("/app/") || pathname === "/login") {
-    return updateSession(request);
-  }
-
-  if (!supabaseUrl() || !supabaseAnonKey()) {
-    return NextResponse.next({ request });
-  }
-
-  let supabaseResponse = NextResponse.next({ request });
-
-  const supabase = createServerClient(supabaseUrl(), supabaseAnonKey(), {
-      cookies: {
-        getAll() {
-          return request.cookies.getAll();
-        },
-        setAll(cookiesToSet, headers) {
-          cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
-          supabaseResponse = NextResponse.next({ request });
-          cookiesToSet.forEach(({ name, value, options }) =>
-            supabaseResponse.cookies.set(name, value, options),
-          );
-          Object.entries(headers).forEach(([key, value]) =>
-            supabaseResponse.headers.set(key, value),
-          );
-        },
-      },
-    },
-  );
-
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user && isProtectedPath(pathname) && process.env.NODE_ENV !== "development") {
+  if (needsLocalAuth(pathname) && !session) {
     const url = request.nextUrl.clone();
-    url.pathname = pathname.startsWith("/careers") ? "/careers/login" : "/login";
+    url.pathname = "/login";
     url.searchParams.set("next", pathname);
     return NextResponse.redirect(url);
   }
 
-  if (user && pathname.startsWith("/login")) {
+  if (pathname === "/login" && session) {
     const url = request.nextUrl.clone();
-    url.pathname = safeNextPath(request.nextUrl.searchParams.get("next"));
+    url.pathname = safeNextPath(request.nextUrl.searchParams.get("next"), "/dashboard");
     url.search = "";
     return NextResponse.redirect(url);
   }
 
-  if (user && pathname === "/careers/login") {
-    const { data: profile } = await supabase
-      .from("profiles")
-      .select("careers_access")
-      .eq("id", user.id)
-      .maybeSingle();
-    if (profile?.careers_access) {
-      const url = request.nextUrl.clone();
-      url.pathname = safeNextPath(request.nextUrl.searchParams.get("next"), "/careers/dashboard");
-      url.search = "";
-      return NextResponse.redirect(url);
-    }
-  }
-
-  return supabaseResponse;
+  return NextResponse.next({ request });
 }
 
 export const config = {

@@ -1,51 +1,42 @@
 import { NextResponse } from "next/server";
 import {
   DEMO_COOKIE,
-  demoCredentialsConfigured,
-  signDemoSession,
-  verifyDemoCredentials,
+  signLocalSession,
+  verifyLocalCredentials,
 } from "@/lib/demo-auth";
 
-export async function POST(request: Request) {
-  if (!demoCredentialsConfigured()) {
-    return NextResponse.json({ error: "Demo sign-in is not configured." }, { status: 503 });
-  }
+function cookieOptions(maxAge: number) {
+  return {
+    httpOnly: true,
+    sameSite: "lax" as const,
+    secure: process.env.NODE_ENV === "production",
+    path: "/",
+    maxAge,
+  };
+}
 
-  let body: { email?: string; password?: string };
+export async function POST(request: Request) {
+  let body: { username?: string; password?: string };
   try {
-    body = (await request.json()) as { email?: string; password?: string };
+    body = (await request.json()) as { username?: string; password?: string };
   } catch {
     return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
   }
 
-  const email = body.email?.trim() ?? "";
+  const username = body.username?.trim() ?? "";
   const password = body.password ?? "";
-  if (!verifyDemoCredentials(email, password)) {
-    return NextResponse.json({ error: "Incorrect email or password." }, { status: 401 });
+  if (!verifyLocalCredentials(username, password)) {
+    return NextResponse.json({ error: "Incorrect username or password." }, { status: 401 });
   }
 
-  const token = await signDemoSession(email);
+  const token = await signLocalSession(username);
   const res = NextResponse.json({ ok: true });
-  const secure = process.env.NODE_ENV === "production";
-  res.cookies.set(DEMO_COOKIE, token, {
-    httpOnly: true,
-    sameSite: "lax",
-    secure,
-    path: "/",
-    maxAge: 60 * 60 * 24 * 7,
-  });
+  res.cookies.set(DEMO_COOKIE, token, cookieOptions(60 * 60 * 24 * 7));
   return res;
 }
 
 export async function DELETE() {
   const res = NextResponse.json({ ok: true });
-  const secure = process.env.NODE_ENV === "production";
-  res.cookies.set(DEMO_COOKIE, "", {
-    httpOnly: true,
-    sameSite: "lax",
-    secure,
-    path: "/",
-    maxAge: 0,
-  });
+  res.cookies.set(DEMO_COOKIE, "", cookieOptions(0));
   return res;
 }

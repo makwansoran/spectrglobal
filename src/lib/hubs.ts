@@ -321,7 +321,7 @@ export const companyHub: HubPage = {
   columnOne:
     "We were founded to put software on floors, warehouses, grids, and fronts — places where labour is scarce and the systems were designed for a slower decade. Spectr OS is the product of that conviction, given to enterprises without a licence fee.",
   columnTwo:
-    "The company is small on purpose. Close to operators. Unwilling to ship something merely interesting. If that is a decade of work you want, careers is open. If you want the product, get started.",
+    "The company is small on purpose. Close to operators. Unwilling to ship something merely interesting. If you want the product, get started.",
   cardsTitle: "Spectr",
   cards: [
     {
@@ -330,9 +330,9 @@ export const companyHub: HubPage = {
       href: "/about",
     },
     {
-      title: "Careers",
-      body: "A long problem needs people who want one. We are hiring.",
-      href: "/careers",
+      title: "Waitlist",
+      body: "Be among the first to use Spectr OS.",
+      href: "/waitlist",
     },
     {
       title: "News",

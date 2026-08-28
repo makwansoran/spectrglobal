@@ -18,7 +18,7 @@ export const featuredNews = [
   {
     category: "Company",
     title: "There is so much left to build",
-    href: "/careers",
+    href: "/about",
   },
 ] as const;
 
@@ -145,14 +145,6 @@ export const offerings: Offering[] = [
     href: "/contact",
     image: "/images/offerings/pilots.jpg",
     imageAlt: "Warehouse operations and logistics",
-  },
-  {
-    id: "careers",
-    label: "Careers",
-    title: "There is so much left to build",
-    href: "/careers",
-    image: "/images/offerings/careers.jpg",
-    imageAlt: "Team collaborating on product work",
   },
 ];
 

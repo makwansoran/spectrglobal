@@ -8,12 +8,6 @@ export function isAppChromePath(pathname: string) {
     pathname === "/dashboard" ||
     pathname.startsWith("/dashboard/") ||
     pathname === "/admin" ||
-    pathname.startsWith("/admin/") ||
-    pathname === "/careers/login" ||
-    pathname === "/careers/dashboard" ||
-    pathname.startsWith("/careers/dashboard/") ||
-    pathname.startsWith("/careers/positions") ||
-    pathname === "/careers/apply" ||
-    pathname.startsWith("/careers/apply/")
+    pathname.startsWith("/admin/")
   );
 }

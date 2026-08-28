@@ -30,14 +30,6 @@ export async function getProfileAccess(userId: string) {
   };
 }
 
-export async function requireCareersUser() {
-  const { supabase, user } = await getAuthUser();
-  if (!user) redirect("/careers/login");
-  const access = await getProfileAccess(user.id);
-  if (!access.careersAccess) redirect("/careers/login");
-  return { supabase, user };
-}
-
 export async function requireAdminUser() {
   const { supabase, user } = await getAuthUser();
   if (!user || !isAdminEmail(user.email)) redirect("/login");

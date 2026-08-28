@@ -24,7 +24,6 @@ export const navPrimary = [
   { label: "Solutions", href: "/solutions" },
   { label: "Company", href: "/company" },
   { label: "News", href: "/news" },
-  { label: "Careers", href: "/careers" },
 ] as const;
 
 export type NavItem = {
@@ -70,17 +69,14 @@ export const navSections: NavSection[] = [
       { label: "About us", href: "/about", description: "A Norwegian team building Spectr OS." },
       { label: "SPECTR BOOTCAMP", href: "/bootcamp", description: "Learn to create your own AI and run it locally." },
       { label: "Waitlist", href: "/waitlist", description: "Be among the first to use Spectr OS." },
-      { label: "Careers", href: "/careers", description: "A decade-long problem needs people who want one." },
       { label: "News", href: "/news", description: "Product releases and progress from the team." },
     ],
   },
   { label: "News", href: "/news" },
-  { label: "Careers", href: "/careers" },
 ];
 
 export const navQuickLinks = [
   { label: "About Spectr", href: "/about" },
-  { label: "Careers", href: "/careers" },
   { label: "Newsroom", href: "/news" },
   { label: "Contact", href: "/contact" },
   { label: "Privacy policy", href: "/privacy" },
@@ -112,7 +108,6 @@ export const footerColumns = [
       { label: "About", href: "/about" },
       { label: "Customers", href: "/customers" },
       { label: "Blog", href: "/blog" },
-      { label: "Careers", href: "/careers" },
       { label: "News", href: "/news" },
       { label: "Waitlist", href: "/waitlist" },
       { label: "Contact", href: "/contact" },
