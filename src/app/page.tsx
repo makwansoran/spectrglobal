@@ -1,4 +1,5 @@
 import { Footer } from "@/components/footer";
+import { EdgeCompute } from "@/components/sections/edge-compute";
 import { LogoMarquee } from "@/components/sections/logo-marquee";
 import { OfferingsCeoQuote } from "@/components/sections/offerings-ceo-quote";
 import { UseCases } from "@/components/sections/usecases";
@@ -10,6 +11,7 @@ export default function HomePage() {
       <main id="main-content" className="flex-1 bg-white">
         <WaitlistSection />
         <LogoMarquee />
+        <EdgeCompute />
         <UseCases />
         <OfferingsCeoQuote />
       </main>
