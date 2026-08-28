@@ -4,7 +4,7 @@ import { Footer } from "@/components/footer";
 import { PageHeader } from "@/components/page-header";
 import { Reveal } from "@/components/reveal";
 import { buildPageMetadata } from "@/lib/metadata";
-import { team, teamExperience, teamIntro } from "@/lib/team";
+import { teamExperience } from "@/lib/team";
 
 const intro =
   "Spectr is a Norwegian software company. We build Spectr OS — the operating system for warehouses and industrial floors.";
@@ -44,47 +44,6 @@ export default function AboutPage() {
                 </div>
               ))}
             </dl>
-          </div>
-        </section>
-
-        <section className="border-t border-border bg-white py-16 sm:py-24" aria-labelledby="founders-heading">
-          <div className="container-x">
-            <div className="max-w-2xl">
-              <h2
-                id="founders-heading"
-                className="display text-[clamp(2rem,4vw,3.25rem)] text-fg"
-              >
-                Founders
-              </h2>
-              <p className="mt-5 text-base leading-8 text-muted">{teamIntro}</p>
-            </div>
-
-            <ul className="mt-14 grid gap-8 lg:grid-cols-2">
-              {team.map((member) => (
-                <li key={member.name}>
-                  <article className="h-full rounded-2xl border border-border bg-white p-7 sm:p-8">
-                    <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
-                      {member.location}
-                    </p>
-                    <h3 className="mt-3 text-2xl font-medium tracking-[-0.03em] text-fg">
-                      {member.name}
-                    </h3>
-                    <p className="mt-1 text-sm text-muted">{member.role}</p>
-                    <p className="mt-5 text-[15px] leading-7 text-fg/80">{member.bio}</p>
-                    <dl className="mt-8 space-y-4 border-t border-border pt-6">
-                      {member.experience.map((item) => (
-                        <div key={item.label}>
-                          <dt className="text-xs font-medium uppercase tracking-[0.08em] text-muted">
-                            {item.label}
-                          </dt>
-                          <dd className="mt-1 text-sm leading-6 text-fg">{item.value}</dd>
-                        </div>
-                      ))}
-                    </dl>
-                  </article>
-                </li>
-              ))}
-            </ul>
           </div>
         </section>
 

@@ -1,31 +1,3 @@
-export const teamIntro =
-  "Two founders in Norway, working next to the operators Spectr OS is built for.";
-
-export const team = [
-  {
-    name: "Phillip Peter",
-    role: "Co-founder",
-    location: "Norway",
-    bio: "Makes the physical side of the problem real: machines, tooling, and the shop floor. Spectr OS has to run in a building that already has conveyors, racks, and wear — he knows how those things are built.",
-    experience: [
-      { label: "Machines", value: "CNC, 3D printers, and building production kit from the ground up" },
-      { label: "Floor", value: "Technician at Ryde; Assembly Technician / Mechatronics at Magtrack, a defence contractor" },
-      { label: "Focus", value: "Physical systems that the software has to be true to" },
-    ],
-  },
-  {
-    name: "Aleksander Soboh Byfuglien",
-    role: "Co-founder",
-    location: "Norway",
-    bio: "Brings electronics into the operating system: sensors, boards, and the hardware layer between a model of the site and the machines that move stock.",
-    experience: [
-      { label: "Electronics", value: "Soldering, PCB design, and building boards as both craft and product" },
-      { label: "Systems", value: "Hardware that has to hold up next to the software, not in a lab" },
-      { label: "Focus", value: "The physical interface between Spectr OS and the floor" },
-    ],
-  },
-] as const;
-
 export const teamExperience = [
   {
     id: "floor",
