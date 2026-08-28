@@ -25,7 +25,7 @@ export function EdgeCompute() {
           </p>
         </div>
 
-        <div className="spectros-waitlist__panel min-w-0" aria-label="Spectr Edge computer photo">
+        <div className="spectros-waitlist__panel min-w-0" aria-label="Spectr Edge computer">
           <div className="spectros-waitlist__scrim" aria-hidden="true" />
           <div className="spectros-waitlist__content">
             <h3 className="home-display spectros-waitlist__title">

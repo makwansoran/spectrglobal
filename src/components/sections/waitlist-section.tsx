@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { LogoMark } from "@/components/logo";
+import { HomeProductField } from "@/components/sections/home-product-field";
 import "./waitlist-section.css";
 
 export function WaitlistSection() {
@@ -64,38 +65,16 @@ export function WaitlistSection() {
         </div>
       </section>
 
-      <section
+      <HomeProductField
         id="spectr-os"
-        className="bg-white px-4 pb-16 sm:px-6 sm:pb-20 lg:pb-[80px]"
-        aria-labelledby="spectros-product-heading"
-      >
-        <div className="mx-auto grid w-full max-w-[1400px] items-center gap-10 lg:grid-cols-2 lg:gap-16">
-          <div className="spectros-waitlist__panel spectros-waitlist__panel--product min-w-0">
-            <Image
-              src="/images/products/spectr-os-materials.jpg"
-              alt="Materials processing plant with conveyors and sorting equipment"
-              fill
-              className="spectros-waitlist__image"
-              sizes="(max-width: 1024px) 100vw, 44rem"
-              quality={90}
-            />
-          </div>
-
-          <div className="spectros-waitlist__product-copy min-w-0">
-            <h2 id="spectros-product-heading" className="home-display spectros-waitlist__title--product">
-              Spectr OS
-            </h2>
-            <p className="spectros-waitlist__lede spectros-waitlist__lede--product">
-              The operating system for the enterprise. Fuse data, decide, and act in one runtime.
-            </p>
-            <div className="spectros-waitlist__cta">
-              <Link href="/platforms/spectr-os" className="spectros-waitlist__join">
-                Explore Spectr OS
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+        headingId="spectros-product-heading"
+        title="Spectr OS"
+        lede="The operating system for the enterprise. Fuse data, decide, and act in one runtime."
+        image="/images/products/spectr-os-materials.jpg"
+        imageAlt="Materials processing plant with conveyors and sorting equipment"
+        ctaHref="/platforms/spectr-os"
+        ctaLabel="Explore Spectr OS"
+      />
     </>
   );
 }
