@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 const PREVIEW =
-  "One OS across manufacturing, logistics, energy, and waste management.";
+  "One OS across manufacturing, logistics, and waste management.";
 
 export function IndustriesExpandButton() {
   const [open, setOpen] = useState(false);

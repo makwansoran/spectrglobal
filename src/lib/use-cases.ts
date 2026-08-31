@@ -155,70 +155,8 @@ export const industryPages: IndustryPage[] = [
     ],
   },
   {
-    slug: "energy",
-    index: "/0.3",
-    name: "Energy",
-    listingDescription: "Assets, production, and markets in one model — so a plant decision is simulated before it is made.",
-    href: "/use-cases/energy",
-    image: "/images/industries/energy.jpg",
-    imageAlt: "Power infrastructure and industrial energy",
-    bannerTitle: "Spectr for Energy",
-    headline: "Solve today’s plant while compounding advantage across the value chain.",
-    columnOne:
-      "Energy work spans wells, plants, grids, and markets — with models that usually cannot talk to the people who run the asset. Spectr OS turns data, simulations, and procedures into a shared representation of the facility so engineers and operators use the same language.",
-    columnTwo:
-      "See performance at the component, not in a monthly pack. Chain models to test a change before it hits the unit. Capture every simulation so the next decision is better than the last. Immediate results, then compounding value as the model learns the site.",
-    focuses: [
-      {
-        id: "asset",
-        label: "Operate the asset as it is",
-        statement: "A plant is not a dashboard. It is a set of objects under physics and a permit.",
-        focus: "Operations management",
-        change: "Sensors, work orders, and constraints live together so allocation and maintenance are decisions on the real unit.",
-        image: "/images/industries/energy.jpg",
-        imageAlt: "Power infrastructure and industrial energy",
-      },
-      {
-        id: "simulate",
-        label: "Simulate before you touch it",
-        statement: "Raise suction on a compressor in software first — then decide if the plant should follow.",
-        focus: "Engineering",
-        change: "Multiple models and site logic sit behind one view of the facility. Outputs are stored so tomorrow’s engineer inherits today’s experiment.",
-        image: "/images/industries/infrastructure.jpg",
-        imageAlt: "Energy infrastructure and facilities",
-      },
-      {
-        id: "market",
-        label: "Demand that will not wait",
-        statement: "Volatile markets punish slow extraction of the truth.",
-        focus: "Planning and markets",
-        change: "Disparate datasets become a decision support picture — consistent enough to respond when the market moves, not after it has moved.",
-        image: "/images/industries/financial.jpg",
-        imageAlt: "Energy markets and enterprise operations",
-      },
-    ],
-    capabilities: [
-      {
-        title: "A dynamic plant model",
-        body: "Digital assets — data, models, processes — become something operators can act on, not a data-science side project.",
-      },
-      {
-        title: "Granular performance",
-        body: "Near real-time views of equipment without a manual integration project every time a historian changes.",
-      },
-      {
-        title: "From hydrocarbons to renewables",
-        body: "The same runtime pattern applies to a compressor train or a solar fleet: reduce downtime, keep production honest.",
-      },
-      {
-        title: "Governed AI on the site",
-        body: "Recommendations are tied to objects and audit. The model does not get to freelance on a live plant.",
-      },
-    ],
-  },
-  {
     slug: "waste-management",
-    index: "/0.4",
+    index: "/0.3",
     name: "Waste Management",
     listingDescription:
       "Collection, plants, and materials as one loop — so a lift is an operational decision, not a route afterthought.",
@@ -297,6 +235,7 @@ const removedUseCaseSlugs = new Set([
   "shipping",
   "mining",
   "operations",
+  "energy",
 ]);
 
 export const industryListings = industryPages

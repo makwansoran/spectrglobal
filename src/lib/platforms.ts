@@ -68,7 +68,7 @@ export const platforms: Platform[] = [
         imageAlt: "Spectr OS across the enterprise",
       },
     ],
-    industriesIntro: "One OS across manufacturing, logistics, energy, and waste management.",
+    industriesIntro: "One OS across manufacturing, logistics, and waste management.",
     industries: [
       {
         name: "Logistics & Supply Chain",
@@ -83,13 +83,6 @@ export const platforms: Platform[] = [
           "Orchestrate lines, parts, labour, and quality as a live operational model. Exceptions become agentic workflows with humans still in command.",
         image: "/images/industries/manufacturing.jpg",
         imageAlt: "Manufacturing production line",
-      },
-      {
-        name: "Energy & Industrials",
-        description:
-          "Turn plant signals, maintenance, and site events into governed actions. One runtime across facilities — with full audit of every decision.",
-        image: "/images/industries/energy.jpg",
-        imageAlt: "Power infrastructure and industrial energy",
       },
       {
         name: "Waste Management",

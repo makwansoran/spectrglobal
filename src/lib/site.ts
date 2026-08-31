@@ -58,7 +58,6 @@ export const navSections: NavSection[] = [
     items: [
       { label: "Logistics", href: "/use-cases/logistics", description: "Planning and execution across the network." },
       { label: "Manufacturing", href: "/use-cases/manufacturing", description: "Strategy and the shop floor as one model." },
-      { label: "Energy", href: "/use-cases/energy", description: "Plant, asset, and market decisions in one runtime." },
       { label: "Waste Management", href: "/use-cases/waste-management", description: "Collection, plants, and materials in one loop." },
     ],
   },
@@ -98,7 +97,6 @@ export const footerColumns = [
     links: [
       { label: "Logistics", href: "/use-cases/logistics" },
       { label: "Manufacturing", href: "/use-cases/manufacturing" },
-      { label: "Energy", href: "/use-cases/energy" },
       { label: "Waste Management", href: "/use-cases/waste-management" },
     ],
   },

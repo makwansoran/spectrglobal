@@ -96,12 +96,12 @@ export const productsHub: HubPage = {
 export const solutionsHub: HubPage = {
   path: "/solutions",
   bannerTitle: "Solutions",
-  description: "Spectr OS across manufacturing, logistics, energy, and waste management.",
+  description: "Spectr OS across manufacturing, logistics, and waste management.",
   heroImage: "/images/industries/manufacturing.jpg",
   heroImageAlt: "Industrial operations",
   headline: "The runtime is used wherever the work cannot wait for interesting software.",
   columnOne:
-    "Our platforms are for operational institutions that have to implement solutions to the hardest problems they face — factories, warehouses, grids, and the waste loop.",
+    "Our platforms are for operational institutions that have to implement solutions to the hardest problems they face — factories, warehouses, and the waste loop.",
   columnTwo:
     "Each offering is the same OS, shaped to the objects of that domain. Pick an industry. The page is the argument. The product is the runtime.",
   cardsTitle: "Offerings",
