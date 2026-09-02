@@ -44,7 +44,7 @@ export function SpectrOsPageView() {
                 src={page.heroImage}
                 alt={page.heroImageAlt}
                 fill
-                sizes="(max-width: 1024px) 100vw, 92rem"
+                sizes="(max-width: 1024px) 100vw, 58rem"
                 priority
               />
             </div>
