@@ -95,6 +95,70 @@ export const platforms: Platform[] = [
     ctaTitle: "Run your enterprise on Spectr OS",
     ctaBody: "Free for enterprise customers — permanently.",
   },
+  {
+    slug: "spectr-edge",
+    name: "Spectr Edge",
+    index: "/0.2",
+    heroTagline: "On-site compute for AI vision",
+    exploreLabel: "Explore Spectr Edge",
+    timeLabel: "Time: 2 mins",
+    valueProp: "Run vision models on the floor — without sending the site to the cloud.",
+    heroImage: "/images/products/spectr-edge.jpg",
+    heroImageAlt: "Spectr Edge compute enclosure",
+    featuresTitle: "Edge compute for operational AI",
+    features: [
+      {
+        title: "On-site inference",
+        description: "Vision and sensing where the work happens.",
+        image: "/images/products/spectr-edge.jpg",
+        imageAlt: "Spectr Edge compute on site",
+      },
+      {
+        title: "Lower hosting cost",
+        description: "A fraction of the cost of hosting large models remotely.",
+        image: "/images/offerings/spectr-mind.jpg",
+        imageAlt: "Local inference instead of remote hosting",
+      },
+      {
+        title: "Works with Spectr OS",
+        description: "Fuse edge detections into the same operational world.",
+        image: "/images/products/spectr-os-ui.png",
+        imageAlt: "Spectr OS receiving edge detections",
+      },
+      {
+        title: "Sovereign by default",
+        description: "Keep video and models on your machines.",
+        image: "/images/offerings/pilots.jpg",
+        imageAlt: "On-prem operations with local compute",
+      },
+    ],
+    industriesIntro: "Edge compute for manufacturing, logistics, and waste management.",
+    industries: [
+      {
+        name: "Logistics & Supply Chain",
+        description:
+          "Yard, dock, and warehouse vision without a round trip to a public cloud. Spectr Edge scores what is on the floor and hands it to Spectr OS.",
+        image: "/images/industries/logistics.jpg",
+        imageAlt: "Warehouse logistics and pallet operations",
+      },
+      {
+        name: "Manufacturing",
+        description:
+          "Line-side vision for quality, presence, and exceptions — computed next to the station, not in another region.",
+        image: "/images/industries/manufacturing.jpg",
+        imageAlt: "Manufacturing production line",
+      },
+      {
+        name: "Waste Management",
+        description:
+          "Identify materials and loads at the kerb and the plant. Spectr Edge keeps inference local; Spectr OS turns it into the next action.",
+        image: "/images/industries/logistics.jpg",
+        imageAlt: "Collection and materials recovery operations",
+      },
+    ],
+    ctaTitle: "Run AI vision on site with Spectr Edge",
+    ctaBody: "Join the waitlist to be among the first to deploy Spectr Edge.",
+  },
 ];
 
 export function getPlatform(slug: string) {

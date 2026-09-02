@@ -13,10 +13,7 @@ const referenceNavSections: NavSection[] = [
     href: "/products",
     items: [
       { label: "Spectr OS", href: "/platforms/spectr-os", description: "The operating system for the enterprise." },
-      { label: "Ontology", href: "/products/ontology", description: "Objects, relationships, and a shared operational world." },
-      { label: "Agentic runtime", href: "/products/agents", description: "Beyond chat — agents that propose real work." },
-      { label: "Command", href: "/products/command", description: "Ranked decisions with evidence." },
-      { label: "Deploy", href: "/products/deploy", description: "Cloud, on-prem, and the edge." },
+      { label: "Spectr Edge", href: "/platforms/spectr-edge", description: "On-site compute for AI vision." },
     ],
   },
   {

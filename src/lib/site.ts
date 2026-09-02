@@ -48,8 +48,11 @@ export const navSections: NavSection[] = [
         href: "/platforms/spectr-os",
         description: "The operating system for the enterprise — fuse data, decide, and act.",
       },
-      { label: "Ontology", href: "/products/ontology", description: "A shared operational world." },
-      { label: "Agentic runtime", href: "/products/agents", description: "Agents that propose real work." },
+      {
+        label: "Spectr Edge",
+        href: "/platforms/spectr-edge",
+        description: "On-site compute for AI vision.",
+      },
     ],
   },
   {
@@ -87,6 +90,7 @@ export const footerColumns = [
     title: "Products",
     links: [
       { label: "Spectr OS", href: "/platforms/spectr-os" },
+      { label: "Spectr Edge", href: "/platforms/spectr-edge" },
       { label: "Products", href: "/products" },
       { label: "Developers", href: "/developers" },
       { label: "Get started", href: "/contact" },
