@@ -105,15 +105,6 @@ textarea {
 
 }
 
-@layer components {
-
-.display {
-  font-family: var(--font-display);
-  letter-spacing: -0.03em;
-  line-height: 0.96;
-  font-weight: 400;
-}
-
 /* Homepage / marketing display headers — matches Use Cases names (Logistics). */
 .home-display {
   margin: 0;
@@ -123,6 +114,15 @@ textarea {
   line-height: 0.86;
   letter-spacing: -0.055em;
   color: #1e1f2b;
+}
+
+@layer components {
+
+.display {
+  font-family: var(--font-display);
+  letter-spacing: -0.03em;
+  line-height: 0.96;
+  font-weight: 400;
 }
 
 .brand-font {
