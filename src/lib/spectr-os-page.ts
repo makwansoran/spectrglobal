@@ -1,6 +1,5 @@
 export const spectrOsPage = {
   name: "Spectr OS",
-  eyebrow: "The operating system for the enterprise",
   heroBody:
     "One operating system for industrial floors, warehouses, and enterprise sites. Free for enterprise customers — permanently.",
   heroImage: "/images/products/spectr-os-ui.png",

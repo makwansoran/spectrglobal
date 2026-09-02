@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { LogoMark } from "@/components/logo";
 import { GetStartedButton } from "@/components/get-started-button";
 import { Reveal } from "@/components/reveal";
 import { SpectrOsCapabilities } from "@/components/spectr-os-capabilities";
@@ -14,8 +15,10 @@ export function SpectrOsPageView() {
       <section className="sos-hero">
         <div className="container-x sos-hero__layout">
           <Reveal className="sos-hero__copy">
-            <p className="sos-hero__kicker">{page.eyebrow}</p>
-            <h1 className="display text-[clamp(2.6rem,6vw,5.2rem)]">{page.name}</h1>
+            <div className="sos-hero__title">
+              <LogoMark invert className="sos-hero__logo" title="" />
+              <h1 className="display text-[clamp(2.6rem,6vw,5.2rem)]">{page.name}</h1>
+            </div>
             <p className="sos-hero__sub">{page.heroBody}</p>
             <div className="sos-hero__actions">
               <GetStartedButton label="Get started" size="lg" className="btn-on-dark">
