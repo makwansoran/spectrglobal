@@ -79,21 +79,6 @@ export const productCards: HubCard[] = [
   },
 ];
 
-export const productsHub: HubPage = {
-  path: "/products",
-  bannerTitle: "Products",
-  description: "Spectr OS and the surfaces that run on it — ontology, agents, command, and deploy.",
-  heroImage: "/images/offerings/spectr-os.jpg",
-  heroImageAlt: "Spectr OS running industrial operations",
-  headline: "Software that runs the work — not another layer of commentary on top of it.",
-  columnOne:
-    "Spectr OS is a family of surfaces so institutions can put AI into operational decision-making. One operating system, aimed at the floor: meaning, action, command, and how the software actually ships.",
-  columnTwo:
-    "Spectr OS is the runtime. Ontology is the shared world. The agentic layer turns models into workflows. Command keeps people in the loop. Deploy puts it on your machines. Together they are how an enterprise stops experimenting and starts operating.",
-  cardsTitle: "The stack",
-  cards: productCards,
-};
-
 export const solutionsHub: HubPage = {
   path: "/solutions",
   bannerTitle: "Solutions",
@@ -469,7 +454,6 @@ export async function getResearchEssay(slug: string) {
 export const customerQuotes = partnerQuotes;
 
 export const hubPaths = [
-  productsHub.path,
   solutionsHub.path,
   researchHub.path,
   developersHub.path,

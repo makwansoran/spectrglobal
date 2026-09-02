@@ -20,7 +20,7 @@ export const site = {
 } as const;
 
 export const navPrimary = [
-  { label: "Products", href: "/products" },
+  { label: "Products", href: "/platforms/spectr-os" },
   { label: "Solutions", href: "/solutions" },
   { label: "Company", href: "/company" },
   { label: "News", href: "/news" },
@@ -41,7 +41,7 @@ export type NavSection = {
 export const navSections: NavSection[] = [
   {
     label: "Products",
-    href: "/products",
+    href: "/platforms/spectr-os",
     items: [
       {
         label: "Spectr OS",
@@ -91,7 +91,6 @@ export const footerColumns = [
     links: [
       { label: "Spectr OS", href: "/platforms/spectr-os" },
       { label: "Spectr Edge", href: "/platforms/spectr-edge" },
-      { label: "Products", href: "/products" },
       { label: "Developers", href: "/developers" },
       { label: "Get started", href: "/contact" },
     ],
