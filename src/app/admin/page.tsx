@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { loadAnalytics } from "@/lib/analytics/store";
 import { loadAdminOverview } from "@/lib/admin/overview";
 import { listBlogPosts, listResearchEssays } from "@/lib/hubs";
@@ -23,13 +24,13 @@ export default async function AdminAnalyticsPage() {
   const maxViews = Math.max(1, ...analytics.days.map((day) => day.views));
 
   const kpis = [
-    { label: "Page views", value: analytics.totals.views },
-    { label: "Views · 7 days", value: analytics.totals.views7d },
-    { label: "Clicks", value: analytics.totals.clicks },
-    { label: "Waitlist", value: waitlist },
-    { label: "Blog posts", value: blog.length },
-    { label: "Research posts", value: research.length },
-    { label: "Users", value: analytics.totals.users },
+    { label: "Page views", value: analytics.totals.views, href: "/admin" },
+    { label: "Views · 7 days", value: analytics.totals.views7d, href: "/admin" },
+    { label: "Clicks", value: analytics.totals.clicks, href: "/admin/clicks" },
+    { label: "Waitlist", value: waitlist, href: "/admin/users" },
+    { label: "Blog posts", value: blog.length, href: "/admin/blog" },
+    { label: "Research posts", value: research.length, href: "/admin/research" },
+    { label: "Users", value: analytics.totals.users, href: "/admin/users" },
   ];
 
   return (
@@ -39,10 +40,10 @@ export default async function AdminAnalyticsPage() {
 
       <section className="admin-kpis">
         {kpis.map((kpi) => (
-          <div key={kpi.label} className="admin-kpi">
+          <Link key={kpi.label} href={kpi.href} className="admin-kpi">
             <span>{kpi.label}</span>
             <strong>{kpi.value}</strong>
-          </div>
+          </Link>
         ))}
       </section>
 
