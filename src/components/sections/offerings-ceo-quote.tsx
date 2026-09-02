@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { blogPosts, researchEssays, type HubPost } from "@/lib/hubs";
+import { listBlogPosts, listResearchEssays, type HubPost } from "@/lib/hubs";
 
 function InsightCards({
   heading,
@@ -47,7 +47,8 @@ function InsightCards({
   );
 }
 
-export function OfferingsCeoQuote() {
+export async function OfferingsCeoQuote() {
+  const [blogPosts, researchEssays] = await Promise.all([listBlogPosts(), listResearchEssays()]);
   return (
     <section className="border-t border-[#D2D2CE] bg-white px-6 py-[128px]">
       <div className="mx-auto w-full max-w-[1400px]">

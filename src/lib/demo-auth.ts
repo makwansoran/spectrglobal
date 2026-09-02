@@ -2,11 +2,23 @@ export const DEMO_COOKIE = "spectr_demo_session";
 
 export const LOCAL_USERNAME = "user 1";
 export const LOCAL_PASSWORD = "user 1";
+export const ADMIN_USERNAME = "spectr1";
+export const ADMIN_PASSWORD = "spectr2";
 
 const SESSION_SECRET = "spectr-local-session";
 
-export function verifyLocalCredentials(username: string, password: string): boolean {
-  return username.trim() === LOCAL_USERNAME && password === LOCAL_PASSWORD;
+export type LocalRole = "user" | "admin";
+export type LocalSession = { username: string; role: LocalRole };
+
+export function verifyLocalCredentials(username: string, password: string): LocalSession | null {
+  const name = username.trim();
+  if (name === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+    return { username: name, role: "admin" };
+  }
+  if (name === LOCAL_USERNAME && password === LOCAL_PASSWORD) {
+    return { username: name, role: "user" };
+  }
+  return null;
 }
 
 function toBase64Url(bytes: ArrayBuffer | Uint8Array): string {
@@ -44,11 +56,12 @@ function timingSafeEqual(a: string, b: string): boolean {
   return out === 0;
 }
 
-export async function signLocalSession(username: string): Promise<string> {
+export async function signLocalSession(username: string, role: LocalRole): Promise<string> {
   const payload = toBase64Url(
     new TextEncoder().encode(
       JSON.stringify({
         username: username.trim(),
+        role,
         exp: Date.now() + 1000 * 60 * 60 * 24 * 7,
       }),
     ),
@@ -59,7 +72,7 @@ export async function signLocalSession(username: string): Promise<string> {
 
 export async function readDemoSession(
   token: string | undefined,
-): Promise<{ username: string } | null> {
+): Promise<LocalSession | null> {
   if (!token) return null;
   const [payload, sig] = token.split(".");
   if (!payload || !sig) return null;
@@ -69,11 +82,14 @@ export async function readDemoSession(
     const data = JSON.parse(new TextDecoder().decode(fromBase64Url(payload))) as {
       username?: string;
       email?: string;
+      role?: LocalRole;
       exp?: number;
     };
     const username = data.username?.trim() || data.email?.trim();
     if (!username || !data.exp || data.exp < Date.now()) return null;
-    return { username };
+    const role: LocalRole =
+      data.role === "admin" || username === ADMIN_USERNAME ? "admin" : "user";
+    return { username, role };
   } catch {
     return null;
   }

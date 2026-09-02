@@ -7,13 +7,15 @@ import { buildPageMetadata } from "@/lib/metadata";
 
 type Props = { params: Promise<{ slug: string }> };
 
+export const dynamicParams = true;
+
 export function generateStaticParams() {
   return researchEssays.map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const post = getResearchEssay(slug);
+  const post = await getResearchEssay(slug);
   if (!post) return {};
   return buildPageMetadata({
     title: post.title,
@@ -24,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ResearchEssayRoute({ params }: Props) {
   const { slug } = await params;
-  const post = getResearchEssay(slug);
+  const post = await getResearchEssay(slug);
   if (!post) notFound();
 
   return (

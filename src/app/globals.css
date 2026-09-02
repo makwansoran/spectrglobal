@@ -1748,7 +1748,8 @@ html.theme-white footer {
   color-scheme: light;
 }
 
-.auth-page .field {
+.auth-page .field,
+.ops .field {
   width: 100%;
   border: 1px solid #e3e8ee;
   background: #fff;
@@ -1760,16 +1761,19 @@ html.theme-white footer {
   transition: border-color 160ms ease, box-shadow 160ms ease;
 }
 
-.auth-page .field::placeholder {
+.auth-page .field::placeholder,
+.ops .field::placeholder {
   color: #a3acb9;
 }
 
-.auth-page .field:focus {
+.auth-page .field:focus,
+.ops .field:focus {
   border-color: var(--accent);
   box-shadow: 0 0 0 1px var(--accent);
 }
 
-.auth-page .field:disabled {
+.auth-page .field:disabled,
+.ops .field:disabled {
   background: #f6f9fc;
   color: #697386;
 }

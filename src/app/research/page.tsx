@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Footer } from "@/components/footer";
 import { HubPageView } from "@/components/hub-page";
-import { researchHub } from "@/lib/hubs";
+import { listResearchEssays, researchHub } from "@/lib/hubs";
 import { buildPageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -10,11 +10,12 @@ export const metadata: Metadata = buildPageMetadata({
   path: researchHub.path,
 });
 
-export default function ResearchPage() {
+export default async function ResearchPage() {
+  const posts = await listResearchEssays();
   return (
     <>
       <main id="main-content" className="flex-1 bg-white">
-        <HubPageView page={researchHub} />
+        <HubPageView page={{ ...researchHub, posts }} />
       </main>
       <Footer />
     </>

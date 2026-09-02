@@ -1,3 +1,4 @@
+import { loadEditorialPosts } from "@/lib/editorial/store";
 import { industryPages } from "@/lib/use-cases";
 import { partnerQuotes } from "@/lib/content";
 
@@ -439,12 +440,26 @@ export function getProductSlugs() {
   return productPages.map((page) => page.slug);
 }
 
-export function getBlogPost(slug: string) {
-  return blogPosts.find((post) => post.slug === slug);
+export async function listBlogPosts() {
+  const extra = await loadEditorialPosts("blog");
+  const seen = new Set(blogPosts.map((post) => post.slug));
+  return [...extra.filter((post) => !seen.has(post.slug)), ...blogPosts];
 }
 
-export function getResearchEssay(slug: string) {
-  return researchEssays.find((post) => post.slug === slug);
+export async function listResearchEssays() {
+  const extra = await loadEditorialPosts("research");
+  const seen = new Set(researchEssays.map((post) => post.slug));
+  return [...extra.filter((post) => !seen.has(post.slug)), ...researchEssays];
+}
+
+export async function getBlogPost(slug: string) {
+  const posts = await listBlogPosts();
+  return posts.find((post) => post.slug === slug);
+}
+
+export async function getResearchEssay(slug: string) {
+  const posts = await listResearchEssays();
+  return posts.find((post) => post.slug === slug);
 }
 
 export const customerQuotes = partnerQuotes;

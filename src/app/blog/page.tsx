@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Footer } from "@/components/footer";
 import { HubPageView } from "@/components/hub-page";
-import { blogHub } from "@/lib/hubs";
+import { blogHub, listBlogPosts } from "@/lib/hubs";
 import { buildPageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -10,11 +10,12 @@ export const metadata: Metadata = buildPageMetadata({
   path: blogHub.path,
 });
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  const posts = await listBlogPosts();
   return (
     <>
       <main id="main-content" className="flex-1 bg-white">
-        <HubPageView page={blogHub} />
+        <HubPageView page={{ ...blogHub, posts }} />
       </main>
       <Footer />
     </>

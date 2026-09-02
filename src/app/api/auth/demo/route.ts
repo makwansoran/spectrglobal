@@ -25,12 +25,14 @@ export async function POST(request: Request) {
 
   const username = body.username?.trim() ?? "";
   const password = body.password ?? "";
-  if (!verifyLocalCredentials(username, password)) {
+  const session = verifyLocalCredentials(username, password);
+  if (!session) {
     return NextResponse.json({ error: "Incorrect username or password." }, { status: 401 });
   }
 
-  const token = await signLocalSession(username);
-  const res = NextResponse.json({ ok: true });
+  const token = await signLocalSession(session.username, session.role);
+  const next = session.role === "admin" ? "/admin" : "/dashboard";
+  const res = NextResponse.json({ ok: true, next });
   res.cookies.set(DEMO_COOKIE, token, cookieOptions(60 * 60 * 24 * 7));
   return res;
 }

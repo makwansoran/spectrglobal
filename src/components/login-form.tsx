@@ -27,7 +27,10 @@ export function LoginForm({ next }: { next?: string }) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
     });
-    const payload = (await response.json().catch(() => null)) as { error?: string } | null;
+    const payload = (await response.json().catch(() => null)) as {
+      error?: string;
+      next?: string;
+    } | null;
     setPending(false);
 
     if (!response.ok) {
@@ -35,7 +38,9 @@ export function LoginForm({ next }: { next?: string }) {
       return;
     }
 
-    router.replace(afterLogin);
+    const destination =
+      next && next !== "/dashboard" ? afterLogin : safeNextPath(payload?.next, afterLogin);
+    router.replace(destination);
     router.refresh();
   }
 

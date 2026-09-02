@@ -138,3 +138,25 @@ create table if not exists public.inquiries (
 
 alter table public.inquiries enable row level security;
 revoke all on public.inquiries from anon, authenticated;
+
+create table if not exists public.editorial_posts (
+  id uuid primary key default gen_random_uuid(),
+  kind text not null check (kind in ('blog', 'research')),
+  slug text not null,
+  date text not null default '',
+  title text not null,
+  dek text not null default '',
+  image text not null default '',
+  image_alt text not null default '',
+  paragraphs jsonb not null default '[]'::jsonb,
+  created_at timestamptz not null default now(),
+  unique (kind, slug)
+);
+
+alter table public.editorial_posts enable row level security;
+
+drop policy if exists "Editorial posts are public" on public.editorial_posts;
+create policy "Editorial posts are public"
+  on public.editorial_posts
+  for select
+  using (true);
