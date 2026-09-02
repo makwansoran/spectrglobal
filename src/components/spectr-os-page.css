@@ -12,7 +12,12 @@
 }
 
 .sos-hero__copy {
+  display: flex;
   max-width: 46rem;
+  margin-inline: auto;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .sos-hero__kicker {
@@ -30,7 +35,7 @@
 }
 
 .sos-hero__sub {
-  margin: 1.5rem 0 0;
+  margin: 1.5rem auto 0;
   max-width: 34rem;
   font-size: clamp(1.05rem, 2vw, 1.25rem);
   line-height: 1.6;
@@ -38,6 +43,8 @@
 }
 
 .sos-hero__actions {
+  display: flex;
+  justify-content: center;
   margin-top: 2rem;
 }
 
