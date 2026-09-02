@@ -10,7 +10,7 @@ export default async function AdminBlogPage() {
   return (
     <>
       <h1 className="admin-title">Blog posts</h1>
-      <p className="admin-lede">Write a post. It goes live on /blog immediately. Body copy sits over the graph builder; set font, size, and weight per paragraph.</p>
+      <p className="admin-lede">Write a post. It goes live on /blog immediately. Set font, size, and weight per paragraph, then create a graph and drag it into the body.</p>
 
       <div className="admin-split">
         <section className="admin-panel">

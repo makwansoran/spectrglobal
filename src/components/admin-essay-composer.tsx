@@ -75,101 +75,96 @@ export function AdminEssayComposer({
 
   return (
     <div className="admin-essay-composer">
-      <ResearchChartBuilder
-        onInsert={(token) => insertChart(token)}
-        overlay={
-          <div className="admin-essay-composer__copy">
-            <div className="admin-essay-composer__scrim" aria-hidden="true" />
-            <div className="admin-type-bar" role="group" aria-label="Body typography">
-              <label>
-                Font
-                <select
-                  value={style.fontFamily ?? "sans"}
-                  onChange={(event) => applyStyle({ fontFamily: event.target.value as EssayFontFamily })}
-                >
-                  {Object.entries(essayFontFamilies).map(([value, option]) => (
-                    <option key={value} value={value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </select>
-              </label>
-              <label>
-                Size
-                <select
-                  value={style.fontSize ?? "md"}
-                  onChange={(event) => applyStyle({ fontSize: event.target.value as EssayFontSize })}
-                >
-                  {Object.entries(essayFontSizes).map(([value, option]) => (
-                    <option key={value} value={value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </select>
-              </label>
-              <label>
-                Weight
-                <select
-                  value={style.fontWeight ?? "400"}
-                  onChange={(event) => applyStyle({ fontWeight: event.target.value as EssayFontWeight })}
-                >
-                  {Object.entries(essayFontWeights).map(([value, label]) => (
-                    <option key={value} value={value}>
-                      {label}
-                    </option>
-                  ))}
-                </select>
-              </label>
-            </div>
-            <label className="grid gap-1 text-sm text-[#3d3d3d]">
-              Body
-              <textarea
-                ref={bodyRef}
-                name="body"
-                required
-                draggable={false}
-                className={`field min-h-[14rem] admin-essay-composer__body${dropActive ? " is-drop-target" : ""}`}
-                placeholder={placeholder}
-                value={body}
-                style={textareaStyle}
-                onChange={(event) => {
-                  onChange(event.target.value);
-                  syncCursor(event.currentTarget);
-                }}
-                onSelect={(event) => syncCursor(event.currentTarget)}
-                onClick={(event) => syncCursor(event.currentTarget)}
-                onKeyUp={(event) => syncCursor(event.currentTarget)}
-                onDragEnter={(event) => {
-                  if ([...event.dataTransfer.types].includes(CHART_MIME) || [...event.dataTransfer.types].includes("text/plain")) {
-                    event.preventDefault();
-                    setDropActive(true);
-                  }
-                }}
-                onDragLeave={(event) => {
-                  if (event.currentTarget === event.target) setDropActive(false);
-                }}
-                onDragOver={(event) => {
-                  if (
-                    [...event.dataTransfer.types].includes(CHART_MIME) ||
-                    [...event.dataTransfer.types].includes("text/plain")
-                  ) {
-                    event.preventDefault();
-                    event.dataTransfer.dropEffect = "copy";
-                  }
-                }}
-                onDrop={(event) => {
-                  const token = event.dataTransfer.getData(CHART_MIME) || event.dataTransfer.getData("text/plain");
-                  setDropActive(false);
-                  if (!token.includes("%%CHART%%")) return;
-                  event.preventDefault();
-                  const index = caretIndexFromPoint(event.currentTarget, event.clientX, event.clientY);
-                  insertChart(token, index);
-                }}
-              />
-            </label>
-          </div>
-        }
-      />
+      <div className="admin-essay-composer__copy">
+        <div className="admin-type-bar" role="group" aria-label="Body typography">
+          <label>
+            Font
+            <select
+              value={style.fontFamily ?? "sans"}
+              onChange={(event) => applyStyle({ fontFamily: event.target.value as EssayFontFamily })}
+            >
+              {Object.entries(essayFontFamilies).map(([value, option]) => (
+                <option key={value} value={value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            Size
+            <select
+              value={style.fontSize ?? "md"}
+              onChange={(event) => applyStyle({ fontSize: event.target.value as EssayFontSize })}
+            >
+              {Object.entries(essayFontSizes).map(([value, option]) => (
+                <option key={value} value={value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            Weight
+            <select
+              value={style.fontWeight ?? "400"}
+              onChange={(event) => applyStyle({ fontWeight: event.target.value as EssayFontWeight })}
+            >
+              {Object.entries(essayFontWeights).map(([value, label]) => (
+                <option key={value} value={value}>
+                  {label}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+        <label className="grid gap-1 text-sm text-[#3d3d3d]">
+          Body
+          <textarea
+            ref={bodyRef}
+            name="body"
+            required
+            draggable={false}
+            className={`field min-h-[14rem] admin-essay-composer__body${dropActive ? " is-drop-target" : ""}`}
+            placeholder={placeholder}
+            value={body}
+            style={textareaStyle}
+            onChange={(event) => {
+              onChange(event.target.value);
+              syncCursor(event.currentTarget);
+            }}
+            onSelect={(event) => syncCursor(event.currentTarget)}
+            onClick={(event) => syncCursor(event.currentTarget)}
+            onKeyUp={(event) => syncCursor(event.currentTarget)}
+            onDragEnter={(event) => {
+              if ([...event.dataTransfer.types].includes(CHART_MIME) || [...event.dataTransfer.types].includes("text/plain")) {
+                event.preventDefault();
+                setDropActive(true);
+              }
+            }}
+            onDragLeave={(event) => {
+              if (event.currentTarget === event.target) setDropActive(false);
+            }}
+            onDragOver={(event) => {
+              if (
+                [...event.dataTransfer.types].includes(CHART_MIME) ||
+                [...event.dataTransfer.types].includes("text/plain")
+              ) {
+                event.preventDefault();
+                event.dataTransfer.dropEffect = "copy";
+              }
+            }}
+            onDrop={(event) => {
+              const token = event.dataTransfer.getData(CHART_MIME) || event.dataTransfer.getData("text/plain");
+              setDropActive(false);
+              if (!token.includes("%%CHART%%")) return;
+              event.preventDefault();
+              const index = caretIndexFromPoint(event.currentTarget, event.clientX, event.clientY);
+              insertChart(token, index);
+            }}
+          />
+        </label>
+      </div>
+      <ResearchChartBuilder onInsert={(token) => insertChart(token)} />
     </div>
   );
 }

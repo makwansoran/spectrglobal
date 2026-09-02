@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, type ReactNode } from "react";
+import { useMemo, useState } from "react";
 import {
   emptyChart,
   encodeChartToken,
@@ -83,10 +83,8 @@ export function caretIndexFromPoint(textarea: HTMLTextAreaElement, clientX: numb
 
 export function ResearchChartBuilder({
   onInsert,
-  overlay,
 }: {
   onInsert: (token: string) => void;
-  overlay?: ReactNode;
 }) {
   const [draft, setDraft] = useState<ResearchChart>(() => emptyChart("bar"));
 
@@ -213,7 +211,6 @@ export function ResearchChartBuilder({
       </div>
 
       <div className="admin-figure-builder__plot">
-        {overlay}
         <div
           className="admin-figure-builder__drag"
           draggable

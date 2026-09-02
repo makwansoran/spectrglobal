@@ -10,7 +10,7 @@ export default async function AdminResearchPage() {
   return (
     <>
       <h1 className="admin-title">Research posts</h1>
-      <p className="admin-lede">Write, preview, and manage essays. Published posts go live on /research. Body copy sits over the graph builder. Use Font, Size, and Weight on each paragraph, then drag a figure into the body.</p>
+      <p className="admin-lede">Write, preview, and manage essays. Published posts go live on /research. Use Font, Size, and Weight on each paragraph, then create a graph and drag it into the body.</p>
       <AdminResearchWorkspace posts={posts} />
     </>
   );
