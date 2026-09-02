@@ -8,8 +8,6 @@ export const spectrOsPage = {
     "One operating system for industrial floors, warehouses, and enterprise sites. Free for enterprise customers — permanently.",
   heroImage: "/images/products/spectr-os-ui.png",
   heroImageAlt: "Spectr OS interface",
-  introImage: "/images/products/spectros-waitlist.png",
-  introImageAlt: "Spectr OS running on a laptop",
   featuresTitle: "What you can do on Spectr OS",
   features: [
     {

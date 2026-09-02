@@ -23,19 +23,6 @@ export function SpectrOsPageView() {
               </GetStartedButton>
             </div>
           </Reveal>
-
-          <Reveal delay={80} className="sos-hero__stage">
-            <div className="sos-hero__frame">
-              <Image
-                src={page.heroImage}
-                alt={page.heroImageAlt}
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 92rem"
-                priority
-              />
-            </div>
-          </Reveal>
         </div>
       </section>
 
@@ -54,10 +41,11 @@ export function SpectrOsPageView() {
           <Reveal delay={80}>
             <div className="sos-intro__still">
               <Image
-                src={page.introImage}
-                alt={page.introImageAlt}
+                src={page.heroImage}
+                alt={page.heroImageAlt}
                 fill
                 sizes="(max-width: 1024px) 100vw, 92rem"
+                priority
               />
             </div>
           </Reveal>

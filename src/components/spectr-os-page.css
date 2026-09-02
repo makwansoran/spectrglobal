@@ -8,7 +8,7 @@
   overflow: hidden;
   background: #0a0a0a;
   color: #ffffff;
-  padding-top: clamp(4.5rem, 10vw, 7.5rem);
+  padding-block: clamp(4.5rem, 10vw, 7.5rem);
 }
 
 .sos-hero__copy {
@@ -46,27 +46,6 @@
   display: flex;
   justify-content: center;
   margin-top: 2rem;
-}
-
-.sos-hero__stage {
-  position: relative;
-  margin-top: clamp(2.5rem, 6vw, 4.5rem);
-}
-
-.sos-hero__frame {
-  position: relative;
-  overflow: hidden;
-  aspect-ratio: 16 / 10;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-bottom: 0;
-  border-radius: 1.25rem 1.25rem 0 0;
-  background: #111111;
-  box-shadow: 0 -24px 80px rgba(0, 0, 0, 0.45);
-}
-
-.sos-hero__frame img {
-  object-fit: cover;
-  object-position: top center;
 }
 
 .sos-intro {
@@ -111,7 +90,7 @@
 
 .sos-intro__still img {
   object-fit: cover;
-  object-position: center 40%;
+  object-position: top center;
 }
 
 .sos-caps {
