@@ -38,9 +38,7 @@ export function LoginForm({ next }: { next?: string }) {
       return;
     }
 
-    const destination =
-      next && next !== "/dashboard" ? afterLogin : safeNextPath(payload?.next, afterLogin);
-    router.replace(destination);
+    router.replace(safeNextPath(payload?.next, afterLogin));
     router.refresh();
   }
 

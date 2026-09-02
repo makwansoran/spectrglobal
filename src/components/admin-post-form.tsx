@@ -5,22 +5,26 @@ import { createEditorialPost, type CreatePostState } from "@/app/actions/editori
 
 const initial: CreatePostState = null;
 
-export function AdminPostForm() {
+export function AdminPostForm({ kind }: { kind?: "blog" | "research" }) {
   const [state, action, pending] = useActionState(createEditorialPost, initial);
 
   return (
     <form action={action} className="mt-6 grid gap-4">
-      <fieldset className="flex flex-wrap gap-4">
-        <legend className="sr-only">Post type</legend>
-        <label className="flex items-center gap-2 text-sm text-[#0a0a0a]">
-          <input type="radio" name="kind" value="blog" defaultChecked />
-          Blog
-        </label>
-        <label className="flex items-center gap-2 text-sm text-[#0a0a0a]">
-          <input type="radio" name="kind" value="research" />
-          Research
-        </label>
-      </fieldset>
+      {kind ? (
+        <input type="hidden" name="kind" value={kind} />
+      ) : (
+        <fieldset className="flex flex-wrap gap-4">
+          <legend className="sr-only">Post type</legend>
+          <label className="flex items-center gap-2 text-sm text-[#0a0a0a]">
+            <input type="radio" name="kind" value="blog" defaultChecked />
+            Blog
+          </label>
+          <label className="flex items-center gap-2 text-sm text-[#0a0a0a]">
+            <input type="radio" name="kind" value="research" />
+            Research
+          </label>
+        </fieldset>
+      )}
 
       <label className="grid gap-1 text-sm text-[#3d3d3d]">
         Title

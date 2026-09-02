@@ -34,12 +34,22 @@ export async function proxy(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
+  if (pathname.startsWith("/dashboard") && session?.role === "admin") {
+    const url = request.nextUrl.clone();
+    url.pathname = "/admin";
+    url.search = "";
+    return NextResponse.redirect(url);
+  }
+
   if (pathname === "/login" && session) {
     const url = request.nextUrl.clone();
-    url.pathname = safeNextPath(
-      request.nextUrl.searchParams.get("next"),
-      session.role === "admin" ? "/admin" : "/dashboard",
-    );
+    const requested = request.nextUrl.searchParams.get("next");
+    url.pathname =
+      session.role === "admin"
+        ? requested?.startsWith("/admin")
+          ? safeNextPath(requested, "/admin")
+          : "/admin"
+        : "/dashboard";
     url.search = "";
     return NextResponse.redirect(url);
   }

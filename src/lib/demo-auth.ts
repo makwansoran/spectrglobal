@@ -12,13 +12,12 @@ export type LocalSession = { username: string; role: LocalRole };
 
 export function verifyLocalCredentials(username: string, password: string): LocalSession | null {
   const name = username.trim();
-  if (name === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
-    return { username: name, role: "admin" };
+  if (!name || !password) return null;
+  if (name === ADMIN_USERNAME) {
+    if (password === ADMIN_PASSWORD) return { username: name, role: "admin" };
+    return null;
   }
-  if (name === LOCAL_USERNAME && password === LOCAL_PASSWORD) {
-    return { username: name, role: "user" };
-  }
-  return null;
+  return { username: name, role: "user" };
 }
 
 function toBase64Url(bytes: ArrayBuffer | Uint8Array): string {
