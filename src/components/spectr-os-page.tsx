@@ -12,10 +12,10 @@ export function SpectrOsPageView() {
   return (
     <main id="main-content" className="sos-page relative flex-1">
       <section className="sos-hero">
-        <div className="container-x">
+        <div className="container-x sos-hero__layout">
           <Reveal className="sos-hero__copy">
             <p className="sos-hero__kicker">{page.eyebrow}</p>
-            <h1 className="display text-[clamp(3.4rem,9vw,7.4rem)]">{page.name}</h1>
+            <h1 className="display text-[clamp(2.6rem,6vw,5.2rem)]">{page.name}</h1>
             <p className="sos-hero__sub">{page.heroBody}</p>
             <div className="sos-hero__actions">
               <GetStartedButton label="Get started" size="lg" className="btn-on-dark">
@@ -23,34 +23,17 @@ export function SpectrOsPageView() {
               </GetStartedButton>
             </div>
           </Reveal>
-        </div>
-      </section>
-
-      <section className="sos-intro" aria-labelledby="sos-intro-heading">
-        <div className="container-x">
-          <div className="sos-intro__grid">
-            <Reveal>
-              <h2 id="sos-intro-heading" className="display text-[clamp(2.2rem,5.2vw,4.4rem)] text-fg">
-                {page.introTitle}
-              </h2>
-            </Reveal>
-            <Reveal delay={60}>
-              <p className="sos-intro__body">{page.intro}</p>
-            </Reveal>
-          </div>
-          <Reveal delay={80}>
-            <div className="sos-intro__still">
-              <video
-                className="sos-intro__video"
-                src={page.introVideo}
-                aria-label={page.heroImageAlt}
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="auto"
-              />
-            </div>
+          <Reveal delay={60} className="sos-hero__media">
+            <video
+              className="sos-hero__video"
+              src={page.introVideo}
+              aria-label={page.heroImageAlt}
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+            />
           </Reveal>
         </div>
       </section>

@@ -8,16 +8,27 @@
   overflow: hidden;
   background: #0a0a0a;
   color: #ffffff;
-  padding-block: clamp(4.5rem, 10vw, 7.5rem);
+  padding-block: clamp(3.5rem, 8vw, 6.5rem);
+}
+
+.sos-hero__layout {
+  display: grid;
+  gap: clamp(1.75rem, 4vw, 3.5rem);
+  align-items: center;
+}
+
+@media (min-width: 960px) {
+  .sos-hero__layout {
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  }
 }
 
 .sos-hero__copy {
   display: flex;
-  max-width: 46rem;
-  margin-inline: auto;
+  max-width: 36rem;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
+  text-align: left;
 }
 
 .sos-hero__kicker {
@@ -35,7 +46,7 @@
 }
 
 .sos-hero__sub {
-  margin: 1.5rem auto 0;
+  margin: 1.5rem 0 0;
   max-width: 34rem;
   font-size: clamp(1.05rem, 2vw, 1.25rem);
   line-height: 1.6;
@@ -44,65 +55,29 @@
 
 .sos-hero__actions {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   margin-top: 2rem;
 }
 
-.sos-intro {
-  padding: clamp(4.5rem, 9vw, 8rem) 0 clamp(3rem, 6vw, 5rem);
-  background: #ffffff;
-}
-
-.sos-intro__grid {
-  display: grid;
-  gap: clamp(1.5rem, 4vw, 5rem);
-}
-
-@media (min-width: 960px) {
-  .sos-intro__grid {
-    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-    align-items: start;
-  }
-}
-
-.sos-intro h2 {
-  margin: 0;
-  max-width: 12ch;
-}
-
-.sos-intro__body {
-  margin: 0;
-  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
-  line-height: 1.65;
-  color: var(--muted);
-}
-
-.sos-intro__still {
+.sos-hero__media {
   position: relative;
   overflow: hidden;
-  width: min(100%, 58rem);
-  margin-top: clamp(2.5rem, 6vw, 4.5rem);
-  margin-inline: auto;
+  width: 100%;
   aspect-ratio: 16 / 9;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 1.25rem;
-  background: #0a0a0a;
-  box-shadow: 0 28px 80px rgba(10, 10, 10, 0.12);
+  background: #000000;
 }
 
-.sos-intro__still img,
-.sos-intro__video {
-  object-fit: cover;
-  object-position: top center;
-}
-
-.sos-intro__video {
+.sos-hero__video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   display: block;
   border: 0;
+  object-fit: cover;
+  object-position: top center;
 }
 
 .sos-caps {

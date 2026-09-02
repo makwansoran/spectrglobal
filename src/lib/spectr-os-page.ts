@@ -1,9 +1,6 @@
 export const spectrOsPage = {
   name: "Spectr OS",
   eyebrow: "The operating system for the enterprise",
-  introTitle: "What Spectr OS is",
-  intro:
-    "Spectr OS is the runtime that turns a real working environment into a continuously updated model — so every decision, agent, and operator works from the same truth. Fuse systems, host your data, define ontology, build models, and act — without another dashboard silo.",
   heroBody:
     "One operating system for industrial floors, warehouses, and enterprise sites. Free for enterprise customers — permanently.",
   heroImage: "/images/products/spectr-os-ui.png",
