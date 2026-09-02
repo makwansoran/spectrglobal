@@ -29,6 +29,7 @@
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
+  font-family: var(--font-sans);
 }
 
 .sos-hero__title {
@@ -46,13 +47,21 @@
 .sos-hero h1 {
   margin: 0;
   color: #ffffff;
+  font-family: var(--font-sans);
+  font-size: clamp(2.1rem, 5.6vw, 4.6rem);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
 }
 
 .sos-hero__sub {
   margin: 1.5rem 0 0;
   max-width: 34rem;
-  font-size: clamp(1.05rem, 2vw, 1.25rem);
-  line-height: 1.6;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: 0;
   color: rgba(255, 255, 255, 0.72);
 }
 
