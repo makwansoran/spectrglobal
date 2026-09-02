@@ -14,6 +14,12 @@ const nav = [
   { href: "/admin/users", label: "Users" },
 ];
 
+const siteNav = [
+  { href: "/", label: "Site" },
+  { href: "/blog", label: "Blog" },
+  { href: "/research", label: "Research" },
+];
+
 export function AdminShell({
   username,
   children,
@@ -38,6 +44,12 @@ export function AdminShell({
               </Link>
             );
           })}
+          <p className="admin-sidebar__kicker">View</p>
+          {siteNav.map((item) => (
+            <Link key={item.href} href={item.href}>
+              {item.label}
+            </Link>
+          ))}
         </nav>
         <div className="admin-sidebar__foot">
           <p>{username}</p>
@@ -45,14 +57,6 @@ export function AdminShell({
         </div>
       </aside>
       <div className="admin-main">
-        <header className="admin-top">
-          <p>Admin dashboard</p>
-          <div className="admin-top__links">
-            <Link href="/">Site</Link>
-            <Link href="/blog">Blog</Link>
-            <Link href="/research">Research</Link>
-          </div>
-        </header>
         <div id="main-content" className="admin-content">
           {children}
         </div>
