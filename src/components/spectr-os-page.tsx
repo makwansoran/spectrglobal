@@ -40,12 +40,15 @@ export function SpectrOsPageView() {
           </div>
           <Reveal delay={80}>
             <div className="sos-intro__still">
-              <Image
-                src={page.heroImage}
-                alt={page.heroImageAlt}
-                fill
-                sizes="(max-width: 1024px) 100vw, 58rem"
-                priority
+              <video
+                className="sos-intro__video"
+                src={page.introVideo}
+                aria-label={page.heroImageAlt}
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="auto"
               />
             </div>
           </Reveal>
