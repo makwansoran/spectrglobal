@@ -1,14 +1,20 @@
 .admin-app {
-  display: grid;
   min-height: 100vh;
-  grid-template-columns: 16.5rem 1fr;
+  padding-left: 16.5rem;
   background: #f4f4f2;
   color: #0a0a0a;
 }
 
 .admin-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 30;
   display: flex;
+  width: 16.5rem;
   flex-direction: column;
+  overflow: hidden;
   background: #111217;
   color: #f4f4f2;
   padding: 1.25rem 0.85rem 1rem;
@@ -260,10 +266,16 @@
 
 @media (max-width: 860px) {
   .admin-app {
-    grid-template-columns: 1fr;
+    padding-left: 0;
   }
 
   .admin-sidebar {
+    position: sticky;
+    top: 0;
+    bottom: auto;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
     padding-bottom: 0.5rem;
   }
 
