@@ -16,8 +16,8 @@ export default function HomePage() {
           headingId="spectr-edge-compute-heading"
           title="Spectr Edge compute"
           lede="Compute for AI vision on site. A fraction of the cost of hosting large models."
-          image="/images/news/argus-detection.jpg"
-          imageAlt="On-site AI vision running at the edge"
+          image="/images/products/spectr-edge.jpg"
+          imageAlt="Spectr Edge compute enclosure"
           ctaHref="/waitlist"
           ctaLabel="Join waitlist"
         />
