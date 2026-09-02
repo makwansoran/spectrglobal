@@ -239,6 +239,92 @@
   gap: 1.25rem;
 }
 
+.admin-localnav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 1.25rem 0 0;
+}
+
+.admin-localnav button {
+  border: 1px solid #e4e4e0;
+  background: #ffffff;
+  color: #0a0a0a;
+  padding: 0.5rem 0.85rem;
+  font-size: 0.88rem;
+  cursor: pointer;
+}
+
+.admin-localnav button:hover,
+.admin-localnav button.is-active {
+  border-color: #111217;
+  background: #111217;
+  color: #ffffff;
+}
+
+.admin-text-button {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  font: inherit;
+}
+
+.admin-row-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  justify-content: flex-end;
+}
+
+.admin-preview__article {
+  margin-top: 1.25rem;
+}
+
+.admin-preview__image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 8;
+  overflow: hidden;
+  background: #ecece8;
+  margin-bottom: 1.25rem;
+}
+
+.admin-preview__image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.admin-preview__meta {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8a8a8a;
+}
+
+.admin-preview__article h3 {
+  margin: 0.4rem 0 0.7rem;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+}
+
+.admin-preview__dek {
+  color: #6b6b6b;
+  font-size: 1.05rem;
+}
+
+.admin-preview__article p {
+  max-width: 42rem;
+  line-height: 1.6;
+}
+
 @media (min-width: 1080px) {
   .admin-split {
     grid-template-columns: minmax(0, 1.05fr) minmax(20rem, 0.9fr);

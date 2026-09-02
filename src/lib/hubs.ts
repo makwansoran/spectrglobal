@@ -1,4 +1,4 @@
-import { loadEditorialPosts } from "@/lib/editorial/store";
+import { loadEditorialPosts, loadHiddenSlugs } from "@/lib/editorial/store";
 import { industryPages } from "@/lib/use-cases";
 import { partnerQuotes } from "@/lib/content";
 
@@ -448,8 +448,12 @@ export async function listBlogPosts() {
 
 export async function listResearchEssays() {
   const extra = await loadEditorialPosts("research");
-  const seen = new Set(researchEssays.map((post) => post.slug));
-  return [...extra.filter((post) => !seen.has(post.slug)), ...researchEssays];
+  const hidden = new Set(await loadHiddenSlugs("research"));
+  const extraBySlug = new Set(extra.map((post) => post.slug));
+  return [
+    ...extra.filter((post) => !hidden.has(post.slug)),
+    ...researchEssays.filter((post) => !hidden.has(post.slug) && !extraBySlug.has(post.slug)),
+  ];
 }
 
 export async function getBlogPost(slug: string) {

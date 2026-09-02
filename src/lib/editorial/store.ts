@@ -1,8 +1,10 @@
 import { promises as fs } from "fs";
 import path from "path";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { defaultImage, splitParagraphs, type EditorialKind } from "@/lib/editorial/helpers";
 
-export type EditorialKind = "blog" | "research";
+export type { EditorialKind } from "@/lib/editorial/helpers";
+export { defaultImage, slugifyTitle, splitParagraphs } from "@/lib/editorial/helpers";
 
 export type EditorialPost = {
   slug: string;
@@ -18,29 +20,12 @@ export type EditorialPost = {
 type EditorialFile = {
   blog: EditorialPost[];
   research: EditorialPost[];
+  hidden?: { blog?: string[]; research?: string[] };
 };
 
 const FILE = path.join(process.cwd(), "data", "editorial-posts.json");
 
-const emptyFile: EditorialFile = { blog: [], research: [] };
-
-export function slugifyTitle(title: string) {
-  const slug = title
-    .toLowerCase()
-    .normalize("NFKD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "")
-    .slice(0, 80);
-  return slug;
-}
-
-export function splitParagraphs(body: string) {
-  return body
-    .split(/\n\s*\n/)
-    .map((part) => part.replace(/\s+/g, " ").trim())
-    .filter(Boolean);
-}
+const emptyFile: EditorialFile = { blog: [], research: [], hidden: { blog: [], research: [] } };
 
 function hrefFor(kind: EditorialKind, slug: string) {
   return kind === "blog" ? `/blog/${slug}` : `/research/${slug}`;
@@ -61,10 +46,6 @@ function asPost(kind: EditorialKind, row: Partial<EditorialPost> & { slug?: stri
   };
 }
 
-export function defaultImage(kind: EditorialKind) {
-  return kind === "blog" ? "/images/news/spectr-os-free.jpg" : "/images/industries/infrastructure.jpg";
-}
-
 async function readFileStore(): Promise<EditorialFile> {
   try {
     const raw = await fs.readFile(FILE, "utf8");
@@ -72,6 +53,10 @@ async function readFileStore(): Promise<EditorialFile> {
     return {
       blog: Array.isArray(parsed.blog) ? parsed.blog : [],
       research: Array.isArray(parsed.research) ? parsed.research : [],
+      hidden: {
+        blog: Array.isArray(parsed.hidden?.blog) ? parsed.hidden.blog : [],
+        research: Array.isArray(parsed.hidden?.research) ? parsed.hidden.research : [],
+      },
     };
   } catch {
     return emptyFile;
@@ -138,9 +123,15 @@ function mergePosts(primary: EditorialPost[], secondary: EditorialPost[]) {
   return [...extra, ...primary];
 }
 
+export async function loadHiddenSlugs(kind: EditorialKind): Promise<string[]> {
+  const file = await readFileStore();
+  return file.hidden?.[kind] ?? [];
+}
+
 export async function loadEditorialPosts(kind: EditorialKind): Promise<EditorialPost[]> {
   const [file, db] = await Promise.all([readFileStore(), readDbStore(kind)]);
-  return mergePosts(file[kind], db);
+  const hidden = new Set(file.hidden?.[kind] ?? []);
+  return mergePosts(file[kind], db).filter((post) => !hidden.has(post.slug));
 }
 
 export async function editorialSlugTaken(kind: EditorialKind, slug: string) {
@@ -148,15 +139,24 @@ export async function editorialSlugTaken(kind: EditorialKind, slug: string) {
   return posts.some((post) => post.slug === slug);
 }
 
-export async function saveEditorialPost(kind: EditorialKind, post: EditorialPost): Promise<{ ok: true } | { ok: false; error: string }> {
+export async function upsertEditorialPost(
+  kind: EditorialKind,
+  post: EditorialPost,
+  previousSlug?: string,
+): Promise<{ ok: true } | { ok: false; error: string }> {
   const file = await readFileStore();
-  if (file[kind].some((item) => item.slug === post.slug)) {
-    return { ok: false, error: "A post with that slug already exists." };
-  }
+  const fromSlug = previousSlug || post.slug;
+  const withoutOld = file[kind].filter((item) => item.slug !== fromSlug && item.slug !== post.slug);
+  const hidden = {
+    blog: file.hidden?.blog ?? [],
+    research: file.hidden?.research ?? [],
+  };
+  hidden[kind] = hidden[kind].filter((slug) => slug !== post.slug && slug !== fromSlug);
 
   const nextFile: EditorialFile = {
     ...file,
-    [kind]: [post, ...file[kind]],
+    hidden,
+    [kind]: [post, ...withoutOld],
   };
 
   let fileOk = false;
@@ -172,16 +172,22 @@ export async function saveEditorialPost(kind: EditorialKind, post: EditorialPost
 
   const admin = tryAdminClient();
   if (admin) {
-    const { error } = await admin.from("editorial_posts").insert({
-      kind,
-      slug: post.slug,
-      date: post.date,
-      title: post.title,
-      dek: post.dek,
-      image: post.image,
-      image_alt: post.imageAlt,
-      paragraphs: post.paragraphs,
-    });
+    if (fromSlug && fromSlug !== post.slug) {
+      await admin.from("editorial_posts").delete().eq("kind", kind).eq("slug", fromSlug);
+    }
+    const { error } = await admin.from("editorial_posts").upsert(
+      {
+        kind,
+        slug: post.slug,
+        date: post.date,
+        title: post.title,
+        dek: post.dek,
+        image: post.image,
+        image_alt: post.imageAlt,
+        paragraphs: post.paragraphs,
+      },
+      { onConflict: "kind,slug" },
+    );
     if (error) dbError = error.message;
     else dbOk = true;
   }
@@ -189,6 +195,47 @@ export async function saveEditorialPost(kind: EditorialKind, post: EditorialPost
   if (fileOk || dbOk) return { ok: true };
   return {
     ok: false,
-    error: dbError || "Could not save the post. Check server write access or run the latest schema.sql.",
+    error: dbError || "Could not save the post.",
   };
+}
+
+export async function deleteEditorialPost(
+  kind: EditorialKind,
+  slug: string,
+): Promise<{ ok: true } | { ok: false; error: string }> {
+  const file = await readFileStore();
+  const hidden = {
+    blog: file.hidden?.blog ?? [],
+    research: file.hidden?.research ?? [],
+  };
+  if (!hidden[kind].includes(slug)) hidden[kind] = [...hidden[kind], slug];
+
+  const nextFile: EditorialFile = {
+    ...file,
+    hidden,
+    [kind]: file[kind].filter((item) => item.slug !== slug),
+  };
+
+  let fileOk = false;
+  try {
+    await writeFileStore(nextFile);
+    fileOk = true;
+  } catch {
+    fileOk = false;
+  }
+
+  const admin = tryAdminClient();
+  if (admin) {
+    await admin.from("editorial_posts").delete().eq("kind", kind).eq("slug", slug);
+  }
+
+  if (fileOk) return { ok: true };
+  return { ok: false, error: "Could not delete the post." };
+}
+
+export async function saveEditorialPost(
+  kind: EditorialKind,
+  post: EditorialPost,
+): Promise<{ ok: true } | { ok: false; error: string }> {
+  return upsertEditorialPost(kind, post);
 }
