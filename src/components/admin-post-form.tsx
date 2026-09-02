@@ -1,12 +1,14 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { createEditorialPost, type CreatePostState } from "@/app/actions/editorial";
+import { AdminEssayComposer } from "@/components/admin-essay-composer";
 
 const initial: CreatePostState = null;
 
 export function AdminPostForm({ kind }: { kind?: "blog" | "research" }) {
   const [state, action, pending] = useActionState(createEditorialPost, initial);
+  const [body, setBody] = useState("");
 
   return (
     <form action={action} className="mt-6 grid gap-4">
@@ -51,16 +53,11 @@ export function AdminPostForm({ kind }: { kind?: "blog" | "research" }) {
         <input name="dek" required className="field" placeholder="One-line summary" />
       </label>
 
-      <label className="grid gap-1 text-sm text-[#3d3d3d]">
-        Body
-        <textarea
-          name="body"
-          required
-          rows={12}
-          className="field min-h-[12rem]"
-          placeholder="Write the post. Separate paragraphs with a blank line."
-        />
-      </label>
+      <AdminEssayComposer
+        body={body}
+        onChange={setBody}
+        placeholder="Write the post. Separate paragraphs with a blank line. Drop a figure here."
+      />
 
       <label className="grid gap-1 text-sm text-[#3d3d3d]">
         Image path

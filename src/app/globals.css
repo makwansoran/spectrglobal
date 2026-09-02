@@ -14,6 +14,8 @@
   --accent-soft: rgba(241, 90, 36, 0.12);
   --btn: #0a0a0a;
   --btn-fg: #ffffff;
+  --essay-font-serif: var(--font-essay-serif), "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --essay-font-mono: var(--font-essay-mono), ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
 }
 
 @theme inline {

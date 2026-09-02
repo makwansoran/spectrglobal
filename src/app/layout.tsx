@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { IBM_Plex_Mono, Inter, Source_Serif_4 } from "next/font/google";
 import { GetStartedShell } from "@/components/get-started-shell";
 import { MarketingChrome } from "@/components/marketing-chrome";
 import { OrganizationJsonLd } from "@/components/json-ld";
@@ -9,6 +9,12 @@ import { site } from "@/lib/site";
 import "./globals.css";
 
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
+const essaySerif = Source_Serif_4({ variable: "--font-essay-serif", subsets: ["latin"] });
+const essayMono = IBM_Plex_Mono({
+  variable: "--font-essay-mono",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -47,7 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${inter.variable} theme-white h-full`}
+      className={`${inter.variable} ${essaySerif.variable} ${essayMono.variable} theme-white h-full`}
     >
       <body className="flex min-h-full flex-col bg-bg text-fg">
         <a

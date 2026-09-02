@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import {
   emptyChart,
   encodeChartToken,
@@ -83,8 +83,10 @@ export function caretIndexFromPoint(textarea: HTMLTextAreaElement, clientX: numb
 
 export function ResearchChartBuilder({
   onInsert,
+  overlay,
 }: {
   onInsert: (token: string) => void;
+  overlay?: ReactNode;
 }) {
   const [draft, setDraft] = useState<ResearchChart>(() => emptyChart("bar"));
 
@@ -210,18 +212,21 @@ export function ResearchChartBuilder({
         </button>
       </div>
 
-      <div
-        className="admin-figure-builder__drag"
-        draggable
-        onDragStart={(event) => {
-          const token = tokenForInsert();
-          event.dataTransfer.effectAllowed = "copy";
-          event.dataTransfer.setData(CHART_MIME, token);
-          event.dataTransfer.setData("text/plain", token);
-        }}
-      >
-        <p className="admin-figure-builder__kicker">Drag this figure into the body</p>
-        <ResearchFigure chart={preview} number={1} />
+      <div className="admin-figure-builder__plot">
+        {overlay}
+        <div
+          className="admin-figure-builder__drag"
+          draggable
+          onDragStart={(event) => {
+            const token = tokenForInsert();
+            event.dataTransfer.effectAllowed = "copy";
+            event.dataTransfer.setData(CHART_MIME, token);
+            event.dataTransfer.setData("text/plain", token);
+          }}
+        >
+          <p className="admin-figure-builder__kicker">Drag this figure into the body</p>
+          <ResearchFigure chart={preview} number={1} />
+        </div>
       </div>
 
       <button type="button" className="ops-signout w-fit" onClick={() => onInsert(tokenForInsert())}>

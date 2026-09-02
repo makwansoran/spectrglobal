@@ -1,3 +1,5 @@
+import { parseParagraphStyle, type EssayTextStyle } from "@/lib/editorial/typography";
+
 export type ResearchChartType = "bar" | "line" | "pie";
 
 export type ResearchChartPoint = {
@@ -15,7 +17,7 @@ export type ResearchChart = {
 };
 
 export type EssayBlock =
-  | { type: "paragraph"; text: string }
+  | { type: "paragraph"; text: string; style?: EssayTextStyle }
   | { type: "chart"; chart: ResearchChart };
 
 const TOKEN_RE = /%%CHART%%([\s\S]*?)%%ENDCHART%%/g;
@@ -87,6 +89,13 @@ export function parseChartToken(token: string): ResearchChart | null {
   }
 }
 
+function paragraphBlock(text: string): EssayBlock {
+  const parsed = parseParagraphStyle(text);
+  return parsed.style
+    ? { type: "paragraph", text: parsed.text, style: parsed.style }
+    : { type: "paragraph", text: parsed.text };
+}
+
 export function parseBodyBlocks(paragraphs: string[]): EssayBlock[] {
   const blocks: EssayBlock[] = [];
 
@@ -97,18 +106,18 @@ export function parseBodyBlocks(paragraphs: string[]): EssayBlock[] {
 
     while ((match = re.exec(paragraph))) {
       const before = paragraph.slice(last, match.index).trim();
-      if (before) blocks.push({ type: "paragraph", text: before });
+      if (before) blocks.push(paragraphBlock(before));
       try {
         blocks.push({ type: "chart", chart: normalizeChart(decodePayload(match[1])) });
       } catch {
         const leftover = paragraph.slice(match.index, match.index + match[0].length).trim();
-        if (leftover) blocks.push({ type: "paragraph", text: leftover });
+        if (leftover) blocks.push(paragraphBlock(leftover));
       }
       last = match.index + match[0].length;
     }
 
     const after = paragraph.slice(last).trim();
-    if (after) blocks.push({ type: "paragraph", text: after });
+    if (after) blocks.push(paragraphBlock(after));
   }
 
   return blocks;

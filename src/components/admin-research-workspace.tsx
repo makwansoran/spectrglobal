@@ -1,19 +1,14 @@
 "use client";
 
-import { useActionState, useMemo, useRef, useState, useTransition } from "react";
+import { useActionState, useMemo, useState, useTransition } from "react";
 import {
   createEditorialPost,
   deleteEditorialPostAction,
   updateEditorialPost,
   type CreatePostState,
 } from "@/app/actions/editorial";
+import { AdminEssayComposer } from "@/components/admin-essay-composer";
 import { EssayBody } from "@/components/essay-body";
-import {
-  caretIndexFromPoint,
-  CHART_MIME,
-  ResearchChartBuilder,
-} from "@/components/research-chart-builder";
-import { insertChartToken } from "@/lib/editorial/charts";
 import { defaultImage, slugifyTitle, splitParagraphs } from "@/lib/editorial/helpers";
 
 type Post = {
@@ -43,8 +38,6 @@ export function AdminResearchWorkspace({ posts }: { posts: Post[] }) {
   const [tab, setTab] = useState<Tab>("new");
   const [draft, setDraft] = useState(emptyDraft);
   const [previousSlug, setPreviousSlug] = useState("");
-  const [dropActive, setDropActive] = useState(false);
-  const bodyRef = useRef<HTMLTextAreaElement>(null);
   const [pendingDelete, startDelete] = useTransition();
   const [createState, createAction, creating] = useActionState(createEditorialPost, null as CreatePostState);
   const [updateState, updateAction, updating] = useActionState(updateEditorialPost, null as CreatePostState);
@@ -68,22 +61,6 @@ export function AdminResearchWorkspace({ posts }: { posts: Post[] }) {
 
   function setField(name: keyof typeof emptyDraft, value: string) {
     setDraft((current) => ({ ...current, [name]: value }));
-  }
-
-  function insertChart(token: string, index?: number) {
-    const textarea = bodyRef.current;
-    setDraft((current) => {
-      const at = index ?? textarea?.selectionStart ?? current.body.length;
-      const nextBody = insertChartToken(current.body, token, at);
-      const cursor = nextBody.indexOf(token, Math.max(0, at - 2)) + token.length;
-      requestAnimationFrame(() => {
-        const field = bodyRef.current;
-        if (!field) return;
-        field.focus();
-        field.setSelectionRange(cursor, cursor);
-      });
-      return { ...current, body: nextBody };
-    });
   }
 
   function editPost(post: Post) {
@@ -175,49 +152,7 @@ export function AdminResearchWorkspace({ posts }: { posts: Post[] }) {
                 onChange={(event) => setField("dek", event.target.value)}
               />
             </label>
-            <div className="admin-essay-composer">
-              <label className="grid gap-1 text-sm text-[#3d3d3d]">
-                Body
-                <textarea
-                  ref={bodyRef}
-                  name="body"
-                  required
-                  rows={18}
-                  className={`field min-h-[18rem] admin-essay-composer__body${dropActive ? " is-drop-target" : ""}`}
-                  placeholder="Write the essay. Separate paragraphs with a blank line. Drop a figure here."
-                  value={draft.body}
-                  onChange={(event) => setField("body", event.target.value)}
-                  onDragEnter={(event) => {
-                    if ([...event.dataTransfer.types].includes(CHART_MIME) || [...event.dataTransfer.types].includes("text/plain")) {
-                      event.preventDefault();
-                      setDropActive(true);
-                    }
-                  }}
-                  onDragLeave={(event) => {
-                    if (event.currentTarget === event.target) setDropActive(false);
-                  }}
-                  onDragOver={(event) => {
-                    if (
-                      [...event.dataTransfer.types].includes(CHART_MIME) ||
-                      [...event.dataTransfer.types].includes("text/plain")
-                    ) {
-                      event.preventDefault();
-                      event.dataTransfer.dropEffect = "copy";
-                    }
-                  }}
-                  onDrop={(event) => {
-                    const token =
-                      event.dataTransfer.getData(CHART_MIME) || event.dataTransfer.getData("text/plain");
-                    setDropActive(false);
-                    if (!token.includes("%%CHART%%")) return;
-                    event.preventDefault();
-                    const index = caretIndexFromPoint(event.currentTarget, event.clientX, event.clientY);
-                    insertChart(token, index);
-                  }}
-                />
-              </label>
-              <ResearchChartBuilder onInsert={(token) => insertChart(token)} />
-            </div>
+            <AdminEssayComposer body={draft.body} onChange={(value) => setField("body", value)} />
             <label className="grid gap-1 text-sm text-[#3d3d3d]">
               Image path
               <input

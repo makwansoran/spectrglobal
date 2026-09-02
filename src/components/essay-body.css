@@ -1,0 +1,13 @@
+.essay-copy {
+  font-family: var(--essay-font, var(--font-sans));
+  font-size: var(--essay-size, 1.125rem);
+  font-weight: var(--essay-weight, 400);
+  line-height: 1.7;
+}
+
+.hub-article p.essay-copy,
+.admin-preview__article p.essay-copy {
+  font-family: var(--essay-font, var(--font-sans));
+  font-size: var(--essay-size, 1.125rem);
+  font-weight: var(--essay-weight, 400);
+}
