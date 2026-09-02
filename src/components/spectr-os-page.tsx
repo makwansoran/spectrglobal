@@ -17,7 +17,7 @@ export function SpectrOsPageView() {
           <Reveal className="sos-hero__copy">
             <div className="sos-hero__title">
               <LogoMark invert className="sos-hero__logo" title="" />
-              <h1>{page.name}</h1>
+              <h1 className="home-display">{page.name}</h1>
             </div>
             <p className="sos-hero__sub">{page.heroBody}</p>
             <div className="sos-hero__actions">
