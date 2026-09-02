@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (slug === "spectr-os") {
     return buildPageMetadata({
       title: spectrOsPage.name,
-      description: spectrOsPage.intro,
+      description: spectrOsPage.heroBody,
       path: "/platforms/spectr-os",
     });
   }
