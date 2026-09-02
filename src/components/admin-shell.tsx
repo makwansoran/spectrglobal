@@ -9,6 +9,7 @@ import "./admin-shell.css";
 const nav = [
   { href: "/admin", label: "Analytics" },
   { href: "/admin/clicks", label: "Clicks" },
+  { href: "/admin/waitlist", label: "Waitlist" },
   { href: "/admin/research", label: "Research posts" },
   { href: "/admin/blog", label: "Blog posts" },
   { href: "/admin/users", label: "Users" },

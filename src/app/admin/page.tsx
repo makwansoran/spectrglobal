@@ -14,11 +14,14 @@ export default async function AdminAnalyticsPage() {
   ]);
 
   let waitlist = 0;
+  let osUsers = 0;
   try {
     const overview = await loadAdminOverview();
     waitlist = overview.counts.waitlist;
+    osUsers = overview.counts.osGranted;
   } catch {
     waitlist = 0;
+    osUsers = 0;
   }
 
   const maxViews = Math.max(1, ...analytics.days.map((day) => day.views));
@@ -27,10 +30,10 @@ export default async function AdminAnalyticsPage() {
     { label: "Page views", value: analytics.totals.views, href: "/admin" },
     { label: "Views · 7 days", value: analytics.totals.views7d, href: "/admin" },
     { label: "Clicks", value: analytics.totals.clicks, href: "/admin/clicks" },
-    { label: "Waitlist", value: waitlist, href: "/admin/users" },
+    { label: "Waitlist", value: waitlist, href: "/admin/waitlist" },
     { label: "Blog posts", value: blog.length, href: "/admin/blog" },
     { label: "Research posts", value: research.length, href: "/admin/research" },
-    { label: "Users", value: analytics.totals.users, href: "/admin/users" },
+    { label: "Users", value: osUsers, href: "/admin/users" },
   ];
 
   return (

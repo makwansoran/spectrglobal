@@ -13,4 +13,5 @@ export async function setOsDownloadGranted(formData: FormData) {
   const admin = createAdminClient();
   await admin.from("profiles").update({ os_download_granted: granted }).eq("id", userId);
   revalidatePath("/admin");
+  revalidatePath("/admin/users");
 }
