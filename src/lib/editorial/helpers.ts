@@ -13,7 +13,11 @@ export function slugifyTitle(title: string) {
 export function splitParagraphs(body: string) {
   return body
     .split(/\n\s*\n/)
-    .map((part) => part.replace(/\s+/g, " ").trim())
+    .map((part) => {
+      const trimmed = part.trim();
+      if (trimmed.includes("%%CHART%%")) return trimmed;
+      return part.replace(/\s+/g, " ").trim();
+    })
     .filter(Boolean);
 }
 

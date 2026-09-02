@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { EssayBody } from "@/components/essay-body";
 import { UseCaseCta } from "@/components/use-case-cta";
 import type { HubPost } from "@/lib/hubs";
 import "./use-case-page.css";
@@ -28,9 +29,7 @@ export function HubArticleView({
       <div className="uc-wrap hub-article">
         <p className="hub-article__meta">{post.date}</p>
         <h2>{post.title}</h2>
-        {post.paragraphs.map((paragraph) => (
-          <p key={paragraph}>{paragraph}</p>
-        ))}
+        <EssayBody paragraphs={post.paragraphs} />
         <p>
           <Link href={backHref}>{backLabel} →</Link>
         </p>
