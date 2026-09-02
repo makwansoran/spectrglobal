@@ -1,0 +1,338 @@
+.sos-page {
+  background: #ffffff;
+  color: var(--fg);
+}
+
+.sos-hero {
+  position: relative;
+  overflow: hidden;
+  background: #0a0a0a;
+  color: #ffffff;
+  padding-top: clamp(4.5rem, 10vw, 7.5rem);
+}
+
+.sos-hero__copy {
+  max-width: 46rem;
+}
+
+.sos-hero__kicker {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.sos-hero h1 {
+  margin: 1rem 0 0;
+  color: #ffffff;
+}
+
+.sos-hero__sub {
+  margin: 1.5rem 0 0;
+  max-width: 34rem;
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.sos-hero__actions {
+  margin-top: 2rem;
+}
+
+.sos-hero__stage {
+  position: relative;
+  margin-top: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.sos-hero__frame {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 0;
+  border-radius: 1.25rem 1.25rem 0 0;
+  background: #111111;
+  box-shadow: 0 -24px 80px rgba(0, 0, 0, 0.45);
+}
+
+.sos-hero__frame img {
+  object-fit: cover;
+  object-position: top center;
+}
+
+.sos-intro {
+  padding: clamp(4.5rem, 9vw, 8rem) 0 clamp(3rem, 6vw, 5rem);
+  background: #ffffff;
+}
+
+.sos-intro__grid {
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 5rem);
+}
+
+@media (min-width: 960px) {
+  .sos-intro__grid {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    align-items: start;
+  }
+}
+
+.sos-intro h2 {
+  margin: 0;
+  max-width: 12ch;
+}
+
+.sos-intro__body {
+  margin: 0;
+  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+.sos-intro__still {
+  position: relative;
+  overflow: hidden;
+  margin-top: clamp(2.5rem, 6vw, 4.5rem);
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+  background: #0a0a0a;
+  box-shadow: 0 28px 80px rgba(10, 10, 10, 0.12);
+}
+
+.sos-intro__still img {
+  object-fit: cover;
+  object-position: center 40%;
+}
+
+.sos-caps {
+  padding: clamp(3rem, 7vw, 6rem) 0 clamp(4rem, 8vw, 7rem);
+  background: #f6f6f7;
+}
+
+.sos-caps__title {
+  margin: 0 0 clamp(2rem, 5vw, 3.5rem);
+  max-width: 16ch;
+}
+
+.sos-caps__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sos-caps__layout {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .sos-caps__layout {
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    gap: 3.5rem;
+    align-items: start;
+  }
+}
+
+.sos-caps__stage {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .sos-caps__stage {
+    display: block;
+    position: sticky;
+    top: 5.75rem;
+    height: calc(100vh - 7.25rem);
+  }
+}
+
+.sos-caps__frame {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+  background: #111111;
+  box-shadow: 0 24px 70px rgba(10, 10, 10, 0.12);
+}
+
+.sos-caps__shot {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 420ms ease;
+}
+
+.sos-caps__shot.is-active {
+  opacity: 1;
+}
+
+.sos-caps__shot img {
+  object-fit: cover;
+}
+
+.sos-caps__badge {
+  position: absolute;
+  left: 1.1rem;
+  bottom: 1.1rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.45rem 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  background: rgba(10, 10, 10, 0.62);
+  color: #ffffff;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  backdrop-filter: blur(12px);
+}
+
+.sos-cap {
+  border-top: 1px solid var(--border);
+  padding: 1.35rem 0 1.5rem;
+}
+
+.sos-cap:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+@media (min-width: 1024px) {
+  .sos-cap {
+    min-height: 58vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2.5rem 0;
+  }
+}
+
+.sos-cap__index {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.sos-cap h3 {
+  margin: 0.65rem 0 0;
+  font-size: clamp(1.65rem, 3vw, 2.35rem);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+}
+
+.sos-cap p {
+  margin: 0.85rem 0 0;
+  max-width: 36rem;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+.sos-cap.is-active .sos-cap__index {
+  color: var(--accent);
+}
+
+.sos-cap__mobile-media {
+  position: relative;
+  overflow: hidden;
+  margin-top: 1.15rem;
+  aspect-ratio: 16 / 10;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: #111111;
+}
+
+.sos-cap__mobile-media img {
+  object-fit: cover;
+}
+
+@media (min-width: 1024px) {
+  .sos-cap__mobile-media {
+    display: none;
+  }
+}
+
+.sos-cta {
+  padding: 0 0 clamp(4rem, 8vw, 6.5rem);
+  background: #ffffff;
+}
+
+.sos-cta__panel {
+  position: relative;
+  overflow: hidden;
+  min-height: clamp(26rem, 48vw, 36rem);
+  border-radius: 1.5rem;
+  background: #0a0a0a;
+}
+
+.sos-cta__panel img {
+  object-fit: cover;
+}
+
+.sos-cta__scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(10, 10, 10, 0.2) 0%, rgba(10, 10, 10, 0.72) 58%, rgba(10, 10, 10, 0.92) 100%);
+}
+
+.sos-cta__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-height: inherit;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(1.75rem, 4vw, 3.5rem);
+}
+
+.sos-cta h2 {
+  margin: 0;
+  max-width: 14ch;
+  color: #ffffff;
+}
+
+.sos-cta__body {
+  margin: 1.15rem 0 0;
+  max-width: 34rem;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.sos-cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+
+.sos-cta__ghost {
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  background: transparent !important;
+  color: #ffffff !important;
+}
+
+.sos-cta__ghost:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sos-caps__shot {
+    transition: none;
+  }
+
+  .sos-cap {
+    min-height: 0;
+  }
+}

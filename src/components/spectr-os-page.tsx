@@ -1,34 +1,37 @@
 import Image from "next/image";
 import { GetStartedButton } from "@/components/get-started-button";
 import { Reveal } from "@/components/reveal";
+import { SpectrOsCapabilities } from "@/components/spectr-os-capabilities";
 import { LogoMarquee } from "@/components/sections/logo-marquee";
 import { spectrOsPage } from "@/lib/spectr-os-page";
+import "./spectr-os-page.css";
 
 export function SpectrOsPageView() {
   const page = spectrOsPage;
 
   return (
-    <main id="main-content" className="relative flex-1 bg-white">
-      <section className="relative overflow-hidden bg-white">
-        <div className="container-x grid items-end gap-12 pb-16 pt-16 lg:grid-cols-[1.1fr_0.9fr] lg:pb-24 lg:pt-24">
-          <Reveal>
-            <p className="text-sm font-medium text-muted">{page.eyebrow}</p>
-            <h1 className="display mt-4 text-[clamp(3.2rem,8vw,7rem)] text-fg">{page.name}</h1>
-            <p className="mt-6 max-w-xl text-lg leading-8 text-muted">{page.heroBody}</p>
-            <div className="mt-8">
-              <GetStartedButton label="Get started" size="lg">
+    <main id="main-content" className="sos-page relative flex-1">
+      <section className="sos-hero">
+        <div className="container-x">
+          <Reveal className="sos-hero__copy">
+            <p className="sos-hero__kicker">{page.eyebrow}</p>
+            <h1 className="display text-[clamp(3.4rem,9vw,7.4rem)]">{page.name}</h1>
+            <p className="sos-hero__sub">{page.heroBody}</p>
+            <div className="sos-hero__actions">
+              <GetStartedButton label="Get started" size="lg" className="btn-on-dark">
                 Get started
               </GetStartedButton>
             </div>
           </Reveal>
-          <Reveal delay={80}>
-            <div className="relative aspect-[16/11] overflow-hidden rounded-2xl bg-white">
+
+          <Reveal delay={80} className="sos-hero__stage">
+            <div className="sos-hero__frame">
               <Image
-                src="/images/products/spectr-os-ui.png"
-                alt="Spectr OS interface"
+                src={page.heroImage}
+                alt={page.heroImageAlt}
                 fill
                 className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 40vw"
+                sizes="(max-width: 1024px) 100vw, 92rem"
                 priority
               />
             </div>
@@ -36,48 +39,63 @@ export function SpectrOsPageView() {
         </div>
       </section>
 
-      <section className="bg-white py-16 sm:py-24">
-        <div className="container-x grid gap-8 lg:grid-cols-[1fr_1fr] lg:gap-20">
-          <h2 className="display text-[clamp(2.2rem,5vw,4.5rem)] text-fg">{page.introTitle}</h2>
-          <p className="text-lg leading-8 text-muted">{page.intro}</p>
+      <section className="sos-intro" aria-labelledby="sos-intro-heading">
+        <div className="container-x">
+          <div className="sos-intro__grid">
+            <Reveal>
+              <h2 id="sos-intro-heading" className="display text-[clamp(2.2rem,5.2vw,4.4rem)] text-fg">
+                {page.introTitle}
+              </h2>
+            </Reveal>
+            <Reveal delay={60}>
+              <p className="sos-intro__body">{page.intro}</p>
+            </Reveal>
+          </div>
+          <Reveal delay={80}>
+            <div className="sos-intro__still">
+              <Image
+                src={page.introImage}
+                alt={page.introImageAlt}
+                fill
+                sizes="(max-width: 1024px) 100vw, 92rem"
+              />
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      <section className="bg-white pb-16 sm:pb-24">
-        <div className="container-x">
-          <h2 className="display max-w-3xl text-[clamp(2.2rem,5vw,4.5rem)] text-fg">{page.featuresTitle}</h2>
-          <ul className="mt-12 grid gap-3 md:grid-cols-2">
-            {page.features.map((feature, index) => (
-              <li key={feature.id}>
-                <Reveal delay={Math.min(index * 30, 180)}>
-                  <article className="h-full rounded-2xl border border-border bg-white p-6 sm:p-8">
-                    <p className="text-xs font-medium uppercase tracking-[0.14em] text-muted">
-                      {String(index + 1).padStart(2, "0")}
-                    </p>
-                    <h3 className="display mt-4 text-3xl text-fg sm:text-4xl">{feature.title}</h3>
-                    <p className="mt-4 text-[15px] leading-7 text-muted">{feature.body}</p>
-                  </article>
-                </Reveal>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+      <SpectrOsCapabilities title={page.featuresTitle} features={page.features} />
 
       <LogoMarquee />
 
-      <section className="bg-white pb-20 sm:pb-28">
+      <section className="sos-cta" aria-labelledby="sos-cta-heading">
         <div className="container-x">
-          <div className="rounded-[1.75rem] border border-border bg-white px-8 py-12 text-fg sm:px-12 sm:py-16">
-            <h2 className="display max-w-3xl text-[clamp(2rem,4vw,3.8rem)]">{page.ctaTitle}</h2>
-            <p className="mt-4 max-w-2xl text-base leading-7 text-muted">{page.ctaBody}</p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <GetStartedButton label="Get started" size="lg">
-                Get started
-              </GetStartedButton>
-              <GetStartedButton label="Request a demo" size="lg" variant="secondary">
-                Request a demo
-              </GetStartedButton>
+          <div className="sos-cta__panel">
+            <Image
+              src={page.ctaImage}
+              alt=""
+              fill
+              sizes="100vw"
+            />
+            <div className="sos-cta__scrim" />
+            <div className="sos-cta__content">
+              <h2 id="sos-cta-heading" className="display text-[clamp(2.2rem,5.4vw,4.8rem)]">
+                {page.ctaTitle}
+              </h2>
+              <p className="sos-cta__body">{page.ctaBody}</p>
+              <div className="sos-cta__actions">
+                <GetStartedButton label="Get started" size="lg" className="btn-on-dark">
+                  Get started
+                </GetStartedButton>
+                <GetStartedButton
+                  label="Request a demo"
+                  size="lg"
+                  variant="secondary"
+                  className="sos-cta__ghost"
+                >
+                  Request a demo
+                </GetStartedButton>
+              </div>
             </div>
           </div>
         </div>
