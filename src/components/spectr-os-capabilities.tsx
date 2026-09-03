@@ -65,32 +65,43 @@ function CapabilityMedia({
   );
 }
 
-function CapabilityReveal({ feature }: { feature: SpectrOsFeature }) {
+function CapabilityReveal({
+  feature,
+  panelRef,
+}: {
+  feature: SpectrOsFeature;
+  panelRef: (node: HTMLElement | null) => void;
+}) {
   const reduceMotion = useReducedMotion();
   const ref = useRef<HTMLElement | null>(null);
   const [active, setActive] = useState(false);
 
+  const setRefs = (node: HTMLElement | null) => {
+    ref.current = node;
+    panelRef(node);
+  };
+
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end end"],
+    offset: ["start end", "center center"],
   });
 
   const clipPath = useTransform(
     scrollYProgress,
-    [0, 0.55],
-    ["inset(0% 48% 0% 48%)", "inset(0% 0% 0% 0%)"],
+    [0, 1],
+    ["inset(0% 46% 0% 46%)", "inset(0% 0% 0% 0%)"],
   );
-  const scale = useTransform(scrollYProgress, [0, 0.55], [1.18, 1]);
-  const textOpacity = useTransform(scrollYProgress, [0.35, 0.62], [0, 1]);
-  const textY = useTransform(scrollYProgress, [0.35, 0.62], [36, 0]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1.14, 1]);
+  const textOpacity = useTransform(scrollYProgress, [0.35, 0.9], [0, 1]);
+  const textY = useTransform(scrollYProgress, [0.35, 0.9], [28, 0]);
 
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
 
     const observer = new IntersectionObserver(
-      ([entry]) => setActive(entry.isIntersecting && entry.intersectionRatio > 0.2),
-      { threshold: [0.15, 0.35, 0.55] },
+      ([entry]) => setActive(entry.isIntersecting && entry.intersectionRatio > 0.35),
+      { threshold: [0.2, 0.4, 0.6, 0.8] },
     );
 
     observer.observe(node);
@@ -99,10 +110,10 @@ function CapabilityReveal({ feature }: { feature: SpectrOsFeature }) {
 
   if (reduceMotion) {
     return (
-      <article className="sos-cap-reveal sos-cap-reveal--static">
-        <div className="sos-cap-reveal__sticky">
+      <article ref={setRefs} className="sos-cap-reveal sos-cap-reveal--static">
+        <div className="sos-cap-reveal__stage">
           <div className="sos-cap-reveal__media">
-            <CapabilityMedia feature={feature} active scale={1} />
+            <CapabilityMedia feature={feature} active={active} scale={1} />
           </div>
           <div className="sos-cap-reveal__scrim" />
           <div className="sos-cap-reveal__copy">
@@ -115,8 +126,8 @@ function CapabilityReveal({ feature }: { feature: SpectrOsFeature }) {
   }
 
   return (
-    <article ref={ref} className="sos-cap-reveal">
-      <div className="sos-cap-reveal__sticky">
+    <article ref={setRefs} className="sos-cap-reveal">
+      <div className="sos-cap-reveal__stage">
         <motion.div className="sos-cap-reveal__media" style={{ clipPath }}>
           <CapabilityMedia feature={feature} active={active} scale={scale} />
         </motion.div>
@@ -140,8 +151,94 @@ export function SpectrOsCapabilities({
   title: string;
   features: readonly SpectrOsFeature[];
 }) {
+  const reduceMotion = useReducedMotion();
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const panelNodes = useRef<Array<HTMLElement | null>>([]);
+  const indexRef = useRef(0);
+  const lockedRef = useRef(false);
+
+  useEffect(() => {
+    document.documentElement.classList.add("sos-snap");
+    return () => document.documentElement.classList.remove("sos-snap");
+  }, []);
+
+  useEffect(() => {
+    if (reduceMotion) return;
+
+    const syncIndex = () => {
+      const panels = panelNodes.current.filter(Boolean) as HTMLElement[];
+      if (panels.length === 0) return;
+
+      const mid = window.innerHeight * 0.45;
+      let best = 0;
+      let bestDist = Number.POSITIVE_INFINITY;
+      panels.forEach((panel, i) => {
+        const rect = panel.getBoundingClientRect();
+        const dist = Math.abs(rect.top + rect.height * 0.35 - mid);
+        if (dist < bestDist) {
+          bestDist = dist;
+          best = i;
+        }
+      });
+      indexRef.current = best;
+    };
+
+    const goTo = (next: number) => {
+      const panels = panelNodes.current.filter(Boolean) as HTMLElement[];
+      if (panels.length === 0) return;
+      const clamped = Math.max(0, Math.min(panels.length - 1, next));
+      if (clamped === indexRef.current && lockedRef.current) return;
+
+      indexRef.current = clamped;
+      lockedRef.current = true;
+      panels[clamped].scrollIntoView({ behavior: "smooth", block: "start" });
+      window.setTimeout(() => {
+        lockedRef.current = false;
+        syncIndex();
+      }, 780);
+    };
+
+    const onWheel = (event: WheelEvent) => {
+      const section = sectionRef.current;
+      if (!section) return;
+
+      const panels = panelNodes.current.filter(Boolean) as HTMLElement[];
+      if (panels.length === 0) return;
+
+      const first = panels[0].getBoundingClientRect();
+      const last = panels[panels.length - 1].getBoundingClientRect();
+      const inBand = first.top <= window.innerHeight * 0.55 && last.bottom >= window.innerHeight * 0.45;
+      if (!inBand) return;
+
+      syncIndex();
+      const atFirst = indexRef.current <= 0;
+      const atLast = indexRef.current >= panels.length - 1;
+
+      if (event.deltaY > 10 && atLast && last.bottom <= window.innerHeight + 2) return;
+      if (event.deltaY < -10 && atFirst && first.top >= -2) return;
+
+      if (Math.abs(event.deltaY) < 8) return;
+      if (lockedRef.current) {
+        event.preventDefault();
+        return;
+      }
+
+      event.preventDefault();
+      goTo(indexRef.current + (event.deltaY > 0 ? 1 : -1));
+    };
+
+    window.addEventListener("scroll", syncIndex, { passive: true });
+    window.addEventListener("wheel", onWheel, { passive: false });
+    syncIndex();
+
+    return () => {
+      window.removeEventListener("scroll", syncIndex);
+      window.removeEventListener("wheel", onWheel);
+    };
+  }, [reduceMotion, features.length]);
+
   return (
-    <section className="sos-caps" aria-labelledby="sos-caps-heading">
+    <section ref={sectionRef} className="sos-caps" aria-labelledby="sos-caps-heading">
       <div className="sos-caps__intro container-x">
         <h2 id="sos-caps-heading" className="sos-caps__title display">
           {title}
@@ -149,8 +246,14 @@ export function SpectrOsCapabilities({
       </div>
 
       <div className="sos-caps__reveals">
-        {features.map((feature) => (
-          <CapabilityReveal key={feature.id} feature={feature} />
+        {features.map((feature, index) => (
+          <CapabilityReveal
+            key={feature.id}
+            feature={feature}
+            panelRef={(node) => {
+              panelNodes.current[index] = node;
+            }}
+          />
         ))}
       </div>
     </section>
