@@ -25,42 +25,35 @@
 
 .sos-hero__copy {
   display: flex;
-  max-width: 36rem;
+  max-width: 40rem;
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  font-family: var(--font-sans);
-}
-
-.sos-hero__title {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
 }
 
 .sos-hero__logo {
   width: clamp(2.4rem, 5vw, 3.6rem);
   height: clamp(2.4rem, 5vw, 3.6rem);
-  flex-shrink: 0;
+  margin-bottom: 1.1rem;
 }
 
-.sos-hero h1.home-display {
+.sos-hero .home-display {
   margin: 0;
   font-family: var(--font-sans);
-  font-size: clamp(2rem, 10vw, 6.25rem);
+  font-size: clamp(2.6rem, 8vw, 6.25rem);
   font-weight: 400;
   line-height: 0.86;
   letter-spacing: -0.055em;
   color: #ffffff;
 }
 
-.sos-hero__sub {
-  margin: 1.5rem 0 0;
+.sos-hero .sos-hero__sub {
+  margin-top: 1.5rem;
   max-width: 34rem;
   font-family: var(--font-sans);
-  font-size: 17px;
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
   font-weight: 400;
-  line-height: 1.4;
+  line-height: 1.55;
   letter-spacing: 0;
   color: rgba(255, 255, 255, 0.72);
 }

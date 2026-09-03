@@ -15,10 +15,8 @@ export function SpectrOsPageView() {
       <section className="sos-hero">
         <div className="container-x sos-hero__layout">
           <Reveal className="sos-hero__copy">
-            <div className="sos-hero__title">
-              <LogoMark invert className="sos-hero__logo" title="" />
-              <h1 className="home-display">{page.name}</h1>
-            </div>
+            <LogoMark invert className="sos-hero__logo" title="" />
+            <h1 className="home-display">{page.name}</h1>
             <p className="sos-hero__sub">{page.heroBody}</p>
             <div className="sos-hero__actions">
               <GetStartedButton label="Get started" size="lg" className="btn-on-dark">
