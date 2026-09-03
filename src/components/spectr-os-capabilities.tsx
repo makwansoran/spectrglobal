@@ -1,7 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { TypeIn } from "@/components/type-in";
 import type { SpectrOsFeature } from "@/lib/spectr-os-page";
 
 function featureVideo(feature: SpectrOsFeature): string | undefined {
@@ -32,7 +34,6 @@ function CapabilityMedia({
     }
 
     node.pause();
-    node.currentTime = 0;
   }, [active, video]);
 
   if (video) {
@@ -50,13 +51,93 @@ function CapabilityMedia({
     );
   }
 
+  return <Image src={feature.image} alt={label ?? ""} fill sizes={sizes} />;
+}
+
+function CapabilityRow({
+  feature,
+  index,
+}: {
+  feature: SpectrOsFeature;
+  index: number;
+}) {
+  const reduceMotion = useReducedMotion();
+  const mediaLeft = index % 2 === 0;
+  const rowRef = useRef<HTMLElement | null>(null);
+  const [active, setActive] = useState(false);
+  const [typing, setTyping] = useState(false);
+  const [titleDone, setTitleDone] = useState(false);
+
+  useEffect(() => {
+    const node = rowRef.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const visible = entry.isIntersecting;
+        setActive(visible);
+        if (visible) setTyping(true);
+      },
+      { threshold: 0.28, rootMargin: "-12% 0px -18% 0px" },
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  const mediaFrom = mediaLeft ? -56 : 56;
+  const copyFrom = mediaLeft ? 48 : -48;
+  const ease = [0.22, 1, 0.36, 1] as const;
+
   return (
-    <Image
-      src={feature.image}
-      alt={label ?? ""}
-      fill
-      sizes={sizes}
-    />
+    <article
+      ref={rowRef}
+      className={`sos-cap-row${mediaLeft ? "" : " sos-cap-row--flip"}${active ? " is-active" : ""}`}
+    >
+      <motion.div
+        className="sos-cap-row__media"
+        initial={reduceMotion ? false : { opacity: 0, x: mediaFrom, scale: 0.94 }}
+        whileInView={{ opacity: 1, x: 0, scale: 1 }}
+        viewport={{ once: true, amount: 0.35 }}
+        transition={{ duration: 0.85, ease }}
+      >
+        <div className="sos-cap-row__frame">
+          <CapabilityMedia
+            feature={feature}
+            active={active}
+            sizes="(max-width: 960px) 100vw, 52vw"
+            label={feature.imageAlt}
+          />
+        </div>
+      </motion.div>
+
+      <motion.div
+        className="sos-cap-row__copy"
+        initial={reduceMotion ? false : { opacity: 0, x: copyFrom, filter: "blur(6px)" }}
+        whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+        viewport={{ once: true, amount: 0.35 }}
+        transition={{ duration: 0.8, delay: 0.1, ease }}
+      >
+        <TypeIn
+          as="h3"
+          text={feature.title}
+          className="sos-cap-row__title"
+          start={typing}
+          charMs={14}
+          showCaret={!titleDone}
+          onDone={() => setTitleDone(true)}
+        />
+        <TypeIn
+          as="p"
+          text={feature.body}
+          className="sos-cap-row__body"
+          start={typing && titleDone}
+          charMs={8}
+          delayMs={30}
+          showCaret
+        />
+      </motion.div>
+    </article>
   );
 }
 
@@ -67,31 +148,6 @@ export function SpectrOsCapabilities({
   title: string;
   features: readonly SpectrOsFeature[];
 }) {
-  const [active, setActive] = useState(0);
-  const itemRefs = useRef<Array<HTMLElement | null>>([]);
-
-  useEffect(() => {
-    const nodes = itemRefs.current.filter((node): node is HTMLElement => Boolean(node));
-    if (nodes.length === 0) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (!visible) return;
-        const index = nodes.indexOf(visible.target as HTMLElement);
-        if (index >= 0) setActive(index);
-      },
-      { rootMargin: "-28% 0px -42% 0px", threshold: [0.15, 0.35, 0.55] },
-    );
-
-    nodes.forEach((node) => observer.observe(node));
-    return () => observer.disconnect();
-  }, [features.length]);
-
-  const current = features[active] ?? features[0];
-
   return (
     <section className="sos-caps" aria-labelledby="sos-caps-heading">
       <div className="container-x">
@@ -99,53 +155,10 @@ export function SpectrOsCapabilities({
           {title}
         </h2>
 
-        <div className="sos-caps__layout">
-          <div className="sos-caps__stage" aria-hidden="true">
-            <div className="sos-caps__frame">
-              {features.map((feature, index) => (
-                <div
-                  key={feature.id}
-                  className={`sos-caps__shot${index === active ? " is-active" : ""}`}
-                >
-                  <CapabilityMedia
-                    feature={feature}
-                    active={index === active}
-                    sizes="(max-width: 1024px) 0vw, 50vw"
-                  />
-                </div>
-              ))}
-              <p className="sos-caps__badge">
-                {String(active + 1).padStart(2, "0")} / {String(features.length).padStart(2, "0")}
-                <span aria-hidden="true">·</span>
-                {current.title}
-              </p>
-            </div>
-          </div>
-
-          <ol className="sos-caps__list">
-            {features.map((feature, index) => (
-              <li
-                key={feature.id}
-                ref={(node) => {
-                  itemRefs.current[index] = node;
-                }}
-                className={`sos-cap${index === active ? " is-active" : ""}`}
-                aria-current={index === active ? "step" : undefined}
-              >
-                <p className="sos-cap__index">{String(index + 1).padStart(2, "0")}</p>
-                <h3>{feature.title}</h3>
-                <p>{feature.body}</p>
-                <div className="sos-cap__mobile-media">
-                  <CapabilityMedia
-                    feature={feature}
-                    active={index === active}
-                    sizes="(min-width: 1024px) 0px, 100vw"
-                    label={feature.imageAlt}
-                  />
-                </div>
-              </li>
-            ))}
-          </ol>
+        <div className="sos-caps__rows">
+          {features.map((feature, index) => (
+            <CapabilityRow key={feature.id} feature={feature} index={index} />
+          ))}
         </div>
       </div>
     </section>
