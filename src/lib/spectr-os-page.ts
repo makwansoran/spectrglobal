@@ -20,6 +20,7 @@ export const spectrOsPage = {
       body: "Define the semantic layer of your world: objects, locations, actions, and relationships. Spectr OS keeps every unit and decision coherent across tools, teams, and sites.",
       image: "/images/products/metaphysics-ui.png",
       imageAlt: "Ontology graph of objects and relationships in Spectr OS",
+      video: "/videos/spectr-os-ontology.mp4",
     },
     {
       id: "data-hosting",

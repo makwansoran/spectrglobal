@@ -4,6 +4,62 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import type { SpectrOsFeature } from "@/lib/spectr-os-page";
 
+function featureVideo(feature: SpectrOsFeature): string | undefined {
+  return "video" in feature ? feature.video : undefined;
+}
+
+function CapabilityMedia({
+  feature,
+  active,
+  sizes,
+  label,
+}: {
+  feature: SpectrOsFeature;
+  active: boolean;
+  sizes: string;
+  label?: string;
+}) {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const video = featureVideo(feature);
+
+  useEffect(() => {
+    const node = videoRef.current;
+    if (!node || !video) return;
+
+    if (active) {
+      void node.play().catch(() => {});
+      return;
+    }
+
+    node.pause();
+    node.currentTime = 0;
+  }, [active, video]);
+
+  if (video) {
+    return (
+      <video
+        ref={videoRef}
+        className="sos-caps__video"
+        src={video}
+        aria-label={label}
+        muted
+        loop
+        playsInline
+        preload="metadata"
+      />
+    );
+  }
+
+  return (
+    <Image
+      src={feature.image}
+      alt={label ?? ""}
+      fill
+      sizes={sizes}
+    />
+  );
+}
+
 export function SpectrOsCapabilities({
   title,
   features,
@@ -51,10 +107,9 @@ export function SpectrOsCapabilities({
                   key={feature.id}
                   className={`sos-caps__shot${index === active ? " is-active" : ""}`}
                 >
-                  <Image
-                    src={feature.image}
-                    alt=""
-                    fill
+                  <CapabilityMedia
+                    feature={feature}
+                    active={index === active}
                     sizes="(max-width: 1024px) 0vw, 50vw"
                   />
                 </div>
@@ -81,11 +136,11 @@ export function SpectrOsCapabilities({
                 <h3>{feature.title}</h3>
                 <p>{feature.body}</p>
                 <div className="sos-cap__mobile-media">
-                  <Image
-                    src={feature.image}
-                    alt={feature.imageAlt}
-                    fill
+                  <CapabilityMedia
+                    feature={feature}
+                    active={index === active}
                     sizes="(min-width: 1024px) 0px, 100vw"
+                    label={feature.imageAlt}
                   />
                 </div>
               </li>
