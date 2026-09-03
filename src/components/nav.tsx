@@ -133,7 +133,7 @@ export function Nav() {
                 onClick={() => openGetStarted("contact")}
                 className="reference-nav__action reference-nav__action--contact hidden sm:flex"
               >
-                Contact sales
+                Contact
               </button>
               <button
                 type="button"
@@ -210,7 +210,7 @@ export function Nav() {
                 }}
                 className="btn btn-secondary reference-nav__action--contact"
               >
-                Contact sales
+                Contact
               </button>
             </div>
           </nav>
