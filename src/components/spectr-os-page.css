@@ -86,65 +86,64 @@
 }
 
 .sos-caps {
-  padding: clamp(3rem, 7vw, 6rem) 0 clamp(4rem, 8vw, 7rem);
-  background: #f6f6f7;
+  padding: clamp(3.5rem, 7vw, 6rem) 0 0;
+  background: #0a0a0a;
+  color: #ffffff;
+}
+
+.sos-caps__intro {
+  padding-bottom: clamp(2rem, 5vw, 3.5rem);
 }
 
 .sos-caps__title {
-  margin: 0 0 clamp(2.5rem, 6vw, 4.5rem);
+  margin: 0;
   max-width: 16ch;
+  font-size: clamp(2.2rem, 5.4vw, 4.6rem);
+  color: #ffffff;
 }
 
-.sos-caps__rows {
+.sos-caps__reveals {
   display: flex;
   flex-direction: column;
-  gap: clamp(3.5rem, 8vw, 7rem);
 }
 
-.sos-cap-row {
-  display: grid;
-  gap: clamp(1.5rem, 3vw, 2.5rem);
-  align-items: center;
-}
-
-@media (min-width: 960px) {
-  .sos-cap-row {
-    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
-    gap: clamp(2.5rem, 4vw, 4.5rem);
-    min-height: min(78vh, 42rem);
-  }
-
-  .sos-cap-row--flip .sos-cap-row__media {
-    order: 2;
-  }
-
-  .sos-cap-row--flip .sos-cap-row__copy {
-    order: 1;
-  }
-}
-
-.sos-cap-row__media {
-  min-width: 0;
-}
-
-.sos-cap-row__frame {
+.sos-cap-reveal {
   position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 9;
+  height: 165vh;
+}
+
+.sos-cap-reveal--static {
+  height: auto;
+}
+
+.sos-cap-reveal__sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
   overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: 0.75rem;
+  background: #0a0a0a;
+}
+
+.sos-cap-reveal--static .sos-cap-reveal__sticky {
+  position: relative;
+  height: min(100vh, 56rem);
+}
+
+.sos-cap-reveal__media {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
   background: #111111;
-  box-shadow: 0 24px 70px rgba(10, 10, 10, 0.12);
-  transform: translateZ(0);
-  transition: box-shadow 500ms ease, transform 500ms ease;
+  will-change: clip-path;
 }
 
-.sos-cap-row.is-active .sos-cap-row__frame {
-  box-shadow: 0 28px 80px rgba(10, 10, 10, 0.18);
+.sos-cap-reveal__media-inner {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
 }
 
-.sos-cap-row__frame img,
+.sos-cap-reveal__media-inner img,
 .sos-caps__video {
   object-fit: cover;
 }
@@ -158,38 +157,55 @@
   border: 0;
 }
 
-.sos-cap-row__copy {
-  min-width: 0;
-  max-width: 34rem;
+.sos-cap-reveal__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(10, 10, 10, 0.12) 0%,
+      rgba(10, 10, 10, 0.18) 42%,
+      rgba(10, 10, 10, 0.72) 100%
+    );
 }
 
-.sos-cap-row--flip .sos-cap-row__copy {
-  justify-self: end;
+.sos-cap-reveal__copy {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(1.75rem, 5vw, 4rem);
+  max-width: 42rem;
+  color: #ffffff;
+  pointer-events: none;
 }
 
-.sos-cap-row__title {
+.sos-cap-reveal__copy h3 {
   margin: 0;
-  font-size: clamp(1.75rem, 3.4vw, 2.6rem);
+  font-size: clamp(2rem, 5.2vw, 4rem);
   font-weight: 400;
-  letter-spacing: -0.035em;
-  line-height: 1.08;
-  color: var(--fg);
+  letter-spacing: -0.04em;
+  line-height: 1.02;
+  color: #ffffff;
+  text-wrap: balance;
 }
 
-.sos-cap-row__body {
-  margin: 1rem 0 0;
-  font-size: 1.05rem;
-  line-height: 1.65;
-  color: var(--muted);
-}
-
-.sos-cap-row__body .type-caret,
-.sos-cap-row__title .type-caret {
-  color: var(--accent);
+.sos-cap-reveal__copy p {
+  margin: 0.85rem 0 0;
+  max-width: 28rem;
+  font-size: clamp(0.88rem, 1.3vw, 1rem);
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.78);
 }
 
 .sos-cta {
-  padding: 0 0 clamp(4rem, 8vw, 6.5rem);
+  padding: clamp(4rem, 8vw, 6.5rem) 0;
   background: #ffffff;
 }
 
@@ -255,7 +271,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .sos-cap-row__frame {
-    transition: none;
+  .sos-cap-reveal__media,
+  .sos-cap-reveal__media-inner {
+    will-change: auto;
   }
 }

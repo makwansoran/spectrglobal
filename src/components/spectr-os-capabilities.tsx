@@ -1,9 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+  type MotionValue,
+} from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { TypeIn } from "@/components/type-in";
 import type { SpectrOsFeature } from "@/lib/spectr-os-page";
 
 function featureVideo(feature: SpectrOsFeature): string | undefined {
@@ -13,13 +18,11 @@ function featureVideo(feature: SpectrOsFeature): string | undefined {
 function CapabilityMedia({
   feature,
   active,
-  sizes,
-  label,
+  scale,
 }: {
   feature: SpectrOsFeature;
   active: boolean;
-  sizes: string;
-  label?: string;
+  scale: MotionValue<number> | number;
 }) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const video = featureVideo(feature);
@@ -36,107 +39,96 @@ function CapabilityMedia({
     node.pause();
   }, [active, video]);
 
-  if (video) {
-    return (
-      <video
-        ref={videoRef}
-        className="sos-caps__video"
-        src={video}
-        aria-label={label}
-        muted
-        loop
-        playsInline
-        preload="metadata"
-      />
-    );
-  }
-
-  return <Image src={feature.image} alt={label ?? ""} fill sizes={sizes} />;
+  return (
+    <motion.div className="sos-cap-reveal__media-inner" style={{ scale }}>
+      {video ? (
+        <video
+          ref={videoRef}
+          className="sos-caps__video"
+          src={video}
+          aria-label={feature.imageAlt}
+          muted
+          loop
+          playsInline
+          preload="metadata"
+        />
+      ) : (
+        <Image
+          src={feature.image}
+          alt={feature.imageAlt}
+          fill
+          sizes="100vw"
+          priority={false}
+        />
+      )}
+    </motion.div>
+  );
 }
 
-function CapabilityRow({
-  feature,
-  index,
-}: {
-  feature: SpectrOsFeature;
-  index: number;
-}) {
+function CapabilityReveal({ feature }: { feature: SpectrOsFeature }) {
   const reduceMotion = useReducedMotion();
-  const mediaLeft = index % 2 === 0;
-  const rowRef = useRef<HTMLElement | null>(null);
+  const ref = useRef<HTMLElement | null>(null);
   const [active, setActive] = useState(false);
-  const [typing, setTyping] = useState(false);
-  const [titleDone, setTitleDone] = useState(false);
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end end"],
+  });
+
+  const clipPath = useTransform(
+    scrollYProgress,
+    [0, 0.55],
+    ["inset(0% 48% 0% 48%)", "inset(0% 0% 0% 0%)"],
+  );
+  const scale = useTransform(scrollYProgress, [0, 0.55], [1.18, 1]);
+  const textOpacity = useTransform(scrollYProgress, [0.35, 0.62], [0, 1]);
+  const textY = useTransform(scrollYProgress, [0.35, 0.62], [36, 0]);
 
   useEffect(() => {
-    const node = rowRef.current;
+    const node = ref.current;
     if (!node) return;
 
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        const visible = entry.isIntersecting;
-        setActive(visible);
-        if (visible) setTyping(true);
-      },
-      { threshold: 0.28, rootMargin: "-12% 0px -18% 0px" },
+      ([entry]) => setActive(entry.isIntersecting && entry.intersectionRatio > 0.2),
+      { threshold: [0.15, 0.35, 0.55] },
     );
 
     observer.observe(node);
     return () => observer.disconnect();
   }, []);
 
-  const mediaFrom = mediaLeft ? -56 : 56;
-  const copyFrom = mediaLeft ? 48 : -48;
-  const ease = [0.22, 1, 0.36, 1] as const;
+  if (reduceMotion) {
+    return (
+      <article className="sos-cap-reveal sos-cap-reveal--static">
+        <div className="sos-cap-reveal__sticky">
+          <div className="sos-cap-reveal__media">
+            <CapabilityMedia feature={feature} active scale={1} />
+          </div>
+          <div className="sos-cap-reveal__scrim" />
+          <div className="sos-cap-reveal__copy">
+            <h3>{feature.title}</h3>
+            <p>{feature.body}</p>
+          </div>
+        </div>
+      </article>
+    );
+  }
 
   return (
-    <article
-      ref={rowRef}
-      className={`sos-cap-row${mediaLeft ? "" : " sos-cap-row--flip"}${active ? " is-active" : ""}`}
-    >
-      <motion.div
-        className="sos-cap-row__media"
-        initial={reduceMotion ? false : { opacity: 0, x: mediaFrom, scale: 0.94 }}
-        whileInView={{ opacity: 1, x: 0, scale: 1 }}
-        viewport={{ once: true, amount: 0.35 }}
-        transition={{ duration: 0.85, ease }}
-      >
-        <div className="sos-cap-row__frame">
-          <CapabilityMedia
-            feature={feature}
-            active={active}
-            sizes="(max-width: 960px) 100vw, 52vw"
-            label={feature.imageAlt}
-          />
-        </div>
-      </motion.div>
-
-      <motion.div
-        className="sos-cap-row__copy"
-        initial={reduceMotion ? false : { opacity: 0, x: copyFrom, filter: "blur(6px)" }}
-        whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-        viewport={{ once: true, amount: 0.35 }}
-        transition={{ duration: 0.8, delay: 0.1, ease }}
-      >
-        <TypeIn
-          as="h3"
-          text={feature.title}
-          className="sos-cap-row__title"
-          start={typing}
-          charMs={14}
-          showCaret={!titleDone}
-          onDone={() => setTitleDone(true)}
-        />
-        <TypeIn
-          as="p"
-          text={feature.body}
-          className="sos-cap-row__body"
-          start={typing && titleDone}
-          charMs={8}
-          delayMs={30}
-          showCaret
-        />
-      </motion.div>
+    <article ref={ref} className="sos-cap-reveal">
+      <div className="sos-cap-reveal__sticky">
+        <motion.div className="sos-cap-reveal__media" style={{ clipPath }}>
+          <CapabilityMedia feature={feature} active={active} scale={scale} />
+        </motion.div>
+        <div className="sos-cap-reveal__scrim" />
+        <motion.div
+          className="sos-cap-reveal__copy"
+          style={{ opacity: textOpacity, y: textY }}
+        >
+          <h3>{feature.title}</h3>
+          <p>{feature.body}</p>
+        </motion.div>
+      </div>
     </article>
   );
 }
@@ -150,16 +142,16 @@ export function SpectrOsCapabilities({
 }) {
   return (
     <section className="sos-caps" aria-labelledby="sos-caps-heading">
-      <div className="container-x">
-        <h2 id="sos-caps-heading" className="sos-caps__title display text-[clamp(2.2rem,5.4vw,4.6rem)] text-fg">
+      <div className="sos-caps__intro container-x">
+        <h2 id="sos-caps-heading" className="sos-caps__title display">
           {title}
         </h2>
+      </div>
 
-        <div className="sos-caps__rows">
-          {features.map((feature, index) => (
-            <CapabilityRow key={feature.id} feature={feature} index={index} />
-          ))}
-        </div>
+      <div className="sos-caps__reveals">
+        {features.map((feature) => (
+          <CapabilityReveal key={feature.id} feature={feature} />
+        ))}
       </div>
     </section>
   );
