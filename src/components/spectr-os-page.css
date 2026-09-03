@@ -135,16 +135,9 @@
   inset: 0;
   overflow: hidden;
   background: #111111;
-  will-change: clip-path;
 }
 
-.sos-cap-reveal__media-inner {
-  position: absolute;
-  inset: 0;
-  will-change: transform;
-}
-
-.sos-cap-reveal__media-inner img,
+.sos-cap-reveal__media img,
 .sos-caps__video {
   object-fit: cover;
 }
@@ -212,11 +205,6 @@ html.sos-snap {
 @media (prefers-reduced-motion: reduce) {
   html.sos-snap {
     scroll-snap-type: none;
-  }
-
-  .sos-cap-reveal__media,
-  .sos-cap-reveal__media-inner {
-    will-change: auto;
   }
 }
 
@@ -287,8 +275,7 @@ html.sos-snap {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .sos-cap-reveal__media,
-  .sos-cap-reveal__media-inner {
-    will-change: auto;
+  html.sos-snap {
+    scroll-snap-type: none;
   }
 }

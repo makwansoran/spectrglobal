@@ -1,13 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-  type MotionValue,
-} from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import type { SpectrOsFeature } from "@/lib/spectr-os-page";
 
@@ -18,11 +11,9 @@ function featureVideo(feature: SpectrOsFeature): string | undefined {
 function CapabilityMedia({
   feature,
   active,
-  scale,
 }: {
   feature: SpectrOsFeature;
   active: boolean;
-  scale: MotionValue<number> | number;
 }) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const video = featureVideo(feature);
@@ -39,29 +30,29 @@ function CapabilityMedia({
     node.pause();
   }, [active, video]);
 
+  if (video) {
+    return (
+      <video
+        ref={videoRef}
+        className="sos-caps__video"
+        src={video}
+        aria-label={feature.imageAlt}
+        muted
+        loop
+        playsInline
+        preload="metadata"
+      />
+    );
+  }
+
   return (
-    <motion.div className="sos-cap-reveal__media-inner" style={{ scale }}>
-      {video ? (
-        <video
-          ref={videoRef}
-          className="sos-caps__video"
-          src={video}
-          aria-label={feature.imageAlt}
-          muted
-          loop
-          playsInline
-          preload="metadata"
-        />
-      ) : (
-        <Image
-          src={feature.image}
-          alt={feature.imageAlt}
-          fill
-          sizes="100vw"
-          priority={false}
-        />
-      )}
-    </motion.div>
+    <Image
+      src={feature.image}
+      alt={feature.imageAlt}
+      fill
+      sizes="100vw"
+      priority={false}
+    />
   );
 }
 
@@ -72,7 +63,6 @@ function CapabilityReveal({
   feature: SpectrOsFeature;
   panelRef: (node: HTMLElement | null) => void;
 }) {
-  const reduceMotion = useReducedMotion();
   const ref = useRef<HTMLElement | null>(null);
   const [active, setActive] = useState(false);
 
@@ -80,20 +70,6 @@ function CapabilityReveal({
     ref.current = node;
     panelRef(node);
   };
-
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "center center"],
-  });
-
-  const clipPath = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ["inset(0% 46% 0% 46%)", "inset(0% 0% 0% 0%)"],
-  );
-  const scale = useTransform(scrollYProgress, [0, 1], [1.14, 1]);
-  const textOpacity = useTransform(scrollYProgress, [0.35, 0.9], [0, 1]);
-  const textY = useTransform(scrollYProgress, [0.35, 0.9], [28, 0]);
 
   useEffect(() => {
     const node = ref.current;
@@ -108,37 +84,17 @@ function CapabilityReveal({
     return () => observer.disconnect();
   }, []);
 
-  if (reduceMotion) {
-    return (
-      <article ref={setRefs} className="sos-cap-reveal sos-cap-reveal--static">
-        <div className="sos-cap-reveal__stage">
-          <div className="sos-cap-reveal__media">
-            <CapabilityMedia feature={feature} active={active} scale={1} />
-          </div>
-          <div className="sos-cap-reveal__scrim" />
-          <div className="sos-cap-reveal__copy">
-            <h3>{feature.title}</h3>
-            <p>{feature.body}</p>
-          </div>
-        </div>
-      </article>
-    );
-  }
-
   return (
     <article ref={setRefs} className="sos-cap-reveal">
       <div className="sos-cap-reveal__stage">
-        <motion.div className="sos-cap-reveal__media" style={{ clipPath }}>
-          <CapabilityMedia feature={feature} active={active} scale={scale} />
-        </motion.div>
+        <div className="sos-cap-reveal__media">
+          <CapabilityMedia feature={feature} active={active} />
+        </div>
         <div className="sos-cap-reveal__scrim" />
-        <motion.div
-          className="sos-cap-reveal__copy"
-          style={{ opacity: textOpacity, y: textY }}
-        >
+        <div className="sos-cap-reveal__copy">
           <h3>{feature.title}</h3>
           <p>{feature.body}</p>
-        </motion.div>
+        </div>
       </div>
     </article>
   );
@@ -151,11 +107,15 @@ export function SpectrOsCapabilities({
   title: string;
   features: readonly SpectrOsFeature[];
 }) {
-  const reduceMotion = useReducedMotion();
   const sectionRef = useRef<HTMLElement | null>(null);
   const panelNodes = useRef<Array<HTMLElement | null>>([]);
   const indexRef = useRef(0);
   const lockedRef = useRef(false);
+  const [reduceMotion, setReduceMotion] = useState(false);
+
+  useEffect(() => {
+    setReduceMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  }, []);
 
   useEffect(() => {
     document.documentElement.classList.add("sos-snap");
@@ -199,9 +159,6 @@ export function SpectrOsCapabilities({
     };
 
     const onWheel = (event: WheelEvent) => {
-      const section = sectionRef.current;
-      if (!section) return;
-
       const panels = panelNodes.current.filter(Boolean) as HTMLElement[];
       if (panels.length === 0) return;
 
