@@ -1,11 +1,11 @@
-import { integrations, integrationsSection } from "@/lib/integrations";
+import { integrations, integrationsSection, type Integration } from "@/lib/integrations";
 
 function LogoRow({
   items,
   reverse = false,
   duration,
 }: {
-  items: typeof integrations;
+  items: readonly Integration[];
   reverse?: boolean;
   duration: string;
 }) {
@@ -35,10 +35,14 @@ function LogoRow({
   );
 }
 
-export function LogoMarquee() {
-  const midpoint = Math.ceil(integrations.length / 2);
-  const firstRow = integrations.slice(0, midpoint);
-  const secondRow = integrations.slice(midpoint);
+export function LogoMarquee({
+  items = integrations,
+}: {
+  items?: readonly Integration[];
+}) {
+  const midpoint = Math.ceil(items.length / 2);
+  const firstRow = items.slice(0, midpoint);
+  const secondRow = items.slice(midpoint);
 
   return (
     <section

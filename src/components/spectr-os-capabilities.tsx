@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { TypeIn } from "@/components/type-in";
 import type { SpectrOsFeature } from "@/lib/spectr-os-page";
 
 function featureVideo(feature: SpectrOsFeature): string | undefined {
@@ -24,6 +23,8 @@ function CapabilityMedia({
     if (!node || !video) return;
 
     if (active) {
+      node.loop = true;
+      if (node.ended) node.currentTime = 0;
       void node.play().catch(() => {});
       return;
     }
@@ -60,29 +61,14 @@ function CapabilityMedia({
 function CapabilityReveal({ feature }: { feature: SpectrOsFeature }) {
   const ref = useRef<HTMLElement | null>(null);
   const [active, setActive] = useState(false);
-  const [typing, setTyping] = useState(false);
-  const [titleDone, setTitleDone] = useState(false);
 
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
 
-    let wasVisible = false;
-
     const observer = new IntersectionObserver(
       ([entry]) => {
-        const visible = entry.isIntersecting && entry.intersectionRatio > 0.4;
-        setActive(visible);
-
-        if (visible && !wasVisible) {
-          wasVisible = true;
-          setTitleDone(false);
-          setTyping(true);
-        } else if (!visible && wasVisible) {
-          wasVisible = false;
-          setTyping(false);
-          setTitleDone(false);
-        }
+        setActive(entry.isIntersecting && entry.intersectionRatio > 0.4);
       },
       { threshold: [0.25, 0.4, 0.55, 0.7] },
     );
@@ -99,24 +85,8 @@ function CapabilityReveal({ feature }: { feature: SpectrOsFeature }) {
         </div>
         <div className="sos-cap-reveal__scrim" />
         <div className="sos-cap-reveal__copy">
-          <TypeIn
-            as="h3"
-            text={feature.title}
-            className="sos-cap-reveal__title"
-            start={typing}
-            charMs={16}
-            showCaret={!titleDone}
-            onDone={() => setTitleDone(true)}
-          />
-          <TypeIn
-            as="p"
-            text={feature.body}
-            className="sos-cap-reveal__body"
-            start={typing && titleDone}
-            charMs={10}
-            delayMs={40}
-            showCaret
-          />
+          <h3 className="sos-cap-reveal__title">{feature.title}</h3>
+          <p className="sos-cap-reveal__body">{feature.body}</p>
         </div>
       </div>
     </article>
@@ -126,17 +96,24 @@ function CapabilityReveal({ feature }: { feature: SpectrOsFeature }) {
 export function SpectrOsCapabilities({
   title,
   features,
+  showHeading = true,
 }: {
   title: string;
   features: readonly SpectrOsFeature[];
+  showHeading?: boolean;
 }) {
   return (
-    <section className="sos-caps" aria-labelledby="sos-caps-heading">
-      <div className="sos-caps__intro container-x">
-        <h2 id="sos-caps-heading" className="sos-caps__title display">
-          {title}
-        </h2>
-      </div>
+    <section
+      className={`sos-caps${showHeading ? "" : " sos-caps--continue"}`}
+      aria-labelledby={showHeading ? "sos-caps-heading" : undefined}
+    >
+      {showHeading ? (
+        <div className="sos-caps__intro container-x">
+          <h2 id="sos-caps-heading" className="sos-caps__title display">
+            {title}
+          </h2>
+        </div>
+      ) : null}
 
       <div className="sos-caps__reveals">
         {features.map((feature) => (

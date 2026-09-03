@@ -5,10 +5,17 @@ import { Reveal } from "@/components/reveal";
 import { SpectrOsCapabilities } from "@/components/spectr-os-capabilities";
 import { LogoMarquee } from "@/components/sections/logo-marquee";
 import { spectrOsPage } from "@/lib/spectr-os-page";
+import { integrations } from "@/lib/integrations";
 import "./spectr-os-page.css";
+
+const CATERPILLAR = integrations.findIndex((item) => item.id === "caterpillar");
+const spectrOsLogos =
+  CATERPILLAR >= 0 ? integrations.slice(0, CATERPILLAR + 1) : integrations;
 
 export function SpectrOsPageView() {
   const page = spectrOsPage;
+  const story = page.features.filter((feature) => feature.id !== "deploy");
+  const deploy = page.features.filter((feature) => feature.id === "deploy");
 
   return (
     <main id="main-content" className="sos-page relative flex-1">
@@ -39,9 +46,13 @@ export function SpectrOsPageView() {
         </div>
       </section>
 
-      <SpectrOsCapabilities title={page.featuresTitle} features={page.features} />
+      <SpectrOsCapabilities title={page.featuresTitle} features={story} />
 
-      <LogoMarquee />
+      <LogoMarquee items={spectrOsLogos} />
+
+      {deploy.length > 0 ? (
+        <SpectrOsCapabilities title={page.featuresTitle} features={deploy} showHeading={false} />
+      ) : null}
 
       <section className="sos-cta" aria-labelledby="sos-cta-heading">
         <div className="container-x">
