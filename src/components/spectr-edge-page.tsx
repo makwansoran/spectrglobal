@@ -9,9 +9,14 @@ import { spectrEdgePage } from "@/lib/spectr-edge-page";
 import "./spectr-edge-page.css";
 
 const SECTION_IDS = spectrEdgePage.nav.map((item) => item.id);
+type SectionId = (typeof SECTION_IDS)[number];
+
+function isSectionId(id: string): id is SectionId {
+  return (SECTION_IDS as readonly string[]).includes(id);
+}
 
 function useActiveSection() {
-  const [active, setActive] = useState(SECTION_IDS[0] ?? "");
+  const [active, setActive] = useState<SectionId>(SECTION_IDS[0]);
 
   useEffect(() => {
     const nodes = SECTION_IDS
@@ -24,7 +29,8 @@ function useActiveSection() {
         const visible = entries
           .filter((entry) => entry.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible?.target.id) setActive(visible.target.id);
+        const id = visible?.target.id;
+        if (id && isSectionId(id)) setActive(id);
       },
       { rootMargin: "-30% 0px -55% 0px", threshold: [0.15, 0.35, 0.6] },
     );
