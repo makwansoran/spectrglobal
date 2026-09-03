@@ -91,7 +91,6 @@ export const footerColumns = [
     links: [
       { label: "Spectr OS", href: "/platforms/spectr-os" },
       { label: "Spectr Edge", href: "/platforms/spectr-edge" },
-      { label: "Developers", href: "/developers" },
       { label: "Get started", href: "/contact" },
     ],
   },
@@ -107,7 +106,6 @@ export const footerColumns = [
     title: "Company",
     links: [
       { label: "About", href: "/about" },
-      { label: "Customers", href: "/customers" },
       { label: "Blog", href: "/blog" },
       { label: "News", href: "/news" },
       { label: "Waitlist", href: "/waitlist" },

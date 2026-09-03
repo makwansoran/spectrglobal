@@ -35,17 +35,7 @@ const referenceNavSections: NavSection[] = [
       { label: "Local AI", href: "/research/local-ai" },
     ],
   },
-  {
-    label: "Developers",
-    href: "/developers",
-    items: [
-      { label: "Start building", href: "/developers", description: "APIs, ontology, and workflows." },
-      { label: "Spectr OS", href: "/platforms/spectr-os" },
-      { label: "SPECTR BOOTCAMP", href: "/bootcamp", description: "One video. Your data. Local." },
-    ],
-  },
   { label: "Blog", href: "/blog" },
-  { label: "Customers", href: "/customers" },
   {
     label: "Company",
     href: "/company",
