@@ -120,7 +120,9 @@
 
 @media (min-width: 1024px) {
   .sos-caps__stage {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: sticky;
     top: 5.75rem;
     height: calc(100vh - 7.25rem);
@@ -129,10 +131,12 @@
 
 .sos-caps__frame {
   position: relative;
-  height: 100%;
+  width: 100%;
+  max-width: calc((100vh - 7.25rem) * 16 / 9);
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   border: 1px solid var(--border);
-  border-radius: 1.25rem;
+  border-radius: 0.75rem;
   background: #111111;
   box-shadow: 0 24px 70px rgba(10, 10, 10, 0.12);
 }
@@ -223,9 +227,9 @@
   position: relative;
   overflow: hidden;
   margin-top: 1.15rem;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 9;
   border: 1px solid var(--border);
-  border-radius: 1rem;
+  border-radius: 0.75rem;
   background: #111111;
 }
 
