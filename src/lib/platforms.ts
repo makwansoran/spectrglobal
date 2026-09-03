@@ -104,14 +104,14 @@ export const platforms: Platform[] = [
     timeLabel: "Time: 2 mins",
     valueProp: "Run vision models on the floor — without sending the site to the cloud.",
     heroImage: "/images/products/spectr-edge.jpg",
-    heroImageAlt: "Spectr Edge compute enclosure",
+    heroImageAlt: "Spectr Edge",
     featuresTitle: "Edge compute for operational AI",
     features: [
       {
         title: "On-site inference",
         description: "Vision and sensing where the work happens.",
         image: "/images/products/spectr-edge.jpg",
-        imageAlt: "Spectr Edge compute on site",
+        imageAlt: "Spectr Edge",
       },
       {
         title: "Lower hosting cost",

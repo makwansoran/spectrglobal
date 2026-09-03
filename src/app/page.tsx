@@ -12,13 +12,13 @@ export default function HomePage() {
         <WaitlistSection />
         <LogoMarquee />
         <HomeProductField
-          id="spectr-edge-compute"
-          headingId="spectr-edge-compute-heading"
-          title="Spectr Edge compute"
+          id="spectr-edge"
+          headingId="spectr-edge-heading"
+          title="Spectr Edge"
           lede="Compute for AI vision on site. A fraction of the cost of hosting large models."
           image="/images/products/spectr-edge.jpg"
-          imageAlt="Spectr Edge compute enclosure"
-          ctaHref="/waitlist"
+          imageAlt="Spectr Edge"
+          ctaHref="/platforms/spectr-edge"
           ctaLabel="Join waitlist"
         />
         <UseCases />
