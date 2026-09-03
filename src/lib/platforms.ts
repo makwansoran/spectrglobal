@@ -88,7 +88,7 @@ export const platforms: Platform[] = [
         name: "Waste Management",
         description:
           "Collection, plants, and materials in one loop. Spectr OS turns a lift into an operational decision — from kerb to offtake.",
-        image: "/images/industries/logistics.jpg",
+        image: "/images/industries/waste-management.jpg",
         imageAlt: "Collection and materials recovery operations",
       },
     ],
@@ -152,7 +152,7 @@ export const platforms: Platform[] = [
         name: "Waste Management",
         description:
           "Identify materials and loads at the kerb and the plant. Spectr Edge keeps inference local; Spectr OS turns it into the next action.",
-        image: "/images/industries/logistics.jpg",
+        image: "/images/industries/waste-management.jpg",
         imageAlt: "Collection and materials recovery operations",
       },
     ],

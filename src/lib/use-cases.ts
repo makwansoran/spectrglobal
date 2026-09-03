@@ -161,7 +161,7 @@ export const industryPages: IndustryPage[] = [
     listingDescription:
       "Collection, plants, and materials as one loop — so a lift is an operational decision, not a route afterthought.",
     href: "/use-cases/waste-management",
-    image: "/images/industries/logistics.jpg",
+    image: "/images/industries/waste-management.jpg",
     imageAlt: "Collection and materials recovery operations",
     bannerTitle: "Spectr for Waste Management",
     headline: "From the bin to the plant — one runtime for a loop that still lives in separate systems.",
