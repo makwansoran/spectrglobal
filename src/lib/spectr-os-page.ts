@@ -16,10 +16,10 @@ export const spectrOsPage = {
     },
     {
       id: "ontology",
-      title: "Ontology",
-      body: "Define the semantic layer of your world: objects, locations, actions, and relationships. Spectr OS keeps every unit and decision coherent across tools, teams, and sites.",
+      title: "Ontology & agentic workflows",
+      body: "Define the semantic layer of your world: objects, locations, actions, and relationships. Then run agents that propose, schedule, and execute work against that live model — with approvals, guardrails, and a full history of every action.",
       image: "/images/products/metaphysics-ui.png",
-      imageAlt: "Ontology graph of objects and relationships in Spectr OS",
+      imageAlt: "Ontology and agentic workflows in Spectr OS",
       video: "/videos/spectr-os-ontology.mp4",
     },
     {
@@ -42,13 +42,6 @@ export const spectrOsPage = {
       body: "Surface the next decision with context, evidence, and a clear recommend path. Humans stay in command; the OS removes the chase-down.",
       image: "/images/products/spectr-os-ui.png",
       imageAlt: "Spectr OS command surface with live decisions",
-    },
-    {
-      id: "agents",
-      title: "Agentic workflows",
-      body: "Run agents that propose, schedule, and execute work against the live model — with approvals, guardrails, and a full history of every action.",
-      image: "/images/bootcamp/step-3-workflow.png",
-      imageAlt: "Agentic workflow running against the live model",
     },
     {
       id: "perception",
