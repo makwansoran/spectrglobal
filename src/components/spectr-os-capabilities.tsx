@@ -96,24 +96,17 @@ function CapabilityReveal({ feature }: { feature: SpectrOsFeature }) {
 export function SpectrOsCapabilities({
   title,
   features,
-  showHeading = true,
 }: {
   title: string;
   features: readonly SpectrOsFeature[];
-  showHeading?: boolean;
 }) {
   return (
-    <section
-      className={`sos-caps${showHeading ? "" : " sos-caps--continue"}`}
-      aria-labelledby={showHeading ? "sos-caps-heading" : undefined}
-    >
-      {showHeading ? (
-        <div className="sos-caps__intro container-x">
-          <h2 id="sos-caps-heading" className="sos-caps__title display">
-            {title}
-          </h2>
-        </div>
-      ) : null}
+    <section className="sos-caps" aria-labelledby="sos-caps-heading">
+      <div className="sos-caps__intro container-x">
+        <h2 id="sos-caps-heading" className="sos-caps__title display">
+          {title}
+        </h2>
+      </div>
 
       <div className="sos-caps__reveals">
         {features.map((feature) => (

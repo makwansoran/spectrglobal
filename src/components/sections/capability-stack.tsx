@@ -28,7 +28,7 @@ const blocks = [
     title: "Deployed on your terms.",
     body: "Self-host, edge, or cloud. Host in the EU or on your infrastructure. Your data stays yours.",
     points: [
-      "No licence fee, no user cap, no expiry date",
+      "Host in the EU, on the edge, or on your own infrastructure",
       "Configuration on your aisle — not a science project",
       "Audit and governance built in from day one",
     ],

@@ -14,8 +14,6 @@ const spectrOsLogos =
 
 export function SpectrOsPageView() {
   const page = spectrOsPage;
-  const story = page.features.filter((feature) => feature.id !== "deploy");
-  const deploy = page.features.filter((feature) => feature.id === "deploy");
 
   return (
     <main id="main-content" className="sos-page relative flex-1">
@@ -46,13 +44,9 @@ export function SpectrOsPageView() {
         </div>
       </section>
 
-      <SpectrOsCapabilities title={page.featuresTitle} features={story} />
+      <SpectrOsCapabilities title={page.featuresTitle} features={page.features} />
 
       <LogoMarquee items={spectrOsLogos} />
-
-      {deploy.length > 0 ? (
-        <SpectrOsCapabilities title={page.featuresTitle} features={deploy} showHeading={false} />
-      ) : null}
 
       <section className="sos-cta" aria-labelledby="sos-cta-heading">
         <div className="container-x">
@@ -68,7 +62,6 @@ export function SpectrOsPageView() {
               <h2 id="sos-cta-heading" className="display text-[clamp(2.2rem,5.4vw,4.8rem)]">
                 {page.ctaTitle}
               </h2>
-              <p className="sos-cta__body">{page.ctaBody}</p>
               <div className="sos-cta__actions">
                 <GetStartedButton label="Get started" size="lg" className="btn-on-dark">
                   Get started

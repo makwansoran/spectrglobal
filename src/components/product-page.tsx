@@ -44,7 +44,6 @@ export function ProductPageView({ page }: { page: ProductPage }) {
         <div className="uc-wrap">
           <div className="uc-cta__box">
             <h2>Run this on Spectr OS</h2>
-            <p>Free for enterprise customers — permanently.</p>
             <UseCaseCta />
           </div>
         </div>

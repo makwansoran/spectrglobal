@@ -91,10 +91,6 @@
   color: var(--fg);
 }
 
-.sos-caps--continue {
-  padding-top: 0;
-}
-
 .sos-caps__intro {
   padding-bottom: clamp(1.75rem, 4vw, 3rem);
 }
@@ -238,14 +234,6 @@
   margin: 0;
   max-width: 14ch;
   color: #ffffff;
-}
-
-.sos-cta__body {
-  margin: 1.15rem 0 0;
-  max-width: 34rem;
-  font-size: 1.05rem;
-  line-height: 1.65;
-  color: rgba(255, 255, 255, 0.78);
 }
 
 .sos-cta__actions {

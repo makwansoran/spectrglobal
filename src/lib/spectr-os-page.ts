@@ -1,7 +1,7 @@
 export const spectrOsPage = {
   name: "Spectr OS",
   heroBody:
-    "One operating system for industrial floors, warehouses, and enterprise sites. Free for enterprise customers — permanently.",
+    "One operating system for industrial floors, warehouses, and enterprise sites.",
   heroImage: "/images/products/spectr-os-ui.png",
   heroImageAlt: "Spectr OS interface",
   introVideo: "/videos/spectr-os.mp4",
@@ -44,17 +44,10 @@ export const spectrOsPage = {
       body: "Next decision, with context and a clear recommend path.",
       image: "/images/products/spectr-os-ui.png",
       imageAlt: "Spectr OS command surface with live decisions",
-    },
-    {
-      id: "deploy",
-      title: "Deploy your way",
-      body: "Self-host, edge, or cloud — configuration on your aisle.",
-      image: "/images/products/spectr-edge.jpg",
-      imageAlt: "On-site and edge deployment of Spectr OS",
+      video: "/videos/spectr-os-command.mp4",
     },
   ],
   ctaTitle: "Run your enterprise on Spectr OS",
-  ctaBody: "No licence fee, no user cap, no expiry date. Map where Spectr OS fits — in days, not quarters.",
   ctaImage: "/images/offerings/spectr-os.jpg",
   ctaImageAlt: "Industrial floor running on Spectr OS",
 } as const;

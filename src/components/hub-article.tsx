@@ -38,7 +38,6 @@ export function HubArticleView({
         <div className="uc-wrap">
           <div className="uc-cta__box">
             <h2>Get started with Spectr OS</h2>
-            <p>Free for enterprise customers — permanently.</p>
             <UseCaseCta />
           </div>
         </div>

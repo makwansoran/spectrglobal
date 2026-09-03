@@ -219,14 +219,14 @@ export const blogPosts: HubPost[] = [
   {
     slug: "spectr-os-free",
     date: "March 2026",
-    title: "Spectr OS is free for all enterprise customers — permanently",
-    dek: "No licence fee, no user cap, no expiry date. The OS is included so the whole floor can be on it.",
+    title: "The operating system for the whole floor",
+    dek: "Spectr OS is built so shift leads, planners, and agents work from the same live model.",
     href: "/blog/spectr-os-free",
     image: "/images/news/spectr-os-free.jpg",
     imageAlt: "Enterprise floor running on Spectr OS",
     paragraphs: [
       "Seat-based pricing is how software stays a spectator sport. The people who close exceptions never get a login. The model never sees the work. We are not doing that.",
-      "Spectr OS is free for enterprise customers — permanently. Not a trial. Not a community edition with the decision loop stripped out. The runtime that fuses the floor and holds the ontology is included so you can put every shift lead on it.",
+      "Spectr OS puts the runtime that fuses the floor and holds the ontology in one place — so every shift lead can work from the same model.",
       "If you want a conversation about where it fits, talk to us. The product is already the offer.",
     ],
   },
@@ -305,7 +305,7 @@ export const companyHub: HubPage = {
   heroImageAlt: "Spectr",
   headline: "A Norwegian team building the operating system for the work that cannot be done remotely.",
   columnOne:
-    "We were founded to put software on floors, warehouses, grids, and fronts — places where labour is scarce and the systems were designed for a slower decade. Spectr OS is the product of that conviction, given to enterprises without a licence fee.",
+    "We were founded to put software on floors, warehouses, grids, and fronts — places where labour is scarce and the systems were designed for a slower decade. Spectr OS is the product of that conviction.",
   columnTwo:
     "The company is small on purpose. Close to operators. Unwilling to ship something merely interesting. If you want the product, get started.",
   cardsTitle: "Spectr",

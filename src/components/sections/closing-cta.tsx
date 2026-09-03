@@ -21,7 +21,7 @@ export function ClosingCta() {
                 Own your own operational future.
               </h2>
               <p className="mt-5 max-w-xl text-base leading-7 text-white/80 sm:text-lg">
-                Build, customize, and deploy Spectr OS with complete control — permanently free for enterprise customers.
+                Build, customize, and deploy Spectr OS with complete control.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <GetStartedButton label="Get started" size="lg">

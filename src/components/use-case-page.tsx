@@ -56,7 +56,7 @@ export function UseCasePageView({ page }: { page: IndustryPage }) {
         <div className="uc-wrap">
           <div className="uc-cta__box">
             <h2>Run this on Spectr OS</h2>
-            <p>Free for enterprise customers — permanently. Map the work in days, not a transformation programme.</p>
+            <p>Map the work in days, not a transformation programme.</p>
             <UseCaseCta />
           </div>
         </div>

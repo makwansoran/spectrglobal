@@ -115,7 +115,7 @@ export function HubPageView({ page }: { page: HubPage }) {
         <div className="uc-wrap">
           <div className="uc-cta__box">
             <h2>Get started with Spectr OS</h2>
-            <p>Free for enterprise customers — permanently. Map the work in days, not a transformation programme.</p>
+            <p>Map the work in days, not a transformation programme.</p>
             <UseCaseCta />
           </div>
         </div>

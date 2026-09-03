@@ -93,7 +93,7 @@ export const platforms: Platform[] = [
       },
     ],
     ctaTitle: "Run your enterprise on Spectr OS",
-    ctaBody: "Free for enterprise customers — permanently.",
+    ctaBody: "One runtime for the floor, the model, and the next decision.",
   },
   {
     slug: "spectr-edge",

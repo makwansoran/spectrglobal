@@ -7,7 +7,7 @@ export const hero = {
 export const featuredNews = [
   {
     category: "Product",
-    title: "Spectr OS is free for all enterprise customers — permanently",
+    title: "The operating system for the whole floor",
     href: "/news",
   },
   {
@@ -170,7 +170,7 @@ export const partnerQuotes: PartnerQuote[] = [
   {
     company: "COLD CHAIN NETWORK",
     quote:
-      "The free licence meant we could put every shift lead on the system, not just the planners. Exceptions get closed on the floor instead of sitting in a spreadsheet for three days.",
+      "We could put every shift lead on the system, not just the planners. Exceptions get closed on the floor instead of sitting in a spreadsheet for three days.",
     person: "Site Manager",
     role: "Temperature-controlled distribution",
   },
@@ -212,7 +212,7 @@ export const partnerQuotes: PartnerQuote[] = [
   {
     company: "PHARMA DISTRIBUTOR",
     quote:
-      "Audit trails and cycle counts that hold up under inspection mattered more than flashy AI. Spectr OS gave us both — and it cost nothing to put the whole team on it.",
+      "Audit trails and cycle counts that hold up under inspection mattered more than flashy AI. Spectr OS gave us both — and the whole team could work from the same model.",
     person: "Quality & Compliance Lead",
     role: "Regulated distribution",
   },
@@ -221,7 +221,7 @@ export const partnerQuotes: PartnerQuote[] = [
 export const homeCta = {
   title: "Run your enterprise on Spectr OS",
   primaryTitle: "Build with Spectr OS",
-  primaryBody: "Free for enterprise customers — permanently.",
+  primaryBody: "One runtime for the floor, the model, and the next decision.",
   primaryCta: "Get Started",
   secondaryTitle: "Talk to Spectr",
   secondaryBody: "Map where Spectr OS fits — in days, not quarters.",
@@ -251,9 +251,9 @@ export const newsItems: NewsItem[] = [
     id: "spectr-os-free",
     source: "Spectr",
     date: "March 2026",
-    title: "Spectr OS is free for all enterprise customers — permanently",
+    title: "The operating system for the whole floor",
     summary:
-      "No licence fee, no user cap, no expiry date. Spectr OS is included for every enterprise customer — permanently.",
+      "Spectr OS fuses the floor and holds the ontology so shift leads, planners, and agents work from the same live model.",
     href: "/news",
     cta: "Read More",
     image: "/images/news/spectr-os-free.jpg",
