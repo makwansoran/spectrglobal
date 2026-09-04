@@ -82,12 +82,13 @@ export const productCards: HubCard[] = [
 export const solutionsHub: HubPage = {
   path: "/solutions",
   bannerTitle: "Solutions",
-  description: "Spectr OS across manufacturing, logistics, and waste management.",
+  description:
+    "How Spectr helps manufacturing, logistics, and waste management: one operating loop, applied to the objects of each floor.",
   heroImage: "/images/industries/manufacturing.jpg",
   heroImageAlt: "Industrial operations",
-  headline: "The runtime is used wherever the work cannot wait for interesting software.",
+  headline: "We help the same way on every floor. The objects change. The loop does not.",
   columnOne:
-    "Our platforms are for operational institutions that have to implement solutions to the hardest problems they face — factories, warehouses, and the waste loop.",
+    "Plants, warehouses, and waste networks fail in the same place. Planning lives in one system. Execution lives in another.",
   columnTwo:
     "Each offering is the same OS, shaped to the objects of that domain. Pick an industry. The page is the argument. The product is the runtime.",
   cardsTitle: "Offerings",
