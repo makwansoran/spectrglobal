@@ -20,25 +20,20 @@ export const spectrEdgePage = {
     { id: "deploy", label: "Deploy" },
   ],
   design: {
-    image: "/images/products/spectr-edge.jpg",
-    imageAlt: "Spectr Edge enclosure on the floor",
-    tabs: [
-      {
-        id: "enclosure",
-        title: "The enclosure.",
-        body: "A compact unit for the plant, the dock, or the rack. Spectr Edge sits where the cameras sit — not in another region.",
-      },
-      {
-        id: "floor",
-        title: "Built for the floor.",
-        body: "Vented for continuous inference. Ports for power and the site. The box is the compute — not a gateway to someone else’s cloud.",
-      },
-      {
-        id: "sovereign",
-        title: "Sovereign by default.",
-        body: "Keep video and models on your machines. Nothing leaves the site unless you send it.",
-      },
-    ],
+    image: "/images/products/spectr-edge-board.jpg",
+    imageAlt: "Spectr Edge board with Hailo AI accelerator",
+    chip: { x: 50, y: 40 },
+    hailo: {
+      label: "Hailo",
+      title: "On-device AI vision.",
+      body: "The Hailo accelerator scores frames on the board — not in another region.",
+      points: [
+        "Inference next to the camera",
+        "No round trip to a hosted model",
+        "Continuous vision on the floor",
+        "Detections into Spectr OS",
+      ],
+    },
   },
   performance: {
     title: "Line-side inference.",

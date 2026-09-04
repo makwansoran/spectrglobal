@@ -261,7 +261,6 @@
   object-fit: cover;
 }
 
-.se-design__copy,
 .se-performance__copy {
   max-width: 36rem;
 }
@@ -270,33 +269,113 @@
   padding-bottom: clamp(3rem, 8vw, 5.5rem);
 }
 
-.se-design__copy {
-  margin-top: clamp(1.75rem, 4vw, 2.5rem);
+.se-design__stage {
+  position: relative;
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: center;
 }
 
-.se-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-  margin-bottom: 1.25rem;
+.se-design__board {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 964 / 1024;
+  border-radius: 1.15rem;
+  background: #000000;
 }
 
-.se-tabs button {
-  border: 0;
-  border-bottom: 1px solid transparent;
-  border-radius: 0;
-  padding: 0.4rem 0.15rem;
-  margin-right: 1.1rem;
-  background: none;
+.se-design__board img {
+  object-fit: contain;
+}
+
+.se-design__pin {
+  position: absolute;
+  z-index: 2;
+  width: 0.7rem;
+  height: 0.7rem;
+  border: 1.5px solid #ffffff;
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.22);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.se-design__hailo {
+  position: relative;
+  z-index: 1;
+  max-width: 28rem;
+}
+
+.se-design__hailo-label {
+  margin: 0 0 0.45rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
   color: var(--muted);
-  font-size: 0.95rem;
-  letter-spacing: -0.02em;
-  cursor: pointer;
 }
 
-.se-tabs button.is-active {
+.se-design__hailo-target {
+  display: inline-block;
+}
+
+.se-design__points {
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.se-design__points li {
+  position: relative;
+  padding: 0.7rem 0 0.7rem 0;
+  border-top: 1px solid var(--border);
+  font-size: 1rem;
+  letter-spacing: -0.02em;
   color: var(--fg);
-  border-bottom-color: var(--fg);
+}
+
+.se-design__line {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.se-design__line path {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.se-design__line-edge {
+  stroke: #0a0a0a;
+  stroke-width: 3.25;
+}
+
+.se-design__line-core {
+  stroke: #ffffff;
+  stroke-width: 1.25;
+}
+
+@media (min-width: 960px) {
+  .se-design__stage {
+    grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+  }
+
+  .se-design__line {
+    display: block;
+  }
+}
+
+@media (max-width: 959px) {
+  .se-design__line,
+  .se-design__pin {
+    display: none;
+  }
 }
 
 .se-design__title,

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { GetStartedButton } from "@/components/get-started-button";
 import { Reveal } from "@/components/reveal";
 import { spectrEdgePage } from "@/lib/spectr-edge-page";
@@ -42,11 +42,93 @@ function useActiveSection() {
   return [active, setActive] as const;
 }
 
+function HailoCallout() {
+  const { design } = spectrEdgePage;
+  const stageRef = useRef<HTMLDivElement>(null);
+  const pinRef = useRef<HTMLSpanElement>(null);
+  const targetRef = useRef<HTMLDivElement>(null);
+  const [line, setLine] = useState({ x1: 0, y1: 0, x2: 0, y2: 0, ready: false });
+
+  useLayoutEffect(() => {
+    const stage = stageRef.current;
+    const pin = pinRef.current;
+    const target = targetRef.current;
+    if (!stage || !pin || !target) return;
+
+    function measure() {
+      if (!stage || !pin || !target) return;
+      const stageBox = stage.getBoundingClientRect();
+      const pinBox = pin.getBoundingClientRect();
+      const targetBox = target.getBoundingClientRect();
+      setLine({
+        x1: pinBox.left + pinBox.width / 2 - stageBox.left,
+        y1: pinBox.top + pinBox.height / 2 - stageBox.top,
+        x2: targetBox.left - stageBox.left,
+        y2: targetBox.top + 14 - stageBox.top,
+        ready: true,
+      });
+    }
+
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(stage);
+    window.addEventListener("resize", measure);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, []);
+
+  return (
+    <div ref={stageRef} className="se-design__stage">
+      <div className="se-design__board">
+        <Image
+          src={design.image}
+          alt={design.imageAlt}
+          fill
+          sizes="(max-width: 960px) 100vw, 52vw"
+          quality={90}
+        />
+        <span
+          ref={pinRef}
+          className="se-design__pin"
+          style={{ left: `${design.chip.x}%`, top: `${design.chip.y}%` }}
+          aria-hidden="true"
+        />
+      </div>
+      <div className="se-design__hailo">
+        <p className="se-design__hailo-label">{design.hailo.label}</p>
+        <div ref={targetRef} className="se-design__hailo-target">
+          <h3 className="se-design__title">{design.hailo.title}</h3>
+        </div>
+        <p className="se-design__body">{design.hailo.body}</p>
+        <ul className="se-design__points">
+          {design.hailo.points.map((point) => (
+            <li key={point}>{point}</li>
+          ))}
+        </ul>
+      </div>
+      <svg className="se-design__line" aria-hidden="true">
+        {line.ready ? (
+          <>
+            <path
+              className="se-design__line-edge"
+              d={`M ${line.x1} ${line.y1} L ${Math.max(line.x1 + 24, line.x2 - 28)} ${line.y1} L ${line.x2} ${line.y2}`}
+            />
+            <path
+              className="se-design__line-core"
+              d={`M ${line.x1} ${line.y1} L ${Math.max(line.x1 + 24, line.x2 - 28)} ${line.y1} L ${line.x2} ${line.y2}`}
+            />
+          </>
+        ) : null}
+      </svg>
+    </div>
+  );
+}
+
 export function SpectrEdgePageView() {
   const page = spectrEdgePage;
   const [active, setActive] = useActiveSection();
-  const [designTab, setDesignTab] = useState(0);
-  const tab = page.design.tabs[designTab];
 
   return (
     <main id="main-content" className="se-page relative flex-1">
@@ -139,33 +221,7 @@ export function SpectrEdgePageView() {
           <h2 id="se-design-heading" className="se-chapter__title">
             Design
           </h2>
-          <div className="se-bleed">
-            <Image
-              src={page.design.image}
-              alt={page.design.imageAlt}
-              fill
-              sizes="100vw"
-              quality={90}
-            />
-          </div>
-          <div className="se-design__copy">
-            <div className="se-tabs" role="tablist" aria-label="Design">
-              {page.design.tabs.map((item, index) => (
-                <button
-                  key={item.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={designTab === index}
-                  className={designTab === index ? "is-active" : undefined}
-                  onClick={() => setDesignTab(index)}
-                >
-                  {item.title.replace(/\.$/, "")}
-                </button>
-              ))}
-            </div>
-            <h3 className="se-design__title">{tab.title}</h3>
-            <p className="se-design__body">{tab.body}</p>
-          </div>
+          <HailoCallout />
         </div>
       </section>
 
