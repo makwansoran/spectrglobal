@@ -12,13 +12,6 @@ export const spectrEdgePage = {
     { label: "Ambient", value: "0–50", unit: "°C" },
     { label: "Runtime", value: "Spectr OS", unit: "" },
   ],
-  nav: [
-    { id: "overview", label: "Overview" },
-    { id: "design", label: "Design" },
-    { id: "performance", label: "Performance" },
-    { id: "technology", label: "Technology" },
-    { id: "deploy", label: "Deploy" },
-  ],
   design: {
     image: "/images/products/spectr-edge-board.png",
     imageAlt: "Spectr Edge AI board",

@@ -2,45 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { GetStartedButton } from "@/components/get-started-button";
 import { Reveal } from "@/components/reveal";
 import { spectrEdgePage } from "@/lib/spectr-edge-page";
 import "./spectr-edge-page.css";
-
-const SECTION_IDS = spectrEdgePage.nav.map((item) => item.id);
-type SectionId = (typeof SECTION_IDS)[number];
-
-function isSectionId(id: string): id is SectionId {
-  return (SECTION_IDS as readonly string[]).includes(id);
-}
-
-function useActiveSection() {
-  const [active, setActive] = useState<SectionId>(SECTION_IDS[0]);
-
-  useEffect(() => {
-    const nodes = SECTION_IDS
-      .map((id) => document.getElementById(id))
-      .filter((node): node is HTMLElement => Boolean(node));
-    if (!nodes.length) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        const id = visible?.target.id;
-        if (id && isSectionId(id)) setActive(id);
-      },
-      { rootMargin: "-30% 0px -55% 0px", threshold: [0.15, 0.35, 0.6] },
-    );
-
-    nodes.forEach((node) => observer.observe(node));
-    return () => observer.disconnect();
-  }, []);
-
-  return [active, setActive] as const;
-}
 
 function HailoCallout() {
   const { design } = spectrEdgePage;
@@ -131,7 +97,6 @@ function HailoCallout() {
 
 export function SpectrEdgePageView() {
   const page = spectrEdgePage;
-  const [active, setActive] = useActiveSection();
 
   return (
     <main id="main-content" className="se-page relative flex-1">
@@ -169,24 +134,6 @@ export function SpectrEdgePageView() {
         </div>
       </section>
 
-      <nav className="se-subnav" aria-label="Spectr Edge">
-        <div className="container-x se-subnav__row">
-          <p className="se-subnav__name">{page.name}</p>
-          <div className="se-subnav__links">
-            {page.nav.map((item) => (
-              <a
-                key={item.id}
-                href={`#${item.id}`}
-                className={active === item.id ? "se-subnav__link is-active" : "se-subnav__link"}
-                onClick={() => setActive(item.id)}
-              >
-                {item.label}
-              </a>
-            ))}
-          </div>
-        </div>
-      </nav>
-
       <section id="overview" className="se-overview" aria-labelledby="se-overview-heading">
         <div className="container-x">
           <Reveal>
@@ -222,11 +169,8 @@ export function SpectrEdgePageView() {
         </div>
       </section>
 
-      <section id="design" className="se-chapter se-design" aria-labelledby="se-design-heading">
+      <section id="design" className="se-chapter se-design" aria-label="Design">
         <div className="container-x">
-          <h2 id="se-design-heading" className="se-chapter__title">
-            Design
-          </h2>
           <HailoCallout />
         </div>
       </section>
