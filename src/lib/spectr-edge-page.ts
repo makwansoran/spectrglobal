@@ -20,7 +20,7 @@ export const spectrEdgePage = {
     { id: "deploy", label: "Deploy" },
   ],
   design: {
-    image: "/images/products/spectr-edge-board.jpg",
+    image: "/images/products/spectr-edge-board.png",
     imageAlt: "Spectr Edge board with Hailo AI accelerator",
     chip: { x: 50, y: 40 },
     hailo: {

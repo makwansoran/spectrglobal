@@ -278,11 +278,12 @@
 
 .se-design__board {
   position: relative;
-  overflow: hidden;
-  width: 100%;
+  overflow: visible;
+  width: 88%;
+  max-width: 34rem;
   aspect-ratio: 964 / 1024;
-  border-radius: 1.15rem;
-  background: #000000;
+  border-radius: 0;
+  background: transparent;
 }
 
 .se-design__board img {
