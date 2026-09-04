@@ -164,17 +164,6 @@ export function SpectrEdgePageView() {
       <section id="design" className="se-chapter se-design" aria-label="Design">
         <div className="container-x">
           <HailoCallout />
-          <figure className="se-design__photo">
-            <div className="se-design__photo-frame">
-              <Image
-                src={page.design.enclosure.image}
-                alt={page.design.enclosure.imageAlt}
-                fill
-                sizes="(max-width: 960px) 72vw, 22rem"
-                quality={90}
-              />
-            </div>
-          </figure>
         </div>
       </section>
 

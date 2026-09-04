@@ -168,24 +168,6 @@
   padding-bottom: clamp(2rem, 5vw, 3.25rem);
 }
 
-.se-design__photo {
-  display: flex;
-  justify-content: center;
-  margin-top: clamp(2.25rem, 5vw, 3.75rem);
-}
-
-.se-design__photo-frame {
-  position: relative;
-  overflow: visible;
-  width: min(72%, 22rem);
-  aspect-ratio: 905 / 758;
-  background: transparent;
-}
-
-.se-design__photo-frame img {
-  object-fit: contain;
-}
-
 .se-design__stage {
   position: relative;
   display: grid;

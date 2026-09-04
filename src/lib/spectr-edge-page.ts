@@ -25,10 +25,6 @@ export const spectrEdgePage = {
         { label: "Runtime", value: "Spectr OS" },
       ],
     },
-    enclosure: {
-      image: "/images/products/spectr-edge-green.png",
-      imageAlt: "Spectr Edge enclosure",
-    },
   },
   performance: {
     title: "Line-side inference.",
