@@ -58,9 +58,10 @@ export function LogoMarquee({
   ariaLabel?: string;
   compact?: boolean;
 }) {
+  const useTwoRows = items.length > 8;
   const midpoint = Math.ceil(items.length / 2);
-  const firstRow = items.slice(0, midpoint);
-  const secondRow = items.slice(midpoint);
+  const firstRow = useTwoRows ? items.slice(0, midpoint) : items;
+  const secondRow = useTwoRows ? items.slice(midpoint) : [];
 
   return (
     <section
@@ -84,7 +85,9 @@ export function LogoMarquee({
 
       <div className="space-y-6" aria-label={ariaLabel}>
         <LogoRow items={firstRow} duration="70s" />
-        <LogoRow items={secondRow} reverse duration="82s" />
+        {secondRow.length > 0 ? (
+          <LogoRow items={secondRow} reverse duration="82s" />
+        ) : null}
       </div>
     </section>
   );
