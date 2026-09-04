@@ -1,4 +1,180 @@
 {
-  "events": [],
-  "accounts": []
+  "events": [
+    {
+      "id": "1788519308827-bc9a25",
+      "kind": "pageview",
+      "path": "/platforms/spectr-edge",
+      "label": "",
+      "at": "2026-09-04T10:55:08.827Z"
+    },
+    {
+      "id": "1788519023850-26e920",
+      "kind": "pageview",
+      "path": "/platforms/spectr-edge",
+      "label": "",
+      "at": "2026-09-04T10:50:23.850Z"
+    },
+    {
+      "id": "1788471345004-38f823",
+      "kind": "pageview",
+      "path": "/platforms/spectr-os",
+      "label": "",
+      "at": "2026-09-03T21:35:45.004Z"
+    },
+    {
+      "id": "1788471343022-317113",
+      "kind": "click",
+      "path": "/platforms/spectr-edge",
+      "label": "Products",
+      "at": "2026-09-03T21:35:43.022Z"
+    },
+    {
+      "id": "1788471338621-89c992",
+      "kind": "click",
+      "path": "/platforms/spectr-edge",
+      "label": "Close get started panel",
+      "at": "2026-09-03T21:35:38.621Z"
+    },
+    {
+      "id": "1788471333545-5dc545",
+      "kind": "click",
+      "path": "/platforms/spectr-edge",
+      "label": "Join waitlist",
+      "at": "2026-09-03T21:35:33.545Z"
+    },
+    {
+      "id": "1788471311475-f34787",
+      "kind": "click",
+      "path": "/platforms/spectr-edge",
+      "label": "Performance",
+      "at": "2026-09-03T21:35:11.475Z"
+    },
+    {
+      "id": "1788471229108-101f2d",
+      "kind": "click",
+      "path": "/platforms/spectr-edge",
+      "label": "Design",
+      "at": "2026-09-03T21:33:49.108Z"
+    },
+    {
+      "id": "1788471217934-6211a8",
+      "kind": "click",
+      "path": "/platforms/spectr-edge",
+      "label": "Built for the floor",
+      "at": "2026-09-03T21:33:37.935Z"
+    },
+    {
+      "id": "1788471110157-8c69bc",
+      "kind": "pageview",
+      "path": "/platforms/spectr-edge",
+      "label": "",
+      "at": "2026-09-03T21:31:50.157Z"
+    },
+    {
+      "id": "1788461094797-cf174a",
+      "kind": "pageview",
+      "path": "/platforms/spectr-os",
+      "label": "",
+      "at": "2026-09-03T18:44:54.797Z"
+    },
+    {
+      "id": "1788460452728-7412ed",
+      "kind": "pageview",
+      "path": "/platforms/spectr-os",
+      "label": "",
+      "at": "2026-09-03T18:34:12.728Z"
+    },
+    {
+      "id": "1788459934297-b01f72",
+      "kind": "pageview",
+      "path": "/platforms/spectr-os",
+      "label": "",
+      "at": "2026-09-03T18:25:34.297Z"
+    },
+    {
+      "id": "1788459644489-1ba6d4",
+      "kind": "pageview",
+      "path": "/platforms/spectr-os",
+      "label": "",
+      "at": "2026-09-03T18:20:44.490Z"
+    },
+    {
+      "id": "1788459468860-cff7e3",
+      "kind": "pageview",
+      "path": "/platforms/spectr-os",
+      "label": "",
+      "at": "2026-09-03T18:17:48.860Z"
+    },
+    {
+      "id": "1788429660343-bb9aeb",
+      "kind": "pageview",
+      "path": "/platforms/spectr-os",
+      "label": "",
+      "at": "2026-09-03T10:01:00.343Z"
+    },
+    {
+      "id": "1788429619470-7a9c6f",
+      "kind": "pageview",
+      "path": "/use-cases/waste-management",
+      "label": "",
+      "at": "2026-09-03T10:00:19.470Z"
+    },
+    {
+      "id": "1788429608514-ed58da",
+      "kind": "click",
+      "path": "/",
+      "label": "Waste Management. Collection, plants, and materials as one loop — so a lift is an operational decision, not a route afte",
+      "at": "2026-09-03T10:00:08.514Z"
+    },
+    {
+      "id": "1788429553555-902bca",
+      "kind": "pageview",
+      "path": "/",
+      "label": "",
+      "at": "2026-09-03T09:59:13.555Z"
+    },
+    {
+      "id": "1788369787967-75d729",
+      "kind": "pageview",
+      "path": "/platforms/spectr-os",
+      "label": "",
+      "at": "2026-09-02T17:23:07.967Z"
+    },
+    {
+      "id": "1788349363472-e23f0c",
+      "kind": "pageview",
+      "path": "/platforms/spectr-os",
+      "label": "",
+      "at": "2026-09-02T11:42:43.472Z"
+    },
+    {
+      "id": "1788349363053-5f6d53",
+      "kind": "pageview",
+      "path": "/platforms/spectr-os",
+      "label": "",
+      "at": "2026-09-02T11:42:43.053Z"
+    },
+    {
+      "id": "1788349329003-f2db54",
+      "kind": "pageview",
+      "path": "/platforms/spectr-os",
+      "label": "",
+      "at": "2026-09-02T11:42:09.003Z"
+    },
+    {
+      "id": "1788349328843-330d86",
+      "kind": "pageview",
+      "path": "/platforms/spectr-os",
+      "label": "",
+      "at": "2026-09-02T11:42:08.843Z"
+    }
+  ],
+  "accounts": [
+    {
+      "username": "spectr1",
+      "role": "admin",
+      "createdAt": "2026-09-02T11:45:24.588Z",
+      "lastSeen": "2026-09-02T11:45:24.588Z"
+    }
+  ]
 }
