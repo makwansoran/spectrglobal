@@ -51,34 +51,35 @@ export function SpectrEdgePageView() {
   return (
     <main id="main-content" className="se-page relative flex-1">
       <section className="se-hero" aria-labelledby="se-hero-heading">
-        <div className="se-hero__media" aria-hidden="true">
-          <Image
-            src={page.heroImage}
-            alt=""
-            fill
-            priority
-            quality={90}
-            sizes="100vw"
-          />
-          <div className="se-hero__scrim" />
-        </div>
-        <div className="container-x se-hero__copy">
-          <h1 id="se-hero-heading" className="home-display">
-            {page.name}
-          </h1>
-          <p className="se-hero__sub">{page.heroTagline}</p>
-          <div className="se-hero__actions">
-            <GetStartedButton label="Join waitlist" size="lg" className="btn-on-dark">
-              Join waitlist
-            </GetStartedButton>
-            <GetStartedButton
-              label="Request a demo"
-              size="lg"
-              variant="secondary"
-              className="se-hero__ghost"
-            >
-              Request a demo
-            </GetStartedButton>
+        <div className="container-x se-hero__layout">
+          <div className="se-hero__copy">
+            <h1 id="se-hero-heading" className="home-display">
+              {page.name}
+            </h1>
+            <p className="se-hero__sub">{page.heroTagline}</p>
+            <div className="se-hero__actions">
+              <GetStartedButton label="Join waitlist" size="lg" className="btn-on-dark">
+                Join waitlist
+              </GetStartedButton>
+              <GetStartedButton
+                label="Request a demo"
+                size="lg"
+                variant="secondary"
+                className="se-hero__ghost"
+              >
+                Request a demo
+              </GetStartedButton>
+            </div>
+          </div>
+          <div className="se-hero__media">
+            <Image
+              src={page.heroImage}
+              alt={page.heroImageAlt}
+              fill
+              priority
+              quality={90}
+              sizes="(max-width: 960px) 100vw, 52vw"
+            />
           </div>
         </div>
       </section>
