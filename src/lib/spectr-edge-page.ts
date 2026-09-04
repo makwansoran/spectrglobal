@@ -26,7 +26,7 @@ export const spectrEdgePage = {
       ],
     },
     enclosure: {
-      image: "/images/products/spectr-edge-green.jpg",
+      image: "/images/products/spectr-edge-green.png",
       imageAlt: "Spectr Edge enclosure",
     },
   },

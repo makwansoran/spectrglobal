@@ -170,7 +170,7 @@ export function SpectrEdgePageView() {
                 src={page.design.enclosure.image}
                 alt={page.design.enclosure.imageAlt}
                 fill
-                sizes="(max-width: 960px) 100vw, 44rem"
+                sizes="(max-width: 960px) 72vw, 22rem"
                 quality={90}
               />
             </div>
