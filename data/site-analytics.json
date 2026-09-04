@@ -1,6 +1,104 @@
 {
   "events": [
     {
+      "id": "1788523284602-f3b1df",
+      "kind": "pageview",
+      "path": "/platforms/spectr-edge",
+      "label": "",
+      "at": "2026-09-04T12:01:24.602Z"
+    },
+    {
+      "id": "1788523264044-ef8299",
+      "kind": "pageview",
+      "path": "/platforms/spectr-edge",
+      "label": "",
+      "at": "2026-09-04T12:01:04.044Z"
+    },
+    {
+      "id": "1788523262912-a9beae",
+      "kind": "pageview",
+      "path": "/platforms/spectr-edge",
+      "label": "",
+      "at": "2026-09-04T12:01:02.912Z"
+    },
+    {
+      "id": "1788523165804-efa42d",
+      "kind": "pageview",
+      "path": "/platforms/spectr-edge",
+      "label": "",
+      "at": "2026-09-04T11:59:25.804Z"
+    },
+    {
+      "id": "1788523128243-0a8e6b",
+      "kind": "pageview",
+      "path": "/platforms/spectr-edge",
+      "label": "",
+      "at": "2026-09-04T11:58:48.243Z"
+    },
+    {
+      "id": "1788523084374-744be8",
+      "kind": "pageview",
+      "path": "/platforms/spectr-edge",
+      "label": "",
+      "at": "2026-09-04T11:58:04.374Z"
+    },
+    {
+      "id": "1788522718007-a1689a",
+      "kind": "click",
+      "path": "/platforms/spectr-edge",
+      "label": "Design",
+      "at": "2026-09-04T11:51:58.007Z"
+    },
+    {
+      "id": "1788522710739-d99e77",
+      "kind": "pageview",
+      "path": "/platforms/spectr-edge",
+      "label": "",
+      "at": "2026-09-04T11:51:50.739Z"
+    },
+    {
+      "id": "1788522525235-6cc8e7",
+      "kind": "pageview",
+      "path": "/platforms/spectr-os",
+      "label": "",
+      "at": "2026-09-04T11:48:45.235Z"
+    },
+    {
+      "id": "1788522221308-71e533",
+      "kind": "click",
+      "path": "/platforms/spectr-edge",
+      "label": "Design",
+      "at": "2026-09-04T11:43:41.308Z"
+    },
+    {
+      "id": "1788522203992-f38794",
+      "kind": "pageview",
+      "path": "/platforms/spectr-edge",
+      "label": "",
+      "at": "2026-09-04T11:43:23.992Z"
+    },
+    {
+      "id": "1788521986803-645d7b",
+      "kind": "pageview",
+      "path": "/platforms/spectr-os",
+      "label": "",
+      "at": "2026-09-04T11:39:46.803Z"
+    },
+    {
+      "id": "1788521837204-38eebb",
+      "kind": "click",
+      "path": "/platforms/spectr-edge",
+      "label": "Design",
+      "at": "2026-09-04T11:37:17.204Z"
+    },
+    {
+      "id": "1788521692109-39e84a",
+      "kind": "pageview",
+      "path": "/platforms/spectr-edge",
+      "label": "",
+      "at": "2026-09-04T11:34:52.109Z"
+    },
+    {
       "id": "1788519308827-bc9a25",
       "kind": "pageview",
       "path": "/platforms/spectr-edge",
