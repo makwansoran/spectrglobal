@@ -6,12 +6,8 @@ export const spectrEdgePage = {
   overviewTitle: "On site. Not the cloud.",
   overviewBody:
     "Run vision models on the floor — without sending the site to the cloud. Spectr Edge is compute for AI vision on site, at a fraction of the cost of hosting large models.",
-  specs: [
-    { label: "Inference", value: "13", unit: "TOPS" },
-    { label: "Vision", value: "On site", unit: "" },
-    { label: "Ambient", value: "0–50", unit: "°C" },
-    { label: "Runtime", value: "Spectr OS", unit: "" },
-  ],
+  overviewVideo: "",
+  overviewVideoAlt: "Spectr Edge on site",
   design: {
     image: "/images/products/spectr-edge-board.png",
     imageAlt: "Spectr Edge AI board",

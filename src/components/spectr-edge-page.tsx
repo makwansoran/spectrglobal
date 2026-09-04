@@ -135,37 +135,27 @@ export function SpectrEdgePageView() {
       </section>
 
       <section id="overview" className="se-overview" aria-labelledby="se-overview-heading">
-        <div className="container-x">
-          <Reveal>
+        <div className="container-x se-overview__layout">
+          <div className="se-overview__media" aria-label={page.overviewVideoAlt}>
+            {page.overviewVideo ? (
+              <video
+                className="se-overview__video"
+                src={page.overviewVideo}
+                aria-label={page.overviewVideoAlt}
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="metadata"
+              />
+            ) : null}
+          </div>
+          <Reveal className="se-overview__copy">
             <h2 id="se-overview-heading" className="home-display">
               {page.overviewTitle}
             </h2>
             <p className="se-overview__body">{page.overviewBody}</p>
-            <div className="se-overview__actions">
-              <GetStartedButton label="Join waitlist" size="lg">
-                Join waitlist
-              </GetStartedButton>
-              <GetStartedButton label="Request a demo" size="lg" variant="secondary">
-                Request a demo
-              </GetStartedButton>
-            </div>
           </Reveal>
-        </div>
-      </section>
-
-      <section className="se-specs" aria-label="Spectr Edge at a glance">
-        <div className="container-x">
-          <div className="se-specs__row">
-            {page.specs.map((spec) => (
-              <div key={spec.label} className="se-specs__item">
-                <span className="se-specs__label">{spec.label}</span>
-                <p className="se-specs__value">
-                  {spec.value}
-                  {spec.unit ? <span className="se-specs__unit">{spec.unit}</span> : null}
-                </p>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
