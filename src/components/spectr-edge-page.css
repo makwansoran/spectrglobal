@@ -87,7 +87,8 @@
 .se-chapter,
 .se-performance,
 .se-tech,
-.se-deploy {
+.se-deploy,
+.se-models {
   scroll-margin-top: 5.5rem;
 }
 
@@ -416,6 +417,28 @@
   margin-top: 1rem;
   font-size: 0.9rem;
   font-weight: 500;
+}
+
+.se-models__logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(2.75rem, 8vw, 5.5rem);
+}
+
+.se-models__logo {
+  display: block;
+  width: auto;
+  object-fit: contain;
+}
+
+.se-models__logo--ultralytics {
+  height: 2.4rem;
+}
+
+.se-models__logo--nvidia {
+  height: 3.6rem;
 }
 
 .se-cta {

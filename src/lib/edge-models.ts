@@ -6,13 +6,10 @@ export type EdgeModel = {
 
 export const edgeModelsSection = {
   title: "Models",
-  body: "YOLO, YOLOX, SAM, CLIP, and PaddleOCR — compiled for the Hailo chip. Detection, segmentation, language, and OCR on site.",
+  body: "Ultralytics and NVIDIA — the models Spectr Edge offers.",
 };
 
 export const edgeModels: EdgeModel[] = [
-  { id: "yolo", name: "YOLO", logo: "/images/models/yolo.png" },
-  { id: "yolox", name: "YOLOX", logo: "/images/models/yolox.png" },
-  { id: "sam", name: "SAM", logo: "/images/models/sam.svg" },
-  { id: "clip", name: "CLIP", logo: "/images/models/clip.svg" },
-  { id: "paddleocr", name: "PaddleOCR", logo: "/images/models/paddleocr.png" },
+  { id: "ultralytics", name: "Ultralytics", logo: "/images/models/ultralytics.png" },
+  { id: "nvidia", name: "NVIDIA", logo: "/images/models/nvidia.png" },
 ];

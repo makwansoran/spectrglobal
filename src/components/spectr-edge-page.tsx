@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useLayoutEffect, useRef, useState } from "react";
 import { GetStartedButton } from "@/components/get-started-button";
 import { Reveal } from "@/components/reveal";
-import { LogoMarquee } from "@/components/sections/logo-marquee";
 import { edgeModels, edgeModelsSection } from "@/lib/edge-models";
 import { spectrEdgePage } from "@/lib/spectr-edge-page";
 import "./spectr-edge-page.css";
@@ -167,16 +166,31 @@ export function SpectrEdgePageView() {
         </div>
       </section>
 
-      <LogoMarquee
-        compact
+      <section
         id="models"
-        headingId="se-models-heading"
-        heading={edgeModelsSection.title}
-        body={edgeModelsSection.body}
-        items={edgeModels}
-        ariaLabel="AI models on Spectr Edge"
-        duration="22s"
-      />
+        className="se-models scroll-mt-24 bg-white px-6 pb-[88px] pt-[64px]"
+        aria-labelledby="se-models-heading"
+      >
+        <h2
+          id="se-models-heading"
+          className="home-display mb-12 text-center sm:mb-16"
+        >
+          {edgeModelsSection.title}
+        </h2>
+        <p className="mx-auto mb-16 max-w-2xl text-center text-[17px] font-normal leading-[1.4] text-[#1E1F2B]">
+          {edgeModelsSection.body}
+        </p>
+        <div className="se-models__logos" aria-label="AI models on Spectr Edge">
+          {edgeModels.map((item) => (
+            <img
+              key={item.id}
+              src={item.logo}
+              alt={item.name}
+              className={`se-models__logo se-models__logo--${item.id}`}
+            />
+          ))}
+        </div>
+      </section>
 
       <section
         id="performance"
