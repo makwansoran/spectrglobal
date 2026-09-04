@@ -32,7 +32,7 @@ function LogoRow({
             <img
               src={item.logo}
               alt={index >= items.length ? "" : item.name}
-              className={`logo-marquee__img${item.id === "yokogawa" ? " logo-marquee__img--on-dark" : ""}`}
+              className={`logo-marquee__img${item.id === "yokogawa" ? " logo-marquee__img--on-dark" : ""}${item.logo.startsWith("/images/models/") ? " logo-marquee__img--model" : ""}`}
             />
           </div>
         ))}

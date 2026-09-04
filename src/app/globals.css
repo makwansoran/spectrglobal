@@ -1698,6 +1698,11 @@ html.theme-white footer {
   object-fit: contain;
 }
 
+.logo-marquee__img--model {
+  height: 2.55rem;
+  max-width: 11.5rem;
+}
+
 .logo-marquee__img--on-dark {
   height: 2.6rem;
   padding: 0.35rem 0.45rem;
