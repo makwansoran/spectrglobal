@@ -49,6 +49,7 @@ export function LogoMarquee({
   body = integrationsSection.body,
   ariaLabel = "Integration partners",
   compact = false,
+  duration = "70s",
 }: {
   items?: readonly LogoItem[];
   id?: string;
@@ -57,11 +58,13 @@ export function LogoMarquee({
   body?: string;
   ariaLabel?: string;
   compact?: boolean;
+  duration?: string;
 }) {
   const useTwoRows = items.length > 8;
   const midpoint = Math.ceil(items.length / 2);
   const firstRow = useTwoRows ? items.slice(0, midpoint) : items;
   const secondRow = useTwoRows ? items.slice(midpoint) : [];
+  const reverseDuration = `${Math.round(Number.parseFloat(duration) * 1.17)}s`;
 
   return (
     <section
@@ -84,9 +87,9 @@ export function LogoMarquee({
       </p>
 
       <div className="space-y-6" aria-label={ariaLabel}>
-        <LogoRow items={firstRow} duration="70s" />
+        <LogoRow items={firstRow} duration={duration} />
         {secondRow.length > 0 ? (
-          <LogoRow items={secondRow} reverse duration="82s" />
+          <LogoRow items={secondRow} reverse duration={reverseDuration} />
         ) : null}
       </div>
     </section>

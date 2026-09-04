@@ -175,6 +175,7 @@ export function SpectrEdgePageView() {
         body={edgeModelsSection.body}
         items={edgeModels}
         ariaLabel="AI models on Spectr Edge"
+        duration="22s"
       />
 
       <section
