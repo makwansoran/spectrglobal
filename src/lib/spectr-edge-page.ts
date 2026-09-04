@@ -7,9 +7,9 @@ export const spectrEdgePage = {
   overviewBody:
     "Run vision models on the floor — without sending the site to the cloud. Spectr Edge is compute for AI vision on site, at a fraction of the cost of hosting large models.",
   specs: [
-    { label: "Inference", value: "On site", unit: "" },
-    { label: "Hosting cost", value: "A fraction", unit: "" },
-    { label: "Video & models", value: "Local", unit: "" },
+    { label: "Inference", value: "13", unit: "TOPS" },
+    { label: "Vision", value: "On site", unit: "" },
+    { label: "Ambient", value: "0–50", unit: "°C" },
     { label: "Runtime", value: "Spectr OS", unit: "" },
   ],
   nav: [
@@ -21,23 +21,25 @@ export const spectrEdgePage = {
   ],
   design: {
     image: "/images/products/spectr-edge-board.png",
-    imageAlt: "Spectr Edge board with Hailo AI accelerator",
+    imageAlt: "Spectr Edge AI board",
     chip: { x: 50, y: 40 },
     hailo: {
       label: "Hailo",
-      title: "On-device AI vision.",
-      body: "The Hailo accelerator scores frames on the board — not in another region.",
-      points: [
-        "Inference next to the camera",
-        "No round trip to a hosted model",
-        "Continuous vision on the floor",
-        "Detections into Spectr OS",
+      title: "13 TOPS on the chip.",
+      body: "A dedicated neural accelerator for AI vision on site. Object detection, segmentation, and pose — scored on the board, then handed to Spectr OS.",
+      specs: [
+        { label: "Inference", value: "13 TOPS" },
+        { label: "Accelerator", value: "Hailo" },
+        { label: "Interface", value: "PCIe Gen 3" },
+        { label: "Vision", value: "Detection, segmentation, pose" },
+        { label: "Ambient", value: "0–50 °C" },
+        { label: "Runtime", value: "Spectr OS" },
       ],
     },
   },
   performance: {
     title: "Line-side inference.",
-    body: "Score what is in front of the camera and hand it to Spectr OS. No round trip. No hosting bill for a foundation model you do not need.",
+    body: "13 TOPS on the floor. Score what is in front of the camera and hand it to Spectr OS. No round trip. No hosting bill for a foundation model you do not need.",
     image: "/images/industries/manufacturing.jpg",
     imageAlt: "Manufacturing line with on-site vision",
     points: [

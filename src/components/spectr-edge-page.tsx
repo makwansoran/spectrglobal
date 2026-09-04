@@ -102,11 +102,14 @@ function HailoCallout() {
           <h3 className="se-design__title">{design.hailo.title}</h3>
         </div>
         <p className="se-design__body">{design.hailo.body}</p>
-        <ul className="se-design__points">
-          {design.hailo.points.map((point) => (
-            <li key={point}>{point}</li>
+        <dl className="se-design__sheet">
+          {design.hailo.specs.map((spec) => (
+            <div key={spec.label} className="se-design__sheet-row">
+              <dt>{spec.label}</dt>
+              <dd>{spec.value}</dd>
+            </div>
           ))}
-        </ul>
+        </dl>
       </div>
       <svg className="se-design__line" aria-hidden="true">
         {line.ready ? (
@@ -209,7 +212,10 @@ export function SpectrEdgePageView() {
             {page.specs.map((spec) => (
               <div key={spec.label} className="se-specs__item">
                 <span className="se-specs__label">{spec.label}</span>
-                <p className="se-specs__value">{spec.value}</p>
+                <p className="se-specs__value">
+                  {spec.value}
+                  {spec.unit ? <span className="se-specs__unit">{spec.unit}</span> : null}
+                </p>
               </div>
             ))}
           </div>

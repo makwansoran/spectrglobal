@@ -232,6 +232,13 @@
   color: var(--fg);
 }
 
+.se-specs__unit {
+  margin-left: 0.28em;
+  font-size: 0.38em;
+  letter-spacing: -0.03em;
+  color: var(--muted);
+}
+
 .se-chapter {
   padding-top: clamp(2.5rem, 7vw, 5rem);
 }
@@ -321,17 +328,27 @@
   display: inline-block;
 }
 
-.se-design__points {
-  margin: 1.25rem 0 0;
-  padding: 0;
-  list-style: none;
+.se-design__sheet {
+  margin: 1.35rem 0 0;
 }
 
-.se-design__points li {
-  position: relative;
-  padding: 0.7rem 0 0.7rem 0;
+.se-design__sheet-row {
+  display: grid;
+  grid-template-columns: minmax(7rem, 0.42fr) minmax(0, 1fr);
+  gap: 0.75rem;
+  padding: 0.7rem 0;
   border-top: 1px solid var(--border);
-  font-size: 1rem;
+}
+
+.se-design__sheet-row dt {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.se-design__sheet-row dd {
+  margin: 0;
+  font-size: 0.95rem;
   letter-spacing: -0.02em;
   color: var(--fg);
 }
