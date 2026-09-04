@@ -11,7 +11,7 @@ export const spectrEdgePage = {
   design: {
     image: "/images/products/spectr-edge-board.png",
     imageAlt: "Spectr Edge AI board",
-    chip: { x: 50, y: 40 },
+    chip: { x: 48, y: 40 },
     hailo: {
       label: "Hailo",
       title: "13 TOPS on the chip.",

@@ -49,19 +49,22 @@ function HailoCallout() {
   return (
     <div ref={stageRef} className="se-design__stage">
       <div className="se-design__board">
-        <Image
-          src={design.image}
-          alt={design.imageAlt}
-          fill
-          sizes="(max-width: 960px) 100vw, 52vw"
-          quality={90}
-        />
-        <span
-          ref={pinRef}
-          className="se-design__pin"
-          style={{ left: `${design.chip.x}%`, top: `${design.chip.y}%` }}
-          aria-hidden="true"
-        />
+        <div className="se-design__board-photo">
+          <Image
+            src={design.image}
+            alt={design.imageAlt}
+            width={658}
+            height={1024}
+            sizes="(max-width: 960px) 92vw, 36rem"
+            quality={90}
+          />
+          <span
+            ref={pinRef}
+            className="se-design__pin"
+            style={{ left: `${design.chip.x}%`, top: `${design.chip.y}%` }}
+            aria-hidden="true"
+          />
+        </div>
       </div>
       <div className="se-design__hailo">
         <p className="se-design__hailo-label">{design.hailo.label}</p>
@@ -137,8 +140,8 @@ export function SpectrEdgePageView() {
 
       <section id="overview" className="se-overview" aria-labelledby="se-overview-heading">
         <div className="container-x se-overview__layout">
-          <div className="se-overview__media" aria-label={page.overviewVideoAlt}>
-            {page.overviewVideo ? (
+          {page.overviewVideo ? (
+            <div className="se-overview__media" aria-label={page.overviewVideoAlt}>
               <video
                 className="se-overview__video"
                 src={page.overviewVideo}
@@ -149,8 +152,8 @@ export function SpectrEdgePageView() {
                 playsInline
                 preload="metadata"
               />
-            ) : null}
-          </div>
+            </div>
+          ) : null}
           <Reveal className="se-overview__copy">
             <h2 id="se-overview-heading" className="home-display">
               {page.overviewTitle}
