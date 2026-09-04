@@ -21,7 +21,7 @@ export const site = {
 
 export const navPrimary = [
   { label: "Products", href: "/platforms/spectr-os" },
-  { label: "Solutions", href: "/solutions" },
+  { label: "Solutions", href: "/use-cases/manufacturing" },
   { label: "Company", href: "/company" },
   { label: "News", href: "/news" },
 ] as const;
@@ -34,7 +34,7 @@ export type NavItem = {
 
 export type NavSection = {
   label: string;
-  href: string;
+  href?: string;
   items?: NavItem[];
 };
 
@@ -57,7 +57,6 @@ export const navSections: NavSection[] = [
   },
   {
     label: "Solutions",
-    href: "/solutions",
     items: [
       { label: "Logistics", href: "/use-cases/logistics", description: "Planning and execution across the network." },
       { label: "Manufacturing", href: "/use-cases/manufacturing", description: "Strategy and the shop floor as one model." },

@@ -36,6 +36,7 @@ const nextConfig: NextConfig = {
       { source: "/use-cases/shipping", destination: "/", permanent: true },
       { source: "/use-cases/mining", destination: "/", permanent: true },
       { source: "/use-cases/operations", destination: "/", permanent: true },
+      { source: "/solutions", destination: "/use-cases/manufacturing", permanent: true },
     ];
   },
 };

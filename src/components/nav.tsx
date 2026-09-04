@@ -18,11 +18,10 @@ const referenceNavSections: NavSection[] = [
   },
   {
     label: "Solutions",
-    href: "/solutions",
     items: [
-      { label: "Manufacturing", href: "/use-cases/manufacturing" },
-      { label: "Logistics", href: "/use-cases/logistics" },
-      { label: "Waste Management", href: "/use-cases/waste-management" },
+      { label: "Manufacturing", href: "/use-cases/manufacturing", description: "Strategy and the shop floor as one model." },
+      { label: "Logistics", href: "/use-cases/logistics", description: "Planning and execution across the network." },
+      { label: "Waste Management", href: "/use-cases/waste-management", description: "Collection, plants, and materials in one loop." },
     ],
   },
   {
@@ -178,13 +177,17 @@ export function Nav() {
           <nav className="container-x flex flex-col gap-1 pb-10 pt-6" aria-label="Mobile">
             {referenceNavSections.map((section) => (
               <div key={section.label} className="border-b border-border py-4">
-                <Link
-                  href={section.href}
-                  onClick={() => setOpen(false)}
-                  className="display block text-4xl tracking-[-0.03em] text-fg"
-                >
-                  {section.label}
-                </Link>
+                {section.href ? (
+                  <Link
+                    href={section.href}
+                    onClick={() => setOpen(false)}
+                    className="display block text-4xl tracking-[-0.03em] text-fg"
+                  >
+                    {section.label}
+                  </Link>
+                ) : (
+                  <p className="display m-0 text-4xl tracking-[-0.03em] text-fg">{section.label}</p>
+                )}
                 {section.items ? (
                   <ul className="mt-4 space-y-2">
                     {section.items.map((item) => (
@@ -236,7 +239,7 @@ function NavDropdown({
   if (!section.items?.length) {
     return (
       <div className="reference-nav__item">
-        <Link href={section.href}>{section.label}</Link>
+        <Link href={section.href ?? "/"}>{section.label}</Link>
       </div>
     );
   }
@@ -247,16 +250,30 @@ function NavDropdown({
       onMouseEnter={onOpen}
       onMouseLeave={onClose}
     >
-      <Link
-        href={section.href}
-        className="reference-nav__trigger"
-        aria-expanded={open}
-        aria-haspopup="true"
-        aria-controls={menuId}
-        onFocus={onOpen}
-      >
-        {section.label}
-      </Link>
+      {section.href ? (
+        <Link
+          href={section.href}
+          className="reference-nav__trigger"
+          aria-expanded={open}
+          aria-haspopup="true"
+          aria-controls={menuId}
+          onFocus={onOpen}
+        >
+          {section.label}
+        </Link>
+      ) : (
+        <button
+          type="button"
+          className="reference-nav__trigger"
+          aria-expanded={open}
+          aria-haspopup="true"
+          aria-controls={menuId}
+          onFocus={onOpen}
+          onClick={() => (open ? onClose() : onOpen())}
+        >
+          {section.label}
+        </button>
+      )}
       {open ? (
         <div
           id={menuId}

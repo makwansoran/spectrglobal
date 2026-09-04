@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/footer";
-import { UseCasePageView } from "@/components/use-case-page";
+import { IndustryPageView } from "@/components/industry-page";
 import { buildPageMetadata } from "@/lib/metadata";
 import { getIndustryPage, getIndustrySlugs } from "@/lib/use-cases";
 
@@ -33,7 +33,7 @@ export default async function UseCaseRoute({ params }: Props) {
   return (
     <>
       <main id="main-content" className="flex-1 bg-white">
-        <UseCasePageView page={page} />
+        <IndustryPageView page={page} />
       </main>
       <Footer />
     </>

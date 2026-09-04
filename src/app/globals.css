@@ -1507,6 +1507,13 @@ html.theme-white footer {
   border-left: 1px solid var(--border);
 }
 
+button.reference-nav__trigger {
+  appearance: none;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+}
+
 .reference-nav__trigger,
 .reference-nav__item > a {
   display: flex;
@@ -1699,8 +1706,8 @@ html.theme-white footer {
 }
 
 .logo-marquee__img--model {
-  height: 2.55rem;
-  max-width: 11.5rem;
+  height: 2.7rem;
+  max-width: 13.5rem;
 }
 
 .logo-marquee__img--on-dark {
