@@ -1,0 +1,61 @@
+export type EdgeModel = {
+  id: string;
+  name: string;
+  logo: string;
+};
+
+export const edgeModelsSection = {
+  title: "Models",
+  body: "The Hailo model zoo Spectr Edge runs on the chip — detection, segmentation, pose, and the rest of the vision stack.",
+};
+
+export const edgeModels: EdgeModel[] = [
+  { id: "yolov3", name: "YOLOv3", logo: "/images/models/yolov3.svg" },
+  { id: "yolov4", name: "YOLOv4", logo: "/images/models/yolov4.svg" },
+  { id: "yolov5", name: "YOLOv5", logo: "/images/models/yolov5.svg" },
+  { id: "yolov6", name: "YOLOv6", logo: "/images/models/yolov6.svg" },
+  { id: "yolov7", name: "YOLOv7", logo: "/images/models/yolov7.svg" },
+  { id: "yolov8", name: "YOLOv8", logo: "/images/models/yolov8.svg" },
+  { id: "yolov9", name: "YOLOv9", logo: "/images/models/yolov9.svg" },
+  { id: "yolov10", name: "YOLOv10", logo: "/images/models/yolov10.svg" },
+  { id: "yolo11", name: "YOLO11", logo: "/images/models/yolo11.svg" },
+  { id: "yolo12", name: "YOLO12", logo: "/images/models/yolo12.svg" },
+  { id: "yolo26", name: "YOLO26", logo: "/images/models/yolo26.svg" },
+  { id: "yolox", name: "YOLOX", logo: "/images/models/yolox.svg" },
+  { id: "damo-yolo", name: "DAMO-YOLO", logo: "/images/models/damo-yolo.svg" },
+  { id: "centernet", name: "CenterNet", logo: "/images/models/centernet.svg" },
+  { id: "detr", name: "DETR", logo: "/images/models/detr.svg" },
+  { id: "efficientdet", name: "EfficientDet", logo: "/images/models/efficientdet.svg" },
+  { id: "nanodet", name: "NanoDet", logo: "/images/models/nanodet.svg" },
+  { id: "ssd", name: "SSD", logo: "/images/models/ssd.svg" },
+  { id: "mobilenet", name: "MobileNet", logo: "/images/models/mobilenet.svg" },
+  { id: "resnet", name: "ResNet", logo: "/images/models/resnet.svg" },
+  { id: "efficientnet", name: "EfficientNet", logo: "/images/models/efficientnet.svg" },
+  { id: "vit", name: "ViT", logo: "/images/models/vit.svg" },
+  { id: "convnext", name: "ConvNeXt", logo: "/images/models/convnext.svg" },
+  { id: "swin", name: "Swin", logo: "/images/models/swin.svg" },
+  { id: "regnet", name: "RegNet", logo: "/images/models/regnet.svg" },
+  { id: "densenet", name: "DenseNet", logo: "/images/models/densenet.svg" },
+  { id: "deeplabv3", name: "DeepLabv3", logo: "/images/models/deeplabv3.svg" },
+  { id: "segformer", name: "SegFormer", logo: "/images/models/segformer.svg" },
+  { id: "unet", name: "U-Net", logo: "/images/models/unet.svg" },
+  { id: "yolact", name: "YOLACT", logo: "/images/models/yolact.svg" },
+  { id: "sparseinst", name: "SparseInst", logo: "/images/models/sparseinst.svg" },
+  { id: "yolov5-seg", name: "YOLOv5-seg", logo: "/images/models/yolov5-seg.svg" },
+  { id: "yolov8-seg", name: "YOLOv8-seg", logo: "/images/models/yolov8-seg.svg" },
+  { id: "fastsam", name: "FastSAM", logo: "/images/models/fastsam.svg" },
+  { id: "sam", name: "SAM", logo: "/images/models/sam.svg" },
+  { id: "clip", name: "CLIP", logo: "/images/models/clip.svg" },
+  { id: "openpose", name: "OpenPose", logo: "/images/models/openpose.svg" },
+  { id: "centerpose", name: "CenterPose", logo: "/images/models/centerpose.svg" },
+  { id: "yolov8-pose", name: "YOLOv8-pose", logo: "/images/models/yolov8-pose.svg" },
+  { id: "midas", name: "MiDaS", logo: "/images/models/midas.svg" },
+  { id: "depth-anything", name: "Depth Anything", logo: "/images/models/depth-anything.svg" },
+  { id: "retinaface", name: "RetinaFace", logo: "/images/models/retinaface.svg" },
+  { id: "scrfd", name: "SCRFD", logo: "/images/models/scrfd.svg" },
+  { id: "arcface", name: "ArcFace", logo: "/images/models/arcface.svg" },
+  { id: "osnet", name: "OSNet", logo: "/images/models/osnet.svg" },
+  { id: "whisper", name: "Whisper", logo: "/images/models/whisper.svg" },
+  { id: "paddleocr", name: "PaddleOCR", logo: "/images/models/paddleocr.svg" },
+  { id: "esrgan", name: "ESRGAN", logo: "/images/models/esrgan.svg" },
+];

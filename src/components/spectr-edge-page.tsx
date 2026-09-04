@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useLayoutEffect, useRef, useState } from "react";
 import { GetStartedButton } from "@/components/get-started-button";
 import { Reveal } from "@/components/reveal";
+import { LogoMarquee } from "@/components/sections/logo-marquee";
+import { edgeModels, edgeModelsSection } from "@/lib/edge-models";
 import { spectrEdgePage } from "@/lib/spectr-edge-page";
 import "./spectr-edge-page.css";
 
@@ -162,8 +164,29 @@ export function SpectrEdgePageView() {
       <section id="design" className="se-chapter se-design" aria-label="Design">
         <div className="container-x">
           <HailoCallout />
+          <figure className="se-design__photo">
+            <div className="se-design__photo-frame">
+              <Image
+                src={page.design.enclosure.image}
+                alt={page.design.enclosure.imageAlt}
+                fill
+                sizes="(max-width: 960px) 100vw, 44rem"
+                quality={90}
+              />
+            </div>
+          </figure>
         </div>
       </section>
+
+      <LogoMarquee
+        compact
+        id="models"
+        headingId="se-models-heading"
+        heading={edgeModelsSection.title}
+        body={edgeModelsSection.body}
+        items={edgeModels}
+        ariaLabel="AI models on Spectr Edge"
+      />
 
       <section
         id="performance"

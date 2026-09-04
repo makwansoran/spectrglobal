@@ -165,7 +165,26 @@
 }
 
 .se-design {
-  padding-bottom: clamp(3rem, 8vw, 5.5rem);
+  padding-bottom: clamp(2rem, 5vw, 3.25rem);
+}
+
+.se-design__photo {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(2.75rem, 7vw, 5rem);
+}
+
+.se-design__photo-frame {
+  position: relative;
+  overflow: hidden;
+  width: min(100%, 44rem);
+  aspect-ratio: 1;
+  border-radius: 1.15rem;
+  background: #000000;
+}
+
+.se-design__photo-frame img {
+  object-fit: contain;
 }
 
 .se-design__stage {
