@@ -15,6 +15,7 @@ const nextConfig: NextConfig = {
       { source: "/no", destination: "/", permanent: true },
       { source: "/no/:path*", destination: "/:path*", permanent: true },
       { source: "/object-intelligence", destination: "/platforms/spectr-os", permanent: true },
+      { source: "/platforms/spectr-edge", destination: "/", permanent: true },
       { source: "/platforms/aim", destination: "/platforms/spectr-os", permanent: true },
       { source: "/platforms/metaphysics", destination: "/platforms/spectr-os", permanent: true },
       { source: "/platforms/argus", destination: "/platforms/spectr-os", permanent: true },

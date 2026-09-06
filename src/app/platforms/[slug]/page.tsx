@@ -2,11 +2,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/footer";
 import { PlatformPageView } from "@/components/platform-page";
-import { SpectrEdgePageView } from "@/components/spectr-edge-page";
 import { SpectrOsPageView } from "@/components/spectr-os-page";
 import { buildPageMetadata } from "@/lib/metadata";
 import { getPlatform, getPlatformSlugs } from "@/lib/platforms";
-import { spectrEdgePage } from "@/lib/spectr-edge-page";
 import { spectrOsPage } from "@/lib/spectr-os-page";
 
 type Props = {
@@ -28,14 +26,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     });
   }
 
-  if (slug === "spectr-edge") {
-    return buildPageMetadata({
-      title: spectrEdgePage.name,
-      description: spectrEdgePage.heroTagline,
-      path: "/platforms/spectr-edge",
-    });
-  }
-
   const platform = getPlatform(slug);
   if (!platform) return {};
 
@@ -53,15 +43,6 @@ export default async function PlatformPage({ params }: Props) {
     return (
       <>
         <SpectrOsPageView />
-        <Footer />
-      </>
-    );
-  }
-
-  if (slug === "spectr-edge") {
-    return (
-      <>
-        <SpectrEdgePageView />
         <Footer />
       </>
     );

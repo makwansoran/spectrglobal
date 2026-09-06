@@ -13,7 +13,6 @@ const referenceNavSections: NavSection[] = [
     href: "/platforms/spectr-os",
     items: [
       { label: "Spectr OS", href: "/platforms/spectr-os", description: "The operating system for the enterprise." },
-      { label: "Spectr Edge", href: "/platforms/spectr-edge", description: "On-site compute for AI vision." },
     ],
   },
   {
