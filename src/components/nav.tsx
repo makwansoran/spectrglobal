@@ -9,11 +9,9 @@ import { site, type NavSection } from "@/lib/site";
 
 const referenceNavSections: NavSection[] = [
   {
-    label: "Products",
+    label: "Spectr OS",
     href: "/platforms/spectr-os",
-    items: [
-      { label: "Spectr OS", href: "/platforms/spectr-os", description: "The operating system for the enterprise." },
-    ],
+    previewVideo: "/videos/spectr-os.mp4",
   },
   {
     label: "Solutions",
@@ -187,7 +185,7 @@ export function Nav() {
                 ) : (
                   <p className="display m-0 text-4xl tracking-[-0.03em] text-fg">{section.label}</p>
                 )}
-                {section.items ? (
+                {section.items?.length ? (
                   <ul className="mt-4 space-y-2">
                     {section.items.map((item) => (
                       <li key={item.href + item.label}>
@@ -234,6 +232,65 @@ function NavDropdown({
   onClose: () => void;
 }) {
   const menuId = useId();
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !section.previewVideo) return;
+    if (open) {
+      void video.play().catch(() => undefined);
+    } else {
+      video.pause();
+      video.currentTime = 0;
+    }
+  }, [open, section.previewVideo]);
+
+  if (section.previewVideo) {
+    return (
+      <div
+        className={`reference-nav__item reference-nav__item--os ${open ? "reference-nav__item--open" : ""}`}
+        onMouseEnter={onOpen}
+        onMouseLeave={onClose}
+      >
+        <Link
+          href={section.href ?? "/"}
+          className="reference-nav__trigger reference-nav__trigger--os"
+          aria-expanded={open}
+          aria-haspopup="true"
+          aria-controls={menuId}
+          onFocus={onOpen}
+        >
+          <span className="reference-nav__os-fill" aria-hidden="true" />
+          <span className="reference-nav__os-label">{section.label}</span>
+        </Link>
+        {open ? (
+          <div id={menuId} role="menu" className="reference-nav__os-mega">
+            <Link
+              href={section.href ?? "/"}
+              role="menuitem"
+              className="reference-nav__os-preview"
+              aria-label="Spectr OS preview"
+              onClick={onClose}
+            >
+              <span className="reference-nav__os-video">
+                <video
+                  ref={videoRef}
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  poster="/images/products/spectr-os-ui.png"
+                  aria-hidden="true"
+                >
+                  <source src={section.previewVideo} type="video/mp4" />
+                </video>
+              </span>
+            </Link>
+          </div>
+        ) : null}
+      </div>
+    );
+  }
 
   if (!section.items?.length) {
     return (
@@ -274,11 +331,7 @@ function NavDropdown({
         </button>
       )}
       {open ? (
-        <div
-          id={menuId}
-          role="menu"
-          className="reference-nav__mega"
-        >
+        <div id={menuId} role="menu" className="reference-nav__mega">
           {section.items.map((item) => (
             <Link
               key={item.href + item.label}

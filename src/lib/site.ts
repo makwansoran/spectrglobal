@@ -20,7 +20,7 @@ export const site = {
 } as const;
 
 export const navPrimary = [
-  { label: "Products", href: "/platforms/spectr-os" },
+  { label: "Spectr OS", href: "/platforms/spectr-os" },
   { label: "Solutions", href: "/use-cases/manufacturing" },
   { label: "Company", href: "/company" },
   { label: "News", href: "/news" },
@@ -36,19 +36,14 @@ export type NavSection = {
   label: string;
   href?: string;
   items?: NavItem[];
+  previewVideo?: string;
 };
 
 export const navSections: NavSection[] = [
   {
-    label: "Products",
+    label: "Spectr OS",
     href: "/platforms/spectr-os",
-    items: [
-      {
-        label: "Spectr OS",
-        href: "/platforms/spectr-os",
-        description: "The operating system for the enterprise — fuse data, decide, and act.",
-      },
-    ],
+    previewVideo: "/videos/spectr-os.mp4",
   },
   {
     label: "Solutions",
