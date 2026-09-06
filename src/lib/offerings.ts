@@ -11,31 +11,6 @@ export const offeringsPage = {
 
 export const offerings: Offering[] = [
   {
-    title: "Spectr OS",
-    body: "The operating system for the enterprise. Fuse data, decide, and act in one runtime.",
-    href: "/platforms/spectr-os",
-  },
-  {
-    title: "Ontology",
-    body: "A full-fidelity representation of the business — shared by people, models, and software.",
-    href: "/products/ontology",
-  },
-  {
-    title: "Agentic runtime",
-    body: "Go beyond chat. Agents that propose real work, with a human still on the approval.",
-    href: "/products/agents",
-  },
-  {
-    title: "Command",
-    body: "Ranked decisions with evidence — for operations that cannot wait on a morning report.",
-    href: "/products/command",
-  },
-  {
-    title: "Deploy",
-    body: "Stand the runtime up across cloud, on-prem, and the edge. Monitor it. Keep it current.",
-    href: "/products/deploy",
-  },
-  {
     title: "Manufacturing",
     body: "Strategy, materials, and the shop floor as one model — at the speed of the line.",
     href: "/use-cases/manufacturing",
