@@ -9,7 +9,7 @@ export function AboutPageView() {
     <main id="main-content" className="about-page">
       <section className="about-page__hero" aria-labelledby="about-heading">
         <div className="about-page__hero-inner">
-          <h1 id="about-heading" className="about-page__title">
+          <h1 id="about-heading" className="about-page__title home-display">
             {content.title}
           </h1>
           <p className="about-page__belief">{content.belief}</p>

@@ -1,8 +1,7 @@
 .about-page {
-  --about-ink: #1a1a1a;
-  --about-muted: #3a3a3a;
-  --about-soft: #5a5a5a;
-  --about-line: rgba(0, 0, 0, 0.12);
+  --about-ink: #1e1f2b;
+  --about-muted: #1e1f2b;
+  --about-line: rgba(30, 31, 43, 0.12);
   background: #ffffff;
   color: var(--about-ink);
   font-family: var(--font-sans);
@@ -31,20 +30,21 @@
 .about-page__title {
   margin: 0;
   font-family: var(--font-sans);
-  font-size: clamp(3.2rem, 9vw, 6.5rem);
-  font-weight: 700;
-  letter-spacing: -0.045em;
-  line-height: 0.92;
+  font-size: clamp(2.75rem, 9vw, 6.25rem);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  line-height: 0.86;
   color: var(--about-ink);
+  text-align: left;
 }
 
 .about-page__belief {
   margin: 0;
   max-width: 28rem;
-  font-size: clamp(1.15rem, 2vw, 1.45rem);
-  font-weight: 500;
-  line-height: 1.35;
-  letter-spacing: -0.02em;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
   color: var(--about-ink);
 }
 
@@ -81,10 +81,10 @@
 .about-page__statement h2 {
   margin: 0;
   font-family: var(--font-sans);
-  font-size: clamp(1.65rem, 3.2vw, 2.35rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.25;
+  font-size: clamp(1.65rem, 3.2vw, 2.5rem);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 1.15;
   color: var(--about-ink);
 }
 
@@ -97,8 +97,9 @@
 
 .about-page__essay p {
   margin: 0;
-  font-size: clamp(1rem, 1.35vw, 1.125rem);
-  line-height: 1.7;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.4;
   color: var(--about-muted);
 }
 
@@ -112,10 +113,10 @@
 .about-page__section-title {
   margin: 0 0 clamp(2rem, 5vw, 3.25rem);
   font-family: var(--font-sans);
-  font-size: clamp(2rem, 4.5vw, 3.25rem);
-  font-weight: 700;
-  letter-spacing: -0.035em;
-  line-height: 1.05;
+  font-size: clamp(2rem, 5.5vw, 4rem);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  line-height: 0.9;
   color: var(--about-ink);
 }
 
@@ -134,16 +135,17 @@
   margin: 0;
   font-family: var(--font-sans);
   font-size: clamp(1.35rem, 2.4vw, 1.85rem);
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  line-height: 1.2;
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
   color: var(--about-ink);
 }
 
 .about-page__block p {
   margin: 0;
-  font-size: clamp(1rem, 1.3vw, 1.1rem);
-  line-height: 1.7;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.4;
   color: var(--about-muted);
 }
 
@@ -175,26 +177,29 @@
 
 .about-page__expertise-item h3 {
   margin: 0;
+  font-family: var(--font-sans);
   font-size: clamp(1.15rem, 2vw, 1.45rem);
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-weight: 400;
+  letter-spacing: -0.03em;
   color: var(--about-ink);
 }
 
 .about-page__expertise-item p {
   margin: 0;
-  font-size: 1.02rem;
-  line-height: 1.65;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.4;
   color: var(--about-muted);
 }
 
 .about-page__future-lead {
   margin: 0 0 1.75rem;
   max-width: 820px;
+  font-family: var(--font-sans);
   font-size: clamp(1.35rem, 2.6vw, 1.85rem);
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  line-height: 1.25;
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1.2;
   color: var(--about-ink);
 }
 
@@ -206,8 +211,9 @@
 
 .about-page__prose p {
   margin: 0;
-  font-size: clamp(1rem, 1.35vw, 1.125rem);
-  line-height: 1.7;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.4;
   color: var(--about-muted);
 }
 
