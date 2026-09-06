@@ -13,7 +13,6 @@ const paths = [
   "/privacy",
   "/terms",
   "/bootcamp",
-  "/waitlist",
   ...hubPaths,
   ...getIndustrySlugs().map((slug) => `/use-cases/${slug}`),
 ];

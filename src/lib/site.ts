@@ -86,7 +86,6 @@ export const footerColumns = [
     links: [
       { label: "About", href: "/about" },
       { label: "News", href: "/news" },
-      { label: "Waitlist", href: "/waitlist" },
       { label: "Contact", href: "/contact" },
     ],
   },

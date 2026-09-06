@@ -41,6 +41,8 @@ const nextConfig: NextConfig = {
       { source: "/solutions/:path*", destination: "/offerings", permanent: true },
       { source: "/company", destination: "/about", permanent: true },
       { source: "/company/:path*", destination: "/about", permanent: true },
+      { source: "/waitlist", destination: "/", permanent: true },
+      { source: "/waitlist/:path*", destination: "/", permanent: true },
       { source: "/products", destination: "/offerings", permanent: true },
       { source: "/products/:path*", destination: "/offerings", permanent: true },
       { source: "/blog", destination: "/news", permanent: true },

@@ -1,10 +1,14 @@
+"use client";
+
 import Image from "next/image";
-import Link from "next/link";
+import { useGetStarted } from "@/components/get-started-context";
 import { LogoMark } from "@/components/logo";
 import { HomeProductField } from "@/components/sections/home-product-field";
 import "./waitlist-section.css";
 
 export function WaitlistSection() {
+  const { openGetStarted } = useGetStarted();
+
   return (
     <>
       <section
@@ -50,15 +54,19 @@ export function WaitlistSection() {
             />
             <div className="spectros-waitlist__scrim" aria-hidden="true" />
             <div className="spectros-waitlist__content">
-              <h2 id="spectros-waitlist-heading" className="home-display spectros-waitlist__title">
-                Be one of the first
+              <h2 id="spectros-hero-heading" className="home-display spectros-waitlist__title">
+                The operating system
                 <br />
-                to use spectrOs
+                for the enterprise
               </h2>
               <div className="spectros-waitlist__cta">
-                <Link href="/waitlist" className="spectros-waitlist__join spectros-waitlist__join--on-media">
-                  Join waitlist
-                </Link>
+                <button
+                  type="button"
+                  className="spectros-waitlist__join spectros-waitlist__join--on-media"
+                  onClick={() => openGetStarted("contact")}
+                >
+                  Get started
+                </button>
               </div>
             </div>
           </div>
@@ -69,7 +77,7 @@ export function WaitlistSection() {
         id="spectr-os"
         headingId="spectros-product-heading"
         title="Spectr OS"
-        lede="The operating system for the enterprise. Fuse data, decide, and act in one runtime."
+        lede="Fuse data, decide, and act in one runtime."
         image="/images/products/spectr-os-materials.jpg"
         imageAlt="Materials processing plant with conveyors and sorting equipment"
         ctaHref="/platforms/spectr-os"
