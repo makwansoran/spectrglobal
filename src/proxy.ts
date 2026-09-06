@@ -36,7 +36,7 @@ export async function proxy(request: NextRequest) {
 
   if (pathname.startsWith("/dashboard") && session?.role === "admin") {
     const url = request.nextUrl.clone();
-    url.pathname = "/admin";
+    url.pathname = "/admin/users";
     url.search = "";
     return NextResponse.redirect(url);
   }
@@ -47,8 +47,8 @@ export async function proxy(request: NextRequest) {
     url.pathname =
       session.role === "admin"
         ? requested?.startsWith("/admin")
-          ? safeNextPath(requested, "/admin")
-          : "/admin"
+          ? safeNextPath(requested, "/admin/users")
+          : "/admin/users"
         : "/dashboard";
     url.search = "";
     return NextResponse.redirect(url);

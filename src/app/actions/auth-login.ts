@@ -75,7 +75,7 @@ export async function resolveLoginNext(input: {
   kind: AccountKind;
   fallback: string;
 }) {
-  if (input.kind === "product" && isAdminEmail(input.email)) return "/admin";
+  if (input.kind === "product" && isAdminEmail(input.email)) return "/admin/users";
   return input.fallback;
 }
 

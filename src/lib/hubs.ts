@@ -1,4 +1,3 @@
-import { loadEditorialPosts, loadHiddenSlugs } from "@/lib/editorial/store";
 import { industryPages } from "@/lib/use-cases";
 import { partnerQuotes } from "@/lib/content";
 
@@ -8,17 +7,6 @@ export type HubCard = {
   href: string;
   image?: string;
   imageAlt?: string;
-};
-
-export type HubPost = {
-  slug: string;
-  date: string;
-  title: string;
-  dek: string;
-  href: string;
-  image: string;
-  imageAlt: string;
-  paragraphs: string[];
 };
 
 export type HubPage = {
@@ -32,8 +20,6 @@ export type HubPage = {
   columnTwo: string;
   cardsTitle?: string;
   cards?: HubCard[];
-  postsTitle?: string;
-  posts?: HubPost[];
   quotesTitle?: string;
   capabilitiesTitle?: string;
   capabilities?: { title: string; body: string }[];
@@ -78,66 +64,6 @@ export const productCards: HubCard[] = [
     imageAlt: "On-site deployment of Spectr OS",
   },
 ];
-
-export const researchEssays: HubPost[] = [
-  {
-    slug: "operating-system",
-    date: "April 2026",
-    title: "Why an operating system, not a dashboard",
-    dek: "The bottleneck is not visualisation. It is a continuously updated model of a real working environment.",
-    href: "/research/operating-system",
-    image: "/images/industries/warehousing.jpg",
-    imageAlt: "Warehouse operations",
-    paragraphs: [
-      "Most industrial software still behaves like a newspaper. It tells you what happened. Operators do not need a better newspaper. They need a system that holds the current state of the work — and that can be acted on.",
-      "An operating system, in this sense, is not a kernel metaphor for its own sake. It is a place where objects persist: a pallet, a berth, a compressor, a case file. Tools, agents, and people read and write the same objects. That is what makes a decision cheap enough to take on a Tuesday afternoon.",
-      "Dashboards fail because they sit beside the work. Spectr OS is built to sit in the work. Fusion, ontology, and workflow are how the model stays honest as the floor changes.",
-    ],
-  },
-  {
-    slug: "ontology",
-    date: "May 2026",
-    title: "Ontology as operational truth",
-    dek: "If the software does not know what a unit is, the model will invent the world.",
-    href: "/research/ontology",
-    image: "/images/products/metaphysics-ui.png",
-    imageAlt: "Ontology canvas",
-    paragraphs: [
-      "A model that is not anchored to objects will hallucinate politely. That is fine in a chat window. It is not fine on a line, a ward, or a front.",
-      "Ontology here means the things the institution already acts on, named once: locations, assets, orders, people, constraints. Relationships are first-class. When an agent proposes a move, it proposes a change to those objects — not a paragraph.",
-      "The research programme is simple. Keep the representation full-fidelity and shared. Then every workflow, simulation, and approval is speaking the same language. That is how you get speed without losing inspectability.",
-    ],
-  },
-  {
-    slug: "local-ai",
-    date: "June 2026",
-    title: "AI that runs where the data lives",
-    dek: "The institutions we serve cannot wait on a public cloud round-trip, and they should not have to give the world away to get a model.",
-    href: "/research/local-ai",
-    image: "/images/industries/energy.jpg",
-    imageAlt: "On-site industrial systems",
-    paragraphs: [
-      "Latency on a plant is measured in the unit, not in the marketing site. A warehouse that goes dark because a region failed is not an AI company problem. It is an operations problem.",
-      "Spectr’s bet is that the valuable model is the one trained on your logs, your exceptions, your language — and that it should run on your estate. Edge and on-prem are not a compromise. They are how you keep a truthful picture when the link is thin.",
-      "Local does not mean isolated. Patterns can still compound across sites. The constraint is governance: what leaves, what stays, who approved the action. That is the research we actually do.",
-    ],
-  },
-];
-
-export const researchHub: HubPage = {
-  path: "/research",
-  bannerTitle: "Research",
-  description: "Spectr Explained — how we think about operating systems, ontology, and AI that runs on the floor.",
-  heroImage: "/images/industries/infrastructure.jpg",
-  heroImageAlt: "Infrastructure and systems",
-  headline: "Spectr Explained — the ideas the product is built on.",
-  columnOne:
-    "This is not a lab notebook. It is the argument we make to ourselves before we ship: why an OS, why objects, why local, why a human still signs the act.",
-  columnTwo:
-    "Read the essays. Then look at Spectr OS. The software should be the proof. The writing is how we keep from shipping something merely interesting.",
-  postsTitle: "Essays",
-  posts: researchEssays,
-};
 
 export const developersHub: HubPage = {
   path: "/developers",
@@ -192,66 +118,6 @@ export const developersHub: HubPage = {
       body: "Develop against a local runtime. Deploy to the site that owns the data.",
     },
   ],
-};
-
-export const blogPosts: HubPost[] = [
-  {
-    slug: "spectr-os-free",
-    date: "March 2026",
-    title: "The operating system for the whole floor",
-    dek: "Spectr OS is built so shift leads, planners, and agents work from the same live model.",
-    href: "/blog/spectr-os-free",
-    image: "/images/news/spectr-os-free.jpg",
-    imageAlt: "Enterprise floor running on Spectr OS",
-    paragraphs: [
-      "Seat-based pricing is how software stays a spectator sport. The people who close exceptions never get a login. The model never sees the work. We are not doing that.",
-      "Spectr OS puts the runtime that fuses the floor and holds the ontology in one place — so every shift lead can work from the same model.",
-      "If you want a conversation about where it fits, talk to us. The product is already the offer.",
-    ],
-  },
-  {
-    slug: "beyond-chat",
-    date: "May 2026",
-    title: "Beyond chat: agents that propose real work",
-    dek: "A model that cannot take an action is a search box. The interesting part is the approval.",
-    href: "/blog/beyond-chat",
-    image: "/images/products/aim-ui.png",
-    imageAlt: "Agentic interface",
-    paragraphs: [
-      "Chat is a fine way to ask a question. It is a poor way to run a warehouse. The work is alerts, substitutions, berth plans, staffing, KYC queues — things that change objects.",
-      "On Spectr OS, an agent reviews, proposes, and waits. A human sees the logic and the history. That is slower than a demo gif and faster than a week of email. It is also legal in places chat is not.",
-      "If your AI programme is still a chatbot on the intranet, you do not have an operations problem solved. You have a new UI on the old mess.",
-    ],
-  },
-  {
-    slug: "from-insight-to-impact",
-    date: "June 2026",
-    title: "From insight to impact",
-    dek: "Insight that does not change a workflow is a cost centre with better kerning.",
-    href: "/blog/from-insight-to-impact",
-    image: "/images/industries/logistics.jpg",
-    imageAlt: "Logistics operations",
-    paragraphs: [
-      "Enterprises are full of insight. Few of them can say what was decided, on which object, by whom, after the insight arrived. That gap is where transformation decks go to die.",
-      "Impact, for us, is a shorter loop: see the shortage, rank the legal moves, take one, write it down. Minutes, not a quarterly steering group.",
-      "The customer stories on this site are that loop, told from the floor. They are not a promise that software is magic. They are a record that the work got cheaper to do correctly.",
-    ],
-  },
-];
-
-export const blogHub: HubPage = {
-  path: "/blog",
-  bannerTitle: "Blog",
-  description: "Writing from Spectr — the OS, agents, and why the floor comes first.",
-  heroImage: "/images/careers/office.png",
-  heroImageAlt: "Spectr team",
-  headline: "Notes from the company building Spectr OS.",
-  columnOne:
-    "Short pieces on the product and the ideas behind it. Not a newsroom wire. If you want announcements, see News. If you want the argument, it is here.",
-  columnTwo:
-    "We write the way we build: against dashboards that do not act, against models that do not know the objects, against AI that cannot run on the site that owns the data.",
-  postsTitle: "Latest",
-  posts: blogPosts,
 };
 
 export const customersHub: HubPage = {
@@ -404,41 +270,11 @@ export function getProductSlugs() {
   return productPages.map((page) => page.slug);
 }
 
-export async function listBlogPosts() {
-  const extra = await loadEditorialPosts("blog");
-  const seen = new Set(blogPosts.map((post) => post.slug));
-  return [...extra.filter((post) => !seen.has(post.slug)), ...blogPosts];
-}
-
-export async function listResearchEssays() {
-  const extra = await loadEditorialPosts("research");
-  const hidden = new Set(await loadHiddenSlugs("research"));
-  const extraBySlug = new Set(extra.map((post) => post.slug));
-  return [
-    ...extra.filter((post) => !hidden.has(post.slug)),
-    ...researchEssays.filter((post) => !hidden.has(post.slug) && !extraBySlug.has(post.slug)),
-  ];
-}
-
-export async function getBlogPost(slug: string) {
-  const posts = await listBlogPosts();
-  return posts.find((post) => post.slug === slug);
-}
-
-export async function getResearchEssay(slug: string) {
-  const posts = await listResearchEssays();
-  return posts.find((post) => post.slug === slug);
-}
-
 export const customerQuotes = partnerQuotes;
 
 export const hubPaths = [
-  researchHub.path,
   developersHub.path,
-  blogHub.path,
   customersHub.path,
   companyHub.path,
   ...productPages.map((page) => page.href),
-  ...blogPosts.map((post) => post.href),
-  ...researchEssays.map((post) => post.href),
 ];

@@ -9,6 +9,6 @@ export async function getLocalSession() {
 
 export async function requireAdminSession() {
   const session = await getLocalSession();
-  if (!session || session.role !== "admin") redirect("/login?next=/admin");
+  if (!session || session.role !== "admin") redirect("/login?next=/admin/users");
   return session;
 }

@@ -1,25 +1,21 @@
 import type { Metadata } from "next";
 import { setOsDownloadGranted } from "@/app/actions/admin";
-import { formatWhen, loadAdminOverview } from "@/lib/admin/overview";
+import { formatWhen, loadAdminUsers } from "@/lib/admin/overview";
 
 export const metadata: Metadata = { title: "Users" };
 
 export default async function AdminUsersPage() {
-  let overview: Awaited<ReturnType<typeof loadAdminOverview>> | null = null;
+  let users: Awaited<ReturnType<typeof loadAdminUsers>> = [];
   try {
-    overview = await loadAdminOverview();
+    users = (await loadAdminUsers()).filter((profile) => profile.os_download_granted);
   } catch {
-    overview = null;
+    users = [];
   }
-
-  const users = (overview?.profiles ?? []).filter((profile) => profile.os_download_granted);
 
   return (
     <>
       <h1 className="admin-title">Users</h1>
-      <p className="admin-lede">
-        Accounts with Spectr OS download access. Waitlist signups are on the Waitlist page.
-      </p>
+      <p className="admin-lede">Accounts with Spectr OS download access.</p>
 
       <section className="admin-panel">
         <h2>Spectr OS download</h2>

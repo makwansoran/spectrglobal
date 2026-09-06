@@ -22,17 +22,6 @@ const referenceNavSections: NavSection[] = [
     ],
   },
   {
-    label: "Research",
-    href: "/research",
-    items: [
-      { label: "Spectr Explained", href: "/research", description: "The ideas the product is built on." },
-      { label: "Why an operating system", href: "/research/operating-system" },
-      { label: "Ontology as truth", href: "/research/ontology" },
-      { label: "Local AI", href: "/research/local-ai" },
-    ],
-  },
-  { label: "Blog", href: "/blog" },
-  {
     label: "Company",
     href: "/company",
     items: [

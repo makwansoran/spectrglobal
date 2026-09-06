@@ -33,7 +33,7 @@ export async function POST(request: Request) {
 
   const token = await signLocalSession(session.username, session.role);
   await recordLocalAccount(session.username, session.role).catch(() => undefined);
-  const next = session.role === "admin" ? "/admin" : "/dashboard";
+  const next = session.role === "admin" ? "/admin/users" : "/dashboard";
   const res = NextResponse.json({ ok: true, next });
   res.cookies.set(DEMO_COOKIE, token, cookieOptions(60 * 60 * 24 * 7));
   return res;

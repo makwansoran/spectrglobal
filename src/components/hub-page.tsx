@@ -71,30 +71,6 @@ export function HubPageView({ page }: { page: HubPage }) {
         </section>
       ) : null}
 
-      {page.posts?.length ? (
-        <section className="hub-posts">
-          <div className="uc-wrap">
-            {page.postsTitle ? <h2>{page.postsTitle}</h2> : null}
-            <ul>
-              {page.posts.map((post) => (
-                <li key={post.slug}>
-                  <Link href={post.href}>
-                    <time dateTime={post.date}>{post.date}</time>
-                    <div>
-                      <h3>{post.title}</h3>
-                      <p>{post.dek}</p>
-                    </div>
-                    <div className="hub-posts__thumb">
-                      <Image src={post.image} alt={post.imageAlt} fill className="object-cover" sizes="11rem" />
-                    </div>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-      ) : null}
-
       {page.capabilities?.length ? (
         <section className="uc-caps">
           <div className="uc-wrap">

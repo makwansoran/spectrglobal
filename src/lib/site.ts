@@ -94,7 +94,6 @@ export const footerColumns = [
     title: "Company",
     links: [
       { label: "About", href: "/about" },
-      { label: "Blog", href: "/blog" },
       { label: "News", href: "/news" },
       { label: "Waitlist", href: "/waitlist" },
       { label: "Contact", href: "/contact" },

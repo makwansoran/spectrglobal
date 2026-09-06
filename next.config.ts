@@ -38,6 +38,15 @@ const nextConfig: NextConfig = {
       { source: "/use-cases/mining", destination: "/", permanent: true },
       { source: "/use-cases/operations", destination: "/", permanent: true },
       { source: "/solutions", destination: "/use-cases/manufacturing", permanent: true },
+      { source: "/blog", destination: "/news", permanent: true },
+      { source: "/blog/:path*", destination: "/news", permanent: true },
+      { source: "/research", destination: "/", permanent: true },
+      { source: "/research/:path*", destination: "/", permanent: true },
+      { source: "/admin", destination: "/admin/users", permanent: true },
+      { source: "/admin/clicks", destination: "/admin/users", permanent: true },
+      { source: "/admin/waitlist", destination: "/admin/users", permanent: true },
+      { source: "/admin/blog", destination: "/admin/users", permanent: true },
+      { source: "/admin/research", destination: "/admin/users", permanent: true },
     ];
   },
 };

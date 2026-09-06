@@ -1,41 +1,3 @@
-export const hero = {
-  title: "Industrial intelligence.",
-  titleLine2: "In your hands.",
-  body: "We help organizations build tailored operational systems to solve the world’s hardest problems on the floor.",
-};
-
-export const featuredNews = [
-  {
-    category: "Product",
-    title: "The operating system for the whole floor",
-    href: "/news",
-  },
-  {
-    category: "Spectr OS",
-    title: "The operating system for industrial floors and enterprise sites",
-    href: "/platforms/spectr-os",
-  },
-  {
-    category: "Company",
-    title: "There is so much left to build",
-    href: "/about",
-  },
-] as const;
-
-export type SoftwareProduct = {
-  id: string;
-  index: string;
-  name: string;
-  description: string;
-  href: string;
-  previewImage?: string;
-  previewImageAlt?: string;
-};
-
-export const softwareSection = {
-  title: "Solutions",
-};
-
 export type UseCase = {
   id: string;
   index: string;
@@ -107,51 +69,6 @@ export const spectrBootcamp = {
   ],
 } as const;
 
-export const softwareProducts: SoftwareProduct[] = [
-  {
-    id: "spectr-os",
-    index: "/0.1",
-    name: "Spectr OS",
-    description:
-      "The operating system for the enterprise — data fusion, decision making, and agentic workflows in one runtime.",
-    href: "/platforms/spectr-os",
-    previewImage: "/images/products/spectr-os-ui.png",
-    previewImageAlt: "Spectr OS warehouse intelligence interface",
-  },
-];
-
-export type Offering = {
-  id: string;
-  label: string;
-  title: string;
-  href: string;
-  image: string;
-  imageAlt: string;
-};
-
-export const offerings: Offering[] = [
-  {
-    id: "spectr-os",
-    label: "Spectr OS",
-    title: "The operating system for the enterprise",
-    href: "/platforms/spectr-os",
-    image: "/images/offerings/spectr-os.jpg",
-    imageAlt: "Spectr OS running industrial operations",
-  },
-  {
-    id: "pilots",
-    label: "Pilot Programme",
-    title: "Deploy with partner sites before general availability",
-    href: "/contact",
-    image: "/images/offerings/pilots.jpg",
-    imageAlt: "Warehouse operations and logistics",
-  },
-];
-
-export const partnersSection = {
-  title: "What our partners say about us",
-};
-
 export type PartnerQuote = {
   company: string;
   quote: string;
@@ -218,16 +135,6 @@ export const partnerQuotes: PartnerQuote[] = [
   },
 ];
 
-export const homeCta = {
-  title: "Run your enterprise on Spectr OS",
-  primaryTitle: "Build with Spectr OS",
-  primaryBody: "One runtime for the floor, the model, and the next decision.",
-  primaryCta: "Get Started",
-  secondaryTitle: "Talk to Spectr",
-  secondaryBody: "Map where Spectr OS fits — in days, not quarters.",
-  secondaryCta: "Request a demo",
-};
-
 export type NewsItem = {
   id: string;
   source: string;
@@ -238,12 +145,6 @@ export type NewsItem = {
   cta: string;
   image: string;
   imageAlt: string;
-};
-
-export const newsSection = {
-  title: "Latest News",
-  viewAllLabel: "Newsroom",
-  viewAllHref: "/news",
 };
 
 export const newsItems: NewsItem[] = [
