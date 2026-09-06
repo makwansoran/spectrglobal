@@ -1,36 +1,27 @@
 import Image from "next/image";
-import Link from "next/link";
 import { GetStartedButton } from "@/components/get-started-button";
-import { industryPages, type IndustryPage } from "@/lib/use-cases";
+import { type IndustryPage } from "@/lib/use-cases";
 import "./industry-page.css";
 
 export function IndustryPageView({ page }: { page: IndustryPage }) {
   return (
     <article className="ind-page">
-      <nav className="ind-subnav" aria-label="Offerings">
-        <div className="ind-subnav__inner">
-          {industryPages.map((item) => (
-            <Link
-              key={item.slug}
-              href={item.href}
-              className={item.slug === page.slug ? "is-current" : undefined}
-            >
-              {item.name}
-            </Link>
-          ))}
-        </div>
-      </nav>
-
       <header className="ind-hero">
-        <div className="ind-hero__graphic" aria-hidden="true">
-          <div className="ind-hero__plane ind-hero__plane--back" />
-          <div className="ind-hero__plane ind-hero__plane--mid" />
-          <div className="ind-hero__plane">
-            <Image src={page.image} alt="" fill sizes="18rem" />
-          </div>
+        <div className="ind-hero__media" aria-hidden="true">
+          <Image
+            src={page.image}
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="ind-hero__image"
+          />
+          <div className="ind-hero__scrim" />
         </div>
-        <h1>{page.name}</h1>
-        <p>{page.tagline}</p>
+        <div className="ind-hero__copy">
+          <h1>{page.name}</h1>
+          <p>{page.tagline}</p>
+        </div>
         <span className="ind-hero__cue" aria-hidden="true" />
       </header>
 

@@ -1,58 +1,22 @@
 .ind-page {
-  --ind-wash: #eeeaf3;
+  --ind-wash: #f4f4f4;
   --ind-ink: #16141c;
   --ind-muted: #5c5866;
-  --ind-accent: #6b5ce0;
-  --ind-line: #ddd8e6;
+  --ind-accent: #2f6b4f;
+  --ind-line: #e4e4e4;
   background: #ffffff;
   color: var(--ind-ink);
 }
 
-.ind-subnav {
-  position: sticky;
-  top: 60px;
-  z-index: 30;
-  background: rgba(255, 255, 255, 0.94);
-  border-bottom: 1px solid var(--ind-line);
-  backdrop-filter: blur(12px);
-}
-
-.ind-subnav__inner {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 28px;
-  align-items: center;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 14px 24px;
-}
-
-@media (min-width: 640px) {
-  .ind-subnav__inner {
-    padding-left: 40px;
-    padding-right: 40px;
-  }
-}
-
-.ind-subnav a {
-  color: #8a8494;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  text-decoration: none;
-}
-
-.ind-subnav a:hover,
-.ind-subnav a.is-current {
-  color: var(--ind-ink);
-}
-
 .ind-hero {
-  background: var(--ind-wash);
-  border-bottom-left-radius: 28px;
-  border-bottom-right-radius: 28px;
-  padding: clamp(3.5rem, 9vw, 7.5rem) 24px 4.5rem;
-  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: min(100svh, 920px);
+  padding: clamp(3.5rem, 8vw, 5.5rem) 24px 3.5rem;
+  overflow: hidden;
+  color: #ffffff;
 }
 
 @media (min-width: 640px) {
@@ -62,61 +26,58 @@
   }
 }
 
-.ind-hero__graphic {
-  position: relative;
-  width: min(18rem, 72vw);
-  aspect-ratio: 1;
-  margin: 0 auto 2.25rem;
-  perspective: 900px;
-}
-
-.ind-hero__plane {
+.ind-hero__media {
   position: absolute;
-  inset: 18% 10% 10% 10%;
-  overflow: hidden;
-  background: #d8d3e4;
-  box-shadow: 0 18px 40px rgba(40, 32, 70, 0.12);
-  transform: rotateX(58deg) rotateZ(-18deg);
-  transform-style: preserve-3d;
+  inset: 0;
 }
 
-.ind-hero__plane--back {
-  inset: 28% 4% 0 16%;
-  opacity: 0.45;
-}
-
-.ind-hero__plane--mid {
-  inset: 22% 8% 6% 12%;
-  opacity: 0.7;
-}
-
-.ind-hero__graphic img {
+.ind-hero__image {
   object-fit: cover;
+  object-position: center;
+}
+
+.ind-hero__scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(10, 10, 12, 0.18) 0%, rgba(10, 10, 12, 0.22) 42%, rgba(10, 10, 12, 0.72) 100%),
+    linear-gradient(90deg, rgba(10, 10, 12, 0.35) 0%, transparent 55%);
+}
+
+.ind-hero__copy {
+  position: relative;
+  z-index: 1;
+  max-width: 48rem;
 }
 
 .ind-hero h1 {
   margin: 0;
-  font-size: clamp(3rem, 8vw, 6.4rem);
-  font-weight: 500;
+  font-family: var(--font-sans);
+  font-size: clamp(3rem, 9vw, 6.4rem);
+  font-weight: 400;
   letter-spacing: -0.055em;
-  line-height: 0.92;
+  line-height: 0.9;
+  color: #ffffff;
 }
 
 .ind-hero p {
-  margin: 1.25rem auto 0;
+  margin: 1.25rem 0 0;
   max-width: 36rem;
   font-size: clamp(1.05rem, 1.8vw, 1.35rem);
-  line-height: 1.45;
-  color: var(--ind-ink);
+  font-weight: 400;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .ind-hero__cue {
+  position: relative;
+  z-index: 1;
   display: block;
   width: 12px;
   height: 12px;
   margin: 2.75rem auto 0;
-  border-right: 2px solid var(--ind-ink);
-  border-bottom: 2px solid var(--ind-ink);
+  border-right: 2px solid rgba(255, 255, 255, 0.85);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.85);
   transform: rotate(45deg);
 }
 

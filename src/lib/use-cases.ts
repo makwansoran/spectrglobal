@@ -51,7 +51,7 @@ export const industryPages: IndustryPage[] = [
     name: "Manufacturing",
     listingDescription: "An operating system for the line: strategy, materials, and the shop floor as one model.",
     href: "/use-cases/manufacturing",
-    image: "/images/industries/manufacturing.jpg",
+    image: "/images/industries/manufacturing-hero.jpg",
     imageAlt: "Manufacturing production line",
     bannerTitle: "Manufacturing",
     headline: "Strategy, materials, and the line as one model.",
@@ -104,7 +104,7 @@ export const industryPages: IndustryPage[] = [
       },
     ],
     ctaTitle: "Run the plant on Spectr OS",
-    ctaImage: "/images/industries/manufacturing.jpg",
+    ctaImage: "/images/industries/manufacturing-hero.jpg",
   },
   {
     slug: "logistics",
@@ -112,7 +112,7 @@ export const industryPages: IndustryPage[] = [
     name: "Logistics",
     listingDescription: "Planning and execution in one runtime. Inventory, yards, and disruption handled as they happen.",
     href: "/use-cases/logistics",
-    image: "/images/industries/logistics.jpg",
+    image: "/images/industries/logistics-hero.jpg",
     imageAlt: "Warehouse logistics and pallet operations",
     bannerTitle: "Logistics",
     headline: "Planning and execution without the seam between them.",
@@ -165,7 +165,7 @@ export const industryPages: IndustryPage[] = [
       },
     ],
     ctaTitle: "Run the network on Spectr OS",
-    ctaImage: "/images/industries/logistics.jpg",
+    ctaImage: "/images/industries/logistics-hero.jpg",
   },
   {
     slug: "waste-management",
@@ -173,7 +173,7 @@ export const industryPages: IndustryPage[] = [
     name: "Waste Management",
     listingDescription: "Collection, plants, and materials as one loop, so a lift is an operational decision.",
     href: "/use-cases/waste-management",
-    image: "/images/industries/waste-management.jpg",
+    image: "/images/industries/waste-management-hero.jpg",
     imageAlt: "Collection and materials recovery operations",
     bannerTitle: "Waste Management",
     headline: "From the bin to the plant, one loop.",
@@ -226,7 +226,7 @@ export const industryPages: IndustryPage[] = [
       },
     ],
     ctaTitle: "Run the loop on Spectr OS",
-    ctaImage: "/images/industries/waste-management.jpg",
+    ctaImage: "/images/industries/waste-management-hero.jpg",
   },
 ];
 
