@@ -64,7 +64,7 @@ export async function submitContactForm(
   await saveInquiry(payload);
 
   const to = process.env.CONTACT_TO_EMAIL ?? "makwan@spectr.no";
-  const from = process.env.CONTACT_FROM_EMAIL ?? "Spectr Website <onboarding@resend.dev>";
+  const from = process.env.CONTACT_FROM_EMAIL ?? "Spectr <hello@spectr.no>";
   const apiKey = process.env.RESEND_API_KEY;
 
   const name = `${payload.firstName} ${payload.lastName}`.trim();
@@ -87,8 +87,8 @@ export async function submitContactForm(
     .join("\n");
 
   if (!apiKey) {
-    console.info("[contact]", subject, body);
-    return { ok: true };
+    console.error("[contact] RESEND_API_KEY is not configured");
+    return { ok: false, error: "generic" };
   }
 
   try {

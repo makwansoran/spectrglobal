@@ -37,7 +37,7 @@ export async function submitWaitlistForm(
   await saveWaitlistSignup({ name, email, country, company, purpose });
 
   const to = process.env.CONTACT_TO_EMAIL ?? "makwan@spectr.no";
-  const from = process.env.CONTACT_FROM_EMAIL ?? "Spectr Website <onboarding@resend.dev>";
+  const from = process.env.CONTACT_FROM_EMAIL ?? "Spectr <hello@spectr.no>";
   const apiKey = process.env.RESEND_API_KEY;
   const subject = "Spectr OS waitlist";
   const body = [
