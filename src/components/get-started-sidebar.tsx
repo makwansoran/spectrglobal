@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useActionState, useEffect } from "react";
+import { useActionState } from "react";
 import { submitContactForm, type ContactFormState } from "@/app/actions/contact";
 import { Button } from "@/components/button";
+import { FormSuccess } from "@/components/form-success";
 import { useGetStarted, type GetStartedTab } from "@/components/get-started-context";
 
 const initialState: ContactFormState = { ok: false };
@@ -40,13 +41,6 @@ export function GetStartedSidebar() {
   const { open, tab, closeGetStarted } = useGetStarted();
   const [state, formAction, pending] = useActionState(submitContactForm, initialState);
 
-  useEffect(() => {
-    if (state.ok) {
-      const timer = window.setTimeout(() => closeGetStarted(), 2200);
-      return () => window.clearTimeout(timer);
-    }
-  }, [state.ok, closeGetStarted]);
-
   if (!open) return null;
 
   return (
@@ -79,117 +73,143 @@ export function GetStartedSidebar() {
         </div>
 
         <div className="flex-1 overflow-y-auto px-5 py-6 sm:px-6">
-          <h2 className="brand-font text-2xl tracking-tight text-white sm:text-3xl">
-            Interested in solving your problems with Spectr software?
-          </h2>
-
-          <form action={formAction} className="mt-8 space-y-5" key={tab}>
-            <input
-              type="text"
-              name="website"
-              tabIndex={-1}
-              autoComplete="off"
-              className="hidden"
-              aria-hidden="true"
-            />
-
-            <Field label="Inquiry type" htmlFor="product" required>
-              <select id="product" name="product" required defaultValue={inquiryOptions.find((o) => o.id === tab)?.label ?? ""}>
-                <option value="" disabled>
-                  Select...
-                </option>
-                {inquiryOptions.map((option) => (
-                  <option key={option.id} value={option.label}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-            </Field>
-
-            <div className="grid gap-5 sm:grid-cols-2">
-              <Field label="First Name" htmlFor="firstName" required>
-                <input id="firstName" name="firstName" type="text" required autoComplete="given-name" />
-              </Field>
-              <Field label="Last Name" htmlFor="lastName" required>
-                <input id="lastName" name="lastName" type="text" required autoComplete="family-name" />
-              </Field>
+          {state.ok ? (
+            <div className="flex min-h-[70%] flex-col justify-center">
+              <FormSuccess tone="dark" />
             </div>
+          ) : (
+            <>
+              <h2 className="brand-font text-2xl tracking-tight text-white sm:text-3xl">
+                Interested in solving your problems with Spectr software?
+              </h2>
 
-            <Field label="Business Email Address" htmlFor="email" required>
-              <input id="email" name="email" type="email" required autoComplete="email" />
-            </Field>
+              <form action={formAction} className="mt-8 space-y-5" key={tab}>
+                <input
+                  type="text"
+                  name="website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  className="hidden"
+                  aria-hidden="true"
+                />
 
-            <Field label="Phone Number" htmlFor="phone" required>
-              <input id="phone" name="phone" type="tel" required autoComplete="tel" />
-            </Field>
+                <Field label="Inquiry type" htmlFor="product" required>
+                  <select
+                    id="product"
+                    name="product"
+                    required
+                    defaultValue={inquiryOptions.find((o) => o.id === tab)?.label ?? ""}
+                  >
+                    <option value="" disabled>
+                      Select...
+                    </option>
+                    {inquiryOptions.map((option) => (
+                      <option key={option.id} value={option.label}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
+                </Field>
 
-            <Field label="Job Title" htmlFor="jobTitle" required>
-              <input id="jobTitle" name="jobTitle" type="text" required autoComplete="organization-title" />
-            </Field>
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <Field label="First Name" htmlFor="firstName" required>
+                    <input
+                      id="firstName"
+                      name="firstName"
+                      type="text"
+                      required
+                      autoComplete="given-name"
+                    />
+                  </Field>
+                  <Field label="Last Name" htmlFor="lastName" required>
+                    <input
+                      id="lastName"
+                      name="lastName"
+                      type="text"
+                      required
+                      autoComplete="family-name"
+                    />
+                  </Field>
+                </div>
 
-            <Field label="Company / Institution" htmlFor="organization" required>
-              <input
-                id="organization"
-                name="organization"
-                type="text"
-                required
-                autoComplete="organization"
-              />
-            </Field>
+                <Field label="Business Email Address" htmlFor="email" required>
+                  <input id="email" name="email" type="email" required autoComplete="email" />
+                </Field>
 
-            <Field label="Country" htmlFor="country" required>
-              <select id="country" name="country" required defaultValue="">
-                <option value="" disabled>
-                  Select...
-                </option>
-                {countries.map((country) => (
-                  <option key={country} value={country}>
-                    {country}
-                  </option>
-                ))}
-              </select>
-            </Field>
+                <Field label="Phone Number" htmlFor="phone" required>
+                  <input id="phone" name="phone" type="tel" required autoComplete="tel" />
+                </Field>
 
-            <Field label="Tell us about your project" htmlFor="message" required>
-              <textarea
-                id="message"
-                name="message"
-                required
-                rows={5}
-                placeholder="A bit of context will allow us to connect you to the right team faster."
-              />
-            </Field>
+                <Field label="Job Title" htmlFor="jobTitle" required>
+                  <input
+                    id="jobTitle"
+                    name="jobTitle"
+                    type="text"
+                    required
+                    autoComplete="organization-title"
+                  />
+                </Field>
 
-            {state.ok ? (
-              <p
-                role="status"
-                className="border border-emerald-400/25 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-200"
-              >
-                Thanks — that is with us. We reply within one working day.
-              </p>
-            ) : null}
+                <Field label="Company / Institution" htmlFor="organization" required>
+                  <input
+                    id="organization"
+                    name="organization"
+                    type="text"
+                    required
+                    autoComplete="organization"
+                  />
+                </Field>
 
-            {state.error ? (
-              <p
-                role="alert"
-                className="border border-red-400/25 bg-red-400/10 px-4 py-3 text-sm text-red-300"
-              >
-                {errorMessages[state.error] ?? errorMessages.generic}
-              </p>
-            ) : null}
+                <Field label="Country" htmlFor="country" required>
+                  <select id="country" name="country" required defaultValue="">
+                    <option value="" disabled>
+                      Select...
+                    </option>
+                    {countries.map((country) => (
+                      <option key={country} value={country}>
+                        {country}
+                      </option>
+                    ))}
+                  </select>
+                </Field>
 
-            <Button type="submit" size="lg" disabled={pending || state.ok} className="btn-on-dark">
-              {pending ? "Submitting…" : "Submit"}
-            </Button>
+                <Field label="Tell us about your project" htmlFor="message" required>
+                  <textarea
+                    id="message"
+                    name="message"
+                    required
+                    rows={5}
+                    placeholder="A bit of context will allow us to connect you to the right team faster."
+                  />
+                </Field>
 
-            <p className="text-xs leading-6 text-white/55">
-              Please see our{" "}
-              <Link href="/privacy" className="underline underline-offset-4 hover:text-white" onClick={closeGetStarted}>
-                Privacy Policy
-              </Link>{" "}
-              regarding how we will handle this information.
-            </p>
-          </form>
+                {state.error ? (
+                  <p
+                    role="alert"
+                    className="border border-red-400/25 bg-red-400/10 px-4 py-3 text-sm text-red-300"
+                  >
+                    {errorMessages[state.error] ?? errorMessages.generic}
+                  </p>
+                ) : null}
+
+                <Button type="submit" size="lg" disabled={pending} className="btn-on-dark">
+                  {pending ? "Submitting…" : "Submit"}
+                </Button>
+
+                <p className="text-xs leading-6 text-white/55">
+                  Please see our{" "}
+                  <Link
+                    href="/privacy"
+                    className="underline underline-offset-4 hover:text-white"
+                    onClick={closeGetStarted}
+                  >
+                    Privacy Policy
+                  </Link>{" "}
+                  regarding how we will handle this information.
+                </p>
+              </form>
+            </>
+          )}
         </div>
       </aside>
     </div>

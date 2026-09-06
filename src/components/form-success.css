@@ -1,0 +1,122 @@
+.form-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  padding: 2.5rem 1rem;
+  text-align: center;
+}
+
+.form-success__mark {
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 50%;
+  display: block;
+  stroke-width: 2;
+  stroke-miterlimit: 10;
+  box-shadow: inset 0 0 0 0 currentColor;
+  animation: form-success-fill 0.4s ease-in-out 0.4s forwards,
+    form-success-scale 0.3s ease-in-out 0.9s both;
+}
+
+.form-success__circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 2;
+  stroke-miterlimit: 10;
+  stroke: currentColor;
+  fill: none;
+  animation: form-success-stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.form-success__check {
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  stroke: #fff;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  animation: form-success-stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+.form-success__message {
+  margin: 0;
+  max-width: 18rem;
+  font-size: 1.05rem;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  animation: form-success-fade 0.45s ease 0.95s both;
+}
+
+.form-success--dark {
+  color: #34d399;
+}
+
+.form-success--dark .form-success__message {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.form-success--light {
+  color: #059669;
+}
+
+.form-success--light .form-success__message {
+  color: rgba(0, 0, 0, 0.72);
+}
+
+.form-success--light .form-success__check {
+  stroke: #fff;
+}
+
+@keyframes form-success-stroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes form-success-scale {
+  0%,
+  100% {
+    transform: none;
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes form-success-fill {
+  100% {
+    box-shadow: inset 0 0 0 30px currentColor;
+  }
+}
+
+@keyframes form-success-fade {
+  from {
+    opacity: 0;
+    transform: translateY(0.4rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .form-success__mark,
+  .form-success__circle,
+  .form-success__check,
+  .form-success__message {
+    animation: none;
+  }
+
+  .form-success__circle,
+  .form-success__check {
+    stroke-dashoffset: 0;
+  }
+
+  .form-success__mark {
+    box-shadow: inset 0 0 0 30px currentColor;
+  }
+}

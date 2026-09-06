@@ -1,8 +1,8 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { submitContactForm, type ContactFormState } from "@/app/actions/contact";
-import { useState } from "react";
+import { FormSuccess } from "@/components/form-success";
 
 const initialState: ContactFormState = { ok: false };
 
@@ -31,9 +31,7 @@ export function ContactUsExpandButton() {
           <p className="contact-us-expand__text">{INTRO}</p>
 
           {state.ok ? (
-            <p className="contact-us-expand__status" role="status">
-              Thanks — that is with us.
-            </p>
+            <FormSuccess tone="light" />
           ) : (
             <form action={formAction} className="contact-us-expand__form">
               <input type="hidden" name="product" value="Contact / Demo Request" />
