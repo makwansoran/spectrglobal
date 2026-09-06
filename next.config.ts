@@ -39,6 +39,8 @@ const nextConfig: NextConfig = {
       { source: "/use-cases/operations", destination: "/", permanent: true },
       { source: "/solutions", destination: "/offerings", permanent: true },
       { source: "/solutions/:path*", destination: "/offerings", permanent: true },
+      { source: "/company", destination: "/about", permanent: true },
+      { source: "/company/:path*", destination: "/about", permanent: true },
       { source: "/blog", destination: "/news", permanent: true },
       { source: "/blog/:path*", destination: "/news", permanent: true },
       { source: "/research", destination: "/", permanent: true },

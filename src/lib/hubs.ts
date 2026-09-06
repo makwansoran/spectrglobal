@@ -142,47 +142,6 @@ export const customersHub: HubPage = {
   })),
 };
 
-export const companyHub: HubPage = {
-  path: "/company",
-  bannerTitle: "Company",
-  description: "Spectr is a Norwegian software company building Spectr OS — the operating system for the enterprise.",
-  heroImage: "/images/careers/office.png",
-  heroImageAlt: "Spectr",
-  headline: "A Norwegian team building the operating system for the work that cannot be done remotely.",
-  columnOne:
-    "We were founded to put software on floors, warehouses, grids, and fronts — places where labour is scarce and the systems were designed for a slower decade. Spectr OS is the product of that conviction.",
-  columnTwo:
-    "The company is small on purpose. Close to operators. Unwilling to ship something merely interesting. If you want the product, get started.",
-  cardsTitle: "Spectr",
-  cards: [
-    {
-      title: "About",
-      body: "Why we exist, and what we believe the bottleneck in industrial intelligence actually is.",
-      href: "/about",
-    },
-    {
-      title: "Waitlist",
-      body: "Be among the first to use Spectr OS.",
-      href: "/waitlist",
-    },
-    {
-      title: "News",
-      body: "What we are shipping and why.",
-      href: "/news",
-    },
-    {
-      title: "SPECTR BOOTCAMP",
-      body: "Learn to create your own AI and run it locally. One video.",
-      href: "/bootcamp",
-    },
-    {
-      title: "Contact",
-      body: "Customers, partners, press. Start a conversation.",
-      href: "/contact",
-    },
-  ],
-};
-
 export const productPages = [
   {
     slug: "ontology",
@@ -275,6 +234,5 @@ export const customerQuotes = partnerQuotes;
 export const hubPaths = [
   developersHub.path,
   customersHub.path,
-  companyHub.path,
   ...productPages.map((page) => page.href),
 ];

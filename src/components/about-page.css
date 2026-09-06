@@ -1,0 +1,216 @@
+.about-page {
+  --about-ink: #1a1a1a;
+  --about-muted: #3a3a3a;
+  --about-soft: #5a5a5a;
+  --about-line: rgba(0, 0, 0, 0.12);
+  background: #ffffff;
+  color: var(--about-ink);
+  font-family: var(--font-sans);
+}
+
+.about-page__hero {
+  padding: clamp(3.5rem, 8vw, 6.5rem) 0 0;
+}
+
+.about-page__hero-inner {
+  display: grid;
+  gap: 1.5rem;
+  width: min(100% - 2.5rem, 1180px);
+  margin-inline: auto;
+  padding-bottom: clamp(2rem, 5vw, 3.5rem);
+}
+
+@media (min-width: 900px) {
+  .about-page__hero-inner {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    align-items: end;
+    gap: 3.5rem;
+  }
+}
+
+.about-page__title {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: clamp(3.2rem, 9vw, 6.5rem);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 0.92;
+  color: var(--about-ink);
+}
+
+.about-page__belief {
+  margin: 0;
+  max-width: 28rem;
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  color: var(--about-ink);
+}
+
+@media (min-width: 900px) {
+  .about-page__belief {
+    justify-self: end;
+    text-align: left;
+    padding-bottom: 0.35rem;
+  }
+}
+
+.about-page__media {
+  display: block;
+  width: 100%;
+  border: 0;
+  border-top: 1px solid var(--about-line);
+  border-bottom: 1px solid var(--about-line);
+  overflow: hidden;
+  background: #ececec;
+}
+
+.about-page__media img {
+  display: block;
+  width: 100%;
+  height: clamp(220px, 42vw, 520px);
+  object-fit: cover;
+}
+
+.about-page__statement {
+  width: min(100% - 2.5rem, 820px);
+  margin: clamp(3rem, 8vw, 5.5rem) auto 0;
+}
+
+.about-page__statement h2 {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: clamp(1.65rem, 3.2vw, 2.35rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+  color: var(--about-ink);
+}
+
+.about-page__essay {
+  width: min(100% - 2.5rem, 720px);
+  margin: clamp(2.5rem, 6vw, 4rem) auto 0;
+  display: grid;
+  gap: 1.35rem;
+}
+
+.about-page__essay p {
+  margin: 0;
+  font-size: clamp(1rem, 1.35vw, 1.125rem);
+  line-height: 1.7;
+  color: var(--about-muted);
+}
+
+.about-page__section {
+  width: min(100% - 2.5rem, 1180px);
+  margin: clamp(4rem, 10vw, 7rem) auto 0;
+  padding-top: clamp(2.5rem, 5vw, 3.5rem);
+  border-top: 1px solid var(--about-line);
+}
+
+.about-page__section-title {
+  margin: 0 0 clamp(2rem, 5vw, 3.25rem);
+  font-family: var(--font-sans);
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  color: var(--about-ink);
+}
+
+.about-page__blocks {
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 4rem);
+}
+
+.about-page__block {
+  display: grid;
+  gap: 1rem;
+  max-width: 720px;
+}
+
+.about-page__block h3 {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  color: var(--about-ink);
+}
+
+.about-page__block p {
+  margin: 0;
+  font-size: clamp(1rem, 1.3vw, 1.1rem);
+  line-height: 1.7;
+  color: var(--about-muted);
+}
+
+.about-page__block p + p {
+  margin-top: 0.85rem;
+}
+
+.about-page__expertise {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--about-line);
+}
+
+.about-page__expertise-item {
+  display: grid;
+  gap: 0.65rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--about-line);
+}
+
+@media (min-width: 800px) {
+  .about-page__expertise-item {
+    grid-template-columns: minmax(12rem, 0.85fr) minmax(0, 1.4fr);
+    gap: 2rem;
+    align-items: baseline;
+    padding: 1.75rem 0;
+  }
+}
+
+.about-page__expertise-item h3 {
+  margin: 0;
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--about-ink);
+}
+
+.about-page__expertise-item p {
+  margin: 0;
+  font-size: 1.02rem;
+  line-height: 1.65;
+  color: var(--about-muted);
+}
+
+.about-page__future-lead {
+  margin: 0 0 1.75rem;
+  max-width: 820px;
+  font-size: clamp(1.35rem, 2.6vw, 1.85rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+  color: var(--about-ink);
+}
+
+.about-page__prose {
+  display: grid;
+  gap: 1.35rem;
+  max-width: 720px;
+}
+
+.about-page__prose p {
+  margin: 0;
+  font-size: clamp(1rem, 1.35vw, 1.125rem);
+  line-height: 1.7;
+  color: var(--about-muted);
+}
+
+.about-page__footer-space {
+  height: clamp(4rem, 10vw, 7rem);
+}

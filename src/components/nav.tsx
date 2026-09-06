@@ -18,14 +18,8 @@ const referenceNavSections: NavSection[] = [
     href: "/offerings",
   },
   {
-    label: "Company",
-    href: "/company",
-    items: [
-      { label: "About us", href: "/about" },
-      { label: "SPECTR BOOTCAMP", href: "/bootcamp" },
-      { label: "News", href: "/news" },
-      { label: "Contact", href: "/contact" },
-    ],
+    label: "About",
+    href: "/about",
   },
 ];
 
@@ -91,10 +85,11 @@ export function Nav() {
             </Link>
 
             <nav ref={primaryNavRef} aria-label="Primary" className="reference-nav__links hidden lg:flex">
-              {referenceNavSections.map((section) => (
+              {referenceNavSections.map((section, index) => (
                 <NavDropdown
                   key={section.label}
                   section={section}
+                  isLast={index === referenceNavSections.length - 1}
                   open={menu === section.label}
                   onOpen={() => setMenu(section.label)}
                   onClose={() => setMenu(null)}
@@ -207,11 +202,13 @@ export function Nav() {
 
 function NavDropdown({
   section,
+  isLast = false,
   open,
   onOpen,
   onClose,
 }: {
   section: NavSection;
+  isLast?: boolean;
   open: boolean;
   onOpen: () => void;
   onClose: () => void;
@@ -279,7 +276,7 @@ function NavDropdown({
 
   if (!section.items?.length) {
     return (
-      <div className="reference-nav__item">
+      <div className={`reference-nav__item ${isLast ? "reference-nav__item--last" : ""}`}>
         <Link href={section.href ?? "/"}>{section.label}</Link>
       </div>
     );
@@ -287,7 +284,7 @@ function NavDropdown({
 
   return (
     <div
-      className={`reference-nav__item ${section.label === "Company" ? "reference-nav__item--last" : ""} ${open ? "reference-nav__item--open" : ""}`}
+      className={`reference-nav__item ${isLast ? "reference-nav__item--last" : ""} ${open ? "reference-nav__item--open" : ""}`}
       onMouseEnter={onOpen}
       onMouseLeave={onClose}
     >

@@ -22,7 +22,7 @@ export const site = {
 export const navPrimary = [
   { label: "Spectr OS", href: "/platforms/spectr-os" },
   { label: "Offerings", href: "/offerings" },
-  { label: "Company", href: "/company" },
+  { label: "About", href: "/about" },
   { label: "News", href: "/news" },
 ] as const;
 
@@ -50,14 +50,8 @@ export const navSections: NavSection[] = [
     href: "/offerings",
   },
   {
-    label: "Company",
-    href: "/company",
-    items: [
-      { label: "About us", href: "/about", description: "A Norwegian team building Spectr OS." },
-      { label: "SPECTR BOOTCAMP", href: "/bootcamp", description: "Learn to create your own AI and run it locally." },
-      { label: "Waitlist", href: "/waitlist", description: "Be among the first to use Spectr OS." },
-      { label: "News", href: "/news", description: "Product releases and progress from the team." },
-    ],
+    label: "About",
+    href: "/about",
   },
   { label: "News", href: "/news" },
 ];
