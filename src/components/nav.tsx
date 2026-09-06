@@ -14,12 +14,8 @@ const referenceNavSections: NavSection[] = [
     previewVideo: "/videos/spectr-os.mp4",
   },
   {
-    label: "Solutions",
-    items: [
-      { label: "Manufacturing", href: "/use-cases/manufacturing", description: "Strategy and the shop floor as one model." },
-      { label: "Logistics", href: "/use-cases/logistics", description: "Planning and execution across the network." },
-      { label: "Waste Management", href: "/use-cases/waste-management", description: "Collection, plants, and materials in one loop." },
-    ],
+    label: "Offerings",
+    href: "/offerings",
   },
   {
     label: "Company",

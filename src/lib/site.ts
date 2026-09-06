@@ -21,7 +21,7 @@ export const site = {
 
 export const navPrimary = [
   { label: "Spectr OS", href: "/platforms/spectr-os" },
-  { label: "Solutions", href: "/use-cases/manufacturing" },
+  { label: "Offerings", href: "/offerings" },
   { label: "Company", href: "/company" },
   { label: "News", href: "/news" },
 ] as const;
@@ -46,12 +46,8 @@ export const navSections: NavSection[] = [
     previewVideo: "/videos/spectr-os.mp4",
   },
   {
-    label: "Solutions",
-    items: [
-      { label: "Logistics", href: "/use-cases/logistics", description: "Planning and execution across the network." },
-      { label: "Manufacturing", href: "/use-cases/manufacturing", description: "Strategy and the shop floor as one model." },
-      { label: "Waste Management", href: "/use-cases/waste-management", description: "Collection, plants, and materials in one loop." },
-    ],
+    label: "Offerings",
+    href: "/offerings",
   },
   {
     label: "Company",
@@ -83,10 +79,11 @@ export const footerColumns = [
     ],
   },
   {
-    title: "Solutions",
+    title: "Offerings",
     links: [
-      { label: "Logistics", href: "/use-cases/logistics" },
+      { label: "All offerings", href: "/offerings" },
       { label: "Manufacturing", href: "/use-cases/manufacturing" },
+      { label: "Logistics", href: "/use-cases/logistics" },
       { label: "Waste Management", href: "/use-cases/waste-management" },
     ],
   },

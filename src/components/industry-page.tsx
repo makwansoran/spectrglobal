@@ -7,7 +7,7 @@ import "./industry-page.css";
 export function IndustryPageView({ page }: { page: IndustryPage }) {
   return (
     <article className="ind-page">
-      <nav className="ind-subnav" aria-label="Solutions">
+      <nav className="ind-subnav" aria-label="Offerings">
         <div className="ind-subnav__inner">
           {industryPages.map((item) => (
             <Link

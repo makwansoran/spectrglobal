@@ -6,6 +6,7 @@ import { getIndustrySlugs } from "@/lib/use-cases";
 const paths = [
   "",
   "/platforms/spectr-os",
+  "/offerings",
   "/about",
   "/news",
   "/contact",
