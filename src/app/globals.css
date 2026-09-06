@@ -1656,16 +1656,33 @@ button.reference-nav__trigger {
   line-height: 1.4;
 }
 
-.reference-nav__item--os {
+.reference-nav__item.reference-nav__item--os {
   z-index: 2;
+  align-self: stretch;
+  align-items: stretch;
 }
 
-.reference-nav__trigger--os {
+.reference-nav__item.reference-nav__item--os > a.reference-nav__trigger.reference-nav__trigger--os {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  border-color: rgba(22, 163, 74, 0.22);
-  background: rgba(22, 163, 74, 0.06);
+  align-self: stretch;
+  width: 100%;
+  min-height: 100%;
+  height: auto;
+  justify-content: center;
+  padding: 0 1.15rem;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.reference-nav__item.reference-nav__item--os > a.reference-nav__trigger.reference-nav__trigger--os:hover,
+.reference-nav__item.reference-nav__item--os > a.reference-nav__trigger.reference-nav__trigger--os:focus-visible,
+.reference-nav__item.reference-nav__item--os.reference-nav__item--open > a.reference-nav__trigger.reference-nav__trigger--os {
+  border-color: transparent;
+  background: transparent;
+  color: #ffffff;
 }
 
 .reference-nav__os-fill {
@@ -1698,23 +1715,15 @@ button.reference-nav__trigger {
   transition: color 280ms ease;
 }
 
-.reference-nav__trigger--os:hover,
-.reference-nav__trigger--os:focus-visible,
-.reference-nav__item--open > .reference-nav__trigger--os {
-  border-color: #16a34a;
-  background: transparent;
-  color: #ffffff;
-}
-
-.reference-nav__trigger--os:hover .reference-nav__os-fill,
-.reference-nav__trigger--os:focus-visible .reference-nav__os-fill,
-.reference-nav__item--open > .reference-nav__trigger--os .reference-nav__os-fill {
+.reference-nav__item.reference-nav__item--os > a.reference-nav__trigger.reference-nav__trigger--os:hover .reference-nav__os-fill,
+.reference-nav__item.reference-nav__item--os > a.reference-nav__trigger.reference-nav__trigger--os:focus-visible .reference-nav__os-fill,
+.reference-nav__item.reference-nav__item--os.reference-nav__item--open > a.reference-nav__trigger.reference-nav__trigger--os .reference-nav__os-fill {
   transform: translateX(0);
 }
 
-.reference-nav__trigger--os:hover .reference-nav__os-fill::after,
-.reference-nav__trigger--os:focus-visible .reference-nav__os-fill::after,
-.reference-nav__item--open > .reference-nav__trigger--os .reference-nav__os-fill::after {
+.reference-nav__item.reference-nav__item--os > a.reference-nav__trigger.reference-nav__trigger--os:hover .reference-nav__os-fill::after,
+.reference-nav__item.reference-nav__item--os > a.reference-nav__trigger.reference-nav__trigger--os:focus-visible .reference-nav__os-fill::after,
+.reference-nav__item.reference-nav__item--os.reference-nav__item--open > a.reference-nav__trigger.reference-nav__trigger--os .reference-nav__os-fill::after {
   animation: reference-nav-os-shine 700ms ease 80ms both;
 }
 
