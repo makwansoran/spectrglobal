@@ -8,32 +8,6 @@ export function inquiryKind(product: string) {
   return "contact";
 }
 
-export async function saveWaitlistSignup(input: {
-  name: string;
-  email: string;
-  country: string;
-  company: string;
-  purpose: string;
-}) {
-  try {
-    const admin = createAdminClient();
-    const email = input.email.trim().toLowerCase();
-    const { error } = await admin.from("waitlist_signups").upsert(
-      {
-        name: input.name.trim(),
-        email,
-        country: input.country.trim(),
-        company: input.company.trim(),
-        purpose: input.purpose.trim(),
-      },
-      { onConflict: "email" },
-    );
-    if (error) console.error("[waitlist] save", error.message);
-  } catch (err) {
-    console.error("[waitlist] save", err);
-  }
-}
-
 export async function saveInquiry(input: {
   firstName: string;
   lastName: string;

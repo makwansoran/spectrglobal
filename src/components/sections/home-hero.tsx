@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { LogoMark } from "@/components/logo";
-import "./waitlist-section.css";
+import "./home-hero.css";
 
-export function WaitlistSection() {
+export function HomeHero() {
   return (
     <section
       id="spectros"
