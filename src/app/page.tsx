@@ -1,4 +1,5 @@
 import { Footer } from "@/components/footer";
+import { HomeCtaSection } from "@/components/sections/home-cta-section";
 import { LogoMarquee } from "@/components/sections/logo-marquee";
 import { UseCases } from "@/components/sections/usecases";
 import { WaitlistSection } from "@/components/sections/waitlist-section";
@@ -10,6 +11,7 @@ export default function HomePage() {
         <WaitlistSection />
         <LogoMarquee />
         <UseCases />
+        <HomeCtaSection />
       </main>
       <Footer />
     </>

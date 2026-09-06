@@ -6,7 +6,7 @@ export function UseCases() {
   const items = useCases;
 
   return (
-    <section id="use-cases" className="scroll-mt-24 bg-white px-4 pb-20 pt-16 sm:px-6 sm:pb-[140px] sm:pt-[128px]">
+    <section id="use-cases" className="scroll-mt-24 bg-white px-4 pb-10 pt-16 sm:px-6 sm:pb-16 sm:pt-[128px]">
       <div className="mx-auto w-full max-w-[1400px]">
         <h2 className="home-display overflow-hidden sm:whitespace-nowrap">
           {useCasesSection.title}

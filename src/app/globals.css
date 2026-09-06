@@ -693,6 +693,7 @@ textarea {
 
 .spectr-os-expand,
 .contact-us-expand,
+.get-started-expand,
 .industries-expand {
   --hero-cta-h: 25rem;
   position: relative;
@@ -710,6 +711,7 @@ textarea {
 
 .spectr-os-expand--open,
 .contact-us-expand--open,
+.get-started-expand--open,
 .industries-expand--open {
   transform: translateY(-2px);
   box-shadow: 0 28px 70px rgba(17, 17, 17, 0.12);
@@ -720,12 +722,14 @@ textarea {
   height: 29rem;
 }
 
-.contact-us-expand--open {
+.contact-us-expand--open,
+.get-started-expand--open {
   height: 31rem;
 }
 
 .spectr-os-expand__shell,
 .contact-us-expand__shell,
+.get-started-expand__shell,
 .industries-expand__shell {
   display: flex;
   height: 100%;
@@ -742,6 +746,7 @@ textarea {
 }
 
 .contact-us-expand__shell,
+.get-started-expand__shell,
 .industries-expand__shell {
   background: rgba(15, 15, 16, 0.96);
   color: #f5f1ea;
@@ -749,6 +754,8 @@ textarea {
 
 .contact-us-expand__shell:hover,
 .contact-us-expand--open .contact-us-expand__shell,
+.get-started-expand__shell:hover,
+.get-started-expand--open .get-started-expand__shell,
 .industries-expand__shell:hover,
 .industries-expand--open .industries-expand__shell {
   background: rgba(255, 255, 255, 0.9);
@@ -759,6 +766,8 @@ textarea {
 .spectr-os-expand--open .spectr-os-expand__shell,
 .contact-us-expand__shell:hover,
 .contact-us-expand--open .contact-us-expand__shell,
+.get-started-expand__shell:hover,
+.get-started-expand--open .get-started-expand__shell,
 .industries-expand__shell:hover,
 .industries-expand--open .industries-expand__shell {
   background: rgba(255, 255, 255, 0.9);
@@ -766,6 +775,7 @@ textarea {
 
 .spectr-os-expand__label,
 .contact-us-expand__label,
+.get-started-expand__label,
 .industries-expand__label {
   display: flex;
   min-height: 5.5rem;
@@ -821,12 +831,14 @@ textarea {
 @media (prefers-reduced-motion: reduce) {
   .spectr-os-expand,
   .contact-us-expand,
+  .get-started-expand,
   .industries-expand {
     transition: none;
   }
 
   .spectr-os-expand__body,
   .contact-us-expand__body,
+  .get-started-expand__body,
   .industries-expand__body {
     transition: none;
   }
@@ -974,6 +986,70 @@ textarea {
 
 .contact-us-expand__status {
   color: #bbf7d0;
+}
+
+.get-started-expand__shell {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  overflow: hidden;
+  border: 0;
+  background: #0a0a0b;
+  color: #ffffff;
+  text-align: left;
+  cursor: pointer;
+  clip-path: polygon(
+    var(--bevel-cut) 0,
+    100% 0,
+    100% calc(100% - var(--bevel-cut)),
+    calc(100% - var(--bevel-cut)) 100%,
+    0 100%,
+    0 var(--bevel-cut)
+  );
+}
+
+.get-started-expand__body {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.7rem;
+  padding: 0 1.2rem 1.2rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+}
+
+.get-started-expand--open .get-started-expand__body {
+  opacity: 1;
+  pointer-events: auto;
+  transition-delay: 80ms;
+}
+
+.get-started-expand__text {
+  flex-shrink: 0;
+  max-width: 28rem;
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.45;
+  text-transform: none;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.get-started-expand__shell:hover .get-started-expand__text,
+.get-started-expand--open .get-started-expand__text {
+  color: rgba(17, 17, 17, 0.76);
+}
+
+.get-started-expand__cta {
+  margin-top: auto;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: inherit;
 }
 
 .industries-expand__shell {
