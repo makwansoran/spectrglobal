@@ -71,41 +71,6 @@ export function IndustryPageView({ page }: { page: IndustryPage }) {
         </div>
       </section>
 
-      <section className="ind-objects" aria-labelledby="ind-objects-title">
-        <div className="ind-wrap">
-          <p className="ind-kicker" id="ind-objects-title">
-            {page.objectsEyebrow}
-          </p>
-          <div className="ind-objects__labels">
-            {page.objects.map((item) => (
-              <span key={item}>{item}</span>
-            ))}
-          </div>
-          <div className="ind-objects__media">
-            <Image src={page.objectsImage} alt={page.objectsImageAlt} fill sizes="100vw" />
-          </div>
-        </div>
-      </section>
-
-      <section className="ind-scale" aria-labelledby="ind-scale-title">
-        <div className="ind-wrap">
-          <div className="ind-scale__head">
-            <p className="ind-kicker">{page.scaleEyebrow}</p>
-            <h2 id="ind-scale-title">
-              {page.scaleTitle} <em>{page.scaleAccent}</em>
-            </h2>
-          </div>
-          <ul>
-            {page.scale.map((item) => (
-              <li key={item.title} className="ind-card">
-                <h3>{item.title}</h3>
-                <p>{item.body}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
       <section className="ind-cta" aria-labelledby="ind-cta-title">
         <div className="ind-wrap">
           <div className="ind-cta__panel">

@@ -32,14 +32,6 @@ export type IndustryPage = {
   overviewAccent: string;
   overviewCallout: string;
   pillars: IndustryCard[];
-  objectsEyebrow: string;
-  objects: string[];
-  objectsImage: string;
-  objectsImageAlt: string;
-  scaleEyebrow: string;
-  scaleTitle: string;
-  scaleAccent: string;
-  scale: IndustryCard[];
   ctaTitle: string;
   ctaImage: string;
 };
@@ -82,27 +74,6 @@ export const industryPages: IndustryPage[] = [
         body: "Operators review AI-suggested resolutions. Nothing silent on a live line. The record is useful tonight, and useful when someone asks why.",
       },
     ],
-    objectsEyebrow: "Objects",
-    objects: ["ORDERS", "STATIONS", "BOMS", "DEVIATIONS", "CREWS", "MACHINES", "UNITS", "QUALITY"],
-    objectsImage: "/images/industries/parts.jpg",
-    objectsImageAlt: "Industrial parts and materials",
-    scaleEyebrow: "Runtime",
-    scaleTitle: "Orchestrate the factory",
-    scaleAccent: "at the speed of the line.",
-    scale: [
-      {
-        title: "One model of the plant.",
-        body: "Lines, stations, crews, and work orders exist once. Downstream tools read the same objects the supervisor already uses.",
-      },
-      {
-        title: "Shock as a workflow.",
-        body: "When a supplier slips or a machine stops, the runtime re-ranks substitute, expedite, and resequence against cost and constraint.",
-      },
-      {
-        title: "From site to fleet.",
-        body: "Patterns that only appear across plants can flow back to the edge, without taking the line down for a cloud round-trip.",
-      },
-    ],
     ctaTitle: "Run the plant on Spectr OS",
     ctaImage: "/images/industries/manufacturing-hero.jpg",
   },
@@ -143,27 +114,6 @@ export const industryPages: IndustryPage[] = [
         body: "A person approves the move. Partners see the objects that matter, not a dump of every table you own.",
       },
     ],
-    objectsEyebrow: "Objects",
-    objects: ["ORDERS", "SKUS", "LOCATIONS", "MOVES", "LANES", "CARRIERS", "YARDS", "BUFFERS"],
-    objectsImage: "/images/industries/warehousing.jpg",
-    objectsImageAlt: "Warehouse aisles and inventory",
-    scaleEyebrow: "Runtime",
-    scaleTitle: "Orchestrate the chain",
-    scaleAccent: "without the morning report.",
-    scale: [
-      {
-        title: "End-to-end objects.",
-        body: "Orders, SKUs, locations, and moves are first-class. Agents and people work the same graph.",
-      },
-      {
-        title: "Disruption as a workflow.",
-        body: "When a lane fails, the runtime proposes the next legal plan and records who approved it.",
-      },
-      {
-        title: "Cost at the item.",
-        body: "Warehouse, labour, and freight can be attributed down to the unit so pricing and contracting are not averages.",
-      },
-    ],
     ctaTitle: "Run the network on Spectr OS",
     ctaImage: "/images/industries/logistics-hero.jpg",
   },
@@ -202,27 +152,6 @@ export const industryPages: IndustryPage[] = [
       {
         title: "Govern dispatch and the plant together.",
         body: "A dispatcher or plant lead approves the sequence. The runtime does not drive the truck. It makes the options honest.",
-      },
-    ],
-    objectsEyebrow: "Objects",
-    objects: ["BINS", "LIFTS", "VEHICLES", "CREWS", "BAYS", "STREAMS", "CONTRACTS", "RESIDUE"],
-    objectsImage: "/images/industries/energy.jpg",
-    objectsImageAlt: "Treatment plant and industrial processing",
-    scaleEyebrow: "Runtime",
-    scaleTitle: "Orchestrate the loop",
-    scaleAccent: "from kerb to residue.",
-    scale: [
-      {
-        title: "A living round.",
-        body: "Stops, fills, and vehicle work update as objects, not as a printed sheet. The next street is ranked against the current world.",
-      },
-      {
-        title: "Handoffs with evidence.",
-        body: "Each transfer carries who, when, and what was in the load. Useful for the plant, the contract, and the night shift.",
-      },
-      {
-        title: "Network, not a depot silo.",
-        body: "What happens on one round can inform the plant and the next depot without a new integration for each site.",
       },
     ],
     ctaTitle: "Run the loop on Spectr OS",
