@@ -1,0 +1,40 @@
+.industrial-smart-system {
+  background: #fff;
+  padding: 4rem 1rem 5rem;
+}
+
+.industrial-smart-system__grid {
+  display: grid;
+  align-items: center;
+  gap: 2.5rem;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.industrial-smart-system__title {
+  font-size: clamp(2.25rem, 4.4vw, 4.75rem);
+  max-width: 11ch;
+}
+
+.industrial-smart-system__media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #f3f3f3;
+}
+
+.industrial-smart-system__image {
+  object-fit: cover;
+}
+
+@media (min-width: 1024px) {
+  .industrial-smart-system {
+    padding: 7rem 1.5rem 8rem;
+  }
+
+  .industrial-smart-system__grid {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 4rem;
+  }
+}
