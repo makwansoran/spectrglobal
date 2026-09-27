@@ -21,8 +21,6 @@ export const site = {
 
 export const navPrimary = [
   { label: "Spectr OS", href: "/platforms/spectr-os" },
-  { label: "Offerings", href: "/offerings" },
-  { label: "About", href: "/about" },
   { label: "News", href: "/news" },
 ] as const;
 
@@ -44,14 +42,6 @@ export const navSections: NavSection[] = [
     label: "Spectr OS",
     href: "/platforms/spectr-os",
     previewVideo: "/videos/spectr-os.mp4",
-  },
-  {
-    label: "Offerings",
-    href: "/offerings",
-  },
-  {
-    label: "About",
-    href: "/about",
   },
   { label: "News", href: "/news" },
 ];

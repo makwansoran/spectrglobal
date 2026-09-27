@@ -13,14 +13,6 @@ const referenceNavSections: NavSection[] = [
     href: "/platforms/spectr-os",
     previewVideo: "/videos/spectr-os.mp4",
   },
-  {
-    label: "Offerings",
-    href: "/offerings",
-  },
-  {
-    label: "About",
-    href: "/about",
-  },
 ];
 
 export function Nav() {
@@ -28,9 +20,7 @@ export function Nav() {
   const { openGetStarted } = useGetStarted();
   const [open, setOpen] = useState(false);
   const [menu, setMenu] = useState<string | null>(null);
-  const [primaryNavOverflowing, setPrimaryNavOverflowing] = useState(false);
   const [renderedPathname, setRenderedPathname] = useState(pathname);
-  const primaryNavRef = useRef<HTMLElement>(null);
 
   if (pathname !== renderedPathname) {
     setRenderedPathname(pathname);
@@ -57,24 +47,6 @@ export function Nav() {
     return () => window.removeEventListener("keydown", onKey);
   }, [open, menu]);
 
-  useEffect(() => {
-    const primaryNav = primaryNavRef.current;
-    if (!primaryNav) return;
-
-    const updateOverflow = () => {
-      setPrimaryNavOverflowing(primaryNav.scrollWidth > primaryNav.clientWidth);
-    };
-
-    updateOverflow();
-    const observer = new ResizeObserver(updateOverflow);
-    observer.observe(primaryNav);
-    window.addEventListener("resize", updateOverflow);
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("resize", updateOverflow);
-    };
-  }, []);
-
   return (
     <>
       <header className="site-header site-header--reference">
@@ -84,7 +56,7 @@ export function Nav() {
               <LogoMark className="h-[34px] w-[34px]" />
             </Link>
 
-            <nav ref={primaryNavRef} aria-label="Primary" className="reference-nav__links hidden lg:flex">
+            <nav aria-label="Primary" className="reference-nav__links hidden lg:flex">
               {referenceNavSections.map((section, index) => (
                 <NavDropdown
                   key={section.label}
@@ -98,12 +70,6 @@ export function Nav() {
             </nav>
 
             <div className="reference-nav__actions">
-              <Link
-                href="/login"
-                className={`reference-nav__action hidden sm:flex ${primaryNavOverflowing ? "reference-nav__action--merged" : ""}`}
-              >
-                Login
-              </Link>
               <button
                 type="button"
                 onClick={() => openGetStarted("contact")}
@@ -179,9 +145,6 @@ export function Nav() {
               </div>
             ))}
             <div className="mt-8 flex flex-col gap-3">
-              <Link href="/login" className="btn btn-secondary" onClick={() => setOpen(false)}>
-                Login
-              </Link>
               <button
                 type="button"
                 onClick={() => {

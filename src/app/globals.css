@@ -1654,6 +1654,7 @@ button.reference-nav__trigger {
 .reference-nav__action--contact {
   background: #111111;
   border-color: #111111;
+  border-right: 1px solid #111111;
   color: #ffffff;
 }
 
