@@ -13,8 +13,8 @@
 }
 
 .industrial-smart-system__title {
-  font-size: clamp(2.25rem, 4.4vw, 4.75rem);
-  max-width: 11ch;
+  font-size: clamp(3.25rem, 6.8vw, 7rem);
+  max-width: 9ch;
 }
 
 .industrial-smart-system__media {
@@ -34,7 +34,7 @@
   }
 
   .industrial-smart-system__grid {
-    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
     gap: 4rem;
   }
 }
