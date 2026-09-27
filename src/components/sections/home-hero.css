@@ -1,3 +1,17 @@
+.home-hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: calc(100dvh - 61px);
+  padding: 1.5rem;
+  background: #fff;
+}
+
+.home-hero__center {
+  width: min(100%, 1400px);
+}
+
 .spectros-waitlist__panel {
   position: relative;
   isolation: isolate;

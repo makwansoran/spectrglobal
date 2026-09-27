@@ -5,10 +5,10 @@ export function HomeHero() {
   return (
     <section
       id="spectros"
-      className="bg-white px-4 pb-16 pt-10 sm:px-6 sm:pb-24 sm:pt-16"
+      className="home-hero"
       aria-labelledby="industry-preview-title"
     >
-      <div className="mx-auto flex w-full max-w-[1400px] justify-center">
+      <div className="home-hero__center">
         <div className="spectros-waitlist__intro min-w-0">
           <h1 id="industry-preview-title" className="home-display spectros-waitlist__headline">
             <span className="spectros-waitlist__line">
