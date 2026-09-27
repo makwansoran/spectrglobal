@@ -3,13 +3,16 @@
   padding: 4rem 1rem 5rem;
 }
 
+.industrial-smart-system__inner {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
 .industrial-smart-system__grid {
   display: grid;
   align-items: center;
   gap: 2.5rem;
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
 }
 
 .industrial-smart-system__title {
@@ -26,6 +29,79 @@
 
 .industrial-smart-system__image {
   object-fit: cover;
+}
+
+.industrial-smart-system__list {
+  margin: 3rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.industrial-smart-system__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 1rem;
+  row-gap: 0.75rem;
+  padding: 1rem 0;
+  text-decoration: none;
+}
+
+.industrial-smart-system__copy {
+  grid-column: 1 / -1;
+  max-width: 16.5rem;
+}
+
+.industrial-smart-system__description {
+  margin: 0;
+  color: #1e1f2b;
+  font-size: 17px;
+  line-height: 1.4;
+}
+
+.industrial-smart-system__index {
+  margin: 0.75rem 0 0;
+  color: #aaaaaa;
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+.industrial-smart-system__name {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.industrial-smart-system__thumb {
+  width: 7rem;
+  height: 4.5rem;
+  justify-self: end;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+@media (min-width: 640px) {
+  .industrial-smart-system__list {
+    margin-top: 4.5rem;
+  }
+
+  .industrial-smart-system__row {
+    grid-template-columns: minmax(11rem, 0.4fr) minmax(0, 1fr) auto;
+    column-gap: 2rem;
+    padding: 0.75rem 0 3.5rem;
+  }
+
+  .industrial-smart-system__copy {
+    grid-column: auto;
+  }
+
+  .industrial-smart-system__name {
+    white-space: nowrap;
+  }
+
+  .industrial-smart-system__thumb {
+    width: 9rem;
+    height: 5.5rem;
+  }
 }
 
 @media (min-width: 1024px) {

@@ -69,6 +69,7 @@ export const footerColumns = [
       { label: "Manufacturing", href: "/use-cases/manufacturing" },
       { label: "Logistics", href: "/use-cases/logistics" },
       { label: "Waste Management", href: "/use-cases/waste-management" },
+      { label: "Mining", href: "/use-cases/mining" },
     ],
   },
   {

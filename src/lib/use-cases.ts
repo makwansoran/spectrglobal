@@ -157,6 +157,47 @@ export const industryPages: IndustryPage[] = [
     ctaTitle: "Run the loop on Spectr OS",
     ctaImage: "/images/industries/waste-management-hero.jpg",
   },
+  {
+    slug: "mining",
+    index: "/0.4",
+    name: "Mining",
+    listingDescription:
+      "Pit, plant, and materials as one model — fleets, grades, and recovery handled as the shift runs.",
+    href: "/use-cases/mining",
+    image: "/images/industries/infrastructure.jpg",
+    imageAlt: "Heavy industrial site and materials operations",
+    bannerTitle: "Mining",
+    headline: "Pit, plant, and materials as one model.",
+    tagline: "The central system for orchestrating decisions across fleets, grades, crushers, and recovery.",
+    systemTitle: "The mining system",
+    systemBody:
+      "Spectr OS sits on fleet, plant, and grade data and turns them into one operational picture, so a blocked haul or a grade miss is a ranked move, not a shift of catch-up.",
+    systemVideo: "/videos/spectr-os-data-fusion.mp4",
+    overviewEyebrow: "Overview",
+    overviewTitle: "Power",
+    overviewAccent: "the pit you have.",
+    overviewCallout: "Spectr OS",
+    pillars: [
+      {
+        title: "Encode the data of the pit.",
+        body: "Fleet positions, grades, crushers, and stockpiles share one live picture. The plan that cannot see the haul road is already late.",
+      },
+      {
+        title: "Capture the logic of the grade.",
+        body: "Blend targets, permits, and recovery constraints sit on the same objects. A miss re-ranks the next legal feed.",
+      },
+      {
+        title: "Model the actions of the shift.",
+        body: "Reroute, hold, and reallocate are first-class. A blocked bench proposes the next legal sequence with recovery in view.",
+      },
+      {
+        title: "Govern operators and agents together.",
+        body: "A supervisor approves the move. The runtime does not drive the truck. It makes the options honest.",
+      },
+    ],
+    ctaTitle: "Run the pit on Spectr OS",
+    ctaImage: "/images/industries/infrastructure.jpg",
+  },
 ];
 
 export function getIndustryPage(slug: string) {

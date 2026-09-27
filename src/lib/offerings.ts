@@ -6,7 +6,7 @@ export type Offering = {
 
 export const offeringsPage = {
   title: "Offerings",
-  body: "Spectr OS is used across manufacturing, logistics, and waste to help organisations implement an operating system for the hardest work on the floor.",
+  body: "Spectr OS is used across manufacturing, logistics, waste, and mining to help organisations implement an operating system for the hardest work on the floor.",
 } as const;
 
 export const offerings: Offering[] = [
@@ -24,5 +24,10 @@ export const offerings: Offering[] = [
     title: "Waste Management",
     body: "Collection, plants, and materials as one loop, so a lift is an operational decision.",
     href: "/use-cases/waste-management",
+  },
+  {
+    title: "Mining",
+    body: "Pit, plant, and materials as one model — fleets, grades, and recovery handled as the shift runs.",
+    href: "/use-cases/mining",
   },
 ];
