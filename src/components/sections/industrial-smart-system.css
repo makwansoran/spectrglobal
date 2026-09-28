@@ -35,6 +35,11 @@
   margin: 3rem 0 0;
   padding: 0;
   list-style: none;
+  overflow: visible;
+}
+
+.industrial-smart-system__list > li {
+  overflow: visible;
 }
 
 .industrial-smart-system__row {
@@ -45,6 +50,7 @@
   row-gap: 0.75rem;
   padding: 1rem 0;
   text-decoration: none;
+  overflow: visible;
 }
 
 .industrial-smart-system__copy {
@@ -67,13 +73,15 @@
 }
 
 .industrial-smart-system__name {
-  min-width: 0;
-  overflow: hidden;
+  min-width: min-content;
+  overflow: visible;
+  line-height: 1.25;
+  padding-block: 0.14em 0.28em;
 }
 
 .industrial-smart-system__thumb {
-  width: 7rem;
-  height: 4.5rem;
+  width: 8.5rem;
+  height: 5.5rem;
   justify-self: end;
   flex-shrink: 0;
   object-fit: cover;
@@ -85,9 +93,10 @@
   }
 
   .industrial-smart-system__row {
-    grid-template-columns: minmax(11rem, 0.4fr) minmax(0, 1fr) auto;
+    grid-template-columns: minmax(11rem, 0.32fr) minmax(0, 1fr) auto;
     column-gap: 2rem;
-    padding: 0.75rem 0 3.5rem;
+    align-items: center;
+    padding: 1.75rem 0 4.25rem;
   }
 
   .industrial-smart-system__copy {
@@ -96,11 +105,13 @@
 
   .industrial-smart-system__name {
     white-space: nowrap;
+    line-height: 1.28;
+    padding-block: 0.16em 0.3em;
   }
 
   .industrial-smart-system__thumb {
-    width: 9rem;
-    height: 5.5rem;
+    width: 12rem;
+    height: 7.5rem;
   }
 }
 
