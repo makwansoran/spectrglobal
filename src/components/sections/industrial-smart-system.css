@@ -15,9 +15,35 @@
   gap: 2.5rem;
 }
 
+.industrial-smart-system__intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
 .industrial-smart-system__title {
   font-size: clamp(3.25rem, 6.8vw, 7rem);
   max-width: 9ch;
+}
+
+.industrial-smart-system__os {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.7rem 1.35rem;
+  border: 1px solid #111111;
+  background: #111111;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+
+.industrial-smart-system__os:hover {
+  background: #262626;
 }
 
 .industrial-smart-system__media {

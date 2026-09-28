@@ -12,9 +12,14 @@ export function IndustrialSmartSystem() {
     >
       <div className="industrial-smart-system__inner">
         <div className="industrial-smart-system__grid">
-          <h2 id="industrial-smart-system-heading" className="home-display industrial-smart-system__title">
-            Spectr Industrial Smart System
-          </h2>
+          <div className="industrial-smart-system__intro">
+            <h2 id="industrial-smart-system-heading" className="home-display industrial-smart-system__title">
+              Spectr Industrial Smart System
+            </h2>
+            <Link href="/platforms/spectr-os" className="industrial-smart-system__os">
+              Spectr OS
+            </Link>
+          </div>
           <div className="industrial-smart-system__media">
             <Image
               src="/images/products/spectr-os-materials.jpg"
