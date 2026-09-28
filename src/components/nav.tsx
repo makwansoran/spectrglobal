@@ -18,148 +18,58 @@ const referenceNavSections: NavSection[] = [
 export function Nav() {
   const pathname = usePathname();
   const { openGetStarted } = useGetStarted();
-  const [open, setOpen] = useState(false);
   const [menu, setMenu] = useState<string | null>(null);
   const [renderedPathname, setRenderedPathname] = useState(pathname);
 
   if (pathname !== renderedPathname) {
     setRenderedPathname(pathname);
-    setOpen(false);
     setMenu(null);
   }
 
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
-
-  useEffect(() => {
-    if (!open && !menu) return;
+    if (!menu) return;
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        setOpen(false);
         setMenu(null);
       }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [open, menu]);
+  }, [menu]);
 
   return (
-    <>
-      <header className="site-header site-header--reference">
-        <div className="reference-nav-shell">
-          <div className="reference-nav">
-            <Link href="/" className="reference-nav__brand" aria-label={site.name}>
-              <LogoMark className="h-[34px] w-[34px]" />
-            </Link>
+    <header className="site-header site-header--reference">
+      <div className="reference-nav-shell">
+        <div className="reference-nav">
+          <Link href="/" className="reference-nav__brand" aria-label={site.name}>
+            <LogoMark className="h-[34px] w-[34px]" />
+          </Link>
 
-            <nav aria-label="Primary" className="reference-nav__links hidden lg:flex">
-              {referenceNavSections.map((section, index) => (
-                <NavDropdown
-                  key={section.label}
-                  section={section}
-                  isLast={index === referenceNavSections.length - 1}
-                  open={menu === section.label}
-                  onOpen={() => setMenu(section.label)}
-                  onClose={() => setMenu(null)}
-                />
-              ))}
-            </nav>
+          <nav aria-label="Primary" className="reference-nav__links hidden lg:flex">
+            {referenceNavSections.map((section, index) => (
+              <NavDropdown
+                key={section.label}
+                section={section}
+                isLast={index === referenceNavSections.length - 1}
+                open={menu === section.label}
+                onOpen={() => setMenu(section.label)}
+                onClose={() => setMenu(null)}
+              />
+            ))}
+          </nav>
 
-            <div className="reference-nav__actions">
-              <button
-                type="button"
-                onClick={() => openGetStarted("contact")}
-                className="reference-nav__action reference-nav__action--contact hidden sm:flex"
-              >
-                Contact
-              </button>
-              <button
-                type="button"
-                onClick={() => setOpen((value) => !value)}
-                aria-expanded={open}
-                aria-controls="site-nav-overlay"
-                aria-label={open ? "Close menu" : "Open menu"}
-                className="reference-nav__burger inline-flex lg:hidden"
-              >
-                <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none" aria-hidden="true">
-                  {open ? (
-                    <path d="m5 5 10 10M15 5 5 15" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-                  ) : (
-                    <path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-                  )}
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      {open ? (
-        <div id="site-nav-overlay" className="nav-overlay" role="dialog" aria-modal="true" aria-label="Navigation">
-          <div className="container-x flex h-[4.25rem] items-center justify-between">
-            <Link href="/" className="flex items-center gap-2.5" aria-label={site.name} onClick={() => setOpen(false)}>
-              <LogoMark className="h-8 w-8" />
-              <span className="text-[15px] font-medium tracking-[-0.02em]">Spectr</span>
-            </Link>
+          <div className="reference-nav__actions">
             <button
               type="button"
-              onClick={() => setOpen(false)}
-              aria-label="Close menu"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10"
+              onClick={() => openGetStarted("contact")}
+              className="reference-nav__action reference-nav__action--contact flex"
             >
-              <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none" aria-hidden="true">
-                <path d="m5 5 10 10M15 5 5 15" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-              </svg>
+              Contact
             </button>
           </div>
-
-          <nav className="container-x flex flex-col gap-1 pb-10 pt-6" aria-label="Mobile">
-            {referenceNavSections.map((section) => (
-              <div key={section.label} className="border-b border-border py-4">
-                {section.href ? (
-                  <Link
-                    href={section.href}
-                    onClick={() => setOpen(false)}
-                    className="display block text-4xl tracking-[-0.03em] text-fg"
-                  >
-                    {section.label}
-                  </Link>
-                ) : (
-                  <p className="display m-0 text-4xl tracking-[-0.03em] text-fg">{section.label}</p>
-                )}
-                {section.items?.length ? (
-                  <ul className="mt-4 space-y-2">
-                    {section.items.map((item) => (
-                      <li key={item.href + item.label}>
-                        <Link href={item.href} onClick={() => setOpen(false)} className="text-base text-muted hover:text-fg">
-                          {item.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                ) : null}
-              </div>
-            ))}
-            <div className="mt-8 flex flex-col gap-3">
-              <button
-                type="button"
-                onClick={() => {
-                  setOpen(false);
-                  openGetStarted("contact");
-                }}
-                className="btn btn-secondary reference-nav__action--contact"
-              >
-                Contact
-              </button>
-            </div>
-          </nav>
         </div>
-      ) : null}
-    </>
+      </div>
+    </header>
   );
 }
 
