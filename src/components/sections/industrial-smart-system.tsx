@@ -17,7 +17,8 @@ export function IndustrialSmartSystem() {
               Spectr Industrial Smart System
             </h2>
             <Link href="/platforms/spectr-os" className="industrial-smart-system__os">
-              Spectr OS
+              Check out Spectr OS
+              <span aria-hidden="true">→</span>
             </Link>
           </div>
           <div className="industrial-smart-system__media">

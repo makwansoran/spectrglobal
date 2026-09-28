@@ -31,19 +31,28 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 2.75rem;
-  padding: 0.7rem 1.35rem;
-  border: 1px solid #111111;
+  gap: 0.65rem;
+  min-height: 3.5rem;
+  padding: 0.95rem 1.75rem;
+  border: 2px solid #111111;
   background: #111111;
   color: #ffffff;
-  font-size: 0.95rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
   text-decoration: none;
+  box-shadow: 0 10px 28px rgba(17, 17, 17, 0.18);
 }
 
 .industrial-smart-system__os:hover {
   background: #262626;
+  border-color: #262626;
+}
+
+.industrial-smart-system__os span {
+  font-size: 1.15em;
+  line-height: 1;
+  transform: translateY(-0.04em);
 }
 
 .industrial-smart-system__media {
