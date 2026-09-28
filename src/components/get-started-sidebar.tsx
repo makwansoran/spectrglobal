@@ -44,17 +44,16 @@ export function GetStartedSidebar() {
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-[90]" role="dialog" aria-modal="true" aria-label="Get Started">
+    <div className="fixed inset-0 z-[90]" role="dialog" aria-modal="true" aria-label="Contact">
       <button
         type="button"
         className="absolute inset-0 bg-black/70 backdrop-blur-sm"
-        aria-label="Close get started panel"
+        aria-label="Close contact panel"
         onClick={closeGetStarted}
       />
 
       <aside className="get-started-panel absolute inset-y-0 right-0 flex w-full max-w-[42rem] flex-col border-l border-white/15 bg-black text-white shadow-2xl">
-        <div className="flex items-center justify-between px-5 py-4 sm:px-6">
-          <p className="text-sm font-medium text-white/55">Get started</p>
+        <div className="flex items-center justify-end px-5 py-4 sm:px-6">
           <button
             type="button"
             onClick={closeGetStarted}
