@@ -140,10 +140,17 @@
   overflow: hidden;
 }
 
-.vision-models__media img {
+.vision-models__media img,
+.vision-models__placeholder {
   display: block;
   width: 100%;
   height: auto;
+}
+
+.vision-models__placeholder {
+  aspect-ratio: 1024 / 682;
+  background: #070708;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16);
 }
 
 .vision-models .vision-models__title {
