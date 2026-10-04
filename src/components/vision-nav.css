@@ -1,0 +1,132 @@
+.vision-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #070708;
+  color: #f4f4f5;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.vision-nav__inner {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  max-width: 1180px;
+  height: 64px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.vision-nav__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: #fff;
+  text-decoration: none;
+}
+
+.vision-nav__links {
+  display: none;
+  align-items: center;
+  gap: 0.25rem;
+  margin-left: 0.5rem;
+}
+
+.vision-nav__links a {
+  padding: 0.4rem 0.7rem;
+  border-radius: 8px;
+  color: #d4d4d8;
+  font-size: 0.92rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.vision-nav__links a:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.vision-nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+.vision-nav__ghost,
+.vision-nav__cta,
+.vision-nav__menu {
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+  text-decoration: none;
+}
+
+.vision-nav__ghost {
+  display: none;
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  color: #e4e4e7;
+  font-size: 0.9rem;
+  font-weight: 500;
+  background: transparent;
+}
+
+.vision-nav__ghost:hover {
+  color: #fff;
+}
+
+.vision-nav__cta {
+  padding: 0.48rem 0.95rem;
+  border-radius: 999px;
+  background: #fff;
+  color: #09090b;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.vision-nav__cta:hover {
+  background: #e4e4e7;
+}
+
+.vision-nav__menu {
+  padding: 0.4rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: transparent;
+  color: #fff;
+  font-size: 0.88rem;
+}
+
+.vision-nav__panel {
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.4rem 1.25rem 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: #070708;
+}
+
+.vision-nav__panel a,
+.vision-nav__panel button {
+  padding: 0.7rem 0.2rem;
+  border: 0;
+  background: transparent;
+  color: #f4f4f5;
+  font: inherit;
+  font-size: 1rem;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@media (min-width: 860px) {
+  .vision-nav__links,
+  .vision-nav__ghost {
+    display: flex;
+  }
+
+  .vision-nav__menu,
+  .vision-nav__panel {
+    display: none;
+  }
+}

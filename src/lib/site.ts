@@ -7,10 +7,11 @@ export const site = {
   phone: "+47 465 03 934",
   phoneHref: "tel:+4746503934",
   location: "Norway",
-  product: "Spectr OS",
-  tagline: "Spectr OS — the operating system for the enterprise.",
+  product: "Spectr",
+  tagline: "Open models for computer vision, AI vision, and VLA.",
   description:
-    "Spectr builds Spectr OS, an operating system for the enterprise.",
+    "Spectr builds open-source computer vision, AI vision, and vision-language-action models. Detect, segment, and act from one stack.",
+  github: "https://github.com/makwansoran/spectrglobal",
   social: {
     x: "https://x.com/spectrnorway",
     linkedin: "https://www.linkedin.com/company/spectr-norway/",
@@ -20,8 +21,10 @@ export const site = {
 } as const;
 
 export const navPrimary = [
-  { label: "Spectr OS", href: "/platforms/spectr-os" },
-  { label: "News", href: "/news" },
+  { label: "Models", href: "/#models" },
+  { label: "Solutions", href: "/#solutions" },
+  { label: "Docs", href: "/developers" },
+  { label: "Company", href: "/about" },
 ] as const;
 
 export type NavItem = {
@@ -38,12 +41,10 @@ export type NavSection = {
 };
 
 export const navSections: NavSection[] = [
-  {
-    label: "Spectr OS",
-    href: "/platforms/spectr-os",
-    previewVideo: "/videos/spectr-os.mp4",
-  },
-  { label: "News", href: "/news" },
+  { label: "Models", href: "/#models" },
+  { label: "Solutions", href: "/#solutions" },
+  { label: "Docs", href: "/developers" },
+  { label: "Company", href: "/about" },
 ];
 
 export const navQuickLinks = [
@@ -56,20 +57,29 @@ export const navQuickLinks = [
 
 export const footerColumns = [
   {
-    title: "Products",
+    title: "Models",
     links: [
-      { label: "Spectr OS", href: "/platforms/spectr-os" },
-      { label: "Get started", href: "/contact" },
+      { label: "Spectr Detect", href: "/#models" },
+      { label: "Spectr Segment", href: "/#models" },
+      { label: "Spectr VLA", href: "/#models" },
+      { label: "All models", href: "/#models" },
     ],
   },
   {
-    title: "Offerings",
+    title: "Solutions",
     links: [
-      { label: "All offerings", href: "/offerings" },
-      { label: "Manufacturing", href: "/use-cases/manufacturing" },
-      { label: "Logistics", href: "/use-cases/logistics" },
-      { label: "Waste Management", href: "/use-cases/waste-management" },
-      { label: "Mining", href: "/use-cases/mining" },
+      { label: "Manufacturing", href: "/#solutions" },
+      { label: "Logistics", href: "/#solutions" },
+      { label: "Robotics", href: "/#solutions" },
+      { label: "Security", href: "/#solutions" },
+    ],
+  },
+  {
+    title: "Developers",
+    links: [
+      { label: "Docs", href: "/developers" },
+      { label: "GitHub", href: "https://github.com/makwansoran/spectrglobal" },
+      { label: "Get started", href: "/contact" },
     ],
   },
   {
@@ -78,13 +88,8 @@ export const footerColumns = [
       { label: "About", href: "/about" },
       { label: "News", href: "/news" },
       { label: "Contact", href: "/contact" },
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
-      { label: "Privacy policy", href: "/privacy" },
-      { label: "Terms & conditions", href: "/terms" },
+      { label: "Privacy", href: "/privacy" },
+      { label: "Terms", href: "/terms" },
     ],
   },
 ] as const;

@@ -1,0 +1,360 @@
+.vision {
+  background: #070708;
+  color: #f4f4f5;
+}
+
+.vision-hero {
+  position: relative;
+  display: grid;
+  min-height: calc(100vh - 64px);
+  place-items: center;
+  padding: 4.5rem 1.25rem 5rem;
+  overflow: hidden;
+}
+
+.vision-hero__media {
+  position: absolute;
+  inset: 0;
+}
+
+.vision-hero__image {
+  object-fit: cover;
+  object-position: center;
+}
+
+.vision-hero__shade {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at center, rgba(0, 0, 0, 0.62) 0%, rgba(0, 0, 0, 0.28) 46%, rgba(0, 0, 0, 0.78) 100%);
+}
+
+.vision-hero__copy {
+  position: relative;
+  z-index: 1;
+  max-width: 52rem;
+  text-align: center;
+}
+
+.vision-kicker {
+  margin: 0 0 1rem;
+  color: #e4e4e7;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.vision-hero h1,
+.vision-close h2 {
+  margin: 0;
+  font-size: clamp(2.4rem, 5.4vw, 4.6rem);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+}
+
+.vision-hero__lead,
+.vision-section__head p,
+.vision-code p,
+.vision-close p {
+  color: #d4d4d8;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.vision-hero__lead {
+  max-width: 38rem;
+  margin: 1.25rem auto 0;
+}
+
+.vision-hero__actions,
+.vision-close {
+  display: flex;
+  justify-content: center;
+}
+
+.vision-hero__actions {
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+
+.vision-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.65rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.vision-btn--solid {
+  background: #fff;
+  color: #09090b;
+}
+
+.vision-btn--solid:hover {
+  background: #e4e4e7;
+}
+
+.vision-btn--ghost {
+  background: rgba(0, 0, 0, 0.28);
+  border-color: rgba(255, 255, 255, 0.45);
+  color: #fff;
+}
+
+.vision-btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.vision-strip {
+  display: grid;
+  gap: 1rem;
+  padding: 1.5rem 1.25rem 0.5rem;
+  text-align: center;
+}
+
+.vision-strip p {
+  margin: 0;
+  color: #a1a1aa;
+  font-size: 0.92rem;
+}
+
+.vision-strip ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem 1.4rem;
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  color: #f4f4f5;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.vision-section {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 5.5rem 1.25rem 0;
+}
+
+.vision-section--tight {
+  padding-top: 3.5rem;
+}
+
+.vision-section__head {
+  max-width: 40rem;
+  margin-bottom: 2rem;
+}
+
+.vision-section h2,
+.vision-code h2 {
+  margin: 0;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+.vision-section__head p {
+  margin: 0.85rem 0 0;
+}
+
+.vision-models,
+.vision-tasks,
+.vision-solutions {
+  display: grid;
+  gap: 0.85rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.vision-models article,
+.vision-tasks li,
+.vision-faq details {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  background: #101012;
+}
+
+.vision-models article,
+.vision-tasks li {
+  padding: 1.25rem 1.2rem 1.35rem;
+}
+
+.vision-models__task {
+  margin: 0;
+  color: #a1a1aa;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.vision-models h3,
+.vision-tasks h3,
+.vision-steps h3,
+.vision-solutions h3 {
+  margin: 0.4rem 0 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.vision-models p,
+.vision-tasks p,
+.vision-steps p,
+.vision-solutions p,
+.vision-faq p {
+  margin: 0.45rem 0 0;
+  color: #c4c4cc;
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.vision-split {
+  display: grid;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.vision-split__media {
+  position: relative;
+  min-height: 280px;
+  overflow: hidden;
+  border-radius: 18px;
+}
+
+.vision-split__media img,
+.vision-solutions__media img {
+  object-fit: cover;
+}
+
+.vision-steps {
+  display: grid;
+  gap: 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.vision-code {
+  display: grid;
+  gap: 1.5rem;
+  align-items: center;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  background: #101012;
+}
+
+.vision-code p {
+  margin: 0.8rem 0 0;
+}
+
+.vision-text-link {
+  display: inline-block;
+  margin-top: 1rem;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.vision-text-link:hover {
+  text-decoration: underline;
+}
+
+.vision-code pre {
+  margin: 0;
+  padding: 1.15rem 1.2rem;
+  overflow: auto;
+  border-radius: 14px;
+  background: #070708;
+  color: #f4f4f5;
+  font-family: var(--font-essay-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.86rem;
+  line-height: 1.65;
+}
+
+.vision-solutions article {
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  background: #101012;
+}
+
+.vision-solutions__media {
+  position: relative;
+  height: 180px;
+}
+
+.vision-solutions__copy {
+  padding: 1rem 1.05rem 1.15rem;
+}
+
+.vision-faq {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.vision-faq summary {
+  padding: 1rem 1.1rem;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.vision-faq p {
+  padding: 0 1.1rem 1rem;
+}
+
+.vision-close {
+  display: grid;
+  justify-items: center;
+  gap: 1rem;
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 6rem 1.25rem 5.5rem;
+  text-align: center;
+}
+
+.vision-close p {
+  margin: 0;
+}
+
+@media (min-width: 700px) {
+  .vision-models,
+  .vision-solutions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .vision-tasks {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 980px) {
+  .vision-models,
+  .vision-solutions {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .vision-split,
+  .vision-code {
+    grid-template-columns: 1.05fr 0.95fr;
+  }
+
+  .vision-split__media {
+    min-height: 420px;
+  }
+}

@@ -5,7 +5,7 @@ export const defaultOgImage = {
   url: `${site.url}/opengraph-image`,
   width: 1200,
   height: 630,
-  alt: `${site.name} — Spectr OS`,
+  alt: `${site.name} — computer vision, AI vision, and VLA`,
 };
 
 export function buildPageMetadata({

@@ -19,13 +19,13 @@ const essayMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — Spectr OS`,
+    default: `${site.name} — Computer vision, AI vision, and VLA`,
     template: `%s — ${site.name}`,
   },
   description: site.description,
   alternates: { canonical: site.url },
   openGraph: {
-    title: `${site.name} — Spectr OS`,
+    title: `${site.name} — Computer vision, AI vision, and VLA`,
     description: site.description,
     url: site.url,
     siteName: site.name,
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} — Spectr OS`,
+    title: `${site.name} — Computer vision, AI vision, and VLA`,
     description: site.description,
     images: [defaultOgImage.url],
   },

@@ -30,49 +30,49 @@ export type HubPage = {
 export const developersHub: HubPage = {
   path: "/developers",
   bannerTitle: "Developers",
-  description: "Build on Spectr OS — APIs, ontology, workflows, and a runtime you can run locally.",
-  heroImage: "/images/products/spectr-os-ui.png",
-  heroImageAlt: "Spectr OS interface",
-  headline: "Start building against operational truth — not against a pile of tables.",
+  description: "Load a Spectr model, predict on your own images, and export the checkpoint you fine-tune.",
+  heroImage: "/spectr-detection.png",
+  heroImageAlt: "Aerial detection from a Spectr model",
+  headline: "Open vision models, with a short path from install to prediction.",
   columnOne:
-    "Spectr OS exists so builders can put AI into applications that take real actions — on a runtime you can host. The ontology is the SDK. Workflows are how agents get tools. APIs are how the rest of your estate joins in.",
+    "Spectr models cover detection, segmentation, pose, classification, depth, and vision-language-action. The Python API loads a checkpoint and returns boxes, masks, or the next action.",
   columnTwo:
-    "Request access, stand the runtime up, and customise. Documentation grows with the product. Until the full docs ship, the bootcamp is the one-video path: your data, a model, a workflow, local.",
-  cardsTitle: "Build",
+    "Fine-tune on your own scenes and export to ONNX, TensorRT, OpenVINO, CoreML, or TFLite. The weights stay with you.",
+  cardsTitle: "Start",
   cards: [
     {
-      title: "Platform",
-      body: "Spectr OS is API-first. REST and webhooks against the same objects operators already use.",
-      href: "/platforms/spectr-os",
+      title: "Models",
+      body: "Spectr Detect, Segment, Pose, Classify, Depth, and VLA — one family, open weights.",
+      href: "/#models",
     },
     {
-      title: "Offerings",
-      body: "Manufacturing, logistics, and waste — the domains where Spectr OS runs today.",
-      href: "/offerings",
+      title: "Solutions",
+      body: "Manufacturing, logistics, robotics, security, healthcare, and agriculture.",
+      href: "/#solutions",
     },
     {
-      title: "SPECTR BOOTCAMP",
-      body: "One video. Create your own AI, train it on your data, run it locally.",
-      href: "/bootcamp",
+      title: "GitHub",
+      body: "Read the code, open an issue, and run the models on your own machine.",
+      href: "https://github.com/makwansoran/spectrglobal",
     },
   ],
   capabilitiesTitle: "What you get",
   capabilities: [
     {
-      title: "Objects, not dumps",
-      body: "Integrate against units, orders, assets, and actions. Stop mapping the same CSV in every app.",
+      title: "One API",
+      body: "Load any Spectr checkpoint the same way. Swap the task without rewriting the call.",
     },
     {
-      title: "Human in the loop",
-      body: "Automations carry history. Operators remain on the approval for anything that touches the world.",
+      title: "Your data",
+      body: "Fine-tune on the scenes you actually run. The dataset does not have to leave the site.",
     },
     {
-      title: "Evaluate before you ship",
-      body: "Workflows can be tested against the live model. Production is a promotion, not a hope.",
+      title: "Inspectable action",
+      body: "Spectr VLA proposes a next move from a frame and an instruction. A person can still refuse it.",
     },
     {
-      title: "Run it here",
-      body: "Develop against a local runtime. Deploy to the site that owns the data.",
+      title: "Edge export",
+      body: "Ship the same model to a workstation, a Jetson, or a phone.",
     },
   ],
 };
