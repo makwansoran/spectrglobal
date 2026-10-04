@@ -2,19 +2,9 @@ export const formats = ["PyTorch", "ONNX", "TensorRT", "OpenVINO", "CoreML", "TF
 
 export const models = [
   {
-    name: "Spectr Detect",
-    task: "Object detection",
-    body: "Axis-aligned boxes for vehicles, parts, people, and packages in a single forward pass.",
-  },
-  {
-    name: "Spectr Segment",
-    task: "Segmentation",
-    body: "Instance masks and semantic maps when a box is not precise enough for the cut, the spill, or the lane.",
-  },
-  {
-    name: "Spectr Pose",
-    task: "Pose",
-    body: "Keypoints for bodies, tools, and mechanisms so a system can tell posture from a still frame.",
+    name: "ArgusONE",
+    task: "Models",
+    body: "One open vision model. It sees a camera stream, marks what matters, and keeps the track.",
   },
 ] as const;
 

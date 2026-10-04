@@ -47,7 +47,7 @@ export function VisionHome() {
 
       <section className="vision-section" id="models" aria-labelledby="models-title">
         <div className="vision-section__head">
-          <h2 id="models-title">The Spectr model family</h2>
+          <h2 id="models-title">Models</h2>
         </div>
         <ul className="vision-models">
           {models.map((model) => (

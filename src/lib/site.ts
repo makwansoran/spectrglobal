@@ -59,10 +59,7 @@ export const footerColumns = [
   {
     title: "Models",
     links: [
-      { label: "Spectr Detect", href: "/#models" },
-      { label: "Spectr Segment", href: "/#models" },
-      { label: "Spectr Pose", href: "/#models" },
-      { label: "All models", href: "/#models" },
+      { label: "ArgusONE", href: "/#models" },
     ],
   },
   {
