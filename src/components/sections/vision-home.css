@@ -168,6 +168,10 @@
   letter-spacing: -0.03em;
 }
 
+.vision-models article > p:first-child {
+  margin-top: 0;
+}
+
 .vision-models p {
   margin: 0.85rem 0 0;
   color: #c4c4cc;

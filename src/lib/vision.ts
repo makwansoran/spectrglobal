@@ -1,7 +1,6 @@
 export const models = [
   {
     name: "ArgusONE",
-    task: "Models",
     body: "One open vision model. It sees a camera stream, marks what matters, and keeps the track.",
     install: "sudo apt install ArgusONE",
     image: "/argusone.jpg",
@@ -9,7 +8,6 @@ export const models = [
   },
   {
     name: "VisionLab",
-    task: "App",
     body: "The app for the camera. Open a stream, run ArgusONE, and keep the track on your own machine.",
   },
 ] as const;
