@@ -46,7 +46,6 @@
 }
 
 .vision-section__head p,
-.vision-code p,
 .vision-close p {
   color: #d4d4d8;
   font-size: 1.05rem;
@@ -99,8 +98,7 @@
   margin-bottom: 2rem;
 }
 
-.vision-section h2,
-.vision-code h2 {
+.vision-section h2 {
   margin: 0;
   font-size: clamp(1.8rem, 3vw, 2.6rem);
   font-weight: 400;
@@ -221,7 +219,6 @@
   text-transform: uppercase;
 }
 
-.vision-steps h3,
 .vision-solutions h3 {
   margin: 0.4rem 0 0;
   font-size: 1.15rem;
@@ -229,7 +226,6 @@
   letter-spacing: -0.03em;
 }
 
-.vision-steps p,
 .vision-solutions p,
 .vision-faq p {
   margin: 0.45rem 0 0;
@@ -238,44 +234,8 @@
   line-height: 1.55;
 }
 
-.vision-split {
-  display: grid;
-  gap: 1.5rem;
-  align-items: center;
-}
-
-.vision-split__media {
-  position: relative;
-  min-height: 280px;
-  overflow: hidden;
-  border-radius: 18px;
-}
-
-.vision-split__media img,
 .vision-solutions__media img {
   object-fit: cover;
-}
-
-.vision-steps {
-  display: grid;
-  gap: 1.25rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.vision-code {
-  display: grid;
-  gap: 1.5rem;
-  align-items: center;
-  padding: 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  background: #101012;
-}
-
-.vision-code p {
-  margin: 0.8rem 0 0;
 }
 
 .vision-text-link {
@@ -288,18 +248,6 @@
 
 .vision-text-link:hover {
   text-decoration: underline;
-}
-
-.vision-code pre {
-  margin: 0;
-  padding: 1.15rem 1.2rem;
-  overflow: auto;
-  border-radius: 14px;
-  background: #070708;
-  color: #f4f4f5;
-  font-family: var(--font-essay-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 0.86rem;
-  line-height: 1.65;
 }
 
 .vision-solutions article {
@@ -361,14 +309,5 @@
 @media (min-width: 980px) {
   .vision-solutions {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .vision-split,
-  .vision-code {
-    grid-template-columns: 1.05fr 0.95fr;
-  }
-
-  .vision-split__media {
-    min-height: 420px;
   }
 }

@@ -102,61 +102,6 @@ export function VisionHome() {
         </ul>
       </section>
 
-      <section className="vision-section" aria-labelledby="lifecycle-title">
-        <div className="vision-section__head">
-          <h2 id="lifecycle-title">From a frame to an action</h2>
-          <p>Label what matters, train on your own scenes, and run the model next to the camera.</p>
-        </div>
-        <div className="vision-split">
-          <div className="vision-split__media">
-            <Image
-              src="/images/industries/manufacturing.jpg"
-              alt="Manufacturing line where vision models inspect parts"
-              fill
-              sizes="(max-width: 860px) 100vw, 520px"
-            />
-          </div>
-          <ol className="vision-steps">
-            <li>
-              <h3>Label</h3>
-              <p>Boxes, polygons, masks, and keypoints. Start from a Spectr model, then correct the misses.</p>
-            </li>
-            <li>
-              <h3>Train</h3>
-              <p>Fine-tune open weights on your site, your parts, and your lighting. Keep the dataset with you.</p>
-            </li>
-            <li>
-              <h3>Deploy</h3>
-              <p>Export to the runtimes you already use and put inference on the line, the vehicle, or the robot.</p>
-            </li>
-          </ol>
-        </div>
-      </section>
-
-      <section className="vision-section" aria-labelledby="code-title">
-        <div className="vision-code">
-          <div>
-            <h2 id="code-title">Built for developers. Ready for production.</h2>
-            <p>
-              The same open models behind the examples are the models you ship. Install the
-              library, load a checkpoint, and predict.
-            </p>
-            <Link href="/developers" className="vision-text-link">
-              Read the docs
-            </Link>
-          </div>
-          <pre>
-            <code>{`pip install spectr
-
-from spectr import Spectr
-
-model = Spectr("spectr-detect")
-results = model.predict("site.jpg")
-results.save()`}</code>
-          </pre>
-        </div>
-      </section>
-
       <section className="vision-section" id="solutions" aria-labelledby="solutions-title">
         <div className="vision-section__head">
           <h2 id="solutions-title">Vision AI across the work that moves</h2>
