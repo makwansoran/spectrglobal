@@ -44,6 +44,7 @@ function CopyInstall({ command }: { command: string }) {
 export function VisionHome() {
   const { openGetStarted } = useGetStarted();
   const [openSolutions, setOpenSolutions] = useState<Record<string, boolean>>({});
+  const [openQuestion, setOpenQuestion] = useState<string | null>(null);
 
   function toggleSolution(title: string) {
     setOpenSolutions((current) => ({ ...current, [title]: !current[title] }));
@@ -181,15 +182,27 @@ export function VisionHome() {
         <div className="vision-questions__inner">
           <h2 id="faq-title">Questions</h2>
           <ul>
-            {faqs.map((item, index) => (
-              <li key={item.question}>
-                <h3>{item.question}</h3>
-                <p>{item.answer}</p>
-                <span className="vision-questions__index" aria-hidden="true">
-                  /0.{index + 1}
-                </span>
-              </li>
-            ))}
+            {faqs.map((item, index) => {
+              const open = openQuestion === item.question;
+              return (
+                <li key={item.question} className={open ? "is-open" : undefined}>
+                  <h3>
+                    <button
+                      type="button"
+                      aria-expanded={open}
+                      aria-controls={`question-${index}`}
+                      onClick={() => setOpenQuestion(open ? null : item.question)}
+                    >
+                      {item.question}
+                    </button>
+                  </h3>
+                  <p id={`question-${index}`}>{item.answer}</p>
+                  <span className="vision-questions__index" aria-hidden="true">
+                    /0.{index + 1}
+                  </span>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </section>

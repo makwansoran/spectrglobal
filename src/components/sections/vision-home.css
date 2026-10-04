@@ -483,11 +483,39 @@
   line-height: 0.95;
 }
 
-.vision-questions p {
+.vision-questions h3 button {
+  display: block;
+  width: 100%;
   margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  text-align: inherit;
+  cursor: pointer;
+}
+
+.vision-questions p {
   max-width: 18rem;
+  max-height: 0;
+  margin: 0;
+  overflow: hidden;
+  opacity: 0;
   font-size: 1.05rem;
   line-height: 1.45;
+  transition:
+    max-height 280ms ease,
+    opacity 220ms ease;
+}
+
+.vision-questions li:hover p,
+.vision-questions li:focus-within p,
+.vision-questions li.is-open p {
+  max-height: 14rem;
+  opacity: 1;
 }
 
 .vision-questions__index {
@@ -603,7 +631,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .vision-tile,
-  .vision-tile__slide {
+  .vision-tile__slide,
+  .vision-questions p {
     transition: none;
   }
 }
