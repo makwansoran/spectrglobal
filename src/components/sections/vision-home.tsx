@@ -177,17 +177,20 @@ export function VisionHome() {
         </ul>
       </section>
 
-      <section className="vision-section" aria-labelledby="faq-title">
-        <div className="vision-section__head">
+      <section className="vision-questions" aria-labelledby="faq-title">
+        <div className="vision-questions__inner">
           <h2 id="faq-title">Questions</h2>
-        </div>
-        <div className="vision-faq">
-          {faqs.map((item) => (
-            <details key={item.question}>
-              <summary>{item.question}</summary>
-              <p>{item.answer}</p>
-            </details>
-          ))}
+          <ul>
+            {faqs.map((item, index) => (
+              <li key={item.question}>
+                <h3>{item.question}</h3>
+                <p>{item.answer}</p>
+                <span className="vision-questions__index" aria-hidden="true">
+                  /0.{index + 1}
+                </span>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
