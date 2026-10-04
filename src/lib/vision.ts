@@ -16,21 +16,6 @@ export const models = [
     task: "Pose",
     body: "Keypoints for bodies, tools, and mechanisms so a system can tell posture from a still frame.",
   },
-  {
-    name: "Spectr Classify",
-    task: "Classification",
-    body: "One label or many for a whole image: defect families, crop state, or site condition.",
-  },
-  {
-    name: "Spectr Depth",
-    task: "Depth",
-    body: "Per-pixel distance from a single camera when you need reach, clearance, or stack height.",
-  },
-  {
-    name: "Spectr VLA",
-    task: "Vision-language-action",
-    body: "See the scene, read the instruction, and propose the next action for a person or a robot.",
-  },
 ] as const;
 
 export const tasks = [
