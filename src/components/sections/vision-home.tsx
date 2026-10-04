@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useGetStarted } from "@/components/get-started-context";
 import { downloads } from "@/lib/site";
-import { models, solutions, tasks, faqs } from "@/lib/vision";
+import { models, solutions, faqs } from "@/lib/vision";
 import "./vision-home.css";
 
 function downloadVisionLab() {
@@ -97,20 +97,6 @@ export function VisionHome() {
                   </button>
                 )}
               </article>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section className="vision-section vision-section--tight" aria-labelledby="tasks-title">
-        <div className="vision-section__head">
-          <h2 id="tasks-title">One stack. Every vision task.</h2>
-        </div>
-        <ul className="vision-tasks">
-          {tasks.map((task) => (
-            <li key={task.title}>
-              <h3>{task.title}</h3>
-              <p>{task.body}</p>
             </li>
           ))}
         </ul>

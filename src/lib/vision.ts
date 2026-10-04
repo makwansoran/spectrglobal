@@ -14,21 +14,6 @@ export const models = [
   },
 ] as const;
 
-export const tasks = [
-  {
-    title: "Computer vision",
-    body: "Detection, segmentation, pose, classification, and depth on images and video.",
-  },
-  {
-    title: "AI vision",
-    body: "Models that explain what they see, so an operator can check the call before acting on it.",
-  },
-  {
-    title: "VLA",
-    body: "Vision-language-action models that connect a camera, a command, and a move.",
-  },
-] as const;
-
 export const solutions = [
   {
     title: "Manufacturing",
