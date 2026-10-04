@@ -20,13 +20,6 @@ export const site = {
   },
 } as const;
 
-export const navPrimary = [
-  { label: "Models", href: "/#models" },
-  { label: "Solutions", href: "/#solutions" },
-  { label: "Docs", href: "/developers" },
-  { label: "Company", href: "/about" },
-] as const;
-
 export type NavItem = {
   label: string;
   href: string;
