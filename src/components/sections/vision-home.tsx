@@ -24,12 +24,7 @@ export function VisionHome() {
           <div className="vision-hero__shade" />
         </div>
         <div className="vision-hero__copy">
-          <p className="vision-kicker">Computer vision · AI vision · VLA</p>
           <h1 id="vision-hero-title">Open models for seeing and acting in the world.</h1>
-          <p className="vision-hero__lead">
-            Spectr publishes open-source vision models. Detect, segment, estimate pose, and
-            close the loop with vision-language-action — from a notebook to the edge.
-          </p>
           <div className="vision-hero__actions">
             <a className="vision-btn vision-btn--solid" href="#models">
               Explore models

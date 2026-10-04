@@ -36,15 +36,6 @@
   text-align: center;
 }
 
-.vision-kicker {
-  margin: 0 0 1rem;
-  color: #e4e4e7;
-  font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
 .vision-hero h1,
 .vision-close h2 {
   margin: 0;
@@ -54,18 +45,12 @@
   line-height: 0.98;
 }
 
-.vision-hero__lead,
 .vision-section__head p,
 .vision-code p,
 .vision-close p {
   color: #d4d4d8;
   font-size: 1.05rem;
   line-height: 1.6;
-}
-
-.vision-hero__lead {
-  max-width: 38rem;
-  margin: 1.25rem auto 0;
 }
 
 .vision-hero__actions,
