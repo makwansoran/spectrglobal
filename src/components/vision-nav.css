@@ -53,12 +53,30 @@
   margin-left: auto;
 }
 
+.vision-nav__contact,
 .vision-nav__cta,
 .vision-nav__menu {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   border: 0;
   cursor: pointer;
   font: inherit;
   text-decoration: none;
+}
+
+.vision-nav__contact {
+  padding: 0.48rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: transparent;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.vision-nav__contact:hover {
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .vision-nav__cta {
@@ -68,6 +86,12 @@
   color: #09090b;
   font-size: 0.9rem;
   font-weight: 600;
+}
+
+.vision-nav__download {
+  width: 16px;
+  height: 16px;
+  flex: none;
 }
 
 .vision-nav__cta:hover {
@@ -93,6 +117,9 @@
 
 .vision-nav__panel a,
 .vision-nav__panel button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
   padding: 0.7rem 0.2rem;
   border: 0;
   background: transparent;
