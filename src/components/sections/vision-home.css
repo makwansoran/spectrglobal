@@ -210,6 +210,8 @@
 }
 
 .vision-download {
+  display: block;
+  width: fit-content;
   margin-top: 1.5rem;
   padding: 0.45rem 0.9rem;
   border: 0;
@@ -363,7 +365,8 @@
 }
 
 .vision-text-link {
-  display: inline-block;
+  display: block;
+  width: fit-content;
   margin-top: 1rem;
   color: #fff;
   font-weight: 600;
