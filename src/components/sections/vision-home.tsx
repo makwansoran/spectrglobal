@@ -119,32 +119,40 @@ export function VisionHome() {
         </ul>
       </section>
 
-      <section className="vision-section" id="solutions" aria-labelledby="solutions-title">
-        <div className="vision-section__head">
-          <h2 id="solutions-title">Vision AI across the work that moves</h2>
-          <p>Spectr models see factories, yards, roads, clinics, and fields — then hand the next action to a person or a machine.</p>
-        </div>
-        <ul className="vision-stories">
+      <section className="vision-section vision-section--tiles" id="solutions" aria-label="Solutions">
+        <ul className="vision-tiles">
           {solutions.map((item) => {
             const open = Boolean(openSolutions[item.title]);
             return (
               <li key={item.title}>
-                <article className="vision-story">
-                  <div className="vision-story__copy">
-                    <p className="vision-story__kicker">Solution</p>
-                    <h3>{item.title}</h3>
-                    <p className={open ? "vision-story__body is-open" : "vision-story__body"}>{item.body}</p>
-                    <button
-                      type="button"
-                      className="vision-story__expand"
-                      aria-expanded={open}
-                      onClick={() => toggleSolution(item.title)}
-                    >
-                      {open ? "Collapse" : "Expand"}
-                    </button>
-                  </div>
-                  <div className="vision-story__media">
-                    <Image src={item.image} alt={item.imageAlt} fill sizes="(max-width: 800px) 100vw, 420px" />
+                <article className={`vision-tile vision-tile--${item.tone}${open ? " is-open" : ""}`}>
+                  <button
+                    type="button"
+                    className="vision-tile__hit"
+                    aria-expanded={open}
+                    aria-label={`${open ? "Collapse" : "Expand"}: ${item.title}`}
+                    onClick={() => toggleSolution(item.title)}
+                  />
+                  <p className="vision-tile__label">{item.label}</p>
+                  <h3>{item.title}</h3>
+                  <div className="vision-tile__slide">
+                    <div className="vision-tile__face">
+                      <Image
+                        src={item.image}
+                        alt={item.imageAlt}
+                        fill
+                        sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 25vw"
+                      />
+                      <span className="vision-tile__expand" aria-hidden="true">
+                        Expand ›
+                      </span>
+                    </div>
+                    <div className="vision-tile__face vision-tile__face--copy">
+                      <p>{item.body}</p>
+                      <span className="vision-tile__expand" aria-hidden="true">
+                        Collapse ›
+                      </span>
+                    </div>
                   </div>
                 </article>
               </li>
