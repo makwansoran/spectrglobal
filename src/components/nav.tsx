@@ -36,6 +36,7 @@ export function Nav() {
 
   return (
     <header className="vision-nav">
+      <p className="vision-nav__notice">Website under development.</p>
       <div className="vision-nav__inner">
         <Link href="/" className="vision-nav__brand" aria-label={site.name}>
           <LogoMark invert className="h-7 w-7" />

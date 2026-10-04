@@ -7,6 +7,18 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+.vision-nav__notice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  margin: 0;
+  background: #fff;
+  color: #09090b;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
 .vision-nav__inner {
   display: flex;
   align-items: center;
