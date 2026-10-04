@@ -88,16 +88,6 @@
   background: #e4e4e7;
 }
 
-.vision-btn--ghost {
-  background: rgba(0, 0, 0, 0.28);
-  border-color: rgba(255, 255, 255, 0.45);
-  color: #fff;
-}
-
-.vision-btn--ghost:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
 .vision-section {
   max-width: 1120px;
   margin: 0 auto;

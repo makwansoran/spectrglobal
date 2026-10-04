@@ -64,9 +64,6 @@ export function VisionHome() {
             <a className="vision-btn vision-btn--solid" href="#models">
               Explore models
             </a>
-            <button type="button" className="vision-btn vision-btn--ghost" onClick={() => openGetStarted("contact")}>
-              Get started
-            </button>
           </div>
         </div>
       </section>
