@@ -60,6 +60,7 @@ export const footerColumns = [
     title: "Models",
     links: [
       { label: "ArgusONE", href: "/#models" },
+      { label: "VisionLab", href: "/#models" },
     ],
   },
   {

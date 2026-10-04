@@ -4,8 +4,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { useGetStarted } from "@/components/get-started-context";
+import { downloads } from "@/lib/site";
 import { models, solutions, tasks, faqs } from "@/lib/vision";
 import "./vision-home.css";
+
+function downloadVisionLab() {
+  const ua = navigator.userAgent;
+  const href = /Mac/i.test(ua)
+    ? downloads.mac
+    : /Linux/i.test(ua) && !/Android/i.test(ua)
+      ? downloads.linux
+      : downloads.windows;
+  window.location.assign(href);
+}
 
 function CopyInstall({ command }: { command: string }) {
   const [copied, setCopied] = useState(false);
@@ -71,7 +82,13 @@ export function VisionHome() {
                 <p className="vision-models__task">{model.task}</p>
                 <h3>{model.name}</h3>
                 <p>{model.body}</p>
-                <CopyInstall command={model.install} />
+                {"install" in model ? (
+                  <CopyInstall command={model.install} />
+                ) : (
+                  <button type="button" className="vision-download" onClick={downloadVisionLab}>
+                    Download
+                  </button>
+                )}
               </article>
             </li>
           ))}
