@@ -104,14 +104,14 @@ export function VisionHome() {
                     </Link>
                   </>
                 ) : (
-                  <>
+                  <div className="vision-download-stack">
                     <button type="button" className="vision-download" onClick={downloadVisionLab}>
                       Download
                     </button>
                     <Link href="/developers" className="vision-text-link">
                       Learn more
                     </Link>
-                  </>
+                  </div>
                 )}
               </article>
             </li>

@@ -209,6 +209,23 @@
   background: #e4e4e7;
 }
 
+.vision-download-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: max-content;
+  margin-top: 1.5rem;
+}
+
+.vision-download-stack .vision-download {
+  margin-top: 0;
+}
+
+.vision-download-stack .vision-text-link {
+  margin-top: 0.7rem;
+  text-align: center;
+}
+
 .vision-download {
   display: block;
   width: fit-content;
