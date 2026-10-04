@@ -43,6 +43,11 @@ function CopyInstall({ command }: { command: string }) {
 
 export function VisionHome() {
   const { openGetStarted } = useGetStarted();
+  const [openSolutions, setOpenSolutions] = useState<Record<string, boolean>>({});
+
+  function toggleSolution(title: string) {
+    setOpenSolutions((current) => ({ ...current, [title]: !current[title] }));
+  }
 
   return (
     <div className="vision">
@@ -114,20 +119,32 @@ export function VisionHome() {
           <h2 id="solutions-title">Vision AI across the work that moves</h2>
           <p>Spectr models see factories, yards, roads, clinics, and fields — then hand the next action to a person or a machine.</p>
         </div>
-        <ul className="vision-solutions">
-          {solutions.map((item) => (
-            <li key={item.title}>
-              <article>
-                <div className="vision-solutions__media">
-                  <Image src={item.image} alt={item.imageAlt} fill sizes="(max-width: 700px) 100vw, 360px" />
-                </div>
-                <div className="vision-solutions__copy">
-                  <h3>{item.title}</h3>
-                  <p>{item.body}</p>
-                </div>
-              </article>
-            </li>
-          ))}
+        <ul className="vision-stories">
+          {solutions.map((item) => {
+            const open = Boolean(openSolutions[item.title]);
+            return (
+              <li key={item.title}>
+                <article className="vision-story">
+                  <div className="vision-story__copy">
+                    <p className="vision-story__kicker">Solution</p>
+                    <h3>{item.title}</h3>
+                    <p className={open ? "vision-story__body is-open" : "vision-story__body"}>{item.body}</p>
+                    <button
+                      type="button"
+                      className="vision-story__expand"
+                      aria-expanded={open}
+                      onClick={() => toggleSolution(item.title)}
+                    >
+                      {open ? "Collapse" : "Expand"}
+                    </button>
+                  </div>
+                  <div className="vision-story__media">
+                    <Image src={item.image} alt={item.imageAlt} fill sizes="(max-width: 800px) 100vw, 420px" />
+                  </div>
+                </article>
+              </li>
+            );
+          })}
         </ul>
       </section>
 

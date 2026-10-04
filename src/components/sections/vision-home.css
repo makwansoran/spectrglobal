@@ -110,8 +110,7 @@
   margin: 0.85rem 0 0;
 }
 
-.vision-models,
-.vision-solutions {
+.vision-models {
   display: grid;
   gap: 0.85rem;
   margin: 0;
@@ -235,22 +234,76 @@
   text-transform: uppercase;
 }
 
-.vision-solutions h3 {
-  margin: 0.4rem 0 0;
-  font-size: 1.15rem;
+.vision-stories {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.vision-story {
+  display: grid;
+  gap: 1.25rem;
+  padding: 2.4rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.vision-story__kicker {
+  margin: 0;
+  color: #a1a1aa;
+  font-size: 0.78rem;
   font-weight: 600;
-  letter-spacing: -0.03em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
-.vision-solutions p,
-.vision-faq p {
-  margin: 0.45rem 0 0;
+.vision-story h3 {
+  margin: 0.65rem 0 0;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 1.08;
+}
+
+.vision-story__body {
+  display: -webkit-box;
+  margin: 0.9rem 0 0;
+  max-width: 38rem;
+  overflow: hidden;
   color: #c4c4cc;
-  font-size: 0.95rem;
+  font-size: 1.02rem;
   line-height: 1.55;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
-.vision-solutions__media img {
+.vision-story__body.is-open {
+  display: block;
+  -webkit-line-clamp: unset;
+}
+
+.vision-story__expand {
+  margin-top: 1rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #fff;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.vision-story__expand:hover {
+  text-decoration: underline;
+}
+
+.vision-story__media {
+  position: relative;
+  min-height: 220px;
+  overflow: hidden;
+}
+
+.vision-story__media img {
   object-fit: cover;
 }
 
@@ -266,22 +319,6 @@
   text-decoration: underline;
 }
 
-.vision-solutions article {
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  background: #101012;
-}
-
-.vision-solutions__media {
-  position: relative;
-  height: 180px;
-}
-
-.vision-solutions__copy {
-  padding: 1rem 1.05rem 1.15rem;
-}
-
 .vision-faq {
   display: grid;
   gap: 0.65rem;
@@ -295,7 +332,11 @@
 }
 
 .vision-faq p {
+  margin: 0.45rem 0 0;
   padding: 0 1.1rem 1rem;
+  color: #c4c4cc;
+  font-size: 0.95rem;
+  line-height: 1.55;
 }
 
 .vision-close {
@@ -316,14 +357,16 @@
   .vision-models {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
-  .vision-solutions {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
 }
 
-@media (min-width: 980px) {
-  .vision-solutions {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+@media (min-width: 800px) {
+  .vision-story {
+    grid-template-columns: minmax(0, 1.15fr) minmax(240px, 0.85fr);
+    align-items: center;
+    gap: 2.5rem;
+  }
+
+  .vision-story__media {
+    min-height: 240px;
   }
 }
