@@ -72,14 +72,14 @@ export function VisionHome() {
         <ul className="vision-models">
           {models.map((model) => (
             <li key={model.name}>
+              {model.task === "Models" ? (
+                <h2 id="models-title" className="vision-models__title">
+                  {model.task}
+                </h2>
+              ) : (
+                <p className="vision-models__title">{model.task}</p>
+              )}
               <article>
-                {model.task === "Models" ? (
-                  <h2 id="models-title" className="vision-models__title">
-                    {model.task}
-                  </h2>
-                ) : (
-                  <p className="vision-models__title">{model.task}</p>
-                )}
                 <h3>{model.name}</h3>
                 <p>{model.body}</p>
                 {"image" in model ? (
