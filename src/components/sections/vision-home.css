@@ -140,9 +140,19 @@
 }
 
 .vision-models article {
-  height: 100%;
   padding: 1.6rem 1.5rem 1.7rem;
   border-radius: 0;
+}
+
+.vision-models__media {
+  margin-top: 1.25rem;
+  overflow: hidden;
+}
+
+.vision-models__media img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .vision-models h3 {

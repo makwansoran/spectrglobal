@@ -79,8 +79,18 @@ export function VisionHome() {
                 <p className="vision-models__task">{model.task}</p>
                 <h3>{model.name}</h3>
                 <p>{model.body}</p>
+                {"image" in model ? (
+                  <div className="vision-models__media">
+                    <Image src={model.image} alt={model.imageAlt} width={1024} height={682} />
+                  </div>
+                ) : null}
                 {"install" in model ? (
-                  <CopyInstall command={model.install} />
+                  <>
+                    <CopyInstall command={model.install} />
+                    <Link href="/developers" className="vision-text-link">
+                      Learn more
+                    </Link>
+                  </>
                 ) : (
                   <button type="button" className="vision-download" onClick={downloadVisionLab}>
                     Download
