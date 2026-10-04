@@ -36,8 +36,7 @@
   text-align: center;
 }
 
-.vision-hero h1,
-.vision-close h2 {
+.vision-hero h1 {
   margin: 0;
   font-size: clamp(2.4rem, 5.4vw, 4.6rem);
   font-weight: 400;
@@ -45,15 +44,13 @@
   line-height: 0.98;
 }
 
-.vision-section__head p,
-.vision-close p {
+.vision-section__head p {
   color: #d4d4d8;
   font-size: 1.05rem;
   line-height: 1.6;
 }
 
-.vision-hero__actions,
-.vision-close {
+.vision-hero__actions {
   display: flex;
   justify-content: center;
 }
@@ -419,17 +416,53 @@
 }
 
 .vision-close {
-  display: grid;
-  justify-items: center;
-  gap: 1rem;
-  max-width: 40rem;
-  margin: 0 auto;
-  padding: 6rem 1.25rem 5.5rem;
-  text-align: center;
+  background: #efefef;
+  padding: 3.5rem 1.25rem 4.5rem;
 }
 
-.vision-close p {
+.vision-close__row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.vision-close__action {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.25rem;
+  min-height: 11.75rem;
   margin: 0;
+  padding: 0.75rem 1rem 4.75rem;
+  border: 0;
+  border-radius: 4px;
+  font: inherit;
+  font-size: clamp(1.85rem, 3vw, 3rem);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  text-align: left;
+  cursor: pointer;
+}
+
+.vision-close__action--light {
+  background: #dbdbdb;
+  color: #1e1f2b;
+}
+
+.vision-close__action--light:hover {
+  background: #cfcfcf;
+}
+
+.vision-close__action--dark {
+  background: #202426;
+  color: #fff;
+}
+
+.vision-close__action--dark:hover {
+  background: #2c3134;
 }
 
 @media (min-width: 700px) {
@@ -440,6 +473,12 @@
   .vision-tiles {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.5rem;
+  }
+}
+
+@media (min-width: 800px) {
+  .vision-close__row {
+    grid-template-columns: 1fr 1fr;
   }
 }
 

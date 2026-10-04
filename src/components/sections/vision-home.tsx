@@ -174,12 +174,17 @@ export function VisionHome() {
         </div>
       </section>
 
-      <section className="vision-close" aria-labelledby="close-title">
-        <h2 id="close-title">Your scene, in the open.</h2>
-        <p>Start with a public Spectr model. Train it on your data when the world looks different from the demo.</p>
-        <button type="button" className="vision-btn vision-btn--solid" onClick={() => openGetStarted("contact")}>
-          Talk to Spectr
-        </button>
+      <section className="vision-close" aria-label="Get started">
+        <div className="vision-close__row">
+          <button type="button" className="vision-close__action vision-close__action--light" onClick={downloadVisionLab}>
+            <span>Try VisionLab</span>
+            <span aria-hidden="true">→</span>
+          </button>
+          <button type="button" className="vision-close__action vision-close__action--dark" onClick={() => openGetStarted("contact")}>
+            <span>Get in touch</span>
+            <span aria-hidden="true">→</span>
+          </button>
+        </div>
       </section>
     </div>
   );
