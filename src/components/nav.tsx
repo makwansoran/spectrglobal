@@ -28,9 +28,6 @@ export function Nav() {
         </nav>
 
         <div className="vision-nav__actions">
-          <a className="vision-nav__ghost" href={site.github} target="_blank" rel="noopener noreferrer">
-            GitHub
-          </a>
           <button type="button" className="vision-nav__cta" onClick={() => openGetStarted("contact")}>
             Get started
           </button>
@@ -53,9 +50,6 @@ export function Nav() {
               {item.label}
             </Link>
           ))}
-          <a href={site.github} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
-            GitHub
-          </a>
           <button
             type="button"
             onClick={() => {
