@@ -2,9 +2,33 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import { useGetStarted } from "@/components/get-started-context";
 import { models, solutions, tasks, faqs } from "@/lib/vision";
 import "./vision-home.css";
+
+function CopyInstall({ command }: { command: string }) {
+  const [copied, setCopied] = useState(false);
+
+  async function copy() {
+    try {
+      await navigator.clipboard.writeText(command);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1600);
+    } catch {
+      setCopied(false);
+    }
+  }
+
+  return (
+    <div className="vision-install">
+      <code>{command}</code>
+      <button type="button" onClick={copy}>
+        {copied ? "Copied" : "Copy"}
+      </button>
+    </div>
+  );
+}
 
 export function VisionHome() {
   const { openGetStarted } = useGetStarted();
@@ -47,6 +71,7 @@ export function VisionHome() {
                 <p className="vision-models__task">{model.task}</p>
                 <h3>{model.name}</h3>
                 <p>{model.body}</p>
+                <CopyInstall command={model.install} />
               </article>
             </li>
           ))}

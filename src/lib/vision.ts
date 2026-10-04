@@ -3,6 +3,7 @@ export const models = [
     name: "ArgusONE",
     task: "Models",
     body: "One open vision model. It sees a camera stream, marks what matters, and keeps the track.",
+    install: "sudo apt install ArgusONE",
   },
 ] as const;
 
