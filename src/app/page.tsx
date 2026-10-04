@@ -7,7 +7,7 @@ export default function HomePage() {
       <main id="main-content" className="flex-1">
         <VisionHome />
       </main>
-      <Footer dark />
+      <Footer />
     </>
   );
 }
