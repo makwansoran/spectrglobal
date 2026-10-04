@@ -1,5 +1,3 @@
-export const formats = ["PyTorch", "ONNX", "TensorRT", "OpenVINO", "CoreML", "TFLite", "Edge"] as const;
-
 export const models = [
   {
     name: "ArgusONE",

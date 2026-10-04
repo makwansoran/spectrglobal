@@ -98,34 +98,6 @@
   background: rgba(255, 255, 255, 0.1);
 }
 
-.vision-strip {
-  display: grid;
-  gap: 1rem;
-  padding: 1.5rem 1.25rem 0.5rem;
-  text-align: center;
-}
-
-.vision-strip p {
-  margin: 0;
-  color: #a1a1aa;
-  font-size: 0.92rem;
-}
-
-.vision-strip ul {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.6rem 1.4rem;
-  max-width: 920px;
-  margin: 0 auto;
-  padding: 0;
-  list-style: none;
-  color: #f4f4f5;
-  font-size: 0.95rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-}
-
 .vision-section {
   max-width: 1120px;
   margin: 0 auto;

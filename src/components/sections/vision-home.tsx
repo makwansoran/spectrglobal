@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useGetStarted } from "@/components/get-started-context";
-import { models, solutions, tasks, formats, faqs } from "@/lib/vision";
+import { models, solutions, tasks, faqs } from "@/lib/vision";
 import "./vision-home.css";
 
 export function VisionHome() {
@@ -34,15 +34,6 @@ export function VisionHome() {
             </button>
           </div>
         </div>
-      </section>
-
-      <section className="vision-strip" aria-label="Export formats">
-        <p>Open weights. One API. Runs where you deploy.</p>
-        <ul>
-          {formats.map((format) => (
-            <li key={format}>{format}</li>
-          ))}
-        </ul>
       </section>
 
       <section className="vision-section" id="models" aria-labelledby="models-title">
