@@ -69,14 +69,17 @@ export function VisionHome() {
       </section>
 
       <section className="vision-section" id="models" aria-labelledby="models-title">
-        <div className="vision-section__head">
-          <h2 id="models-title">Models</h2>
-        </div>
         <ul className="vision-models">
           {models.map((model) => (
             <li key={model.name}>
               <article>
-                <p className="vision-models__task">{model.task}</p>
+                {model.task === "Models" ? (
+                  <h2 id="models-title" className="vision-models__title">
+                    Models
+                  </h2>
+                ) : (
+                  <p className="vision-models__task">{model.task}</p>
+                )}
                 <h3>{model.name}</h3>
                 <p>{model.body}</p>
                 {"image" in model ? (
