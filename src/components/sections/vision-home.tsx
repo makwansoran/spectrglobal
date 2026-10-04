@@ -75,10 +75,10 @@ export function VisionHome() {
               <article>
                 {model.task === "Models" ? (
                   <h2 id="models-title" className="vision-models__title">
-                    Models
+                    {model.task}
                   </h2>
                 ) : (
-                  <p className="vision-models__task">{model.task}</p>
+                  <p className="vision-models__title">{model.task}</p>
                 )}
                 <h3>{model.name}</h3>
                 <p>{model.body}</p>
