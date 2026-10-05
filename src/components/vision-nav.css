@@ -2,9 +2,9 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  background: #070708;
-  color: #f4f4f5;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: #fff;
+  color: #1e1f2b;
+  border-bottom: 1px solid rgba(10, 10, 10, 0.08);
 }
 
 .vision-nav__notice {
@@ -13,7 +13,7 @@
   justify-content: center;
   height: 32px;
   margin: 0;
-  background: #fff;
+  background: #f6f6f6;
   color: #09090b;
   font-size: 0.82rem;
   font-weight: 600;
@@ -33,7 +33,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
-  color: #fff;
+  color: #1e1f2b;
   text-decoration: none;
 }
 
@@ -58,22 +58,22 @@
 .vision-nav__contact {
   padding: 0.48rem 0.9rem;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.28);
+  border: 1px solid rgba(10, 10, 10, 0.2);
   background: transparent;
-  color: #fff;
+  color: #1e1f2b;
   font-size: 0.9rem;
   font-weight: 600;
 }
 
 .vision-nav__contact:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: #f4f4f4;
 }
 
 .vision-nav__cta {
   padding: 0.48rem 0.95rem;
   border-radius: 999px;
-  background: #fff;
-  color: #09090b;
+  background: #1e1f2b;
+  color: #fff;
   font-size: 0.9rem;
   font-weight: 600;
 }
@@ -85,6 +85,6 @@
 }
 
 .vision-nav__cta:hover {
-  background: #e4e4e7;
+  background: #2c3134;
 }
 

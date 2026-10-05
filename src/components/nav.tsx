@@ -39,8 +39,8 @@ export function Nav() {
       <p className="vision-nav__notice">Website under development.</p>
       <div className="vision-nav__inner">
         <Link href="/" className="vision-nav__brand" aria-label={site.name}>
-          <LogoMark invert className="h-7 w-7" />
-          <Wordmark className="text-white" />
+          <LogoMark className="h-7 w-7" />
+          <Wordmark className="text-[#1e1f2b]" />
         </Link>
 
         <div className="vision-nav__actions">
