@@ -65,7 +65,7 @@ export function VisionHome() {
           <div className="vision-hero__shade" />
         </div>
         <div className="vision-hero__copy">
-          <h1 id="vision-hero-title">Open models for seeing and acting in the world.</h1>
+          <h1 id="vision-hero-title">The Eyes of Automation</h1>
           <div className="vision-hero__actions">
             <a className="vision-btn vision-btn--solid" href="#models">
               Explore models
