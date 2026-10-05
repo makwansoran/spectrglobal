@@ -585,10 +585,10 @@
 
 @media (min-width: 900px) {
   .vision-questions li {
-    grid-template-columns: minmax(12rem, 16rem) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) minmax(12rem, 16rem);
     grid-template-areas:
-      "answer question"
-      "index question";
+      "question answer"
+      "question index";
     column-gap: 3rem;
     row-gap: 1.5rem;
     align-items: start;
@@ -598,16 +598,19 @@
 
   .vision-questions h3 {
     grid-area: question;
-    text-align: right;
+    text-align: left;
   }
 
   .vision-questions p {
     grid-area: answer;
+    justify-self: end;
+    text-align: left;
   }
 
   .vision-questions__index {
     grid-area: index;
     align-self: end;
+    justify-self: end;
   }
 }
 
