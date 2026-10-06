@@ -52,10 +52,85 @@
   opacity: 0.7;
 }
 
-.visionlab-login button.visionlab-login__provider {
-  background: #c8c8c8;
-  color: #111;
+.visionlab-login button.visionlab-login__github,
+.visionlab-login button.visionlab-login__google {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0 12px;
+  font-size: 14px;
   font-weight: 500;
+  line-height: 20px;
+}
+
+.visionlab-login button.visionlab-login__github {
+  gap: 12px;
+  border-radius: 6px;
+  background: #1f2328;
+  color: #fff;
+  font-family: var(--font-mona), "Mona Sans", sans-serif;
+}
+
+.visionlab-login button.visionlab-login__github:hover {
+  background: #32383f;
+}
+
+.visionlab-login button.visionlab-login__google {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #747775;
+  border-radius: 4px;
+  background: #fff;
+  color: #1f1f1f;
+  font-family: "Google Sans", var(--font-roboto), "Roboto", arial, sans-serif;
+  letter-spacing: 0.25px;
+  transition: box-shadow 0.218s;
+}
+
+.visionlab-login button.visionlab-login__google:hover {
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+}
+
+.visionlab-login__google-state {
+  position: absolute;
+  inset: 0;
+  background: #303030;
+  opacity: 0;
+  transition: opacity 0.218s;
+}
+
+.visionlab-login button.visionlab-login__google:hover .visionlab-login__google-state {
+  opacity: 0.08;
+}
+
+.visionlab-login button.visionlab-login__google:active .visionlab-login__google-state {
+  opacity: 0.12;
+}
+
+.visionlab-login__google-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.visionlab-login__google-inner > span:first-of-type {
+  flex: 1;
+  text-align: center;
+}
+
+.visionlab-login__google-spacer {
+  width: 20px;
+  height: 20px;
+}
+
+.visionlab-login__mark {
+  display: block;
+  width: 20px;
+  height: 20px;
+  flex: none;
 }
 
 .visionlab-login__error {
