@@ -52,6 +52,12 @@
   opacity: 0.7;
 }
 
+.visionlab-login button.visionlab-login__provider {
+  background: #c8c8c8;
+  color: #111;
+  font-weight: 500;
+}
+
 .visionlab-login__error {
   margin: 0;
   color: #fff;

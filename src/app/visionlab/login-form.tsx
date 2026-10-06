@@ -2,6 +2,8 @@
 
 import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
+import { createClient } from "@/lib/supabase/client";
+import { isSupabaseConfigured } from "@/lib/supabase/env";
 
 export function VisionLabLoginForm() {
   const router = useRouter();
@@ -35,6 +37,20 @@ export function VisionLabLoginForm() {
 
     router.replace(payload?.next || "/dashboard");
     router.refresh();
+  }
+
+  async function signInWith(provider: "github" | "google") {
+    setError(null);
+    if (!isSupabaseConfigured()) {
+      setError("Sign-in is not available.");
+      return;
+    }
+
+    const { error: oauthError } = await createClient().auth.signInWithOAuth({
+      provider,
+      options: { redirectTo: `${window.location.origin}/auth/callback` },
+    });
+    if (oauthError) setError(oauthError.message);
   }
 
   return (
@@ -71,6 +87,12 @@ export function VisionLabLoginForm() {
       ) : null}
       <button type="submit" disabled={pending}>
         {pending ? "Signing in" : "Sign in"}
+      </button>
+      <button type="button" className="visionlab-login__provider" onClick={() => signInWith("github")}>
+        Sign in with GitHub
+      </button>
+      <button type="button" className="visionlab-login__provider" onClick={() => signInWith("google")}>
+        Sign in with Google
       </button>
     </form>
   );
