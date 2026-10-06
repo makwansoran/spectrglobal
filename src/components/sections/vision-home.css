@@ -573,6 +573,24 @@
   background: #e6e6e4;
 }
 
+.vision-close__legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.25rem;
+  max-width: 1440px;
+  margin: 1rem auto 0;
+}
+
+.vision-close__legal a {
+  color: #1e1f2b;
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+
+.vision-close__legal a:hover {
+  text-decoration: underline;
+}
+
 @media (min-width: 700px) {
   .vision-models {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -618,6 +636,10 @@
 @media (min-width: 800px) {
   .vision-close__row {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .vision-close__legal {
+    justify-content: flex-end;
   }
 
   .vision-zivid {
