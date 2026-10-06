@@ -22,13 +22,22 @@
   font-size: 0.95rem;
 }
 
+.visionlab-login h1 {
+  margin: 0 0 0.35rem;
+  color: #fff;
+  font-size: 1.35rem;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
 .visionlab-login input {
-  background: #fff;
+  background: #c8c8c8;
   color: #111;
 }
 
 .visionlab-login input::placeholder {
-  color: #8a8a8a;
+  color: #5c5c5c;
 }
 
 .visionlab-login button {

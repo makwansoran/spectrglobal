@@ -39,6 +39,7 @@ export function VisionLabLoginForm() {
 
   return (
     <form className="visionlab-login" onSubmit={onSubmit} noValidate>
+      <h1>Sign in</h1>
       <label className="sr-only" htmlFor="visionlab-email">
         Email
       </label>
