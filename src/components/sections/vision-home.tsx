@@ -4,18 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { useGetStarted } from "@/components/get-started-context";
-import { downloads } from "@/lib/site";
 import { models, solutions, faqs } from "@/lib/vision";
 import "./vision-home.css";
 
 function downloadVisionLab() {
-  const ua = navigator.userAgent;
-  const href = /Mac/i.test(ua)
-    ? downloads.mac
-    : /Linux/i.test(ua) && !/Android/i.test(ua)
-      ? downloads.linux
-      : downloads.windows;
-  window.location.assign(href);
+  window.location.assign("/visionlab");
 }
 
 function CopyInstall({ command }: { command: string }) {

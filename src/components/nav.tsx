@@ -3,17 +3,11 @@
 import Link from "next/link";
 import { useGetStarted } from "@/components/get-started-context";
 import { LogoMark, Wordmark } from "@/components/logo";
-import { downloads, site } from "@/lib/site";
+import { site } from "@/lib/site";
 import "./vision-nav.css";
 
 function downloadVisionLab() {
-  const ua = navigator.userAgent;
-  const href = /Mac/i.test(ua)
-    ? downloads.mac
-    : /Linux/i.test(ua) && !/Android/i.test(ua)
-      ? downloads.linux
-      : downloads.windows;
-  window.location.assign(href);
+  window.location.assign("/visionlab");
 }
 
 function DownloadIcon() {
