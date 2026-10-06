@@ -8,8 +8,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: calc(100vh - 96px - 14rem);
-  padding: 4.5rem 1.5rem 2rem;
+  min-height: calc(100vh - 96px - 8rem);
+  padding: 5rem 1.5rem 3rem;
   text-align: center;
 }
 
@@ -24,7 +24,7 @@
 
 .vision-close {
   background: #fff;
-  padding: 4.5rem 0 4.5rem;
+  padding: 6rem 0 4.5rem;
 }
 
 .vision-close__row {
