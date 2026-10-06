@@ -8,8 +8,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: calc(100vh - 96px);
-  padding: 4.5rem 1.5rem 5rem;
+  min-height: calc(100vh - 96px - 14rem);
+  padding: 4.5rem 1.5rem 2rem;
   text-align: center;
 }
 
@@ -20,31 +20,6 @@
   font-weight: 400;
   letter-spacing: -0.05em;
   line-height: 0.95;
-}
-
-.vision-landing p {
-  max-width: 36rem;
-  margin: 1.75rem 0 0;
-  color: #3f3f46;
-  font-size: clamp(1.08rem, 1.7vw, 1.28rem);
-  line-height: 1.55;
-}
-
-.vision-about {
-  width: min(52rem, calc(100% - 3rem));
-  margin: 0 auto;
-  padding: 1rem 0 0;
-  text-align: center;
-}
-
-.vision-about__media {
-  margin: 0;
-}
-
-.vision-about__media img {
-  display: block;
-  width: 100%;
-  height: auto;
 }
 
 .vision-close {

@@ -1,7 +1,5 @@
 "use client";
 
-import Image from "next/image";
-import { aboutPage } from "@/lib/about";
 import { useGetStarted } from "@/components/get-started-context";
 import "./vision-home.css";
 
@@ -16,18 +14,6 @@ export function VisionHome() {
     <div className="vision">
       <section className="vision-landing" aria-labelledby="landing-title">
         <h1 id="landing-title">Eyes of Compute</h1>
-        <p>{aboutPage.belief}</p>
-      </section>
-
-      <section className="vision-about" aria-label="ArgusONE">
-        <div className="vision-about__media">
-          <Image
-            src="/argusone.jpg"
-            alt="ArgusONE marking people, a bicycle, and handbags on a cobbled square"
-            width={1024}
-            height={682}
-          />
-        </div>
       </section>
 
       <section className="vision-close" aria-label="Get started">
