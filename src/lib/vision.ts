@@ -64,31 +64,3 @@ export const solutions = [
     tone: "dark",
   },
 ] as const;
-
-export const faqs = [
-  {
-    question: "What is Spectr?",
-    answer:
-      "Spectr is a computer vision company. We publish open-source models for detection, segmentation, pose, classification, depth, and vision-language-action.",
-  },
-  {
-    question: "Are the models open source?",
-    answer:
-      "Yes. Spectr models are released so you can read them, fine-tune them on your own data, and run them on your own machines.",
-  },
-  {
-    question: "What does VLA mean here?",
-    answer:
-      "Vision-language-action. The model sees a scene, takes a language instruction, and proposes an action a person or a robot can carry out.",
-  },
-  {
-    question: "Where can I run a Spectr model?",
-    answer:
-      "Train and infer in Python, then export to ONNX, TensorRT, OpenVINO, CoreML, TFLite, and other edge runtimes.",
-  },
-  {
-    question: "Do you work with companies, or only publish models?",
-    answer:
-      "Both. The models are public. Teams that need a deployment, a fine-tune, or a support agreement can start a conversation with Spectr.",
-  },
-] as const;

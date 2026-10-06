@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { useGetStarted } from "@/components/get-started-context";
-import { models, solutions, faqs } from "@/lib/vision";
+import { models, solutions } from "@/lib/vision";
 import "./vision-home.css";
 
 function downloadVisionLab() {
@@ -37,7 +37,6 @@ function CopyInstall({ command }: { command: string }) {
 export function VisionHome() {
   const { openGetStarted } = useGetStarted();
   const [openSolutions, setOpenSolutions] = useState<Record<string, boolean>>({});
-  const [openQuestion, setOpenQuestion] = useState<string | null>(null);
 
   function toggleSolution(title: string) {
     setOpenSolutions((current) => ({ ...current, [title]: !current[title] }));
@@ -45,25 +44,14 @@ export function VisionHome() {
 
   return (
     <div className="vision">
-      <section className="vision-hero" aria-labelledby="vision-hero-title">
-        <div className="vision-hero__copy">
-          <h1 id="vision-hero-title">The Eyes of Automation</h1>
-          <div className="vision-hero__actions">
-            <a className="vision-btn vision-btn--solid" href="#models">
-              Explore models
-            </a>
-          </div>
-        </div>
-      </section>
-
       <section className="vision-section" id="models" aria-labelledby="models-title">
         <ul className="vision-models">
           {models.map((model) => (
             <li key={model.name}>
               {model.name === "ArgusONE" ? (
-                <h2 id="models-title" className="vision-models__title">
+                <h1 id="models-title" className="vision-models__title">
                   {model.name}
-                </h2>
+                </h1>
               ) : (
                 <p className="vision-models__title">{model.name}</p>
               )}
@@ -142,32 +130,6 @@ export function VisionHome() {
             );
           })}
         </ul>
-      </section>
-
-      <section className="vision-questions" aria-labelledby="faq-title">
-        <div className="vision-questions__inner">
-          <h2 id="faq-title">Questions</h2>
-          <ul>
-            {faqs.map((item, index) => {
-              const open = openQuestion === item.question;
-              return (
-                <li key={item.question} className={open ? "is-open" : undefined}>
-                  <h3>
-                    <button
-                      type="button"
-                      aria-expanded={open}
-                      aria-controls={`question-${index}`}
-                      onClick={() => setOpenQuestion(open ? null : item.question)}
-                    >
-                      {item.question}
-                    </button>
-                  </h3>
-                  <p id={`question-${index}`}>{item.answer}</p>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
       </section>
 
       <section className="vision-close" aria-label="Get started">
