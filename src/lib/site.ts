@@ -48,43 +48,6 @@ export const navQuickLinks = [
   { label: "Terms of use", href: "/terms" },
 ] as const;
 
-export const footerColumns = [
-  {
-    title: "Models",
-    links: [
-      { label: "ArgusONE", href: "/#models" },
-      { label: "VisionLab", href: "/#models" },
-    ],
-  },
-  {
-    title: "Solutions",
-    links: [
-      { label: "Manufacturing", href: "/#solutions" },
-      { label: "Logistics", href: "/#solutions" },
-      { label: "Robotics", href: "/#solutions" },
-      { label: "Security", href: "/#solutions" },
-    ],
-  },
-  {
-    title: "Developers",
-    links: [
-      { label: "Docs", href: "/developers" },
-      { label: "GitHub", href: "https://github.com/makwansoran/spectrglobal" },
-      { label: "Get started", href: "/contact" },
-    ],
-  },
-  {
-    title: "Company",
-    links: [
-      { label: "About", href: "/about" },
-      { label: "News", href: "/news" },
-      { label: "Contact", href: "/contact" },
-      { label: "Privacy", href: "/privacy" },
-      { label: "Terms", href: "/terms" },
-    ],
-  },
-] as const;
-
 export const downloads = {
   windows: process.env.NEXT_PUBLIC_DOWNLOAD_WINDOWS ?? "/downloads/Spectr-Setup-x64.exe",
   mac: process.env.NEXT_PUBLIC_DOWNLOAD_MAC ?? "/downloads/Spectr-Setup.dmg",
