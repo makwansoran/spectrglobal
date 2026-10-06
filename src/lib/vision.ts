@@ -48,28 +48,12 @@ export const solutions = [
     tone: "light",
   },
   {
-    label: "Healthcare",
-    title: "A second look that stays in the room",
-    body: "Support imaging and monitoring workflows where the answer has to be fast and local.",
-    image: "/images/industries/healthcare.jpg",
-    imageAlt: "Healthcare environment",
-    tone: "light",
-  },
-  {
     label: "Agriculture",
     title: "Count what the field is doing",
     body: "Classify and measure from aerial and ground cameras across a field or a herd.",
     image: "/images/industries/energy.jpg",
     imageAlt: "Open landscape used for field monitoring",
     tone: "dark",
-  },
-  {
-    label: "Retail",
-    title: "See the floor while the store is open",
-    body: "Count shelves, queues, and what left the frame without closing an aisle to check.",
-    image: "/images/industries/retail.jpg",
-    imageAlt: "Retail floor",
-    tone: "light",
   },
   {
     label: "Warehousing",
