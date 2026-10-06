@@ -1,0 +1,50 @@
+.visionlab-login {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: min(100% - 2.5rem, 20rem);
+  margin: 0;
+  transform: translate(-50%, -50%);
+}
+
+.visionlab-login input,
+.visionlab-login button {
+  width: 100%;
+  height: 2.75rem;
+  margin: 0;
+  padding: 0 0.85rem;
+  border: 0;
+  border-radius: 0;
+  font: inherit;
+  font-size: 0.95rem;
+}
+
+.visionlab-login input {
+  background: #fff;
+  color: #111;
+}
+
+.visionlab-login input::placeholder {
+  color: #8a8a8a;
+}
+
+.visionlab-login button {
+  background: #fff;
+  color: #111;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.visionlab-login button:disabled {
+  cursor: default;
+  opacity: 0.7;
+}
+
+.visionlab-login__error {
+  margin: 0;
+  color: #fff;
+  font-size: 0.85rem;
+}
