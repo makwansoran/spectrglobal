@@ -46,17 +46,6 @@ export function VisionHome() {
   return (
     <div className="vision">
       <section className="vision-hero" aria-labelledby="vision-hero-title">
-        <div className="vision-hero__media">
-          <Image
-            src="/spectr-detection.png"
-            alt="Aerial site with vehicles outlined by Spectr detection"
-            fill
-            priority
-            sizes="100vw"
-            className="vision-hero__image"
-          />
-          <div className="vision-hero__shade" />
-        </div>
         <div className="vision-hero__copy">
           <h1 id="vision-hero-title">The Eyes of Automation</h1>
           <div className="vision-hero__actions">
