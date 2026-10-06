@@ -111,23 +111,6 @@ export function VisionHome() {
         </ul>
       </section>
 
-      <section className="vision-section" aria-labelledby="zivid-title">
-        <div className="vision-zivid">
-          <div className="vision-zivid__copy">
-            <h2 id="zivid-title">VisionLab With Zivid Cameras</h2>
-            <p>
-              A Zivid camera sees the cell in color and in depth from one mount. VisionLab opens that live stream, runs ArgusONE on each frame, and keeps the track on the machine beside the camera.
-            </p>
-            <p>
-              The marks and the 3D points stay together. A robot or an operator can act on what the camera just saw without sending the scene off the line.
-            </p>
-          </div>
-          <div className="vision-zivid__stage" role="img" aria-label="Real-time VisionLab video coming soon">
-            <span className="vision-zivid__play" aria-hidden="true" />
-          </div>
-        </div>
-      </section>
-
       <section className="vision-section vision-section--tiles" id="solutions" aria-label="Solutions">
         <ul className="vision-tiles">
           {solutions.map((item) => {
