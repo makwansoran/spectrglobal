@@ -193,10 +193,6 @@ export function VisionHome() {
             <span aria-hidden="true">→</span>
           </button>
         </div>
-        <p className="vision-close__legal">
-          <Link href="/privacy">Privacy policy</Link>
-          <Link href="/terms">Terms of service</Link>
-        </p>
       </section>
     </div>
   );

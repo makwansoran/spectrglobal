@@ -130,3 +130,22 @@
   color: #fff;
   font-size: 0.85rem;
 }
+
+.visionlab-login__legal {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 0.15rem 0 0;
+}
+
+.visionlab-login__legal a {
+  color: #c8c8c8;
+  font-size: 0.8rem;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.visionlab-login__legal a:hover {
+  color: #fff;
+  text-decoration: underline;
+}

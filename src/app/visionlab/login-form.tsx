@@ -2,6 +2,7 @@
 
 import { Roboto } from "next/font/google";
 import localFont from "next/font/local";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
 import { createClient } from "@/lib/supabase/client";
@@ -113,6 +114,10 @@ export function VisionLabLoginForm() {
           <span>Sign in with Google</span>
         </span>
       </button>
+      <p className="visionlab-login__legal">
+        <Link href="/privacy">Privacy policy</Link>
+        <Link href="/terms">Terms of service</Link>
+      </p>
     </form>
   );
 }
