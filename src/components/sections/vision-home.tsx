@@ -84,27 +84,29 @@ export function VisionHome() {
                   <Image
                     src={model.image}
                     alt={model.imageAlt}
-                    width={model.imageWidth}
-                    height={model.imageHeight}
+                    fill
+                    sizes="(max-width: 700px) 100vw, 50vw"
                   />
                 </div>
-                {"install" in model ? (
-                  <>
-                    <CopyInstall command={model.install} />
-                    <Link href="/developers" className="vision-text-link">
-                      Learn more
-                    </Link>
-                  </>
-                ) : (
-                  <div className="vision-download-stack">
-                    <button type="button" className="vision-download" onClick={downloadVisionLab}>
-                      Download
-                    </button>
-                    <Link href="/developers" className="vision-text-link">
-                      Learn more
-                    </Link>
-                  </div>
-                )}
+                <div className="vision-models__foot">
+                  {"install" in model ? (
+                    <>
+                      <CopyInstall command={model.install} />
+                      <Link href="/developers" className="vision-text-link">
+                        Learn more
+                      </Link>
+                    </>
+                  ) : (
+                    <div className="vision-download-stack">
+                      <button type="button" className="vision-download" onClick={downloadVisionLab}>
+                        Download
+                      </button>
+                      <Link href="/developers" className="vision-text-link">
+                        Learn more
+                      </Link>
+                    </div>
+                  )}
+                </div>
               </article>
             </li>
           ))}
