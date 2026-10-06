@@ -111,7 +111,6 @@ export function VisionLabLoginForm() {
         <span className="visionlab-login__google-inner">
           <GoogleMark />
           <span>Sign in with Google</span>
-          <span className="visionlab-login__google-spacer" aria-hidden="true" />
         </span>
       </button>
     </form>
