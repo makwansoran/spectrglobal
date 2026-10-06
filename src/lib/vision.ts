@@ -5,10 +5,16 @@ export const models = [
     install: "sudo apt install ArgusONE",
     image: "/argusone.jpg",
     imageAlt: "ArgusONE marking people, a bicycle, and handbags on a cobbled square",
+    imageWidth: 1024,
+    imageHeight: 682,
   },
   {
     name: "VisionLab",
     body: "The app for the camera. Open a stream, run ArgusONE, and keep the track on your own machine.",
+    image: "/visionlab.jpg",
+    imageAlt: "VisionLab by Spectr, with a Projects list and a project named Test",
+    imageWidth: 1024,
+    imageHeight: 646,
   },
 ] as const;
 

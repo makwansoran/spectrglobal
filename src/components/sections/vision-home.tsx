@@ -80,15 +80,14 @@ export function VisionHome() {
               )}
               <article>
                 <p>{model.body}</p>
-                {"image" in model ? (
-                  <div className="vision-models__media">
-                    <Image src={model.image} alt={model.imageAlt} width={1024} height={682} />
-                  </div>
-                ) : (
-                  <div className="vision-models__media">
-                    <div className="vision-models__placeholder" role="img" aria-label="VisionLab image coming soon" />
-                  </div>
-                )}
+                <div className="vision-models__media">
+                  <Image
+                    src={model.image}
+                    alt={model.imageAlt}
+                    width={model.imageWidth}
+                    height={model.imageHeight}
+                  />
+                </div>
                 {"install" in model ? (
                   <>
                     <CopyInstall command={model.install} />
