@@ -11,8 +11,8 @@ export const models = [
   {
     name: "VisionLab",
     body: "The app for the camera. Open a stream, run ArgusONE, and keep the track on your own machine.",
-    image: "/visionlab.jpg",
-    imageAlt: "VisionLab by Spectr, with a Projects list and a project named Test",
+    image: "/visionlab-app.jpg",
+    imageAlt: "VisionLab by Spectr, with a Vision button",
     imageWidth: 1024,
     imageHeight: 646,
   },
