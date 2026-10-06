@@ -19,8 +19,7 @@ export function VisionHome() {
         <p>{aboutPage.belief}</p>
       </section>
 
-      <section className="vision-about" aria-labelledby="about-title">
-        <h2 id="about-title">About us</h2>
+      <section className="vision-about" aria-label="ArgusONE">
         <div className="vision-about__media">
           <Image
             src="/argusone.jpg"
@@ -28,12 +27,6 @@ export function VisionHome() {
             width={1024}
             height={682}
           />
-        </div>
-        <div className="vision-about__copy">
-          <p>{aboutPage.statement}</p>
-          {aboutPage.founding.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
-          ))}
         </div>
       </section>
 

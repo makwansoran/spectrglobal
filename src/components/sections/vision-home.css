@@ -37,33 +37,14 @@
   text-align: center;
 }
 
-.vision-about h2 {
-  margin: 0;
-  font-size: clamp(1.7rem, 2.6vw, 2.25rem);
-  font-weight: 400;
-  letter-spacing: -0.03em;
-}
-
 .vision-about__media {
-  margin: 1.75rem 0 0;
+  margin: 0;
 }
 
 .vision-about__media img {
   display: block;
   width: 100%;
   height: auto;
-}
-
-.vision-about__copy {
-  width: min(42rem, 100%);
-  margin: 0 auto;
-}
-
-.vision-about p {
-  margin: 1.1rem 0 0;
-  color: #3f3f46;
-  font-size: 1.05rem;
-  line-height: 1.65;
 }
 
 .vision-close {
