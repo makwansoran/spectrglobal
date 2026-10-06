@@ -432,6 +432,7 @@
   font-size: clamp(1.45rem, 2vw, 1.85rem);
   font-weight: 400;
   letter-spacing: -0.03em;
+  text-align: center;
 }
 
 .vision-questions ul {
@@ -442,24 +443,20 @@
 
 .vision-questions li {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  grid-template-areas:
-    "question index"
-    "answer answer";
-  column-gap: 1rem;
+  justify-items: center;
   row-gap: 0.35rem;
-  align-items: start;
   padding: 0.7rem 0 0.8rem;
   border-top: 1px solid #e6e6e6;
+  text-align: center;
 }
 
 .vision-questions h3 {
-  grid-area: question;
   margin: 0;
   font-size: clamp(1.05rem, 1.4vw, 1.25rem);
   font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1.25;
+  text-align: center;
 }
 
 .vision-questions h3 button {
@@ -473,12 +470,11 @@
   font: inherit;
   letter-spacing: inherit;
   line-height: inherit;
-  text-align: inherit;
+  text-align: center;
   cursor: pointer;
 }
 
 .vision-questions p {
-  grid-area: answer;
   max-width: 42rem;
   max-height: 0;
   margin: 0;
@@ -486,6 +482,7 @@
   opacity: 0;
   font-size: 0.9rem;
   line-height: 1.4;
+  text-align: center;
   transition:
     max-height 280ms ease,
     opacity 220ms ease;
@@ -496,11 +493,6 @@
 .vision-questions li.is-open p {
   max-height: 14rem;
   opacity: 1;
-}
-
-.vision-questions__index {
-  grid-area: index;
-  font-size: 0.8rem;
 }
 
 .vision-close {

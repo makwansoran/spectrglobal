@@ -174,9 +174,6 @@ export function VisionHome() {
                     </button>
                   </h3>
                   <p id={`question-${index}`}>{item.answer}</p>
-                  <span className="vision-questions__index" aria-hidden="true">
-                    /0.{index + 1}
-                  </span>
                 </li>
               );
             })}
