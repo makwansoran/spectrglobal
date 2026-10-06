@@ -33,7 +33,7 @@
 .vision-about {
   width: min(52rem, calc(100% - 3rem));
   margin: 0 auto;
-  padding: 1rem 0 6.5rem;
+  padding: 1rem 0 0;
   text-align: center;
 }
 
@@ -64,4 +64,61 @@
   color: #3f3f46;
   font-size: 1.05rem;
   line-height: 1.65;
+}
+
+.vision-close {
+  background: #fff;
+  padding: 4.5rem 0 4.5rem;
+}
+
+.vision-close__row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  width: min(1440px, calc(100% - 3rem));
+  max-width: none;
+  margin: 0 auto;
+}
+
+.vision-close__action {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.25rem;
+  min-height: 11.75rem;
+  margin: 0;
+  padding: 0.75rem 1rem 4.75rem;
+  border: 0;
+  border-radius: 4px;
+  font: inherit;
+  font-size: clamp(1.85rem, 3vw, 3rem);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  text-align: left;
+  cursor: pointer;
+}
+
+.vision-close__action--light {
+  background: #dbdbdb;
+  color: #1e1f2b;
+}
+
+.vision-close__action--light:hover {
+  background: #cfcfcf;
+}
+
+.vision-close__action--dark {
+  background: #f1f1ef;
+  color: #1e1f2b;
+}
+
+.vision-close__action--dark:hover {
+  background: #e6e6e4;
+}
+
+@media (min-width: 800px) {
+  .vision-close__row {
+    grid-template-columns: 1fr 1fr;
+  }
 }
