@@ -92,29 +92,6 @@
   background: #2c3134;
 }
 
-.vision-trust {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-  padding: 1.4rem 1.5rem;
-  border-bottom: 1px solid rgba(10, 10, 10, 0.08);
-}
-
-.vision-trust p {
-  margin: 0;
-  color: #5c5c62;
-  font-size: 0.82rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.vision-trust__logo {
-  width: auto;
-  height: 1.7rem;
-  object-fit: contain;
-}
-
 .vision-intro {
   display: grid;
   gap: 2.5rem;

@@ -73,11 +73,6 @@ export function VisionHome() {
         </div>
       </section>
 
-      <section className="vision-trust" aria-label="Customer">
-        <p>Customer</p>
-        <Image src="/images/veolia-logo.png" alt="Veolia" width={180} height={45} className="vision-trust__logo" />
-      </section>
-
       <section className="vision-intro" aria-labelledby="intro-title">
         <div className="vision-intro__copy">
           <h2 id="intro-title">Introducing Spectr OS</h2>
