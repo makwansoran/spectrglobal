@@ -14,6 +14,9 @@ export function VisionHome() {
     <div className="vision">
       <section className="vision-landing" aria-labelledby="landing-title">
         <h1 id="landing-title">Eyes of Compute</h1>
+        <div className="vision-landing__success" aria-label="Customer success">
+          <p className="vision-landing__success-label">Customer success</p>
+        </div>
       </section>
 
       <section className="vision-close" aria-label="Get started">

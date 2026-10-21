@@ -22,6 +22,34 @@
   line-height: 0.95;
 }
 
+.vision-landing__success {
+  --bevel-cut: 14px;
+  box-sizing: border-box;
+  width: min(100%, 17.5rem);
+  aspect-ratio: 1;
+  margin-top: 2.75rem;
+  padding: 1.25rem;
+  background: #f1f1ef;
+  color: #1e1f2b;
+  clip-path: polygon(
+    var(--bevel-cut) 0,
+    100% 0,
+    100% calc(100% - var(--bevel-cut)),
+    calc(100% - var(--bevel-cut)) 100%,
+    0 100%,
+    0 var(--bevel-cut)
+  );
+}
+
+.vision-landing__success-label {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  text-align: left;
+}
+
 .vision-close {
   background: #fff;
   padding: 16rem 0 4.5rem;
