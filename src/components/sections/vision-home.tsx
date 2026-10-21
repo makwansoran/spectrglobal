@@ -118,32 +118,41 @@ export function VisionHome() {
             Every industry.
           </h2>
         </div>
-        <div className="vision-practices__row">
-          {industries.map((industry) => {
-            const card = (
-              <>
-                <Image
-                  src={industry.image}
-                  alt={industry.alt}
-                  fill
-                  sizes="(max-width: 800px) 42vw, 16rem"
-                  className="vision-practice__image"
-                />
-                <span className="vision-practice__shade" aria-hidden="true" />
-                <span className="vision-practice__label">{industry.name}</span>
-              </>
-            );
+        <div className="vision-practices__marquee">
+          {[0, 1].map((copy) => (
+            <div
+              key={copy}
+              className="vision-practices__row"
+              aria-hidden={copy === 1 || undefined}
+              {...(copy === 1 ? { inert: true } : {})}
+            >
+              {industries.map((industry) => {
+                const card = (
+                  <>
+                    <Image
+                      src={industry.image}
+                      alt={copy === 0 ? industry.alt : ""}
+                      fill
+                      sizes="22rem"
+                      className="vision-practice__image"
+                    />
+                    <span className="vision-practice__shade" aria-hidden="true" />
+                    <span className="vision-practice__label">{industry.name}</span>
+                  </>
+                );
 
-            return "href" in industry ? (
-              <Link key={industry.name} href={industry.href} className="vision-practice">
-                {card}
-              </Link>
-            ) : (
-              <div key={industry.name} className="vision-practice">
-                {card}
-              </div>
-            );
-          })}
+                return "href" in industry ? (
+                  <Link key={`${copy}-${industry.name}`} href={industry.href} className="vision-practice">
+                    {card}
+                  </Link>
+                ) : (
+                  <div key={`${copy}-${industry.name}`} className="vision-practice">
+                    {card}
+                  </div>
+                );
+              })}
+            </div>
+          ))}
         </div>
       </section>
     </div>
