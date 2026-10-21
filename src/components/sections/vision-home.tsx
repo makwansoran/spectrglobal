@@ -17,10 +17,11 @@ export function VisionHome() {
       </section>
 
       <section className="vision-success" aria-labelledby="customer-success-title">
-        <div className="vision-success__box">
+        <div className="vision-success__inner">
           <h2 id="customer-success-title" className="vision-success__label">
             Customer success
           </h2>
+          <div className="vision-success__box" aria-hidden="true" />
         </div>
       </section>
 
