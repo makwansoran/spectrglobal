@@ -44,26 +44,26 @@ export function Nav() {
     <header className={island ? "vision-nav vision-nav--island" : "vision-nav"}>
       <div
         className="vision-nav__surface"
+        aria-hidden="true"
         style={{
           backdropFilter: island ? "blur(28px) saturate(1.8)" : "none",
           WebkitBackdropFilter: island ? "blur(28px) saturate(1.8)" : "none",
         }}
-      >
-        <div className="vision-nav__inner">
-          <Link href="/" className="vision-nav__brand" aria-label={site.name}>
-            <LogoMark className="h-7 w-7" />
-            <Wordmark className="text-[#1e1f2b]" />
-          </Link>
+      />
+      <div className="vision-nav__inner">
+        <Link href="/" className="vision-nav__brand" aria-label={site.name}>
+          <LogoMark className="h-7 w-7" />
+          <Wordmark className="text-[#1e1f2b]" />
+        </Link>
 
-          <div className="vision-nav__actions">
-            <button type="button" className="vision-nav__contact" onClick={() => openGetStarted("contact")}>
-              Contact
-            </button>
-            <button type="button" className="vision-nav__cta" onClick={downloadVisionLab}>
-              <DownloadIcon />
-              VisionLab
-            </button>
-          </div>
+        <div className="vision-nav__actions">
+          <button type="button" className="vision-nav__contact" onClick={() => openGetStarted("contact")}>
+            Contact
+          </button>
+          <button type="button" className="vision-nav__cta" onClick={downloadVisionLab}>
+            <DownloadIcon />
+            VisionLab
+          </button>
         </div>
       </div>
     </header>
