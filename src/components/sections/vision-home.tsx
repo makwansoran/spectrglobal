@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { aboutPage } from "@/lib/about";
 import { useGetStarted } from "@/components/get-started-context";
 import { industryPages } from "@/lib/use-cases";
 import "./vision-home.css";
@@ -142,35 +141,6 @@ export function VisionHome() {
               </Link>
             </div>
           </article>
-        </div>
-      </section>
-
-      <section className="vision-belief" aria-labelledby="vision-title">
-        <h2 id="vision-title">Our vision</h2>
-        <p className="vision-belief__lead">{aboutPage.belief}</p>
-        <div className="vision-belief__body">
-          {aboutPage.founding.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
-          ))}
-        </div>
-        <Link href="/about" className="vision-text-link">
-          About Spectr
-          <span aria-hidden="true">→</span>
-        </Link>
-      </section>
-
-      <section className="vision-close" aria-label="Get started">
-        <h2>See it on your own footage.</h2>
-        <p>Open VisionLab, or tell us about the site.</p>
-        <div className="vision-close__row">
-          <button type="button" className="vision-close__action vision-close__action--light" onClick={downloadVisionLab}>
-            <span>Try VisionLab</span>
-            <span aria-hidden="true">→</span>
-          </button>
-          <button type="button" className="vision-close__action vision-close__action--dark" onClick={() => openGetStarted("contact")}>
-            <span>Get in touch</span>
-            <span aria-hidden="true">→</span>
-          </button>
         </div>
       </section>
     </div>

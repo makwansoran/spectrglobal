@@ -103,9 +103,7 @@
 
 .vision-intro__copy h2,
 .vision-stories__head h2,
-.vision-industries__head h2,
-.vision-belief h2,
-.vision-close h2 {
+.vision-industries__head h2 {
   margin: 0;
   font-size: clamp(2rem, 4vw, 3.2rem);
   font-weight: 400;
@@ -115,9 +113,7 @@
 
 .vision-intro__lead,
 .vision-stories__head p,
-.vision-industries__head p,
-.vision-belief__lead,
-.vision-close > p {
+.vision-industries__head p {
   margin: 0.85rem 0 0;
   max-width: 36rem;
   color: #3a3b46;
@@ -165,8 +161,7 @@
 }
 
 .vision-stories,
-.vision-industries,
-.vision-belief {
+.vision-industries {
   width: min(1120px, calc(100% - 3rem));
   margin: 0 auto;
   padding: 1rem 0 5.5rem;
@@ -301,77 +296,6 @@
   line-height: 1.5;
 }
 
-.vision-belief__lead {
-  max-width: 40rem;
-  font-size: clamp(1.25rem, 2.2vw, 1.6rem);
-  color: #1e1f2b;
-  letter-spacing: -0.03em;
-  line-height: 1.35;
-}
-
-.vision-belief__body {
-  display: grid;
-  gap: 0.9rem;
-  max-width: 40rem;
-  margin-top: 1.4rem;
-}
-
-.vision-belief__body p {
-  margin: 0;
-  color: #3a3b46;
-  line-height: 1.6;
-}
-
-.vision-close {
-  width: min(1120px, calc(100% - 3rem));
-  margin: 0 auto;
-  padding: 2rem 0 5rem;
-}
-
-.vision-close__row {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-  margin-top: 1.75rem;
-}
-
-.vision-close__action {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 1.25rem;
-  min-height: 9rem;
-  margin: 0;
-  padding: 0.85rem 1rem 3.5rem;
-  border: 0;
-  cursor: pointer;
-  font: inherit;
-  font-size: clamp(1.6rem, 2.6vw, 2.4rem);
-  font-weight: 400;
-  letter-spacing: -0.04em;
-  line-height: 1.05;
-  text-align: left;
-  clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
-}
-
-.vision-close__action--light {
-  background: #dbdbdb;
-  color: #1e1f2b;
-}
-
-.vision-close__action--light:hover {
-  background: #cfcfcf;
-}
-
-.vision-close__action--dark {
-  background: #f1f1ef;
-  color: #1e1f2b;
-}
-
-.vision-close__action--dark:hover {
-  background: #e6e6e4;
-}
-
 @media (min-width: 800px) {
   .vision-intro {
     grid-template-columns: 0.9fr 1.1fr;
@@ -390,9 +314,5 @@
   .vision-industries__panel {
     grid-template-columns: 1.15fr 0.85fr;
     align-items: center;
-  }
-
-  .vision-close__row {
-    grid-template-columns: 1fr 1fr;
   }
 }
