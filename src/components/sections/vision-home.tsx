@@ -42,8 +42,8 @@ export function VisionHome() {
                 <Image
                   src="/images/veolia-logo.png"
                   alt="Veolia"
-                  width={120}
-                  height={80}
+                  width={160}
+                  height={48}
                   className="vision-success__logo"
                 />
                 <span className="vision-success__tag">Industry</span>
