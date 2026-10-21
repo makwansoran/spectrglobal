@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import type { ReactNode } from "react";
 import { useGetStarted } from "@/components/get-started-context";
 import "./vision-home.css";
@@ -25,6 +26,7 @@ function FrostPanel({ children }: { children: ReactNode }) {
 
 export function VisionHome() {
   const { openGetStarted } = useGetStarted();
+  const router = useRouter();
 
   return (
     <div className="vision">
@@ -94,6 +96,41 @@ export function VisionHome() {
               </p>
               <button type="button" className="vision-card__link" onClick={downloadVisionLab}>
                 Try VisionLab
+                <span aria-hidden="true">→</span>
+              </button>
+            </FrostPanel>
+          </article>
+        </div>
+      </section>
+
+      <section className="vision-card-section" aria-labelledby="smart-system-title">
+        <div className="vision-card-section__inner vision-card-section__inner--wide">
+          <h2 id="smart-system-title" className="vision-card-section__label">
+            Spectr Smart System
+          </h2>
+          <article className="vision-card vision-card--wide">
+            <Image
+              src="/images/products/spectr-os-materials.jpg"
+              alt=""
+              fill
+              sizes="(max-width: 900px) 100vw, 72rem"
+              className="vision-card__image"
+              priority={false}
+            />
+            <FrostPanel>
+              <div className="vision-card__panel-top">
+                <span className="vision-card__brand">Spectr OS</span>
+                <span className="vision-card__tag">Platform</span>
+              </div>
+              <p className="vision-card__headline">
+                The industrial smart system for live sites — perception, decisions, and action in one loop.
+              </p>
+              <button
+                type="button"
+                className="vision-card__link"
+                onClick={() => router.push("/platforms/spectr-os")}
+              >
+                Explore Spectr OS
                 <span aria-hidden="true">→</span>
               </button>
             </FrostPanel>
