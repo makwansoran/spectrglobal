@@ -50,9 +50,11 @@
 
 .vision-success__box {
   --bevel-cut: 28px;
+  position: relative;
   box-sizing: border-box;
   width: 100%;
-  aspect-ratio: 1;
+  aspect-ratio: 1.12 / 1;
+  overflow: hidden;
   background: #f1f1ef;
   clip-path: polygon(
     var(--bevel-cut) 0,
@@ -62,6 +64,11 @@
     0 100%,
     0 var(--bevel-cut)
   );
+}
+
+.vision-success__image {
+  object-fit: cover;
+  object-position: center;
 }
 
 .vision-close {
