@@ -3,7 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useGetStarted } from "@/components/get-started-context";
+import { models } from "@/lib/vision";
 import "./vision-home.css";
+
+const visionLab = models.find((model) => model.name === "VisionLab");
 
 const industries = [
   {
@@ -52,20 +55,17 @@ export function VisionHome() {
 
       <section className="vision-intro" aria-labelledby="intro-title">
         <div className="vision-intro__copy">
-          <h2 id="intro-title">Introducing Spectr OS</h2>
-          <p className="vision-intro__lead">The operating system for the enterprise.</p>
-          <p>
-            Fuse data. Decide. Act. One runtime for the sites where a camera has to see, and someone has to move.
-          </p>
-          <Link href="/platforms/spectr-os" className="vision-text-link">
-            Explore Spectr OS
+          <h2 id="intro-title">Introducing VisionLab</h2>
+          <p className="vision-intro__lead">{visionLab?.body}</p>
+          <Link href="/visionlab" className="vision-text-link">
+            Explore VisionLab
             <span aria-hidden="true">→</span>
           </Link>
         </div>
         <div className="vision-intro__media">
           <Image
-            src="/images/offerings/spectr-os.jpg"
-            alt="Spectr OS running enterprise operations"
+            src={visionLab?.image ?? "/visionlab-app.jpg"}
+            alt={visionLab?.imageAlt ?? "VisionLab"}
             fill
             sizes="(max-width: 900px) 100vw, 42rem"
             className="vision-intro__image"
@@ -117,7 +117,6 @@ export function VisionHome() {
             <br />
             Every industry.
           </h2>
-          <p>One OS across waste, manufacturing, agriculture, mining, ports, and logistics.</p>
         </div>
         <div className="vision-practices__row">
           {industries.map((industry) => {
