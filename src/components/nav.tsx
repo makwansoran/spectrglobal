@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useLayoutEffect, useState } from "react";
 import { useGetStarted } from "@/components/get-started-context";
 import { LogoMark, Wordmark } from "@/components/logo";
 import { site } from "@/lib/site";
@@ -28,28 +27,9 @@ function DownloadIcon() {
 
 export function Nav() {
   const { openGetStarted } = useGetStarted();
-  const [island, setIsland] = useState(false);
-
-  useLayoutEffect(() => {
-    const onScroll = () => {
-      setIsland(window.scrollY > 8);
-    };
-
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   return (
-    <header className={island ? "vision-nav vision-nav--island" : "vision-nav"}>
-      <div
-        className="vision-nav__surface"
-        aria-hidden="true"
-        style={{
-          backdropFilter: island ? "blur(28px) saturate(1.8)" : "none",
-          WebkitBackdropFilter: island ? "blur(28px) saturate(1.8)" : "none",
-        }}
-      />
+    <header className="vision-nav">
       <div className="vision-nav__inner">
         <Link href="/" className="vision-nav__brand" aria-label={site.name}>
           <LogoMark className="h-7 w-7" />
