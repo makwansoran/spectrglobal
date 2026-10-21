@@ -12,40 +12,10 @@ function downloadVisionLab() {
   window.location.assign("/visionlab");
 }
 
-const stories = [
-  {
-    title: "Customer success",
-    image: "/images/customer-success-veolia.jpg",
-    body: "Computer vision on the floor — turning site operations into a shorter loop.",
-    action: "View case study",
-    kind: "contact" as const,
-  },
-  {
-    title: "VisionLab",
-    image: "/visionlab-app.jpg",
-    body: "Label, train, and ship vision models from one workspace — from the first frame to the floor.",
-    action: "Try VisionLab",
-    kind: "visionlab" as const,
-  },
-  {
-    title: "Spectr Smart System",
-    image: "/images/products/spectr-os-materials.jpg",
-    body: "The industrial smart system for live sites — perception, decisions, and action in one loop.",
-    action: "Explore Spectr OS",
-    kind: "os" as const,
-  },
-];
-
 export function VisionHome() {
   const { openGetStarted } = useGetStarted();
   const [industryIndex, setIndustryIndex] = useState(0);
   const industry = industryPages[industryIndex];
-
-  function openStory(kind: (typeof stories)[number]["kind"]) {
-    if (kind === "contact") openGetStarted("contact");
-    else if (kind === "visionlab") downloadVisionLab();
-    else window.location.assign("/platforms/spectr-os");
-  }
 
   return (
     <div className="vision">
@@ -98,24 +68,39 @@ export function VisionHome() {
 
       <section className="vision-stories" aria-labelledby="stories-title">
         <div className="vision-stories__head">
-          <h2 id="stories-title">What we build</h2>
-          <p>Customer work, the lab, and the system that runs on site.</p>
+          <h2 id="stories-title">Customer success</h2>
         </div>
-        <div className="vision-stories__grid">
-          {stories.map((story) => (
-            <article key={story.title} className="vision-story">
-              <div className="vision-story__media">
-                <Image src={story.image} alt="" fill sizes="(max-width: 800px) 100vw, 28rem" className="vision-story__image" />
-              </div>
-              <h3>{story.title}</h3>
-              <p>{story.body}</p>
-              <button type="button" className="vision-text-link" onClick={() => openStory(story.kind)}>
-                {story.action}
+        <article className="vision-story">
+          <div className="vision-story__media">
+            <Image
+              src="/images/customer-success-veolia.jpg"
+              alt=""
+              fill
+              sizes="(max-width: 800px) 100vw, 70rem"
+              className="vision-story__image"
+            />
+            <div
+              className="vision-story__glass"
+              style={{
+                backdropFilter: "blur(18px) saturate(1.35)",
+                WebkitBackdropFilter: "blur(18px) saturate(1.35)",
+              }}
+            >
+              <Image
+                src="/images/veolia-logo.png"
+                alt="Veolia"
+                width={200}
+                height={50}
+                className="vision-story__logo"
+              />
+              <p>Computer vision on the floor — turning site operations into a shorter loop.</p>
+              <button type="button" className="vision-story__link" onClick={() => openGetStarted("contact")}>
+                View case study
                 <span aria-hidden="true">→</span>
               </button>
-            </article>
-          ))}
-        </div>
+            </div>
+          </div>
+        </article>
       </section>
 
       <section className="vision-industries" aria-labelledby="industries-title">
