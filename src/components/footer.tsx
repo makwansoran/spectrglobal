@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LogoMark } from "@/components/logo";
 import { site } from "@/lib/site";
 import "./footer.css";
 
@@ -80,9 +81,10 @@ export function Footer({ dark = false }: { dark?: boolean }) {
 
       <p className="site-footer__legal">© {year} {site.legalName}. All rights reserved.</p>
 
-      <p className="site-footer__mark" aria-hidden="true">
-        Spectr
-      </p>
+      <div className="site-footer__mark" aria-hidden="true">
+        <LogoMark invert={dark} title="" className="site-footer__icon" />
+        <span>Spectr</span>
+      </div>
     </footer>
   );
 }
