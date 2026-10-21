@@ -2,9 +2,47 @@
   position: sticky;
   top: 0;
   z-index: 50;
+  height: 64px;
+  pointer-events: none;
+  background: transparent;
+}
+
+.vision-nav__surface {
+  pointer-events: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
   background: #fff;
-  color: #1e1f2b;
-  border-bottom: 1px solid rgba(10, 10, 10, 0.08);
+  border: 1px solid transparent;
+  border-radius: 0;
+  box-shadow: 0 0 0 rgba(15, 18, 28, 0);
+  transition:
+    top 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    left 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    right 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    border-radius 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.4s ease,
+    border-color 0.4s ease,
+    box-shadow 0.5s ease,
+    backdrop-filter 0.45s ease,
+    -webkit-backdrop-filter 0.45s ease;
+}
+
+.vision-nav--island .vision-nav__surface {
+  top: 10px;
+  left: 16px;
+  right: 16px;
+  height: 52px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.62);
+  border-color: rgba(255, 255, 255, 0.72);
+  box-shadow:
+    0 10px 30px rgba(15, 18, 28, 0.12),
+    0 1px 2px rgba(15, 18, 28, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
 }
 
 .vision-nav__inner {
@@ -12,7 +50,7 @@
   align-items: center;
   gap: 1.5rem;
   max-width: 1180px;
-  height: 64px;
+  height: 100%;
   margin: 0 auto;
   padding: 0 1.25rem;
 }
@@ -76,3 +114,20 @@
   background: #2c3134;
 }
 
+@media (max-width: 640px) {
+  .vision-nav--island .vision-nav__surface {
+    top: 8px;
+    left: 10px;
+    right: 10px;
+  }
+
+  .vision-nav__inner {
+    padding: 0 0.7rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vision-nav__surface {
+    transition: none;
+  }
+}

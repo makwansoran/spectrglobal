@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useLayoutEffect, useState } from "react";
 import { useGetStarted } from "@/components/get-started-context";
 import { LogoMark, Wordmark } from "@/components/logo";
 import { site } from "@/lib/site";
@@ -27,23 +28,42 @@ function DownloadIcon() {
 
 export function Nav() {
   const { openGetStarted } = useGetStarted();
+  const [island, setIsland] = useState(false);
+
+  useLayoutEffect(() => {
+    const onScroll = () => {
+      setIsland(window.scrollY > 8);
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="vision-nav">
-      <div className="vision-nav__inner">
-        <Link href="/" className="vision-nav__brand" aria-label={site.name}>
-          <LogoMark className="h-7 w-7" />
-          <Wordmark className="text-[#1e1f2b]" />
-        </Link>
+    <header className={island ? "vision-nav vision-nav--island" : "vision-nav"}>
+      <div
+        className="vision-nav__surface"
+        style={{
+          backdropFilter: island ? "blur(28px) saturate(1.8)" : "none",
+          WebkitBackdropFilter: island ? "blur(28px) saturate(1.8)" : "none",
+        }}
+      >
+        <div className="vision-nav__inner">
+          <Link href="/" className="vision-nav__brand" aria-label={site.name}>
+            <LogoMark className="h-7 w-7" />
+            <Wordmark className="text-[#1e1f2b]" />
+          </Link>
 
-        <div className="vision-nav__actions">
-          <button type="button" className="vision-nav__contact" onClick={() => openGetStarted("contact")}>
-            Contact
-          </button>
-          <button type="button" className="vision-nav__cta" onClick={downloadVisionLab}>
-            <DownloadIcon />
-            VisionLab
-          </button>
+          <div className="vision-nav__actions">
+            <button type="button" className="vision-nav__contact" onClick={() => openGetStarted("contact")}>
+              Contact
+            </button>
+            <button type="button" className="vision-nav__cta" onClick={downloadVisionLab}>
+              <DownloadIcon />
+              VisionLab
+            </button>
+          </div>
         </div>
       </div>
     </header>
