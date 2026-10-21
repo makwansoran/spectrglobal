@@ -37,7 +37,6 @@
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.55rem 0.95rem;
   border: 0;
   border-radius: 0;
   cursor: pointer;
@@ -56,16 +55,24 @@
 }
 
 .vision-nav__contact {
-  background: #fff;
+  padding: 1px;
+  background: #1e1f2b;
   color: #1e1f2b;
-  filter: drop-shadow(0 0 0.75px rgba(30, 31, 43, 0.55));
 }
 
-.vision-nav__contact:hover {
+.vision-nav__contact-face {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.55rem 0.95rem;
+  background: #fff;
+}
+
+.vision-nav__contact:hover .vision-nav__contact-face {
   background: #f4f4f4;
 }
 
 .vision-nav__cta {
+  padding: 0.55rem 0.95rem;
   background: #1e1f2b;
   color: #fff;
 }
