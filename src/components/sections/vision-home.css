@@ -242,84 +242,44 @@
 }
 
 .vision-practices__row {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 11.5rem;
+  gap: 0.85rem;
   margin-top: 2.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.35rem;
+  scroll-snap-type: x mandatory;
 }
 
 .vision-practice {
-  height: 12.5rem;
-}
-
-.vision-practice.is-active {
-  height: auto;
-}
-
-.vision-practice__tile {
   position: relative;
   display: block;
-  width: 100%;
-  height: 100%;
+  height: 16.5rem;
   overflow: hidden;
-  padding: 0;
-  border: 0;
   border-radius: 16px;
   background: #1e1f2b;
   color: #fff;
-  cursor: pointer;
-  font: inherit;
-  text-align: left;
+  scroll-snap-align: start;
+  text-decoration: none;
 }
 
 .vision-practice__shade {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(10, 12, 16, 0.62), rgba(10, 12, 16, 0.05) 58%);
+  background: linear-gradient(to top, rgba(10, 12, 16, 0.66), rgba(10, 12, 16, 0.05) 55%);
 }
 
 .vision-practice__label {
   position: absolute;
-  right: 1rem;
-  bottom: 0.9rem;
-  left: 1rem;
+  right: 0.75rem;
+  bottom: 0.8rem;
+  left: 0.75rem;
   z-index: 1;
-  font-size: 1.15rem;
+  font-size: 1rem;
   font-weight: 500;
   letter-spacing: -0.03em;
-}
-
-.vision-practice__open {
-  padding: 0.7rem 0.7rem 1.15rem;
-  border-radius: 18px;
-  background: #f1f1ef;
-}
-
-.vision-practice__photo {
-  position: relative;
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
-  border-radius: 12px;
-  background: #e6e6e4;
-}
-
-.vision-practice__open h3 {
-  margin: 1rem 0.45rem 0;
-  font-size: clamp(1.35rem, 2vw, 1.7rem);
-  font-weight: 400;
-  letter-spacing: -0.04em;
-  line-height: 1.12;
-}
-
-.vision-practice__open p {
-  margin: 0.55rem 0.45rem 0;
-  color: #3a3b46;
-  font-size: 0.98rem;
-  line-height: 1.45;
-}
-
-.vision-practice__open .vision-text-link {
-  margin: 0.85rem 0.45rem 0.15rem;
+  line-height: 1.15;
 }
 
 @media (min-width: 800px) {
@@ -328,21 +288,16 @@
   }
 }
 
-@media (min-width: 900px) {
+@media (min-width: 980px) {
   .vision-practices__row {
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 1.35rem;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-auto-columns: auto;
+    grid-auto-flow: row;
+    overflow: visible;
   }
 
   .vision-practice {
-    flex: 0 0 11.25rem;
-    height: 15.5rem;
-  }
-
-  .vision-practice.is-active {
-    flex-basis: 24rem;
     height: auto;
+    aspect-ratio: 3 / 4;
   }
 }
