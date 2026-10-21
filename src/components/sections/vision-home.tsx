@@ -22,16 +22,45 @@ export function VisionHome() {
           <h2 id="customer-success-title" className="vision-success__label">
             Customer success
           </h2>
-          <div className="vision-success__box">
+          <article className="vision-success__box">
             <Image
               src="/images/customer-success-veolia.jpg"
               alt="Veolia industrial facility"
               fill
-              sizes="(max-width: 768px) 100vw, 42rem"
+              sizes="(max-width: 768px) 100vw, 48rem"
               className="vision-success__image"
               priority={false}
             />
-          </div>
+            <div
+              className="vision-success__panel"
+              style={{
+                backdropFilter: "blur(18px) saturate(1.35)",
+                WebkitBackdropFilter: "blur(18px) saturate(1.35)",
+              }}
+            >
+              <div className="vision-success__panel-top">
+                <Image
+                  src="/images/veolia-logo.png"
+                  alt="Veolia"
+                  width={120}
+                  height={80}
+                  className="vision-success__logo"
+                />
+                <span className="vision-success__tag">Industry</span>
+              </div>
+              <p className="vision-success__headline">
+                Computer vision on the floor — turning site operations into a shorter loop.
+              </p>
+              <button
+                type="button"
+                className="vision-success__link"
+                onClick={() => openGetStarted("contact")}
+              >
+                View case study
+                <span aria-hidden="true">→</span>
+              </button>
+            </div>
+          </article>
         </div>
       </section>
 
