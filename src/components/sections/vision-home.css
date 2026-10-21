@@ -48,13 +48,14 @@
   color: #1e1f2b;
 }
 
-.vision-success__frame {
+.vision-success__box {
   --bevel-cut: 28px;
+  position: relative;
   box-sizing: border-box;
   width: 100%;
   aspect-ratio: 1.45 / 1;
-  padding: 1px;
-  background: #1e1f2b;
+  overflow: hidden;
+  background: #f1f1ef;
   clip-path: polygon(
     var(--bevel-cut) 0,
     100% 0,
@@ -63,14 +64,6 @@
     0 100%,
     0 var(--bevel-cut)
   );
-}
-
-.vision-success__box {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background: #f1f1ef;
 }
 
 .vision-success__image {

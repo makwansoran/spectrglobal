@@ -22,17 +22,15 @@ export function VisionHome() {
           <h2 id="customer-success-title" className="vision-success__label">
             Customer success
           </h2>
-          <div className="vision-success__frame">
-            <div className="vision-success__box">
-              <Image
-                src="/images/customer-success-veolia.jpg"
-                alt="Veolia industrial facility"
-                fill
-                sizes="(max-width: 768px) 100vw, 42rem"
-                className="vision-success__image"
-                priority={false}
-              />
-            </div>
+          <div className="vision-success__box">
+            <Image
+              src="/images/customer-success-veolia.jpg"
+              alt="Veolia industrial facility"
+              fill
+              sizes="(max-width: 768px) 100vw, 42rem"
+              className="vision-success__image"
+              priority={false}
+            />
           </div>
         </div>
       </section>

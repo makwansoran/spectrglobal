@@ -38,7 +38,7 @@ export function Nav() {
 
         <div className="vision-nav__actions">
           <button type="button" className="vision-nav__contact" onClick={() => openGetStarted("contact")}>
-            <span className="vision-nav__contact-face">Contact</span>
+            Contact
           </button>
           <button type="button" className="vision-nav__cta" onClick={downloadVisionLab}>
             <DownloadIcon />
