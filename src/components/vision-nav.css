@@ -40,8 +40,6 @@
   padding: 0.55rem 0.95rem;
   border: 0;
   border-radius: 0;
-  background: #f1f1ef;
-  color: #1e1f2b;
   cursor: pointer;
   font: inherit;
   font-size: 0.9rem;
@@ -57,9 +55,23 @@
   );
 }
 
-.vision-nav__contact:hover,
+.vision-nav__contact {
+  background: #fff;
+  color: #1e1f2b;
+  filter: drop-shadow(0 0 0.75px rgba(30, 31, 43, 0.55));
+}
+
+.vision-nav__contact:hover {
+  background: #f4f4f4;
+}
+
+.vision-nav__cta {
+  background: #1e1f2b;
+  color: #fff;
+}
+
 .vision-nav__cta:hover {
-  background: #e6e6e4;
+  background: #2c3134;
 }
 
 .vision-nav__contact:focus-visible,
