@@ -4,32 +4,14 @@
 }
 
 .vision-hero {
-  position: relative;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
   min-height: calc(100dvh - 64px);
-  overflow: hidden;
-  color: #fff;
+  padding: 2rem;
+  background: #fff;
+  color: #1e1f2b;
   text-align: center;
-}
-
-.vision-hero__image {
-  object-fit: cover;
-  object-position: center 40%;
-}
-
-.vision-hero__shade {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(10, 12, 16, 0.15) 20%, rgba(10, 12, 16, 0.72) 100%);
-}
-
-.vision-hero__copy {
-  position: relative;
-  z-index: 1;
-  width: min(100% - 2.5rem, 52rem);
-  padding: 0 0 4.5rem;
 }
 
 .vision-hero h1 {
@@ -38,58 +20,6 @@
   font-weight: 400;
   letter-spacing: -0.05em;
   line-height: 0.95;
-}
-
-.vision-hero p {
-  margin: 1rem 0 0;
-  font-size: clamp(1rem, 2vw, 1.2rem);
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  line-height: 1.4;
-}
-
-.vision-hero__actions {
-  display: flex;
-  justify-content: center;
-  gap: 0.6rem;
-  margin-top: 1.4rem;
-}
-
-.vision-hero__contact,
-.vision-hero__cta {
-  --bevel-cut: 8px;
-  padding: 0.55rem 1rem;
-  border: 0;
-  cursor: pointer;
-  font: inherit;
-  font-size: 0.9rem;
-  font-weight: 600;
-  clip-path: polygon(
-    var(--bevel-cut) 0,
-    100% 0,
-    100% calc(100% - var(--bevel-cut)),
-    calc(100% - var(--bevel-cut)) 100%,
-    0 100%,
-    0 var(--bevel-cut)
-  );
-}
-
-.vision-hero__contact {
-  background: #dbdbdb;
-  color: #1e1f2b;
-}
-
-.vision-hero__contact:hover {
-  background: #cfcfcf;
-}
-
-.vision-hero__cta {
-  background: #1e1f2b;
-  color: #fff;
-}
-
-.vision-hero__cta:hover {
-  background: #2c3134;
 }
 
 .vision-intro {

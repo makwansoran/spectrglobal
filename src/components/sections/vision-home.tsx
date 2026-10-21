@@ -41,37 +41,13 @@ const industries = [
   },
 ] as const;
 
-function downloadVisionLab() {
-  window.location.assign("/visionlab");
-}
-
 export function VisionHome() {
   const { openGetStarted } = useGetStarted();
 
   return (
     <div className="vision">
       <section className="vision-hero" aria-labelledby="landing-title">
-        <Image
-          src="/images/customer-success-veolia.jpg"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="vision-hero__image"
-        />
-        <div className="vision-hero__shade" />
-        <div className="vision-hero__copy">
-          <h1 id="landing-title">Eyes of Compute</h1>
-          <p>Open models for computer vision, AI vision, and VLA.</p>
-          <div className="vision-hero__actions">
-            <button type="button" className="vision-hero__contact" onClick={() => openGetStarted("contact")}>
-              Contact
-            </button>
-            <button type="button" className="vision-hero__cta" onClick={downloadVisionLab}>
-              VisionLab
-            </button>
-          </div>
-        </div>
+        <h1 id="landing-title">Eyes of Compute</h1>
       </section>
 
       <section className="vision-intro" aria-labelledby="intro-title">
