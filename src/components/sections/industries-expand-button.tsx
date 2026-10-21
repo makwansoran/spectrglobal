@@ -1,25 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 const PREVIEW =
   "One OS across manufacturing, logistics, and waste management.";
 
 export function IndustriesExpandButton() {
   const [open, setOpen] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    if (open) {
-      void video.play().catch(() => undefined);
-    } else {
-      video.pause();
-      video.currentTime = 0;
-    }
-  }, [open]);
 
   return (
     <div
@@ -42,18 +30,7 @@ export function IndustriesExpandButton() {
         <span className="industries-expand__label">Industries</span>
 
         <div className="industries-expand__body" aria-hidden={!open}>
-          <div className="industries-expand__preview">
-            <video
-              ref={videoRef}
-              className="h-full w-full object-cover"
-              muted
-              loop
-              playsInline
-              preload="metadata"
-            >
-              <source src="/videos/industries-preview.mp4" type="video/mp4" />
-            </video>
-          </div>
+          <div className="industries-expand__preview" />
           <p className="industries-expand__text">{PREVIEW}</p>
         </div>
       </Link>
