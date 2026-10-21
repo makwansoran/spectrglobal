@@ -33,44 +33,43 @@
 
 .vision-nav__contact,
 .vision-nav__cta {
+  --bevel-cut: 8px;
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
+  padding: 0.55rem 0.95rem;
   border: 0;
+  border-radius: 0;
+  background: #f1f1ef;
+  color: #1e1f2b;
   cursor: pointer;
   font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
   text-decoration: none;
+  clip-path: polygon(
+    var(--bevel-cut) 0,
+    100% 0,
+    100% calc(100% - var(--bevel-cut)),
+    calc(100% - var(--bevel-cut)) 100%,
+    0 100%,
+    0 var(--bevel-cut)
+  );
 }
 
-.vision-nav__contact {
-  padding: 0.48rem 0.9rem;
-  border-radius: 999px;
-  border: 1px solid rgba(10, 10, 10, 0.2);
-  background: transparent;
-  color: #1e1f2b;
-  font-size: 0.9rem;
-  font-weight: 600;
+.vision-nav__contact:hover,
+.vision-nav__cta:hover {
+  background: #e6e6e4;
 }
 
-.vision-nav__contact:hover {
-  background: #f4f4f4;
-}
-
-.vision-nav__cta {
-  padding: 0.48rem 0.95rem;
-  border-radius: 999px;
-  background: #1e1f2b;
-  color: #fff;
-  font-size: 0.9rem;
-  font-weight: 600;
+.vision-nav__contact:focus-visible,
+.vision-nav__cta:focus-visible {
+  outline: 2px solid #1e1f2b;
+  outline-offset: 3px;
 }
 
 .vision-nav__download {
   width: 16px;
   height: 16px;
   flex: none;
-}
-
-.vision-nav__cta:hover {
-  background: #2c3134;
 }
