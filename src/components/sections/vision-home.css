@@ -16,7 +16,7 @@
 .vision-landing h1 {
   margin: 0;
   max-width: 12ch;
-  font-size: clamp(3.2rem, 8vw, 6rem);
+  font-size: clamp(2.6rem, 6.5vw, 4.75rem);
   font-weight: 400;
   letter-spacing: -0.05em;
   line-height: 0.95;
