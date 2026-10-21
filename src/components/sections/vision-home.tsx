@@ -14,7 +14,6 @@ function downloadVisionLab() {
 export function VisionHome() {
   const { openGetStarted } = useGetStarted();
   const [industryIndex, setIndustryIndex] = useState(0);
-  const industry = industryPages[industryIndex];
 
   return (
     <div className="vision">
@@ -102,45 +101,54 @@ export function VisionHome() {
         </article>
       </section>
 
-      <section className="vision-industries" aria-labelledby="industries-title">
-        <div className="vision-industries__head">
-          <h2 id="industries-title">Every site. Every industry.</h2>
+      <section className="vision-practices" aria-labelledby="industries-title">
+        <div className="vision-practices__head">
+          <h2 id="industries-title">
+            Every site.
+            <br />
+            Every industry.
+          </h2>
           <p>One OS across manufacturing, logistics, waste, and mining.</p>
         </div>
-        <div className="vision-industries__layout">
-          <div className="vision-industries__tabs" role="tablist" aria-label="Industries">
-            {industryPages.map((page, index) => (
-              <button
-                key={page.slug}
-                type="button"
-                role="tab"
-                aria-selected={index === industryIndex}
-                className={index === industryIndex ? "is-active" : undefined}
-                onClick={() => setIndustryIndex(index)}
-              >
-                {page.name}
-              </button>
-            ))}
-          </div>
-          <article className="vision-industries__panel" role="tabpanel">
-            <div className="vision-industries__photo">
-              <Image
-                src={industry.image}
-                alt={industry.imageAlt}
-                fill
-                sizes="(max-width: 800px) 100vw, 40rem"
-                className="vision-industries__image"
-              />
-            </div>
-            <div className="vision-industries__text">
-              <h3>{industry.headline}</h3>
-              <p>{industry.listingDescription}</p>
-              <Link href={industry.href} className="vision-text-link">
-                Read more
-                <span aria-hidden="true">→</span>
-              </Link>
-            </div>
-          </article>
+        <div className="vision-practices__row">
+          {industryPages.map((page, index) => {
+            const active = index === industryIndex;
+            return (
+              <article key={page.slug} className={active ? "vision-practice is-active" : "vision-practice"}>
+                {active ? (
+                  <div className="vision-practice__open">
+                    <div className="vision-practice__photo">
+                      <Image
+                        src={page.image}
+                        alt={page.imageAlt}
+                        fill
+                        sizes="(max-width: 800px) 100vw, 24rem"
+                        className="vision-practice__image"
+                      />
+                    </div>
+                    <h3>{page.headline}</h3>
+                    <p>{page.listingDescription}</p>
+                    <Link href={page.href} className="vision-text-link">
+                      Read more
+                      <span aria-hidden="true">→</span>
+                    </Link>
+                  </div>
+                ) : (
+                  <button type="button" className="vision-practice__tile" onClick={() => setIndustryIndex(index)}>
+                    <Image
+                      src={page.image}
+                      alt=""
+                      fill
+                      sizes="16rem"
+                      className="vision-practice__image"
+                    />
+                    <span className="vision-practice__shade" aria-hidden="true" />
+                    <span className="vision-practice__label">{page.name}</span>
+                  </button>
+                )}
+              </article>
+            );
+          })}
         </div>
       </section>
     </div>

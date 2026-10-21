@@ -103,7 +103,7 @@
 
 .vision-intro__copy h2,
 .vision-stories__head h2,
-.vision-industries__head h2 {
+.vision-practices__head h2 {
   margin: 0;
   font-size: clamp(2rem, 4vw, 3.2rem);
   font-weight: 400;
@@ -113,7 +113,7 @@
 
 .vision-intro__lead,
 .vision-stories__head p,
-.vision-industries__head p {
+.vision-practices__head p {
   margin: 0.85rem 0 0;
   max-width: 36rem;
   color: #3a3b46;
@@ -135,7 +135,7 @@
 
 .vision-intro__image,
 .vision-story__image,
-.vision-industries__image {
+.vision-practice__image {
   object-fit: cover;
 }
 
@@ -161,7 +161,7 @@
 }
 
 .vision-stories,
-.vision-industries {
+.vision-practices {
   width: min(1120px, calc(100% - 3rem));
   margin: 0 auto;
   padding: 1rem 0 5.5rem;
@@ -232,87 +232,117 @@
   opacity: 0.82;
 }
 
-.vision-industries__layout {
-  display: grid;
-  gap: 1.5rem;
-  margin-top: 2rem;
+.vision-practices__head {
+  text-align: center;
 }
 
-.vision-industries__tabs {
+.vision-practices__head p {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.vision-practices__row {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2.5rem;
 }
 
-.vision-industries__tabs button {
-  --bevel-cut: 7px;
-  padding: 0.45rem 0.8rem;
+.vision-practice {
+  height: 12.5rem;
+}
+
+.vision-practice.is-active {
+  height: auto;
+}
+
+.vision-practice__tile {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  padding: 0;
   border: 0;
-  background: #f1f1ef;
-  color: #1e1f2b;
-  cursor: pointer;
-  font: inherit;
-  font-size: 0.92rem;
-  clip-path: polygon(
-    var(--bevel-cut) 0,
-    100% 0,
-    100% calc(100% - var(--bevel-cut)),
-    calc(100% - var(--bevel-cut)) 100%,
-    0 100%,
-    0 var(--bevel-cut)
-  );
-}
-
-.vision-industries__tabs button.is-active {
+  border-radius: 16px;
   background: #1e1f2b;
   color: #fff;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
 }
 
-.vision-industries__panel {
-  display: grid;
-  gap: 1.25rem;
+.vision-practice__shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10, 12, 16, 0.62), rgba(10, 12, 16, 0.05) 58%);
 }
 
-.vision-industries__photo {
-  position: relative;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
+.vision-practice__label {
+  position: absolute;
+  right: 1rem;
+  bottom: 0.9rem;
+  left: 1rem;
+  z-index: 1;
+  font-size: 1.15rem;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.vision-practice__open {
+  padding: 0.7rem 0.7rem 1.15rem;
+  border-radius: 18px;
   background: #f1f1ef;
-  clip-path: polygon(18px 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%, 0 18px);
 }
 
-.vision-industries__text h3 {
-  margin: 0;
-  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+.vision-practice__photo {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #e6e6e4;
+}
+
+.vision-practice__open h3 {
+  margin: 1rem 0.45rem 0;
+  font-size: clamp(1.35rem, 2vw, 1.7rem);
   font-weight: 400;
   letter-spacing: -0.04em;
-  line-height: 1.1;
+  line-height: 1.12;
 }
 
-.vision-industries__text p {
-  margin: 0.6rem 0 0;
-  max-width: 40rem;
+.vision-practice__open p {
+  margin: 0.55rem 0.45rem 0;
   color: #3a3b46;
-  line-height: 1.5;
+  font-size: 0.98rem;
+  line-height: 1.45;
+}
+
+.vision-practice__open .vision-text-link {
+  margin: 0.85rem 0.45rem 0.15rem;
 }
 
 @media (min-width: 800px) {
   .vision-intro {
     grid-template-columns: 0.9fr 1.1fr;
   }
+}
 
-  .vision-industries__layout {
-    grid-template-columns: 14rem 1fr;
-    align-items: start;
-  }
-
-  .vision-industries__tabs {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .vision-industries__panel {
-    grid-template-columns: 1.15fr 0.85fr;
+@media (min-width: 900px) {
+  .vision-practices__row {
+    flex-direction: row;
     align-items: center;
+    justify-content: center;
+    gap: 1.35rem;
+  }
+
+  .vision-practice {
+    flex: 0 0 11.25rem;
+    height: 15.5rem;
+  }
+
+  .vision-practice.is-active {
+    flex-basis: 24rem;
+    height: auto;
   }
 }
