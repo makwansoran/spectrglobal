@@ -154,6 +154,60 @@
   padding: 1rem 0 5.5rem;
 }
 
+.vision-about {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+  width: min(1120px, calc(100% - 3rem));
+  margin: 0 auto;
+  padding: 1rem 0 5.5rem;
+}
+
+@media (min-width: 900px) {
+  .vision-about {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    gap: 3rem;
+  }
+}
+
+.vision-about__copy h2 {
+  margin: 0;
+  font-size: clamp(1.75rem, 3.2vw, 2.35rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+.vision-about__belief {
+  margin: 1rem 0 0;
+  max-width: 34rem;
+  color: #1e1f2b;
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.35;
+}
+
+.vision-about__body {
+  margin: 0.85rem 0 1.25rem;
+  max-width: 34rem;
+  color: #5c5c62;
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+.vision-about__media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #f1f1ef;
+}
+
+.vision-about__image {
+  object-fit: cover;
+}
+
 .vision-practices {
   width: min(1120px, calc(100% - 3rem));
   margin: 0 auto;

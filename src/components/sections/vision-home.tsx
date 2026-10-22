@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useGetStarted } from "@/components/get-started-context";
+import { aboutPage } from "@/lib/about";
 import { models } from "@/lib/vision";
 import "@/components/vision-nav.css";
 import "./vision-home.css";
@@ -184,6 +185,26 @@ export function VisionHome() {
             </div>
           </div>
         </article>
+      </section>
+
+      <section className="vision-about" aria-labelledby="about-title">
+        <div className="vision-about__copy">
+          <h2 id="about-title">About us</h2>
+          <p className="vision-about__belief">{aboutPage.belief}</p>
+          <p className="vision-about__body">{aboutPage.statement}</p>
+          <Link href="/about" className="vision-model__text-link">
+            Learn more
+          </Link>
+        </div>
+        <div className="vision-about__media">
+          <Image
+            src={aboutPage.heroImage}
+            alt={aboutPage.heroImageAlt}
+            fill
+            sizes="(max-width: 900px) 100vw, 36rem"
+            className="vision-about__image"
+          />
+        </div>
       </section>
 
       <section className="vision-practices" aria-labelledby="industries-title">
