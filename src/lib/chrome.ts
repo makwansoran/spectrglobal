@@ -9,6 +9,6 @@ export function isAppChromePath(pathname: string) {
     pathname.startsWith("/dashboard/") ||
     pathname === "/admin" ||
     pathname.startsWith("/admin/") ||
-    pathname === "/visionlab"
+    pathname === "/visionlab/login"
   );
 }
