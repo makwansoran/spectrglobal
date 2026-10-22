@@ -19,7 +19,6 @@ const industries = [
     name: "Waste Management",
     href: "/use-cases/waste-management",
     line: "From the bin to the plant, one loop.",
-    detail: "Collection, plants, and materials as one loop, so a lift is an operational decision.",
     image: "/images/industries/waste-management.jpg",
     imageAlt: "Sorting plant conveyors and trommel with workers on the floor",
   },
@@ -27,28 +26,24 @@ const industries = [
     name: "Manufacturing",
     href: "/use-cases/manufacturing",
     line: "Strategy, materials, and the line as one model.",
-    detail: "An operating system for the line: strategy, materials, and the shop floor as one model.",
     image: "/images/industries/manufacturing.jpg",
     imageAlt: "Circuit boards under an automated inspection head",
   },
   {
     name: "Agriculture",
     line: "Count what the field is doing.",
-    detail: "Classify and measure from aerial and ground cameras across a field or a herd.",
     image: "/images/industries/agriculture.jpg",
     imageAlt: "Sprayers working a green crop field",
   },
   {
     name: "Mining",
     line: "Pit, plant, and materials as one model.",
-    detail: "Fleets, grades, and recovery handled as the shift runs.",
     image: "/images/industries/infrastructure.jpg",
     imageAlt: "Heavy industrial site and materials operations",
   },
   {
     name: "Ports",
     line: "Watch the gate on hardware you own.",
-    detail: "Detection and tracking for a perimeter, a floor, or a port stay on machines you control.",
     image: "/images/industries/ports.jpg",
     imageAlt: "Container terminal and cranes at dusk",
   },
@@ -56,7 +51,6 @@ const industries = [
     name: "Logistics",
     href: "/use-cases/logistics",
     line: "Planning and execution without the seam between them.",
-    detail: "Planning and execution in one runtime. Inventory, yards, and disruption handled as they happen.",
     image: "/images/industries/logistics.jpg",
     imageAlt: "Warehouse floor with yellow roller conveyor and inventory",
   },
@@ -82,7 +76,6 @@ function IndustryCard({ industry }: { industry: (typeof industries)[number] }) {
       >
         <p className="vision-practice__company">{industry.name}</p>
         <p className="vision-practice__quote">{industry.line}</p>
-        <p className="vision-practice__detail">{industry.detail}</p>
       </div>
     </>
   );
