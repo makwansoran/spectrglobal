@@ -1,48 +1,38 @@
 "use client";
 
-import { useEffect, useId, useMemo, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState, type CSSProperties } from "react";
 import {
   argusCompareMetrics,
   argusCompareModels,
   type ArgusCompareModelId,
 } from "@/lib/argus-page";
 
-const SIZE = 420;
-const CX = SIZE / 2;
-const CY = SIZE / 2;
-const RADIUS = 148;
-
-const MODEL_STROKE: Record<ArgusCompareModelId, string> = {
+const MODEL_FILL: Record<ArgusCompareModelId, string> = {
   argus: "#1e1f2b",
   yolo: "#5c5c62",
   detectron2: "#7a7a80",
   "grounding-dino": "#9a9aa0",
-  sam2: "#b4b4b8",
-  cloud: "#cbcbcf",
+  sam2: "#b8b8bc",
+  cloud: "#d4d4d6",
 };
 
 const AXIS_SHORT: Record<string, string> = {
   edge: "Edge",
   track: "Tracking",
   finetune: "Fine-tune",
-  camera: "Camera path",
-  nocloud: "No cloud",
+  camera: "Camera",
+  nocloud: "Local",
 };
 
-function polar(angle: number, radius: number) {
-  return {
-    x: CX + radius * Math.cos(angle),
-    y: CY + radius * Math.sin(angle),
-  };
-}
-
-function axisAngle(index: number, total: number) {
-  return -Math.PI / 2 + (index / total) * Math.PI * 2;
-}
+const WIDTH = 560;
+const HEIGHT = 320;
+const PAD = { top: 16, right: 12, bottom: 42, left: 36 };
+const PLOT_W = WIDTH - PAD.left - PAD.right;
+const PLOT_H = HEIGHT - PAD.top - PAD.bottom;
 
 export function ArgusCompareChart() {
   const ref = useRef<HTMLDivElement>(null);
-  const gradId = useId();
+  const titleId = useId();
   const [active, setActive] = useState(false);
   const [focus, setFocus] = useState<ArgusCompareModelId | null>(null);
 
@@ -69,124 +59,108 @@ export function ArgusCompareChart() {
     return () => observer.disconnect();
   }, []);
 
-  const axes = useMemo(() => {
-    const total = argusCompareMetrics.length;
-    return argusCompareMetrics.map((metric, index) => {
-      const angle = axisAngle(index, total);
-      const tip = polar(angle, RADIUS);
-      const label = polar(angle, RADIUS + 28);
-      return { metric, angle, tip, label };
-    });
-  }, []);
+  const groupCount = argusCompareMetrics.length;
+  const barCount = argusCompareModels.length;
+  const groupWidth = PLOT_W / groupCount;
+  const innerPad = groupWidth * 0.14;
+  const barGap = 2;
+  const barWidth = (groupWidth - innerPad * 2 - barGap * (barCount - 1)) / barCount;
 
-  const rings = [0.25, 0.5, 0.75, 1];
-
-  const series = useMemo(() => {
-    const total = argusCompareMetrics.length;
-    return argusCompareModels.map((model) => {
-      const points = argusCompareMetrics.map((metric, index) => {
-        const score = metric.scores[model.id as ArgusCompareModelId];
-        const angle = axisAngle(index, total);
-        return polar(angle, (score / 100) * RADIUS);
-      });
-      const path = points.map((p, i) => `${i === 0 ? "M" : "L"}${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ") + " Z";
-      return { model, points, path };
-    });
-  }, []);
+  const yTicks = [0, 25, 50, 75, 100];
 
   return (
     <div ref={ref} className={`argus-compare${active ? " is-active" : ""}`}>
-      <div className="argus-compare__graph">
-        <svg
-          className="argus-compare__svg"
-          viewBox={`0 0 ${SIZE} ${SIZE}`}
-          role="img"
-          aria-labelledby={`${gradId}-title ${gradId}-desc`}
-        >
-          <title id={`${gradId}-title`}>Argus compared to other vision models</title>
-          <desc id={`${gradId}-desc`}>
-            Radar chart of industrial deployment scores across edge inference, tracking, fine-tune,
-            camera path, and no cloud dependency for Argus, YOLO, Detectron2, Grounding DINO, SAM 2,
-            and cloud vision APIs.
-          </desc>
+      <svg
+        className="argus-compare__svg"
+        viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
+        role="img"
+        aria-labelledby={`${titleId}-title ${titleId}-desc`}
+      >
+        <title id={`${titleId}-title`}>Argus compared to other vision models</title>
+        <desc id={`${titleId}-desc`}>
+          Grouped bar chart of industrial deployment scores across edge inference, tracking,
+          fine-tune, camera path, and local-only deployment for Argus, YOLO, Detectron2, Grounding
+          DINO, SAM 2, and cloud vision APIs.
+        </desc>
 
-          {rings.map((scale) => (
-            <polygon
-              key={scale}
-              className="argus-compare__ring"
-              points={axes
-                .map(({ angle }) => {
-                  const p = polar(angle, RADIUS * scale);
-                  return `${p.x},${p.y}`;
-                })
-                .join(" ")}
-            />
-          ))}
+        {yTicks.map((tick) => {
+          const y = PAD.top + PLOT_H * (1 - tick / 100);
+          return (
+            <g key={tick}>
+              <line
+                className="argus-compare__grid"
+                x1={PAD.left}
+                y1={y}
+                x2={PAD.left + PLOT_W}
+                y2={y}
+              />
+              <text className="argus-compare__tick" x={PAD.left - 8} y={y} textAnchor="end" dominantBaseline="middle">
+                {tick}
+              </text>
+            </g>
+          );
+        })}
 
-          {axes.map(({ tip, label, metric }) => (
+        {argusCompareMetrics.map((metric, groupIndex) => {
+          const groupX = PAD.left + groupIndex * groupWidth;
+          return (
             <g key={metric.id}>
-              <line className="argus-compare__axis" x1={CX} y1={CY} x2={tip.x} y2={tip.y} />
               <text
                 className="argus-compare__axis-label"
-                x={label.x}
-                y={label.y}
+                x={groupX + groupWidth / 2}
+                y={HEIGHT - 14}
                 textAnchor="middle"
-                dominantBaseline="middle"
               >
                 {AXIS_SHORT[metric.id] ?? metric.label}
               </text>
+              {argusCompareModels.map((model, barIndex) => {
+                const id = model.id as ArgusCompareModelId;
+                const score = metric.scores[id];
+                const x = groupX + innerPad + barIndex * (barWidth + barGap);
+                const barH = (score / 100) * PLOT_H;
+                const y = PAD.top + PLOT_H - barH;
+                const dimmed = focus !== null && focus !== id;
+                return (
+                  <rect
+                    key={model.id}
+                    className={`argus-compare__bar${model.highlight ? " is-highlight" : ""}${dimmed ? " is-dim" : ""}`}
+                    x={x}
+                    y={y}
+                    width={barWidth}
+                    height={barH}
+                    rx={1.5}
+                    fill={MODEL_FILL[id]}
+                    style={{ "--i": groupIndex * barCount + barIndex } as CSSProperties}
+                  >
+                    <title>{`${model.name} · ${metric.label}: ${score}`}</title>
+                  </rect>
+                );
+              })}
             </g>
-          ))}
+          );
+        })}
+      </svg>
 
-          {series.map(({ model, path }) => {
-            const id = model.id as ArgusCompareModelId;
-            const dimmed = focus !== null && focus !== id;
-            const emphasized = model.highlight || focus === id;
-            return (
-              <path
-                key={model.id}
-                className={`argus-compare__series${model.highlight ? " is-highlight" : ""}${dimmed ? " is-dim" : ""}`}
-                d={path}
-                fill={model.highlight ? `url(#${gradId}-fill)` : "none"}
-                stroke={MODEL_STROKE[id]}
-                strokeWidth={emphasized ? 2.75 : 1.5}
-              />
-            );
-          })}
-
-          <defs>
-            <radialGradient id={`${gradId}-fill`} cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#1e1f2b" stopOpacity="0.18" />
-              <stop offset="100%" stopColor="#1e1f2b" stopOpacity="0.04" />
-            </radialGradient>
-          </defs>
-        </svg>
-
-        <ul className="argus-compare__legend" aria-label="Models">
-          {argusCompareModels.map((model) => {
-            const id = model.id as ArgusCompareModelId;
-            return (
-              <li key={model.id}>
-                <button
-                  type="button"
-                  className={`argus-compare__legend-btn${model.highlight ? " is-highlight" : ""}${focus === id ? " is-focus" : ""}`}
-                  onMouseEnter={() => setFocus(id)}
-                  onMouseLeave={() => setFocus(null)}
-                  onFocus={() => setFocus(id)}
-                  onBlur={() => setFocus(null)}
-                >
-                  <span
-                    className="argus-compare__swatch"
-                    style={{ background: MODEL_STROKE[id] }}
-                    aria-hidden="true"
-                  />
-                  {model.name}
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+      <ul className="argus-compare__legend" aria-label="Models">
+        {argusCompareModels.map((model) => {
+          const id = model.id as ArgusCompareModelId;
+          return (
+            <li key={model.id}>
+              <button
+                type="button"
+                className={`argus-compare__legend-btn${model.highlight ? " is-highlight" : ""}${focus === id ? " is-focus" : ""}`}
+                onMouseEnter={() => setFocus(id)}
+                onMouseLeave={() => setFocus(null)}
+                onFocus={() => setFocus(id)}
+                onBlur={() => setFocus(null)}
+              >
+                <span className="argus-compare__swatch" style={{ background: MODEL_FILL[id] }} aria-hidden="true" />
+                {model.name}
+              </button>
+            </li>
+          );
+        })}
+      </ul>
 
       <table className="argus-compare__table sr-only">
         <caption>Industrial deployment scores by model</caption>

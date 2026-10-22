@@ -37,15 +37,15 @@ export function ArgusPageView() {
       </section>
 
       <section className="argus-compare-section" aria-labelledby="argus-compare-title">
-        <div className="argus-wrap">
-          <Reveal className="argus-section-head">
+        <div className="argus-wrap argus-compare-layout">
+          <Reveal className="argus-compare-copy">
             <h2 id="argus-compare-title">{page.compareTitle}</h2>
             <p>{page.compareBody}</p>
+            <p className="argus-compare-note">{page.compareNote}</p>
           </Reveal>
-          <Reveal delay={60}>
+          <Reveal delay={60} className="argus-compare-visual">
             <ArgusCompareChart />
           </Reveal>
-          <p className="argus-compare-note">{page.compareNote}</p>
         </div>
       </section>
 
