@@ -199,7 +199,7 @@ export function VisionHome() {
         <article className="vision-story vision-story--smart">
           <div className="vision-story__media vision-story__media--bare">
             <Image
-              src="/images/spectr-smart-system.png"
+              src="/images/spectr-smart-system.jpg"
               alt="Spectr Smart System hardware"
               fill
               sizes="(max-width: 800px) 100vw, 70rem"
