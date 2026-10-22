@@ -49,7 +49,45 @@ const industries = [
   },
 ] as const;
 
-const loopCopies = [0, 1, 2, 3, 4, 5];
+const LOOP_COPIES = 8;
+const loopCopies = Array.from({ length: LOOP_COPIES }, (_, i) => i);
+
+function IndustryCard({
+  industry,
+  copy,
+}: {
+  industry: (typeof industries)[number];
+  copy: number;
+}) {
+  const card = (
+    <>
+      <div className="vision-practice__media">
+        <Image
+          src={industry.image}
+          alt={copy > 0 ? "" : industry.imageAlt}
+          fill
+          sizes="22rem"
+          className="vision-practice__photo"
+        />
+      </div>
+      <p className="vision-practice__company">{industry.name}</p>
+      <p className="vision-practice__quote">{industry.line}</p>
+      <footer>
+        <span>{industry.detail}</span>
+      </footer>
+    </>
+  );
+
+  if ("href" in industry) {
+    return (
+      <Link href={industry.href} className="vision-practice">
+        {card}
+      </Link>
+    );
+  }
+
+  return <article className="vision-practice">{card}</article>;
+}
 
 export function VisionHome() {
   const { openGetStarted } = useGetStarted();
@@ -133,40 +171,9 @@ export function VisionHome() {
               aria-hidden={copy > 0 || undefined}
               {...(copy > 0 ? { inert: true } : {})}
             >
-              {industries.map((industry) => {
-                const card = (
-                  <>
-                    {"image" in industry ? (
-                      <div className="vision-practice__media">
-                        <Image
-                          src={industry.image}
-                          alt={copy > 0 ? "" : industry.imageAlt}
-                          fill
-                          sizes="22rem"
-                          className="vision-practice__photo"
-                        />
-                      </div>
-                    ) : null}
-                    <p className="vision-practice__company">{industry.name}</p>
-                    <p className="vision-practice__quote">{industry.line}</p>
-                    <footer>
-                      <span>{industry.detail}</span>
-                    </footer>
-                  </>
-                );
-                const className =
-                  "image" in industry ? "vision-practice vision-practice--photo" : "vision-practice";
-
-                return "href" in industry ? (
-                  <Link key={`${copy}-${industry.name}`} href={industry.href} className={className}>
-                    {card}
-                  </Link>
-                ) : (
-                  <article key={`${copy}-${industry.name}`} className={className}>
-                    {card}
-                  </article>
-                );
-              })}
+              {industries.map((industry) => (
+                <IndustryCard key={`${copy}-${industry.name}`} industry={industry} copy={copy} />
+              ))}
             </div>
           ))}
         </div>

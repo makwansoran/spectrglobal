@@ -177,7 +177,7 @@
   display: flex;
   width: max-content;
   margin-top: 2rem;
-  animation: vision-practices-loop 36s linear infinite;
+  animation: vision-practices-loop 48s linear infinite;
   will-change: transform;
 }
 
@@ -191,7 +191,7 @@
   }
 
   to {
-    transform: translate3d(calc(-100% / 6), 0, 0);
+    transform: translate3d(calc(-100% / 8), 0, 0);
   }
 }
 
@@ -205,39 +205,18 @@
   display: flex;
   flex-direction: column;
   flex: 0 0 22rem;
-  height: 26rem;
+  height: 24rem;
   margin: 0;
-  padding: 1.35rem 1.25rem 1.2rem;
+  padding: 0 0 1.1rem;
   background: #f3f3f3;
   color: #1e1f2b;
   text-decoration: none;
 }
 
-.vision-practice__company {
-  margin: 0;
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  line-height: 1.35;
-}
-
-.vision-practice__quote {
-  margin: 1.1rem 0 0;
-  font-size: 1.12rem;
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  line-height: 1.35;
-}
-
-.vision-practice--photo {
-  padding: 0 0 1.2rem;
-}
-
 .vision-practice__media {
   position: relative;
-  flex: 0 0 auto;
+  flex: 0 0 12.5rem;
   width: 100%;
-  aspect-ratio: 1024 / 575;
 }
 
 .vision-practice__photo {
@@ -245,22 +224,27 @@
   object-position: center;
 }
 
-.vision-practice--photo .vision-practice__company,
-.vision-practice--photo .vision-practice__quote,
-.vision-practice--photo footer {
-  padding-right: 1.25rem;
-  padding-left: 1.25rem;
+.vision-practice__company {
+  margin: 1rem 1.25rem 0;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.35;
 }
 
-.vision-practice--photo .vision-practice__company {
-  margin-top: 1.1rem;
+.vision-practice__quote {
+  margin: 0.75rem 1.25rem 0;
+  font-size: 1.12rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
 }
 
 .vision-practice footer {
   display: grid;
   gap: 0.15rem;
-  margin-top: auto;
-  padding-top: 1.25rem;
+  margin: 0.9rem 1.25rem 0;
+  padding: 0;
   color: #5c5c62;
   font-size: 0.92rem;
   font-style: normal;
@@ -276,12 +260,20 @@
 @media (max-width: 700px) {
   .vision-practice {
     flex-basis: 18rem;
-    height: 24rem;
+    height: 22rem;
+  }
+
+  .vision-practice__media {
+    flex-basis: 10.5rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .vision-practices__marquee {
     animation: none;
+  }
+
+  .vision-practices__row[aria-hidden="true"] {
+    display: none;
   }
 }
