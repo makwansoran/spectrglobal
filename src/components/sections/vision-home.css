@@ -4,22 +4,68 @@
 }
 
 .vision-hero {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  isolation: isolate;
+  overflow: hidden;
   min-height: calc(100dvh - 64px);
+  max-height: calc(100dvh - 64px);
   padding: 2rem;
-  background: #fff;
-  color: #1e1f2b;
+  background: #030614;
+  color: #ffffff;
   text-align: center;
 }
 
+.vision-hero__ascii {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  contain: paint;
+}
+
+.vision-hero__ascii-stage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.vision-hero__ascii-stage ascii-art {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: block;
+  line-height: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(1.85);
+  transform-origin: center center;
+}
+
+.vision-hero__ascii-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 45%, rgba(3, 6, 20, 0.18) 0%, rgba(3, 6, 20, 0.55) 100%),
+    linear-gradient(180deg, rgba(3, 6, 20, 0.25) 0%, rgba(3, 6, 20, 0.15) 45%, rgba(3, 6, 20, 0.65) 100%);
+}
+
 .vision-hero h1 {
+  position: relative;
+  z-index: 2;
   margin: 0;
   font-size: clamp(2.6rem, 6.5vw, 4.75rem);
   font-weight: 400;
   letter-spacing: -0.05em;
   line-height: 0.95;
+  color: #ffffff;
+  text-shadow: 0 2px 28px rgba(3, 6, 20, 0.55);
 }
 
 .vision-models {

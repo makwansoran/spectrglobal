@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useGetStarted } from "@/components/get-started-context";
 import { aboutPage } from "@/lib/about";
 import { models } from "@/lib/vision";
+import { HeroNorthernLights } from "@/components/sections/hero-northern-lights";
 import "@/components/vision-nav.css";
 import "./vision-home.css";
 
@@ -100,6 +101,7 @@ export function VisionHome() {
   return (
     <div className="vision">
       <section className="vision-hero" aria-labelledby="landing-title">
+        <HeroNorthernLights />
         <h1 id="landing-title">Eyes of Compute</h1>
       </section>
 
