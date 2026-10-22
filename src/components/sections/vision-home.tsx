@@ -6,6 +6,7 @@ import { useGetStarted } from "@/components/get-started-context";
 import { aboutPage } from "@/lib/about";
 import { models } from "@/lib/vision";
 import { HeroNorthernLights } from "@/components/sections/hero-northern-lights";
+import { HomeCtaSection } from "@/components/sections/home-cta-section";
 import "@/components/vision-nav.css";
 import "./vision-home.css";
 
@@ -223,6 +224,8 @@ export function VisionHome() {
           ))}
         </div>
       </section>
+
+      <HomeCtaSection />
     </div>
   );
 }
