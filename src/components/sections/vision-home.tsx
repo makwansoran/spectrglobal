@@ -110,7 +110,7 @@ export function VisionHome() {
             <Link href="/visionlab" className="vision-nav__cta">
               Learn VisionLab
             </Link>
-            <Link href="/developers" className="vision-model__text-link">
+            <Link href="/developers/visionlab" className="vision-model__text-link">
               Documentation
             </Link>
           </div>
@@ -132,7 +132,7 @@ export function VisionHome() {
             <button type="button" className="vision-nav__cta" onClick={() => openGetStarted("contact")}>
               Build with Argus
             </button>
-            <Link href="/developers" className="vision-model__text-link">
+            <Link href="/developers/argus" className="vision-model__text-link">
               Documentation
             </Link>
           </div>

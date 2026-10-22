@@ -1,20 +1,22 @@
 import type { Metadata } from "next";
 import { Footer } from "@/components/footer";
-import { HubPageView } from "@/components/hub-page";
-import { developersHub } from "@/lib/hubs";
+import { DocsPageView } from "@/components/docs/docs-page";
+import { getDocsPage } from "@/lib/docs";
 import { buildPageMetadata } from "@/lib/metadata";
 
+const page = getDocsPage("overview")!;
+
 export const metadata: Metadata = buildPageMetadata({
-  title: developersHub.bannerTitle,
-  description: developersHub.description,
-  path: developersHub.path,
+  title: "Documentation",
+  description: page.description,
+  path: "/developers",
 });
 
 export default function DevelopersPage() {
   return (
     <>
       <main id="main-content" className="flex-1 bg-white">
-        <HubPageView page={developersHub} />
+        <DocsPageView page={page} />
       </main>
       <Footer />
     </>
