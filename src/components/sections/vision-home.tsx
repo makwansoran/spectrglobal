@@ -129,9 +129,9 @@ export function VisionHome() {
           <h2 id="argus-title">Argus</h2>
           <p>{argus?.body}</p>
           <div className="vision-model__actions">
-            <button type="button" className="vision-nav__cta" onClick={() => openGetStarted("contact")}>
-              Build with Argus
-            </button>
+            <Link href="/argus" className="vision-nav__cta">
+              Learn Argus
+            </Link>
             <Link href="/developers/argus" className="vision-model__text-link">
               Documentation
             </Link>

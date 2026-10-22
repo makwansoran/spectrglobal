@@ -8,6 +8,7 @@ const columns = [
     title: "Product",
     links: [
       { label: "Spectr OS", href: "/platforms/spectr-os" },
+      { label: "Argus", href: "/argus" },
       { label: "VisionLab", href: "/visionlab" },
       { label: "Offerings", href: "/offerings" },
     ],
