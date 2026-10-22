@@ -51,8 +51,8 @@ export const solutions = [
     label: "Agriculture",
     title: "Count what the field is doing",
     body: "Classify and measure from aerial and ground cameras across a field or a herd.",
-    image: "/images/industries/energy.jpg",
-    imageAlt: "Open landscape used for field monitoring",
+    image: "/images/industries/agriculture.jpg",
+    imageAlt: "Sprayers working a green crop field",
     tone: "dark",
   },
   {

@@ -25,6 +25,8 @@ const industries = [
     name: "Agriculture",
     line: "Count what the field is doing.",
     detail: "Classify and measure from aerial and ground cameras across a field or a herd.",
+    image: "/images/industries/agriculture.jpg",
+    imageAlt: "Sprayers working a green crop field",
   },
   {
     name: "Ports",
@@ -126,6 +128,17 @@ export function VisionHome() {
               {industries.map((industry) => {
                 const card = (
                   <>
+                    {"image" in industry ? (
+                      <div className="vision-practice__media">
+                        <Image
+                          src={industry.image}
+                          alt={copy > 0 ? "" : industry.imageAlt}
+                          fill
+                          sizes="22rem"
+                          className="vision-practice__photo"
+                        />
+                      </div>
+                    ) : null}
                     <p className="vision-practice__company">{industry.name}</p>
                     <p className="vision-practice__quote">{industry.line}</p>
                     <footer>
@@ -133,13 +146,15 @@ export function VisionHome() {
                     </footer>
                   </>
                 );
+                const className =
+                  "image" in industry ? "vision-practice vision-practice--photo" : "vision-practice";
 
                 return "href" in industry ? (
-                  <Link key={`${copy}-${industry.name}`} href={industry.href} className="vision-practice">
+                  <Link key={`${copy}-${industry.name}`} href={industry.href} className={className}>
                     {card}
                   </Link>
                 ) : (
-                  <article key={`${copy}-${industry.name}`} className="vision-practice">
+                  <article key={`${copy}-${industry.name}`} className={className}>
                     {card}
                   </article>
                 );

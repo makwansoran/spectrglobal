@@ -229,6 +229,33 @@
   line-height: 1.35;
 }
 
+.vision-practice--photo {
+  padding: 0 0 1.2rem;
+}
+
+.vision-practice__media {
+  position: relative;
+  flex: 0 0 auto;
+  width: 100%;
+  aspect-ratio: 1024 / 575;
+}
+
+.vision-practice__photo {
+  object-fit: cover;
+  object-position: center;
+}
+
+.vision-practice--photo .vision-practice__company,
+.vision-practice--photo .vision-practice__quote,
+.vision-practice--photo footer {
+  padding-right: 1.25rem;
+  padding-left: 1.25rem;
+}
+
+.vision-practice--photo .vision-practice__company {
+  margin-top: 1.1rem;
+}
+
 .vision-practice footer {
   display: grid;
   gap: 0.15rem;
