@@ -67,9 +67,10 @@
 }
 
 .vision-model__text-link {
+  position: relative;
   display: inline-flex;
   align-items: center;
-  padding: 0;
+  padding: 0 0 0.15rem;
   border: 0;
   background: transparent;
   color: #1e1f2b;
@@ -81,8 +82,22 @@
   text-decoration: none;
 }
 
-.vision-model__text-link:hover {
-  opacity: 0.7;
+.vision-model__text-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1.5px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 220ms ease;
+}
+
+.vision-model__text-link:hover::after,
+.vision-model__text-link:focus-visible::after {
+  transform: scaleX(1);
 }
 
 .vision-model__media,
