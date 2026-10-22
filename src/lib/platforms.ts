@@ -89,7 +89,7 @@ export const platforms: Platform[] = [
         description:
           "Collection, plants, and materials in one loop. Spectr OS turns a lift into an operational decision — from kerb to offtake.",
         image: "/images/industries/waste-management.jpg",
-        imageAlt: "Landfill compactors on a waste pile",
+        imageAlt: "Sorting plant conveyors and trommel with workers on the floor",
       },
     ],
     ctaTitle: "Run your enterprise on Spectr OS",

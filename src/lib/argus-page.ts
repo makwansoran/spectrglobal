@@ -127,7 +127,7 @@ export const argusUseCases = [
     href: "/use-cases/waste-management",
     line: "Read the stream from bin to plant as one loop.",
     image: "/images/industries/waste-management.jpg",
-    imageAlt: "Landfill compactors on a waste pile",
+    imageAlt: "Sorting plant conveyors and trommel with workers on the floor",
   },
 ] as const;
 

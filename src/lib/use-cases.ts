@@ -124,7 +124,7 @@ export const industryPages: IndustryPage[] = [
     listingDescription: "Collection, plants, and materials as one loop, so a lift is an operational decision.",
     href: "/use-cases/waste-management",
     image: "/images/industries/waste-management.jpg",
-    imageAlt: "Landfill compactors on a waste pile",
+    imageAlt: "Sorting plant conveyors and trommel with workers on the floor",
     bannerTitle: "Waste Management",
     headline: "From the bin to the plant, one loop.",
     tagline: "The central system for orchestrating decisions from collection to offtake, at the speed of the round.",

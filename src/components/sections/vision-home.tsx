@@ -21,7 +21,7 @@ const industries = [
     line: "From the bin to the plant, one loop.",
     detail: "Collection, plants, and materials as one loop, so a lift is an operational decision.",
     image: "/images/industries/waste-management.jpg",
-    imageAlt: "Landfill compactors on a waste pile",
+    imageAlt: "Sorting plant conveyors and trommel with workers on the floor",
   },
   {
     name: "Manufacturing",
