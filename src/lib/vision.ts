@@ -20,7 +20,7 @@ export const solutions = [
     title: "See the line without stopping it",
     body: "Inspect parts, catch defects, and confirm PPE without a manual check at every station.",
     image: "/images/industries/manufacturing.jpg",
-    imageAlt: "Circuit board under a pick-and-place head",
+    imageAlt: "Circuit boards under an automated inspection head",
     tone: "dark",
   },
   {
@@ -28,7 +28,7 @@ export const solutions = [
     title: "Track the yard before the shift stalls",
     body: "Read docks and conveyors. Follow pallets, vehicles, and the gap that will stop the work.",
     image: "/images/industries/logistics.jpg",
-    imageAlt: "Cardboard carton on a roller conveyor",
+    imageAlt: "Warehouse floor with yellow roller conveyor and inventory",
     tone: "light",
   },
   {

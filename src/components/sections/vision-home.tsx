@@ -29,7 +29,7 @@ const industries = [
     line: "Strategy, materials, and the line as one model.",
     detail: "An operating system for the line: strategy, materials, and the shop floor as one model.",
     image: "/images/industries/manufacturing.jpg",
-    imageAlt: "Circuit board under a pick-and-place head",
+    imageAlt: "Circuit boards under an automated inspection head",
   },
   {
     name: "Agriculture",
@@ -58,7 +58,7 @@ const industries = [
     line: "Planning and execution without the seam between them.",
     detail: "Planning and execution in one runtime. Inventory, yards, and disruption handled as they happen.",
     image: "/images/industries/logistics.jpg",
-    imageAlt: "Cardboard carton on a roller conveyor",
+    imageAlt: "Warehouse floor with yellow roller conveyor and inventory",
   },
 ] as const;
 
@@ -69,7 +69,8 @@ function IndustryCard({ industry }: { industry: (typeof industries)[number] }) {
         src={industry.image}
         alt={industry.imageAlt}
         fill
-        sizes="(max-width: 700px) 100vw, (max-width: 1100px) 45vw, 22rem"
+        quality={92}
+        sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 420px"
         className="vision-practice__photo"
       />
       <div

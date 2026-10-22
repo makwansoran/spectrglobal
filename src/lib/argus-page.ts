@@ -95,14 +95,14 @@ export const argusUseCases = [
     href: "/use-cases/manufacturing",
     line: "Inspect parts and PPE without stopping the line.",
     image: "/images/industries/manufacturing.jpg",
-    imageAlt: "Circuit board under a pick-and-place head",
+    imageAlt: "Circuit boards under an automated inspection head",
   },
   {
     name: "Logistics",
     href: "/use-cases/logistics",
     line: "Follow pallets, docks, and the gap that stalls the yard.",
     image: "/images/industries/logistics.jpg",
-    imageAlt: "Cardboard carton on a roller conveyor",
+    imageAlt: "Warehouse floor with yellow roller conveyor and inventory",
   },
   {
     name: "Ports & perimeter",
