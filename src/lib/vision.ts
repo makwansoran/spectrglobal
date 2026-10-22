@@ -20,7 +20,7 @@ export const solutions = [
     title: "See the line without stopping it",
     body: "Inspect parts, catch defects, and confirm PPE without a manual check at every station.",
     image: "/images/industries/manufacturing.jpg",
-    imageAlt: "Manufacturing floor",
+    imageAlt: "Factory floor with a glowing pink signal path",
     tone: "dark",
   },
   {
