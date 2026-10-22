@@ -34,6 +34,8 @@ const industries = [
     name: "Ports",
     line: "Watch the gate on hardware you own.",
     detail: "Detection and tracking for a perimeter, a floor, or a port stay on machines you control.",
+    image: "/images/industries/ports.jpg",
+    imageAlt: "Container terminal and cranes at dusk",
   },
   {
     name: "Logistics",

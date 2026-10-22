@@ -44,7 +44,7 @@ export const solutions = [
     title: "Watch the gate on hardware you own",
     body: "Detection and tracking for a perimeter, a floor, or a port stay on machines you control.",
     image: "/images/industries/ports.jpg",
-    imageAlt: "Port and perimeter operations",
+    imageAlt: "Container terminal and cranes at dusk",
     tone: "light",
   },
   {
