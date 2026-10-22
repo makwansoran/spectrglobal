@@ -8,6 +8,7 @@ import { models } from "@/lib/vision";
 import { HeroNorthernLights } from "@/components/sections/hero-northern-lights";
 import { HomeCtaSection } from "@/components/sections/home-cta-section";
 import "@/components/vision-nav.css";
+import "@/components/sections/home-cta-section.css";
 import "./vision-home.css";
 
 const visionLab = models.find((model) => model.name === "VisionLab");

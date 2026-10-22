@@ -1,9 +1,12 @@
 .home-cta {
   display: flex;
   gap: 1.5rem;
+  box-sizing: border-box;
   width: min(1400px, calc(100% - 2rem));
-  margin: 2.5rem auto 0;
+  margin: 3rem auto 0;
   padding: 0 0 clamp(2.5rem, 5vw, 4rem);
+  position: relative;
+  z-index: 1;
 }
 
 .home-cta__tile {

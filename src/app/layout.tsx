@@ -59,9 +59,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       className={`${sans.variable} ${essaySerif.variable} ${essayMono.variable} theme-white h-full`}
     >
-      <head>
-        <script type="module" src="https://www.ascii-magic.com/ascii/ascii.js" data-ascii-magic="true" />
-      </head>
       <body className="flex min-h-full flex-col bg-bg text-fg">
         <a
           href="#main-content"

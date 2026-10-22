@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
   images: {
     qualities: [75, 90, 92, 95],
   },
-  transpilePackages: ["mapbox-gl"],
+  transpilePackages: ["mapbox-gl", "ascii-magic-art"],
   async redirects() {
     return [
       { source: "/signup", destination: "/login", permanent: true },

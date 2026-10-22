@@ -1,37 +1,41 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
+import { play } from "ascii-magic-art/runtime/player.js";
+import * as northernLights from "ascii-magic-art/pieces/northern-lights.js";
 
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      "ascii-art": React.DetailedHTMLProps<
-        React.HTMLAttributes<HTMLElement> & {
-          piece?: string;
-          size?: string;
-          bg?: string;
-        },
-        HTMLElement
-      >;
-    }
-  }
-}
+type PreWithCanvas = HTMLPreElement & { _canvas?: HTMLCanvasElement | null };
 
 /**
  * Northern Lights ASCII Magic piece as a clipped hero background.
- * Mounted client-side so the web component does not hydrate-mismatch.
+ * Bundled via ascii-magic-art so it does not depend on an external CDN.
  */
 export function HeroNorthernLights() {
-  const [mounted, setMounted] = useState(false);
+  const preRef = useRef<HTMLPreElement>(null);
 
   useEffect(() => {
-    setMounted(true);
+    const pre = preRef.current as PreWithCanvas | null;
+    if (!pre) return;
+
+    if (pre._canvas && !pre.parentElement?.contains(pre._canvas)) {
+      pre._canvas = null;
+    }
+
+    const stop = play(pre, northernLights, { speed: 1 });
+
+    return () => {
+      stop();
+      if (pre._canvas) {
+        pre._canvas.remove();
+        pre._canvas = null;
+      }
+    };
   }, []);
 
   return (
     <div className="vision-hero__ascii" aria-hidden="true">
       <div className="vision-hero__ascii-stage">
-        {mounted ? <ascii-art piece="northern-lights" size="16" bg="#030614" /> : null}
+        <pre ref={preRef} className="vision-hero__ascii-pre" />
       </div>
       <div className="vision-hero__ascii-scrim" />
     </div>
