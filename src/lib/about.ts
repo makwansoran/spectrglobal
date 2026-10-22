@@ -1,8 +1,8 @@
 export const aboutPage = {
   title: "Why We're Here",
   belief: "Machines should see the world clearly enough to act, and people should be able to check the call.",
-  heroImage: "/spectr-detection.png",
-  heroImageAlt: "Aerial site with vehicles outlined by Spectr detection",
+  heroImage: "/images/about-oslo.jpg",
+  heroImageAlt: "Oslo skyline from the hillside at golden hour",
   statement:
     "Spectr builds open computer vision, AI vision, and vision-language-action models for work that happens in the physical world.",
   founding: [
