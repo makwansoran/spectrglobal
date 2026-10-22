@@ -10,7 +10,7 @@ export function VisionlabHeroActions() {
   return (
     <div className="argus-hero__actions">
       <button type="button" className="vision-nav__cta" onClick={() => openGetStarted("contact")}>
-        Build with VisionLab
+        Book a meeting
       </button>
       <Link href="/developers/visionlab" className="argus-text-link">
         Documentation

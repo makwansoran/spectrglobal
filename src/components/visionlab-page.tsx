@@ -85,8 +85,8 @@ export function VisionlabPageView() {
             <div className="argus-cta__content">
               <h2 id="visionlab-cta-title">{page.ctaTitle}</h2>
               <div className="argus-cta__actions">
-                <GetStartedButton label="Get started" size="lg" className="btn-on-dark">
-                  Get started
+                <GetStartedButton label="Book a meeting" size="lg" className="btn-on-dark">
+                  Book a meeting
                 </GetStartedButton>
                 <Link href="/developers/visionlab" className="argus-cta__ghost">
                   Read the docs

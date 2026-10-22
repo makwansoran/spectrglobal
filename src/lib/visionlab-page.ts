@@ -1,14 +1,14 @@
 export const visionlabPage = {
   name: "VisionLab",
   heroBody:
-    "The app for the camera. Open a stream, run Argus, and keep the track on your own machine — frames never leave the site.",
+    "The app for the camera. Open a stream, run Argus, and keep the track on your own machine — licensed through a meeting with Spectr, not a public install.",
   heroImage: "/visionlab-app.jpg",
   heroImageAlt: "Street scene with vision masks on cars, people, and the road",
   compareTitle: "How VisionLab stacks up",
   compareBody:
     "Built for the workstation next to the camera: live streams, local models, and a review loop that stays on hardware you own.",
   compareNote: "Scores reflect Spectr’s industrial desktop and edge criteria.",
-  ctaTitle: "Open a stream in VisionLab",
+  ctaTitle: "Get VisionLab through a meeting",
   ctaImage: "/images/industries/manufacturing.jpg",
 } as const;
 

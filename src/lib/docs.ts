@@ -53,7 +53,7 @@ export const docsPages: DocsPage[] = [
         blocks: [
           {
             type: "p",
-            text: "Most teams begin in VisionLab with a live stream, then wire Argus into the loop. When the site needs planning and execution in one place, Spectr Smart System sits above the camera path.",
+            text: "Most teams begin with a VisionLab meeting for the workstation next to the camera, then wire Argus into the loop. When the site needs planning and execution in one place, Spectr Smart System sits above the camera path.",
           },
           {
             type: "note",
@@ -68,7 +68,7 @@ export const docsPages: DocsPage[] = [
           {
             type: "ul",
             items: [
-              "Building a camera app or demo → start with VisionLab.",
+              "Need a camera workstation on site → start with a VisionLab meeting.",
               "Need boxes, tracks, or masks from a stream → start with Argus.",
               "Running a plant, yard, or collection loop → start with Spectr Smart System.",
             ],
@@ -88,22 +88,25 @@ export const docsPages: DocsPage[] = [
         blocks: [
           {
             type: "p",
-            text: "VisionLab is the desktop app for Spectr vision. It connects to a camera or file stream, runs Argus locally, and shows the track without sending frames off-site.",
+            text: "VisionLab is the desktop app for Spectr vision. It connects to a camera or file stream, runs Argus locally, and shows the track without sending frames off-site. It is sold through a meeting with Spectr — not a public package install.",
           },
         ],
       },
       {
-        id: "install",
-        title: "Install",
+        id: "get-visionlab",
+        title: "Get VisionLab",
         blocks: [
           {
             type: "p",
-            text: "Install VisionLab on the workstation that sits next to the camera. Keep the model files on the same machine so inference stays local.",
+            text: "VisionLab is not a public download. It is licensed through a meeting with Spectr — we scope the site, the cameras, and the workstation, then deliver the app for hardware you own.",
           },
           {
-            type: "code",
-            label: "Linux",
-            content: "sudo apt install VisionLab",
+            type: "ul",
+            items: [
+              "Book a meeting to discuss your floor, streams, and deployment.",
+              "We provision VisionLab for the machines next to your cameras.",
+              "Inference stays local; frames never leave the site unless you export them.",
+            ],
           },
         ],
       },
@@ -113,7 +116,7 @@ export const docsPages: DocsPage[] = [
         blocks: [
           {
             type: "p",
-            text: "Launch VisionLab, pick a camera or video source, and start the session. The preview shows the live frame before you attach a model.",
+            text: "Once VisionLab is on your workstation, pick a camera or video source and start the session. The preview shows the live frame before you attach a model.",
           },
           {
             type: "ul",
@@ -313,7 +316,7 @@ export const docsNav: DocsNavItem[] = [
     href: "/developers/visionlab",
     children: [
       { label: "Overview", href: "/developers/visionlab#overview" },
-      { label: "Install", href: "/developers/visionlab#install" },
+      { label: "Get VisionLab", href: "/developers/visionlab#get-visionlab" },
       { label: "Open a stream", href: "/developers/visionlab#open-a-stream" },
       { label: "Run Argus", href: "/developers/visionlab#run-argus" },
       { label: "Keep it local", href: "/developers/visionlab#keep-it-local" },
