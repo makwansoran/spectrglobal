@@ -198,11 +198,11 @@ export function VisionHome() {
         <article className="vision-story">
           <div className="vision-story__media">
             <Image
-              src="/images/products/spectr-os-ui.png"
-              alt=""
+              src="/images/spectr-smart-system.jpg"
+              alt="Spectr Smart System hardware"
               fill
               sizes="(max-width: 800px) 100vw, 70rem"
-              className="vision-story__image"
+              className="vision-story__image vision-story__image--diagram"
             />
             <div
               className="vision-story__glass"
@@ -211,15 +211,8 @@ export function VisionHome() {
                 WebkitBackdropFilter: "blur(18px) saturate(1.35)",
               }}
             >
-              <p className="vision-story__brand">Spectr Smart System</p>
-              <p>
-                The industrial runtime above the camera — fusing Argus detections with site data into the
-                next operational decision.
-              </p>
-              <Link href="/developers/smart-system" className="vision-story__link">
-                Learn more
-                <span aria-hidden="true">→</span>
-              </Link>
+              <p>Spectr Smart System</p>
+              <p className="vision-story__soon">Coming Soon</p>
             </div>
           </div>
         </article>
