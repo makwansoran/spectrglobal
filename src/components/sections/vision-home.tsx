@@ -33,6 +33,13 @@ const industries = [
     imageAlt: "Sprayers working a green crop field",
   },
   {
+    name: "Mining",
+    line: "Pit, plant, and materials as one model.",
+    detail: "Fleets, grades, and recovery handled as the shift runs.",
+    image: "/images/industries/infrastructure.jpg",
+    imageAlt: "Heavy industrial site and materials operations",
+  },
+  {
     name: "Ports",
     line: "Watch the gate on hardware you own.",
     detail: "Detection and tracking for a perimeter, a floor, or a port stay on machines you control.",
@@ -49,24 +56,15 @@ const industries = [
   },
 ] as const;
 
-const LOOP_COPIES = 8;
-const loopCopies = Array.from({ length: LOOP_COPIES }, (_, i) => i);
-
-function IndustryCard({
-  industry,
-  copy,
-}: {
-  industry: (typeof industries)[number];
-  copy: number;
-}) {
+function IndustryCard({ industry }: { industry: (typeof industries)[number] }) {
   const card = (
     <>
       <div className="vision-practice__media">
         <Image
           src={industry.image}
-          alt={copy > 0 ? "" : industry.imageAlt}
+          alt={industry.imageAlt}
           fill
-          sizes="22rem"
+          sizes="(max-width: 700px) 100vw, (max-width: 1100px) 45vw, 22rem"
           className="vision-practice__photo"
         />
       </div>
@@ -163,18 +161,9 @@ export function VisionHome() {
             Every industry.
           </h2>
         </div>
-        <div className="vision-practices__marquee">
-          {loopCopies.map((copy) => (
-            <div
-              key={copy}
-              className="vision-practices__row"
-              aria-hidden={copy > 0 || undefined}
-              {...(copy > 0 ? { inert: true } : {})}
-            >
-              {industries.map((industry) => (
-                <IndustryCard key={`${copy}-${industry.name}`} industry={industry} copy={copy} />
-              ))}
-            </div>
+        <div className="vision-practices__grid">
+          {industries.map((industry) => (
+            <IndustryCard key={industry.name} industry={industry} />
           ))}
         </div>
       </section>
