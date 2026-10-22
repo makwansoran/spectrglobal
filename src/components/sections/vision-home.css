@@ -308,6 +308,15 @@
   object-position: left center;
 }
 
+.vision-story__brand {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
 .vision-story__glass p {
   margin: 0;
   max-width: 36ch;
@@ -315,6 +324,14 @@
   font-weight: 400;
   letter-spacing: -0.03em;
   line-height: 1.25;
+}
+
+.vision-story__glass p.vision-story__brand {
+  max-width: none;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.35;
 }
 
 .vision-story__link {
@@ -329,6 +346,7 @@
   font: inherit;
   font-size: 0.92rem;
   font-weight: 500;
+  text-decoration: none;
 }
 
 .vision-story__link:hover {
