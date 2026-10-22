@@ -132,9 +132,6 @@ export function VisionHome() {
             <button type="button" className="vision-nav__cta" onClick={() => openGetStarted("contact")}>
               Build with ArgusONE
             </button>
-            {argusOne?.install ? (
-              <code className="vision-nav__contact vision-model__install">{argusOne.install}</code>
-            ) : null}
           </div>
           <video
             className="vision-model__video"

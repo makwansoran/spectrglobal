@@ -66,12 +66,6 @@
   min-height: 2.5rem;
 }
 
-.vision-model__install {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 0.82rem;
-  line-height: 1.2;
-}
-
 .vision-model__media,
 .vision-model__video {
   margin-top: 0.65rem;
