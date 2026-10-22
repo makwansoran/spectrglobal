@@ -107,7 +107,10 @@ export function VisionHome() {
           <h2 id="visionlab-title">Introducing VisionLab</h2>
           <p>{visionLab?.body}</p>
           <div className="vision-model__actions">
-            <Link href="/developers" className="vision-nav__cta">
+            <Link href="/visionlab" className="vision-nav__cta">
+              Learn VisionLab
+            </Link>
+            <Link href="/developers" className="vision-model__text-link">
               Documentation
             </Link>
           </div>
@@ -132,6 +135,9 @@ export function VisionHome() {
             <button type="button" className="vision-nav__cta" onClick={() => openGetStarted("contact")}>
               Build with ArgusONE
             </button>
+            <Link href="/developers" className="vision-model__text-link">
+              Documentation
+            </Link>
           </div>
           <video
             className="vision-model__video"
