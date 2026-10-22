@@ -59,20 +59,24 @@ const industries = [
 function IndustryCard({ industry }: { industry: (typeof industries)[number] }) {
   const card = (
     <>
-      <div className="vision-practice__media">
-        <Image
-          src={industry.image}
-          alt={industry.imageAlt}
-          fill
-          sizes="(max-width: 700px) 100vw, (max-width: 1100px) 45vw, 22rem"
-          className="vision-practice__photo"
-        />
+      <Image
+        src={industry.image}
+        alt={industry.imageAlt}
+        fill
+        sizes="(max-width: 700px) 100vw, (max-width: 1100px) 45vw, 22rem"
+        className="vision-practice__photo"
+      />
+      <div
+        className="vision-practice__glass"
+        style={{
+          backdropFilter: "blur(18px) saturate(1.35)",
+          WebkitBackdropFilter: "blur(18px) saturate(1.35)",
+        }}
+      >
+        <p className="vision-practice__company">{industry.name}</p>
+        <p className="vision-practice__quote">{industry.line}</p>
+        <p className="vision-practice__detail">{industry.detail}</p>
       </div>
-      <p className="vision-practice__company">{industry.name}</p>
-      <p className="vision-practice__quote">{industry.line}</p>
-      <footer>
-        <span>{industry.detail}</span>
-      </footer>
     </>
   );
 
