@@ -7,6 +7,7 @@ import { models } from "@/lib/vision";
 import "./vision-home.css";
 
 const visionLab = models.find((model) => model.name === "VisionLab");
+const argusOne = models.find((model) => model.name === "ArgusONE");
 
 const industries = [
   {
@@ -100,24 +101,59 @@ export function VisionHome() {
         <h1 id="landing-title">Eyes of Compute</h1>
       </section>
 
-      <section className="vision-intro" aria-labelledby="intro-title">
-        <div className="vision-intro__copy">
-          <h2 id="intro-title">Introducing VisionLab</h2>
-          <p className="vision-intro__lead">{visionLab?.body}</p>
-          <Link href="/visionlab" className="vision-text-link">
-            Explore VisionLab
-            <span aria-hidden="true">→</span>
-          </Link>
-        </div>
-        <div className="vision-intro__media">
-          <Image
-            src={visionLab?.image ?? "/visionlab-app.jpg"}
-            alt={visionLab?.imageAlt ?? "VisionLab"}
-            fill
-            sizes="(max-width: 900px) 100vw, 42rem"
-            className="vision-intro__image"
+      <section className="vision-models" aria-label="VisionLab and ArgusONE">
+        <article className="vision-model" aria-labelledby="visionlab-title">
+          <div className="vision-model__copy">
+            <h2 id="visionlab-title">Introducing VisionLab</h2>
+            <p>{visionLab?.body}</p>
+            <div className="vision-model__actions">
+              <Link href="/visionlab" className="vision-model__btn vision-model__btn--primary">
+                Explore VisionLab
+              </Link>
+            </div>
+          </div>
+          <div className="vision-model__media">
+            <Image
+              src={visionLab?.image ?? "/visionlab-app.jpg"}
+              alt={visionLab?.imageAlt ?? "VisionLab"}
+              fill
+              sizes="(max-width: 900px) 100vw, 36rem"
+              className="vision-model__image"
+            />
+          </div>
+        </article>
+
+        <article className="vision-model" aria-labelledby="argus-title">
+          <div className="vision-model__copy">
+            <h2 id="argus-title">The models developers build on</h2>
+            <p>
+              ArgusONE is the default starting point for real-time vision — it sees a camera stream, marks what
+              matters, and keeps the track from research to production.
+            </p>
+            <div className="vision-model__actions">
+              <button
+                type="button"
+                className="vision-model__btn vision-model__btn--primary"
+                onClick={() => openGetStarted("contact")}
+              >
+                Build with ArgusONE
+              </button>
+              {argusOne?.install ? (
+                <code className="vision-model__install">{argusOne.install}</code>
+              ) : null}
+            </div>
+          </div>
+          <video
+            className="vision-model__video"
+            src="/videos/argusone-demo.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            aria-label={argusOne?.imageAlt ?? "ArgusONE detection demo"}
           />
-        </div>
+        </article>
       </section>
 
       <section className="vision-stories" aria-labelledby="stories-title">
