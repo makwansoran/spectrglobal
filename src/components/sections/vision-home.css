@@ -64,8 +64,7 @@
 }
 
 .vision-intro__image,
-.vision-story__image,
-.vision-practice__image {
+.vision-story__image {
   object-fit: cover;
 }
 
@@ -170,20 +169,15 @@
 
 .vision-practices__head {
   width: min(1120px, calc(100% - 3rem));
-  margin: 0 auto;
-  text-align: center;
-}
-
-.vision-practices__head p {
-  margin-right: auto;
-  margin-left: auto;
+  margin: 0 auto 0.5rem;
+  text-align: left;
 }
 
 .vision-practices__marquee {
   display: flex;
   width: max-content;
-  margin-top: 2.5rem;
-  animation: vision-practices-loop 36s linear infinite;
+  margin-top: 2rem;
+  animation: vision-practices-loop 80s linear infinite;
 }
 
 .vision-practices__marquee:hover {
@@ -197,41 +191,41 @@
 }
 
 .vision-practice {
-  --bevel-cut: 22px;
-  position: relative;
-  display: block;
+  display: flex;
+  flex-direction: column;
   flex: 0 0 22rem;
-  height: 28rem;
-  overflow: hidden;
-  background: #1e1f2b;
-  color: #fff;
-  text-decoration: none;
-  clip-path: polygon(
-    var(--bevel-cut) 0,
-    100% 0,
-    100% calc(100% - var(--bevel-cut)),
-    calc(100% - var(--bevel-cut)) 100%,
-    0 100%,
-    0 var(--bevel-cut)
-  );
+  height: 26rem;
+  margin: 0;
+  padding: 1.35rem 1.25rem 1.2rem;
+  background: #f3f3f3;
+  color: #1e1f2b;
 }
 
-.vision-practice__shade {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(10, 12, 16, 0.66), rgba(10, 12, 16, 0.05) 55%);
-}
-
-.vision-practice__label {
-  position: absolute;
-  right: 0.75rem;
-  bottom: 0.8rem;
-  left: 0.75rem;
-  z-index: 1;
-  font-size: 1rem;
+.vision-practice__company {
+  margin: 0;
+  font-size: 0.78rem;
   font-weight: 500;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
+  letter-spacing: 0.04em;
+  line-height: 1.35;
+}
+
+.vision-practice__quote {
+  margin: 1.1rem 0 0;
+  font-size: 1.12rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+}
+
+.vision-practice footer {
+  display: grid;
+  gap: 0.15rem;
+  margin-top: auto;
+  padding-top: 1.25rem;
+  color: #5c5c62;
+  font-size: 0.92rem;
+  font-style: normal;
+  line-height: 1.3;
 }
 
 @media (min-width: 800px) {
@@ -252,9 +246,8 @@
 
 @media (max-width: 700px) {
   .vision-practice {
-    flex-basis: 16.5rem;
-    height: 22rem;
-    --bevel-cut: 16px;
+    flex-basis: 18rem;
+    height: 24rem;
   }
 }
 

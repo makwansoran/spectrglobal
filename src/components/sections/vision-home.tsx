@@ -3,46 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useGetStarted } from "@/components/get-started-context";
+import { partnerQuotes } from "@/lib/content";
 import { models } from "@/lib/vision";
 import "./vision-home.css";
 
 const visionLab = models.find((model) => model.name === "VisionLab");
-
-const industries = [
-  {
-    name: "Waste management",
-    href: "/use-cases/waste-management",
-    image: "/images/industries/waste-management-hero.jpg",
-    alt: "Collection and materials recovery",
-  },
-  {
-    name: "Manufacturing",
-    href: "/use-cases/manufacturing",
-    image: "/images/industries/manufacturing-hero.jpg",
-    alt: "Manufacturing production line",
-  },
-  {
-    name: "Agriculture",
-    image: "/images/industries/energy.jpg",
-    alt: "Open field at sunset",
-  },
-  {
-    name: "Mining",
-    image: "/images/industries/infrastructure.jpg",
-    alt: "Industrial site and materials operations",
-  },
-  {
-    name: "Ports",
-    image: "/images/industries/ports.jpg",
-    alt: "Container ships at a port terminal",
-  },
-  {
-    name: "Logistics",
-    href: "/use-cases/logistics",
-    image: "/images/industries/logistics-hero.jpg",
-    alt: "Warehouse logistics and pallet operations",
-  },
-] as const;
 
 export function VisionHome() {
   const { openGetStarted } = useGetStarted();
@@ -110,13 +75,9 @@ export function VisionHome() {
         </article>
       </section>
 
-      <section className="vision-practices" aria-labelledby="industries-title">
+      <section className="vision-practices" aria-labelledby="partners-title">
         <div className="vision-practices__head">
-          <h2 id="industries-title">
-            Every site.
-            <br />
-            Every industry.
-          </h2>
+          <h2 id="partners-title">What our partners say about us</h2>
         </div>
         <div className="vision-practices__marquee">
           {[0, 1].map((copy) => (
@@ -126,31 +87,16 @@ export function VisionHome() {
               aria-hidden={copy === 1 || undefined}
               {...(copy === 1 ? { inert: true } : {})}
             >
-              {industries.map((industry) => {
-                const card = (
-                  <>
-                    <Image
-                      src={industry.image}
-                      alt={copy === 0 ? industry.alt : ""}
-                      fill
-                      sizes="22rem"
-                      className="vision-practice__image"
-                    />
-                    <span className="vision-practice__shade" aria-hidden="true" />
-                    <span className="vision-practice__label">{industry.name}</span>
-                  </>
-                );
-
-                return "href" in industry ? (
-                  <Link key={`${copy}-${industry.name}`} href={industry.href} className="vision-practice">
-                    {card}
-                  </Link>
-                ) : (
-                  <div key={`${copy}-${industry.name}`} className="vision-practice">
-                    {card}
-                  </div>
-                );
-              })}
+              {partnerQuotes.map((item) => (
+                <blockquote key={`${copy}-${item.company}`} className="vision-practice">
+                  <p className="vision-practice__company">{item.company}</p>
+                  <p className="vision-practice__quote">“{item.quote}”</p>
+                  <footer>
+                    <span>{item.person}</span>
+                    <span>{item.role}</span>
+                  </footer>
+                </blockquote>
+              ))}
             </div>
           ))}
         </div>
