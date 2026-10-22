@@ -75,7 +75,7 @@ export const platforms: Platform[] = [
         description:
           "Fuse carriers, inventory, yards, and demand into one decision runtime. Spectr OS ranks the next move across the network — not in a morning report.",
         image: "/images/industries/logistics.jpg",
-        imageAlt: "Warehouse logistics and pallet operations",
+        imageAlt: "Cardboard carton on a roller conveyor",
       },
       {
         name: "Manufacturing",
@@ -89,7 +89,7 @@ export const platforms: Platform[] = [
         description:
           "Collection, plants, and materials in one loop. Spectr OS turns a lift into an operational decision — from kerb to offtake.",
         image: "/images/industries/waste-management.jpg",
-        imageAlt: "Collection and materials recovery operations",
+        imageAlt: "Landfill compactors on a waste pile",
       },
     ],
     ctaTitle: "Run your enterprise on Spectr OS",

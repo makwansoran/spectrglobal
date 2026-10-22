@@ -28,7 +28,7 @@ export const solutions = [
     title: "Track the yard before the shift stalls",
     body: "Read docks and conveyors. Follow pallets, vehicles, and the gap that will stop the work.",
     image: "/images/industries/logistics.jpg",
-    imageAlt: "Logistics yard and warehouse",
+    imageAlt: "Cardboard carton on a roller conveyor",
     tone: "light",
   },
   {

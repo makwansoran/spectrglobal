@@ -14,6 +14,8 @@ const industries = [
     href: "/use-cases/waste-management",
     line: "From the bin to the plant, one loop.",
     detail: "Collection, plants, and materials as one loop, so a lift is an operational decision.",
+    image: "/images/industries/waste-management.jpg",
+    imageAlt: "Landfill compactors on a waste pile",
   },
   {
     name: "Manufacturing",
@@ -38,6 +40,8 @@ const industries = [
     href: "/use-cases/logistics",
     line: "Planning and execution without the seam between them.",
     detail: "Planning and execution in one runtime. Inventory, yards, and disruption handled as they happen.",
+    image: "/images/industries/logistics.jpg",
+    imageAlt: "Cardboard carton on a roller conveyor",
   },
 ] as const;
 
