@@ -39,6 +39,18 @@
   color: #1e1f2b;
 }
 
+.site-footer__social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.site-footer__social-icon {
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 auto;
+}
+
 .site-footer__legal {
   width: min(1180px, calc(100% - 3rem));
   margin: 0 auto;
