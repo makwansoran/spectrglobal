@@ -62,46 +62,13 @@
   flex-wrap: wrap;
   align-items: center;
   align-self: start;
-  gap: 0.65rem;
-  min-height: 2.35rem;
-}
-
-.vision-model__btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 2.35rem;
-  padding: 0 0.85rem;
-  border: 1px solid transparent;
-  border-radius: 10px;
-  cursor: pointer;
-  font: inherit;
-  font-size: 0.875rem;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  text-decoration: none;
-}
-
-.vision-model__btn--primary {
-  background: #1e1f2b;
-  color: #fff;
-}
-
-.vision-model__btn--primary:hover {
-  background: #2c3134;
+  gap: 0.5rem;
+  min-height: 2.5rem;
 }
 
 .vision-model__install {
-  display: inline-flex;
-  align-items: center;
-  min-height: 2.35rem;
-  padding: 0 0.75rem;
-  border: 1px solid rgba(30, 31, 43, 0.12);
-  border-radius: 10px;
-  background: rgba(30, 31, 43, 0.04);
-  color: #1e1f2b;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   line-height: 1.2;
 }
 
