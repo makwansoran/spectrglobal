@@ -35,11 +35,7 @@ export function IndustrialSmartSystem() {
         <ul className="industrial-smart-system__list">
           {useCases.map((item) => (
             <li key={item.id}>
-              <Link
-                href={item.href}
-                aria-label={`${item.name}. ${item.description}`}
-                className="industrial-smart-system__row"
-              >
+              <div className="industrial-smart-system__row">
                 <div className="industrial-smart-system__copy">
                   <p className="industrial-smart-system__description">{item.description}</p>
                   <p className="industrial-smart-system__index">{item.index}</p>
@@ -54,7 +50,7 @@ export function IndustrialSmartSystem() {
                   height={112}
                   className="industrial-smart-system__thumb"
                 />
-              </Link>
+              </div>
             </li>
           ))}
         </ul>

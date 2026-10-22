@@ -58,12 +58,19 @@ export function HubPageView({ page }: { page: HubPage }) {
             {page.cardsTitle ? <h2>{page.cardsTitle}</h2> : null}
             <ul>
               {page.cards.map((card) => (
-                <li key={card.href + card.title}>
-                  <Link href={card.href}>
-                    <h3>{card.title}</h3>
-                    <p>{card.body}</p>
-                    <span>Learn more →</span>
-                  </Link>
+                <li key={card.title}>
+                  {card.href ? (
+                    <Link href={card.href}>
+                      <h3>{card.title}</h3>
+                      <p>{card.body}</p>
+                      <span>Learn more →</span>
+                    </Link>
+                  ) : (
+                    <div>
+                      <h3>{card.title}</h3>
+                      <p>{card.body}</p>
+                    </div>
+                  )}
                 </li>
               ))}
             </ul>

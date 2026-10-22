@@ -54,9 +54,9 @@ export function VisionlabPageView() {
             <p>Open the stream you already have. Same app, different floor.</p>
           </Reveal>
           <ul className="argus-usecases__grid">
-            {visionlabUseCases.map((item, index) => {
-              const inner = (
-                <>
+            {visionlabUseCases.map((item, index) => (
+              <li key={item.name} style={{ "--i": index } as CSSProperties}>
+                <div className="argus-usecase">
                   <div className="argus-usecase__media">
                     <Image
                       src={item.image}
@@ -70,21 +70,9 @@ export function VisionlabPageView() {
                     <h3>{item.name}</h3>
                     <p>{item.line}</p>
                   </div>
-                </>
-              );
-
-              return (
-                <li key={item.name} style={{ "--i": index } as CSSProperties}>
-                  {"href" in item && item.href ? (
-                    <Link href={item.href} className="argus-usecase">
-                      {inner}
-                    </Link>
-                  ) : (
-                    <div className="argus-usecase">{inner}</div>
-                  )}
-                </li>
-              );
-            })}
+                </div>
+              </li>
+            ))}
           </ul>
         </div>
       </section>

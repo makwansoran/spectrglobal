@@ -4,7 +4,7 @@ import { partnerQuotes } from "@/lib/content";
 export type HubCard = {
   title: string;
   body: string;
-  href: string;
+  href?: string;
   image?: string;
   imageAlt?: string;
 };
@@ -87,13 +87,12 @@ export const customersHub: HubPage = {
   columnOne:
     "The point of the software is tangible value in a working environment: inventory that is true in the morning, a shortage closed in minutes, a line that does not wait on a weekly argument.",
   columnTwo:
-    "See deployments in the language of the people who run them. Then open the industry page if you want the argument for your domain.",
+    "See deployments in the language of the people who run them — manufacturing, logistics, waste, and mining on the same operating model.",
   quotesTitle: "In the words of operators",
   cardsTitle: "By industry",
   cards: industryPages.map((page) => ({
     title: page.name,
     body: page.headline,
-    href: page.href,
     image: page.image,
     imageAlt: page.imageAlt,
   })),

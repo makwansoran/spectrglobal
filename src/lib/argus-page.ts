@@ -92,14 +92,12 @@ export const argusCompareMetrics = [
 export const argusUseCases = [
   {
     name: "Manufacturing",
-    href: "/use-cases/manufacturing",
     line: "Inspect parts and PPE without stopping the line.",
     image: "/images/industries/manufacturing.jpg",
     imageAlt: "Circuit boards under an automated inspection head",
   },
   {
     name: "Logistics",
-    href: "/use-cases/logistics",
     line: "Follow pallets, docks, and the gap that stalls the yard.",
     image: "/images/industries/logistics.jpg",
     imageAlt: "Warehouse floor with yellow roller conveyor and inventory",
@@ -124,7 +122,6 @@ export const argusUseCases = [
   },
   {
     name: "Waste & materials",
-    href: "/use-cases/waste-management",
     line: "Read the stream from bin to plant as one loop.",
     image: "/images/industries/waste-management.jpg",
     imageAlt: "Sorting plant conveyors and trommel with workers on the floor",

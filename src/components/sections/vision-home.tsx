@@ -17,14 +17,12 @@ const argus = models.find((model) => model.name === "Argus");
 const industries = [
   {
     name: "Waste Management",
-    href: "/use-cases/waste-management",
     line: "From the bin to the plant, one loop.",
     image: "/images/industries/waste-management.jpg",
     imageAlt: "Sorting plant conveyors and trommel with workers on the floor",
   },
   {
     name: "Manufacturing",
-    href: "/use-cases/manufacturing",
     line: "Strategy, materials, and the line as one model.",
     image: "/images/industries/manufacturing.jpg",
     imageAlt: "Circuit boards under an automated inspection head",
@@ -49,7 +47,6 @@ const industries = [
   },
   {
     name: "Logistics",
-    href: "/use-cases/logistics",
     line: "Planning and execution without the seam between them.",
     image: "/images/industries/logistics.jpg",
     imageAlt: "Warehouse floor with yellow roller conveyor and inventory",
@@ -57,8 +54,8 @@ const industries = [
 ] as const;
 
 function IndustryCard({ industry }: { industry: (typeof industries)[number] }) {
-  const card = (
-    <>
+  return (
+    <article className="vision-practice">
       <Image
         src={industry.image}
         alt={industry.imageAlt}
@@ -77,18 +74,8 @@ function IndustryCard({ industry }: { industry: (typeof industries)[number] }) {
         <p className="vision-practice__company">{industry.name}</p>
         <p className="vision-practice__quote">{industry.line}</p>
       </div>
-    </>
+    </article>
   );
-
-  if ("href" in industry) {
-    return (
-      <Link href={industry.href} className="vision-practice">
-        {card}
-      </Link>
-    );
-  }
-
-  return <article className="vision-practice">{card}</article>;
 }
 
 export function VisionHome() {

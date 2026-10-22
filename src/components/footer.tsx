@@ -14,15 +14,6 @@ const columns = [
     ],
   },
   {
-    title: "Solutions",
-    links: [
-      { label: "Manufacturing", href: "/use-cases/manufacturing" },
-      { label: "Logistics", href: "/use-cases/logistics" },
-      { label: "Waste management", href: "/use-cases/waste-management" },
-      { label: "Mining", href: "/use-cases/mining" },
-    ],
-  },
-  {
     title: "Company",
     links: [
       { label: "About", href: "/about" },

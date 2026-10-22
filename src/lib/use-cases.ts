@@ -200,21 +200,12 @@ export const industryPages: IndustryPage[] = [
   },
 ];
 
-export function getIndustryPage(slug: string) {
-  return industryPages.find((page) => page.slug === slug);
-}
-
-export function getIndustrySlugs() {
-  return industryPages.map((page) => page.slug);
-}
-
 export const industryListings = industryPages.map((page) => ({
   id: page.slug,
   index: page.index,
   name: page.name,
   description: page.listingDescription,
   cta: `${page.name} operations`,
-  href: page.href,
   image: page.image,
   imageAlt: page.imageAlt,
 }));

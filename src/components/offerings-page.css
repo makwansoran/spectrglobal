@@ -79,20 +79,10 @@
 
 @media (min-width: 900px) {
   .offerings-page__row {
-    grid-template-columns: minmax(12rem, 0.9fr) minmax(0, 1.4fr) auto;
+    grid-template-columns: minmax(12rem, 0.9fr) minmax(0, 1.4fr);
     gap: 2rem;
     padding: 1.7rem 0;
   }
-}
-
-.offerings-page__row:hover .offerings-page__name,
-.offerings-page__row:focus-visible .offerings-page__name {
-  color: #ffffff;
-}
-
-.offerings-page__row:hover .offerings-page__more,
-.offerings-page__row:focus-visible .offerings-page__more {
-  border-color: rgba(255, 255, 255, 0.8);
 }
 
 .offerings-page__name {
@@ -102,7 +92,6 @@
   letter-spacing: -0.035em;
   line-height: 1.15;
   color: rgba(255, 255, 255, 0.92);
-  transition: color 160ms ease;
 }
 
 .offerings-page__body {
@@ -111,29 +100,4 @@
   font-size: 0.98rem;
   line-height: 1.55;
   color: var(--offerings-muted);
-}
-
-.offerings-page__more {
-  justify-self: start;
-  font-size: 0.92rem;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  color: #ffffff;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
-  padding-bottom: 1px;
-  transition: border-color 160ms ease;
-  white-space: nowrap;
-}
-
-@media (min-width: 900px) {
-  .offerings-page__more {
-    justify-self: end;
-    align-self: center;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .offerings-page__row {
-    transition: none;
-  }
 }

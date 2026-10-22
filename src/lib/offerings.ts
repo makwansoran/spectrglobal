@@ -1,7 +1,6 @@
 export type Offering = {
   title: string;
   body: string;
-  href: string;
 };
 
 export const offeringsPage = {
@@ -13,21 +12,17 @@ export const offerings: Offering[] = [
   {
     title: "Manufacturing",
     body: "Strategy, materials, and the shop floor as one model — at the speed of the line.",
-    href: "/use-cases/manufacturing",
   },
   {
     title: "Logistics",
     body: "Planning and execution in one runtime. Inventory, yards, and disruption handled as they happen.",
-    href: "/use-cases/logistics",
   },
   {
     title: "Waste Management",
     body: "Collection, plants, and materials as one loop, so a lift is an operational decision.",
-    href: "/use-cases/waste-management",
   },
   {
     title: "Mining",
     body: "Pit, plant, and materials as one model — fleets, grades, and recovery handled as the shift runs.",
-    href: "/use-cases/mining",
   },
 ];

@@ -56,9 +56,9 @@ export function ArgusPageView() {
             <p>Point Argus at the stream you already have. Same model, different floor.</p>
           </Reveal>
           <ul className="argus-usecases__grid">
-            {argusUseCases.map((item, index) => {
-              const inner = (
-                <>
+            {argusUseCases.map((item, index) => (
+              <li key={item.name} style={{ "--i": index } as CSSProperties}>
+                <div className="argus-usecase">
                   <div className="argus-usecase__media">
                     <Image
                       src={item.image}
@@ -72,21 +72,9 @@ export function ArgusPageView() {
                     <h3>{item.name}</h3>
                     <p>{item.line}</p>
                   </div>
-                </>
-              );
-
-              return (
-                <li key={item.name} style={{ "--i": index } as CSSProperties}>
-                  {"href" in item && item.href ? (
-                    <Link href={item.href} className="argus-usecase">
-                      {inner}
-                    </Link>
-                  ) : (
-                    <div className="argus-usecase">{inner}</div>
-                  )}
-                </li>
-              );
-            })}
+                </div>
+              </li>
+            ))}
           </ul>
         </div>
       </section>

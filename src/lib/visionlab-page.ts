@@ -92,14 +92,12 @@ export const visionlabCompareMetrics = [
 export const visionlabUseCases = [
   {
     name: "Manufacturing",
-    href: "/use-cases/manufacturing",
     line: "Watch the line on a workstation that stays on the floor.",
     image: "/images/industries/manufacturing.jpg",
     imageAlt: "Circuit boards under an automated inspection head",
   },
   {
     name: "Logistics",
-    href: "/use-cases/logistics",
     line: "Open a dock camera, run Argus, and follow the gap that stalls the yard.",
     image: "/images/industries/logistics.jpg",
     imageAlt: "Warehouse floor with yellow roller conveyor and inventory",
@@ -124,7 +122,6 @@ export const visionlabUseCases = [
   },
   {
     name: "Waste & materials",
-    href: "/use-cases/waste-management",
     line: "Attach Argus to the plant stream from bin to trommel.",
     image: "/images/industries/waste-management.jpg",
     imageAlt: "Sorting plant conveyors and trommel with workers on the floor",

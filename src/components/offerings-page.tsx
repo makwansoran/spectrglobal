@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { offerings, offeringsPage } from "@/lib/offerings";
 import "./offerings-page.css";
 
@@ -17,15 +16,14 @@ export function OfferingsPageView() {
       <section className="offerings-page__list" aria-label="All offerings">
         <ul>
           {offerings.map((item) => (
-            <li key={item.href + item.title}>
-              <Link href={item.href} className="offerings-page__row">
+            <li key={item.title}>
+              <div className="offerings-page__row">
                 <span className="offerings-page__name">
                   <span aria-hidden="true">↳ </span>
                   {item.title}
                 </span>
                 <span className="offerings-page__body">{item.body}</span>
-                <span className="offerings-page__more">Learn More</span>
-              </Link>
+              </div>
             </li>
           ))}
         </ul>

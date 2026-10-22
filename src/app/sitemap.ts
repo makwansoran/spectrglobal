@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 import { hubPaths } from "@/lib/hubs";
 import { site } from "@/lib/site";
-import { getIndustrySlugs } from "@/lib/use-cases";
 
 const paths = [
   "",
@@ -16,7 +15,6 @@ const paths = [
   "/argus",
   "/visionlab",
   ...hubPaths,
-  ...getIndustrySlugs().map((slug) => `/use-cases/${slug}`),
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

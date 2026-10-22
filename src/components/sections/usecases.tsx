@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { useCases, useCasesSection } from "@/lib/content";
 
 export function UseCases() {
@@ -15,11 +14,7 @@ export function UseCases() {
         <ul className="m-0 mt-8 list-none p-0">
           {items.map((item) => (
             <li key={item.id}>
-              <Link
-                href={item.href}
-                aria-label={`${item.name}. ${item.description}`}
-                className="group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-4 gap-y-3 py-4 no-underline sm:grid-cols-[minmax(11rem,0.4fr)_minmax(0,1fr)_auto] sm:gap-8 sm:py-3 sm:pb-14"
-              >
+              <div className="group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-4 gap-y-3 py-4 sm:grid-cols-[minmax(11rem,0.4fr)_minmax(0,1fr)_auto] sm:gap-8 sm:py-3 sm:pb-14">
                 <div className="col-span-2 max-w-[16.5rem] sm:col-span-1">
                   <p className="m-0 text-[17px] leading-[1.4] text-[#1E1F2B]">{item.description}</p>
                   <p className="mt-3 m-0 text-[15px] leading-snug text-[#AAAAAA]">{item.index}</p>
@@ -36,7 +31,7 @@ export function UseCases() {
                   height={112}
                   className="h-[4.5rem] w-[7rem] shrink-0 justify-self-end object-cover sm:h-[5.5rem] sm:w-[9rem]"
                 />
-              </Link>
+              </div>
             </li>
           ))}
         </ul>
