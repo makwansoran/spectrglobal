@@ -103,14 +103,12 @@ export function VisionHome() {
 
       <section className="vision-models" aria-label="VisionLab and ArgusONE">
         <article className="vision-model" aria-labelledby="visionlab-title">
-          <div className="vision-model__copy">
-            <h2 id="visionlab-title">Introducing VisionLab</h2>
-            <p>{visionLab?.body}</p>
-            <div className="vision-model__actions">
-              <Link href="/visionlab" className="vision-model__btn vision-model__btn--primary">
-                Explore VisionLab
-              </Link>
-            </div>
+          <h2 id="visionlab-title">Introducing VisionLab</h2>
+          <p>{visionLab?.body}</p>
+          <div className="vision-model__actions">
+            <Link href="/visionlab" className="vision-model__btn vision-model__btn--primary">
+              Explore VisionLab
+            </Link>
           </div>
           <div className="vision-model__media">
             <Image
@@ -124,24 +122,20 @@ export function VisionHome() {
         </article>
 
         <article className="vision-model" aria-labelledby="argus-title">
-          <div className="vision-model__copy">
-            <h2 id="argus-title">The models developers build on</h2>
-            <p>
-              ArgusONE is the default starting point for real-time vision — it sees a camera stream, marks what
-              matters, and keeps the track from research to production.
-            </p>
-            <div className="vision-model__actions">
-              <button
-                type="button"
-                className="vision-model__btn vision-model__btn--primary"
-                onClick={() => openGetStarted("contact")}
-              >
-                Build with ArgusONE
-              </button>
-              {argusOne?.install ? (
-                <code className="vision-model__install">{argusOne.install}</code>
-              ) : null}
-            </div>
+          <h2 id="argus-title">The models developers build on</h2>
+          <p>
+            ArgusONE is the default starting point for real-time vision — it sees a camera stream, marks what
+            matters, and keeps the track from research to production.
+          </p>
+          <div className="vision-model__actions">
+            <button
+              type="button"
+              className="vision-model__btn vision-model__btn--primary"
+              onClick={() => openGetStarted("contact")}
+            >
+              Build with ArgusONE
+            </button>
+            {argusOne?.install ? <code className="vision-model__install">{argusOne.install}</code> : null}
           </div>
           <video
             className="vision-model__video"
