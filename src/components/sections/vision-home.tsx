@@ -8,7 +8,7 @@ import "@/components/vision-nav.css";
 import "./vision-home.css";
 
 const visionLab = models.find((model) => model.name === "VisionLab");
-const argusOne = models.find((model) => model.name === "ArgusONE");
+const argus = models.find((model) => model.name === "Argus");
 
 const industries = [
   {
@@ -102,9 +102,9 @@ export function VisionHome() {
         <h1 id="landing-title">Eyes of Compute</h1>
       </section>
 
-      <section className="vision-models" aria-label="VisionLab and ArgusONE">
+      <section className="vision-models" aria-label="VisionLab and Argus">
         <article className="vision-model" aria-labelledby="visionlab-title">
-          <h2 id="visionlab-title">Introducing VisionLab</h2>
+          <h2 id="visionlab-title">VisionLab</h2>
           <p>{visionLab?.body}</p>
           <div className="vision-model__actions">
             <Link href="/visionlab" className="vision-nav__cta">
@@ -126,14 +126,11 @@ export function VisionHome() {
         </article>
 
         <article className="vision-model" aria-labelledby="argus-title">
-          <h2 id="argus-title">The models developers build on</h2>
-          <p>
-            ArgusONE is the default starting point for real-time vision — it sees a camera stream, marks what
-            matters, and keeps the track from research to production.
-          </p>
+          <h2 id="argus-title">Argus</h2>
+          <p>{argus?.body}</p>
           <div className="vision-model__actions">
             <button type="button" className="vision-nav__cta" onClick={() => openGetStarted("contact")}>
-              Build with ArgusONE
+              Build with Argus
             </button>
             <Link href="/developers" className="vision-model__text-link">
               Documentation
@@ -147,7 +144,7 @@ export function VisionHome() {
             muted
             playsInline
             preload="metadata"
-            aria-label={argusOne?.imageAlt ?? "ArgusONE detection demo"}
+            aria-label={argus?.imageAlt ?? "Argus detection demo"}
           />
         </article>
       </section>
