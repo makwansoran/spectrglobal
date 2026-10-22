@@ -44,7 +44,7 @@ export const industryPages: IndustryPage[] = [
     listingDescription: "An operating system for the line: strategy, materials, and the shop floor as one model.",
     href: "/use-cases/manufacturing",
     image: "/images/industries/manufacturing.jpg",
-    imageAlt: "Factory floor with a glowing pink signal path",
+    imageAlt: "Circuit board under a pick-and-place head",
     bannerTitle: "Manufacturing",
     headline: "Strategy, materials, and the line as one model.",
     tagline: "The central system for orchestrating decisions across the line, the materials, and the people who run them.",

@@ -82,7 +82,7 @@ export const platforms: Platform[] = [
         description:
           "Orchestrate lines, parts, labour, and quality as a live operational model. Exceptions become agentic workflows with humans still in command.",
         image: "/images/industries/manufacturing.jpg",
-        imageAlt: "Factory floor with a glowing pink signal path",
+        imageAlt: "Circuit board under a pick-and-place head",
       },
       {
         name: "Waste Management",

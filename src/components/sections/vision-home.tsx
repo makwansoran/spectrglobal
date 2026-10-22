@@ -23,7 +23,7 @@ const industries = [
     line: "Strategy, materials, and the line as one model.",
     detail: "An operating system for the line: strategy, materials, and the shop floor as one model.",
     image: "/images/industries/manufacturing.jpg",
-    imageAlt: "Factory floor with a glowing pink signal path",
+    imageAlt: "Circuit board under a pick-and-place head",
   },
   {
     name: "Agriculture",
