@@ -195,10 +195,10 @@ export function VisionHome() {
         <div className="vision-stories__head">
           <h2 id="smart-system-title">Spectr Smart System</h2>
         </div>
-        <article className="vision-story">
-          <div className="vision-story__media">
+        <article className="vision-story vision-story--smart">
+          <div className="vision-story__media vision-story__media--bare">
             <Image
-              src="/images/spectr-smart-system.jpg"
+              src="/images/spectr-smart-system.png"
               alt="Spectr Smart System hardware"
               fill
               sizes="(max-width: 800px) 100vw, 70rem"

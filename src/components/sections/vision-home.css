@@ -324,10 +324,17 @@
   opacity: 0.88;
 }
 
+.vision-story__media--bare {
+  background: transparent;
+  clip-path: none;
+  overflow: visible;
+}
+
 .vision-story__image--diagram {
   object-fit: contain;
   object-position: center;
-  background: #f4f4f4;
+  background: transparent;
+  padding: 0.5rem 1rem 3.5rem;
 }
 
 .vision-story__link {
