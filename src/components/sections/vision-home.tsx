@@ -3,11 +3,41 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useGetStarted } from "@/components/get-started-context";
-import { partnerQuotes } from "@/lib/content";
 import { models } from "@/lib/vision";
 import "./vision-home.css";
 
 const visionLab = models.find((model) => model.name === "VisionLab");
+
+const industries = [
+  {
+    name: "Waste Management",
+    href: "/use-cases/waste-management",
+    line: "From the bin to the plant, one loop.",
+    detail: "Collection, plants, and materials as one loop, so a lift is an operational decision.",
+  },
+  {
+    name: "Manufacturing",
+    href: "/use-cases/manufacturing",
+    line: "Strategy, materials, and the line as one model.",
+    detail: "An operating system for the line: strategy, materials, and the shop floor as one model.",
+  },
+  {
+    name: "Agriculture",
+    line: "Count what the field is doing.",
+    detail: "Classify and measure from aerial and ground cameras across a field or a herd.",
+  },
+  {
+    name: "Ports",
+    line: "Watch the gate on hardware you own.",
+    detail: "Detection and tracking for a perimeter, a floor, or a port stay on machines you control.",
+  },
+  {
+    name: "Logistics",
+    href: "/use-cases/logistics",
+    line: "Planning and execution without the seam between them.",
+    detail: "Planning and execution in one runtime. Inventory, yards, and disruption handled as they happen.",
+  },
+] as const;
 
 export function VisionHome() {
   const { openGetStarted } = useGetStarted();
@@ -75,9 +105,13 @@ export function VisionHome() {
         </article>
       </section>
 
-      <section className="vision-practices" aria-labelledby="partners-title">
+      <section className="vision-practices" aria-labelledby="industries-title">
         <div className="vision-practices__head">
-          <h2 id="partners-title">What our partners say about us</h2>
+          <h2 id="industries-title">
+            Every site.
+            <br />
+            Every industry.
+          </h2>
         </div>
         <div className="vision-practices__marquee">
           {[0, 1].map((copy) => (
@@ -87,16 +121,27 @@ export function VisionHome() {
               aria-hidden={copy === 1 || undefined}
               {...(copy === 1 ? { inert: true } : {})}
             >
-              {partnerQuotes.map((item) => (
-                <blockquote key={`${copy}-${item.company}`} className="vision-practice">
-                  <p className="vision-practice__company">{item.company}</p>
-                  <p className="vision-practice__quote">“{item.quote}”</p>
-                  <footer>
-                    <span>{item.person}</span>
-                    <span>{item.role}</span>
-                  </footer>
-                </blockquote>
-              ))}
+              {industries.map((industry) => {
+                const card = (
+                  <>
+                    <p className="vision-practice__company">{industry.name}</p>
+                    <p className="vision-practice__quote">{industry.line}</p>
+                    <footer>
+                      <span>{industry.detail}</span>
+                    </footer>
+                  </>
+                );
+
+                return "href" in industry ? (
+                  <Link key={`${copy}-${industry.name}`} href={industry.href} className="vision-practice">
+                    {card}
+                  </Link>
+                ) : (
+                  <article key={`${copy}-${industry.name}`} className="vision-practice">
+                    {card}
+                  </article>
+                );
+              })}
             </div>
           ))}
         </div>
