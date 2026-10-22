@@ -39,6 +39,8 @@ const industries = [
   },
 ] as const;
 
+const loopCopies = [0, 1, 2, 3, 4, 5];
+
 export function VisionHome() {
   const { openGetStarted } = useGetStarted();
 
@@ -114,12 +116,12 @@ export function VisionHome() {
           </h2>
         </div>
         <div className="vision-practices__marquee">
-          {[0, 1].map((copy) => (
+          {loopCopies.map((copy) => (
             <div
               key={copy}
               className="vision-practices__row"
-              aria-hidden={copy === 1 || undefined}
-              {...(copy === 1 ? { inert: true } : {})}
+              aria-hidden={copy > 0 || undefined}
+              {...(copy > 0 ? { inert: true } : {})}
             >
               {industries.map((industry) => {
                 const card = (

@@ -177,11 +177,22 @@
   display: flex;
   width: max-content;
   margin-top: 2rem;
-  animation: vision-practices-loop 80s linear infinite;
+  animation: vision-practices-loop 36s linear infinite;
+  will-change: transform;
 }
 
 .vision-practices__marquee:hover {
   animation-play-state: paused;
+}
+
+@keyframes vision-practices-loop {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(calc(-100% / 6), 0, 0);
+  }
 }
 
 .vision-practices__row {
@@ -235,16 +246,6 @@
   }
 }
 
-@keyframes vision-practices-loop {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-50%);
-  }
-}
-
 @media (max-width: 700px) {
   .vision-practice {
     flex-basis: 18rem;
@@ -255,9 +256,5 @@
 @media (prefers-reduced-motion: reduce) {
   .vision-practices__marquee {
     animation: none;
-  }
-
-  .vision-practices__row[aria-hidden="true"] {
-    display: none;
   }
 }
