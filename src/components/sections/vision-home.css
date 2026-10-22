@@ -181,7 +181,7 @@
 .vision-practice {
   position: relative;
   display: flex;
-  align-items: flex-start;
+  align-items: flex-end;
   aspect-ratio: 4 / 5;
   margin: 0;
   overflow: hidden;
