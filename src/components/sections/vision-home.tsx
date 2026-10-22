@@ -7,21 +7,6 @@ import { models } from "@/lib/vision";
 import "@/components/vision-nav.css";
 import "./vision-home.css";
 
-function DownloadIcon() {
-  return (
-    <svg viewBox="0 0 20 20" className="vision-nav__download" aria-hidden="true">
-      <path
-        d="M10 3.25v8.2m0 0 3.1-3.1M10 11.45 6.9 8.35M4.25 13.5v1.25c0 .69.56 1.25 1.25 1.25h9c.69 0 1.25-.56 1.25-1.25V13.5"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
 const visionLab = models.find((model) => model.name === "VisionLab");
 const argusOne = models.find((model) => model.name === "ArgusONE");
 
@@ -122,9 +107,8 @@ export function VisionHome() {
           <h2 id="visionlab-title">Introducing VisionLab</h2>
           <p>{visionLab?.body}</p>
           <div className="vision-model__actions">
-            <Link href="/visionlab" className="vision-nav__cta">
-              <DownloadIcon />
-              Explore VisionLab
+            <Link href="/developers" className="vision-nav__cta">
+              Documentation
             </Link>
           </div>
           <div className="vision-model__media">
