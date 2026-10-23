@@ -8,12 +8,12 @@ import {
 } from "@/lib/visionlab-page";
 
 const TOOL_FILL: Record<VisionlabCompareToolId, string> = {
-  visionlab: "#1e1f2b",
-  roboflow: "#5c5c62",
-  "label-studio": "#7a7a80",
-  cvat: "#9a9aa0",
-  opencv: "#b8b8bc",
-  cloud: "#d4d4d6",
+  visionlab: "#0e7490",
+  roboflow: "#2563eb",
+  "label-studio": "#c2410c",
+  cvat: "#059669",
+  opencv: "#a16207",
+  cloud: "#64748b",
 };
 
 const AXIS_SHORT: Record<string, string> = {

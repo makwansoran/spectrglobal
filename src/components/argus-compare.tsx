@@ -8,12 +8,12 @@ import {
 } from "@/lib/argus-page";
 
 const MODEL_FILL: Record<ArgusCompareModelId, string> = {
-  argus: "#1e1f2b",
-  yolo: "#5c5c62",
-  detectron2: "#7a7a80",
-  "grounding-dino": "#9a9aa0",
-  sam2: "#b8b8bc",
-  cloud: "#d4d4d6",
+  argus: "#0e7490",
+  yolo: "#2563eb",
+  detectron2: "#c2410c",
+  "grounding-dino": "#059669",
+  sam2: "#a16207",
+  cloud: "#64748b",
 };
 
 const AXIS_SHORT: Record<string, string> = {

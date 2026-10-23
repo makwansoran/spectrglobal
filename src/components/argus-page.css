@@ -225,7 +225,11 @@
 }
 
 .argus-compare__bar.is-dim {
-  opacity: 0.16 !important;
+  opacity: 0.22 !important;
+}
+
+.argus-compare__bar.is-highlight {
+  filter: saturate(1.08);
 }
 
 .argus-compare__legend {
