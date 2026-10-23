@@ -134,7 +134,7 @@ export function VisionHome() {
         </article>
       </section>
 
-      <section className="vision-stories" aria-labelledby="stories-title">
+      <section className="vision-stories vision-stories--customer" aria-labelledby="stories-title">
         <div className="vision-stories__head">
           <h2 id="stories-title">Customer success</h2>
         </div>

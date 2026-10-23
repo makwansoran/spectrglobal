@@ -210,6 +210,30 @@
   padding: 1rem 0 5.5rem;
 }
 
+.vision-stories--customer {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  min-height: 100dvh;
+  margin: 0;
+  padding: clamp(3rem, 8vh, 5.5rem) max(1.5rem, calc((100% - 1120px) / 2));
+  background: #000;
+  color: #fff;
+}
+
+.vision-stories--customer .vision-stories__head h2 {
+  color: #fff;
+}
+
+.vision-stories--customer .vision-story__media {
+  flex: 1;
+  min-height: min(62vh, 40rem);
+  aspect-ratio: auto;
+  background: #0a0a0a;
+}
+
 .vision-practices {
   width: min(1120px, calc(100% - 3rem));
   margin: 0 auto;
