@@ -11,9 +11,10 @@ export const site = {
   tagline: "Open models for computer vision, AI vision, and VLA.",
   description:
     "Spectr builds open-source computer vision, AI vision, and vision-language-action models. Detect, segment, and act from one stack.",
-  github: "https://github.com/makwansoran/spectrglobal",
+  github: "https://github.com/SPECTR-NO",
   social: {
     linkedin: "https://www.linkedin.com/company/spectr-norway/",
+    github: "https://github.com/SPECTR-NO",
   },
 } as const;
 
