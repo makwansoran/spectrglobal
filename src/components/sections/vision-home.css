@@ -216,9 +216,9 @@
   gap: 2rem;
   align-items: center;
   width: 100%;
-  min-height: 100dvh;
+  min-height: 78dvh;
   margin: 0;
-  padding: clamp(3rem, 8vh, 5.5rem) max(1.5rem, calc((100% - 1120px) / 2));
+  padding: clamp(2.5rem, 6vh, 4.5rem) max(1.5rem, calc((100% - 1120px) / 2));
   background: #000;
   color: #fff;
 }
