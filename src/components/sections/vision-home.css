@@ -163,7 +163,7 @@
 
 .vision-model__media {
   position: relative;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 2.15 / 1;
   overflow: hidden;
   border-radius: 14px;
   background: #f1f1ef;
@@ -177,7 +177,7 @@
 .vision-model__video {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 2.15 / 1;
   border-radius: 14px;
   object-fit: cover;
   background: #0f1115;
@@ -314,6 +314,12 @@
   border-radius: 14px;
   background: #f1f1ef;
   clip-path: none;
+}
+
+.vision-stories--smart .vision-story__image {
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(0.92) contrast(1.04);
 }
 
 .vision-practices {
