@@ -135,40 +135,30 @@ export function VisionHome() {
       </section>
 
       <section className="vision-stories vision-stories--customer" aria-labelledby="stories-title">
-        <div className="vision-stories__head">
+        <div className="vision-stories__copy">
           <h2 id="stories-title">Customer success</h2>
+          <Image
+            src="/images/veolia-logo.png"
+            alt="Veolia"
+            width={200}
+            height={50}
+            className="vision-story__logo"
+          />
+          <p>Computer vision on the floor — turning site operations into a shorter loop.</p>
+          <button type="button" className="vision-story__link" onClick={() => openGetStarted("contact")}>
+            View case study
+            <span aria-hidden="true">→</span>
+          </button>
         </div>
-        <article className="vision-story">
-          <div className="vision-story__media">
-            <Image
-              src="/images/customer-success-veolia.jpg"
-              alt=""
-              fill
-              sizes="(max-width: 800px) 100vw, 70rem"
-              className="vision-story__image"
-            />
-            <div
-              className="vision-story__glass"
-              style={{
-                backdropFilter: "blur(18px) saturate(1.35)",
-                WebkitBackdropFilter: "blur(18px) saturate(1.35)",
-              }}
-            >
-              <Image
-                src="/images/veolia-logo.png"
-                alt="Veolia"
-                width={200}
-                height={50}
-                className="vision-story__logo"
-              />
-              <p>Computer vision on the floor — turning site operations into a shorter loop.</p>
-              <button type="button" className="vision-story__link" onClick={() => openGetStarted("contact")}>
-                View case study
-                <span aria-hidden="true">→</span>
-              </button>
-            </div>
-          </div>
-        </article>
+        <div className="vision-story__media">
+          <Image
+            src="/images/customer-success-veolia.jpg"
+            alt=""
+            fill
+            sizes="(max-width: 900px) 100vw, 50vw"
+            className="vision-story__image"
+          />
+        </div>
       </section>
 
       <section className="vision-stories" aria-labelledby="smart-system-title">
