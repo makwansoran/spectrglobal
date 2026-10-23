@@ -225,7 +225,7 @@
 
 @media (min-width: 900px) {
   .vision-stories--customer {
-    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
     gap: 3rem;
   }
 }
@@ -259,7 +259,7 @@
 .vision-stories--customer .vision-story__media {
   position: relative;
   width: 100%;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
   border-radius: 14px;
   background: #0a0a0a;
