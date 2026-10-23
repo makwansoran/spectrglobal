@@ -93,6 +93,14 @@ export function ArgusPageView() {
                 <Link href="/developers/argus" className="argus-cta__ghost">
                   Read the docs
                 </Link>
+                <a
+                  href={page.github}
+                  className="argus-cta__ghost"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  GitHub
+                </a>
               </div>
             </div>
           </div>

@@ -4,6 +4,7 @@ export const argusPage = {
     "An open vision model for real-time detection. It sees a camera stream, marks what matters, and keeps the track — on hardware you own.",
   heroVideo: "/videos/argusone-demo.mp4",
   heroVideoAlt: "Argus marking people, a bicycle, and handbags on a cobbled square",
+  github: "https://github.com/SPECTR-NO/argus",
   compareTitle: "How Argus stacks up",
   compareBody:
     "Rated for industrial camera work: local inference, tracking, and fine-tune on footage that never leaves the site. Not a public COCO leaderboard.",

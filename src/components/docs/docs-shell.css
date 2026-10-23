@@ -207,6 +207,24 @@
   line-height: 1.55;
 }
 
+.docs__link-row {
+  margin: 0 0 1.1rem;
+}
+
+.docs__link-row a {
+  color: var(--docs-ink);
+  font-size: 0.98rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  border-bottom: 1.5px solid rgba(30, 31, 43, 0.28);
+}
+
+.docs__link-row a:hover,
+.docs__link-row a:focus-visible {
+  border-bottom-color: var(--docs-ink);
+}
+
 .docs__toc {
   position: sticky;
   top: 80px;

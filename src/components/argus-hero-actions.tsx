@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useGetStarted } from "@/components/get-started-context";
+import { argusPage } from "@/lib/argus-page";
 import "@/components/vision-nav.css";
 
 export function ArgusHeroActions() {
@@ -15,6 +16,14 @@ export function ArgusHeroActions() {
       <Link href="/developers/argus" className="argus-text-link">
         Documentation
       </Link>
+      <a
+        href={argusPage.github}
+        className="argus-text-link"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        GitHub
+      </a>
     </div>
   );
 }

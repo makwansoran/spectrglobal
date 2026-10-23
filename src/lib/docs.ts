@@ -2,7 +2,8 @@ export type DocsBlock =
   | { type: "p"; text: string }
   | { type: "ul"; items: string[] }
   | { type: "code"; label?: string; content: string }
-  | { type: "note"; text: string };
+  | { type: "note"; text: string }
+  | { type: "link"; href: string; label: string };
 
 export type DocsHeading = {
   id: string;
@@ -169,6 +170,15 @@ export const docsPages: DocsPage[] = [
             type: "p",
             text: "Argus is Spectr’s open vision model. Point it at a stream and it returns the objects and tracks that matter for the scene — people, vehicles, parts, or the custom classes you fine-tune.",
           },
+          {
+            type: "p",
+            text: "The source lives on GitHub under SPECTR-NO. Clone the repo to install, track issues, and follow releases.",
+          },
+          {
+            type: "link",
+            href: "https://github.com/SPECTR-NO/argus",
+            label: "github.com/SPECTR-NO/argus",
+          },
         ],
       },
       {
@@ -177,12 +187,12 @@ export const docsPages: DocsPage[] = [
         blocks: [
           {
             type: "p",
-            text: "Install Argus on the same host as VisionLab, or load it from your own Python environment when you build a custom pipeline.",
+            text: "Clone the Argus repository and install it on the same host as VisionLab, or load it from your own Python environment when you build a custom pipeline.",
           },
           {
             type: "code",
-            label: "Linux",
-            content: "sudo apt install Argus",
+            label: "Git",
+            content: "git clone https://github.com/SPECTR-NO/argus.git",
           },
         ],
       },
@@ -331,6 +341,7 @@ export const docsNav: DocsNavItem[] = [
       { label: "Load a checkpoint", href: "/developers/argus#load-a-checkpoint" },
       { label: "Track", href: "/developers/argus#track" },
       { label: "Fine-tune", href: "/developers/argus#fine-tune" },
+      { label: "GitHub", href: "https://github.com/SPECTR-NO/argus" },
     ],
   },
   {

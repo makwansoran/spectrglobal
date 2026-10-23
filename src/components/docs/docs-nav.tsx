@@ -24,13 +24,27 @@ export function DocsNav() {
               </Link>
               {item.children && active ? (
                 <ul className="docs__nav-children">
-                  {item.children.map((child) => (
-                    <li key={child.href}>
-                      <Link href={child.href} className="docs__nav-child">
-                        {child.label}
-                      </Link>
-                    </li>
-                  ))}
+                  {item.children.map((child) => {
+                    const external = child.href.startsWith("http");
+                    return (
+                      <li key={child.href}>
+                        {external ? (
+                          <a
+                            href={child.href}
+                            className="docs__nav-child"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {child.label}
+                          </a>
+                        ) : (
+                          <Link href={child.href} className="docs__nav-child">
+                            {child.label}
+                          </Link>
+                        )}
+                      </li>
+                    );
+                  })}
                 </ul>
               ) : null}
             </li>

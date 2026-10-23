@@ -42,6 +42,15 @@ export function DocsPageView({ page }: { page: DocsPageType }) {
                       </p>
                     );
                   }
+                  if (block.type === "link") {
+                    return (
+                      <p key={`${heading.id}-link-${index}`} className="docs__link-row">
+                        <a href={block.href} target="_blank" rel="noopener noreferrer">
+                          {block.label}
+                        </a>
+                      </p>
+                    );
+                  }
                   return (
                     <div key={`${heading.id}-code-${index}`} className="docs__code">
                       {block.label ? <p className="docs__code-label">{block.label}</p> : null}
