@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useGetStarted } from "@/components/get-started-context";
 import { aboutPage } from "@/lib/about";
-import "@/components/sections/home-cta-section.css";
 import "./about-page.css";
 
 export function AboutPageView() {
@@ -32,21 +31,6 @@ export function AboutPageView() {
         </div>
       </section>
 
-      <section className="home-cta about-page__cta" aria-label="Get started">
-        <button
-          type="button"
-          className="home-cta__tile home-cta__tile--light"
-          onClick={() => openGetStarted("contact")}
-        >
-          <span>Contact us</span>
-          <span aria-hidden="true">→</span>
-        </button>
-        <Link href="/developers" className="home-cta__tile home-cta__tile--dark">
-          <span>Documentation</span>
-          <span aria-hidden="true">→</span>
-        </Link>
-      </section>
-
       <section className="about-page__people" aria-labelledby="founder-heading">
         <div className="about-page__people-inner">
           <div className="about-page__founder">
@@ -70,6 +54,20 @@ export function AboutPageView() {
                   <a href={founder.phoneHref}>{founder.phone}</a>
                 </li>
               </ul>
+              <div className="about-page__founder-actions">
+                <button
+                  type="button"
+                  className="about-page__text-action"
+                  onClick={() => openGetStarted("contact")}
+                >
+                  Contact us
+                  <span aria-hidden="true">→</span>
+                </button>
+                <Link href="/developers" className="about-page__text-action">
+                  Documentation
+                  <span aria-hidden="true">→</span>
+                </Link>
+              </div>
             </div>
           </div>
 
@@ -83,6 +81,7 @@ export function AboutPageView() {
                 src={office.mapEmbedSrc}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
               />
             </div>
             <a

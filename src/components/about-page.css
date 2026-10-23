@@ -86,14 +86,10 @@
   color: var(--about-muted);
 }
 
-.about-page__cta {
-  margin-top: 0;
-  padding-bottom: clamp(2.5rem, 5vw, 3.5rem);
-}
-
 .about-page__people {
   border-top: 1px solid var(--about-line);
   background: var(--about-wash);
+  margin-top: clamp(2.5rem, 6vw, 4rem);
   padding: clamp(3rem, 7vw, 4.5rem) 0 clamp(4rem, 9vw, 6rem);
 }
 
@@ -178,6 +174,36 @@
   border-bottom-color: var(--about-ink);
 }
 
+.about-page__founder-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem 1.35rem;
+  margin-top: 1.35rem;
+}
+
+.about-page__text-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--about-ink);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.98rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  border-bottom: 1.5px solid rgba(30, 31, 43, 0.28);
+}
+
+.about-page__text-action:hover,
+.about-page__text-action:focus-visible {
+  border-bottom-color: var(--about-ink);
+  outline: none;
+}
+
 .about-page__office-address {
   margin: 0.65rem 0 1.15rem;
   color: var(--about-muted);
@@ -188,10 +214,12 @@
 .about-page__map {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 11;
+  min-height: 16rem;
   border-radius: 12px;
   border: 1px solid var(--about-line);
   background: #dddcd8;
+  box-shadow: 0 12px 32px rgba(30, 31, 43, 0.08);
 }
 
 .about-page__map iframe {

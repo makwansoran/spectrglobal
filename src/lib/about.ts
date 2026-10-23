@@ -26,8 +26,8 @@ export const aboutPage = {
     place: "Bitraf",
     address: "Brenneriveien 9, 0182 Oslo",
     mapEmbedSrc:
-      "https://www.openstreetmap.org/export/embed.html?bbox=10.7495%2C59.9185%2C10.7562%2C59.9217&layer=mapnik&marker=59.9200782%2C10.7528524",
-    mapLink: "https://www.openstreetmap.org/?mlat=59.9200782&mlon=10.7528524#map=18/59.9200782/10.7528524",
+      "https://www.google.com/maps?q=Bitraf,+Brenneriveien+9,+0182+Oslo,+Norway&hl=en&z=17&output=embed",
+    mapLink: "https://www.google.com/maps/search/?api=1&query=Bitraf+Brenneriveien+9+Oslo",
     mapTitle: "Map of Spectr at Bitraf, Brenneriveien 9, Oslo",
   },
 } as const;
