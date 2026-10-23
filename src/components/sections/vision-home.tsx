@@ -161,31 +161,25 @@ export function VisionHome() {
         </div>
       </section>
 
-      <section className="vision-stories" aria-labelledby="smart-system-title">
-        <div className="vision-stories__head">
-          <h2 id="smart-system-title">Spectr Smart System</h2>
+      <section className="vision-stories vision-stories--smart" aria-labelledby="smart-system-title">
+        <div className="vision-story__media">
+          <Image
+            src="/images/spectr-smart-system.jpg"
+            alt="Spectr Smart System hardware"
+            fill
+            sizes="(max-width: 900px) 100vw, 50vw"
+            className="vision-story__image"
+          />
         </div>
-        <article className="vision-story vision-story--smart">
-          <div className="vision-story__media vision-story__media--bare">
-            <Image
-              src="/images/spectr-smart-system.jpg"
-              alt="Spectr Smart System hardware"
-              fill
-              sizes="(max-width: 800px) 100vw, 70rem"
-              className="vision-story__image vision-story__image--diagram"
-            />
-            <div
-              className="vision-story__glass"
-              style={{
-                backdropFilter: "blur(18px) saturate(1.35)",
-                WebkitBackdropFilter: "blur(18px) saturate(1.35)",
-              }}
-            >
-              <p>Spectr Smart System</p>
-              <p className="vision-story__soon">Coming Soon</p>
-            </div>
-          </div>
-        </article>
+        <div className="vision-stories__copy">
+          <h2 id="smart-system-title">Spectr Smart System</h2>
+          <p>
+            The industrial runtime above the camera — fuse site data with live
+            detections so the next move on the floor is ranked, not reported
+            tomorrow.
+          </p>
+          <p className="vision-story__soon">Coming Soon</p>
+        </div>
       </section>
 
       <section className="vision-practices" aria-labelledby="industries-title">
