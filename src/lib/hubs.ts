@@ -53,7 +53,7 @@ export const developersHub: HubPage = {
     {
       title: "GitHub",
       body: "Read the code, open an issue, and run the models on your own machine.",
-      href: "https://github.com/makwansoran/spectrglobal",
+      href: "https://github.com/SPECTR-NO",
     },
   ],
   capabilitiesTitle: "What you get",
