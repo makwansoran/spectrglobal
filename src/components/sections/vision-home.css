@@ -231,7 +231,10 @@
   flex: 1;
   min-height: min(62vh, 40rem);
   aspect-ratio: auto;
+  overflow: hidden;
+  border-radius: 14px;
   background: #0a0a0a;
+  clip-path: none;
 }
 
 .vision-practices {
