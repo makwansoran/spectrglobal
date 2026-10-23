@@ -6,7 +6,7 @@ export const site = {
   email: "makwan@spectr.no",
   phone: "+47 465 03 934",
   phoneHref: "tel:+4746503934",
-  location: "Norway",
+  location: "Bitraf, Brenneriveien 9, Oslo",
   product: "Spectr",
   tagline: "Open models for computer vision, AI vision, and VLA.",
   description:

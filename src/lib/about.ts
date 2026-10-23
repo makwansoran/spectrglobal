@@ -1,62 +1,33 @@
+import { site } from "@/lib/site";
+
 export const aboutPage = {
-  title: "Why We're Here",
+  title: "About us",
   belief: "Machines should see the world clearly enough to act, and people should be able to check the call.",
   heroImage: "/images/about-oslo.jpg",
   heroImageAlt: "Oslo skyline from the hillside at golden hour",
   statement:
-    "Spectr builds open computer vision, AI vision, and vision-language-action models for work that happens in the physical world.",
-  founding: [
-    "Most vision stacks stop at a box on a frame. The sites we care about need the next step: what the camera saw, what it means, and what should happen next.",
-    "Closed models make that hard to inspect, hard to fine-tune, and hard to run next to the camera. We started Spectr so the weights, the tasks, and the path to action stay open.",
-    "Spectr is a computer vision company in Norway. The product is a family of open models — detection, segmentation, pose, classification, depth, and vision-language-action.",
+    "Spectr is an AI lab in Oslo. We specialize in computer vision for production facilities — plants, yards, and floors where a camera has to earn its place in the shift.",
+  body: [
+    "Most vision stacks stop at a box on a frame. The sites we care about need the next step: what the camera saw, what it means, and what should happen on the floor.",
+    "We build open models and the software around them — VisionLab on the workstation, Argus on the stream, and Spectr Smart System when planning and execution have to run as one loop.",
+    "We stay close to the scenes the models have to survive: hard light, dust, motion, and operators who need to trust the call.",
   ],
-  whatWeDoTitle: "What we do",
-  whatWeDo: [
-    {
-      title: "We publish open vision models",
-      paragraphs: [
-        "Spectr Detect, Segment, Pose, Classify, Depth, and VLA cover the tasks teams ship: boxes, masks, keypoints, labels, distance, and action.",
-        "The models are open source. You can read them, fine-tune them on your own scenes, and run them on hardware you control.",
-      ],
-    },
-    {
-      title: "We help teams put vision to work",
-      paragraphs: [
-        "A public checkpoint is the start. Factories, yards, robots, and clinics need a model that knows their parts, their light, and their limits.",
-        "We work with teams that want a fine-tune, an edge deployment, or a support agreement around the same open models.",
-      ],
-    },
-  ],
-  expertiseTitle: "Our expertise",
-  expertise: [
-    {
-      title: "Computer vision",
-      body: "Detection, segmentation, pose, classification, and depth on images and video, trained to survive real sites.",
-    },
-    {
-      title: "AI vision",
-      body: "Models that do more than draw a box. They describe the scene so a person can confirm what the system claims to see.",
-    },
-    {
-      title: "Vision-language-action",
-      body: "A camera, an instruction, and a next action. Spectr VLA is how seeing becomes a bounded move for a person or a robot.",
-    },
-    {
-      title: "Open release",
-      body: "Weights and a small Python API. Export to the runtimes you already deploy, from a workstation to the edge.",
-    },
-  ],
-  startedTitle: "How we started",
-  started: [
-    "Spectr began in Norway around a simple gap: industrial software could store a decision, but it could not see the floor it was deciding about.",
-    "We built vision models first — open, task-specific, and meant to run where the camera is. Spectr VLA is the step that connects what the model sees to what should happen next.",
-    "We stay small on purpose. Close to the scenes the models have to survive.",
-  ],
-  futureTitle: "Where we're going",
-  futureLead: "More open models, and a shorter path from a frame to an action.",
-  future: [
-    "The next models stay in the open: better detection in hard light, tighter masks, and VLA policies that can be inspected before they move anything.",
-    "We want a developer to go from pip install to a useful prediction on their own footage in an afternoon, and a site to fine-tune that model without sending the video away.",
-    "That is the company: computer vision, AI vision, and vision-language-action, published so other people can build on it.",
-  ],
+  founder: {
+    name: "Makwan Soran",
+    role: "CEO & Founder",
+    image: "/images/about-founder.jpg",
+    imageAlt: "Makwan Soran, CEO and Founder of Spectr",
+    email: site.email,
+    phone: site.phone,
+    phoneHref: site.phoneHref,
+  },
+  office: {
+    label: "AI lab · Oslo",
+    place: "Bitraf",
+    address: "Brenneriveien 9, 0182 Oslo",
+    mapEmbedSrc:
+      "https://www.openstreetmap.org/export/embed.html?bbox=10.7495%2C59.9185%2C10.7562%2C59.9217&layer=mapnik&marker=59.9200782%2C10.7528524",
+    mapLink: "https://www.openstreetmap.org/?mlat=59.9200782&mlon=10.7528524#map=18/59.9200782/10.7528524",
+    mapTitle: "Map of Spectr at Bitraf, Brenneriveien 9, Oslo",
+  },
 } as const;
