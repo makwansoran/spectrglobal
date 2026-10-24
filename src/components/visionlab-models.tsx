@@ -1,19 +1,12 @@
 import Image from "next/image";
 import { Reveal } from "@/components/reveal";
 import { visionlabPage } from "@/lib/visionlab-page";
-import {
-  visionlabModels,
-  visionlabProviders,
-  type VisionlabProviderId,
-} from "@/lib/visionlab-models";
+import { visionlabProviders } from "@/lib/visionlab-models";
 import "./visionlab-models.css";
-
-const providerOrder = Array.from(
-  new Set(visionlabModels.map((model) => model.providerId)),
-) as VisionlabProviderId[];
 
 export function VisionlabModelsCatalog() {
   const page = visionlabPage;
+  const loop = [...visionlabProviders, ...visionlabProviders];
 
   return (
     <section className="visionlab-models-section" aria-labelledby="visionlab-models-title">
@@ -23,26 +16,29 @@ export function VisionlabModelsCatalog() {
           <p>{page.modelsBody}</p>
           <p className="visionlab-models-note">{page.modelsNote}</p>
         </Reveal>
+      </div>
 
-        <ul className="visionlab-models-showcase" aria-label="Model providers">
-          {providerOrder.map((id) => {
-            const provider = visionlabProviders[id];
-            return (
-              <li key={id}>
-                <article className="visionlab-provider-card">
-                  <Image
-                    src={provider.logo}
-                    alt=""
-                    width={48}
-                    height={48}
-                    className="visionlab-provider-card__logo"
-                  />
-                  <h3 className="visionlab-provider-card__name">{provider.name}</h3>
-                </article>
-              </li>
-            );
-          })}
-        </ul>
+      <div className="visionlab-marquee" aria-label="Model providers">
+        <div className="visionlab-marquee__fade visionlab-marquee__fade--left" aria-hidden="true" />
+        <div className="visionlab-marquee__fade visionlab-marquee__fade--right" aria-hidden="true" />
+        <div className="visionlab-marquee__track">
+          {loop.map((provider, index) => (
+            <div
+              key={`${provider.id}-${index}`}
+              className="visionlab-marquee__item"
+              aria-hidden={index >= visionlabProviders.length ? true : undefined}
+            >
+              <Image
+                src={provider.logo}
+                alt=""
+                width={40}
+                height={40}
+                className="visionlab-marquee__logo"
+              />
+              <span className="visionlab-marquee__name">{provider.name}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
