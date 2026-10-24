@@ -39,8 +39,8 @@ export const services: Service[] = [
   {
     title: "Let it go",
     body: "Then we hand the loop over: detection running on your machines, operators checking the call, and exports ready for the next system when you need them. When planning and execution should run as one, Spectr Smart System sits above the camera path so a shortage or blocked dock becomes a ranked move — not a report the next morning.",
-    image: "/images/customer-success-veolia.jpg",
-    imageAlt: "Industrial site operations with computer vision in production",
+    image: "/images/industries/manufacturing.jpg",
+    imageAlt: "Production line under automated inspection once vision is running on site",
   },
   {
     title: "Custom hardware",
