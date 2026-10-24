@@ -134,7 +134,7 @@ export const docsPages: DocsPage[] = [
         blocks: [
           {
             type: "p",
-            text: "Attach a Spectr checkpoint to the open stream. VisionLab loads the model, runs detection on each frame, and draws the track in the viewer.",
+            text: "Attach an open model from the VisionLab catalog to the open stream — Ultralytics, Meta, and others. VisionLab loads the weights, runs inference on each frame, and draws the track in the viewer.",
           },
           {
             type: "code",

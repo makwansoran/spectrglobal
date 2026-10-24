@@ -1,0 +1,137 @@
+.visionlab-models-section {
+  padding: clamp(3.5rem, 7vw, 5.5rem) 0;
+  background: var(--product-wash);
+}
+
+.visionlab-models-head {
+  max-width: 40rem;
+  margin-bottom: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+.visionlab-models-head h2 {
+  margin: 0;
+  font-size: clamp(1.75rem, 3.2vw, 2.35rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+.visionlab-models-head p {
+  margin: 0.85rem 0 0;
+  color: var(--product-muted);
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+.visionlab-models-note {
+  margin: 1rem 0 0 !important;
+  font-size: 0.9rem !important;
+}
+
+.visionlab-models-providers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin: 0 0 1.75rem;
+  padding: 0;
+  list-style: none;
+}
+
+.visionlab-models-providers li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.7rem 0.35rem 0.35rem;
+  border: 1px solid var(--product-line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--product-ink);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.visionlab-models-providers img {
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.visionlab-models-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15.5rem, 1fr));
+  gap: 0.85rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.visionlab-model-card {
+  display: grid;
+  gap: 0.85rem;
+  padding: 0.95rem 1rem;
+  border: 1px solid var(--product-line);
+  border-radius: 14px;
+  background: #fff;
+}
+
+.visionlab-model-card__top {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.visionlab-model-card__logo {
+  flex-shrink: 0;
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 9px;
+  object-fit: cover;
+  background: #f4f4f4;
+}
+
+.visionlab-model-card__copy {
+  min-width: 0;
+  display: grid;
+  gap: 0.15rem;
+}
+
+.visionlab-model-card__provider {
+  margin: 0;
+  color: var(--product-muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.visionlab-model-card__name {
+  margin: 0;
+  font-size: 0.98rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: var(--product-ink);
+}
+
+.visionlab-model-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0;
+  color: var(--product-muted);
+  font-size: 0.8rem;
+}
+
+.visionlab-model-card__task {
+  display: inline-flex;
+  padding: 0.12rem 0.45rem;
+  border-radius: 999px;
+  background: #f1f1ef;
+  color: var(--product-ink);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}

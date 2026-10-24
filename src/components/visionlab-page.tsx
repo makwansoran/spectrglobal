@@ -3,8 +3,8 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 import { GetStartedButton } from "@/components/get-started-button";
 import { Reveal } from "@/components/reveal";
-import { VisionlabCompareChart } from "@/components/visionlab-compare";
 import { VisionlabHeroActions } from "@/components/visionlab-hero-actions";
+import { VisionlabModelsCatalog } from "@/components/visionlab-models";
 import { visionlabPage, visionlabUseCases } from "@/lib/visionlab-page";
 import "./product-page.css";
 
@@ -34,18 +34,7 @@ export function VisionlabPageView() {
         </div>
       </section>
 
-      <section className="product-compare-section" aria-labelledby="visionlab-compare-title">
-        <div className="product-wrap product-compare-layout">
-          <Reveal className="product-compare-copy">
-            <h2 id="visionlab-compare-title">{page.compareTitle}</h2>
-            <p>{page.compareBody}</p>
-            <p className="product-compare-note">{page.compareNote}</p>
-          </Reveal>
-          <Reveal delay={60} className="product-compare-visual">
-            <VisionlabCompareChart />
-          </Reveal>
-        </div>
-      </section>
+      <VisionlabModelsCatalog />
 
       <section className="product-usecases" aria-labelledby="visionlab-usecases-title">
         <div className="product-wrap">
