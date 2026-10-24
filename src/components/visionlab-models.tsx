@@ -31,8 +31,8 @@ export function VisionlabModelsCatalog() {
               <Image
                 src={provider.logo}
                 alt=""
-                width={40}
-                height={40}
+                width={56}
+                height={56}
                 className="visionlab-marquee__logo"
               />
               <span className="visionlab-marquee__name">{provider.name}</span>

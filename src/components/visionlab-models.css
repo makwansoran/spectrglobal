@@ -40,8 +40,8 @@
 .visionlab-marquee__track {
   display: flex;
   width: max-content;
-  gap: 0.85rem;
-  padding: 0.25rem 0;
+  gap: 2.75rem;
+  padding: 0.5rem 0;
   animation: visionlab-marquee 48s linear infinite;
 }
 
@@ -53,26 +53,24 @@
   display: inline-flex;
   flex-shrink: 0;
   align-items: center;
-  gap: 0.7rem;
-  min-height: 3.75rem;
-  padding: 0.7rem 1.15rem 0.7rem 0.75rem;
-  border: 1px solid var(--product-line);
-  border-radius: 999px;
-  background: #fff;
-  box-shadow: 0 1px 0 rgba(30, 31, 43, 0.03);
+  gap: 0.85rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .visionlab-marquee__logo {
-  width: 2.15rem;
-  height: 2.15rem;
-  border-radius: 8px;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 0;
   object-fit: contain;
-  background: #f7f7f5;
+  background: transparent;
 }
 
 .visionlab-marquee__name {
   color: var(--product-ink);
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   font-weight: 600;
   letter-spacing: -0.02em;
   white-space: nowrap;
