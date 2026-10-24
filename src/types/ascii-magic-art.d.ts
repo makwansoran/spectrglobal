@@ -14,12 +14,20 @@ declare module "ascii-magic-art/runtime/player.js" {
   ): () => void;
 }
 
-declare module "ascii-magic-art/pieces/wireframe-globe.js" {
-  const piece: unknown;
-  export = piece;
+declare module "ascii-magic-art/pieces/northern-lights.js" {
+  export const meta: {
+    slug: string;
+    name: string;
+    cols: number;
+    rows: number;
+    fps: number;
+    palette?: Record<string, string>;
+  };
+
+  export default function create(): (t: number) => unknown;
 }
 
-declare module "ascii-magic-art/pieces/northern-lights.js" {
+declare module "ascii-magic-art/pieces/wireframe-globe.js" {
   export const meta: {
     slug: string;
     name: string;
