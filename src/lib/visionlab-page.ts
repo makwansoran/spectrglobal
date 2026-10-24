@@ -8,6 +8,8 @@ export const visionlabPage = {
   modelsBody:
     "VisionLab does not ship a Spectr model. Pull the open weights you need — Ultralytics, Meta, Google, Microsoft, and more — and run them locally next to the camera.",
   modelsNote: "Detect, segment, pose, classify, OCR, depth, tracking, and multimodal — all on hardware you own.",
+  modelsHosting: "Data hosted securely with AWS.",
+  modelsHostingLogo: "/images/integrations/aws.svg",
   ctaTitle: "Get VisionLab through a meeting",
   ctaImage: "/images/industries/manufacturing.jpg",
 } as const;

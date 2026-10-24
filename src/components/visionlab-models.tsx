@@ -40,6 +40,19 @@ export function VisionlabModelsCatalog() {
           ))}
         </div>
       </div>
+
+      <div className="product-wrap">
+        <p className="visionlab-models-hosting">
+          <Image
+            src={page.modelsHostingLogo}
+            alt="AWS"
+            width={72}
+            height={44}
+            className="visionlab-models-hosting__logo"
+          />
+          <span>{page.modelsHosting}</span>
+        </p>
+      </div>
     </section>
   );
 }
