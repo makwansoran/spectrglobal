@@ -24,45 +24,20 @@ export function VisionlabModelsCatalog() {
           <p className="visionlab-models-note">{page.modelsNote}</p>
         </Reveal>
 
-        <ul className="visionlab-models-providers" aria-label="Model providers">
+        <ul className="visionlab-models-showcase" aria-label="Model providers">
           {providerOrder.map((id) => {
             const provider = visionlabProviders[id];
             return (
               <li key={id}>
-                <Image src={provider.logo} alt="" width={22} height={22} />
-                <span>{provider.name}</span>
-              </li>
-            );
-          })}
-        </ul>
-
-        <ul className="visionlab-models-grid">
-          {visionlabModels.map((model) => {
-            const provider = visionlabProviders[model.providerId];
-            return (
-              <li key={`${model.provider}-${model.name}`}>
-                <article className="visionlab-model-card">
-                  <div className="visionlab-model-card__top">
-                    <Image
-                      src={provider.logo}
-                      alt=""
-                      width={38}
-                      height={38}
-                      className="visionlab-model-card__logo"
-                    />
-                    <div className="visionlab-model-card__copy">
-                      <p className="visionlab-model-card__provider">{model.provider}</p>
-                      <h3 className="visionlab-model-card__name">{model.name}</h3>
-                    </div>
-                  </div>
-                  <p className="visionlab-model-card__meta">
-                    <span className="visionlab-model-card__task">{model.task}</span>
-                    <span>
-                      {model.provider} · {model.task}
-                    </span>
-                    <span aria-hidden="true">·</span>
-                    <span>{model.size}</span>
-                  </p>
+                <article className="visionlab-provider-card">
+                  <Image
+                    src={provider.logo}
+                    alt=""
+                    width={48}
+                    height={48}
+                    className="visionlab-provider-card__logo"
+                  />
+                  <h3 className="visionlab-provider-card__name">{provider.name}</h3>
                 </article>
               </li>
             );

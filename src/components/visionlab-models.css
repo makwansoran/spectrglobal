@@ -28,110 +28,54 @@
   font-size: 0.9rem !important;
 }
 
-.visionlab-models-providers {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.65rem;
-  margin: 0 0 1.75rem;
-  padding: 0;
-  list-style: none;
-}
-
-.visionlab-models-providers li {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  padding: 0.35rem 0.7rem 0.35rem 0.35rem;
-  border: 1px solid var(--product-line);
-  border-radius: 999px;
-  background: #fff;
-  color: var(--product-ink);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-}
-
-.visionlab-models-providers img {
-  width: 1.35rem;
-  height: 1.35rem;
-  border-radius: 6px;
-  object-fit: cover;
-}
-
-.visionlab-models-grid {
+.visionlab-models-showcase {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(15.5rem, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.85rem;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.visionlab-model-card {
-  display: grid;
+@media (min-width: 640px) {
+  .visionlab-models-showcase {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 900px) {
+  .visionlab-models-showcase {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+  }
+}
+
+.visionlab-provider-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 0.85rem;
-  padding: 0.95rem 1rem;
+  min-height: 8.5rem;
+  padding: 1.25rem 1rem;
   border: 1px solid var(--product-line);
   border-radius: 14px;
   background: #fff;
+  text-align: center;
 }
 
-.visionlab-model-card__top {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-}
-
-.visionlab-model-card__logo {
-  flex-shrink: 0;
-  width: 2.35rem;
-  height: 2.35rem;
-  border-radius: 9px;
+.visionlab-provider-card__logo {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 12px;
   object-fit: cover;
   background: #f4f4f4;
 }
 
-.visionlab-model-card__copy {
-  min-width: 0;
-  display: grid;
-  gap: 0.15rem;
-}
-
-.visionlab-model-card__provider {
+.visionlab-provider-card__name {
   margin: 0;
-  color: var(--product-muted);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-}
-
-.visionlab-model-card__name {
-  margin: 0;
-  font-size: 0.98rem;
+  font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: -0.02em;
-  line-height: 1.25;
   color: var(--product-ink);
-}
-
-.visionlab-model-card__meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.45rem;
-  margin: 0;
-  color: var(--product-muted);
-  font-size: 0.8rem;
-}
-
-.visionlab-model-card__task {
-  display: inline-flex;
-  padding: 0.12rem 0.45rem;
-  border-radius: 999px;
-  background: #f1f1ef;
-  color: var(--product-ink);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
 }
