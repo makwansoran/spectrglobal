@@ -9,7 +9,7 @@ export const aboutPage = {
     "Spectr is an AI lab in Oslo. We specialize in computer vision for production facilities — plants, yards, and floors where a camera has to earn its place in the shift.",
   body: [
     "Most vision stacks stop at a box on a frame. The sites we care about need the next step: what the camera saw, what it means, and what should happen on the floor.",
-    "We build open models and the software around them — VisionLab on the workstation, Argus on the stream, and Spectr Smart System when planning and execution have to run as one loop.",
+    "We build the software around the camera — VisionLab on the workstation, and Spectr Smart System when planning and execution have to run as one loop.",
     "We stay close to the scenes the models have to survive: hard light, dust, motion, and operators who need to trust the call.",
   ],
   founder: {

@@ -12,7 +12,7 @@ const paths = [
   "/privacy",
   "/terms",
   "/bootcamp",
-  "/argus",
+  "/services",
   "/visionlab",
   ...hubPaths,
 ];

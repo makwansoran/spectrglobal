@@ -69,9 +69,9 @@ export function VisionlabCompareChart() {
   const yTicks = [0, 25, 50, 75, 100];
 
   return (
-    <div ref={ref} className={`argus-compare${active ? " is-active" : ""}`}>
+    <div ref={ref} className={`product-compare${active ? " is-active" : ""}`}>
       <svg
-        className="argus-compare__svg"
+        className="product-compare__svg"
         viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
         role="img"
         aria-labelledby={`${titleId}-title ${titleId}-desc`}
@@ -88,13 +88,13 @@ export function VisionlabCompareChart() {
           return (
             <g key={tick}>
               <line
-                className="argus-compare__grid"
+                className="product-compare__grid"
                 x1={PAD.left}
                 y1={y}
                 x2={PAD.left + PLOT_W}
                 y2={y}
               />
-              <text className="argus-compare__tick" x={PAD.left - 8} y={y} textAnchor="end" dominantBaseline="middle">
+              <text className="product-compare__tick" x={PAD.left - 8} y={y} textAnchor="end" dominantBaseline="middle">
                 {tick}
               </text>
             </g>
@@ -106,7 +106,7 @@ export function VisionlabCompareChart() {
           return (
             <g key={metric.id}>
               <text
-                className="argus-compare__axis-label"
+                className="product-compare__axis-label"
                 x={groupX + groupWidth / 2}
                 y={HEIGHT - 14}
                 textAnchor="middle"
@@ -123,7 +123,7 @@ export function VisionlabCompareChart() {
                 return (
                   <rect
                     key={tool.id}
-                    className={`argus-compare__bar${tool.highlight ? " is-highlight" : ""}${dimmed ? " is-dim" : ""}`}
+                    className={`product-compare__bar${tool.highlight ? " is-highlight" : ""}${dimmed ? " is-dim" : ""}`}
                     x={x}
                     y={y}
                     width={barWidth}
@@ -141,20 +141,20 @@ export function VisionlabCompareChart() {
         })}
       </svg>
 
-      <ul className="argus-compare__legend" aria-label="Tools">
+      <ul className="product-compare__legend" aria-label="Tools">
         {visionlabCompareTools.map((tool) => {
           const id = tool.id as VisionlabCompareToolId;
           return (
             <li key={tool.id}>
               <button
                 type="button"
-                className={`argus-compare__legend-btn${tool.highlight ? " is-highlight" : ""}${focus === id ? " is-focus" : ""}`}
+                className={`product-compare__legend-btn${tool.highlight ? " is-highlight" : ""}${focus === id ? " is-focus" : ""}`}
                 onMouseEnter={() => setFocus(id)}
                 onMouseLeave={() => setFocus(null)}
                 onFocus={() => setFocus(id)}
                 onBlur={() => setFocus(null)}
               >
-                <span className="argus-compare__swatch" style={{ background: TOOL_FILL[id] }} aria-hidden="true" />
+                <span className="product-compare__swatch" style={{ background: TOOL_FILL[id] }} aria-hidden="true" />
                 {tool.name}
               </button>
             </li>
@@ -162,7 +162,7 @@ export function VisionlabCompareChart() {
         })}
       </ul>
 
-      <table className="argus-compare__table sr-only">
+      <table className="product-compare__table sr-only">
         <caption>Industrial workstation scores by tool</caption>
         <thead>
           <tr>

@@ -1,34 +1,34 @@
-.argus-page {
-  --argus-ink: #1e1f2b;
-  --argus-muted: #5c5c62;
-  --argus-wash: #f4f4f4;
-  --argus-line: #e6e6e4;
-  --argus-fill: #1e1f2b;
-  --argus-fill-soft: #c8c8c6;
+.product-page {
+  --product-ink: #1e1f2b;
+  --product-muted: #5c5c62;
+  --product-wash: #f4f4f4;
+  --product-line: #e6e6e4;
+  --product-fill: #1e1f2b;
+  --product-fill-soft: #c8c8c6;
   background: #ffffff;
-  color: var(--argus-ink);
+  color: var(--product-ink);
 }
 
-.argus-wrap {
+.product-wrap {
   width: min(1120px, calc(100% - 3rem));
   margin-inline: auto;
 }
 
-.argus-kicker {
+.product-kicker {
   margin: 0 0 0.75rem;
   font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--argus-muted);
+  color: var(--product-muted);
 }
 
-.argus-section-head {
+.product-section-head {
   max-width: 36rem;
   margin-bottom: clamp(2rem, 4vw, 2.75rem);
 }
 
-.argus-section-head h2 {
+.product-section-head h2 {
   margin: 0;
   font-size: clamp(1.75rem, 3.2vw, 2.35rem);
   font-weight: 500;
@@ -36,26 +36,26 @@
   line-height: 1.05;
 }
 
-.argus-section-head p {
+.product-section-head p {
   margin: 0.85rem 0 0;
-  color: var(--argus-muted);
+  color: var(--product-muted);
   font-size: 1.125rem;
   line-height: 1.5;
 }
 
-.argus-text-link {
+.product-text-link {
   position: relative;
   display: inline-flex;
   align-items: center;
   padding: 0 0 0.15rem;
-  color: var(--argus-ink);
+  color: var(--product-ink);
   font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: -0.01em;
   text-decoration: none;
 }
 
-.argus-text-link::after {
+.product-text-link::after {
   content: "";
   position: absolute;
   left: 0;
@@ -68,30 +68,30 @@
   transition: transform 220ms ease;
 }
 
-.argus-text-link:hover::after,
-.argus-text-link:focus-visible::after {
+.product-text-link:hover::after,
+.product-text-link:focus-visible::after {
   transform: scaleX(1);
 }
 
 /* —— Hero —— */
 
-.argus-hero {
+.product-hero {
   padding: clamp(3.5rem, 8vw, 5.5rem) 0 clamp(3rem, 6vw, 4.5rem);
 }
 
-.argus-hero__layout {
+.product-hero__layout {
   display: grid;
   gap: clamp(2rem, 4vw, 3rem);
   align-items: center;
 }
 
 @media (min-width: 960px) {
-  .argus-hero__layout {
+  .product-hero__layout {
     grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
   }
 }
 
-.argus-hero__copy h1 {
+.product-hero__copy h1 {
   margin: 0;
   font-size: clamp(3.2rem, 9vw, 5.75rem);
   font-weight: 400;
@@ -99,15 +99,15 @@
   line-height: 0.9;
 }
 
-.argus-hero__lede {
+.product-hero__lede {
   margin: 1.25rem 0 0;
   max-width: 34rem;
-  color: var(--argus-muted);
+  color: var(--product-muted);
   font-size: clamp(1.05rem, 1.6vw, 1.2rem);
   line-height: 1.5;
 }
 
-.argus-hero__actions {
+.product-hero__actions {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -115,7 +115,7 @@
   margin-top: 1.75rem;
 }
 
-.argus-hero__media {
+.product-hero__media {
   position: relative;
   overflow: hidden;
   aspect-ratio: 16 / 9;
@@ -123,7 +123,7 @@
   background: #0a0a0a;
 }
 
-.argus-hero__video {
+.product-hero__video {
   display: block;
   width: 100%;
   height: 100%;
@@ -132,25 +132,25 @@
 
 /* —— Comparison —— */
 
-.argus-compare-section {
+.product-compare-section {
   padding: clamp(3.5rem, 7vw, 5.5rem) 0;
-  background: var(--argus-wash);
+  background: var(--product-wash);
 }
 
-.argus-compare-layout {
+.product-compare-layout {
   display: grid;
   gap: clamp(1.75rem, 4vw, 2.75rem);
   align-items: center;
 }
 
 @media (min-width: 900px) {
-  .argus-compare-layout {
+  .product-compare-layout {
     grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.2fr);
     gap: 3rem;
   }
 }
 
-.argus-compare-copy h2 {
+.product-compare-copy h2 {
   margin: 0;
   font-size: clamp(1.75rem, 3.2vw, 2.35rem);
   font-weight: 500;
@@ -158,57 +158,57 @@
   line-height: 1.05;
 }
 
-.argus-compare-copy > p {
+.product-compare-copy > p {
   margin: 0.85rem 0 0;
   max-width: 28rem;
-  color: var(--argus-muted);
+  color: var(--product-muted);
   font-size: 1.125rem;
   line-height: 1.5;
 }
 
-.argus-compare-note {
+.product-compare-note {
   margin: 1.25rem 0 0;
   max-width: 28rem;
   font-size: 0.82rem;
-  color: var(--argus-muted);
+  color: var(--product-muted);
 }
 
-.argus-compare-visual {
+.product-compare-visual {
   min-width: 0;
 }
 
-.argus-compare {
+.product-compare {
   display: grid;
   gap: 0.85rem;
 }
 
-.argus-compare__svg {
+.product-compare__svg {
   display: block;
   width: 100%;
   height: auto;
   overflow: visible;
 }
 
-.argus-compare__grid {
+.product-compare__grid {
   stroke: #dddcd8;
   stroke-width: 1;
 }
 
-.argus-compare__tick {
-  fill: var(--argus-muted);
+.product-compare__tick {
+  fill: var(--product-muted);
   font-size: 10px;
   font-weight: 500;
   font-variant-numeric: tabular-nums;
 }
 
-.argus-compare__axis-label {
-  fill: var(--argus-ink);
+.product-compare__axis-label {
+  fill: var(--product-ink);
   font-size: 11px;
   font-weight: 600;
   letter-spacing: -0.01em;
 }
 
-.argus-compare__bar {
+.product-compare__bar {
   transform-box: fill-box;
   transform-origin: bottom;
   transform: scaleY(0);
@@ -219,20 +219,20 @@
   transition-delay: calc(var(--i, 0) * 18ms);
 }
 
-.argus-compare.is-active .argus-compare__bar {
+.product-compare.is-active .product-compare__bar {
   transform: scaleY(1);
   opacity: 1;
 }
 
-.argus-compare__bar.is-dim {
+.product-compare__bar.is-dim {
   opacity: 0.22 !important;
 }
 
-.argus-compare__bar.is-highlight {
+.product-compare__bar.is-highlight {
   filter: saturate(1.08);
 }
 
-.argus-compare__legend {
+.product-compare__legend {
   display: flex;
   flex-wrap: wrap;
   gap: 0.2rem 0.1rem;
@@ -241,7 +241,7 @@
   list-style: none;
 }
 
-.argus-compare__legend-btn {
+.product-compare__legend-btn {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
@@ -249,7 +249,7 @@
   border: 0;
   border-radius: 999px;
   background: transparent;
-  color: var(--argus-muted);
+  color: var(--product-muted);
   cursor: pointer;
   font: inherit;
   font-size: 0.78rem;
@@ -258,27 +258,27 @@
   transition: color 160ms ease, background 160ms ease;
 }
 
-.argus-compare__legend-btn:hover,
-.argus-compare__legend-btn:focus-visible,
-.argus-compare__legend-btn.is-focus {
-  color: var(--argus-ink);
+.product-compare__legend-btn:hover,
+.product-compare__legend-btn:focus-visible,
+.product-compare__legend-btn.is-focus {
+  color: var(--product-ink);
   background: rgba(30, 31, 43, 0.06);
   outline: none;
 }
 
-.argus-compare__legend-btn.is-highlight {
-  color: var(--argus-ink);
+.product-compare__legend-btn.is-highlight {
+  color: var(--product-ink);
   font-weight: 600;
 }
 
-.argus-compare__swatch {
+.product-compare__swatch {
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 2px;
   flex: 0 0 auto;
 }
 
-.argus-compare .sr-only {
+.product-compare .sr-only {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -292,11 +292,11 @@
 
 /* —— Use cases —— */
 
-.argus-usecases {
+.product-usecases {
   padding: clamp(3.5rem, 7vw, 5.5rem) 0;
 }
 
-.argus-usecases__grid {
+.product-usecases__grid {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -306,69 +306,69 @@
 }
 
 @media (min-width: 700px) {
-  .argus-usecases__grid {
+  .product-usecases__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (min-width: 1000px) {
-  .argus-usecases__grid {
+  .product-usecases__grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
-.argus-usecase {
+.product-usecase {
   display: grid;
   gap: 0.85rem;
   color: inherit;
   text-decoration: none;
 }
 
-a.argus-usecase:hover .argus-usecase__copy h3,
-a.argus-usecase:focus-visible .argus-usecase__copy h3 {
+a.product-usecase:hover .product-usecase__copy h3,
+a.product-usecase:focus-visible .product-usecase__copy h3 {
   text-decoration: underline;
   text-underline-offset: 0.2em;
 }
 
-.argus-usecase__media {
+.product-usecase__media {
   position: relative;
   aspect-ratio: 4 / 3;
   overflow: hidden;
   border-radius: 12px;
-  background: var(--argus-wash);
+  background: var(--product-wash);
 }
 
-.argus-usecase__image {
+.product-usecase__image {
   object-fit: cover;
   transition: transform 420ms ease;
 }
 
-a.argus-usecase:hover .argus-usecase__image,
-a.argus-usecase:focus-visible .argus-usecase__image {
+a.product-usecase:hover .product-usecase__image,
+a.product-usecase:focus-visible .product-usecase__image {
   transform: scale(1.03);
 }
 
-.argus-usecase__copy h3 {
+.product-usecase__copy h3 {
   margin: 0;
   font-size: 1.15rem;
   font-weight: 500;
   letter-spacing: -0.03em;
 }
 
-.argus-usecase__copy p {
+.product-usecase__copy p {
   margin: 0.35rem 0 0;
-  color: var(--argus-muted);
+  color: var(--product-muted);
   font-size: 0.98rem;
   line-height: 1.45;
 }
 
 /* —— CTA —— */
 
-.argus-cta {
+.product-cta {
   padding: 0 0 clamp(3.5rem, 7vw, 5.5rem);
 }
 
-.argus-cta__panel {
+.product-cta__panel {
   position: relative;
   overflow: hidden;
   min-height: clamp(18rem, 36vw, 26rem);
@@ -376,11 +376,11 @@ a.argus-usecase:focus-visible .argus-usecase__image {
   color: #ffffff;
 }
 
-.argus-cta__image {
+.product-cta__image {
   object-fit: cover;
 }
 
-.argus-cta__scrim {
+.product-cta__scrim {
   position: absolute;
   inset: 0;
   background: linear-gradient(
@@ -391,7 +391,7 @@ a.argus-usecase:focus-visible .argus-usecase__image {
   );
 }
 
-.argus-cta__content {
+.product-cta__content {
   position: relative;
   z-index: 1;
   display: flex;
@@ -403,7 +403,7 @@ a.argus-usecase:focus-visible .argus-usecase__image {
   padding: clamp(1.75rem, 4vw, 2.75rem);
 }
 
-.argus-cta__content h2 {
+.product-cta__content h2 {
   margin: 0;
   max-width: 14ch;
   font-size: clamp(1.9rem, 4.2vw, 3.1rem);
@@ -412,14 +412,14 @@ a.argus-usecase:focus-visible .argus-usecase__image {
   line-height: 1;
 }
 
-.argus-cta__actions {
+.product-cta__actions {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.75rem 1rem;
 }
 
-.argus-cta__ghost {
+.product-cta__ghost {
   display: inline-flex;
   align-items: center;
   padding: 0.65rem 0.15rem;
@@ -431,22 +431,22 @@ a.argus-usecase:focus-visible .argus-usecase__image {
   transition: border-color 160ms ease;
 }
 
-.argus-cta__ghost:hover,
-.argus-cta__ghost:focus-visible {
+.product-cta__ghost:hover,
+.product-cta__ghost:focus-visible {
   border-bottom-color: #ffffff;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .argus-compare__bar,
-  .argus-usecase__image {
+  .product-compare__bar,
+  .product-usecase__image {
     transition: none;
   }
 
-  .argus-compare.is-active .argus-compare__bar {
+  .product-compare.is-active .product-compare__bar {
     transform: none;
   }
 
-  a.argus-usecase:hover .argus-usecase__image {
+  a.product-usecase:hover .product-usecase__image {
     transform: none;
   }
 }

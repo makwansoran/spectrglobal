@@ -1,7 +1,7 @@
 export const visionlabPage = {
   name: "VisionLab",
   heroBody:
-    "The app for the camera. Open a stream, run Argus, and keep the track on your own machine — licensed through a meeting with Spectr, not a public install.",
+    "The app for the camera. Open a stream, run detection, and keep the track on your own machine — licensed through a meeting with Spectr, not a public install.",
   heroImage: "/visionlab-app.jpg",
   heroImageAlt: "Street scene with vision masks on cars, people, and the road",
   compareTitle: "How VisionLab stacks up",
@@ -98,7 +98,7 @@ export const visionlabUseCases = [
   },
   {
     name: "Logistics",
-    line: "Open a dock camera, run Argus, and follow the gap that stalls the yard.",
+    line: "Open a dock camera, run detection, and follow the gap that stalls the yard.",
     image: "/images/industries/logistics.jpg",
     imageAlt: "Warehouse floor with yellow roller conveyor and inventory",
   },
@@ -122,7 +122,7 @@ export const visionlabUseCases = [
   },
   {
     name: "Waste & materials",
-    line: "Attach Argus to the plant stream from bin to trommel.",
+    line: "Attach detection to the plant stream from bin to trommel.",
     image: "/images/industries/waste-management.jpg",
     imageAlt: "Sorting plant conveyors and trommel with workers on the floor",
   },

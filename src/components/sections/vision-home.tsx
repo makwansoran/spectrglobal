@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useGetStarted } from "@/components/get-started-context";
 import { models } from "@/lib/vision";
+import { servicesPage } from "@/lib/services";
 import { HeroNorthernLights } from "@/components/sections/hero-northern-lights";
 import { HomeCtaSection } from "@/components/sections/home-cta-section";
 import "@/components/vision-nav.css";
@@ -11,7 +12,6 @@ import "@/components/sections/home-cta-section.css";
 import "./vision-home.css";
 
 const visionLab = models.find((model) => model.name === "VisionLab");
-const argus = models.find((model) => model.name === "Argus");
 
 const industries = [
   {
@@ -87,7 +87,7 @@ export function VisionHome() {
         <h1 id="landing-title">Eyes of Compute</h1>
       </section>
 
-      <section className="vision-models" aria-label="VisionLab and Argus">
+      <section className="vision-models" aria-label="VisionLab and Our Services">
         <article className="vision-model" aria-labelledby="visionlab-title">
           <h2 id="visionlab-title">VisionLab</h2>
           <p>{visionLab?.body}</p>
@@ -110,27 +110,30 @@ export function VisionHome() {
           </div>
         </article>
 
-        <article className="vision-model" aria-labelledby="argus-title">
-          <h2 id="argus-title">Argus</h2>
-          <p>{argus?.body}</p>
+        <article className="vision-model" aria-labelledby="services-title">
+          <h2 id="services-title">Our Services</h2>
+          <p>{servicesPage.homeBody}</p>
           <div className="vision-model__actions">
-            <Link href="/argus" className="vision-nav__cta">
-              Learn Argus
+            <Link href="/services" className="vision-nav__cta">
+              Learn more
             </Link>
-            <Link href="/developers/argus" className="vision-model__text-link">
-              Documentation
-            </Link>
+            <button
+              type="button"
+              className="vision-model__text-link"
+              onClick={() => openGetStarted("contact")}
+            >
+              Contact
+            </button>
           </div>
-          <video
-            className="vision-model__video"
-            src="/videos/argusone-demo.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="metadata"
-            aria-label={argus?.imageAlt ?? "Argus detection demo"}
-          />
+          <div className="vision-model__media">
+            <Image
+              src={servicesPage.homeImage}
+              alt={servicesPage.homeImageAlt}
+              fill
+              sizes="(max-width: 900px) 100vw, 36rem"
+              className="vision-model__image"
+            />
+          </div>
         </article>
       </section>
 

@@ -1,14 +1,7 @@
 export const models = [
   {
-    name: "Argus",
-    body: "An open vision model for real-time detection. It sees a camera stream, marks what matters, and keeps the track.",
-    install: "sudo apt install Argus",
-    image: "/argusone.jpg",
-    imageAlt: "Argus marking people, a bicycle, and handbags on a cobbled square",
-  },
-  {
     name: "VisionLab",
-    body: "The app for the camera. Open a stream, run Argus, and keep the track on your own machine.",
+    body: "The app for the camera. Open a stream, run detection, and keep the track on your own machine.",
     image: "/visionlab-app.jpg",
     imageAlt: "Street scene with vision masks on cars, people, and the road",
   },
