@@ -125,15 +125,16 @@ export function VisionHome() {
               Contact
             </button>
           </div>
-          <div className="vision-model__media">
-            <Image
-              src={servicesPage.homeImage}
-              alt={servicesPage.homeImageAlt}
-              fill
-              sizes="(max-width: 900px) 100vw, 36rem"
-              className="vision-model__image"
-            />
-          </div>
+          <video
+            className="vision-model__video"
+            src={servicesPage.homeVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            aria-label={servicesPage.homeVideoAlt}
+          />
         </article>
       </section>
 

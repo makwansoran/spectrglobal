@@ -8,8 +8,8 @@ export const servicesPage = {
   body: "Spectr designs and deploys computer vision for production sites — from the workstation next to the camera to the runtime that turns detections into the next move on the floor.",
   homeBody:
     "Computer vision for plants, yards, and floors — scoped to your site, delivered on hardware you own.",
-  homeImage: "/images/industries/manufacturing.jpg",
-  homeImageAlt: "Circuit boards under an automated inspection head",
+  homeVideo: "/videos/argusone-demo.mp4",
+  homeVideoAlt: "Computer vision marking people, a bicycle, and handbags on a cobbled square",
 } as const;
 
 export const services: Service[] = [
