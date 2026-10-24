@@ -7,7 +7,6 @@ export type VisionlabProviderId =
   | "openai"
   | "intel"
   | "bytedance"
-  | "jaided"
   | "baidu"
   | "pytorch"
   | "opencv"
@@ -29,7 +28,6 @@ export const visionlabProviders: {
   { id: "openai", name: "OpenAI", logo: "/images/model-providers/openai.svg" },
   { id: "intel", name: "Intel", logo: "/images/model-providers/intel.svg" },
   { id: "bytedance", name: "ByteDance", logo: "/images/model-providers/bytedance.svg" },
-  { id: "jaided", name: "Jaided AI", logo: "/images/model-providers/jaided.png" },
   { id: "baidu", name: "Baidu", logo: "/images/model-providers/baidu.svg" },
   { id: "pytorch", name: "PyTorch", logo: "/images/model-providers/pytorch.svg" },
   { id: "opencv", name: "OpenCV", logo: "/images/model-providers/opencv.svg" },
