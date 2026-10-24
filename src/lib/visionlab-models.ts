@@ -11,7 +11,6 @@ export type VisionlabProviderId =
   | "pytorch"
   | "opencv"
   | "llava"
-  | "moondream"
   | "alibaba"
   | "opengvlab";
 
@@ -32,7 +31,6 @@ export const visionlabProviders: {
   { id: "pytorch", name: "PyTorch", logo: "/images/model-providers/pytorch.svg" },
   { id: "opencv", name: "OpenCV", logo: "/images/model-providers/opencv.svg" },
   { id: "llava", name: "LLaVA", logo: "/images/model-providers/llava.png" },
-  { id: "moondream", name: "Moondream", logo: "/images/model-providers/moondream.png" },
   { id: "alibaba", name: "Alibaba", logo: "/images/model-providers/alibaba.svg" },
   { id: "opengvlab", name: "OpenGVLab", logo: "/images/model-providers/opengvlab.png" },
 ];
