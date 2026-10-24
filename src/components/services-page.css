@@ -1,29 +1,79 @@
+.services-page__hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: min(72dvh, 36rem);
+  display: flex;
+  align-items: flex-end;
+  padding: clamp(4rem, 10vw, 7.5rem) 0 clamp(2.5rem, 6vw, 4rem);
+  border-bottom: 1px solid var(--offerings-line);
+  background: #050505;
+}
+
+.services-page__hero .services-page__globe {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  min-height: 0;
+  border-radius: 0;
+  background: transparent;
+  pointer-events: none;
+}
+
+.services-page__hero-inner {
+  position: relative;
+  z-index: 1;
+  width: min(100% - 2.5rem, 1120px);
+  margin-inline: auto;
+}
+
+.services-page__hero .offerings-page__title {
+  text-shadow: 0 2px 28px rgba(0, 0, 0, 0.55);
+}
+
+.services-page__hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(10, 10, 10, 0.35) 0%, rgba(10, 10, 10, 0.15) 40%, rgba(10, 10, 10, 0.78) 100%),
+    radial-gradient(ellipse 70% 55% at 50% 40%, transparent 0%, rgba(10, 10, 10, 0.45) 100%);
+}
+
 .services-page__media {
   width: min(100% - 2.5rem, 1120px);
   margin: 0 auto;
-  padding: clamp(2rem, 5vw, 3.5rem) 0 clamp(2.5rem, 6vw, 4rem);
+  padding: clamp(2.5rem, 6vw, 4.5rem) 0;
   border-bottom: 1px solid var(--offerings-line);
 }
 
 .services-page__media-grid {
   display: grid;
-  gap: 1.25rem;
+  gap: 1.75rem;
+  align-items: center;
 }
 
 @media (min-width: 900px) {
   .services-page__media-grid {
-    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-    gap: 1.75rem;
-    align-items: stretch;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: 3rem;
   }
+}
+
+.services-page__lede {
+  margin: 0;
+  max-width: 34rem;
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  line-height: 1.55;
+  color: var(--offerings-muted);
 }
 
 .services-page__globe {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  min-height: min(42vw, 22rem);
-  border-radius: 14px;
   background: #050505;
 }
 
@@ -49,7 +99,7 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  width: max(100%, 720px) !important;
+  width: max(100%, 900px) !important;
   max-width: none !important;
   height: auto !important;
   min-height: 100%;
@@ -59,7 +109,7 @@
 
 .services-page__photo {
   position: relative;
-  min-height: min(42vw, 22rem);
+  min-height: min(48vw, 26rem);
   overflow: hidden;
   border-radius: 14px;
   background: #111;

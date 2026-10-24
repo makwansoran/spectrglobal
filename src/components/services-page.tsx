@@ -7,28 +7,28 @@ import "./services-page.css";
 export function ServicesPageView() {
   return (
     <main id="main-content" className="offerings-page">
-      <section className="offerings-page__intro" aria-labelledby="services-heading">
-        <div className="offerings-page__intro-inner">
+      <section className="services-page__hero" aria-labelledby="services-heading">
+        <ServicesGlobe />
+        <div className="services-page__hero-inner">
           <h1 id="services-heading" className="offerings-page__title">
             {servicesPage.title}
           </h1>
-          <p className="offerings-page__lede">{servicesPage.body}</p>
         </div>
       </section>
 
       <section className="services-page__media" aria-label="How we work">
         <div className="services-page__media-grid">
-          <ServicesGlobe />
           <div className="services-page__photo">
             <Image
               src={servicesPage.productionImage}
               alt={servicesPage.productionImageAlt}
               fill
-              sizes="(max-width: 900px) 100vw, 50vw"
+              sizes="(max-width: 900px) 100vw, 55vw"
               className="services-page__photo-image"
               priority
             />
           </div>
+          <p className="services-page__lede">{servicesPage.body}</p>
         </div>
       </section>
 
