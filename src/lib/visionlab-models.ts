@@ -1,7 +1,6 @@
 export type VisionlabProviderId =
   | "ultralytics"
   | "meta"
-  | "idea"
   | "google"
   | "microsoft"
   | "openai"
@@ -21,7 +20,6 @@ export const visionlabProviders: {
 }[] = [
   { id: "ultralytics", name: "Ultralytics", logo: "/images/model-providers/ultralytics.png" },
   { id: "meta", name: "Meta", logo: "/images/model-providers/meta.svg" },
-  { id: "idea", name: "IDEA", logo: "/images/model-providers/idea.png" },
   { id: "google", name: "Google", logo: "/images/model-providers/google.svg" },
   { id: "microsoft", name: "Microsoft", logo: "/images/model-providers/microsoft.svg" },
   { id: "openai", name: "OpenAI", logo: "/images/model-providers/openai.svg" },
