@@ -32,16 +32,27 @@ export function ServicesPageView() {
         </div>
       </section>
 
-      <section className="offerings-page__list" aria-label="Engagement steps">
+      <section className="offerings-page__list services-page__steps" aria-label="Engagement steps">
         <ul>
           {services.map((item) => (
             <li key={item.title}>
-              <div className="offerings-page__row">
-                <span className="offerings-page__name">
-                  <span aria-hidden="true">↳ </span>
-                  {item.title}
-                </span>
-                <span className="offerings-page__body">{item.body}</span>
+              <div className="services-page__step">
+                <div className="services-page__step-copy">
+                  <h2 className="offerings-page__name">
+                    <span aria-hidden="true">↳ </span>
+                    {item.title}
+                  </h2>
+                  <p className="offerings-page__body">{item.body}</p>
+                </div>
+                <div className="services-page__step-media">
+                  <Image
+                    src={item.image}
+                    alt={item.imageAlt}
+                    fill
+                    sizes="(max-width: 900px) 100vw, 28rem"
+                    className="services-page__step-image"
+                  />
+                </div>
               </div>
             </li>
           ))}

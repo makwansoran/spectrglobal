@@ -1,6 +1,8 @@
 export type Service = {
   title: string;
   body: string;
+  image: string;
+  imageAlt: string;
 };
 
 export const servicesPage = {
@@ -18,22 +20,32 @@ export const servicesPage = {
 export const services: Service[] = [
   {
     title: "See the production",
-    body: "We come on site, walk the floor, and learn how your cameras, lines, and shifts actually run — before a single model is installed.",
+    body: "We start on your floor — not in a deck. We walk the lines, yards, and docks with your operators, map which cameras already exist, where the light fails, and which objects actually decide the shift. The goal is a clear picture of the work: what must be seen, what can stay ignored, and where a model would earn its place before we install anything.",
+    image: "/images/industries/waste-management.jpg",
+    imageAlt: "Sorting plant conveyors and trommel with workers on the floor",
   },
   {
     title: "Implement VisionLab",
-    body: "Next we put VisionLab on your existing cameras and hardware. Streams stay local; the workstation sits next to the floor you already have.",
+    body: "Next we put VisionLab on the hardware you already run. We wire your existing cameras and workstations, keep every stream on the local network, and sit the app next to the floor so operators can open a feed without a cloud round-trip. No public package install — the deployment is scoped in a meeting and provisioned for your machines.",
+    image: "/visionlab-app.jpg",
+    imageAlt: "VisionLab interface with vision masks on a street scene",
   },
   {
     title: "Train on your production",
-    body: "We train and fine-tune models on your scenes — light, dust, motion, and the objects that matter on your shift — until the track is honest.",
+    body: "We train and fine-tune on footage from your site — hard light, dust, motion, and the classes that matter on your shift. Checkpoints stay on hardware you own until the track is honest on your scenes, not a generic demo. You review the call with us until operators trust what the model marks.",
+    image: "/argusone.jpg",
+    imageAlt: "Detection overlays marking people and objects in a live scene",
   },
   {
     title: "Let it go",
-    body: "Then we hand it over: detection running on your machines, operators checking the call, and a path into Spectr Smart System when you are ready to act.",
+    body: "Then we hand the loop over: detection running on your machines, operators checking the call, and exports ready for the next system when you need them. When planning and execution should run as one, Spectr Smart System sits above the camera path so a shortage or blocked dock becomes a ranked move — not a report the next morning.",
+    image: "/images/customer-success-veolia.jpg",
+    imageAlt: "Industrial site operations with computer vision in production",
   },
   {
     title: "Custom hardware",
-    body: "We also offer custom hardware integrations — gateways, edge boxes, and camera paths wired to the site you already operate.",
+    body: "Not every site has the right box next to the camera. We also design and integrate custom edge hardware — gateways, antennas, and camera paths — so VisionLab and the model land on gear that fits your plant, yard, or collection loop. Integrations follow the site you already operate, not a one-size rack.",
+    image: "/images/spectr-smart-system.jpg",
+    imageAlt: "Spectr Smart System edge hardware with antenna",
   },
 ];

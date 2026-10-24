@@ -119,3 +119,46 @@
   object-fit: cover;
   object-position: center;
 }
+
+.services-page__steps .offerings-page__body {
+  max-width: 42rem;
+  font-size: clamp(1rem, 1.35vw, 1.08rem);
+  line-height: 1.6;
+}
+
+.services-page__step {
+  display: grid;
+  gap: 1.35rem;
+  align-items: center;
+  padding: 1.75rem 0;
+}
+
+@media (min-width: 900px) {
+  .services-page__step {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: 2.5rem;
+    padding: 2.25rem 0;
+  }
+}
+
+.services-page__step-copy {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.services-page__step-copy .offerings-page__name {
+  margin: 0;
+}
+
+.services-page__step-media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #111;
+}
+
+.services-page__step-image {
+  object-fit: cover;
+  object-position: center;
+}
