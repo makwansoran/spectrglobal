@@ -87,7 +87,7 @@ export function VisionHome() {
         <h1 id="landing-title">Eyes of Compute</h1>
       </section>
 
-      <section className="vision-models" aria-label="VisionLab and Our Services">
+      <section className="vision-models" aria-label="VisionLab and Spectr Smart System">
         <article className="vision-model" aria-labelledby="visionlab-title">
           <h2 id="visionlab-title">VisionLab</h2>
           <p>{visionLab?.body}</p>
@@ -110,31 +110,28 @@ export function VisionHome() {
           </div>
         </article>
 
-        <article className="vision-model" aria-labelledby="services-title">
-          <h2 id="services-title">Our Services</h2>
-          <p>{servicesPage.homeBody}</p>
+        <article className="vision-model" aria-labelledby="smart-system-title">
+          <h2 id="smart-system-title">Spectr Smart System</h2>
+          <p>
+            The industrial runtime above the camera — fuse site data with live
+            detections so the next move on the floor is ranked, not reported
+            tomorrow.
+          </p>
           <div className="vision-model__actions">
-            <Link href="/services" className="vision-nav__cta">
-              Learn more
+            <span className="vision-model__soon">Coming Soon</span>
+            <Link href="/developers/smart-system" className="vision-model__text-link">
+              Documentation
             </Link>
-            <button
-              type="button"
-              className="vision-model__text-link"
-              onClick={() => openGetStarted("contact")}
-            >
-              Contact
-            </button>
           </div>
-          <video
-            className="vision-model__video"
-            src={servicesPage.homeVideo}
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="metadata"
-            aria-label={servicesPage.homeVideoAlt}
-          />
+          <div className="vision-model__media">
+            <Image
+              src="/images/spectr-smart-system.jpg"
+              alt="Spectr Smart System hardware"
+              fill
+              sizes="(max-width: 900px) 100vw, 36rem"
+              className="vision-model__image"
+            />
+          </div>
         </article>
       </section>
 
@@ -165,24 +162,34 @@ export function VisionHome() {
         </div>
       </section>
 
-      <section className="vision-stories vision-stories--smart" aria-labelledby="smart-system-title">
-        <div className="vision-story__media">
-          <Image
-            src="/images/spectr-smart-system.jpg"
-            alt="Spectr Smart System hardware"
-            fill
-            sizes="(max-width: 900px) 100vw, 50vw"
-            className="vision-story__image"
+      <section className="vision-stories vision-stories--smart" aria-labelledby="services-title">
+        <div className="vision-story__media vision-story__media--video">
+          <video
+            className="vision-story__video"
+            src={servicesPage.homeVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            aria-label={servicesPage.homeVideoAlt}
           />
         </div>
         <div className="vision-stories__copy">
-          <h2 id="smart-system-title">Spectr Smart System</h2>
-          <p>
-            The industrial runtime above the camera — fuse site data with live
-            detections so the next move on the floor is ranked, not reported
-            tomorrow.
-          </p>
-          <p className="vision-story__soon">Coming Soon</p>
+          <h2 id="services-title">Our Services</h2>
+          <p>{servicesPage.homeBody}</p>
+          <div className="vision-stories__actions">
+            <Link href="/services" className="vision-nav__cta">
+              Learn more
+            </Link>
+            <button
+              type="button"
+              className="vision-model__text-link"
+              onClick={() => openGetStarted("contact")}
+            >
+              Contact
+            </button>
+          </div>
         </div>
       </section>
 
