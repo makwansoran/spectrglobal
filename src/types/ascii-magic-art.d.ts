@@ -14,6 +14,11 @@ declare module "ascii-magic-art/runtime/player.js" {
   ): () => void;
 }
 
+declare module "ascii-magic-art/pieces/wireframe-globe.js" {
+  const piece: unknown;
+  export = piece;
+}
+
 declare module "ascii-magic-art/pieces/northern-lights.js" {
   export const meta: {
     slug: string;

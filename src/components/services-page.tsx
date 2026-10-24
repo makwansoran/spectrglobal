@@ -1,5 +1,8 @@
+import Image from "next/image";
+import { ServicesGlobe } from "@/components/services-globe";
 import { services, servicesPage } from "@/lib/services";
 import "./offerings-page.css";
+import "./services-page.css";
 
 export function ServicesPageView() {
   return (
@@ -13,7 +16,23 @@ export function ServicesPageView() {
         </div>
       </section>
 
-      <section className="offerings-page__list" aria-label="All services">
+      <section className="services-page__media" aria-label="How we work">
+        <div className="services-page__media-grid">
+          <ServicesGlobe />
+          <div className="services-page__photo">
+            <Image
+              src={servicesPage.productionImage}
+              alt={servicesPage.productionImageAlt}
+              fill
+              sizes="(max-width: 900px) 100vw, 50vw"
+              className="services-page__photo-image"
+              priority
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className="offerings-page__list" aria-label="Engagement steps">
         <ul>
           {services.map((item) => (
             <li key={item.title}>

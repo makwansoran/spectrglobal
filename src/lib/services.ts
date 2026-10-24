@@ -10,23 +10,30 @@ export const servicesPage = {
     "Computer vision for plants, yards, and floors — scoped to your site, delivered on hardware you own.",
   homeVideo: "/videos/argusone-demo.mp4",
   homeVideoAlt: "Computer vision marking people, a bicycle, and handbags on a cobbled square",
+  productionImage: "/images/services-production.jpg",
+  productionImageAlt:
+    "Spectr workstation and edge hardware on site, with live camera feeds and an industrial floor beyond the window",
 } as const;
 
 export const services: Service[] = [
   {
-    title: "Vision deployment",
-    body: "Camera paths, workstations, and VisionLab set up for the scenes you actually run — licensed through a meeting, not a public install.",
+    title: "See the production",
+    body: "We come on site, walk the floor, and learn how your cameras, lines, and shifts actually run — before a single model is installed.",
   },
   {
-    title: "On-site detection",
-    body: "Models that mark what matters on your stream and keep the track local. Fine-tuned to your floor, light, and motion.",
+    title: "Implement VisionLab",
+    body: "Next we put VisionLab on your existing cameras and hardware. Streams stay local; the workstation sits next to the floor you already have.",
   },
   {
-    title: "Industrial runtime",
-    body: "Spectr Smart System above the camera — fuse site data with live detections so a shortage or blocked dock becomes a ranked move.",
+    title: "Train on your production",
+    body: "We train and fine-tune models on your scenes — light, dust, motion, and the objects that matter on your shift — until the track is honest.",
   },
   {
-    title: "Industry programs",
-    body: "Manufacturing, logistics, waste, mining, and related sites. One operating model adapted to the objects and decisions of each domain.",
+    title: "Let it go",
+    body: "Then we hand it over: detection running on your machines, operators checking the call, and a path into Spectr Smart System when you are ready to act.",
+  },
+  {
+    title: "Custom hardware",
+    body: "We also offer custom hardware integrations — gateways, edge boxes, and camera paths wired to the site you already operate.",
   },
 ];
